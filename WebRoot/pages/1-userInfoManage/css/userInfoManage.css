@@ -1,0 +1,147 @@
+
+
+#content {
+	margin-left: 0 !important;
+}
+/*搜索部分*/
+body{
+	font-family: "微软雅黑";
+}
+.top .search form{
+	display: inline-block;
+	margin-right: 10px;
+}
+.top .search form>span{
+	font-size: 13px;
+	line-height: 38px;
+}
+.top .search form:nth-child(2){
+	position: relative;
+}
+.top .search i{
+	display: inline-block;
+	width: 146px; height: 38px;
+	position: relative;
+}
+.top .search i em{
+	display: inline-block;
+	width: 146px; height: 38px;
+	line-height: 30px;
+	text-indent: 1em;
+	text-align: left;
+	border: 2px solid #d8d8d8;
+	border-radius: 4px;
+	background: url(../imgs/selectArrowdown.png) no-repeat 120px center;
+	font-style: normal;
+    font-size: 14px;
+}
+.top .search select{
+	position: absolute;
+	top: 2px; left: 0;
+	opacity: 0; filter: alpha(opacity=0);
+	width: 146px; height: 38px;
+	font-size: 13px; 
+	-ms-appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance:none;
+	appearance:none;
+	font-family: "微软雅黑";
+}
+select::-ms-expand:{
+	display: none;
+}
+.top .search i em.on{
+	background: url(../imgs/selectArrowup.png) no-repeat 120px center;
+}
+
+.top .search select option{
+	color: #818181;
+}
+
+
+.top .search span{
+	display: inline-block;
+	cursor: pointer;
+}
+
+.top .search input[type="text"]{
+	width: 146px; height: 38px;
+	text-indent: .5em; font-size: 13px;
+	border-radius: 5px;
+	border: 2px solid #d8d8d8;
+}
+.top .search input[type="submit"]{
+	background: #EB7416;
+	border: none;
+	height: 38px; 
+	width: 90px;
+	color: white;
+	font-size: 18px; 
+	margin-left: -20px;
+	cursor: pointer;
+	border: 1px solid #EB7416;
+	border-radius:  0 5px 5px 0;
+	margin-right: 30px;
+}
+.top .search input[type="submit"]:hover{
+	background: #ffa55e;
+}
+
+/*增删改查*/
+.top .btns input{
+	border: none;
+	height: 38px; width: 100px;
+	color: white;
+	font-size: 18px; 
+	cursor: pointer;
+	border-radius: 5px;
+	margin-right: 16px;
+	
+}
+/*.top .btns .add{
+	background: #369CDA; 
+}
+.top .btns .del{
+	background: #F75252;
+}
+.top .btns .change{
+	background: #EDD211;
+}
+.top .btns .setPower{
+	background: #f28a46;
+	margin-right: 0;
+}
+.top .btns button:hover{
+	background: #FFA500 ; 
+}*/
+#data-table thead th,#data-table tbody tr{
+	cursor: pointer;
+	text-align: center;
+}
+#data-table tbody tr:hover{
+	background: #e2e7eb;
+}
+
+#data-table tbody tr td.move{
+	background: #717070;
+	color: #fff;
+}
+
+.checkMask table td{
+	padding: 5px;
+}
+
+#data-table,#userFormId table{
+	font-size:13px!important;
+}
+@media only screen and (max-width: 1450px) {
+	.top .search input[type="text"],.top .search i,.top .search i em,.top .search select{
+		width: 120px
+	}
+	.top .search i em{
+		background: url(../imgs/selectArrowdown.png) 90px center no-repeat;
+	}
+	.top .btns input{
+		width: 70px;
+	}
+}

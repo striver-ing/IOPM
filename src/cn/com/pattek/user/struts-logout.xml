@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"//TFS//WebRoot//doc//struts-2.0.dtd">
+<struts>	
+	<package name="logout" namespace="/logout" extends="struts-default">
+	    <!-- 用户登陆  --> 
+		<action name="submit" class="cn.com.pattek.user.action.LogoutAction">
+			<result name="success" type="freemarker">/Login/login/login.ftl</result>			
+			
+		</action>	 		
+	</package> 
+</struts>

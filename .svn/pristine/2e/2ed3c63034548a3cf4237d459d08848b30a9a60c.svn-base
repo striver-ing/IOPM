@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"//TRS//WebRoot//doc//struts-2.0.dtd">
+<struts>
+	<package name="KeyClues" namespace="/KeyClues" extends="struts-default">
+		<action name="KeyCluesAction_*" method="{1}"  class="cn.com.pattek.KeyWords.action.KeyCluesAction">  
+			<result name="clue" type="freemarker">/netHotSpotFound/clue/clue.ftl</result>	
+			<result name="theme" type="freemarker">/netHotSpotFound/theme/theme.ftl</result>			
+		</action> 
+	</package>
+</struts>

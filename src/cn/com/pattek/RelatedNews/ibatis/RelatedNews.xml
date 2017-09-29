@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybaits-3-mapper.dtd">
+<mapper namespace="cn.com.pattek.RelatedNews.dao.RelatedNewsDao">
+	<!-- 获得所有一级分类 -->
+	<select id="getAllFirstCla" resultMap="getFirclass">
+		select * from
+		TAB_IOPM_ZERO_CLUES_CLASSIFY z order by z.zero_id desc
+  </select>
+  <!-- 添加用户行为 -->
+  <insert id="addUserAct" parameterType="cn.com.pattek.RelatedNews.entity.UserAct">
+		<selectKey resultType="java.lang.Long" keyProperty="id"
+			order="BEFORE">
+			select TAB_IOPM_USER_ACTION_SEQ.nextval from dual 
+	  </selectKey>
+		insert into tab_iopm_user_action
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id!=null">
+				id,
+			</if>
+			<if test="user_id!=null">
+				user_id,
+			</if>
+			<if test="msg_id!=null">
+				msg_id,
+			</if>
+			<if test="action_type!=null">
+				action_type,
+			</if>
+			<if test="msg_type!=null">
+				msg_type,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id!=null">
+				#{id},
+			</if>
+			<if test="user_id!=null">
+				#{user_id},
+			</if>
+			<if test="msg_id!=null">
+				#{msg_id},
+			</if>
+			<if test="action_type!=null">
+				#{action_type},
+			</if>
+			<if test="msg_type!=null">
+				#{msg_type},
+			</if>
+		</trim>
+	</insert>
+	
+	<resultMap id="getFirclass" type="cn.com.pattek.RelatedNews.entity.IopmFirst">
+		<id property="zero_id" column="zero_id" />
+		<result property="zero_name" column="zero_name" />
+		<result property="image_url" column="image_url" />
+	</resultMap>
+	<!-- 获得所有二级分类 -->
+	<select id="getAllSecondCla" parameterType="java.lang.Long"
+		resultType="cn.com.pattek.RelatedNews.entity.IopmClassify">
+		select distinct first_classify_id,first_classify from
+		TAB_IOPM_FIRST_CLUES_CLASSIFY f where f.zero_id=#{no}
+  </select>
+	<!-- 获得所有三级分类 -->
+	<select id="getAllThirdCla" parameterType="java.lang.Long"
+		resultType="cn.com.pattek.RelatedNews.entity.IopmClassifyTwo">
+		select * from TAB_IOPM_SECOND_CLUES_CLASSIFY t where
+		first_classify_id=#{no}
+  </select>
+
+
+	<select id="getAllCluesByMap" parameterType="java.util.Map"
+		resultType="cn.com.pattek.RelatedNews.entity.IopmKeyInfoEntity">
+		select * from TAB_IOPM_CLUES
+		<where>
+			<if test="zero_id!=null">and zero_id=#{zero_id}</if>
+			<if test="first_classify_id!=null">and first_id=#{first_classify_id}</if>
+			<if test="second_classify_id!=null">and second_id=#{second_classify_id}</if>
+		</where>
+	</select>
+	<!-- 获得信息总量 -->
+	<select id="getTotalArticle" parameterType="java.util.Map"
+		resultMap="getArticle">
+		select
+		count,rn,positive,negative,neutral,name,id from(select
+		d.*, rownum
+		rn
+		from(select t.* from(select count(keywords) count,c.name,
+		count(case
+		when emotion=1 then 1 else null end)positive,count(case when emotion=2
+		then 2 else null end)negative,
+		count(case when emotion=3 then 3 else
+		null end)neutral,c.id
+		from TAB_IOPM_ARTICLE_INFO a,TAB_IOPM_CLUES
+		c,TAB_IOPM_ARTICLE_CLUES_SRC b
+		<where>
+			<if test="1==1">and b.article_id=a.id</if>
+			<if test="1==1">and b.clues_id=c.id</if>
+			<if test='zero_id!=null and zero_id!=""'>and c.zero_id=#{zero_id}</if>
+			<if test='first_classify_id!=null and first_classify_id!=""'>and c.first_id=#{first_classify_id}</if>
+			<if test='second_classify_id!=null and second_classify_id!=""'>and c.second_id=#{second_classify_id}</if>
+		</where>
+		group by c.id,c.name)t order by
+		t.count desc)d
+		) g
+	</select>
+	<resultMap id="getArticle" type="cn.com.pattek.RelatedNews.entity.Article">
+	    <result property="id" column="id"/>
+		<result property="name" column="name" />
+		<result property="count" column="count" />
+		<result property="positive" column="positive" />
+		<result property="negative" column="negative" />
+		<result property="neutral" column="neutral" />
+		<result property="rn" column="rn" />
+	</resultMap>
+	<!-- 获得负面信息总量 -->
+	<select id="getNegativeArticle" parameterType="java.util.Map"
+		resultMap="getArticle">
+		select
+		count,rn,positive,negative,neutral,name,id from(select
+		d.*, rownum
+		rn
+		from(select t.* from(select count(keywords) count,c.name,
+		count(case
+		when emotion=1 then 1 else null end)positive,count(case when emotion=2
+		then 2 else null end)negative,
+		count(case when emotion=3 then 3 else
+		null end)neutral,c.id
+		from TAB_IOPM_ARTICLE_INFO a,TAB_IOPM_CLUES
+		c,TAB_IOPM_ARTICLE_CLUES_SRC b
+		<where>
+			<if test="1==1">and b.article_id=a.id</if>
+			<if test="1==1">and b.clues_id=c.id</if>
+			<if test='zero_id!=null and zero_id!=""'>and c.zero_id=#{zero_id}</if>
+			<if test='first_classify_id!=null and first_classify_id!=""'>and c.first_id=#{first_classify_id}</if>
+			<if test='second_classify_id!=null and second_classify_id!=""'>and c.second_id=#{second_classify_id}</if>
+		</where>
+		group by c.id,c.name)t order by
+		negative desc)d
+		) g
+	</select>
+
+	<!-- 輿情接口 -->
+	<select id="getRelatedInterface" parameterType="java.util.Map"
+		resultMap="getArticleInfo">
+	    
+		select * from(select rownum rn, f.* from(
+		select t.keywords,t.title,t.content,t.url,t.website_name,t.image_url,t.release_time,
+		t.emotion,t.review_count,t.comment_count,t.author,t.info_type,t.up_count,t.transmit_count,t.id,
+		(select count(x.id) from tab_iopm_user_action x where x.msg_id = t.id and x.action_type=301) adoptCount,
+		(select count(x.id) from tab_iopm_user_action x where x.msg_id = t.id and x.action_type=302) notAdoptCount 
+		from 
+		<if test="clus_ids!=null or zero_id!=null">TAB_IOPM_CLUES c,TAB_IOPM_ARTICLE_INFO t,TAB_IOPM_ARTICLE_CLUES_SRC s</if>
+		<if test="clus_ids==null and zero_id==null">TAB_IOPM_ARTICLE_INFO t</if>
+		<where>
+			<if test='release_time!=null and release_time!=""'>
+				and <![CDATA[
+					t.release_time >= to_date(#{release_time},'yyyy-mm-dd hh24:mi:ss') 
+				]]>
+			</if>
+			<if test='record_time!=null and record_time!=""'>
+				and <![CDATA[
+					t.record_time <= to_date(#{record_time},'yyyy-mm-dd hh24:mi:ss') 
+				]]>
+			</if>
+			<if test="type!=null">
+				and t.info_type in
+				<foreach item="item" index="index" collection="type" open="("
+					separator="," close=")">
+					#{item}  
+                </foreach>
+			</if>
+			<if test="type==null">and t.info_type = 9</if>
+			<if test="clus_ids!=null and clus_ids!=0">
+				and c.id=#{clus_ids}
+			</if>
+			<if test="hot_id!=null and hot_id!=0">
+				and t.hot_id=#{hot_id}
+			</if>
+			
+			<if test="emotions!=null">
+				and (t.emotion is null 
+				<if test="emotion!=null">
+				or t.emotion in
+				<foreach item="item" index="index" collection="emotion" open="("
+					separator="," close=")">
+					#{item}  
+                </foreach>
+				</if> 
+				<if test="emotion==null">or t.emotion = 0</if>
+				)
+			</if> 
+			<if test="emotions==null">
+				<if test="emotion!=null">
+				and t.emotion in
+				<foreach item="item" index="index" collection="emotion" open="("
+					separator="," close=")">
+					#{item}  
+                </foreach>
+				</if> 
+				<if test="emotion==null">and t.emotion = 0</if>
+			</if> 
+			
+			<if test="spread!=null">
+				and t.is_vip = #{spread}
+			</if>
+			
+			<if test="keywords!=null and keywords.length!=0">
+			    and(
+			    <foreach item="item" index="index" collection="keywords" separator="and"> 
+			       <!--  concat(t.title,t.content)  like concat(concat('%',#{item}),'%') 
+			        -->
+			        t.title like concat(concat('%',#{item}),'%') 
+			    </foreach>
+			    )
+			</if> 
+			<if test="1==1">and t.clues_ids is not null</if>
+		    <if test="clus_ids!=null or zero_id!=null">and s.article_id=t.id</if> 
+		    <if test="clus_ids!=null or zero_id!=null">and s.clues_id=c.id</if>
+		    <if test='zero_id!=null and zero_id!=""'>and c.zero_id=#{zero_id}</if>
+		    <if test='first_classify_id!=null and first_classify_id!=""'>and c.first_id=#{first_classify_id}</if>
+		    <if test='second_classify_id!=null and second_classify_id!=""'>and c.second_id=#{second_classify_id}</if>
+		</where>
+		<if test="sort==0 or sort==null">order by t.weight desc,t.release_time desc</if>
+		<if test="sort==1">order by t.release_time desc</if>
+		<if test="sort==2">order by t.comment_count desc</if>
+		)f where 1=1
+
+		<if test="pageNo!=-1">
+			and
+		   <![CDATA[
+		        ROWNUM <=(#{pageNo} * #{pageSize})
+		   ]]>
+		</if>
+		) g
+		where 1=1
+		<if test="pageSize!=-1">
+			and	<![CDATA[
+					RN >= (#{pageNo} - 1)* #{pageSize} +1 
+				]]>
+		</if>
+	</select>
+	<resultMap id="getArticleInfo" type="cn.com.pattek.RelatedNews.entity.ArticleInfo">
+	    <result property="keywords" column="t.keywords"/>
+	    <result property="title" column="t.title"/>
+	    <result property="url" column="t.url"/>
+	    <result property="websiteName" column="website_name"/>
+	    <result property="picture" column="t.image_url"/>
+	    <result property="pubtime" column="release_time"/>
+	    <result property="emotion" column="t.emotion"/>
+	    <result property="reviewCount" column="t.review_count"/>
+	    <result property="commtcount" column="t.comment_count"/>
+	    <result property="author" column="t.author"/>
+	    <result property="type" column="info_type"/>
+	    <result property="upCount" column="t.up_count"/>
+	    <result property="transmitCount" column="t.transmit_count"/>
+	    <result property="id" column="t.id"/>
+	    <result property="adoptCount" column="adoptCount"/>
+	    <result property="notAdoptCount" column="notAdoptCount"/>
+	</resultMap>
+	<!-- 舆情接口数量 -->
+	<select id="getRelatedCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+	    select count(t.id)
+		from 
+		<if test="clus_ids!=null or zero_id!=null">TAB_IOPM_CLUES c,TAB_IOPM_ARTICLE_INFO t,TAB_IOPM_ARTICLE_CLUES_SRC s</if>
+		<if test="clus_ids==null and zero_id==null">TAB_IOPM_ARTICLE_INFO t</if>
+		<where>
+			<if test='release_time!=null and release_time!=""'>
+				and <![CDATA[
+					t.release_time >= to_date(#{release_time},'yyyy-mm-dd hh24:mi:ss') 
+				]]>
+			</if>
+			<if test='record_time!=null and record_time!=""'>
+				and <![CDATA[
+					t.record_time <= to_date(#{record_time},'yyyy-mm-dd hh24:mi:ss') 
+				]]>
+			</if>
+			<if test="type!=null">
+				and t.info_type in
+				<foreach item="item" index="index" collection="type" open="("
+					separator="," close=")">
+					#{item}  
+                </foreach>
+			</if>
+			<if test="type==null">and t.info_type = 9</if>
+			<if test="clus_ids!=null and clus_ids!=0">
+				and c.id=#{clus_ids}
+			</if>
+			<if test="hot_id!=null and hot_id!=0">
+				and t.hot_id=#{hot_id}
+			</if>
+			<if test="emotions!=null">
+				and (t.emotion is null 
+				<if test="emotion!=null">
+				or t.emotion in
+				<foreach item="item" index="index" collection="emotion" open="("
+					separator="," close=")">
+					#{item}  
+                </foreach>
+				</if> 
+				<if test="emotion==null">or t.emotion = 0</if>
+				)
+			</if> 
+			<if test="emotions==null">
+				<if test="emotion!=null">
+				and t.emotion in
+				<foreach item="item" index="index" collection="emotion" open="("
+					separator="," close=")">
+					#{item}  
+                </foreach>
+				</if> 
+				<if test="emotion==null">and t.emotion = 0</if>
+			</if>
+			
+			<if test="spread!=null">
+				and t.is_vip = #{spread}
+			</if> 
+			
+			<if test="keywords!=null and keywords.length!=0">
+			    and
+			    <foreach item="item" index="index" collection="keywords" separator="and"> 
+			      <!-- concat(t.title,t.content) like concat(concat('%',#{item}),'%') 
+			       -->
+			        t.title like concat(concat('%',#{item}),'%') 
+			    </foreach>
+			</if>
+			<if test="1==1">and t.clues_ids is not null</if>
+		    <if test="clus_ids!=null or zero_id!=null">and s.article_id=t.id</if> 
+		    <if test="clus_ids!=null or zero_id!=null">and s.clues_id=c.id</if>
+		    <if test='zero_id!=null and zero_id!=""'>and c.zero_id=#{zero_id}</if>
+		    <if test='first_classify_id!=null and first_classify_id!=""'>and c.first_id=#{first_classify_id}</if>
+		    <if test='second_classify_id!=null and second_classify_id!=""'>and c.second_id=#{second_classify_id}</if>
+		</where>
+	</select>
+	<!-- emotion数量 -->
+	<select id="getEmotionCount" parameterType="java.util.Map" 
+	resultType="cn.com.pattek.RelatedNews.entity.AtCount">
+	    select 
+	    <if test="whichChart==2"> count(t.id) count,emotion</if>
+	    <if test="whichChart==1"> count(info_type) count,info_type</if>
+	    <if test="whichChart==3"> count(zero_id) count,zero_id</if>
+	    <if test="whichChart==4"> count(first_id) count,first_id</if>
+	    <if test="whichChart==5"> count(second_id) count,second_id</if>
+		from 
+		<if test="clus_ids!=null or zero_id!=null or whichChart==3">TAB_IOPM_CLUES c,TAB_IOPM_ARTICLE_INFO t,TAB_IOPM_ARTICLE_CLUES_SRC s</if>
+		<if test="clus_ids==null and zero_id==null and whichChart!=3">TAB_IOPM_ARTICLE_INFO t</if>
+		<where>
+			<if test='release_time!=null and release_time!=""'>
+				and <![CDATA[
+					t.release_time >= to_date(#{release_time},'yyyy-mm-dd hh24:mi:ss') 
+				]]>
+			</if>
+			<if test='record_time!=null and record_time!=""'>
+				and <![CDATA[
+					t.record_time <= to_date(#{record_time},'yyyy-mm-dd hh24:mi:ss') 
+				]]>
+			</if>
+			<if test="type!=null">
+				and t.info_type in
+				<foreach item="item" index="index" collection="type" open="("
+					separator="," close=")">
+					#{item}  
+                </foreach>
+			</if>
+			<if test="type==null">and t.info_type = 9</if>
+			<if test="clus_ids!=null and clus_ids!=0">
+				and c.id=#{clus_ids}
+			</if>
+			<if test="hot_id!=null and hot_id!=0">
+				and t.hot_id=#{hot_id}
+			</if>
+			
+			<if test="emotions!=null">
+				and (t.emotion is null 
+				<if test="emotion!=null">
+					or t.emotion in
+					<foreach item="item" index="index" collection="emotion" open="("
+						separator="," close=")">
+						#{item}  
+	                </foreach>
+				</if>
+				<if test="emotion==null">or t.emotion = 0</if> 
+				)
+			</if>	
+			<if test="emotions==null">
+				<if test="emotion!=null">
+				and t.emotion in
+				<foreach item="item" index="index" collection="emotion" open="("
+					separator="," close=")">
+					#{item}  
+                </foreach>
+				</if> 
+				<if test="emotion==null">and t.emotion = 0</if>
+			</if>
+			<!--  --><if test="spread!=null">
+				and t.is_vip = #{spread}
+			</if>
+			<if test="keywords!=null and keywords.length!=0">
+			    and
+			    <foreach item="item" index="index" collection="keywords" separator="and"> 
+			      <!--  concat(t.title,t.content) like concat(concat('%',#{item}),'%') 
+			        -->
+			        t.title like concat(concat('%',#{item}),'%') 
+			    </foreach>
+			    
+			</if>
+			<if test="1==1">and t.clues_ids is not null</if>
+		    <if test="clus_ids!=null or zero_id!=null or whichChart==3">and s.article_id=t.id</if> 
+		    <if test="clus_ids!=null or zero_id!=null or whichChart==3">and s.clues_id=c.id</if>
+		    <if test='zero_id!=null and zero_id!=""'>and c.zero_id=#{zero_id}</if>
+		    <if test='first_classify_id!=null and first_classify_id!=""'>and c.first_id=#{first_classify_id}</if>
+		    <if test='second_classify_id!=null and second_classify_id!=""'>and c.second_id=#{second_classify_id}</if>
+		</where>
+		<if test="whichChart==2">group by emotion</if>
+		<if test="whichChart==1">group by info_type</if>
+		<if test="whichChart==3">group by zero_id</if>
+		<if test="whichChart==4">group by first_id</if>
+		<if test="whichChart==5">group by second_id</if>
+	</select>
+	<!-- 微博接口 -->
+	<select id="getBlogInterface" parameterType="java.util.Map"
+		resultMap="getBlog">
+		select * from(select rownum rn, t.* from(select
+		release_time,author,title,keywords,url,review_count,comment_count,up_count,clues_ids,transmit_count,emotion 
+		from TAB_IOPM_ARTICLE_INFO  																 
+		<where>
+			<if test="1==1">and info_type = #{info_type}</if>
+			<if test='release_time!=null and release_time!=""'>
+				and <![CDATA[
+					release_time >= to_date(#{release_time},'yyyy-mm-dd hh24:mi:ss') 
+				]]>
+
+			</if>
+			<if test='record_time!=null and record_time!=""'>
+				and <![CDATA[
+					record_time <= to_date(#{record_time},'yyyy-mm-dd hh24:mi:ss') 
+				]]>
+			</if>
+		</where>
+		order by interaction_count desc)t where 1=1
+
+		<if test="pageNo!=-1">
+			and
+		   <![CDATA[
+		        ROWNUM <=(#{pageNo} * #{pageSize})
+		   ]]>
+		</if>
+		) g
+		where 1=1
+		<if test="pageSize!=-1">
+			and	<![CDATA[
+					RN >= (#{pageNo} - 1)* #{pageSize} +1 
+				]]>
+		</if>
+	</select>
+	<resultMap id="getBlog" type="cn.com.pattek.RelatedNews.entity.Blog">
+		<result property="pubtime" column="release_time" />
+		<result property="author" column="author" />
+		<result property="title" column="title" />
+		<result property="source_url" column="url" />
+		<result property="interaction_num" column="review_count" />
+		<result property="commtcount" column="comment_count" />
+		<result property="rttcount" column="up_count" />
+		<result property="cluesIds" column="clues_ids" />
+		<result property="emotion" column="emotion" />
+		<result property="transmitcount" column="transmit_count"/>
+	</resultMap>
+	<!-- 微博数量 -->
+	<select id="getBlogCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select count(*) count from TAB_IOPM_ARTICLE_INFO t
+		<where>
+			<if test="1==1">and info_type = #{info_type}</if>
+			<if test='release_time!=null and release_time!=""'>
+				and <![CDATA[
+					release_time >= to_date(#{release_time},'yyyy-mm-dd hh24:mi:ss') 
+				]]>
+
+			</if>
+			<if test='record_time!=null and record_time!=""'>
+				and <![CDATA[
+					record_time <= to_date(#{record_time},'yyyy-mm-dd hh24:mi:ss') 
+				]]>
+			</if>
+		</where>
+	</select>
+	<!-- 采纳未采纳数量 -->
+	<select id="getAdoptCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select count(t.id) count from TAB_IOPM_USER_ACTION t
+		<where>
+			<if test='msg_id!=null and msg_id!=""'>
+				and t.msg_id = #{msg_id}
+			</if>
+			<if test='user_id!=null and user_id!=""'>
+				and t.user_id = #{user_id}
+			</if>
+			<if test='action_type!=null and action_type!=""'>
+				and action_type = #{action_type}
+			</if>
+		</where>
+	</select>
+</mapper>

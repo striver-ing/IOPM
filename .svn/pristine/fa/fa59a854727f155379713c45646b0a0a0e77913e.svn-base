@@ -1,0 +1,937 @@
+.panel-body{
+	background: #000000;
+	overflow: hidden;
+	position: relative;
+}
+.panel-title {
+	position: relative;
+}
+.views label {
+	color:#FFC107;
+}
+
+.views {
+	float: right;
+	margin-right: 42%;
+}
+.views img{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.sort {
+	position: absolute;
+	top: 0;
+	right: 60px;
+	height: 20px;
+	line-height: 20px;
+	color:#FFC107;
+}
+.sort label {
+	color:#FFC107;
+}
+input[type=radio]{
+	margin:0 3px;
+}
+.classify {
+	/*width: 300px;*/
+	position: absolute;
+	top: 152%;
+	left: 32%;
+	background-color: #242a30;
+	z-index: 1;
+	display: none;
+}
+
+.panel-title .classify input {
+	margin: 5px 0 5px 14px;
+}
+
+.classify label {
+	color:#FFC107;
+}
+/*3d标签云*/
+.tagBall{
+    width: 100%;
+    height: 1500px;
+    /*margin:50px auto;*/
+    position: relative;
+}
+.tagNational {
+	margin-top:-110px;
+}	
+.tagLocal{
+	top: -10px;
+	left: 17%;
+	display: none;
+	width: 70%;
+	height: 800px;
+	margin-top:-100px;
+}
+.tagLocal .tagLocal-list {
+	position: absolute;
+	width: 100%;
+	height: 736px;
+	overflow: hidden;
+	display: none;
+}
+.tagLocal .tagLocal-con {
+	display: none;
+	width: 100%;
+	height:auto;
+}
+
+.tagLocal-list .scrollBox {
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	width: 5px;
+	background-color: #000;
+	display: none;
+}
+
+.tagLocal-list .bar {
+	position: absolute;
+	top: 0px;
+	right: 0;
+	width:8px;
+	cursor: pointer;
+	border-radius: 10px;
+	background:rgba(70, 67, 67, 0.29);
+}
+
+/*.tagLocal-list .bar:hover {*/
+	/*width: 8px;*/
+/*}*/
+.tagLocal ol {
+	width: 100%;
+	margin: 5px 2% 0px 2%;
+	padding: 3px 0;
+	border-bottom:1px dashed #353333;
+	color:#fff;
+}
+
+.tagLocal ul {
+	width: 100%;
+	margin: 5px 2% 0px 2%;
+	padding: 3px 0;
+	border-bottom:1px dashed #353333;
+}
+.tagLocal ul li {
+	float: left;
+	font-size:15px;
+	text-align: left;
+}
+.tagLocal ul li:nth-child(1){
+	width: 5%;
+	text-align: center;
+}
+.tagLocal ul li:nth-child(2){
+	width: 60%;
+	cursor: pointer;
+}
+.tagLocal ul li:nth-child(3){
+	width: 5%;
+	text-align: center;
+}
+.tagLocal ul li:nth-child(4){
+	width: 5%;
+	text-align: center;
+}
+.tagLocal ul li:nth-child(5){
+	width: 20%;
+	text-align: center;
+}
+.tagLocal ul li:nth-child(6){
+	width: 5%;
+	text-align: center;
+}
+.adopt img {
+	width:20px;
+	height:20px;
+}
+.tag-red {
+	color:red;
+}
+.tag-brown{
+	color:coral;
+}
+.tag-yellow {
+	color:yellow;
+}
+.tag-blue {
+	color:#00acac;
+}
+.tag-green {
+	color:green;
+}
+.tag{
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    color: #000;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: "微软雅黑";
+    font-weight: bold;
+}
+.tit{
+	display: inline-block;
+	width: auto; overflow: hidden;
+	height: 40px; line-height: 40px;
+	margin-bottom: 3px;
+}
+.tit:hover{
+	border:2px solid #666;
+	border-radius: 3px;
+}
+.tip{
+	width: 400px; height: auto;
+	overflow: hidden;
+	border:1px solid #ccc;
+	border-radius: 5px;
+	background: #E8E8E8;
+	position: relative;
+	z-index: 1;
+	display: none;
+}
+.tip .top{
+	text-align: center;
+	border-bottom: #ccc dashed 1px;
+}
+.tip .top span{
+	font-size: 16px;
+	line-height: 30px;
+	cursor: pointer;
+}
+.tip .top span:hover{
+	color: darkgreen;
+}
+.tip .top .newsStyle{
+	color: red;
+}
+.tip .top .newsTitle{
+	color: #00acac;
+}
+.tip .contents{
+	font-size: 14px;
+	overflow: hidden;
+	word-wrap: break-word;
+	padding: 5px ;
+	border-bottom: #ccc dashed 1px;
+}
+.tip .newsContent{
+	color: #333;
+	height: auto;
+	overflow: hidden;
+	line-height:23px;
+}
+.newInfo{
+	padding: 5px;
+}
+.newInfo span{
+	color: rgba(0,0,0,.8);
+	font-size: 12px;
+}
+.site,.pushTime,.kw{
+	margin-right: 5px;
+}
+
+/*侧边栏*/
+.Collation {
+	position: absolute;
+	top: 12%;
+	left: -400px;
+	width: 400px;
+	background-color: #fff;
+	z-index:1000;
+}
+.Collation h2{
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	margin-top:20px;
+	text-align: center;
+}
+
+.Collation h2 img {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
+}
+.Collation .Collation-title {
+	position: absolute;
+	top: 0;
+	right: -400px;
+	width: 100%;
+	height:auto;
+	padding:10px;
+	color:#000;
+	background-color: #fff;
+	border: 1px solid chocolate;
+	border-radius: 10px;
+	display: none;
+}
+.Collation .Collation-title p {
+	margin: 10px 0;
+	line-height: 20px;
+}
+.Collation .Collation-title p:nth-child(5) {
+	color:red;
+}
+.Collation .e-1,
+.Collation .e-2 {
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+}
+
+.Collation .e-1 label,
+.Collation .e-2 label {
+	display: block;
+	float: left;
+	margin-left: 20px;
+	margin-bottom:0;
+	font-weight: 300;
+	font-size: 16px;
+}
+.weighting {
+	margin: 20px 20px 10px 20px;
+	font-size:16px;
+}
+.weighting a {
+	color:#999;
+}
+.header-w {
+	display: none;
+}
+.weighting .header a,
+.weighting .header-w a {
+	float: right;
+}
+.header-one {
+	margin-top: 5px;
+}
+.header-one {
+	width: 100%;
+	height:auto;
+}
+.header-one li{
+	position: relative;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+}
+.header-one li img {
+	width: 20px;
+	height: 20px;
+	margin:5px 10px 10px 0;
+	cursor: pointer;
+}
+.header-two {
+	position: absolute;
+	display: none;
+	left: 25px;
+	width: 90%;
+	z-index:1;
+}
+.header-two li{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+}
+.header-two li img {
+	width: 20px;
+	height: 20px;
+	margin:5px 10px 10px 0;
+	cursor: pointer;
+}
+.header-three {
+	position: absolute;
+	display: none;
+	left: 25px;
+	width: 80%;
+	z-index:2;
+}
+.header-three li{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+}
+.header-three li img {
+	width: 20px;
+	height: 20px;
+	margin:5px 10px 10px 0;
+	cursor: pointer;
+}
+.header-four {
+	position: absolute;
+	display: none;
+	left: 25px;
+	width: 80%;
+	z-index:3;
+}
+.header-four li{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+}
+
+#hea,
+#hea-h{
+	width: 100%;
+}
+#box
+#box-b {
+	width: 100%;
+}
+.header-w input {
+	width: 60px;
+	height: 20px;
+	line-height: 20px;
+	border:none;
+}
+.header-four input {
+	width: 60px;
+	height: 20px;
+	line-height: 20px;
+	border:none;
+}
+.Time {
+	line-height: 40px;
+	margin-top:10px;
+}
+.Time li {
+	float: left;
+	margin-right: 10px;
+}
+.Time input {
+	padding: 2px 5px;
+	line-height: 20px;
+	border: 1px solid #ccc;
+	font-size: 12px;
+	border-radius: 5px;
+}
+.but {
+	position: relative;
+	margin: 20px 60px;
+}
+
+.but button {
+	padding:4px 8px;
+}
+.but-two {
+	float: right;
+}
+.progress {
+	position: relative;
+	width: 100%;
+	height: 20px;
+	border:1px solid #ccc;
+	margin: 20px 0 10px 0;
+	display: none;
+	z-index: 1002;
+}
+.progress-bar {
+	height: 20px;
+	background-color: #2bd818;
+}
+#m {
+	position: relative;
+	display: none;
+	z-index:1002;
+}
+#m span {
+	color:red;
+	font-size:12px;
+}
+.run {
+	display: none;
+}
+.text {
+	position: absolute;
+	top: 60px;
+	right: -20px;
+	width: 20px;
+	height: 160px;
+	line-height: 28px;
+	text-align: center;
+	border-radius: 0 5px 5px 0;
+	background-color: #242a30;
+	color:#FFC107;
+	z-index:1000;
+}
+.marker {
+	position: absolute;
+	top: 0;
+	width: 400px;
+	background: rgba(250, 250, 250, .3);
+	z-index:1001;
+	display: none;
+}
+/*弹出层*/
+.checkMask.hotSpot form {
+    width: 70%;
+}
+.checkMask.hotSpot .newsTop{
+	font-size: 24px;
+	text-align: center;
+	line-height: 40px;
+}
+.checkMask.hotSpot .newsInfo{
+	margin: 5px auto;
+}
+.checkMask.hotSpot .newsInfo .info a{
+	color: #006DCC;
+}
+.checkMask.hotSpot .newsContent{
+	height: 600px;
+	overflow-y: scroll;
+	padding-bottom: 20px;
+}
+.checkMask.hotSpot .newsContent img{
+	width: 80%; height: 300px;
+}
+.checkMask.hotSpot .newsContent p{
+	text-align: left;
+	text-indent: 2em;
+	margin-bottom: 5px;
+	line-height:23px;
+}
+.checkMask.news form{
+	width: 70%;
+	position: relative;
+}
+.checkMask.news img {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 15px;
+	margin-left: 24px;
+	cursor: pointer;
+}
+.checkMask.news .news-info{
+	padding: 0 20px;
+	margin:15px 0;
+	border-bottom:1px dashed #ccc;
+}
+.checkMask.news h4 {
+	text-align: left!important;
+	margin-bottom:10px;
+	color:#006DCC;
+}
+.checkMask.news h4:hover{
+	color:orangered;
+	cursor: pointer;
+}
+.checkMask.news p {
+	padding:0 0;
+	text-indent: 2em;
+	text-align: left!important;
+}
+.checkMask.news .details{
+	text-align: left!important;
+	padding: 10px 0;
+}
+.checkMask.news .details a {
+	color:#006DCC;
+}
+
+.sets{
+	text-align: center;
+	position: relative;
+	height: 20px;
+}
+.sets .views label,.sets .date span.todayHot{
+	margin-right: 10px;
+}
+.sets .views label,.sets .views input{
+	display: inline-block;
+	color: white;
+	font-size: 16px;
+}
+.sets .date{
+	position: absolute;
+	right: 0; bottom: 0;
+}
+.sets .date span{
+	color: #FFC107;
+	font-size: 16px;
+	vertical-align: middle;
+}
+.sets .date span.todayHot{
+	cursor: pointer;
+	display: none;
+}
+.sets .date span.todayHot:hover{
+	color: red;
+}
+/*热度表*/
+.hotTab{
+	position: absolute;
+	top: -15px; left: 15px;
+	background: url(../images/arrow.png) right 5px no-repeat;
+    width: 234px;
+    background-size: contain;
+}
+.hotTab td input{
+	width: 16px; height: 16px;
+}
+.hotTab span{
+	display: inline-block;
+	height: 15px;
+	border: #ccc solid 1px;
+	vertical-align: middle;
+}
+.hotTab span.red{
+	width: 150px;
+	background: red;
+}
+.hotTab span.brown{
+	width: 120px;
+	background: coral;
+}
+.hotTab span.yellow{
+	width: 90px;
+	background: yellow;
+}
+.hotTab span.blue{
+	width: 60px;
+	background: #00acac;
+}
+.hotTab span.green{
+	width: 30px;
+	background: green;
+}
+
+.hotTab {
+	position: relative;
+	z-index: 2;
+}
+
+.checkMask.review form{
+	width: 75%;
+	height: 700px;
+}
+.checkMask.review .maskBox{
+	height: 540px;
+}
+.checkMask.review form p>input,.checkMask.review form p>select {
+	width: 70%;
+	display: inline-block !important;
+}
+.checkMask.review form p{
+	margin: 0 0 10px !important;
+}
+.checkMask.review form p i{
+	color: red;
+}
+.checkMask.review form p input[type='radio']{
+	width: 20px;
+	height: 20px;
+}
+.checkMask.review form p div.checkDiv input{
+	display: inline-block;
+	height: 20px;
+}
+.checkMask.review form p i.fa-plus{
+	margin-left: 10px;
+	color: #2093F6;
+	font-size: 16px;
+	line-height: 25px;
+	cursor: pointer;
+	transition: all .3s;
+}
+.checkMask.review form p i.fa-plus:hover{
+	transform: scale(1.4);
+	-webkit-transform: scale(1.4);
+	-ms-transform: scale(1.4);
+	-o-transform: scale(1.4);
+}
+.checkMask.review form .addClassic{
+	margin-left: 30px;
+	width: 80%;
+	margin: 10px 0;
+	display: none;
+}
+.checkMask.review form .addClassic input:first-child{
+	display: inline-block;
+	width: 150px;
+	margin-left: 85px;
+}
+.checkMask.review .btnMask{
+	bottom: 0px;
+}
+.checkMask.review form .checkDiv label{
+	margin: 5px 0;
+}
+.checkMask.review .maskHeader{
+	margin: 0 20px 10px;
+	border-bottom: #C0C0C0 solid 2px;
+}
+.checkMask.review .maskHeader h4{
+	display: inline-block;
+	width: 90px;
+	height: 30px;
+	line-height: 30px;
+	color: #fff;
+	background: #338EE1;
+	border-radius: 2px 2px 0 0;
+	padding: 0 5px;
+	text-align: center;
+	margin-left: 10px;
+}
+.checkMask.review .maskHeader span{
+	display: inline-block;
+	width: 40px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	cursor: pointer;
+	font-size: 16px;
+}
+.checkMask.review .maskHeader .right:hover{
+	color: #338EE1;
+}
+.checkMask.review .maskHeader i{
+	font-size: 16px;
+	height: 30px;
+	width: 19px;
+	line-height: 30px;
+	text-align: center;
+	margin: 0 0 0 -8px;
+}
+.checkMask.review input[type="radio"]{
+	margin-top: 0;
+}
+.checkMask.review .maskBody{
+	margin: 10px;
+	padding: 15px;
+	display: none;
+}
+.checkMask.review .maskBody div{
+	margin-bottom: 10px;
+}
+.checkMask.review .maskBody textarea{
+	width: 90%;
+}
+.checkMask.review .maskBody img{
+	width: 200px;
+	height: 200px;
+	border: #C0C0C0 solid 1px;
+
+}
+.checkMask.review .maskBody label{
+	margin-top: 0;
+	float: left;
+	line-height: 34px;
+}
+.checkMask.review .maskBody div input{
+	width: 90%;
+}
+.checkMask.review .maskBody .files span.fileinput{
+	width: 75px;
+	height: 34px; line-height: 34px;
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+}
+.checkMask.review .maskBody .files input,.checkMask.review .maskBody .files span{
+	display: inline-block;
+	width: 100%; height: 100%;
+	position: absolute;
+	top: 0; left: 0;
+
+}
+.checkMask.review .maskBody .files input{
+	opacity: 0;
+}
+
+/*关键词*/
+
+.checkMask.review .kwTop>div{
+	display: inline-block;
+}
+.checkMask.review .kw{
+	margin: -35px 0 0 84px;
+	width: 80%;
+}
+.checkMask.review .kwTop .btns span,.checkMask.review .kwTop .operat input{
+	display: inline-block;
+	width: 70px; height: 25px;
+	line-height: 25px;
+	font-size: 12px;
+	text-align: center;
+	border-radius: 2px;
+	cursor: pointer;
+	background: #EDECEC;
+	color: #707070;
+}
+.checkMask.review .kwTop .btns span:hover{
+	background: rgba(50,141,224,.8);
+	color: #fff;
+}
+.checkMask.review .kwTop .btns span.select{
+	background: #338EE1;
+	color: #fff;
+}
+.checkMask.review .kwTop .operat input:hover{
+	background: #338EE1;
+	color: #fff;
+}
+.checkMask.review .kwTop .operat input.select{
+	background: #338EE1;
+	color: #fff;
+}
+
+.checkMask.review .kwTop .operat input{
+	width: 45px; height: 25px;
+	line-height: 25px;
+	text-align: center;
+	border: none;
+}
+.checkMask.review .kwTop .operat i{
+	display: inline-block;
+	font-size: 14px;
+	width: 25px; height: 25px;
+	line-height: 25px;
+	text-align: center;
+	cursor: pointer;
+	background: #338EE1;
+	border-radius: 50%;
+	color: #fff;
+	transition: all .5s;
+}
+.checkMask.review .kwTop .operat i:hover{
+	transform: rotate(360deg);
+}
+.checkMask.review .kwBody{
+	width: 100%;
+	height: auto; min-height: 60px;
+	border: #C0C0C0 solid 1px;
+	padding: 15px 10px;
+}
+.checkMask.review .kwBody .comsMode{
+	display: none;
+}
+.checkMask.review .kwBody .advText{
+	width: 100%;
+	height: 80px;
+	border: #C0C0C0 solid 1px;
+	padding: 5px;
+}
+.checkMask.review .kwBody .history,.checkMask.review .kwBody .help{
+	display: none;
+}
+.checkMask.review .kwBody .history .text{
+	background: #F3FAFE;
+	color: #000000;
+}
+.checkMask.review .kwBody .help .text{
+	background: #FDF8F4;
+	color: red;
+}
+.checkMask.review .kwBody .history .text .txtDiv{
+	height: 24px;
+}
+
+
+
+
+.checkMask.review .keyword{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+.checkMask.review .keyword .text{
+	line-height: 34px;
+	max-height: 200px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+.marbom5px{
+	margin-bottom: 5px;
+}
+.checkMask.review .keyword label{
+	text-align: left;
+	display: inline-block;
+	line-height: 35px;
+}
+.checkMask.review .keyword i{
+	color: #00ACED;
+	font-size: 16px;
+	display: inline-block;
+	margin-left: 10px;
+	cursor: pointer;
+}
+.checkMask.review .keyword i:hover{
+	transform: scale(1.3);
+	-webkit-transform: scale(1.3);
+	-ms-transform: scale(1.3);
+	-o-transform: scale(1.3);
+}
+.checkMask.review .keyword p{
+	padding: 0;
+	margin: 0;
+	width: 45%;
+	display: inline-block;
+}
+.checkMask.review .keyword .form-control{
+	width: 100%;
+}
+.checkmask.review form p{
+	display: inline-block;
+}
+
+.checkMask.review .kwBody>div{
+	margin-bottom: 10px;
+}
+.checkMask.review .kwBody>div .text{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	padding: 5px;
+}
+.checkMask.review .kwBody .textHead{
+	height: 20px; line-height: 20px;
+	border-left: #006DCC solid 3px;
+	padding-left: 5px;
+}
+
+.checkMask.hotSpot .cha{
+	width: 24px;
+	height: 24px;
+	position: absolute;
+	top: 12px;
+	right: 20px;
+}
+
+.checkMask.review .cha{
+	width: 24px;
+	height: 24px;
+	position: absolute;
+	top: 12px;
+	right: 20px;
+}
+
+.clearfi:after {
+    content:'';
+    height: 0;
+    line-height: 0;
+    display: block;
+    clear:both;
+    visibility: hidden;
+}
+@keyframes show {
+	0%{
+		transform:scale(0);
+	}
+	100%{
+		transform:scale(1);
+	}
+}

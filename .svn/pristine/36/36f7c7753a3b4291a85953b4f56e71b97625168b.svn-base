@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybaits-3-mapper.dtd">
+<mapper namespace="cn.com.pattek.NetHotSpot.dao.NetHotSpotDao">
+     <select id="getHotListCount" parameterType="java.util.Map"
+      resultMap="getHotCount">
+     <!--   <if test='spreadMedia==1'>select * from (</if> -->
+         select clues_id,count(clues_id) count from TAB_IOPM_HOT_INFO t
+         <where>
+             <if test='type!=null and type!=""'>and hot_type = #{type}</if>
+             <if test='period!=null and period!=""'>
+             and <![CDATA[
+					record_time >= (sysdate-#{period})
+				]]>
+             </if>
+             <if test='classify!=null and classify!=""'>
+             and  clues_id in (select id from tab_iopm_clues where zero_id in 
+              <foreach item="item" index="index" collection="classify" open="("
+					separator="," close=")">
+					#{item}  
+                </foreach>
+                )
+             </if>
+         </where>
+         group by clues_id
+        <!--  <if test='spreadMedia==1'>) where is_vip is not null</if> -->
+     </select>
+     <resultMap id="getHotCount" type="cn.com.pattek.NetHotSpot.entity.NetHotSpot">
+          <result property="clues_id" column="clues_id"/>
+          <result property="count" column="count"/>
+     </resultMap>
+     
+     <!-- 根据ID查询 -->
+     <select id="getHotList" parameterType="java.util.Map"
+     resultMap="getHotList">
+     <if test='spreadMedia==1'>select * from (</if>
+        select * from TAB_IOPM_HOT_INFO t 
+        <where>
+           <if test="id!=null">and clues_id=#{id}</if>
+           <if test='type!=null and type!=""'>and hot_type = #{type}</if>
+             <if test='period!=null and period!=""'>
+             and <![CDATA[
+					record_time >= (sysdate-#{period})
+				]]>
+             </if>
+              <if test='classify!=null and classify!=""'>
+             and  clues_id in (select id from tab_iopm_clues where zero_id in 
+              <foreach item="item" index="index" collection="classify" open="("
+					separator="," close=")">
+					#{item}  
+                </foreach>
+                )
+             </if>
+        </where>
+        order by t.weight desc
+        <if test='spreadMedia==1'>) f where f.is_vip is not null</if>
+     </select>
+     <resultMap id="getHotList" type="cn.com.pattek.NetHotSpot.entity.Hot">
+        <result property="id" column="id"/>
+        <result property="kw" column="title"/>
+        <result property="kg" column="keywords"/>
+        <result property="hot" column="hot"/>
+        <result property="weight" column="weight"/>
+     </resultMap>
+     
+     <!-- 全国热点 -->
+     
+     <select id="getAllHotList" parameterType="java.util.Map" resultMap="getAll">
+        select id,title,hot from TAB_IOPM_HOT_INFO t
+        <where>
+             <if test="type!=null">and hot_type=0</if>
+             <if test='period!=null and period!=""'>
+             and <![CDATA[
+					record_time >= (sysdate-#{period})
+				]]>
+             </if>
+         </where>
+         order by hot desc
+     </select>
+     <resultMap id="getAll" type="cn.com.pattek.NetHotSpot.entity.AllHot">
+         <result property="kw" column="title"/>
+         <result property="hot" column="hot"/>
+         <result property="infoIds" column="id"/>
+     </resultMap>
+     
+     <!-- 根据ID查热点 -->
+     <select id="getAllInfoList" parameterType="java.util.Map" resultMap="getAllInfo">
+         select title,content,url,website_name,image_url,
+         to_char(release_time,'yyyy-mm-dd hh24:mi:ss') pubtime,emotion,author
+         from TAB_IOPM_ARTICLE_INFO t
+         <where>
+            <if test="infoIds!=null">t.hot_id=#{infoIds}</if>
+         </where>
+     </select>
+     <resultMap id="getAllInfo" type="cn.com.pattek.NetHotSpot.entity.AllInfo">
+         <result property="title" column="title"/>
+         <result property="content" column="content"/>
+         <result property="url" column="url"/>
+         <result property="site" column="website_name"/>
+         <result property="picture" column="image_url"/>
+         <result property="pubtime" column="pubtime"/>
+         <result property="emotion" column="emotion"/>
+         <result property="author" column="author"/>
+     </resultMap>
+     
+     <select id="getNoticeArray" parameterType="java.util.Map"
+    resultType="cn.com.pattek.user.entity.Notice">
+        select * from TAB_IOPM_NOTICE t where 
+				<![CDATA[
+					release_time >= sysdate-#{dayNum}
+				]]>
+				<if test="show!=null">and is_show = 0</if>
+				
+    </select>
+    
+    <update id="updateNotice" parameterType="cn.com.pattek.user.entity.Notice">
+       update TAB_IOPM_NOTICE set is_show = 1 where id=#{id}
+    </update>
+</mapper>

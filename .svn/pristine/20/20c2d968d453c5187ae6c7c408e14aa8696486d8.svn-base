@@ -1,0 +1,347 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="/IOPM/css/jquery-ui.min.css" rel="stylesheet"/>
+    <link href="/IOPM/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/IOPM/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/IOPM/css/animate.min.css" rel="stylesheet"/>
+    <link href="/IOPM/css/style.min.css" rel="stylesheet"/>
+
+    <link href="/IOPM/css/theme/default.css" rel="stylesheet" id="theme"/>
+    <link href="/IOPM/css/daterangepicker-bs3.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/IOPM/css/blue.css"/>
+    <link rel="stylesheet" href="/IOPM/css/select2.css"/>
+    <link rel="stylesheet" href="/IOPM/css/checkmask.css"/>
+    <!--时间-->
+    <link rel="stylesheet" href="/IOPM/css/bootstrap-datepicker/css/datepicker.css"/>
+
+    <link rel="stylesheet" href="/IOPM/css/scrollbar/jquery.mCustomScrollbar.min.css"/>
+    <!-- ================== END BASE CSS STYLE ================== -->
+    <link rel="stylesheet" href="/IOPM/netHotSpotFound/theme/css/theme.css"/>
+</head>
+<body>
+
+<!-- begin #page-loader -->
+<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+<!-- end #page-loader -->
+
+<!-- begin #page-container -->
+<div id="page-container" class="fade page-header-fixed page-sidebar-fixed">
+
+    <!-- begin #content -->
+    <form id="classifyform" action="" method="post">
+       <input id="zero_id1" type="hidden" name="zero_id" />
+       <input id="classifyname1" type="hidden" name="classify_name" />
+       <input id="classifyname2" type="hidden" name="classifyTwo_name" />
+    </form>
+    <div id="content" class="content" style="margin: 0; padding: 0;">
+        <!-- begin page-header -->
+
+        <div class="panel panel-inverse" style="margin-top:20px;">
+            <div class="panel-heading">
+                <h4 class="panel-title">线索库类别</h4>
+            </div>
+            <div class="panel-body">
+                <!--类别-->
+                <div class="category clear">
+                    <!--一级分类-->
+                    <#list firstList as first>
+                    <div class="menu">
+                        <div class="menu-theme">
+                            <a href="javascript:void(0);"><img src="${first.image_url?if_exists}" alt="" class="photo"/></a>
+                            <img src="/IOPM/netHotSpotFound/theme/imgs/nore.png" alt="" class="nore"/>
+                            <img src="/IOPM/netHotSpotFound/theme/imgs/close.png" alt="" class="close"/>
+                            <input type="hidden" value="${first.zero_id}"/>
+                            <a href="javascript:void(0);"><span>${first.zero_name}:<i>&nbsp;&nbsp;${first.countZ}</i></span></a>
+                            <!--二级分类-->
+                        </div>
+                        <div class="submenu">  
+                         	<div class="scrollBox">
+                                <div class="bar"></div>
+                            </div>                        
+                            <ul class="submenu-z">
+                                <li>
+                                    <div class="mask">
+                                        <img src="/IOPM/netHotSpotFound/theme/imgs/user-13.gif" alt=""/>
+                                        <div><span>上传图片</span></div>
+                                    </div>
+                                    <a class="text"><span class="ming">人名</span><span>：</span><span>1000</span></a>
+
+                                    <div class="icon clear">
+                                        <img src="/IOPM/netHotSpotFound/theme/imgs/b.png" alt="" class="b"/>
+                                        <img src="/IOPM/netHotSpotFound/theme/imgs/a.png" alt="" class="a"/>
+                                        <img src="/IOPM/netHotSpotFound/theme/imgs/d.png" alt="" class="d"/>
+                                        <img src="/IOPM/netHotSpotFound/theme/imgs/c.png" alt="" class="c"/>
+
+                                        <div class="sidebar-R">
+                                            
+                                        </div>
+                                    </div>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    </#list>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end panel -->
+</div>
+<!-- end #content -->
+</div>
+<!--增加弹出层-->
+<div class="checkMask main increase">
+    <form action="" method="post" class=" animated bounceInUp">
+        <div class="MaskTop">修改类别</div>
+        <em class="fa fa-times"></em>
+
+        <div class="msgs text-center">
+            <table style="width: 96%;">
+                <tr>
+                    <td></td><td><input id="useriss" type="hidden" class="form-control" placeholder="请输入Id" /></td>
+                </tr>
+                <tr>
+                    <td>名称：</td>
+                    <td><input id="userC" type="text" class="form-control" placeholder="请输入名称"/></td>
+                </tr>
+            </table>
+        </div>
+        <div class="btnMask">
+            <button class="btn btn-primary" type="button" onclick="javascript:updateSubmit();" value="确定">确定</button>
+            <span></span>
+            <button class="btn btn-danger" value="取消">取消</button>
+        </div>
+    </form>
+</div>
+<!--修改弹出层2-->
+<div class="checkMask  increase2">
+    <form action="" method="post" class=" animated bounceInUp">
+        <div class="MaskTop">修改类别</div>
+        <em class="fa fa-times"></em>
+        <div class="msgs text-center">
+            <table style="width: 96%;">
+                <tr>
+                    <td></td><td><input id="userFE" type="hidden" class="form-control" placeholder="请输入Id" /></td>
+                </tr>
+                <tr>
+                    <td>二级类别名称：</td><td><input id="userFR" type="text" class="form-control" placeholder="请输入名称" /></td>
+                </tr>
+            </table>
+        </div>
+        <div class="btnMask">
+            <button class="btn btn-primary" type="button" onclick="javascript:updateSubmit2();" value="确定">确定</button>
+            <span></span>
+            <button class="btn btn-danger" value="取消">取消</button>
+        </div>
+    </form>
+</div>
+<!--删除弹出层-->
+<div class="checkMask delete">
+    <div>
+        <form action="" method="post" class="animated bounceInLeft">
+            <div class="MaskTop">删除类别</div>
+            <em class="fa fa-times"></em>
+
+            <div class="deleText">
+                您确定删除吗？
+            </div>
+            <div class="btnMask">
+                <input id="classifyID2" type="hidden" name="classify_id"/>
+                <button class="btn btn-primary" type="submit" onClick="javascript:deleteClassify();" value="确定">确定</button>
+                <span></span>
+                <button class="btn btn-danger" value="取消">取消</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="checkMask delete2">
+    <div>
+        <form action="" method="post" class="animated bounceInLeft">
+            <div class="MaskTop">删除二级类别</div>
+            <em class="fa fa-times"></em>
+            <div class="deleText">
+                您确定删除吗？
+            </div>
+            <div class="btnMask">
+                <input id="classifyID4" type="hidden" name="classifyTwo_id"/>
+                <button class="btn btn-primary" type="submit" onClick="javascript:deleteSubmit4();" value="确定">确定</button>
+                <span></span>
+                <button class="btn btn-danger" value="取消">取消</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!--合并弹出框-->
+<div class="checkMask sum">
+    <form action="" method="post" class=" animated bounceInDown">
+    <input id="userJB" type="hidden" name="ffffd"/>
+        <div class="MaskTop">合并分类</div>
+        <em class="fa fa-times"></em>
+
+        <div class="msgs text-center">
+            <div class="col"></div>
+            <div class="select">
+                <select name="on" class="sel">
+                    
+                </select>
+            </div>
+            <div class="textt">*合并后原分类将移除，该分类下所有条目会移动至被合并的分类下</div>
+        </div>
+        <div class="btnMask">
+            <button class="btn btn-primary" type="submit" onClick="javascript:mergeClassify();" value="确定">确定</button>
+            <span></span>
+            <button class="btn btn-danger" value="取消">取消</button>
+        </div>
+    </form>
+</div>
+<!--合并弹出框2-->
+<div class="checkMask sum2">
+    <form action="/IOPM/KeyClues/KeyCluesAction_alterImage1.action" method="post" class=" animated bounceIn">
+        <input id="userHB" type="hidden" name="fffff"/>
+        <div class="MaskTop">合并分类</div>
+        <em class="fa fa-times"></em>
+        <div class="msgs text-center">
+            <div class="col"></div>
+            
+            <div class="select">
+                <select name="second_classify_id" class="sel2">
+                                
+                </select>
+            </div>
+            <div class="text">*合并后原分类将移除，该分类下所有条目会移动至被合并的分类下</div>
+        </div>
+        <div class="btnMask">
+            <button class="btn btn-primary" type="submit" onClick="javascript:mergeClassify2();" value="确定">确定</button>
+            <span></span>
+            <button class="btn btn-danger" value="取消">取消</button>
+        </div>
+    </form>
+</div>
+<!--添加图片-->
+<div class="checkMask append">
+    <form id="imgForm" action="" method="post" class=" animated bounceInRight" enctype="multipart/form-data">
+        <div class="MaskTop">添加图片</div>
+        <em class="fa fa-times"></em>
+
+        <div class="msgs text-center">
+            <input type="hidden" name="classify_id" id="imgId"/>
+            <div class="kuang"><img src="/IOPM/netHotSpotFound/theme/imgs/f.jpg" atl="" id="preview"/></div>
+            <div class="shang">上传图片：<input type="file" name="file" id="doc"  onchange="javascript:setImagePreview();"/></div>
+        </div>
+        <div class="btnMask">
+            <button class="btn btn-primary" type="submit" onClick="javascript:updateImg();" value="确定">确定</button>
+            <span></span>
+            <button class="btn btn-danger" value="取消">取消</button>
+        </div>
+    </form>
+</div>
+
+<!-- end page container -->
+<!-- ================== BEGIN BASE JS ================== -->
+<script src="/IOPM/js/jquery/jquery-1.10.1.min.js"></script>
+<script src="/IOPM/js/jquery/jquery-migrate-1.1.0.min.js"></script>
+<script src="/IOPM/js/jquery-ui/jquery-ui.min.js"></script>
+<script src="/IOPM/js/bootstrap/bootstrap.min.js"></script>
+<!--[if lt IE 9]>
+<script src="assets/crossbrowserjs/html5shiv.js"></script>
+<script src="assets/crossbrowserjs/respond.min.js"></script>
+<script src="assets/crossbrowserjs/excanvas.min.js"></script>
+<![endif]-->
+<script src="/IOPM/js/jquery.slimscroll.min.js"></script>
+<!-- ================== END BASE JS ================== -->
+<script src="/IOPM/js/public.js"></script>
+<script src="/IOPM/js/app-pages.js"></script>
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="/IOPM/js/daterangepicker.js" type="text/javascript"></script>
+<!--<script src="../public/js/moment.min.js" type="text/javascript"></script>-->
+<script src="/IOPM/js/apps.min.js"></script>
+<!-- ================== END BASE JS ================== -->
+<!-- ================== BEGIN private JS ================== -->
+<script src="/IOPM/css/scrollbar/jquery.mCustomScrollbar.concat.min.js" type="text/javascript" charset="utf-8"></script>
+<!--时间-->
+<script src="/IOPM/css/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="/IOPM/js/moment.min.js" type="text/javascript"></script>
+<!--<script src="js/fullcalendar.js"></script>-->
+<!--<script src="js/calendar.demo.min.js"></script>-->
+<script src="/IOPM/js/apps.min.js"></script>
+<!-- ================== END PAGE LEVEL JS ================== -->
+<!-- ================== BEGIN private JS ================== -->
+<script src="/IOPM/netHotSpotFound/theme/js/theme.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- ================== BEGIN private JS ================== -->
+
+
+<script>
+    $(document).ready(function () {
+        App.init();
+    });
+</script>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-53034621-1', 'auto');
+    ga('send', 'pageview');
+</script>
+<script>    
+    //下面用于图片上传预览功能
+function setImagePreview(avalue) {
+    
+
+
+    var docObj=document.getElementById("doc");
+ 
+    var imgObjPreview=document.getElementById("preview");
+    if(docObj.files &&docObj.files[0]){
+
+        //火狐下，直接设img属性
+        imgObjPreview.style.display = 'block';
+        imgObjPreview.style.width = '150px';
+        imgObjPreview.style.height = '150px'; 
+//imgObjPreview.src = docObj.files[0].getAsDataURL();
+ 
+//火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
+        imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
+    }else{
+//IE下，使用滤镜
+        docObj.select();
+        var imgSrc = document.selection.createRange().text;
+        var localImagId = document.getElementById("localImag");
+//必须设置初始大小
+        localImagId.style.width = "150px";
+        localImagId.style.height = "150px";
+//图片异常的捕捉，防止用户修改后缀来伪造图片
+        try{
+            localImagId.style.filter="progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+            localImagId.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
+        }catch(e){
+
+            alert("您上传的图片格式不正确，请重新选择!");
+            return false;
+        }
+        imgObjPreview.style.display = 'none';
+        document.selection.empty();
+    }
+    return true;
+}
+</script>
+</body>
+</html>

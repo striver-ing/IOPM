@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	 <!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="../../css/jquery-ui.min.css" rel="stylesheet" />
+	<link href="../../css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../css/animate.min.css" rel="stylesheet" />
+	<link href="../../css/style.min.css" rel="stylesheet" />
+	
+	<link href="../../css/theme/default.css" rel="stylesheet" id="theme" />	     
+	<link href="../../css/daterangepicker-bs3.css" rel="stylesheet" />
+	<link rel="stylesheet" href="../../css/blue.css" />
+	<link rel="stylesheet" href="../../css/select2.css" />
+	<link rel="stylesheet" href="../../css/checkmask.css" />
+	<!--时间-->
+	<link rel="stylesheet" href="../../css/bootstrap-datepicker/css/datepicker.css" />
+	
+	<link rel="stylesheet" href="../../css/scrollbar/jquery.mCustomScrollbar.min.css" />
+	<link rel="stylesheet" href="../../js/switchery/switchery.min.css" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	<link rel="stylesheet" href="../../css/checkmask.css" />
+	<link rel="stylesheet" href="css/netHotSpot.css" />
+</head>
+<body>
+	<!-- begin #page-loader -->
+	<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<!-- begin #header -->
+		<!--<div id="header" class="header navbar navbar-default navbar-fixed-top">-->
+			
+		<!-- begin #content -->
+		<div id="content" class="content" style="margin: 0;padding: 0;">
+		    <div class="panel panel-inverse" style="margin-top: 20px;">
+				<div class="panel-heading">
+			        <h4 class="panel-title">网络热点发现
+						<div class="views">
+			    			<input type="radio" id="national" name="view" checked /><label for="national">全网云视图</label>
+			    			<input type="radio" id="local" name="view" /><label for="local">涉广电行业</label>
+			    		</div>
+						<div class="classify">
+							<input type="checkbox" id="figure"/><label for="figure">人物</label>
+							<input type="checkbox" id="policy"/><label for="policy">政策</label>
+							<input type="checkbox" id="institutions"/><label for="institutions">机构</label>
+							<input type="checkbox" id="sensitive"/><label for="sensitive">敏感节目</label>
+						</div>
+					</h4>
+			        
+			    </div>
+			    <div class="panel-body">	
+			    	<!--显示设置-->
+			    	<div class="sets">
+			    		
+			    		<div class="date">
+			    			<span class="todayHot">查看今日热点</span>
+			    			<span>历史云视图</span>
+			    			<select class="historyHot">
+			    				<option>今日</option>
+			    				<option>2017年4月10日</option>
+			    				<option>2017年4月9日</option>
+			    				<option>2017年4月10日</option>
+			    				<option>2017年4月10日</option>
+			    				<option>2017年4月10日</option>
+			    				<option>2017年4月10日</option>
+			    				<option>2017年4月10日</option>
+			    			</select>
+			    		</div>
+			    	</div>
+			    	<!--热度表-->
+			    	<div class="hotTab">
+			    		<table >
+			    			<tr><td><input type="checkbox" checked data-hotNum="0" id="red" /></td><td><label for="red"><span class="red"></span></label></td></tr>
+			    			<tr><td><input type="checkbox" checked data-hotNum="5" id="brown"  /></td><td><label for="brown"><span class="brown"></span></label></td></tr><!--褐色-->
+			    			<tr><td><input type="checkbox" checked data-hotNum="10" id="yellow"  /></td><td><label for="yellow"><span class="yellow"></span></label></td></tr>
+			    			<tr><td><input type="checkbox" checked data-hotNum="15" id="blue"  /></td><td><label for="blue"><span class="blue"></span></label></td></tr>
+			    			<tr><td><input type="checkbox" checked data-hotNum="20" id="green" /></td><td><label for="green"><span class="green"></span></label></td></tr>
+			    		</table>
+			    	</div>
+			    	<div class="tagBall tagNational">
+				        <!--<a title="中科模识" class="tag" target="_blank" href="http://2.axescanvas.sinaapp.com/LoveDemo/secondLove.html">某某某</a>-->
+				    </div>
+				    <!--<div class="tagBall tagLocal">
+
+				    </div>-->
+			    </div>	    	
+			</div>	    
+		</div>		
+		<!-- end #content -->
+		
+		<!--热点详细信息弹出层-->
+			<div class="checkMask main hotSpot">
+				<div>
+					<form method="" class=" animated bounceInDown">
+						<div class="MaskTop">热点详细信息</div>
+						<em class="fa fa-times"></em>
+						<div class="msgs text-center">
+							<div class="newsTop">
+								<span>云南大理40条措施整治旅游市场  取消定点购物</span>
+							</div>
+							<div class="newsInfo">
+								<div class="info">
+									<span>发布时间：</span><span class="infoSpan pushTime">2017-04-10 23:59:59</span>
+									<span>评论数：</span><span class="infoSpan pushTime">20175559</span>
+									<span>来源：</span><span class="infoSpan source">今日头条 </span>
+									<a href="http://www.baidu.com">查看源网页</a>
+									<br />
+									<span>关键词：</span><span class="infoSpan kw">云南[5] 云南[5] 云南[5] 云南[5] 云南[5] 云南[5] 云南[5] 云南[5] 云南[5] 云南[5] 云南[5] 云南[5] 云南[5]</span>
+								</div>
+							</div>
+							<div class="newsContent">
+								<img src="images/002.jpg"/>
+								<p>asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味儿df</p>
+								<p>asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味儿df</p>
+								<p>asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味儿df</p>
+								<p>asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味儿df</p>
+								<p>asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味儿df</p>
+								<p>asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味儿df</p>
+								<p>asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味儿df</p>
+								<p>asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味儿df</p>
+								<p>asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味儿df</p>
+								<p>asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味asjdfk是对方告诉对方告诉对方高娃发过去而噶是的啥味儿df31131113131</p>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+        
+	</div>
+	<!-- end page container -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../public/plugins/jquery/jquery-1.9.1.min.js"></script>
+	<script src="../public/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+	<script src="../public/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+	<script src="../public/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="../public/crossbrowserjs/html5shiv.js"></script>
+		<script src="../public/crossbrowserjs/respond.min.js"></script>
+		<script src="../public/crossbrowserjs/excanvas.min.js"></script>
+	<!--[endif]-->
+	<script src="../public/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="../public/plugins/jquery-cookie/jquery.cookie.js"></script>
+	<script src="../public/js/daterangepicker.js" type="text/javascript"></script>
+	<script src="../public/js/apps.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	<!-- ================== BEGIN private JS ================== -->
+	<!--时间-->
+	<script src="../public/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../public/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../public/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script src="../public/js/app-pages.js" type="text/javascript" charset="utf-8"></script>	
+	<script src="js/netHotSpot.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script type="text/javascript" src="js/startScore.js"></script>-->
+	<script src="../public/switchery/switchery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/public_include.js" type="text/javascript" charset="utf-8"></script>
+	<!-- ================== BEGIN private JS ================== -->
+	
+	<script>
+//		scoreFun($("#startone"))
+//     scoreFun($("#starttwo"),{
+//           fen_d:22,//每一个a的宽度
+//           ScoreGrade:5//a的个数 10或者
+//         })
+	</script>
+	<script>
+		$(document).ready(function() {
+			App.init();
+//			Calendar.init();
+		});
+	</script>
+
+</body>
+</html>

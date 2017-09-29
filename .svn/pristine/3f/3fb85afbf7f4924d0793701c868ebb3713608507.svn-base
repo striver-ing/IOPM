@@ -1,0 +1,1135 @@
+body {
+	overflow-x: hidden;
+}
+.panel-body {
+	position: relative;
+}
+.search{
+	text-align: center;
+	margin-top: 20px;
+}
+.search input[type="text"]{
+	width: 40%;
+	display: inline-block;
+}
+.search input[type="button"]{ 
+	width: 100px;
+	height: 34px;
+	margin-left: -4px;
+	margin-top: 3px;
+	display: inline-block;
+}
+
+.search img {
+	cursor: pointer;
+}
+.newsCates{
+	text-align: center;
+	margin-top: 25px;
+}
+.newsCates ul li{
+	display: inline;
+	font-size: 16px;
+	color: #000;
+	padding: 3px 8px;
+	margin: 0 17px;
+	cursor: pointer;
+}
+.newsCates ul li:hover{
+	color: #000;
+}
+.newsCates ul li.cur{
+	color: #0044CC;
+}
+
+.analyDiv {
+	width: 96%;
+	height: auto;
+	border-radius: 5px;
+	background: #E8EDF3;
+	margin: 10px 2.3%;
+	padding: 5px 0;
+}
+.analyDiv dl {
+	width: 100%;
+	border-radius: 5px;
+	background: #E8EDF3;
+	padding:0 10px;
+}
+
+.analyDiv dl dt{
+	display: inline-block;
+}
+.analyDiv dl dd{
+	display: inline-block;
+}
+.analyDiv dl dd a{
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	padding: 3px 5px;
+	margin: 0 5px;
+	color: #000;
+	border-radius: 2px;
+}
+
+.analyDiv .analyDiv-one{
+	font-size:20px;
+	height: 40px;
+	line-height: 40px;
+}
+
+.analyDiv .analyDiv-one dd a:hover{
+	color: #fff;
+	background: #2f99f5;
+}
+.analyDiv .analyDiv-one dd.select a{
+	color: #fff;
+	background: #2f99f5;
+}
+.analyDiv .analyDiv-two{
+	display: none;
+	font-size:17px;
+	height: 30px;
+	line-height: 30px;
+	padding-left:6.5%;
+}
+
+.analyDiv .analyDiv-two dd a:hover{
+	color: #fff;
+	background: #4270f7;
+}
+.analyDiv .analyDiv-two dd.select a{
+	color: #fff;
+	background: #4270f7;
+}
+.analyDiv .analyDiv-three{
+	display: none;
+	font-size:15px;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 6.5%;
+}
+.analyDiv .analyDiv-three dd a:hover{
+	color: #fff;
+	background: #1835cc;
+}
+.analyDiv .analyDiv-three dd.select a{
+	color: #fff;
+	background: #1835cc;
+}
+
+/*搜索列表*/
+.newsList{
+	/*position: relative;*/
+	padding: 0 20px 0  30px;
+	width: 100%;
+	float: left;
+}
+
+
+.newsList .screening img {
+	width: 10px;
+	height: 5px;
+}
+.header {
+	width: 100%;
+}
+.top-C .header-C {
+	width:87%;
+	height:30px;
+	line-height: 30PX;
+	float: right;
+	color:#666;
+}
+
+.top-C .header-C li {
+	float: left;
+	margin-right: 12px;
+	height: 30px;
+	line-height: 30px;
+}
+.top-C .header-C .right{
+	float: right;
+}
+.top-C .header-C .sort {
+	float: right;
+}
+.top-C .header-C li:nth-child(1){
+	float: left;
+	margin-left:-50px;
+}
+
+.top-C img {
+	width: 10px;
+	height: 5px;
+	margin: 0 5px;
+	cursor: pointer;
+}
+.header fieldset {
+	position: relative;
+	display: block;
+	-webkit-margin-start: 2px;
+	-webkit-margin-end: 2px;
+	-webkit-padding-before: 0.35em;
+	-webkit-padding-start: 0.75em;
+	-webkit-padding-end: 0.75em;
+	min-width: -webkit-min-content;
+	border:1px solid #ccc;
+}
+.header legend {
+	display: block;
+	width: auto;
+	font-size:16px;
+	color:#707478;
+	-webkit-padding-start: 2px;
+	-webkit-padding-end: 2px;
+	border-width: initial;
+	border-style: none;
+	border-color: initial;
+	border-image: initial;
+}
+
+.header #sub {
+	position: absolute;
+	bottom: 1px;
+	left: 36%;
+	border: none;
+	height: 30px;
+	width: 100px;
+	color: white;
+	font-size: 15px;
+	cursor: pointer;
+	border-radius: 5px;
+	background-color: #369CDA;
+}
+.header #key {
+	width: 150px;
+	border:1px solid #ccc;
+	border-radius: 5px;
+	margin-left:14px;
+}
+.header .header-C .sort {
+	float: right;
+}
+.header .header-C .right {
+	float: right;
+}
+.statistics {
+	margin-top:15px;
+	width: 100%;
+	height: 240px;
+}
+.statistics div {
+	float: left;
+}
+
+/*筛选*/
+.message input[type=checkbox]{
+	margin: 0 0;
+	position: relative;
+}
+.message {
+	height: 20px;
+	line-height: 20px;
+	margin-top:10px;
+}
+.message li {
+	float: left;
+	margin-right: 10px;
+}
+
+.check input[type=checkbox]{
+	margin: 0 0;
+	position: relative;
+}
+.check {
+	height: 20px;
+	line-height: 20px;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.check li {
+	float: left;
+	margin-right: 10px;
+}
+
+.Time {
+	height: 40px;
+	line-height: 40px;
+	margin-top:10px;
+}
+.Time li {
+	float: left;
+	margin-right: 10px;
+}
+.Time input {
+	padding: 2px 5px;
+	line-height: 20px;
+	border: 1px solid #ccc;
+	font-size: 12px;
+	border-radius: 5px;
+}
+
+/*第一项*/
+.emotional ul {
+	float: left;
+	margin:0 0;
+}
+
+.emotional li {
+	float: left;
+	height: 40px;
+	line-height: 40px;
+	margin: 0 5px;
+}
+
+.emotional li input {
+	margin-right:3px;
+}
+
+.top-C {
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	margin-top:15px;
+	background-color: #f7f7f7;
+	border-bottom:2px solid #0089D0;
+}
+.top-C .Top-left {
+	float: left;
+	width: 90px;
+	height: 30px;
+	line-height: 30px;
+	font-size:14px;
+	color:#fff;
+	padding: 0 16px;
+	margin-left:20px;
+	background-color: #0089D0;
+	border-radius:10px 10px 0 0;
+}
+.con {
+	width: 100%;
+}
+
+.con .xinw {
+	width: 100%;
+	border-bottom:1px dashed #ccc;
+	margin-bottom: 30px;
+}
+/**
+.xinW div{
+	  width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+}
+*/
+.xinw h4 {
+	padding: 0 20px;
+	margin: 15px 0;
+	color:#348fe2;
+	cursor: pointer;
+}
+
+.xinw h4:hover {
+	color:orangered;
+}
+
+.xinw p {
+	width: 100%;
+	padding: 0 20px;
+	padding-left: 20px;
+	margin-bottom: 13px;
+	text-indent:2em;
+}
+
+.xinw a {
+	color:#444;
+}
+.xinw a:hover {
+	color:orangered;
+}
+.details {
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	padding: 0 20px;
+	margin-bottom: 5px;
+}
+
+.details li {
+	float: left;
+	margin-right: 30px;
+}
+
+.details .button{
+	float: right;
+}
+
+.details2 {
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	padding: 0 20px;
+	margin-bottom: 10px;
+}
+
+.details2 li {
+	float: left;
+	margin-right: 30px;
+}
+
+.details2 .button{
+	float: right;
+}
+
+.button input {
+	vertical-align: top;
+	width: 65px;
+	height: 20px;
+	background-color: #348fe2;
+	border: none;
+	color:#fff;
+	border-radius: 2px;
+}
+
+/*修改底边翻页*/
+.row>[class*=col-]{
+	padding:0 0;
+	margin: 0 135px;
+}
+.row .min {
+	float:left;
+	margin-left:20px;
+}	
+.pagination {
+	margin: 0 20px;
+}
+.goPage {
+	margin:-6 0;
+	width:250px;
+}
+
+.goPage ul {
+	margin:0 0;
+}
+
+
+/*侧边*/
+.sidebar-R .weixin-time input {
+	width: 120px;
+	height: 20px;
+}
+
+.sidebar-R {
+	position: fixed;
+	top: 16%;
+	right: -53%;
+	width: 52%;
+	background-color: #fff;
+	box-shadow: 0px 0px 5px #000;
+}
+
+.sidebar-R tr {
+	border:1px solid #ccc;
+	font-size:14px;
+}
+
+.sidebar-R tr,.sidebar-R td,.sidebar-R th {
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+}
+
+.sidebar-R a {
+	float: left;
+	color:blue;
+	padding: 5px 7px 0 7px;
+	font-size:16px;
+}
+.sidebar-R .i {
+	display: inline-block;
+	padding: 2px 7px;
+	font-size:16px;
+	border-bottom:2px solid limegreen;
+}
+.sidebar-R img {
+	position: absolute;
+	top: 0;
+	left: -28px;
+	width: 28px;
+	width: 28px;
+}
+
+.sidebar-R .odd div {
+	width: 100%;
+	overflow: hidden;
+}
+
+.sidebar-R tbody tr:hover{
+	background: #e2e7eb;
+}
+.sidebar-R tbody tr td.move{
+	background: #717070;
+	color: #fff;
+}
+.sidebar-R .paging {
+	width: 90%;
+	height: 40px;
+	line-height: 40px;
+}
+.sidebar-R .paging a {
+	padding: 1px 5px;
+	font-size:12px;
+}
+.sidebar-R .paging .pagination {
+	margin: 20px 20px;
+}
+.sidebar-R .paging .goPage li .goNum {
+	width: 46px;
+	height: 20px;
+	border: #ccc solid 1px;
+	border-radius: 3px;
+	padding: 0;
+}
+.sidebar-R .paging .goPage li button {
+	color: #fff;
+	font-weight: bold;
+	height: 30px;
+	margin-left: 10px;
+	padding:0px 7px;
+}
+.sidebar-R .paging .row>[class*=col-]{
+	margin:0 0;
+}
+.sidebar-B .weibo-time input {
+	width: 120px;
+	height: 20px;
+}
+
+.sidebar-B {
+	position: fixed;
+	top: 16%;
+	right: -53%;
+	width: 52%;
+	background-color: #fff;
+	box-shadow: 0px 0px 5px #000;
+}
+
+.sidebar-B tr {
+	border:1px solid #ccc;
+	font-size:14px;
+}
+
+.sidebar-B tr,.sidebar-B td,.sidebar-B th {
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+}
+
+.sidebar-B a {
+	float: left;
+	color:blue;
+	padding: 5px 7px 0 7px;
+	font-size:16px;
+}
+.sidebar-B .i {
+	display: inline-block;
+	padding: 2px 7px;
+	font-size:16px;
+	border-bottom:2px solid orangered;
+}
+
+.sidebar-B img {
+	position: absolute;
+	top: 28px;
+	left: -28px;
+	width: 28px;
+	width: 28px;
+}
+.sidebar-B tbody tr:hover{
+	background: #e2e7eb;
+}
+.sidebar-B tbody tr td.move{
+	background: #717070;
+	color: #fff;
+}
+/*我改的*/
+.sidebar-B .paging {
+	width: 90%;
+	height: 40px;
+	line-height: 12px;
+}
+.sidebar-B .paging a {
+	padding: 1px 5px;
+	font-size:12px;
+}
+.sidebar-B .paging .pagination {
+	margin: 18px 20px;
+}
+.sidebar-B .paging .goPage li .goNum {
+	width: 46px;
+	height: 20px;
+	border: #ccc solid 1px;
+	border-radius: 3px;
+	padding: 0;
+}
+.sidebar-B .paging .goPage li button {
+	color: #fff;
+	font-weight: bold;
+	height: 26px;
+	margin-left: 10px;
+	padding:0px 7px;
+}
+.sidebar-B .paging .row>[class*=col-]{
+	margin:0 0;
+}
+
+.red {
+	color:red;
+}
+.blue {
+	color:blue;
+}
+.green {
+	color:green;
+}
+.sidebar-L,.sidebar-A {
+	position: fixed;
+	top: 20.5%;
+	left: -50%;
+	width: 50%;
+	height: 330px;
+	background-color: #fff;
+	box-shadow: 0px 0px 5px #000;
+}
+
+.L-title,.A-title {
+	position: absolute;
+	top: 0;
+	right: -20px;
+	width: 20px;
+	color:#666;
+	line-height: 18px;
+	text-align: center;
+	border-radius: 0 5px 5px 0;
+	background-color: #fff;
+	box-shadow: 1px 2px 5px #999;
+}
+.A-title {
+	top: 165px;
+}
+#L-over,#A-over {
+	height: 330px;
+	overflow-y: auto;
+}
+.sidebar-L ul,.sidebar-A ul {
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	font-size:14px;
+	border-bottom:1px solid #ccc;
+}
+.sidebar-L ul:nth-child(odd),
+.sidebar-A ul:nth-child(odd){
+	background-color: #efeeee;
+}
+.sidebar-L ul:nth-child(1),
+.sidebar-A ul:nth-child(1){
+	font-size:16px;
+}
+.sidebar-L ul:hover{
+	background: #e2e7eb;
+}
+.sidebar-A ul:hover{
+	background: #e2e7eb;
+}
+.sidebar-L ul li.mo{
+	background: #717070;
+	color: #fff;
+}
+.sidebar-A ul li.mo{
+	background: #717070;
+	color: #fff;
+}
+.sidebar-L ul li,.sidebar-A ul li {
+	float: left;
+	text-align: center;
+}
+.sidebar-L ul li:nth-child(1),
+.sidebar-A ul li:nth-child(1){
+	width: 15%;
+}
+.sidebar-L ul li:nth-child(2),
+.sidebar-A ul li:nth-child(2){
+	text-align: left;
+	width: 35%;
+}
+.sidebar-L ul li:nth-child(3),
+.sidebar-A ul li:nth-child(3){
+	width: 20%;
+}
+.sidebar-L ul li:nth-child(4),
+.sidebar-A ul li:nth-child(4){
+	width: 30%;
+}
+.checkMask form{
+	width: 75%;
+	height: 700px;
+}
+.checkMask .maskBox{
+	height: 540px;
+}
+.checkMask form p>input,.checkMask form p>select {
+	width: 70%;
+	display: inline-block !important;
+}
+.checkMask form p{
+	margin: 0 0 10px !important;
+}
+.checkMask form p i{
+	color: red;
+}
+.checkMask form p input[type='radio']{
+	width: 20px;
+	height: 20px;
+}
+.checkMask form p div.checkDiv input{
+	display: inline-block;
+	height: 20px;
+}
+.checkMask form p i.fa-plus{
+	margin-left: 10px;
+	color: #2093F6;
+	font-size: 16px;
+	line-height: 25px;
+	cursor: pointer;
+	transition: all .3s;
+}
+.checkMask form p i.fa-plus:hover{
+	transform: scale(1.4);
+	-webkit-transform: scale(1.4);
+	-ms-transform: scale(1.4);
+	-o-transform: scale(1.4);
+}
+.checkMask form .addClassic{
+	margin-left: 30px;
+	width: 80%;
+	margin: 10px 0;
+	display: none;
+}
+.checkMask form .addClassic input:first-child{
+	display: inline-block;
+	width: 150px;
+	margin-left: 85px;
+}
+.checkMask .btnMask{
+	bottom: 0px;
+	width: 100%;
+	height: 60px;
+	text-align: center;
+}
+
+.checkMask form .checkDiv label{
+	margin: 5px 0;
+}
+.checkMask .maskHeader{
+	margin: 0 20px 10px;
+	border-bottom: #C0C0C0 solid 2px;
+}
+.checkMask .maskHeader h4{
+	display: inline-block;
+	width: 90px;
+	height: 30px;
+	line-height: 30px;
+	color: #fff;
+	background: #338EE1;
+	border-radius: 2px 2px 0 0;
+	padding: 0 5px;
+	text-align: center;
+	margin-left: 10px;
+}
+.checkMask .maskHeader span{
+	display: inline-block;
+	width: 40px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	cursor: pointer;
+	font-size: 16px;
+}
+.checkMask .maskHeader .right:hover{
+	color: #338EE1;
+}
+.checkMask .maskHeader i{
+	font-size: 16px;
+	height: 30px;
+	width: 19px;
+	line-height: 30px;
+	text-align: center;
+	margin: 0 0 0 -8px;
+}
+.checkMask input[type="radio"]{
+	margin-top: 0;
+}
+.checkMask .maskBody{
+	margin: 10px;
+	padding: 15px;
+	display: none;
+}
+.checkMask .maskBody div{
+	margin-bottom: 10px;
+}
+.checkMask .maskBody textarea{
+	width: 90%;
+}
+.checkMask .maskBody img{
+	width: 200px;
+	height: 200px;
+	border: #C0C0C0 solid 1px;
+
+}
+.checkMask .maskBody label{
+	margin-top: 0;
+	float: left;
+	line-height: 34px;
+}
+.checkMask .maskBody div input{
+	width: 90%;
+}
+.checkMask .maskBody .files span.fileinput{
+	width: 75px;
+	height: 34px; line-height: 34px;
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+}
+.checkMask .maskBody .files input,.checkMask .maskBody .files span{
+	display: inline-block;
+	width: 100%; height: 100%;
+	position: absolute;
+	top: 0; left: 0;
+
+}
+.checkMask .maskBody .files input{
+	opacity: 0;
+}
+
+/*关键词*/
+
+.checkMask .kwTop>div{
+	display: inline-block;
+}
+.checkMask .kw{
+	margin: -35px 0 0 84px;
+	width: 80%;
+}
+.checkMask .kwTop .btns span,.checkMask .kwTop .operat input{
+	display: inline-block;
+	width: 70px; height: 25px;
+	line-height: 25px;
+	font-size: 12px;
+	text-align: center;
+	border-radius: 2px;
+	cursor: pointer;
+	background: #EDECEC;
+	color: #707070;
+}
+.checkMask .kwTop .btns span:hover{
+	background: rgba(50,141,224,.8);
+	color: #fff;
+}
+.checkMask .kwTop .btns span.select{
+	background: #338EE1;
+	color: #fff;
+}
+.checkMask .kwTop .operat input:hover{
+	background: #338EE1;
+	color: #fff;
+}
+.checkMask .kwTop .operat input.select{
+	background: #338EE1;
+	color: #fff;
+}
+
+.checkMask .kwTop .operat input{
+	width: 45px; height: 25px;
+	line-height: 25px;
+	text-align: center;
+	border: none;
+}
+.checkMask .kwTop .operat i{
+	display: inline-block;
+	font-size: 14px;
+	width: 25px; height: 25px;
+	line-height: 25px;
+	text-align: center;
+	cursor: pointer;
+	background: #338EE1;
+	border-radius: 50%;
+	color: #fff;
+	transition: all .5s;
+}
+.checkMask .kwTop .operat i:hover{
+	transform: rotate(360deg);
+}
+.checkMask .kwBody{
+	width: 100%;
+	height: auto; min-height: 60px;
+	border: #C0C0C0 solid 1px;
+	padding: 15px 10px;
+}
+.checkMask .kwBody .comsMode{
+	display: none;
+}
+.checkMask .kwBody .advText{
+	width: 100%;
+	height: 80px;
+	border: #C0C0C0 solid 1px;
+	padding: 5px;
+}
+.checkMask .kwBody .history,.checkMask .kwBody .help{
+	display: none;
+}
+.checkMask .kwBody .history .text{
+	background: #F3FAFE;
+	color: #000000;
+}
+.checkMask .kwBody .help .text{
+	background: #FDF8F4;
+	color: red;
+}
+.checkMask .kwBody .history .text .txtDiv{
+	height: 24px;
+}
+
+.checkMask.review .keyword{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+.checkMask.review .keyword .text{
+	line-height: 34px;
+	max-height: 200px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+.marbom5px{
+	margin-bottom: 5px;
+}
+.checkMask.review .keyword label{
+	text-align: left;
+	display: inline-block;
+	line-height: 35px;
+}
+.checkMask.review .keyword i{
+	color: #00ACED;
+	font-size: 16px;
+	display: inline-block;
+	margin-left: 10px;
+	cursor: pointer;
+}
+.checkMask.review .keyword i:hover{
+	transform: scale(1.3);
+	-webkit-transform: scale(1.3);
+	-ms-transform: scale(1.3);
+	-o-transform: scale(1.3);
+}
+.checkMask.review .keyword p{
+	padding: 0;
+	margin: 0;
+	width: 45%;
+	display: inline-block;
+}
+.checkMask.review .keyword .form-control{
+	width: 100%;
+}
+.checkmask .review form p{
+	display: inline-block;
+}
+
+
+
+
+
+
+.checkMask .kwBody>div{
+	margin-bottom: 10px;
+}
+.checkMask .kwBody>div .text{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	padding: 5px;
+}
+.checkMask .kwBody .textHead{
+	height: 20px; line-height: 20px;
+	border-left: #006DCC solid 3px;
+	padding-left: 5px;
+}
+
+.checkMask.hotSpot form{
+	width: 70%;
+}
+
+/*弹出层*/
+.checkMask.hotSpot .newsTop{
+	font-size: 24px;
+	line-height: 40px;
+}
+.checkMask.hotSpot .newsInfo{
+	margin: 5px auto;
+}
+
+.checkMask.hotSpot .newsInfo .info {
+	margin-left:9%;
+}
+.checkMask.hotSpot .newsInfo .info div{
+	float: left;
+	margin:0 5px;
+}
+.checkMask.hotSpot .newsInfo .info a{
+	color: #006DCC;
+}
+.checkMask.hotSpot .newsContent{
+	height: 560px;
+	overflow-y: scroll;
+}
+.checkMask.hotSpot .newsContent .Hotspot{
+	margin: 20px 5px;
+}
+.checkMask.hotSpot .newsContent .image{
+	width: 100%; height: 300px;
+}
+.checkMask.hotSpot .newsContent p{
+	text-align: left;
+	text-indent: 2em;
+	margin-bottom: 5px;
+}
+.sets{
+	text-align: center;
+	position: relative;
+	height: 20px;
+}
+.sets .views label,.sets .date span.todayHot{
+	margin-right: 10px;
+}
+.sets .views label,.sets .views input{
+	display: inline-block;
+	color: white;
+	font-size: 16px;
+}
+.sets .date{
+	position: absolute;
+	right: 0; bottom: 0;
+}
+.sets .date span{
+	color: #FFC107;
+	font-size: 16px;
+	vertical-align: middle;
+}
+.sets .date span.todayHot{
+	cursor: pointer;
+	display: none;
+}
+.sets .date span.todayHot:hover{
+	color: red;
+}
+
+.checkMask form p {
+	padding:0 5px;
+}
+
+/*弹出窗*/
+.comment {
+	width: 90%;
+	margin: 0 5%;
+}
+.comment-Top ul{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	font-size:14px;
+}
+
+.comment-Top ul li {
+	float: left;
+}
+.comment-Top img {
+	width: 10px;
+	height: 5px;
+	margin: 0 5px;
+	cursor: pointer;
+}
+
+
+.comment-Top ul li:nth-child(2){
+	margin-left:25%;
+}
+.comment-Top ul li:nth-child(3){
+	margin-left:25%;
+}
+
+.comment-content {
+	width: 90%;
+	margin: 5px 5%;
+	border:1px solid #ccc;
+}
+.comment-C {
+	width: 100%;
+	text-align: left;
+	padding: 0 5px;
+	border-bottom:1px dashed #ccc;
+}
+.comment-C div,ul {
+	width: 130%;
+}
+.comment-C ul li {
+	float: left;
+	margin-right:10px;
+}
+
+.Hot {
+	width:90%;
+	height:auto;
+	margin-left:5%;
+}
+
+.svg {
+	position: relative;
+	width: 90%;
+	height: 20px;
+	line-height: 20px;
+	margin:0 5% 15px;
+}
+.svg .svg-wen {
+	height: 20px;
+	line-height: 20px;
+	float: left;
+}
+.svg .svg-img {
+	position: absolute;
+	height: 20px;
+	cursor: pointer;
+}
+.svg div:nth-child(1){
+	right: 180px;
+}
+.svg div:nth-child(2){
+	right: 80px;
+}
+.svg img {
+	width: 20px;
+	height: 20px;
+	margin-right:2px;
+}
+
+.clear:after {
+	content:'';
+	height: 0;
+	line-height: 0;
+	display: block;
+	clear:both;
+	visibility: hidden;
+}

@@ -1,0 +1,798 @@
+.span {
+    float: left;
+    margin-top:5px;
+}
+
+/*��������*/
+.top .search form{
+    display: inline-block;
+    margin-right: 10px;
+}
+.top .search form>div{
+    float: left;
+    margin-right: 10px;
+}
+.top .search form span{
+    display: inline-block;
+    font-size: 16px;
+    height: 38px;
+    line-height: 38px;
+
+}
+.top .search form:nth-child(2){
+    position: relative;
+}
+.top .search b{
+    display: inline-block;
+    width: 146px; height: 38px;
+    position: relative;
+    border: 2px solid #d8d8d8;
+    border-radius: 4px;
+    background: url(../img/selectArrowdown.png) no-repeat 120px center;
+}
+.top .search b em{
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
+    width: 120px; height: 38px;
+    line-height: 32px;
+    text-indent: 0.5em;
+    text-align: left;
+    color: #A9A9A9;
+    font-size: 16px;
+    overflow: hidden;
+}
+.top .search select{
+    position: absolute;
+    top: 2px; left: 0;
+    opacity: 0; filter: alpha(opacity=0);
+    width: 146px; height: 38px;
+    font-size: 16px;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance:none;
+    appearance:none;
+    font-family: "΢���ź�";
+}
+
+
+.top .search b.on{
+    background: url(../img/selectArrowup.png) no-repeat 120px center;
+}
+
+.top .search select option{
+    color: #818181;
+}
+
+
+.top .search span{
+    float: left;
+    cursor: pointer;
+}
+
+.top .search input[type="text"]{
+    width: 135px; height: 38px;line-height: 38px;
+    text-indent: .5em; font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid #d8d8d8;
+}
+.top .search input[type="submit"]{
+    background: #EB7416;
+    border: none;
+    height: 38px;
+    width: 90px;
+    color: white;
+    font-size: 18px;
+    margin-left: -20px;
+    cursor: pointer;
+    border: 1px solid #EB7416;
+    border-radius:  0 5px 5px 0;
+    margin-right: 30px;
+}
+.top .search input[type="submit"]:hover{
+    background: #ffa55e;
+}
+
+/*��ɾ�Ĳ�*/
+.top .btns input{
+    border: none;
+    height: 33px; width: 65px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 16px;
+    margin-top: 5px;
+}
+.top .btns .add{
+    background: #369CDA;
+}
+.top .btns .del{
+    background: #F75252;
+}
+.top .btns .change{
+    background: #EDD211;
+}
+.top .btns .setPower{
+    background: #f28a46;
+    margin-right: 0;
+}
+.top .btns button:hover{
+    background: #FFA500 ;
+}
+#data-table thead th,#data-table tbody tr{
+    cursor: pointer;
+    text-align: center;
+}
+#data-table tbody tr:hover{
+    background: #e2e7eb;
+}
+
+#data-table tbody tr td.move{
+    background: #717070;
+    color: #fff;
+}
+
+#data-table tbody tr td {
+    width: 9%;
+    overflow: hidden;
+}
+
+.checkMask table td{
+    padding: 5px 0;
+}
+
+td i {
+    color:red;
+    position: absolute;
+    margin-left: -10px;
+}
+
+.span i {
+    color:red;
+    position: absolute;
+    margin-left: -10px;
+}
+
+.one {
+    width: 100%;
+    height: 34px;
+    border-radius: 3px;
+    color: #999;
+    padding: 6px 9px;
+}
+.two {
+    width: 100%;
+    height: 34px;
+    border-radius: 3px;
+    color: #999;
+    padding: 6px 9px;
+}
+/*�����ı���*/
+
+.kwType{
+	position: relative;
+	overflow: inherit !important;
+}
+
+.kwType .hid {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: #fff;
+    position: absolute;
+    right: 0; top: 42px;
+    z-index: 999;
+    cursor: pointer;
+    display: none;
+}
+
+.hid li {
+    height: 20px;
+    line-height: 20px;
+    margin: 2px;
+    text-align: left;
+    padding-left: 10px;
+}
+.hid li:hover{
+	opacity: .8;
+	background-color: #029ae9;
+    color: #FFF;
+}
+
+.hid span {
+    float: left;
+}
+
+.hidc {
+    width: 70%;
+    margin: 10px 0;
+    margin-left:26.5%;
+    border: 1px solid #ccc;
+}
+.hidc li {
+    text-align: left;
+    position: relative;
+    padding-left: 46px;
+    min-height: 30px;
+}
+.hidc li b{
+	position: absolute;
+	left: 0; top: 5px;
+}
+
+.hidc li span {
+    display: inline-block;
+    background-color: #029ae9;
+    color: #fff;
+    position: relative;
+    margin: 5px;
+    padding: 0 8px;
+    border-radius: 2px;
+}
+.hidc li span i {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+    background: url(../img/close.png) no-repeat;
+    background-size: cover;
+    cursor: pointer;
+    transition: all .5s;
+    display: none;
+}
+.hidc li span i:hover{
+	transform: scale(1.6);
+}
+.hidc li div span:hover i{
+	display: block;
+}
+
+.hidd {
+    width: 70%;
+
+    margin: 10px 0;
+    margin-left:26.5%;
+    border: 1px solid #ccc;
+}
+
+.checkMask .bounceInUp {
+    position: relative;
+    width: 40%;
+    display: block;
+    top: 50%; left: -150px;
+    margin: 10px auto 0;
+    background: #fff;
+}
+.bounceInUp .span {
+    display:block;
+    margin-left: 8%;
+    float: left;
+}
+
+.crux {
+    width: 72.5%;
+    height: 120px;
+    margin-left:26.5%;
+}
+.crux li {
+    width: 48px;
+    float: left;
+    height: 20px;
+    border:1px solid #ccc;
+    border-bottom:none;
+    border-radius: 5px 5px 0 0;
+    padding: 0 5px;
+    cursor: pointer;
+}
+.bg {
+    background-color: #029ae9;
+    color:#fff;
+}
+.crux textarea {
+    float: left;
+    width: 95.5%;
+    height: 100px;
+    margin: 0;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+}
+
+.textB {
+    display:none;
+}
+/*�޸�*/
+.hidd {
+    width: 72.5%;
+    height: 100px;
+    margin-left: 27.5%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.hidd li {
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    background-color: lawngreen;
+    margin: 2px;
+}
+
+.hidd span {
+    float: left;
+}
+
+.hidcc {
+    width: 70%;
+    margin: 10px 0;
+    margin-left:26.5%;
+    border: 1px solid #ccc;
+}
+
+.hidcc span {
+    display: inline-block;
+    background-color: lawngreen;
+    position: relative;
+    margin: 5px;
+    padding: 0 8px;
+}
+.hidcc i {
+    position: absolute;
+    top: -6px;
+    right: 4px;
+    cursor:pointer;
+    width: 5px;
+    height: 5px;
+}
+.hidcc li {
+    text-align: left;
+}
+
+.hiddd {
+    width: 70%;
+    margin: 10px 0;
+    margin-left:26.5%;
+    border: 1px solid #ccc;
+}
+
+.checkMask .bounceInTop {
+    position: relative;
+    width: 40%;
+    display: block;
+    top: 50%;
+    margin: 10px auto 0;
+    background: #fff;
+}
+.bounceInTop .span {
+    display:block;
+    margin-left: 8%;
+}
+
+.cruxx {
+    width: 72.5%;
+    height: 120px;
+    margin-left:26.5%;
+}
+.cruxx li {
+    float: left;
+    height: 20px;
+    border:1px solid #ccc;
+    border-bottom:none;
+    border-radius: 5px 5px 0 0;
+    padding: 0 5px;
+}
+
+.bgg {
+    background-color: #029ae9;
+    color:#fff;
+}
+
+.cruxx textarea {
+    float: left;
+    width: 95.5%;
+    height: 100px;
+    margin: 0;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+}
+.zbh,.bbh{
+	padding: 4px;
+	overflow: hidden;
+}
+/*右側詳細信息*/
+.rightBox{
+	width: 400px; /*height: 420px;*/
+	position: absolute;
+	right: -402px; top: 0;
+	background: #FFF;
+	/*display: none;*/
+}
+.rightBox .srch{
+	padding: 0 15px;
+
+}
+.rightBox .kwBox{
+	position: relative;
+	margin-bottom: 20px;
+}
+.rightBox #kwSrch{
+	width: 95%; height: 30px;
+	border: #ccc solid 1px;
+	border-radius: 15px;
+	padding-left: 15px;
+	padding-right: 36px;
+	background-position: right center;
+	background-size: 30px 24px;
+}
+.rightBox #kwSrch:focus{
+	border:1px solid deepskyblue;
+}
+.rightBox .kwBox .srch-img{
+    width: 30px;
+    height: 24px;
+    position: absolute;
+    right: 20px;
+    top: 3px;
+    cursor: pointer;
+}
+
+.rightBox .kwDetails{
+	position: relative;
+}
+.rightBox .kwDetails i{
+	position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    color: #FFF;
+    font-size: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+.kwRed{
+	color: red;
+	font-weight: bold;
+}
+.kwContent{
+	font-color:#333;
+	line-height:23px;
+}
+#detailsBody{
+	padding: 0 15px;
+	/*height: 280px;*/
+	/*overflow-y: scroll;*/
+    position: relative;
+}
+
+#detailsBody .play {
+    display: none;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 32%;
+    left: 48%;
+}
+@keyframes zhuan {
+    0%{
+        transform:rotate(0deg);
+    }
+    100%{
+        transform:rotate(360deg);
+    }
+}
+#detailsBody .none-D {
+    text-align: center;
+    width: 64px;
+    height:auto;
+    position: absolute;
+    top: 32%;
+    left: 40%;
+}
+.rightBox #detailsBody>ul>li{
+	border-bottom: #ccc dashed 1px;
+	margin-bottom: 12px;
+}
+.rightBox #detailsBody>ul>li .details{
+	width: 100%; height: 100%;
+}
+.details .title{
+	width: 90%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 5px;
+
+}
+.details .contents{
+	text-indent: 2em;
+	margin: 5px 0;
+	color: #5f5d5d;
+}
+.details .infos li{
+	float: left;
+	margin: 0 4px;
+}
+.details .infos li span{
+	color: #000;
+}
+.details .infos li span:nth-child(even){
+	font-size: 14px;
+}
+.details .infos li a{
+	color: #0080FF;
+}
+
+
+.odd div {
+    width: 100%;
+    overflow: hidden;
+}
+
+.MaskTo {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    text-indent: 1em;
+    text-align: left;
+    background: #2194F7;
+    margin-bottom: 20px;
+}
+/*侧边栏*/
+.Collation {
+    position: absolute;
+    top: 12%;
+    left: -400px;
+    width: 400px;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px #000;
+    z-index:1000;
+}
+.Collation h2{
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    margin-top:20px;
+    text-align: center;
+}
+
+.Collation h2 img {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+.Collation .Collation-title {
+    position: absolute;
+    top: 0;
+    right: -400px;
+    width: 100%;
+    height:auto;
+    padding:10px;
+    color:#000;
+    background-color: #fff;
+    border: 1px solid chocolate;
+    border-radius: 10px;
+    display: none;
+}
+.Collation .Collation-title p {
+    margin: 10px 0;
+    line-height: 20px;
+}
+.Collation .Collation-title p:nth-child(5) {
+    color:red;
+}
+.Collation .e-1,
+.Collation .e-2,
+.Collation .e-3,
+.Collation .e-4{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+}
+
+.Collation .e-1 label,
+.Collation .e-2 label,
+.Collation .e-3 label,
+.Collation .e-4 label{
+    display: block;
+    float: left;
+    margin-left: 20px;
+    margin-bottom:0;
+    font-weight: 300;
+    font-size: 16px;
+    color:#707478;
+}
+.Collation .e-1 input,
+.Collation .e-2 input,
+.Collation .e-3 input,
+.Collation .e-4 input {
+    height: 20px;
+    border:none;
+    border-bottom:1px solid #ccc;
+}
+.weighting {
+    margin: 20px 20px 10px 20px;
+    font-size:16px;
+}
+
+.weighting .header a {
+    float: right;
+    color:#707478;
+}
+.header-one {
+    margin-top: 5px;
+}
+.header-one {
+    width: 100%;
+    height:auto;
+}
+.header-one li{
+    position: relative;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+}
+.header-one li img {
+    width: 20px;
+    height: 20px;
+    margin:5px 10px 10px 0;
+    cursor: pointer;
+}
+.header-two {
+    position: absolute;
+    display: none;
+    left: 25px;
+    width: 90%;
+    z-index:1;
+}
+.header-two li{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+}
+.header-two li img {
+    width: 20px;
+    height: 20px;
+    margin:5px 10px 10px 0;
+    cursor: pointer;
+}
+.header-three {
+    position: absolute;
+    display: none;
+    left: 25px;
+    width: 80%;
+    z-index:2;
+}
+.header-three li{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+}
+.header-three li img {
+    width: 20px;
+    height: 20px;
+    margin:5px 10px 10px 0;
+    cursor: pointer;
+}
+.header-four {
+    position: absolute;
+    display: none;
+    left: 25px;
+    width: 80%;
+    z-index:3;
+}
+.header-four li{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+}
+.header-four li span {
+	width:60%;
+	overflow:hidden;
+    text-overflow: ellipsis;
+}
+
+#hea{
+    width: 100%;
+}
+#box{
+    width: 100%;
+}
+
+.header input {
+    width: 60px;
+    height: 20px;
+    line-height: 20px;
+    border:none;
+}
+.Time {
+    line-height: 40px;
+    margin-top:10px;
+}
+.Time li {
+    float: left;
+    margin-right: 10px;
+}
+.Time input {
+    padding: 2px 5px;
+    line-height: 20px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    border-radius: 5px;
+}
+.but {
+    position: relative;
+    margin: 20px 60px;
+}
+
+.but button {
+    padding:4px 8px;
+}
+.but-two {
+    float: right;
+}
+.progress {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    border:1px solid #ccc;
+    margin: 20px 0 10px 0;
+    display: none;
+    z-index: 1002;
+}
+.progress-bar {
+    height: 20px;
+    background-color: #2bd818;
+}
+#m {
+    position: relative;
+    display: none;
+    z-index:1002;
+}
+#m span {
+    color:red;
+    font-size:12px;
+}
+.run {
+    display: none;
+}
+.text {
+    position: absolute;
+    top: 60px;
+    right: -16px;
+    width: 16px;
+    height: 196px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 0 5px 5px 0;
+    background-color: #FFF;
+    box-shadow: 2px 3px 5px #999;
+    color:#666;
+    z-index:1000;
+}
+.mark {
+    position: absolute;
+    top: 0;
+    width: 400px;
+    background: rgba(250, 250, 250, .3);
+    z-index:1001;
+    display: none;
+}
+
+
+

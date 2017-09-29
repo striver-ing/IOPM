@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybaits-3-mapper.dtd">
+
+<mapper namespace="System">
+ 
+   <resultMap id="system" type="cn.com.pattek.user.entity.AppSystem">
+    <id property="systemID" column="MODULE_ID"/>
+    <result property="systemName" column="MODULE_NAME" />
+    <result property="url" column="MODULE_URL"/>
+    <result property="description" column="MODULE_DESC"/>
+    <result property="sourceId" column="MODULE_SOURCE_ID"/>
+    <result property="imageUrl" column="IMAGE_URL"/>
+  </resultMap>
+  <select id="getModulePerm" parameterType="java.util.Map" resultMap="system">
+  <!--  
+  		select t.* from TAB_MANAGE_SYSTEMS t,TAB_MANAGE_PERMISSIONS p,TAB_MANAGE_ROLE_PERMISSIONS r
+		where t.module_id=p.module_id and  t.module_id=r.module_id and p.manu_id=#manuId#
+		and p.system_id=#systemId# and r.role_id=#roleId# order by t.module_id
+ -->
+ 		select distinct(t.module_name),t.MODULE_DESC,t.module_id,t.module_url,t.MODULE_SOURCE_ID,t.image_url from TAB_MANAGE_SYSTEMS t,TAB_MANAGE_PERMISSIONS p,TAB_MANAGE_ROLE_PERMISSIONS r
+		where t.module_id=p.module_id and t.module_id = r.module_id and p.manu_level_id=#{manuId}  and r.role_id=#{roleId} and p.system_id=6 order by t.module_id
+  </select>
+   <select id="getManuId" parameterType="java.lang.Long" resultMap="system">
+  		select * from TAB_MANAGE_SYSTEMS where module_id in(select distinct manu_id from TAB_MANAGE_PERMISSIONS where system_id=6 ) order by module_id 
+  </select>
+  <!-- 得到所有的权限 -->
+   <select id="getAllSystem" resultMap="system">
+  	select * from(select a.*,rownum rn from(select r.module_id,r.module_name,r.module_url,r.module_desc,r.MODULE_SOURCE_ID, r.IMAGE_URL from TAB_MANAGE_SYSTEMS r 	
+      		,tab_manage_permissions mp  
+  			<if test="roleId!=null">
+  			, TAB_MANAGE_ROLE_PERMISSIONS p 
+  				</if>
+  	where   mp.system_id=6 and r.module_id=mp.module_id 
+  			<if test="roleId!=null" >
+  			and	p.role_id = #{roleId}
+  			</if> 
+  			
+  			and  r.module_url is not null
+  			
+  			 <if test="roleId!=null" >
+  			and  r.module_id=p.module_id 
+  			  </if>
+		) a where 1=1
+		<if  test="start!=-1" >
+		and
+		   <![CDATA[
+		       ROWNUM <=(#{start}+#{limit}) 
+		   ]]>
+	</if>
+	) temp
+	 where 1=1
+		<if  test="limit!=-1" >
+				and <![CDATA[
+					RN > #{start}
+				]]>
+		</if>
+  	order by temp.module_id 
+  </select>
+  
+  <!-- 得到所有的一级权限 -->
+   <select id="getAllSystemLevel1" resultMap="system">
+  	select * from(select a.*,rownum rn from(select r.module_id,r.module_name,r.module_url,r.module_desc,r.MODULE_SOURCE_ID, r.IMAGE_URL from TAB_MANAGE_SYSTEMS r 	
+  			, tab_manage_permissions mp 
+  			<if test="roleId!=null">
+  			, TAB_MANAGE_ROLE_PERMISSIONS p 
+  				</if>
+  	where r.module_url is not null and r.MODULE_SOURCE_ID = 0  and mp.system_id=6 and  r.module_id=mp.module_id 
+  	 <if test="roleId!=null" >
+  			and  r.module_id=p.module_id 
+  			  </if>
+  			<if test="roleId!=null" >
+  				and p.role_id = #{roleId}
+  			</if> 
+		) a where 1=1
+		<if test="start!=-1" >
+		  and  <![CDATA[
+		       ROWNUM <=(#{start}+#{limit}) 
+		   ]]>
+		   
+	</if>
+	) temp
+	where 1=1
+		<if  test="limit!=-1" >
+			and	<![CDATA[
+					RN > #{start}
+				]]>
+		</if>
+  	
+  </select>
+  
+  <!-- 得到所有二级的权限 -->
+   <select id="getAllSystemLevel2" resultMap="system">
+  	select * from(select a.*,rownum rn from(select r.module_id,r.module_name,r.module_url,r.module_desc,r.MODULE_SOURCE_ID, r.IMAGE_URL from TAB_MANAGE_SYSTEMS r 	
+  		,tab_manage_permissions mp 
+  		<if test="roleId!=null">
+  			, TAB_MANAGE_ROLE_PERMISSIONS p 
+  				</if>
+  	where r.module_url is not null and r.MODULE_SOURCE_ID not in (0)  and mp.system_id=6 and r.module_id=mp.module_id 
+  			<if test="roleId!=null" >
+  			 and	p.role_id = #{roleId}
+  			</if> 
+  			<if test="sourceId!=null">
+  				r.MODULE_SOURCE_ID = #{sourceId}
+  			</if> 
+  			 <if test="roleId!=null" >
+  			and  r.module_id=p.module_id 
+  			  </if>
+		) a where 1=1
+		<if  test="start!=-1" >
+		  and <![CDATA[
+		       ROWNUM <=(#{start}+#{limit}) 
+		   ]]>
+		   
+		</if>
+	) temp
+	where 1=1
+		<if  test="limit!=-1" >
+			and	<![CDATA[
+					RN > #{start}
+				]]>
+		</if>
+  </select>
+  
+ <!-- 权限条数 -->
+  <select id="getSystemCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+  	select count(*) from TAB_MANAGE_SYSTEMS r,TAB_MANAGE_PERMISSIONS p 
+  		where r.module_url is not null and r.module_id=p.module_id and p.system_id=6   order by r.module_id
+  </select>
+  
+   <select id="getPermList" parameterType="java.util.Map" resultMap="system">
+  		select s.module_id,s.module_name,s.module_url,s.module_desc from TAB_MANAGE_SYSTEMS s,TAB_MANAGE_PERMISSIONS p 
+			where s.module_id=p.module_id and p.manu_id=#{manuId}    and p.system_id=6
+			<if test="moduleSourceId!=null">
+			 and
+			
+			(<foreach collection="moduleSourceId" item="msId" separator="OR">
+				module_source_id=#{msId}
+			</foreach>)
+			</if>
+			<!-- module_source_id in
+		(<iterate  property="moduleSourceId"  conjunction=",">#moduleSourceId[]#</iterate>)-->
+  </select>
+  
+</mapper>

@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybaits-3-mapper.dtd">
+<mapper namespace="cn.com.pattek.AppManager.dao.AppManagerDao">
+
+	<!-- 添加关键词 -->
+	<insert id="addKeyword" parameterType="cn.com.pattek.KeyWords.entity.IopmKeyInfoEntity">
+		<selectKey resultType="java.lang.Long" keyProperty="id"
+			order="BEFORE">
+			select TAB_IOPM_CLUES_SEQ.nextval from dual 
+	  </selectKey>
+		insert into TAB_IOPM_CLUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id!=null">
+				id,
+			</if>
+			<if test="name!=null">
+				name,
+			</if>
+			<if test="keyword1!=null">
+				keyword1,
+			</if>
+			<if test="keyword2!=null">
+				keyword2,
+			</if>
+			<if test="keyword3!=null">
+				keyword3,
+			</if>
+			<if test="first_id!=null">
+				first_id,
+			</if>
+			<if test="second_id!=null">
+				second_id,
+			</if>
+			<if test="weight!=null">
+				weight,
+			</if>
+			<if test="zero_id!=null">
+				zero_id,
+		    </if>
+			<if test="1==1">
+				update_time,
+			</if>
+			<if test="1==1">
+				record_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id!=null">
+				#{id},
+			</if>
+			<if test="name!=null">
+				#{name},
+			</if>
+			<if test="keyword1!=null">
+				#{keyword1},
+			</if>
+			<if test="keyword2!=null">
+				#{keyword2},
+			</if>
+			<if test="keyword3!=null">
+				#{keyword3},
+			</if>
+			<if test="first_id!=null">
+				#{first_id},
+			</if>
+			<if test="second_id!=null">
+				#{second_id},
+			</if>
+			<if test="weight!=null">
+				#{weight},
+			</if>
+			<if test="zero_id!=null">
+				#{zero_id},
+		    </if>
+			<if test="1==1">
+				default,
+			</if>
+			<if test="1==1">
+				default,
+			</if>
+		</trim>
+	</insert>
+	<!-- 根据类别名称获取类别 -->
+	<select id="selectClassify" parameterType="cn.com.pattek.KeyWords.entity.IopmClassify"
+		resultType="cn.com.pattek.KeyWords.entity.IopmClassify">
+		select * from tab_iopm_first_clues_classify
+		<where>
+			<if test="first_classify!=null">and first_classify=#{first_classify}</if>
+			<if test="zero_id!=null">and zero_id=#{zero_id}</if>
+		</where>
+	</select>
+	<!-- 增加类别 -->
+	<insert id="addClassify" parameterType="cn.com.pattek.KeyWords.entity.IopmClassify">
+		<selectKey resultType="java.lang.Long" keyProperty="first_classify_id"
+			order="BEFORE">
+			select TAB_IOPM_FIRSTCLASSIFY_SEQ.nextval from dual 
+	  </selectKey>
+		insert into tab_iopm_first_clues_classify
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="first_classify_id!=null">
+				first_classify_id,
+			</if>
+			<if test="first_classify!=null">
+				first_classify,
+			</if>
+			<if test="zero_id!=null">
+				zero_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="first_classify_id!=null">
+				#{first_classify_id},
+			</if>
+			<if test="first_classify!=null">
+				#{first_classify},
+			</if>
+			<if test="zero_id!=null">
+				#{zero_id},
+			</if>
+		</trim>
+	</insert>
+	<!-- 查询总记录数 -->
+	<select id="selectTotal" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select count(*) from(select distinct id,name from(select *
+		from (select
+		a.id,a.name,to_char(a.keyword2) keyword2,to_char(a.keyword3)
+		keyword3,a.first_id,a.second_id,a.second_classify,a.update_time,a.record_time,a.first_classify,
+		a.zero_id,a.zero_name, rownum rn
+		from (select *
+		from tab_iopm_clues t
+
+		join tab_iopm_second_clues_classify p
+		on (t.second_id =
+		p.second_classify_id)
+		join tab_iopm_first_clues_classify i
+		on
+		(t.first_id = i.first_classify_id)
+		join tab_iopm_zero_clues_classify z
+		on (t.zero_id = z.zero_id)
+		where t.second_id is not null
+		<if test='!"".equals(zero_id) and zero_id!=null'>and z.zero_id=#{zero_id} </if>
+		<if test="queryMethod==0">
+		<if test='name!=null and !"".equals(name)'>and ((name like concat(concat('%',#{name}),'%')) or
+			(keyword3 like concat(concat('%',#{name}),'%')) or (keyword2 like
+			concat(concat('%',#{name}),'%')))</if>
+		</if>
+		<if test='first_classify!=null and !"".equals(first_classify)'>and i.first_classify=#{first_classify}</if>
+		<if test='second_classify!=null and !"".equals(second_classify)'>and second_classify=#{second_classify}</if>
+		order by t.update_time desc) a
+		where 1 = 1) temp
+
+		union
+
+		select *
+		from
+		(select a.id,a.name,to_char(a.keyword2) keyword2,to_char(a.keyword3)
+		keyword3,a.first_id,a.second_id,'',a.update_time,a.record_time,a.first_classify,
+		a.zero_id,a.zero_name, rownum rn
+		from (select *
+		from tab_iopm_clues t
+		join tab_iopm_first_clues_classify i
+		on (t.first_id =
+		i.first_classify_id)
+		join tab_iopm_zero_clues_classify z
+		on (t.zero_id =
+		z.zero_id)
+		where t.second_id is null
+		<if test='!"".equals(zero_id) and zero_id!=null'>and z.zero_id=#{zero_id} </if>
+		<if test="queryMethod==0">
+		<if test='name!=null and !"".equals(name)'>and ((name like concat(concat('%',#{name}),'%')) or
+			(keyword3 like concat(concat('%',#{name}),'%')) or (keyword2 like
+			concat(concat('%',#{name}),'%')))</if>
+		</if>
+		<if test='first_classify!=null and !"".equals(first_classify)'>and i.first_classify=#{first_classify}</if>
+		order by t.update_time desc) a
+		where 1=1) temp))
+	</select>
+	<!-- 分页查询 -->
+	<select id="selectAll" resultType="cn.com.pattek.KeyWords.entity.IopmKeyEntity">
+		select * from(select l.* ,rownum rn from(select * from(select *
+		from(select a.id,a.name,to_char(a.keyword2)
+		keyword2,to_char(a.keyword3)
+		keyword3,a.first_id,a.second_id,a.second_classify,a.update_time,a.record_time,a.first_classify,
+		a.zero_id,a.zero_name from(select * from tab_iopm_clues t
+		join
+		tab_iopm_second_clues_classify p
+		on (t.second_id =
+		p.second_classify_id)
+		join tab_iopm_first_clues_classify i
+		on
+		(t.first_id = i.first_classify_id)
+		join tab_iopm_zero_clues_classify z
+		on (t.zero_id = z.zero_id)
+		where t.second_id is not null
+		<if test='!"".equals(zero_id) and zero_id!=null'>and z.zero_id=#{zero_id} </if>
+		<if test="queryMethod==0">
+		<if test='name!=null and !"".equals(name)'>and ((name like concat(concat('%',#{name}),'%')) or
+			(keyword3 like concat(concat('%',#{name}),'%')) or (keyword2 like
+			concat(concat('%',#{name}),'%')))</if>
+		</if>
+		<if test='!"".equals(classify_name) and classify_name!=null'>and i.first_classify=#{classify_name} </if>
+		<if test='!"".equals(classifyTwo_name) and classifyTwo_name!=null'>and second_classify=#{classifyTwo_name} </if>
+		) a where 1=1
+		) temp
+
+		union
+		select * from(select
+		a.id,a.name,to_char(a.keyword2)
+		keyword2,to_char(a.keyword3)
+		keyword3,a.first_id,a.second_id,'',a.update_time,a.record_time,a.first_classify,
+		a.zero_id,a.zero_name from(select * from tab_iopm_clues t
+		join
+		tab_iopm_first_clues_classify i
+		on (t.first_id = i.first_classify_id)
+		join tab_iopm_zero_clues_classify z
+		on (t.zero_id = z.zero_id)
+		where
+		t.second_id is null
+		<if test='!"".equals(zero_id) and zero_id!=null'>and z.zero_id=#{zero_id} </if>
+		<if test="queryMethod==0">
+		<if test='name!=null and !"".equals(name)'>and ((name like concat(concat('%',#{name}),'%')) or
+			(keyword3 like concat(concat('%',#{name}),'%')) or (keyword2 like
+			concat(concat('%',#{name}),'%')))</if>
+		</if>
+		<if test='!"".equals(classify_name) and classify_name!=null'>and i.first_classify=#{classify_name} </if>
+		) a where 1=1
+		) temp) b order by update_time desc) l where 1=1
+
+		<if test="start!=-1">
+			and
+		   <![CDATA[
+		        ROWNUM <=(#{start} * #{limit})
+		   ]]>
+		</if>
+		) g
+		where 1=1
+		<if test="limit!=-1">
+			and	<![CDATA[
+					RN >= (#{start} - 1)* #{limit} +1 
+				]]>
+		</if>
+
+	</select>
+
+	<!-- 删除记录 -->
+	<delete id="deleteKey" parameterType="java.lang.Long">
+		delete from tab_iopm_clues
+		where id=#{id}
+  </delete>
+
+	<!-- 根据id查询 -->
+	<select id="selectById" parameterType="java.lang.Long"
+		resultMap="keyMap">
+		select * from tab_iopm_clues where id=#{id}
+  </select>
+	<resultMap id="keyMap"
+		type="cn.com.pattek.KeyWords.entity.IopmKeyInfoEntity">
+		<association property="iopmClassify" select="findById"
+			column="first_classify_id">
+		</association>
+	</resultMap>
+	<select id="findById" parameterType="java.lang.Long"
+		resultType="cn.com.pattek.KeyWords.entity.IopmClassify">
+		select * from tab_iopm_first_clues_classify where
+		first_classify_id=#{id}
+  </select>
+	<!-- 查询类别 -->
+	<select id="selectByName" parameterType="java.lang.String"
+		resultType="cn.com.pattek.KeyWords.entity.IopmClassify">
+		select * from tab_iopm_first_clues_classify where
+		first_classify=#{no}
+  </select>
+	<!-- 修改记录 -->
+	<update id="updateKey" parameterType="cn.com.pattek.KeyWords.entity.IopmKeyInfoEntity">
+		update tab_iopm_clues
+		<set>
+			<if test="name!=null">
+				name=#{name},
+			</if>
+			<if test="keyword1!=null">
+				keyword1=#{keyword1},
+			</if>
+			<if test="keyword2!=null">
+				keyword2=#{keyword2},
+			</if>
+			<if test="keyword3!=null">
+				keyword3=#{keyword3},
+			</if>
+			<if test="weight!=null">
+				weight=#{weight},
+			</if>
+			<if test="first_id!=null">
+				first_id=#{first_id},
+			</if>
+			<if test="1==1">
+				update_time=sysdate,
+			</if>
+			<if test="second_id!=null">
+				second_id=#{second_id},
+			</if>
+			<if test="zero_id!=null">
+				zero_id=#{zero_id},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+	<!-- 获取全部类别 -->
+	<select id="getAllClassify" resultMap="getAllcla">
+		select
+		c.first_classify,c.first_classify_id, count(*) count from
+		TAB_IOPM_CLUES t, TAB_IOPM_FIRST_CLUES_CLASSIFY c
+		where
+		c.first_classify_id = t.first_id
+		group by c.first_classify,
+		c.first_classify_id 
+  </select>
+	<resultMap id="getAllcla" type="cn.com.pattek.KeyWords.entity.IopmClassify">
+		<id property="first_classify_id" column="c.first_classify_id" />
+		<result property="first_classify" column="c.first_classify" />
+		<result property="count" column="count" />
+	</resultMap>
+
+	<!-- 1获取全部类别 -->
+	<select id="getAllClassifyById" parameterType="java.lang.Long"
+		resultMap="getAllclass">
+		select c.first_classify,c.first_classify_id,c.image_url,
+		count(t.first_id)
+		count from TAB_IOPM_CLUES t right join
+		TAB_IOPM_FIRST_CLUES_CLASSIFY c
+		on c.first_classify_id = t.first_id
+		where c.zero_id=#{no}
+		group by c.first_classify, c.first_classify_id,
+		c.image_url
+  </select>
+	<resultMap id="getAllclass" type="cn.com.pattek.KeyWords.entity.IopmClassify">
+		<id property="first_classify_id" column="c.first_classify_id" />
+		<result property="first_classify" column="c.first_classify" />
+		<result property="image_url" column="c.image_url" />
+		<result property="count" column="count" />
+	</resultMap>
+	<!-- 获取二级类别 -->
+	<select id="getAllClassifyTwo" parameterType="java.lang.Long"
+		resultType="cn.com.pattek.KeyWords.entity.IopmClassifyTwo">
+		select * from tab_iopm_second_clues_classify where
+		first_classify_id=#{no}
+  </select>
+	<!-- 增加二级类别 -->
+	<insert id="addClassTwo" parameterType="cn.com.pattek.KeyWords.entity.IopmClassifyTwo">
+		<selectKey resultType="java.lang.Long" keyProperty="second_classify_id"
+			order="BEFORE">
+			select TAB_IOPM_SECONDCLASSIFY_SEQ.nextval from dual 
+	  </selectKey>
+		insert into tab_iopm_second_clues_classify
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="second_classify_id!=null">
+				second_classify_id,
+			</if>
+			<if test="first_classify_id!=null">
+				first_classify_id,
+			</if>
+			<if test="second_classify!=null">
+				second_classify,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="second_classify_id!=null">
+				#{second_classify_id},
+			</if>
+			<if test="first_classify_id!=null">
+				#{first_classify_id},
+			</if>
+			<if test="second_classify!=null">
+				#{second_classify},
+			</if>
+		</trim>
+	</insert>
+	<select id="getOneClass" parameterType="cn.com.pattek.KeyWords.entity.IopmClassifyTwo"
+		resultType="cn.com.pattek.KeyWords.entity.IopmClassifyTwo">
+		select * from tab_iopm_second_clues_classify where
+		first_classify_id=#{first_classify_id} and
+		second_classify=#{second_classify}
+  </select>
+	<select id="getKeyByName" parameterType="java.util.Map"
+		resultType="cn.com.pattek.KeyWords.entity.IopmKeyInfoEntity">
+		select * from tab_iopm_clues where 1=1
+		<if test="id!=null">
+			and id!=#{id}
+       </if>
+		<if test="name!=null">
+			and name=#{name}
+       </if>
+	</select>
+
+	<select id="findClassifyById" parameterType="java.lang.Long"
+		resultType="cn.com.pattek.KeyWords.entity.IopmClassify">
+		select * from tab_iopm_first_clues_classify where
+		first_classify_id!=#{no}
+  </select>
+	<update id="updateClassify" parameterType="cn.com.pattek.KeyWords.entity.IopmClassify">
+		update tab_iopm_first_clues_classify
+		<set>
+			<if test="first_classify!=null">
+				first_classify=#{first_classify},
+			</if>
+			<if test="image_url!=null">
+				image_url=#{image_url},
+			</if>
+		</set>
+		where first_classify_id=#{first_classify_id}
+	</update>
+
+	<delete id="deleteKeyword" parameterType="java.lang.Long">
+		delete from
+		tab_iopm_clues where first_id=#{no}
+  </delete>
+	<delete id="deleteClassify" parameterType="java.lang.Long">
+		delete from
+		tab_iopm_first_clues_classify where first_classify_id=#{no}
+  </delete>
+	<delete id="deleteClassifyTwo" parameterType="java.lang.Long">
+		delete from
+		tab_iopm_second_clues_classify where first_classify_id=#{no}
+  </delete>
+
+	<select id="getClassifyTwo" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select count(*) from tab_iopm_second_clues_classify where 1=1
+		<if test="classifyTwo_name!=null">
+			and second_classify=#{classifyTwo_name}
+      </if>
+		<if test="classifyTwo_id!=null">
+			and second_classify_id!=#{classifyTwo_id}
+      </if>
+	</select>
+	<update id="updateClassifyTwo" parameterType="java.util.Map">
+		update tab_iopm_second_clues_classify
+		<set>
+			<if test="classifyTwo_name!=null">second_classify=#{classifyTwo_name}</if>
+		</set>
+		where second_classify_id=#{classifyTwo_id}
+	</update>
+
+	<update id="updateKeywordById" parameterType="java.util.Map">
+		update tab_iopm_clues
+		<set>
+			<if test="classify_id!=null">first_id=#{classify_id},</if>
+			<if test="zero_id!=null">zero_id=#{zero_id},</if>
+		</set>
+		where first_id=#{classifyTwo_id}
+	</update>
+	<select id="getZeroId" parameterType="java.lang.Long"
+		resultType="java.lang.Long">
+		select zero_id from tab_iopm_first_clues_classify where
+		first_classify_id=#{no}
+  </select>
+	<update id="updateClassifyTwoById" parameterType="java.util.Map">
+		update tab_iopm_second_clues_classify
+		<set>
+			<if test="classify_id!=null">first_classify_id=#{classify_id},</if>
+		</set>
+		where first_classify_id=#{classifyTwo_id}
+	</update>
+
+	<delete id="deleteClassifyTwoBySecondId" parameterType="java.lang.Long">
+		delete
+		from tab_iopm_second_clues_classify where second_classify_id=#{no}
+  </delete>
+	<delete id="deleteKeywordBySecondId" parameterType="java.lang.Long">
+		delete from
+		tab_iopm_clues where second_id=#{no}
+  </delete>
+	<select id="getAllSecondClassify" resultType="cn.com.pattek.KeyWords.entity.IopmClassifyTwo">
+		select * from
+		tab_iopm_second_clues_classify
+  </select>
+
+	<select id="getSecondClassify" parameterType="java.lang.Long"
+		resultType="cn.com.pattek.KeyWords.entity.IopmClassifyTwo">
+		select * from tab_iopm_second_clues_classify where
+		second_classify_id=#{no}
+  </select>
+	<!-- 合并二级类别部分 -->
+	<update id="updateKeywordSecond" parameterType="java.util.Map">
+		update TAB_IOPM_CLUES
+		<set>
+			<if test="classify_id!=null">second_id=#{classify_id},</if>
+			<if test="classify2!=null">first_id=#{classify2},</if>
+			<if test="zero_id!=null">zero_id=#{zero_id},</if>
+		</set>
+		where second_id=#{classifyTwo_id}
+	</update>
+	<update id="mergerSecond" parameterType="java.util.Map">
+		update tab_iopm_second_clues_classify
+		<set>
+			<if test="classify_id!=null">second_classify_id=#{classify_id},</if>
+			<if test="classify2!=null">first_classify_id=#{classify2},</if>
+		</set>
+		where second_classify_id=#{classifyTwo_id}
+	</update>
+	<delete id="deleteSecond" parameterType="java.lang.Long">
+		delete from
+		tab_iopm_second_clues_classify where second_classify_id=#{no}
+  </delete>
+	<select id="getFirstClassify" parameterType="java.lang.Long"
+		resultType="cn.com.pattek.KeyWords.entity.IopmClassify">
+		select * from tab_iopm_first_clues_classify where
+		zero_id=#{no}    
+  </select>
+	<!-- 根据二级名称获取所有三级类别 -->
+	<select id="getAllSecondClassifyBy" parameterType="java.lang.String"
+		resultType="cn.com.pattek.KeyWords.entity.IopmKeyEntity">
+		select * from tab_iopm_second_clues_classify s join
+		tab_iopm_first_clues_classify f
+		on(s.first_classify_id=f.first_classify_id)
+		where
+		f.first_classify=#{no}
+  </select>
+
+
+	<update id="updateUnit" parameterType="cn.com.pattek.KeyWords.entity.IopmClassify">
+		update tab_iopm_first_clues_classify
+		<set>
+			<if test="zero_id!=null">zero_id=#{zero_id}</if>
+		</set>
+		where
+	</update>
+	<!-- 获得所有一级分类 -->
+	<select id="getAllFirst" resultMap="getFirclass">
+		select
+		z.zero_id,z.zero_name,z.image_url,count(t.zero_id) countZ from
+		TAB_IOPM_CLUES t
+		right join TAB_IOPM_ZERO_CLUES_CLASSIFY z on
+		t.zero_id=z.zero_id
+		group by z.zero_id,z.zero_name,z.image_url order by zero_id
+  </select>
+  
+  <!-- 获得所有一级分类2 -->
+	<select id="getAllFirst2" resultMap="getFirclass">
+		select
+		z.zero_id,z.zero_name,z.image_url,count(t.zero_id) countZ from
+		TAB_IOPM_CLUES t
+		right join TAB_IOPM_ZERO_CLUES_CLASSIFY z on
+		t.zero_id=z.zero_id where z.zero_id != 7
+		group by z.zero_id,z.zero_name,z.image_url order by zero_id
+  </select>
+  
+	<resultMap id="getFirclass" type="cn.com.pattek.KeyWords.entity.IopmFirst">
+		<id property="zero_id" column="z.zero_id" />
+		<result property="zero_name" column="z.zero_name" />
+		<result property="countZ" column="countZ" />
+		<result property="image_url" column="z.image_url" />
+	</resultMap>
+	<select id="getAllClassifyTo" parameterType="java.lang.Long"
+		resultType="cn.com.pattek.KeyWords.entity.IopmClassify">
+		select * from tab_iopm_first_clues_classify
+		where 1=1
+
+		<if test="1==1">
+			and
+		   <![CDATA[
+		        FIRST_CLASSIFY_ID <>#{no}
+		   ]]>
+		</if>
+
+	</select>
+	<select id="getAllClassifyNum" parameterType="java.lang.Long"
+		resultType="cn.com.pattek.KeyWords.entity.IopmClassifyTwo">
+		select * from tab_iopm_second_clues_classify
+		where 1=1
+
+		<if test="1==1">
+			and
+		   <![CDATA[
+		        SECOND_CLASSIFY_ID <>#{no}
+		   ]]>
+		</if>
+
+	</select>
+	<!-- 判断关键词是否重复 -->
+	<select id="isRepeat" parameterType="java.util.Map"
+		resultType="cn.com.pattek.KeyWords.entity.IopmKeyInfoEntity">
+		select * from tab_iopm_clues
+		<where>
+		   <if test='keyword2!=null and keyword2!=""'>and keyword2 like concat(concat('%',#{keyword2}),'%')</if>
+		   <if test="id!=null">and id!=#{id}</if>
+		</where>
+	</select>
+	<!-- 修改系数  -->
+	<update id="updateCoefficient" parameterType="java.util.Map">
+		update tab_iopm_related_factor set value = #{value} where id = #{id} 
+	</update>
+	<!-- 查询系数 -->
+	<select id="selectAllRelatedFactor" resultType="cn.com.pattek.KeyWords.entity.IopmRelatedFactor">
+		select ID,FACTOR,VALUE from tab_iopm_related_factor order by ID
+	</select>
+	<!-- 查询所有zero,first,second,,fourth节点 名字-->
+	<select id="selectAllZeroName" resultType="cn.com.pattek.KeyWords.entity.IopmFirst">
+		select ZERO_ID,ZERO_NAME,WEIGHT from view_tab_iopm_zero_classify where ZERO_ID != 7 order by ZERO_ID
+	</select>
+	<select id="selectAllFirstName" resultType="cn.com.pattek.KeyWords.entity.IopmClassify">
+		select FIRST_CLASSIFY_ID,FIRST_CLASSIFY,ZERO_ID,WEIGHT from view_tab_iopm_first_classify order by FIRST_CLASSIFY_ID
+	</select>
+	<select id="selectAllSecondName" resultType="cn.com.pattek.KeyWords.entity.IopmClassifyTwo">
+		select SECOND_CLASSIFY_ID,SECOND_CLASSIFY,FIRST_CLASSIFY_ID,WEIGHT from view_tab_iopm_second_classify order by SECOND_CLASSIFY_ID
+	</select>
+	<select id="selectAllFourthName" resultType="cn.com.pattek.KeyWords.entity.IopmKeyEntity">
+		select ID,NAME,SECOND_ID,WEIGHT from tab_iopm_clues order by ID
+	</select>
+	<!-- 查询时间段的舆情id -->
+	<select id="selectRangeArticleid" parameterType="java.util.Map" resultType="cn.com.pattek.RelatedNews.entity.Article">
+		select ID,CLUES_IDS,MAY_INVALID from tab_iopm_article_info where RELEASE_TIME to_date(#{startDate},'yyyy-mm-dd hh24:mi:ss') 
+		and to_date(#{endDate},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	<!-- 查询时间段的hotid -->
+	<select id="selectRangeHotid" parameterType="java.util.Map" resultType="cn.com.pattek.NetHotSpot.entity.Hot">
+		select ID,HOT from tab_iopm_hot_info where record_time between to_date(#{startDate},'yyyy-mm-dd hh24:mi:ss') 
+		and to_date(#{endDate},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	<!-- 插入历史记录 -->
+	<insert id="addSortHistory" parameterType="cn.com.pattek.KeyWords.entity.IopmSortHistory">
+		<selectKey resultType="java.lang.Long" keyProperty="id"
+			order="BEFORE">
+			select seq_history_id.nextval from dual 
+	  </selectKey>
+	  
+		insert into tab_iopm_sort_history
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id!=null">
+				id,
+			</if>
+			<if test="tag!=null">
+				tag,
+			</if>
+			<if test="content!=null">
+				content,
+			</if>
+			<if test="record_time!=null">
+				record_time,
+			</if>
+			<if test="hot_accept_count!=null">
+				hot_accept_count,
+			</if>
+			<if test="hot_unaccept_count!=null">
+				hot_unaccept_count,
+			</if>
+			<if test="hot_total_count!=null">
+				hot_total_count,
+			</if>
+			<if test="article_accept_count!=null">
+				article_accept_count,
+			</if>
+			<if test="article_unaccept_count!=null">
+				article_unaccept_count,
+			</if>
+			<if test="article_total_count!=null">
+				article_total_count,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id!=null">
+				#{id},
+			</if>
+			<if test="tag!=null">
+				#{tag},
+			</if>
+			<if test="content!=null">
+				#{content},
+			</if>
+			<if test="record_time!=null">
+				#{record_time},
+			</if>
+			<if test="hot_accept_count!=null">
+				#{hot_accept_count},
+			</if>
+			<if test="hot_unaccept_count!=null">
+				#{hot_unaccept_count},
+			</if>
+			<if test="hot_total_count!=null">
+				#{hot_total_count},
+			</if>
+			<if test="article_accept_count!=null">
+				#{article_accept_count},
+			</if>
+			<if test="article_unaccept_count!=null">
+				#{article_unaccept_count},
+			</if>
+			<if test="article_total_count!=null">
+				#{article_total_count},
+			</if>
+		</trim>
+	</insert>
+	<select id="selectTagSequences" resultType="java.lang.Long">
+		select seq_history_tag.nextval from dual
+	</select>
+	<update id="updateIopmCluesZero" parameterType="cn.com.pattek.KeyWords.entity.IopmClues">
+		update tab_iopm_clues
+		<set>
+			<if test="weight!=null">
+				weight=#{weight},
+			</if>
+		</set>
+		where zero_id=#{id}
+	</update>
+	<update id="updateIopmCluesFirst" parameterType="cn.com.pattek.KeyWords.entity.IopmClues">
+		update tab_iopm_clues
+		<set>
+			<if test="weight!=null">
+				weight=#{weight},
+			</if>
+		</set>
+		where first_id=#{id}
+	</update>
+	<update id="updateIopmCluesSecond" parameterType="cn.com.pattek.KeyWords.entity.IopmClues">
+		update tab_iopm_clues
+		<set>
+			<if test="weight!=null">
+				weight=#{weight},
+			</if>
+		</set>
+		where second_id=#{id}
+	</update>
+	<update id="updateIopmClues" parameterType="cn.com.pattek.KeyWords.entity.IopmClues">
+		update tab_iopm_clues
+		<set>
+			<if test="weight!=null">
+				weight=#{weight},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+</mapper>

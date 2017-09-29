@@ -1,0 +1,50 @@
+package cn.com.pattek.Subject.dao.impl;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Repository;
+
+import cn.com.pattek.RelatedNews.entity.ArticleInfo;
+import cn.com.pattek.Subject.dao.SubjectDao;
+import cn.com.pattek.Subject.entity.TabIopmSubject;
+import cn.com.pattek.core.dao.BaseDaoImpl;
+
+@Repository
+public class SubjectDaoImpl extends BaseDaoImpl implements SubjectDao {
+
+	
+	//通过id查询出专题开始时间
+	public String subjectStart(Long id) throws Exception {
+		String startTime = sqlSessionTemplate.selectOne("subjectStart", id);
+		return startTime;
+	}
+
+	//通过id查询出专题关键字
+	public String subjectKeyWord1(Long id) throws Exception {
+		String selectOne = sqlSessionTemplate.selectOne("subjectKeyWord1", id);
+		System.out.println("执行了");
+		return selectOne;
+	}
+
+	//查询最后一次出现时间,根据上个方法查出的关键字
+	public String subjectEnd(String keyword1) throws Exception {
+		String endTime = sqlSessionTemplate.selectOne("subjectEnd", keyword1);
+		return endTime;
+	}
+
+	public String subjectFirst(String keyword1) throws Exception {
+		String firstTime = sqlSessionTemplate.selectOne("subjectFirst", keyword1);
+		return firstTime;
+	}
+
+
+
+
+
+	
+
+	
+}
+

@@ -1,0 +1,19436 @@
+!function (t, e) {
+    "function" == typeof define && define.amd ? define([], e) : "object" == typeof module && module.exports ? module.exports = e() : t.echarts = e()
+}(this, function () {
+    var t, e;
+    !function () {
+        function i(t, e) {
+            if (!e)return t;
+            if (0 === t.indexOf(".")) {
+                var i = e.split("/"), n = t.split("/"), r = i.length - 1, a = n.length, o = 0, s = 0;
+                t:for (var l = 0; a > l; l++)switch (n[l]) {
+                    case"..":
+                        if (!(r > o))break t;
+                        o++, s++;
+                        break;
+                    case".":
+                        s++;
+                        break;
+                    default:
+                        break t
+                }
+                return i.length = r - o, n = n.slice(s), i.concat(n).join("/")
+            }
+            return t
+        }
+
+        function n(t) {
+            function e(e, o) {
+                if ("string" == typeof e) {
+                    var s = n[e];
+                    return s || (s = a(i(e, t)), n[e] = s), s
+                }
+                e instanceof Array && (o = o || function () {
+                    }, o.apply(this, r(e, o, t)))
+            }
+
+            var n = {};
+            return e
+        }
+
+        function r(e, n, r) {
+            for (var s = [], l = o[r], u = 0, c = Math.min(e.length, n.length); c > u; u++) {
+                var h, d = i(e[u], r);
+                switch (d) {
+                    case"require":
+                        h = l && l.require || t;
+                        break;
+                    case"exports":
+                        h = l.exports;
+                        break;
+                    case"module":
+                        h = l;
+                        break;
+                    default:
+                        h = a(d)
+                }
+                s.push(h)
+            }
+            return s
+        }
+
+        function a(t) {
+            var e = o[t];
+            if (!e)throw new Error("No " + t);
+            if (!e.defined) {
+                var i = e.factory, n = i.apply(this, r(e.deps || [], i, t));
+                "undefined" != typeof n && (e.exports = n), e.defined = 1
+            }
+            return e.exports
+        }
+
+        var o = {};
+        e = function (t, e, i) {
+            o[t] = {id: t, deps: e, factory: i, defined: 0, exports: {}, require: n(t)}
+        }, t = n("")
+    }();
+    var i = "shadowOffsetX", n = "shadowColor", r = "shadowBlur", a = "../core/util", o = "buildPath", s = "__dirty", l = "updateTransform", u = "realtime", c = "rotate", h = "vertical", d = "orient", f = "isBlank", p = "single", v = "../../model/Component", g = "closePath", m = "lineTo", y = "moveTo", x = "axisLabel", _ = "axisTick", w = "axisLine", b = "offsetY", M = "offsetX", S = "categories", A = "zoomLimit", T = "textPosition", C = "draggable", L = "parentNode", k = "borderWidth", I = "linear", P = "invisible", D = "polarIndex", z = "createSymbol", V = "../../util/symbol", O = "transform", R = "getLayout", E = "hasItemOption", N = "zrender/contain/text", B = "interval", G = "linearMap", F = "dataZoom", H = "formatter", Z = "getLocalTransform", W = "setText", q = "lineWidth", U = "applyTransform", j = "Circle", X = "zrender/core/BoundingRect", Y = "getComponent", $ = "ecModel", J = "mergeDefaultAndTheme", Q = "undefined", K = "queryComponents", te = "itemStyle.normal.color", ee = "getRawIndex", ie = "defaultEmphasis", ne = "toFixed", re = "initData", ae = "superCall", oe = "../../data/helper/completeDimensions", se = "../../data/List", le = "setLayout", ue = "clockwise", ce = "eachChild", he = "lineStyle", de = "label.emphasis", fe = "label.normal", pe = "rotation", ve = "selected", ge = "hoverStyle", me = "getFormattedLabel", ye = "inside", xe = "animate", _e = "startAngle", we = "getName", be = "itemStyle.emphasis", Me = "itemStyle.normal", Se = "execute", Ae = "isAnimationEnabled", Te = "../../echarts", Ce = "../../model/Model", Le = "./helper", ke = "unionExtentFromData", Ie = "coordDimToDataDim", Pe = "boundaryGap", De = "createScaleByModel", ze = "componentIndex", Ve = "coordToData", Oe = "pointToData", Re = "getFormattedLabels", Ee = "niceScaleExtent", Ne = "../../util/layout", Be = "getShallow", Ge = "getRawValue", Fe = "symbolSize", He = "symbol", Ze = "updateProps", We = "points", qe = "ordinal", Ue = "Polygon", je = "Polyline", Xe = "getItemGraphicEl", Ye = "hostModel", $e = "getAreaStyle", Je = "getLineStyle", Qe = "setShape", Ke = "updateData", ti = "setItemGraphicEl", ei = "eachItemGraphicEl", ii = "offset", ni = "reverse", ri = "dataToCoord", ai = "toGlobalCoord", oi = "endAngle", si = "inverse", li = "Sector", ui = "getAngleAxis", ci = "initProps", hi = "isHorizontal", di = "getAxis", fi = "mapArray", pi = "radius", vi = "getOtherAxis", gi = "onBand", mi = "../../util/model", yi = "cartesian2d", xi = "getContext", _i = "createElement", wi = "setItemVisual", bi = "getItemLayout", Mi = "category", Si = "getBaseAxis", Ai = "dataToPoint", Ti = "setItemLayout", Ci = "horizontal", Li = "layout", ki = "dimensions", Ii = "parsePercent", Pi = "retrieve", Di = "../../util/number", zi = "<br />", Vi = "addCommas", Oi = "encodeHTML", Ri = "../../util/format", Ei = "../../model/Series", Ni = "setHoverStyle", Bi = "stroke", Gi = "useStyle", Fi = "childAt", Hi = "borderColor", Zi = "getItemModel", Wi = "emphasis", qi = "normal", Ui = "itemStyle", ji = "../../util/graphic", Xi = "getDataExtent", Yi = "setExtent", $i = "getLabel", Ji = "getTicks", Qi = "getExtent", Ki = "normalize", tn = "contain", en = "_extent", nn = "../util/number", rn = "concat", an = "parent", on = "textVerticalAlign", sn = "mergeOption", ln = "superApply", un = "option", cn = "opacity", hn = "margin", dn = "position", fn = "center", pn = "middle", vn = "padding", gn = "getLayoutRect", mn = "getBoxLayoutParams", yn = "getBoundingRect", xn = "getTextColor", _n = "getFont", wn = "textAlign", bn = "textStyle", Mn = "getItemStyle", Sn = "getRect", An = "removeAll", Tn = "isString", Cn = "inherits", Ln = "filter", kn = "number", In = "extendChartView", Pn = "extendComponentView", Dn = "extendComponentModel", zn = "register", Vn = "registerAction", On = "function", Rn = "isArray", En = "replace", Nn = "zlevel", Bn = "setStyle", Gn = "traverse", Fn = "dataType", Hn = "getDataParams", Zn = "seriesIndex", Wn = "target", qn = "mousedown", Un = "mousemove", jn = "mouseout", Xn = "mouseover", Yn = "splice", $n = "dispose", Jn = "trigger", Qn = "downplay", Kn = "highlight", tr = "defaults", er = "dispatchAction", ir = "extend", nr = "remove", rr = "series", ar = "render", or = "mainType", sr = "updateLayout", lr = "eachSeries", ur = "colorStops", cr = "transparent", hr = "update", dr = "create", fr = "getItemVisual", pr = "dataIndex", vr = "getVisual", gr = "coordinateSystem", mr = "indexOf", yr = "length", xr = "bottom", _r = "ignore", wr = "eachComponent", br = "stopAnimation", Mr = "storage", Sr = "backgroundColor", Ar = "canvasSupported", Tr = "getHeight", Cr = "getWidth", Lr = "getModel", kr = "_model", Ir = "isObject", Pr = "assert", Dr = "silent", zr = "animation", Vr = "resize", Or = "height", Rr = "canvas", Er = "string", Nr = "prototype", Br = "toLowerCase", Gr = "zrender/core/vector", Fr = "zrender/core/matrix", Hr = "zrender/tool/color", Zr = "zrender/core/env", Wr = "setVisual", qr = "getData", Ur = "eachSeriesByType", jr = "circle", Xr = "zrender/core/util", Yr = "require";
+    e("echarts/chart/candlestick", [Yr, "../echarts", "./candlestick/CandlestickSeries", "./candlestick/CandlestickView", "./candlestick/preprocessor", "./candlestick/candlestickVisual", "./candlestick/candlestickLayout"], function (t) {
+        var e = t("../echarts");
+        t("./candlestick/CandlestickSeries"), t("./candlestick/CandlestickView"), e.registerPreprocessor(t("./candlestick/preprocessor")), e.registerVisual(t("./candlestick/candlestickVisual")), e.registerLayout(t("./candlestick/candlestickLayout"))
+    }), e("echarts/chart/line", [Yr, Xr, "../echarts", "./line/LineSeries", "./line/LineView", "../visual/symbol", "../layout/points", "../processor/dataSample", "../component/grid"], function (t) {
+        var e = t(Xr), i = t("../echarts"), n = i.PRIORITY;
+        t("./line/LineSeries"), t("./line/LineView"), i.registerVisual(e.curry(t("../visual/symbol"), "line", jr, "line")), i.registerLayout(e.curry(t("../layout/points"), "line")), i.registerProcessor(n.PROCESSOR.STATISTIC, e.curry(t("../processor/dataSample"), "line")), t("../component/grid")
+    }), e("echarts/chart/bar", [Yr, Xr, "../coord/cartesian/Grid", "./bar/BarSeries", "./bar/BarView", "../layout/barGrid", "../echarts", "../component/grid"], function (t) {
+        var e = t(Xr);
+        t("../coord/cartesian/Grid"), t("./bar/BarSeries"), t("./bar/BarView");
+        var i = t("../layout/barGrid"), n = t("../echarts");
+        n.registerLayout(e.curry(i, "bar")), n.registerVisual(function (t) {
+            t[Ur]("bar", function (t) {
+                var e = t[qr]();
+                e[Wr]("legendSymbol", "roundRect")
+            })
+        }), t("../component/grid")
+    }), e("echarts/chart/pie", [Yr, Xr, "../echarts", "./pie/PieSeries", "./pie/PieView", "../action/createDataSelectAction", "../visual/dataColor", "./pie/pieLayout", "../processor/dataFilter"], function (t) {
+        var e = t(Xr), i = t("../echarts");
+        t("./pie/PieSeries"), t("./pie/PieView"), t("../action/createDataSelectAction")("pie", [{
+            type: "pieToggleSelect",
+            event: "pieselectchanged",
+            method: "toggleSelected"
+        }, {type: "pieSelect", event: "pieselected", method: "select"}, {
+            type: "pieUnSelect",
+            event: "pieunselected",
+            method: "unSelect"
+        }]), i.registerVisual(e.curry(t("../visual/dataColor"), "pie")), i.registerLayout(e.curry(t("./pie/pieLayout"), "pie")), i.registerProcessor(e.curry(t("../processor/dataFilter"), "pie"))
+    }), e("echarts/chart/scatter", [Yr, Xr, "../echarts", "./scatter/ScatterSeries", "./scatter/ScatterView", "../visual/symbol", "../layout/points", "../component/grid"], function (t) {
+        var e = t(Xr), i = t("../echarts");
+        t("./scatter/ScatterSeries"), t("./scatter/ScatterView"), i.registerVisual(e.curry(t("../visual/symbol"), "scatter", jr, null)), i.registerLayout(e.curry(t("../layout/points"), "scatter")), t("../component/grid")
+    }), e("echarts/echarts", [Yr, Zr, "./model/Global", "./ExtensionAPI", "./CoordinateSystem", "./model/OptionManager", "./model/Component", "./model/Series", "./view/Component", "./view/Chart", "./util/graphic", "./util/model", "./util/throttle", "zrender", Xr, Hr, "zrender/mixin/Eventful", "zrender/core/timsort", "./visual/seriesColor", "./preprocessor/backwardCompat", "./loading/default", "./data/List", "./model/Model", "./util/number", "./util/format", Fr, Gr], function (t) {
+        function e(t) {
+            return function (e, i, n) {
+                e = e && e[Br](), O[Nr][t].call(this, e, i, n)
+            }
+        }
+
+        function i() {
+            O.call(this)
+        }
+
+        function n(t, e, n) {
+            function r(t, e) {
+                return t.prio - e.prio
+            }
+
+            n = n || {}, typeof e === Er && (e = re[e]), this.id, this.group, this._dom = t;
+            var a = this._zr = D.init(t, {
+                renderer: n.renderer || Rr,
+                devicePixelRatio: n.devicePixelRatio,
+                width: n.width,
+                height: n[Or]
+            });
+            this._throttledZrFlush = P.throttle(z.bind(a.flush, a), 17), this._theme = z.clone(e), this._chartsViews = [], this._chartsMap = {}, this._componentsViews = [], this._componentsMap = {}, this._api = new b(this), this._coordSysMgr = new M, O.call(this), this._messageCenter = new i, this._initEvents(), this[Vr] = z.bind(this[Vr], this), this._pendingActions = [], R(ne, r), R(ee, r), a[zr].on("frame", this._onframe, this)
+        }
+
+        function r(t, e, i) {
+            var n, r = this[kr], a = this._coordSysMgr.getCoordinateSystems();
+            e = I.parseFinder(r, e);
+            for (var o = 0; o < a[yr]; o++) {
+                var s = a[o];
+                if (s[t] && null != (n = s[t](r, e, i)))return n
+            }
+        }
+
+        function a(t, e, i, n, r) {
+            var a = t[kr], o = {};
+            o[n + "Id"] = i[n + "Id"], o[n + "Index"] = i[n + "Index"], o[n + "Name"] = i[n + "Name"];
+            var s = {mainType: n, query: o};
+            r && (s.subType = r), a && a[wr](s, function (r) {
+                var o = t[n === rr ? "_chartsMap" : "_componentsMap"][r.__viewId];
+                o && o.__alive && o[e](r, a, t._api, i)
+            }, t)
+        }
+
+        function o(t, e) {
+            var i = t.type, n = K[i], r = n.actionInfo, o = (r[hr] || hr).split(":"), s = o.pop();
+            o = o[0] && N(o[0]), this[U] = !0;
+            var l = [t], u = !1;
+            t.batch && (u = !0, l = z.map(t.batch, function (e) {
+                return e = z[tr](z[ir]({}, e), t), e.batch = null, e
+            }));
+            for (var c, h = [], d = i === Kn || i === Qn, f = 0; f < l[yr]; f++) {
+                var p = l[f];
+                c = n.action(p, this[kr]), c = c || z[ir]({}, p), c.type = r.event || c.type, h.push(c), d ? a(this, s, p, rr) : o && a(this, s, p, o.main, o.sub)
+            }
+            "none" === s || d || o || (this[X] ? (J.prepareAndUpdate.call(this, t), this[X] = !1) : J[s].call(this, t)), c = u ? {
+                type: r.event || i,
+                batch: h
+            } : h[0], this[U] = !1, !e && this._messageCenter[Jn](c.type, c)
+        }
+
+        function s(t) {
+            for (var e = this._pendingActions; e[yr];) {
+                var i = e.shift();
+                o.call(this, i, t)
+            }
+        }
+
+        function l(t) {
+            !t && this[Jn]("updated")
+        }
+
+        function u(t, e, i) {
+            var n = this._api;
+            E(this._componentsViews, function (r) {
+                var a = r.__model;
+                r[t](a, e, n, i), y(a, r)
+            }, this), e[lr](function (r) {
+                var a = this._chartsMap[r.__viewId];
+                a[t](r, e, n, i), y(r, a), m(r, a)
+            }, this), g(this._zr, e)
+        }
+
+        function c(t, e) {
+            for (var i = "component" === t, n = i ? this._componentsViews : this._chartsViews, r = i ? this._componentsMap : this._chartsMap, a = this._zr, o = 0; o < n[yr]; o++)n[o].__alive = !1;
+            e[i ? wr : lr](function (t, o) {
+                if (i) {
+                    if (t === rr)return
+                } else o = t;
+                var s = o.id + "_" + o.type, l = r[s];
+                if (!l) {
+                    var u = N(o.type), c = i ? C.getClass(u.main, u.sub) : L.getClass(u.sub);
+                    if (!c)return;
+                    l = new c, l.init(e, this._api), r[s] = l, n.push(l), a.add(l.group)
+                }
+                o.__viewId = s, l.__alive = !0, l.__id = s, l.__model = o
+            }, this);
+            for (var o = 0; o < n[yr];) {
+                var s = n[o];
+                s.__alive ? o++ : (a[nr](s.group), s[$n](e, this._api), n[Yn](o, 1), delete r[s.__id])
+            }
+        }
+
+        function h(t, e) {
+            E(ee, function (i) {
+                i.func(t, e)
+            })
+        }
+
+        function d(t) {
+            var e = {};
+            t[lr](function (t) {
+                var i = t.get("stack"), n = t[qr]();
+                if (i && "list" === n.type) {
+                    var r = e[i];
+                    r && (n.stackedOn = r), e[i] = n
+                }
+            })
+        }
+
+        function f(t, e) {
+            var i = this._api;
+            E(ne, function (n) {
+                n.isLayout && n.func(t, i, e)
+            })
+        }
+
+        function p(t, e, i) {
+            var n = this._api;
+            t.clearColorPalette(), t[lr](function (t) {
+                t.clearColorPalette()
+            }), E(ne, function (r) {
+                (!i || !r.isLayout) && r.func(t, n, e)
+            })
+        }
+
+        function v(t, e) {
+            var i = this._api;
+            E(this._componentsViews, function (n) {
+                var r = n.__model;
+                n[ar](r, t, i, e), y(r, n)
+            }, this), E(this._chartsViews, function (t) {
+                t.__alive = !1
+            }, this), t[lr](function (n) {
+                var r = this._chartsMap[n.__viewId];
+                r.__alive = !0, r[ar](n, t, i, e), r.group[Dr] = !!n.get(Dr), y(n, r), m(n, r)
+            }, this), g(this._zr, t), E(this._chartsViews, function (e) {
+                e.__alive || e[nr](t, i)
+            }, this)
+        }
+
+        function g(t, e) {
+            var i = t[Mr], n = 0;
+            i[Gn](function (t) {
+                t.isGroup || n++
+            }), n > e.get("hoverLayerThreshold") && !_.node && i[Gn](function (t) {
+                t.isGroup || (t.useHoverLayer = !0)
+            })
+        }
+
+        function m(t, e) {
+            var i = 0;
+            e.group[Gn](function (t) {
+                "group" === t.type || t[_r] || i++
+            });
+            var n = +t.get("progressive"), r = i > t.get("progressiveThreshold") && n && !_.node;
+            r && e.group[Gn](function (t) {
+                t.isGroup || (t.progressive = r ? Math.floor(i++ / n) : -1, r && t[br](!0))
+            });
+            var a = t.get("blendMode") || null;
+            e.group[Gn](function (t) {
+                t.isGroup || t[Bn]("blend", a)
+            })
+        }
+
+        function y(t, e) {
+            var i = t.get("z"), n = t.get(Nn);
+            e.group[Gn](function (t) {
+                "group" !== t.type && (null != i && (t.z = i), null != n && (t[Nn] = n))
+            })
+        }
+
+        function x(t) {
+            function e(t, e) {
+                for (var i = 0; i < t[yr]; i++) {
+                    var n = t[i];
+                    n[a] = e
+                }
+            }
+
+            var i = 0, n = 1, r = 2, a = "__connectUpdateStatus";
+            z.each(te, function (o, s) {
+                t._messageCenter.on(s, function (o) {
+                    if (se[t.group] && t[a] !== i) {
+                        var s = t.makeActionFromEvent(o), l = [];
+                        z.each(oe, function (e) {
+                            e !== t && e.group === t.group && l.push(e)
+                        }), e(l, i), E(l, function (t) {
+                            t[a] !== n && t[er](s)
+                        }), e(l, r)
+                    }
+                })
+            })
+        }
+
+        var _ = t(Zr), w = t("./model/Global"), b = t("./ExtensionAPI"), M = t("./CoordinateSystem"), S = t("./model/OptionManager"), A = t("./model/Component"), T = t("./model/Series"), C = t("./view/Component"), L = t("./view/Chart"), k = t("./util/graphic"), I = t("./util/model"), P = t("./util/throttle"), D = t("zrender"), z = t(Xr), V = t(Hr), O = t("zrender/mixin/Eventful"), R = t("zrender/core/timsort"), E = z.each, N = A.parseClassType, B = 1e3, G = 5e3, F = 1e3, H = 2e3, Z = 3e3, W = 4e3, q = 5e3, U = "__flagInMainProcess", j = "__hasGradientOrPatternBg", X = "__optionUpdated", Y = /^[a-zA-Z0-9_]+$/;
+        i[Nr].on = e("on"), i[Nr].off = e("off"), i[Nr].one = e("one"), z.mixin(i, O);
+        var $ = n[Nr];
+        $._onframe = function () {
+            if (this[X]) {
+                var t = this[X][Dr];
+                this[U] = !0, J.prepareAndUpdate.call(this), this[U] = !1, this[X] = !1, s.call(this, t), l.call(this, t)
+            }
+        }, $.getDom = function () {
+            return this._dom
+        }, $.getZr = function () {
+            return this._zr
+        }, $.setOption = function (t, e, i) {
+            var n;
+            if (z[Ir](e) && (i = e.lazyUpdate, n = e[Dr], e = e.notMerge), this[U] = !0, !this[kr] || e) {
+                var r = new S(this._api), a = this._theme, o = this[kr] = new w(null, null, a, r);
+                o.init(null, null, a, r)
+            }
+            this.__lastOnlyGraphic = !(!t || !t.graphic), z.each(t, function (t, e) {
+                "graphic" !== e && (this.__lastOnlyGraphic = !1)
+            }, this), this[kr].setOption(t, ie), i ? (this[X] = {silent: n}, this[U] = !1) : (J.prepareAndUpdate.call(this), this._zr.flush(), this[X] = !1, this[U] = !1, s.call(this, n), l.call(this, n))
+        }, $.setTheme = function () {
+            console.log("ECharts#setTheme() is DEPRECATED in ECharts 3.0")
+        }, $[Lr] = function () {
+            return this[kr]
+        }, $.getOption = function () {
+            return this[kr] && this[kr].getOption()
+        }, $[Cr] = function () {
+            return this._zr[Cr]()
+        }, $[Tr] = function () {
+            return this._zr[Tr]()
+        }, $.getRenderedCanvas = function (t) {
+            if (_[Ar]) {
+                t = t || {}, t.pixelRatio = t.pixelRatio || 1, t[Sr] = t[Sr] || this[kr].get(Sr);
+                var e = this._zr, i = e[Mr].getDisplayList();
+                return z.each(i, function (t) {
+                    t[br](!0)
+                }), e.painter.getRenderedCanvas(t)
+            }
+        }, $.getDataURL = function (t) {
+            t = t || {};
+            var e = t.excludeComponents, i = this[kr], n = [], r = this;
+            E(e, function (t) {
+                i[wr]({mainType: t}, function (t) {
+                    var e = r._componentsMap[t.__viewId];
+                    e.group[_r] || (n.push(e), e.group[_r] = !0)
+                })
+            });
+            var a = this.getRenderedCanvas(t).toDataURL("image/" + (t && t.type || "png"));
+            return E(n, function (t) {
+                t.group[_r] = !1
+            }), a
+        }, $.getConnectedDataURL = function (t) {
+            if (_[Ar]) {
+                var e = this.group, i = Math.min, n = Math.max, r = 1 / 0;
+                if (se[e]) {
+                    var a = r, o = r, s = -r, l = -r, u = [], c = t && t.pixelRatio || 1;
+                    z.each(oe, function (r) {
+                        if (r.group === e) {
+                            var c = r.getRenderedCanvas(z.clone(t)), h = r.getDom().getBoundingClientRect();
+                            a = i(h.left, a), o = i(h.top, o), s = n(h.right, s), l = n(h[xr], l), u.push({
+                                dom: c,
+                                left: h.left,
+                                top: h.top
+                            })
+                        }
+                    }), a *= c, o *= c, s *= c, l *= c;
+                    var h = s - a, d = l - o, f = z.createCanvas();
+                    f.width = h, f[Or] = d;
+                    var p = D.init(f);
+                    return E(u, function (t) {
+                        var e = new k.Image({style: {x: t.left * c - a, y: t.top * c - o, image: t.dom}});
+                        p.add(e)
+                    }), p.refreshImmediately(), f.toDataURL("image/" + (t && t.type || "png"))
+                }
+                return this.getDataURL(t)
+            }
+        }, $.convertToPixel = z.curry(r, "convertToPixel"), $.convertFromPixel = z.curry(r, "convertFromPixel"), $.containPixel = function (t, e) {
+            var i, n = this[kr];
+            return t = I.parseFinder(n, t), z.each(t, function (t, n) {
+                n[mr]("Models") >= 0 && z.each(t, function (t) {
+                    var r = t[gr];
+                    if (r && r.containPoint)i |= !!r.containPoint(e); else if ("seriesModels" === n) {
+                        var a = this._chartsMap[t.__viewId];
+                        a && a.containPoint && (i |= a.containPoint(e, t))
+                    }
+                }, this)
+            }, this), !!i
+        }, $[vr] = function (t, e) {
+            var i = this[kr];
+            t = I.parseFinder(i, t, {defaultMainType: "series"});
+            var n = t.seriesModel, r = n[qr](), a = t.hasOwnProperty("dataIndexInside") ? t.dataIndexInside : t.hasOwnProperty(pr) ? r.indexOfRawIndex(t[pr]) : null;
+            return null != a ? r[fr](a, e) : r[vr](e)
+        };
+        var J = {
+            update: function (t) {
+                var e = this[kr], i = this._api, n = this._coordSysMgr, r = this._zr;
+                if (e) {
+                    e.restoreData(), n[dr](this[kr], this._api), h.call(this, e, i), d.call(this, e), n[hr](e, i), p.call(this, e, t), v.call(this, e, t);
+                    var a = e.get(Sr) || cr, o = r.painter;
+                    if (o.isSingleCanvas && o.isSingleCanvas())r.configLayer(0, {clearColor: a}); else {
+                        if (!_[Ar]) {
+                            var s = V.parse(a);
+                            a = V.stringify(s, "rgb"), 0 === s[3] && (a = cr)
+                        }
+                        a[ur] || a.image ? (r.configLayer(0, {clearColor: a}), this[j] = !0, this._dom.style.background = cr) : (this[j] && r.configLayer(0, {clearColor: null}), this[j] = !1, this._dom.style.background = a)
+                    }
+                }
+            }, updateView: function (t) {
+                var e = this[kr];
+                e && (e[lr](function (t) {
+                    t[qr]().clearAllVisual()
+                }), p.call(this, e, t), u.call(this, "updateView", e, t))
+            }, updateVisual: function (t) {
+                var e = this[kr];
+                e && (e[lr](function (t) {
+                    t[qr]().clearAllVisual()
+                }), p.call(this, e, t, !0), u.call(this, "updateVisual", e, t))
+            }, updateLayout: function (t) {
+                var e = this[kr];
+                e && (f.call(this, e, t), u.call(this, sr, e, t))
+            }, prepareAndUpdate: function (t) {
+                var e = this[kr];
+                c.call(this, "component", e), c.call(this, "chart", e), this.__lastOnlyGraphic ? (E(this._componentsViews, function (i) {
+                    var n = i.__model;
+                    n && "graphic" === n[or] && (i[ar](n, e, this._api, t), y(n, i))
+                }, this), this.__lastOnlyGraphic = !1) : J[hr].call(this, t)
+            }
+        };
+        $[Vr] = function (t) {
+            this[U] = !0, this._zr[Vr](t);
+            var e = this[kr] && this[kr].resetOption("media"), i = e ? "prepareAndUpdate" : hr;
+            J[i].call(this), this._loadingFX && this._loadingFX[Vr](), this[U] = !1;
+            var n = t && t[Dr];
+            s.call(this, n), l.call(this, n)
+        }, $.showLoading = function (t, e) {
+            if (z[Ir](t) && (e = t, t = ""), t = t || "default", this.hideLoading(), ae[t]) {
+                var i = ae[t](this._api, e), n = this._zr;
+                this._loadingFX = i, n.add(i)
+            }
+        }, $.hideLoading = function () {
+            this._loadingFX && this._zr[nr](this._loadingFX), this._loadingFX = null
+        }, $.makeActionFromEvent = function (t) {
+            var e = z[ir]({}, t);
+            return e.type = te[t.type], e
+        }, $[er] = function (t, e) {
+            if (z[Ir](e) || (e = {silent: !!e}), K[t.type]) {
+                if (this[U])return void this._pendingActions.push(t);
+                o.call(this, t, e[Dr]), e.flush ? this._zr.flush(!0) : e.flush !== !1 && _.browser.weChat && this._throttledZrFlush(), s.call(this, e[Dr]), l.call(this, e[Dr])
+            }
+        }, $.on = e("on"), $.off = e("off"), $.one = e("one");
+        var Q = ["click", "dblclick", Xn, jn, Un, qn, "mouseup", "globalout", "contextmenu"];
+        $._initEvents = function () {
+            E(Q, function (t) {
+                this._zr.on(t, function (e) {
+                    var i, n = this[Lr](), r = e[Wn];
+                    if ("globalout" === t)i = {}; else if (r && null != r[pr]) {
+                        var a = r.dataModel || n.getSeriesByIndex(r[Zn]);
+                        i = a && a[Hn](r[pr], r[Fn]) || {}
+                    } else r && r.eventData && (i = z[ir]({}, r.eventData));
+                    i && (i.event = e, i.type = t, this[Jn](t, i))
+                }, this)
+            }, this), E(te, function (t, e) {
+                this._messageCenter.on(e, function (t) {
+                    this[Jn](e, t)
+                }, this)
+            }, this)
+        }, $.isDisposed = function () {
+            return this._disposed
+        }, $.clear = function () {
+            this.setOption({series: []}, !0)
+        }, $[$n] = function () {
+            if (!this._disposed) {
+                this._disposed = !0;
+                var t = this._api, e = this[kr];
+                E(this._componentsViews, function (i) {
+                    i[$n](e, t)
+                }), E(this._chartsViews, function (i) {
+                    i[$n](e, t)
+                }), this._zr[$n](), delete oe[this.id]
+            }
+        }, z.mixin(n, O);
+        var K = [], te = {}, ee = [], ie = [], ne = [], re = {}, ae = {}, oe = {}, se = {}, le = new Date - 0, ue = new Date - 0, ce = "_echarts_instance_", he = {
+            version: "3.4.0",
+            dependencies: {zrender: "3.3.0"}
+        };
+        return he.init = function (t, e, i) {
+            var r = new n(t, e, i);
+            return r.id = "ec_" + le++, oe[r.id] = r, t.setAttribute && t.setAttribute(ce, r.id), x(r), r
+        }, he.connect = function (t) {
+            if (z[Rn](t)) {
+                var e = t;
+                t = null, z.each(e, function (e) {
+                    null != e.group && (t = e.group)
+                }), t = t || "g_" + ue++, z.each(e, function (e) {
+                    e.group = t
+                })
+            }
+            return se[t] = !0, t
+        }, he.disConnect = function (t) {
+            se[t] = !1
+        }, he[$n] = function (t) {
+            z.isDom(t) ? t = he.getInstanceByDom(t) : typeof t === Er && (t = oe[t]), t instanceof n && !t.isDisposed() && t[$n]()
+        }, he.getInstanceByDom = function (t) {
+            var e = t.getAttribute(ce);
+            return oe[e]
+        }, he.getInstanceById = function (t) {
+            return oe[t]
+        }, he.registerTheme = function (t, e) {
+            re[t] = e
+        }, he.registerPreprocessor = function (t) {
+            ie.push(t)
+        }, he.registerProcessor = function (t, e) {
+            typeof t === On && (e = t, t = B), ee.push({prio: t, func: e})
+        }, he[Vn] = function (t, e, i) {
+            typeof e === On && (i = e, e = "");
+            var n = z[Ir](t) ? t.type : [t, t = {event: e}][0];
+            t.event = (t.event || n)[Br](), e = t.event, z[Pr](Y.test(n) && Y.test(e)), K[n] || (K[n] = {
+                action: i,
+                actionInfo: t
+            }), te[e] = n
+        }, he.registerCoordinateSystem = function (t, e) {
+            M[zn](t, e)
+        }, he.registerLayout = function (t, e) {
+            typeof t === On && (e = t, t = F), ne.push({prio: t, func: e, isLayout: !0})
+        }, he.registerVisual = function (t, e) {
+            typeof t === On && (e = t, t = Z), ne.push({prio: t, func: e})
+        }, he.registerLoading = function (t, e) {
+            ae[t] = e
+        }, he[Dn] = function (t) {
+            return A[ir](t)
+        }, he[Pn] = function (t) {
+            return C[ir](t)
+        }, he.extendSeriesModel = function (t) {
+            return T[ir](t)
+        }, he[In] = function (t) {
+            return L[ir](t)
+        }, he.setCanvasCreator = function (t) {
+            z.createCanvas = t
+        }, he.registerVisual(H, t("./visual/seriesColor")), he.registerPreprocessor(t("./preprocessor/backwardCompat")), he.registerLoading("default", t("./loading/default")), he[Vn]({
+            type: "highlight",
+            event: "highlight",
+            update: "highlight"
+        }, z.noop), he[Vn]({
+            type: "downplay",
+            event: "downplay",
+            update: "downplay"
+        }, z.noop), he.List = t("./data/List"), he.Model = t("./model/Model"), he.graphic = t("./util/graphic"), he[kn] = t("./util/number"), he.format = t("./util/format"), he.throttle = P.throttle, he.matrix = t(Fr), he.vector = t(Gr), he.color = t(Hr), he.util = {}, E(["map", "each", Ln, mr, Cn, "reduce", Ln, "bind", "curry", Rn, Tn, Ir, "isFunction", ir, tr, "clone"], function (t) {
+            he.util[t] = z[t]
+        }), he.PRIORITY = {
+            PROCESSOR: {FILTER: B, STATISTIC: G},
+            VISUAL: {LAYOUT: F, GLOBAL: H, CHART: Z, COMPONENT: W, BRUSH: q}
+        }, he
+    }), e("echarts/chart/heatmap", [Yr, "./heatmap/HeatmapSeries", "./heatmap/HeatmapView"], function (t) {
+        t("./heatmap/HeatmapSeries"), t("./heatmap/HeatmapView")
+    }), e("echarts/chart/radar", [Yr, Xr, "../echarts", "../component/radar", "./radar/RadarSeries", "./radar/RadarView", "../visual/dataColor", "../visual/symbol", "./radar/radarLayout", "../processor/dataFilter", "./radar/backwardCompat"], function (t) {
+        var e = t(Xr), i = t("../echarts");
+        t("../component/radar"), t("./radar/RadarSeries"), t("./radar/RadarView"), i.registerVisual(e.curry(t("../visual/dataColor"), "radar")), i.registerVisual(e.curry(t("../visual/symbol"), "radar", jr, null)), i.registerLayout(t("./radar/radarLayout")), i.registerProcessor(e.curry(t("../processor/dataFilter"), "radar")), i.registerPreprocessor(t("./radar/backwardCompat"))
+    }), e("echarts/chart/treemap", [Yr, "../echarts", "./treemap/TreemapSeries", "./treemap/TreemapView", "./treemap/treemapAction", "./treemap/treemapVisual", "./treemap/treemapLayout"], function (t) {
+        var e = t("../echarts");
+        t("./treemap/TreemapSeries"), t("./treemap/TreemapView"), t("./treemap/treemapAction"), e.registerVisual(t("./treemap/treemapVisual")), e.registerLayout(t("./treemap/treemapLayout"))
+    }), e("echarts/chart/graph", [Yr, "../echarts", Xr, "./graph/GraphSeries", "./graph/GraphView", "./graph/graphAction", "./graph/categoryFilter", "../visual/symbol", "./graph/categoryVisual", "./graph/edgeVisual", "./graph/simpleLayout", "./graph/circularLayout", "./graph/forceLayout", "./graph/createView"], function (t) {
+        var e = t("../echarts"), i = t(Xr);
+        t("./graph/GraphSeries"), t("./graph/GraphView"), t("./graph/graphAction"), e.registerProcessor(t("./graph/categoryFilter")), e.registerVisual(i.curry(t("../visual/symbol"), "graph", jr, null)), e.registerVisual(t("./graph/categoryVisual")), e.registerVisual(t("./graph/edgeVisual")), e.registerLayout(t("./graph/simpleLayout")), e.registerLayout(t("./graph/circularLayout")), e.registerLayout(t("./graph/forceLayout")), e.registerCoordinateSystem("graphView", {create: t("./graph/createView")})
+    }), e("echarts/chart/boxplot", [Yr, "../echarts", "./boxplot/BoxplotSeries", "./boxplot/BoxplotView", "./boxplot/boxplotVisual", "./boxplot/boxplotLayout"], function (t) {
+        var e = t("../echarts");
+        t("./boxplot/BoxplotSeries"), t("./boxplot/BoxplotView"), e.registerVisual(t("./boxplot/boxplotVisual")), e.registerLayout(t("./boxplot/boxplotLayout"))
+    }), e("echarts/chart/parallel", [Yr, "../echarts", "../component/parallel", "./parallel/ParallelSeries", "./parallel/ParallelView", "./parallel/parallelVisual"], function (t) {
+        var e = t("../echarts");
+        t("../component/parallel"), t("./parallel/ParallelSeries"), t("./parallel/ParallelView"), e.registerVisual(t("./parallel/parallelVisual"))
+    }), e("echarts/chart/map", [Yr, "../echarts", "./map/MapSeries", "./map/MapView", "../action/geoRoam", "../coord/geo/geoCreator", "./map/mapSymbolLayout", "./map/mapVisual", "./map/mapDataStatistic", "./map/backwardCompat", "../action/createDataSelectAction"], function (t) {
+        var e = t("../echarts"), i = e.PRIORITY;
+        t("./map/MapSeries"), t("./map/MapView"), t("../action/geoRoam"), t("../coord/geo/geoCreator"), e.registerLayout(t("./map/mapSymbolLayout")), e.registerVisual(t("./map/mapVisual")), e.registerProcessor(i.PROCESSOR.STATISTIC, t("./map/mapDataStatistic")), e.registerPreprocessor(t("./map/backwardCompat")), t("../action/createDataSelectAction")("map", [{
+            type: "mapToggleSelect",
+            event: "mapselectchanged",
+            method: "toggleSelected"
+        }, {type: "mapSelect", event: "mapselected", method: "select"}, {
+            type: "mapUnSelect",
+            event: "mapunselected",
+            method: "unSelect"
+        }])
+    }), e("echarts/chart/lines", [Yr, "./lines/LinesSeries", "./lines/LinesView", "../echarts", "./lines/linesLayout", "./lines/linesVisual"], function (t) {
+        t("./lines/LinesSeries"), t("./lines/LinesView");
+        var e = t("../echarts");
+        e.registerLayout(t("./lines/linesLayout")), e.registerVisual(t("./lines/linesVisual"))
+    }), e("echarts/chart/funnel", [Yr, Xr, "../echarts", "./funnel/FunnelSeries", "./funnel/FunnelView", "../visual/dataColor", "./funnel/funnelLayout", "../processor/dataFilter"], function (t) {
+        var e = t(Xr), i = t("../echarts");
+        t("./funnel/FunnelSeries"), t("./funnel/FunnelView"), i.registerVisual(e.curry(t("../visual/dataColor"), "funnel")), i.registerLayout(t("./funnel/funnelLayout")), i.registerProcessor(e.curry(t("../processor/dataFilter"), "funnel"))
+    }), e("echarts/chart/gauge", [Yr, "./gauge/GaugeSeries", "./gauge/GaugeView"], function (t) {
+        t("./gauge/GaugeSeries"), t("./gauge/GaugeView")
+    }), e("echarts/chart/sankey", [Yr, "../echarts", "./sankey/SankeySeries", "./sankey/SankeyView", "./sankey/sankeyLayout", "./sankey/sankeyVisual"], function (t) {
+        var e = t("../echarts");
+        t("./sankey/SankeySeries"), t("./sankey/SankeyView"), e.registerLayout(t("./sankey/sankeyLayout")), e.registerVisual(t("./sankey/sankeyVisual"))
+    }), e("echarts/component/grid", [Yr, "../util/graphic", Xr, "../echarts", "../coord/cartesian/Grid", "./axis"], function (t) {
+        var e = t("../util/graphic"), i = t(Xr), n = t("../echarts");
+        t("../coord/cartesian/Grid"), t("./axis"), n[Pn]({
+            type: "grid", render: function (t) {
+                this.group[An](), t.get("show") && this.group.add(new e.Rect({
+                    shape: t[gr][Sn](),
+                    style: i[tr]({fill: t.get(Sr)}, t[Mn]()),
+                    silent: !0,
+                    z2: -1
+                }))
+            }
+        }), n.registerPreprocessor(function (t) {
+            t.xAxis && t.yAxis && !t.grid && (t.grid = {})
+        })
+    }), e("echarts/chart/effectScatter", [Yr, Xr, "../echarts", "./effectScatter/EffectScatterSeries", "./effectScatter/EffectScatterView", "../visual/symbol", "../layout/points"], function (t) {
+        var e = t(Xr), i = t("../echarts");
+        t("./effectScatter/EffectScatterSeries"), t("./effectScatter/EffectScatterView"), i.registerVisual(e.curry(t("../visual/symbol"), "effectScatter", jr, null)), i.registerLayout(e.curry(t("../layout/points"), "effectScatter"))
+    }), e("echarts/component/geo", [Yr, "../coord/geo/GeoModel", "../coord/geo/geoCreator", "./geo/GeoView", "../action/geoRoam", "../echarts", Xr], function (t) {
+        function e(t, e) {
+            e[hr] = "updateView", i[Vn](e, function (e, i) {
+                var r = {};
+                return i[wr]({mainType: "geo", query: e}, function (i) {
+                    i[t](e.name);
+                    var a = i[gr];
+                    n.each(a.regions, function (t) {
+                        r[t.name] = i.isSelected(t.name) || !1
+                    })
+                }), {selected: r, name: e.name}
+            })
+        }
+
+        t("../coord/geo/GeoModel"), t("../coord/geo/geoCreator"), t("./geo/GeoView"), t("../action/geoRoam");
+        var i = t("../echarts"), n = t(Xr);
+        e("toggleSelected", {type: "geoToggleSelect", event: "geoselectchanged"}), e("select", {
+            type: "geoSelect",
+            event: "geoselected"
+        }), e("unSelect", {type: "geoUnSelect", event: "geounselected"})
+    }), e("echarts/component/polar", [Yr, "../coord/polar/polarCreator", "./angleAxis", "./radiusAxis", "../echarts"], function (t) {
+        t("../coord/polar/polarCreator"), t("./angleAxis"), t("./radiusAxis"), t("../echarts")[Pn]({type: "polar"})
+    }), e("echarts/component/singleAxis", [Yr, "../coord/single/singleCreator", "./axis/SingleAxisView", "../coord/single/AxisModel", "../echarts"], function (t) {
+        t("../coord/single/singleCreator"), t("./axis/SingleAxisView"), t("../coord/single/AxisModel");
+        var e = t("../echarts");
+        e[Pn]({type: "single"})
+    }), e("echarts/component/tooltip", [Yr, "./tooltip/TooltipModel", "./tooltip/TooltipView", "../echarts"], function (t) {
+        t("./tooltip/TooltipModel"), t("./tooltip/TooltipView"), t("../echarts")[Vn]({
+            type: "showTip",
+            event: "showTip",
+            update: "tooltip:manuallyShowTip"
+        }, function () {
+        }), t("../echarts")[Vn]({type: "hideTip", event: "hideTip", update: "tooltip:manuallyHideTip"}, function () {
+        })
+    }), e("echarts/component/title", [Yr, "../echarts", "../util/graphic", "../util/layout"], function (t) {
+        var e = t("../echarts"), i = t("../util/graphic"), n = t("../util/layout");
+        e[Dn]({
+            type: "title",
+            layoutMode: {type: "box", ignoreSize: !0},
+            defaultOption: {
+                zlevel: 0,
+                z: 6,
+                show: !0,
+                text: "",
+                target: "blank",
+                subtext: "",
+                subtarget: "blank",
+                left: 0,
+                top: 0,
+                backgroundColor: "rgba(0,0,0,0)",
+                borderColor: "#ccc",
+                borderWidth: 0,
+                padding: 5,
+                itemGap: 10,
+                textStyle: {fontSize: 18, fontWeight: "bolder", color: "#333"},
+                subtextStyle: {color: "#aaa"}
+            }
+        }), e[Pn]({
+            type: "title", render: function (t, e, r) {
+                if (this.group[An](), t.get("show")) {
+                    var a = this.group, o = t[Lr](bn), s = t[Lr]("subtextStyle"), l = t.get(wn), u = t.get("textBaseline"), c = new i.Text({
+                        style: {
+                            text: t.get("text"),
+                            textFont: o[_n](),
+                            fill: o[xn]()
+                        }, z2: 10
+                    }), h = c[yn](), d = t.get("subtext"), f = new i.Text({
+                        style: {
+                            text: d,
+                            textFont: s[_n](),
+                            fill: s[xn](),
+                            y: h[Or] + t.get("itemGap"),
+                            textBaseline: "top"
+                        }, z2: 10
+                    }), p = t.get("link"), v = t.get("sublink");
+                    c[Dr] = !p, f[Dr] = !v, p && c.on("click", function () {
+                        window.open(p, "_" + t.get(Wn))
+                    }), v && f.on("click", function () {
+                        window.open(v, "_" + t.get("subtarget"))
+                    }), a.add(c), d && a.add(f);
+                    var g = a[yn](), m = t[mn]();
+                    m.width = g.width, m[Or] = g[Or];
+                    var y = n[gn](m, {width: r[Cr](), height: r[Tr]()}, t.get(vn));
+                    l || (l = t.get("left") || t.get("right"), l === pn && (l = fn), "right" === l ? y.x += y.width : l === fn && (y.x += y.width / 2)), u || (u = t.get("top") || t.get(xr), u === fn && (u = pn), u === xr ? y.y += y[Or] : u === pn && (y.y += y[Or] / 2), u = u || "top"), a.attr(dn, [y.x, y.y]);
+                    var x = {textAlign: l, textVerticalAlign: u};
+                    c[Bn](x), f[Bn](x), g = a[yn]();
+                    var _ = y[hn], w = t[Mn](["color", cn]);
+                    w.fill = t.get(Sr);
+                    var b = new i.Rect({
+                        shape: {
+                            x: g.x - _[3],
+                            y: g.y - _[0],
+                            width: g.width + _[1] + _[3],
+                            height: g[Or] + _[0] + _[2]
+                        }, style: w, silent: !0
+                    });
+                    i.subPixelOptimizeRect(b), a.add(b)
+                }
+            }
+        })
+    }), e("echarts/component/markPoint", [Yr, "./marker/MarkPointModel", "./marker/MarkPointView", "../echarts"], function (t) {
+        t("./marker/MarkPointModel"), t("./marker/MarkPointView"), t("../echarts").registerPreprocessor(function (t) {
+            t.markPoint = t.markPoint || {}
+        })
+    }), e("echarts/component/legend", [Yr, "./legend/LegendModel", "./legend/legendAction", "./legend/LegendView", "../echarts", "./legend/legendFilter"], function (t) {
+        t("./legend/LegendModel"), t("./legend/legendAction"), t("./legend/LegendView");
+        var e = t("../echarts");
+        e.registerProcessor(t("./legend/legendFilter"))
+    }), e("echarts/component/markLine", [Yr, "./marker/MarkLineModel", "./marker/MarkLineView", "../echarts"], function (t) {
+        t("./marker/MarkLineModel"), t("./marker/MarkLineView"), t("../echarts").registerPreprocessor(function (t) {
+            t.markLine = t.markLine || {}
+        })
+    }), e("echarts/component/markArea", [Yr, "./marker/MarkAreaModel", "./marker/MarkAreaView", "../echarts"], function (t) {
+        t("./marker/MarkAreaModel"), t("./marker/MarkAreaView"), t("../echarts").registerPreprocessor(function (t) {
+            t.markArea = t.markArea || {}
+        })
+    }), e("echarts/component/dataZoom", [Yr, "./dataZoom/typeDefaulter", "./dataZoom/DataZoomModel", "./dataZoom/DataZoomView", "./dataZoom/SliderZoomModel", "./dataZoom/SliderZoomView", "./dataZoom/InsideZoomModel", "./dataZoom/InsideZoomView", "./dataZoom/dataZoomProcessor", "./dataZoom/dataZoomAction"], function (t) {
+        t("./dataZoom/typeDefaulter"), t("./dataZoom/DataZoomModel"), t("./dataZoom/DataZoomView"), t("./dataZoom/SliderZoomModel"), t("./dataZoom/SliderZoomView"), t("./dataZoom/InsideZoomModel"), t("./dataZoom/InsideZoomView"), t("./dataZoom/dataZoomProcessor"), t("./dataZoom/dataZoomAction")
+    }), e("echarts/component/timeline", [Yr, "../echarts", "./timeline/preprocessor", "./timeline/typeDefaulter", "./timeline/timelineAction", "./timeline/SliderTimelineModel", "./timeline/SliderTimelineView"], function (t) {
+        var e = t("../echarts");
+        e.registerPreprocessor(t("./timeline/preprocessor")), t("./timeline/typeDefaulter"), t("./timeline/timelineAction"), t("./timeline/SliderTimelineModel"), t("./timeline/SliderTimelineView")
+    }), e("echarts/component/brush", [Yr, "../echarts", "./brush/preprocessor", "./brush/visualEncoding", "./brush/BrushModel", "./brush/BrushView", "./brush/brushAction", "./toolbox/feature/Brush"], function (t) {
+        t("../echarts").registerPreprocessor(t("./brush/preprocessor")), t("./brush/visualEncoding"), t("./brush/BrushModel"), t("./brush/BrushView"), t("./brush/brushAction"), t("./toolbox/feature/Brush")
+    }), e("echarts/component/toolbox", [Yr, "./toolbox/ToolboxModel", "./toolbox/ToolboxView", "./toolbox/feature/SaveAsImage", "./toolbox/feature/MagicType", "./toolbox/feature/DataView", "./toolbox/feature/DataZoom", "./toolbox/feature/Restore"], function (t) {
+        t("./toolbox/ToolboxModel"), t("./toolbox/ToolboxView"), t("./toolbox/feature/SaveAsImage"), t("./toolbox/feature/MagicType"), t("./toolbox/feature/DataView"), t("./toolbox/feature/DataZoom"), t("./toolbox/feature/Restore")
+    }), e("echarts/component/visualMap", [Yr, "./visualMapContinuous", "./visualMapPiecewise"], function (t) {
+        t("./visualMapContinuous"), t("./visualMapPiecewise")
+    }), e("echarts/component/graphic", [Yr, "../echarts", Xr, "../util/model", "../util/graphic", "../util/layout"], function (t) {
+        function e(t, e, i, n) {
+            var r = i.type, a = l[r.charAt(0).toUpperCase() + r.slice(1)], o = new a(i);
+            e.add(o), n[t] = o, o.__ecGraphicId = t
+        }
+
+        function i(t, e) {
+            var n = t && t[an];
+            n && ("group" === t.type && t[Gn](function (t) {
+                i(t, e)
+            }), delete e[t.__ecGraphicId], n[nr](t))
+        }
+
+        function n(t) {
+            return t = o[ir]({}, t), o.each(["id", "parentId", "$action", "hv", "bounding"][rn](u.LOCATION_PARAMS), function (e) {
+                delete t[e]
+            }), t
+        }
+
+        function r(t, e) {
+            var i;
+            return o.each(e, function (e) {
+                null != t[e] && "auto" !== t[e] && (i = !0)
+            }), i
+        }
+
+        var a = t("../echarts"), o = t(Xr), s = t("../util/model"), l = t("../util/graphic"), u = t("../util/layout");
+        a.registerPreprocessor(function (t) {
+            var e = t && t.graphic;
+            o[Rn](e) ? t.graphic = e[0] && e[0].elements ? [t.graphic[0]] : [{elements: e}] : e && !e.elements && (t.graphic = [{elements: [e]}])
+        });
+        var c = a[Dn]({
+            type: "graphic",
+            defaultOption: {elements: [], parentId: null},
+            _elOptionsToUpdate: null,
+            mergeOption: function () {
+                var t = this[un].elements;
+                this[un].elements = null, c[ln](this, sn, arguments), this[un].elements = t
+            },
+            optionUpdated: function (t, e) {
+                var i = this[un], n = (e ? i : t).elements, a = i.elements = e ? [] : i.elements, l = [];
+                this._flatten(n, l);
+                var c = s.mappingToExists(a, l);
+                s.makeIdAndName(c);
+                var h = this._elOptionsToUpdate = [];
+                o.each(c, function (t, e) {
+                    var i = t.exist, n = t[un];
+                    if (n) {
+                        n.id = t.keyInfo.id;
+                        var s = n.parentId, l = n.parentOption, c = i && i.parentId;
+                        !n.type && i && (n.type = i.type), n.parentId = s ? s : l ? l.id : c ? c : null, n.parentOption = null, h.push(n);
+                        var d = o[ir]({}, n), f = n.$action;
+                        if (f && "merge" !== f)f === En ? a[e] = d : f === nr && i && (a[e] = null); else if (i) {
+                            o.merge(i, d, !0), u.mergeLayoutParam(i, d, {ignoreSize: !0}), u.copyLayoutParams(n, i)
+                        } else a[e] = d;
+                        a[e] && (a[e].hv = n.hv = [r(n, ["left", "right"]), r(n, ["top", xr])], "group" === a[e].type && (null == a[e].width && (a[e].width = n.width = 0), null == a[e][Or] && (a[e][Or] = n[Or] = 0)))
+                    }
+                }, this);
+                for (var d = a[yr] - 1; d >= 0; d--)null == a[d] ? a[Yn](d, 1) : delete a[d].$action
+            },
+            _flatten: function (t, e, i) {
+                o.each(t, function (t) {
+                    if (t) {
+                        i && (t.parentOption = i), e.push(t);
+                        var n = t.children;
+                        "group" === t.type && n && this._flatten(n, e, t), delete t.children
+                    }
+                }, this)
+            },
+            useElOptionsToUpdate: function () {
+                var t = this._elOptionsToUpdate;
+                return this._elOptionsToUpdate = null, t
+            }
+        });
+        a[Pn]({
+            type: "graphic", init: function () {
+                this._elMap = {}, this._lastGraphicModel
+            }, render: function (t, e, i) {
+                t !== this._lastGraphicModel && this._clear(), this._lastGraphicModel = t, this._updateElements(t, i), this._relocate(t, i)
+            }, _updateElements: function (t) {
+                var r = t.useElOptionsToUpdate();
+                if (r) {
+                    var a = this._elMap, s = this.group;
+                    o.each(r, function (t) {
+                        var r = t.$action, l = t.id, u = a[l], c = t.parentId, h = null != c ? a[c] : s;
+                        t.hv && t.hv[1] && "text" === t.type && (t.style = o[tr]({textBaseline: "middle"}, t.style), t.style[on] = null);
+                        var d = n(t);
+                        r && "merge" !== r ? r === En ? (i(u, a), e(l, h, d, a)) : r === nr && i(u, a) : u ? u.attr(d) : e(l, h, d, a), a[l] && (a[l].__ecGraphicWidth = t.width, a[l].__ecGraphicHeight = t[Or])
+                    })
+                }
+            }, _relocate: function (t, e) {
+                for (var i = t[un].elements, n = this.group, r = this._elMap, a = i[yr] - 1; a >= 0; a--) {
+                    var o = i[a], s = r[o.id];
+                    if (s) {
+                        var l = s[an], c = l === n ? {width: e[Cr](), height: e[Tr]()} : {
+                            width: l.__ecGraphicWidth || 0,
+                            height: l.__ecGraphicHeight || 0
+                        };
+                        u.positionElement(s, o, c, null, {hv: o.hv, boundingMode: o.bounding})
+                    }
+                }
+            }, _clear: function () {
+                var t = this._elMap;
+                o.each(t, function (e) {
+                    i(e, t)
+                }), this._elMap = {}
+            }, dispose: function () {
+                this._clear()
+            }
+        })
+    }), e("echarts/scale/Time", [Yr, Xr, nn, "../util/format", "./Interval"], function (t) {
+        var e = t(Xr), i = t(nn), n = t("../util/format"), r = t("./Interval"), a = r[Nr], o = Math.ceil, s = Math.floor, l = 1e3, u = 60 * l, c = 60 * u, h = 24 * c, d = function (t, e, i, n) {
+            for (; n > i;) {
+                var r = i + n >>> 1;
+                t[r][2] < e ? i = r + 1 : n = r
+            }
+            return i
+        }, f = r[ir]({
+            type: "time", getLabel: function (t) {
+                var e = this._stepLvl, i = new Date(t);
+                return n.formatTime(e[0], i)
+            }, niceExtent: function (t, e, n) {
+                var r = this[en];
+                if (r[0] === r[1] && (r[0] -= h, r[1] += h), r[1] === -1 / 0 && 1 / 0 === r[0]) {
+                    var a = new Date;
+                    r[1] = new Date(a.getFullYear(), a.getMonth(), a.getDate()), r[0] = r[1] - h
+                }
+                this.niceTicks(t);
+                var l = this._interval;
+                e || (r[0] = i.round(s(r[0] / l) * l)), n || (r[1] = i.round(o(r[1] / l) * l))
+            }, niceTicks: function (t) {
+                t = t || 10;
+                var e = this[en], n = e[1] - e[0], r = n / t, a = p[yr], l = d(p, r, 0, a), u = p[Math.min(l, a - 1)], c = u[2];
+                if ("year" === u[0]) {
+                    var h = n / c, f = i.nice(h / t, !0);
+                    c *= f
+                }
+                var v = [o(e[0] / c) * c, s(e[1] / c) * c];
+                this._stepLvl = u, this._interval = c, this._niceExtent = v
+            }, parse: function (t) {
+                return +i.parseDate(t)
+            }
+        });
+        e.each([tn, Ki], function (t) {
+            f[Nr][t] = function (e) {
+                return a[t].call(this, this.parse(e))
+            }
+        });
+        var p = [["hh:mm:ss", 1, l], ["hh:mm:ss", 5, 5 * l], ["hh:mm:ss", 10, 10 * l], ["hh:mm:ss", 15, 15 * l], ["hh:mm:ss", 30, 30 * l], ["hh:mm\nMM-dd", 1, u], ["hh:mm\nMM-dd", 5, 5 * u], ["hh:mm\nMM-dd", 10, 10 * u], ["hh:mm\nMM-dd", 15, 15 * u], ["hh:mm\nMM-dd", 30, 30 * u], ["hh:mm\nMM-dd", 1, c], ["hh:mm\nMM-dd", 2, 2 * c], ["hh:mm\nMM-dd", 6, 6 * c], ["hh:mm\nMM-dd", 12, 12 * c], ["MM-dd\nyyyy", 1, h], ["week", 7, 7 * h], ["month", 1, 31 * h], ["quarter", 3, 380 * h / 4], ["half-year", 6, 380 * h / 2], ["year", 1, 380 * h]];
+        return f[dr] = function () {
+            return new f
+        }, f
+    }), e("zrender/vml/vml", [Yr, "./graphic", "../zrender", "./Painter"], function (t) {
+        t("./graphic"), t("../zrender").registerPainter("vml", t("./Painter"))
+    }), e("echarts/scale/Log", [Yr, Xr, "./Scale", nn, "./Interval"], function (t) {
+        function e(t, e) {
+            return u(t, l(e))
+        }
+
+        var i = t(Xr), n = t("./Scale"), r = t(nn), a = t("./Interval"), o = n[Nr], s = a[Nr], l = r.getPrecisionSafe, u = r.round, c = Math.floor, h = Math.ceil, d = Math.pow, f = Math.log, p = n[ir]({
+            type: "log",
+            base: 10,
+            $constructor: function () {
+                n.apply(this, arguments), this._originalScale = new a
+            },
+            getTicks: function () {
+                var t = this._originalScale, n = this[en], a = t[Qi]();
+                return i.map(s[Ji].call(this), function (i) {
+                    var o = r.round(d(this.base, i));
+                    return o = i === n[0] && t.__fixMin ? e(o, a[0]) : o, o = i === n[1] && t.__fixMax ? e(o, a[1]) : o
+                }, this)
+            },
+            getLabel: s[$i],
+            scale: function (t) {
+                return t = o.scale.call(this, t), d(this.base, t)
+            },
+            setExtent: function (t, e) {
+                var i = this.base;
+                t = f(t) / f(i), e = f(e) / f(i), s[Yi].call(this, t, e)
+            },
+            getExtent: function () {
+                var t = this.base, i = o[Qi].call(this);
+                i[0] = d(t, i[0]), i[1] = d(t, i[1]);
+                var n = this._originalScale, r = n[Qi]();
+                return n.__fixMin && (i[0] = e(i[0], r[0])), n.__fixMax && (i[1] = e(i[1], r[1])), i
+            },
+            unionExtent: function (t) {
+                this._originalScale.unionExtent(t);
+                var e = this.base;
+                t[0] = f(t[0]) / f(e), t[1] = f(t[1]) / f(e), o.unionExtent.call(this, t)
+            },
+            unionExtentFromData: function (t, e) {
+                this.unionExtent(t[Xi](e, !0, function (t) {
+                    return t > 0
+                }))
+            },
+            niceTicks: function (t) {
+                t = t || 10;
+                var e = this[en], i = e[1] - e[0];
+                if (!(1 / 0 === i || 0 >= i)) {
+                    var n = r.quantity(i), a = t / i * n;
+                    for (.5 >= a && (n *= 10); !isNaN(n) && Math.abs(n) < 1 && Math.abs(n) > 0;)n *= 10;
+                    var o = [r.round(h(e[0] / n) * n), r.round(c(e[1] / n) * n)];
+                    this._interval = n, this._niceExtent = o
+                }
+            },
+            niceExtent: function (t, e, i) {
+                s.niceExtent.call(this, t, e, i);
+                var n = this._originalScale;
+                n.__fixMin = e, n.__fixMax = i
+            }
+        });
+        return i.each([tn, Ki], function (t) {
+            p[Nr][t] = function (e) {
+                return e = f(e) / f(this.base), o[t].call(this, e)
+            }
+        }), p[dr] = function () {
+            return new p
+        }, p
+    }), e("echarts/chart/candlestick/CandlestickView", [Yr, Xr, "../../view/Chart", ji, "../helper/whiskerBoxCommon"], function (t) {
+        function e(t, e, i) {
+            var n = e[Zi](i), a = n[Lr](s), o = e[fr](i, "color"), u = e[fr](i, Hi) || o, c = a[Mn](["color", "color0", Hi, "borderColor0"]), h = t[Fi](t.whiskerIndex);
+            h[Gi](c), h.style[Bi] = u;
+            var d = t[Fi](t.bodyIndex);
+            d[Gi](c), d.style.fill = o, d.style[Bi] = u;
+            var f = n[Lr](l)[Mn]();
+            r[Ni](t, f)
+        }
+
+        var i = t(Xr), n = t("../../view/Chart"), r = t(ji), a = t("../helper/whiskerBoxCommon"), o = n[ir]({
+            type: "candlestick",
+            getStyleUpdater: function () {
+                return e
+            },
+            dispose: i.noop
+        });
+        i.mixin(o, a.viewMixin, !0);
+        var s = [Ui, qi], l = [Ui, Wi];
+        return o
+    }), e("echarts/chart/candlestick/CandlestickSeries", [Yr, Xr, Ei, "../helper/whiskerBoxCommon", Ri], function (t) {
+        var e = t(Xr), i = t(Ei), n = t("../helper/whiskerBoxCommon"), r = t(Ri), a = r[Oi], o = r[Vi], s = i[ir]({
+            type: "series.candlestick",
+            dependencies: ["xAxis", "yAxis", "grid"],
+            valueDimensions: ["open", "close", "lowest", "highest"],
+            dimensions: null,
+            defaultOption: {
+                zlevel: 0,
+                z: 2,
+                coordinateSystem: "cartesian2d",
+                legendHoverLink: !0,
+                hoverAnimation: !0,
+                layout: null,
+                itemStyle: {
+                    normal: {
+                        color: "#c23531",
+                        color0: "#314656",
+                        borderWidth: 1,
+                        borderColor: "#c23531",
+                        borderColor0: "#314656"
+                    }, emphasis: {borderWidth: 2}
+                },
+                barMaxWidth: null,
+                barMinWidth: null,
+                barWidth: null,
+                animationUpdate: !1,
+                animationEasing: "linear",
+                animationDuration: 300
+            },
+            getShadowDim: function () {
+                return "open"
+            },
+            formatTooltip: function (t) {
+                var i = e.map(this.valueDimensions, function (e) {
+                    return a(e + ": " + o(this[qr]().get(e, t)))
+                }, this).join(zi), n = [];
+                return null != this.name && n.push(a(this.name)), null != i && n.push(i), n.join(zi)
+            },
+            brushSelector: function (t, e) {
+                return e.rect(t.brushRect)
+            }
+        });
+        return e.mixin(s, n.seriesModelMixin, !0), s
+    }), e("echarts/chart/candlestick/candlestickLayout", [Yr, Xr, Di], function (t) {
+        function e(t, e) {
+            var r, a = t[Si](), o = a.type === Mi ? a.getBandWidth() : (r = a[Qi](), Math.abs(r[1] - r[0]) / e.count()), s = n(i(t.get("barMaxWidth"), o), o), l = n(i(t.get("barMinWidth"), 1), o), u = t.get("barWidth");
+            return null != u ? n(u, o) : Math.max(Math.min(o / 2, s), l)
+        }
+
+        var i = t(Xr)[Pi], n = t(Di)[Ii];
+        return function (t) {
+            t[Ur]("candlestick", function (t) {
+                var i = t[gr], n = t[qr](), r = t[ki], a = t.get(Li), o = e(t, n);
+                n.each(r, function () {
+                    function t(t) {
+                        var e = [];
+                        return e[d] = c, e[f] = t, isNaN(c) || isNaN(t) ? [0 / 0, 0 / 0] : i[Ai](e)
+                    }
+
+                    function e(t, e) {
+                        var i = t.slice(), n = t.slice();
+                        i[d] += o / 2, n[d] -= o / 2, e ? A.push(i, n) : A.push(n, i)
+                    }
+
+                    function s() {
+                        var e = t(Math.min(p, v, g, m)), i = t(Math.max(p, v, g, m));
+                        return e[d] -= o / 2, i[d] -= o / 2, {
+                            x: e[0],
+                            y: e[1],
+                            width: f ? o : i[0] - e[0],
+                            height: f ? i[1] - e[1] : o
+                        }
+                    }
+
+                    var l = arguments, u = r[yr], c = l[0], h = l[u], d = a === Ci ? 0 : 1, f = 1 - d, p = l[1], v = l[2], g = l[3], m = l[4], y = Math.min(p, v), x = Math.max(p, v), _ = t(y), w = t(x), b = t(g), M = t(m), S = [[M, w], [b, _]], A = [];
+                    e(w, 0), e(_, 1), n[Ti](h, {
+                        chartLayout: a,
+                        sign: p > v ? -1 : v > p ? 1 : 0,
+                        initBaseline: p > v ? w[f] : _[f],
+                        bodyEnds: A,
+                        whiskerEnds: S,
+                        brushRect: s()
+                    })
+                }, !0)
+            })
+        }
+    }), e("echarts/chart/candlestick/preprocessor", [Yr, Xr], function (t) {
+        var e = t(Xr);
+        return function (t) {
+            t && e[Rn](t[rr]) && e.each(t[rr], function (t) {
+                e[Ir](t) && "k" === t.type && (t.type = "candlestick")
+            })
+        }
+    }), e("echarts/chart/candlestick/candlestickVisual", [Yr], function () {
+        var t = [Ui, qi, Hi], e = [Ui, qi, "borderColor0"], i = [Ui, qi, "color"], n = [Ui, qi, "color0"];
+        return function (r) {
+            r.eachRawSeriesByType("candlestick", function (a) {
+                var o = a[qr]();
+                o[Wr]({legendSymbol: "roundRect"}), r.isSeriesFiltered(a) || o.each(function (r) {
+                    var a = o[Zi](r), s = o[bi](r).sign;
+                    o[wi](r, {color: a.get(s > 0 ? i : n), borderColor: a.get(s > 0 ? t : e)})
+                })
+            })
+        }
+    }), e(Xr, [Yr], function () {
+        function t(e) {
+            if (null == e || "object" != typeof e)return e;
+            var i = e, n = P.call(e);
+            if ("[object Array]" === n) {
+                i = [];
+                for (var r = 0, a = e[yr]; a > r; r++)i[r] = t(e[r])
+            } else if (I[n])i = e.constructor.from(e); else if (!k[n] && !M(e)) {
+                i = {};
+                for (var o in e)e.hasOwnProperty(o) && (i[o] = t(e[o]))
+            }
+            return i
+        }
+
+        function e(i, n, r) {
+            if (!w(n) || !w(i))return r ? t(n) : i;
+            for (var a in n)if (n.hasOwnProperty(a)) {
+                var o = i[a], s = n[a];
+                !w(s) || !w(o) || y(s) || y(o) || M(s) || M(o) || b(s) || b(o) ? !r && a in i || (i[a] = t(n[a], !0)) : e(o, s, r)
+            }
+            return i
+        }
+
+        function i(t, i) {
+            for (var n = t[0], r = 1, a = t[yr]; a > r; r++)n = e(n, t[r], i);
+            return n
+        }
+
+        function n(t, e) {
+            for (var i in e)e.hasOwnProperty(i) && (t[i] = e[i]);
+            return t
+        }
+
+        function r(t, e, i) {
+            for (var n in e)e.hasOwnProperty(n) && (i ? null != e[n] : null == t[n]) && (t[n] = e[n]);
+            return t
+        }
+
+        function a() {
+            return document[_i](Rr)
+        }
+
+        function o() {
+            return L || (L = N.createCanvas()[xi]("2d")), L
+        }
+
+        function s(t, e) {
+            if (t) {
+                if (t[mr])return t[mr](e);
+                for (var i = 0, n = t[yr]; n > i; i++)if (t[i] === e)return i
+            }
+            return -1
+        }
+
+        function l(t, e) {
+            function i() {
+            }
+
+            var n = t[Nr];
+            i[Nr] = e[Nr], t[Nr] = new i;
+            for (var r in n)t[Nr][r] = n[r];
+            t[Nr].constructor = t, t.superClass = e
+        }
+
+        function u(t, e, i) {
+            t = Nr in t ? t[Nr] : t, e = Nr in e ? e[Nr] : e, r(t, e, i)
+        }
+
+        function c(t) {
+            return t ? typeof t == Er ? !1 : typeof t[yr] == kn : void 0
+        }
+
+        function h(t, e, i) {
+            if (t && e)if (t.forEach && t.forEach === z)t.forEach(e, i); else if (t[yr] === +t[yr])for (var n = 0, r = t[yr]; r > n; n++)e.call(i, t[n], n, t); else for (var a in t)t.hasOwnProperty(a) && e.call(i, t[a], a, t)
+        }
+
+        function d(t, e, i) {
+            if (t && e) {
+                if (t.map && t.map === R)return t.map(e, i);
+                for (var n = [], r = 0, a = t[yr]; a > r; r++)n.push(e.call(i, t[r], r, t));
+                return n
+            }
+        }
+
+        function f(t, e, i, n) {
+            if (t && e) {
+                if (t.reduce && t.reduce === E)return t.reduce(e, i, n);
+                for (var r = 0, a = t[yr]; a > r; r++)i = e.call(n, i, t[r], r, t);
+                return i
+            }
+        }
+
+        function p(t, e, i) {
+            if (t && e) {
+                if (t[Ln] && t[Ln] === V)return t[Ln](e, i);
+                for (var n = [], r = 0, a = t[yr]; a > r; r++)e.call(i, t[r], r, t) && n.push(t[r]);
+                return n
+            }
+        }
+
+        function v(t, e, i) {
+            if (t && e)for (var n = 0, r = t[yr]; r > n; n++)if (e.call(i, t[n], n, t))return t[n]
+        }
+
+        function g(t, e) {
+            var i = O.call(arguments, 2);
+            return function () {
+                return t.apply(e, i[rn](O.call(arguments)))
+            }
+        }
+
+        function m(t) {
+            var e = O.call(arguments, 1);
+            return function () {
+                return t.apply(this, e[rn](O.call(arguments)))
+            }
+        }
+
+        function y(t) {
+            return "[object Array]" === P.call(t)
+        }
+
+        function x(t) {
+            return typeof t === On
+        }
+
+        function _(t) {
+            return "[object String]" === P.call(t)
+        }
+
+        function w(t) {
+            var e = typeof t;
+            return e === On || !!t && "object" == e
+        }
+
+        function b(t) {
+            return !!k[P.call(t)]
+        }
+
+        function M(t) {
+            return "object" == typeof t && typeof t.nodeType === kn && "object" == typeof t.ownerDocument
+        }
+
+        function S(t) {
+            return t !== t
+        }
+
+        function A() {
+            for (var t = 0, e = arguments[yr]; e > t; t++)if (null != arguments[t])return arguments[t]
+        }
+
+        function T() {
+            return Function.call.apply(O, arguments)
+        }
+
+        function C(t, e) {
+            if (!t)throw new Error(e)
+        }
+
+        var L, k = {
+            "[object Function]": 1,
+            "[object RegExp]": 1,
+            "[object Date]": 1,
+            "[object Error]": 1,
+            "[object CanvasGradient]": 1,
+            "[object CanvasPattern]": 1,
+            "[object Image]": 1,
+            "[object Canvas]": 1
+        }, I = {
+            "[object Int8Array]": 1,
+            "[object Uint8Array]": 1,
+            "[object Uint8ClampedArray]": 1,
+            "[object Int16Array]": 1,
+            "[object Uint16Array]": 1,
+            "[object Int32Array]": 1,
+            "[object Uint32Array]": 1,
+            "[object Float32Array]": 1,
+            "[object Float64Array]": 1
+        }, P = Object[Nr].toString, D = Array[Nr], z = D.forEach, V = D[Ln], O = D.slice, R = D.map, E = D.reduce, N = {
+            inherits: l,
+            mixin: u,
+            clone: t,
+            merge: e,
+            mergeAll: i,
+            extend: n,
+            defaults: r,
+            getContext: o,
+            createCanvas: a,
+            indexOf: s,
+            slice: T,
+            find: v,
+            isArrayLike: c,
+            each: h,
+            map: d,
+            reduce: f,
+            filter: p,
+            bind: g,
+            curry: m,
+            isArray: y,
+            isString: _,
+            isObject: w,
+            isFunction: x,
+            isBuildInObject: b,
+            isDom: M,
+            eqNaN: S,
+            retrieve: A,
+            assert: C,
+            noop: function () {
+            }
+        };
+        return N
+    }), e("echarts/chart/line/LineSeries", [Yr, "../helper/createListFromArray", Ei], function (t) {
+        var e = t("../helper/createListFromArray"), i = t(Ei);
+        return i[ir]({
+            type: "series.line",
+            dependencies: ["grid", "polar"],
+            getInitialData: function (t, i) {
+                return e(t.data, this, i)
+            },
+            defaultOption: {
+                zlevel: 0,
+                z: 2,
+                coordinateSystem: "cartesian2d",
+                legendHoverLink: !0,
+                hoverAnimation: !0,
+                clipOverflow: !0,
+                label: {normal: {position: "top"}},
+                lineStyle: {normal: {width: 2, type: "solid"}},
+                step: !1,
+                smooth: !1,
+                smoothMonotone: null,
+                symbol: "emptyCircle",
+                symbolSize: 4,
+                symbolRotate: null,
+                showSymbol: !0,
+                showAllSymbol: !1,
+                connectNulls: !1,
+                sampling: "none",
+                animationEasing: "linear",
+                progressive: 0,
+                hoverLayerThreshold: 1 / 0
+            }
+        })
+    }), e("echarts/chart/line/LineView", [Yr, Xr, "../helper/SymbolDraw", "../helper/Symbol", "./lineAnimationDiff", ji, mi, "./poly", "../../view/Chart"], function (t) {
+        function e(t, e) {
+            if (t[yr] === e[yr]) {
+                for (var i = 0; i < t[yr]; i++) {
+                    var n = t[i], r = e[i];
+                    if (n[0] !== r[0] || n[1] !== r[1])return
+                }
+                return !0
+            }
+        }
+
+        function i(t) {
+            return typeof t === kn ? t : t ? .3 : 0
+        }
+
+        function n(t) {
+            var e = t.getGlobalExtent();
+            if (t[gi]) {
+                var i = t.getBandWidth() / 2 - 1, n = e[1] > e[0] ? 1 : -1;
+                e[0] += n * i, e[1] -= n * i
+            }
+            return e
+        }
+
+        function r(t) {
+            return t >= 0 ? 1 : -1
+        }
+
+        function a(t, e) {
+            var i = t[Si](), n = t[vi](i), a = i.onZero ? 0 : n.scale[Qi]()[0], o = n.dim, s = "x" === o || o === pi ? 1 : 0;
+            return e[fi]([o], function (n, l) {
+                for (var u, c = e.stackedOn; c && r(c.get(o, l)) === r(n);) {
+                    u = c;
+                    break
+                }
+                var h = [];
+                return h[s] = e.get(i.dim, l), h[1 - s] = u ? u.get(o, l, !0) : a, t[Ai](h)
+            }, !0)
+        }
+
+        function o(t, e, i) {
+            var r = n(t[di]("x")), a = n(t[di]("y")), o = t[Si]()[hi](), s = Math.min(r[0], r[1]), l = Math.min(a[0], a[1]), u = Math.max(r[0], r[1]) - s, c = Math.max(a[0], a[1]) - l, h = i.get("lineStyle.normal.width") || 2, d = i.get("clipOverflow") ? h / 2 : Math.max(u, c);
+            o ? (l -= d, c += 2 * d) : (s -= d, u += 2 * d);
+            var f = new v.Rect({shape: {x: s, y: l, width: u, height: c}});
+            return e && (f.shape[o ? "width" : Or] = 0, v[ci](f, {shape: {width: u, height: c}}, i)), f
+        }
+
+        function s(t, e, i) {
+            var n = t[ui](), r = t.getRadiusAxis(), a = r[Qi](), o = n[Qi](), s = Math.PI / 180, l = new v[li]({
+                shape: {
+                    cx: t.cx,
+                    cy: t.cy,
+                    r0: a[0],
+                    r: a[1],
+                    startAngle: -o[0] * s,
+                    endAngle: -o[1] * s,
+                    clockwise: n[si]
+                }
+            });
+            return e && (l.shape[oi] = -o[0] * s, v[ci](l, {shape: {endAngle: -o[1] * s}}, i)), l
+        }
+
+        function l(t, e, i) {
+            return "polar" === t.type ? s(t, e, i) : o(t, e, i)
+        }
+
+        function u(t, e, i) {
+            for (var n = e[Si](), r = "x" === n.dim || n.dim === pi ? 0 : 1, a = [], o = 0; o < t[yr] - 1; o++) {
+                var s = t[o + 1], l = t[o];
+                a.push(l);
+                var u = [];
+                switch (i) {
+                    case"end":
+                        u[r] = s[r], u[1 - r] = l[1 - r], a.push(u);
+                        break;
+                    case pn:
+                        var c = (l[r] + s[r]) / 2, h = [];
+                        u[r] = h[r] = c, u[1 - r] = l[1 - r], h[1 - r] = s[1 - r], a.push(u), a.push(h);
+                        break;
+                    default:
+                        u[r] = l[r], u[1 - r] = s[1 - r], a.push(u)
+                }
+            }
+            return t[o] && a.push(t[o]), a
+        }
+
+        function c(t, e) {
+            var i = t[vr]("visualMeta");
+            if (i && i[yr] && t.count()) {
+                for (var n, r = i[yr] - 1; r >= 0; r--)if (i[r].dimension < 2) {
+                    n = i[r];
+                    break
+                }
+                if (n && e.type === yi) {
+                    var a = n.dimension, o = t[ki][a], s = e[di](o), l = h.map(n.stops, function (t) {
+                        return {coord: s[ai](s[ri](t.value)), color: t.color}
+                    }), u = l[yr], c = n.outerColors.slice();
+                    u && l[0].coord > l[u - 1].coord && (l[ni](), c[ni]());
+                    var d = 10, f = l[0].coord - d, p = l[u - 1].coord + d, g = p - f;
+                    if (.001 > g)return cr;
+                    h.each(l, function (t) {
+                        t[ii] = (t.coord - f) / g
+                    }), l.push({
+                        offset: u ? l[u - 1][ii] : .5,
+                        color: c[1] || cr
+                    }), l.unshift({offset: u ? l[0][ii] : .5, color: c[0] || cr});
+                    var m = new v.LinearGradient(0, 0, 0, 0, l, !0);
+                    return m[o] = f, m[o + "2"] = p, m
+                }
+            }
+        }
+
+        var h = t(Xr), d = t("../helper/SymbolDraw"), f = t("../helper/Symbol"), p = t("./lineAnimationDiff"), v = t(ji), g = t(mi), m = t("./poly"), y = t("../../view/Chart");
+        return y[ir]({
+            type: "line", init: function () {
+                var t = new v.Group, e = new d;
+                this.group.add(e.group), this._symbolDraw = e, this._lineGroup = t
+            }, render: function (t, n, r) {
+                var o = t[gr], s = this.group, d = t[qr](), f = t[Lr]("lineStyle.normal"), p = t[Lr]("areaStyle.normal"), v = d[fi](d[bi], !0), g = "polar" === o.type, m = this._coordSys, y = this._symbolDraw, x = this._polyline, _ = this._polygon, w = this._lineGroup, b = t.get(zr), M = !p.isEmpty(), S = a(o, d), A = t.get("showSymbol"), T = A && !g && !t.get("showAllSymbol") && this._getSymbolIgnoreFunc(d, o), C = this._data;
+                C && C[ei](function (t, e) {
+                    t.__temp && (s[nr](t), C[ti](e, null))
+                }), A || y[nr](), s.add(w);
+                var L = !g && t.get("step");
+                x && m.type === o.type && L === this._step ? (M && !_ ? _ = this._newPolygon(v, S, o, b) : _ && !M && (w[nr](_), _ = this._polygon = null), w.setClipPath(l(o, !1, t)), A && y[Ke](d, T), d[ei](function (t) {
+                    t[br](!0)
+                }), e(this._stackedOnPoints, S) && e(this._points, v) || (b ? this._updateAnimation(d, S, o, r, L) : (L && (v = u(v, o, L), S = u(S, o, L)), x[Qe]({points: v}), _ && _[Qe]({
+                    points: v,
+                    stackedOnPoints: S
+                })))) : (A && y[Ke](d, T), L && (v = u(v, o, L), S = u(S, o, L)), x = this._newPolyline(v, o, b), M && (_ = this._newPolygon(v, S, o, b)), w.setClipPath(l(o, !0, t)));
+                var k = c(d, o) || d[vr]("color");
+                x[Gi](h[tr](f[Je](), {fill: "none", stroke: k, lineJoin: "bevel"}));
+                var I = t.get("smooth");
+                if (I = i(t.get("smooth")), x[Qe]({
+                        smooth: I,
+                        smoothMonotone: t.get("smoothMonotone"),
+                        connectNulls: t.get("connectNulls")
+                    }), _) {
+                    var P = d.stackedOn, D = 0;
+                    if (_[Gi](h[tr](p[$e](), {fill: k, opacity: .7, lineJoin: "bevel"})), P) {
+                        var z = P[Ye];
+                        D = i(z.get("smooth"))
+                    }
+                    _[Qe]({
+                        smooth: I,
+                        stackedOnSmooth: D,
+                        smoothMonotone: t.get("smoothMonotone"),
+                        connectNulls: t.get("connectNulls")
+                    })
+                }
+                this._data = d, this._coordSys = o, this._stackedOnPoints = S, this._points = v, this._step = L
+            }, dispose: function () {
+            }, highlight: function (t, e, i, n) {
+                var r = t[qr](), a = g.queryDataIndex(r, n);
+                if (!(a instanceof Array) && null != a && a >= 0) {
+                    var o = r[Xe](a);
+                    if (!o) {
+                        var s = r[bi](a);
+                        if (!s)return;
+                        o = new f(r, a), o[dn] = s, o.setZ(t.get(Nn), t.get("z")), o[_r] = isNaN(s[0]) || isNaN(s[1]), o.__temp = !0, r[ti](a, o), o.stopSymbolAnimation(!0), this.group.add(o)
+                    }
+                    o[Kn]()
+                } else y[Nr][Kn].call(this, t, e, i, n)
+            }, downplay: function (t, e, i, n) {
+                var r = t[qr](), a = g.queryDataIndex(r, n);
+                if (null != a && a >= 0) {
+                    var o = r[Xe](a);
+                    o && (o.__temp ? (r[ti](a, null), this.group[nr](o)) : o[Qn]())
+                } else y[Nr][Qn].call(this, t, e, i, n)
+            }, _newPolyline: function (t) {
+                var e = this._polyline;
+                return e && this._lineGroup[nr](e), e = new m[je]({
+                    shape: {points: t},
+                    silent: !0,
+                    z2: 10
+                }), this._lineGroup.add(e), this._polyline = e, e
+            }, _newPolygon: function (t, e) {
+                var i = this._polygon;
+                return i && this._lineGroup[nr](i), i = new m[Ue]({
+                    shape: {points: t, stackedOnPoints: e},
+                    silent: !0
+                }), this._lineGroup.add(i), this._polygon = i, i
+            }, _getSymbolIgnoreFunc: function (t, e) {
+                var i = e.getAxesByScale(qe)[0];
+                return i && i.isLabelIgnored ? h.bind(i.isLabelIgnored, i) : void 0
+            }, _updateAnimation: function (t, e, i, n, r) {
+                var a = this._polyline, o = this._polygon, s = t[Ye], l = p(this._data, t, this._stackedOnPoints, e, this._coordSys, i), c = l.current, h = l.stackedOnCurrent, d = l.next, f = l.stackedOnNext;
+                r && (c = u(l.current, i, r), h = u(l.stackedOnCurrent, i, r), d = u(l.next, i, r), f = u(l.stackedOnNext, i, r)), a.shape.__points = l.current, a.shape[We] = c, v[Ze](a, {shape: {points: d}}, s), o && (o[Qe]({
+                    points: c,
+                    stackedOnPoints: h
+                }), v[Ze](o, {shape: {points: d, stackedOnPoints: f}}, s));
+                for (var g = [], m = l.status, y = 0; y < m[yr]; y++) {
+                    var x = m[y].cmd;
+                    if ("=" === x) {
+                        var _ = t[Xe](m[y].idx1);
+                        _ && g.push({el: _, ptIdx: y})
+                    }
+                }
+                a.animators && a.animators[yr] && a.animators[0].during(function () {
+                    for (var t = 0; t < g[yr]; t++) {
+                        var e = g[t].el;
+                        e.attr(dn, a.shape.__points[g[t].ptIdx])
+                    }
+                })
+            }, remove: function () {
+                var t = this.group, e = this._data;
+                this._lineGroup[An](), this._symbolDraw[nr](!0), e && e[ei](function (i, n) {
+                    i.__temp && (t[nr](i), e[ti](n, null))
+                }), this._polyline = this._polygon = this._coordSys = this._points = this._stackedOnPoints = this._data = null
+            }
+        })
+    }), e("echarts/layout/points", [Yr], function () {
+        return function (t, e) {
+            e[Ur](t, function (t) {
+                var e = t[qr](), i = t[gr];
+                if (i) {
+                    var n = i[ki];
+                    "singleAxis" === i.type ? e.each(n[0], function (t, n) {
+                        e[Ti](n, isNaN(t) ? [0 / 0, 0 / 0] : i[Ai](t))
+                    }) : e.each(n, function (t, n, r) {
+                        e[Ti](r, isNaN(t) || isNaN(n) ? [0 / 0, 0 / 0] : i[Ai]([t, n]))
+                    }, !0)
+                }
+            })
+        }
+    }), e("echarts/visual/symbol", [Yr], function () {
+        return function (t, e, i, n) {
+            n.eachRawSeriesByType(t, function (t) {
+                var r = t[qr](), a = t.get(He) || e, o = t.get(Fe);
+                r[Wr]({
+                    legendSymbol: i || a,
+                    symbol: a,
+                    symbolSize: o
+                }), n.isSeriesFiltered(t) || (typeof o === On && r.each(function (e) {
+                    var i = t[Ge](e), n = t[Hn](e);
+                    r[wi](e, Fe, o(i, n))
+                }), r.each(function (t) {
+                    var e = r[Zi](t), i = e[Be](He, !0), n = e[Be](Fe, !0);
+                    null != i && r[wi](t, He, i), null != n && r[wi](t, Fe, n)
+                }))
+            })
+        }
+    }), e("echarts/processor/dataSample", [], function () {
+        var t = {
+            average: function (t) {
+                for (var e = 0, i = 0, n = 0; n < t[yr]; n++)isNaN(t[n]) || (e += t[n], i++);
+                return 0 === i ? 0 / 0 : e / i
+            }, sum: function (t) {
+                for (var e = 0, i = 0; i < t[yr]; i++)e += t[i] || 0;
+                return e
+            }, max: function (t) {
+                for (var e = -1 / 0, i = 0; i < t[yr]; i++)t[i] > e && (e = t[i]);
+                return e
+            }, min: function (t) {
+                for (var e = 1 / 0, i = 0; i < t[yr]; i++)t[i] < e && (e = t[i]);
+                return e
+            }, nearest: function (t) {
+                return t[0]
+            }
+        }, e = function (t) {
+            return Math.round(t[yr] / 2)
+        };
+        return function (i, n) {
+            n[Ur](i, function (i) {
+                var n = i[qr](), r = i.get("sampling"), a = i[gr];
+                if (a.type === yi && r) {
+                    var o = a[Si](), s = a[vi](o), l = o[Qi](), u = l[1] - l[0], c = Math.round(n.count() / u);
+                    if (c > 1) {
+                        var h;
+                        typeof r === Er ? h = t[r] : typeof r === On && (h = r), h && (n = n.downSample(s.dim, 1 / c, h, e), i.setData(n))
+                    }
+                }
+            }, this)
+        }
+    }), e("echarts/coord/cartesian/Grid", [Yr, "exports", Ne, "../../coord/axisHelper", Xr, "./Cartesian2D", "./Axis2D", "./GridModel", "../../CoordinateSystem"], function (t) {
+        function e(t, e) {
+            return t.getCoordSysModel() === e
+        }
+
+        function i(t) {
+            var e, i = t.model, n = i[Re](), r = i[Lr]("axisLabel.textStyle"), a = 1, o = n[yr];
+            o > 40 && (a = Math.ceil(o / 40));
+            for (var s = 0; o > s; s += a)if (!t.isLabelIgnored(s)) {
+                var l = r.getTextRect(n[s]);
+                e ? e.union(l) : e = l
+            }
+            return e
+        }
+
+        function n(t, e, i) {
+            this._coordsMap = {}, this._coordsList = [], this._axesMap = {}, this._axesList = [], this._initCartesian(t, e, i), this[kr] = t
+        }
+
+        function r(t, e) {
+            var i = t[Qi](), n = i[0] + i[1];
+            t[ai] = "x" === t.dim ? function (t) {
+                return t + e
+            } : function (t) {
+                return n - t + e
+            }, t.toLocalCoord = "x" === t.dim ? function (t) {
+                return t - e
+            } : function (t) {
+                return n - t + e
+            }
+        }
+
+        function a(t) {
+            return u.map(g, function (e) {
+                var i = t.getReferringComponents(e)[0];
+                return i
+            })
+        }
+
+        function o(t) {
+            return t.get(gr) === yi
+        }
+
+        var s = t(Ne), l = t("../../coord/axisHelper"), u = t(Xr), c = t("./Cartesian2D"), h = t("./Axis2D"), d = u.each, f = l.ifAxisCrossZero, p = l[Ee];
+        t("./GridModel");
+        var v = n[Nr];
+        v.type = "grid", v[Sn] = function () {
+            return this._rect
+        }, v[hr] = function (t, e) {
+            function i(t) {
+                var e = n[t];
+                for (var i in e)if (e.hasOwnProperty(i)) {
+                    var r = e[i];
+                    if (r && (r.type === Mi || !f(r)))return !0
+                }
+                return !1
+            }
+
+            var n = this._axesMap;
+            this._updateScale(t, this[kr]), d(n.x, function (t) {
+                p(t, t.model)
+            }), d(n.y, function (t) {
+                p(t, t.model)
+            }), d(n.x, function (t) {
+                i("y") && (t.onZero = !1)
+            }), d(n.y, function (t) {
+                i("x") && (t.onZero = !1)
+            }), this[Vr](this[kr], e)
+        }, v[Vr] = function (t, e) {
+            function n() {
+                d(o, function (t) {
+                    var e = t[hi](), i = e ? [0, a.width] : [0, a[Or]], n = t[si] ? 1 : 0;
+                    t[Yi](i[n], i[1 - n]), r(t, e ? a.x : a.y)
+                })
+            }
+
+            var a = s[gn](t[mn](), {width: e[Cr](), height: e[Tr]()});
+            this._rect = a;
+            var o = this._axesList;
+            n(), t.get("containLabel") && (d(o, function (t) {
+                if (!t.model.get("axisLabel.inside")) {
+                    var e = i(t);
+                    if (e) {
+                        var n = t[hi]() ? Or : "width", r = t.model.get("axisLabel.margin");
+                        a[n] -= e[n] + r, "top" === t[dn] ? a.y += e[Or] + r : "left" === t[dn] && (a.x += e.width + r)
+                    }
+                }
+            }), n())
+        }, v[di] = function (t, e) {
+            var i = this._axesMap[t];
+            if (null != i) {
+                if (null == e)for (var n in i)if (i.hasOwnProperty(n))return i[n];
+                return i[e]
+            }
+        }, v.getCartesian = function (t, e) {
+            if (null != t && null != e) {
+                var i = "x" + t + "y" + e;
+                return this._coordsMap[i]
+            }
+            for (var n = 0, r = this._coordsList; n < r[yr]; n++)if (r[n][di]("x").index === t || r[n][di]("y").index === e)return r[n]
+        }, v.convertToPixel = function (t, e, i) {
+            var n = this._findConvertTarget(t, e);
+            return n.cartesian ? n.cartesian[Ai](i) : n.axis ? n.axis[ai](n.axis[ri](i)) : null
+        }, v.convertFromPixel = function (t, e, i) {
+            var n = this._findConvertTarget(t, e);
+            return n.cartesian ? n.cartesian[Oe](i) : n.axis ? n.axis[Ve](n.axis.toLocalCoord(i)) : null
+        }, v._findConvertTarget = function (t, e) {
+            var i, n, r = e.seriesModel, a = e.xAxisModel || r && r.getReferringComponents("xAxis")[0], o = e.yAxisModel || r && r.getReferringComponents("yAxis")[0], s = e.gridModel, l = this._coordsList;
+            if (r)i = r[gr], u[mr](l, i) < 0 && (i = null); else if (a && o)i = this.getCartesian(a[ze], o[ze]); else if (a)n = this[di]("x", a[ze]); else if (o)n = this[di]("y", o[ze]); else if (s) {
+                var c = s[gr];
+                c === this && (i = this._coordsList[0])
+            }
+            return {cartesian: i, axis: n}
+        }, v.containPoint = function (t) {
+            var e = this._coordsList[0];
+            return e ? e.containPoint(t) : void 0
+        }, v._initCartesian = function (t, i) {
+            function n(n) {
+                return function (s, u) {
+                    if (e(s, t, i)) {
+                        var c = s.get(dn);
+                        "x" === n ? "top" !== c && c !== xr && (c = xr, r[c] && (c = "top" === c ? xr : "top")) : "left" !== c && "right" !== c && (c = "left", r[c] && (c = "left" === c ? "right" : "left")), r[c] = !0;
+                        var d = new h(n, l[De](s), [0, 0], s.get("type"), c), f = d.type === Mi;
+                        d[gi] = f && s.get(Pe), d[si] = s.get(si), d.onZero = s.get("axisLine.onZero"), s.axis = d, d.model = s, d.grid = this, d.index = u, this._axesList.push(d), a[n][u] = d, o[n]++
+                    }
+                }
+            }
+
+            var r = {left: !1, right: !1, top: !1, bottom: !1}, a = {x: {}, y: {}}, o = {x: 0, y: 0};
+            return i[wr]("xAxis", n("x"), this), i[wr]("yAxis", n("y"), this), o.x && o.y ? (this._axesMap = a, void d(a.x, function (t, e) {
+                d(a.y, function (i, n) {
+                    var r = "x" + e + "y" + n, a = new c(r);
+                    a.grid = this, this._coordsMap[r] = a, this._coordsList.push(a), a.addAxis(t), a.addAxis(i)
+                }, this)
+            }, this)) : (this._axesMap = {}, void(this._axesList = []))
+        }, v._updateScale = function (t, i) {
+            function n(t, e, i) {
+                d(i[Ie](e.dim), function (i) {
+                    e.scale[ke](t, i)
+                })
+            }
+
+            u.each(this._axesList, function (t) {
+                t.scale[Yi](1 / 0, -1 / 0)
+            }), t[lr](function (r) {
+                if (o(r)) {
+                    var s = a(r, t), l = s[0], u = s[1];
+                    if (!e(l, i, t) || !e(u, i, t))return;
+                    var c = this.getCartesian(l[ze], u[ze]), h = r[qr](), d = c[di]("x"), f = c[di]("y");
+                    "list" === h.type && (n(h, d, r), n(h, f, r))
+                }
+            }, this)
+        };
+        var g = ["xAxis", "yAxis"];
+        return n[dr] = function (t, e) {
+            var i = [];
+            return t[wr]("grid", function (r, a) {
+                var o = new n(r, t, e);
+                o.name = "grid_" + a, o[Vr](r, e), r[gr] = o, i.push(o)
+            }), t[lr](function (e) {
+                if (o(e)) {
+                    var i = a(e, t), n = i[0], r = i[1], s = n.getCoordSysModel(), l = s[gr];
+                    e[gr] = l.getCartesian(n[ze], r[ze])
+                }
+            }), i
+        }, n[ki] = c[Nr][ki], t("../../CoordinateSystem")[zn](yi, n), n
+    }), e("echarts/chart/bar/BarSeries", [Yr, "./BaseBarSeries"], function (t) {
+        return t("./BaseBarSeries")[ir]({type: "series.bar", dependencies: ["grid", "polar"], brushSelector: "rect"})
+    }), e("echarts/chart/bar/BarView", [Yr, Xr, ji, Le, Ce, "./barItemStyle", Te], function (t) {
+        function e(t, e, i, n, r, a, l) {
+            var u = new s.Rect({shape: o[ir]({}, n)});
+            if (a) {
+                var c = u.shape, h = r ? Or : "width", d = {};
+                c[h] = 0, d[h] = n[h], s[l ? Ze : ci](u, {shape: d}, a, e)
+            }
+            return u
+        }
+
+        function i(t, e, i) {
+            i.style.text = "", s[Ze](i, {shape: {width: 0}}, e, t, function () {
+                i[an] && i[an][nr](i)
+            })
+        }
+
+        function n(t, e, i) {
+            var n = t[bi](e), r = a(i, n), o = n.width > 0 ? 1 : -1, s = n[Or] > 0 ? 1 : -1;
+            return {x: n.x + o * r / 2, y: n.y + s * r / 2, width: n.width - o * r, height: n[Or] - s * r}
+        }
+
+        function r(t, e, i, n, r, a, u) {
+            var c = e[fr](i, "color"), h = e[fr](i, cn), d = n[Lr](Me), f = n[Lr](be).getBarItemStyle();
+            t[Qe]("r", d.get("barBorderRadius") || 0), t[Gi](o[tr]({fill: c, opacity: h}, d.getBarItemStyle()));
+            var p = u ? r[Or] > 0 ? xr : "top" : r.width > 0 ? "left" : "right";
+            l.setLabel(t.style, f, n, c, a, i, p), s[Ni](t, f)
+        }
+
+        function a(t, e) {
+            var i = t.get(u) || 0;
+            return Math.min(i, Math.abs(e.width), Math.abs(e[Or]))
+        }
+
+        var o = t(Xr), s = t(ji), l = t(Le), u = [Ui, qi, "barBorderWidth"];
+        o[ir](t(Ce)[Nr], t("./barItemStyle"));
+        var c = t(Te)[In]({
+            type: "bar", render: function (t, e, i) {
+                var n = t.get(gr);
+                return n === yi && this._renderOnCartesian(t, e, i), this.group
+            }, dispose: o.noop, _renderOnCartesian: function (t) {
+                var a = this.group, o = t[qr](), l = this._data, u = t[gr], c = u[Si](), h = c[hi](), d = t[Ae]() ? t : null;
+                o.diff(l).add(function (i) {
+                    if (o.hasValue(i)) {
+                        var s = o[Zi](i), l = n(o, i, s), u = e(o, i, s, l, h, d);
+                        o[ti](i, u), a.add(u), r(u, o, i, s, l, t, h)
+                    }
+                })[hr](function (i, u) {
+                    var c = l[Xe](u);
+                    if (!o.hasValue(i))return void a[nr](c);
+                    var f = o[Zi](i), p = n(o, i, f);
+                    c ? s[Ze](c, {shape: p}, d, i) : c = e(o, i, f, p, h, d, !0), o[ti](i, c), a.add(c), r(c, o, i, f, p, t, h)
+                })[nr](function (t) {
+                    var e = l[Xe](t);
+                    e && i(t, d, e)
+                })[Se](), this._data = o
+            }, remove: function (t) {
+                var e = this.group, n = this._data;
+                t.get(zr) ? n && n[ei](function (e) {
+                    i(e[pr], t, e)
+                }) : e[An]()
+            }
+        });
+        return c
+    }), e("echarts/chart/pie/PieView", [Yr, ji, Xr, "../../view/Chart"], function (t) {
+        function e(t, e, n, r) {
+            var a = e[qr](), o = this[pr], s = a[we](o), l = e.get("selectedOffset");
+            r[er]({type: "pieToggleSelect", from: t, name: s, seriesId: e.id}), a.each(function (t) {
+                i(a[Xe](t), a[bi](t), e.isSelected(a[we](t)), l, n)
+            })
+        }
+
+        function i(t, e, i, n, r) {
+            var a = (e[_e] + e[oi]) / 2, o = Math.cos(a), s = Math.sin(a), l = i ? n : 0, u = [o * l, s * l];
+            r ? t[xe]().when(200, {position: u}).start("bounceOut") : t.attr(dn, u)
+        }
+
+        function n(t, e) {
+            function i() {
+                o[_r] = o.hoverIgnore, s[_r] = s.hoverIgnore
+            }
+
+            function n() {
+                o[_r] = o.normalIgnore, s[_r] = s.normalIgnore
+            }
+
+            a.Group.call(this);
+            var r = new a[li]({z2: 2}), o = new a[je], s = new a.Text;
+            this.add(r), this.add(o), this.add(s), this[Ke](t, e, !0), this.on(Wi, i).on(qi, n).on(Xn, i).on(jn, n)
+        }
+
+        function r(t, e, i, n, r) {
+            var a = n[Lr](bn), s = r === ye || "inner" === r;
+            return {
+                fill: a[xn]() || (s ? "#fff" : t[fr](e, "color")),
+                opacity: t[fr](e, cn),
+                textFont: a[_n](),
+                text: o[Pi](t[Ye][me](e, i), t[we](e))
+            }
+        }
+
+        var a = t(ji), o = t(Xr), s = n[Nr];
+        s[Ke] = function (t, e, n) {
+            function r() {
+                l[br](!0), l.animateTo({shape: {r: h.r + 10}}, 300, "elasticOut")
+            }
+
+            function s() {
+                l[br](!0), l.animateTo({shape: {r: h.r}}, 300, "elasticOut")
+            }
+
+            var l = this[Fi](0), u = t[Ye], c = t[Zi](e), h = t[bi](e), d = o[ir]({}, h);
+            if (d.label = null, n) {
+                l[Qe](d);
+                var f = u[Be]("animationType");
+                "scale" === f ? (l.shape.r = h.r0, a[ci](l, {shape: {r: h.r}}, u, e)) : (l.shape[oi] = h[_e], a[Ze](l, {shape: {endAngle: h[oi]}}, u, e))
+            } else a[Ze](l, {shape: d}, u, e);
+            var p = c[Lr](Ui), v = t[fr](e, "color");
+            l[Gi](o[tr]({
+                lineJoin: "bevel",
+                fill: v
+            }, p[Lr](qi)[Mn]())), l[ge] = p[Lr](Wi)[Mn](), i(this, t[bi](e), c.get(ve), u.get("selectedOffset"), u.get(zr)), l.off(Xn).off(jn).off(Wi).off(qi), c.get("hoverAnimation") && u[Ae]() && l.on(Xn, r).on(jn, s).on(Wi, r).on(qi, s), this._updateLabel(t, e), a[Ni](this)
+        }, s._updateLabel = function (t, e) {
+            var i = this[Fi](1), n = this[Fi](2), o = t[Ye], s = t[Zi](e), l = t[bi](e), u = l.label, c = t[fr](e, "color");
+            a[Ze](i, {shape: {points: u.linePoints || [[u.x, u.y], [u.x, u.y], [u.x, u.y]]}}, o, e), a[Ze](n, {
+                style: {
+                    x: u.x,
+                    y: u.y
+                }
+            }, o, e), n.attr({
+                style: {textVerticalAlign: u.verticalAlign, textAlign: u[wn], textFont: u.font},
+                rotation: u[pe],
+                origin: [u.x, u.y],
+                z2: 10
+            });
+            var h = s[Lr](fe), d = s[Lr](de), f = s[Lr]("labelLine.normal"), p = s[Lr]("labelLine.emphasis"), v = h.get(dn) || d.get(dn);
+            n[Bn](r(t, e, qi, h, v)), n[_r] = n.normalIgnore = !h.get("show"), n.hoverIgnore = !d.get("show"), i[_r] = i.normalIgnore = !f.get("show"), i.hoverIgnore = !p.get("show"), i[Bn]({
+                stroke: c,
+                opacity: t[fr](e, cn)
+            }), i[Bn](f[Lr](he)[Je]()), n[ge] = r(t, e, Wi, d, v), i[ge] = p[Lr](he)[Je]();
+            var g = f.get("smooth");
+            g && g === !0 && (g = .4), i[Qe]({smooth: g})
+        }, o[Cn](n, a.Group);
+        var l = t("../../view/Chart")[ir]({
+            type: "pie", init: function () {
+                var t = new a.Group;
+                this._sectorGroup = t
+            }, render: function (t, i, r, a) {
+                if (!a || a.from !== this.uid) {
+                    var s = t[qr](), l = this._data, u = this.group, c = i.get(zr), h = !l, d = t.get("animationType"), f = o.curry(e, this.uid, t, c, r), p = t.get("selectedMode");
+                    if (s.diff(l).add(function (t) {
+                            var e = new n(s, t);
+                            h && "scale" !== d && e[ce](function (t) {
+                                t[br](!0)
+                            }), p && e.on("click", f), s[ti](t, e), u.add(e)
+                        })[hr](function (t, e) {
+                            var i = l[Xe](e);
+                            i[Ke](s, t), i.off("click"), p && i.on("click", f), u.add(i), s[ti](t, i)
+                        })[nr](function (t) {
+                            var e = l[Xe](t);
+                            u[nr](e)
+                        })[Se](), c && h && s.count() > 0 && "scale" !== d) {
+                        var v = s[bi](0), g = Math.max(r[Cr](), r[Tr]()) / 2, m = o.bind(u.removeClipPath, u);
+                        u.setClipPath(this._createClipPath(v.cx, v.cy, g, v[_e], v[ue], m, t))
+                    }
+                    this._data = s
+                }
+            }, dispose: function () {
+            }, _createClipPath: function (t, e, i, n, r, o, s) {
+                var l = new a[li]({shape: {cx: t, cy: e, r0: 0, r: i, startAngle: n, endAngle: n, clockwise: r}});
+                return a[ci](l, {shape: {endAngle: n + (r ? 1 : -1) * Math.PI * 2}}, s, o), l
+            }, containPoint: function (t, e) {
+                var i = e[qr](), n = i[bi](0);
+                if (n) {
+                    var r = t[0] - n.cx, a = t[1] - n.cy, o = Math.sqrt(r * r + a * a);
+                    return o <= n.r && o >= n.r0
+                }
+            }
+        });
+        return l
+    }), e("echarts/layout/barGrid", [Yr, Xr, nn], function (t) {
+        function e(t) {
+            return t.get("stack") || "__ec_stack_" + t[Zn]
+        }
+
+        function i(t) {
+            return t.dim + t.index
+        }
+
+        function n(t) {
+            var n = {};
+            a.each(t, function (t) {
+                var r = t[qr](), a = t[gr], o = a[Si](), l = o[Qi](), u = o.type === Mi ? o.getBandWidth() : Math.abs(l[1] - l[0]) / r.count(), c = n[i(o)] || {
+                        bandWidth: u,
+                        remainedWidth: u,
+                        autoWidthCount: 0,
+                        categoryGap: "20%",
+                        gap: "30%",
+                        stacks: {}
+                    }, h = c.stacks;
+                n[i(o)] = c;
+                var d = e(t);
+                h[d] || c.autoWidthCount++, h[d] = h[d] || {width: 0, maxWidth: 0};
+                var f = s(t.get("barWidth"), u), p = s(t.get("barMaxWidth"), u), v = t.get("barGap"), g = t.get("barCategoryGap");
+                f && !h[d].width && (f = Math.min(c.remainedWidth, f), h[d].width = f, c.remainedWidth -= f), p && (h[d].maxWidth = p), null != v && (c.gap = v), null != g && (c.categoryGap = g)
+            });
+            var r = {};
+            return a.each(n, function (t, e) {
+                r[e] = {};
+                var i = t.stacks, n = t.bandWidth, o = s(t.categoryGap, n), l = s(t.gap, 1), u = t.remainedWidth, c = t.autoWidthCount, h = (u - o) / (c + (c - 1) * l);
+                h = Math.max(h, 0), a.each(i, function (t) {
+                    var e = t.maxWidth;
+                    !t.width && e && h > e && (e = Math.min(e, u), u -= e, t.width = e, c--)
+                }), h = (u - o) / (c + (c - 1) * l), h = Math.max(h, 0);
+                var d, f = 0;
+                a.each(i, function (t) {
+                    t.width || (t.width = h), d = t, f += t.width * (1 + l)
+                }), d && (f -= d.width * l);
+                var p = -f / 2;
+                a.each(i, function (t, i) {
+                    r[e][i] = r[e][i] || {offset: p, width: t.width}, p += t.width * (1 + l)
+                })
+            }), r
+        }
+
+        function r(t, r) {
+            var o = n(a[Ln](r.getSeriesByType(t), function (t) {
+                return !r.isSeriesFiltered(t) && t[gr] && t[gr].type === yi
+            })), s = {}, l = {};
+            r[Ur](t, function (t) {
+                var n = t[qr](), r = t[gr], a = r[Si](), u = e(t), c = o[i(a)][u], h = c[ii], d = c.width, f = r[vi](a), p = t.get("barMinHeight") || 0, v = a.onZero ? f[ai](f[ri](0)) : f.getGlobalExtent()[0], g = r.dataToPoints(n, !0);
+                s[u] = s[u] || [], l[u] = l[u] || [], n[le]({offset: h, size: d}), n.each(f.dim, function (t, e) {
+                    if (!isNaN(t)) {
+                        s[u][e] || (s[u][e] = {p: v, n: v}, l[u][e] = {p: v, n: v});
+                        var i, r, a, o, c = t >= 0 ? "p" : "n", m = g[e], y = s[u][e][c], x = l[u][e][c];
+                        f[hi]() ? (i = y, r = m[1] + h, a = m[0] - x, o = d, l[u][e][c] += a, Math.abs(a) < p && (a = (0 > a ? -1 : 1) * p), s[u][e][c] += a) : (i = m[0] + h, r = y, a = d, o = m[1] - x, l[u][e][c] += o, Math.abs(o) < p && (o = (0 >= o ? -1 : 1) * p), s[u][e][c] += o), n[Ti](e, {
+                            x: i,
+                            y: r,
+                            width: a,
+                            height: o
+                        })
+                    }
+                }, !0)
+            }, this)
+        }
+
+        var a = t(Xr), o = t(nn), s = o[Ii];
+        return r
+    }), e("echarts/chart/pie/PieSeries", [Yr, se, Xr, mi, oe, "../../component/helper/selectableMixin", Te], function (t) {
+        var e = t(se), i = t(Xr), n = t(mi), r = t(oe), a = t("../../component/helper/selectableMixin"), o = t(Te).extendSeriesModel({
+            type: "series.pie",
+            init: function (t) {
+                o[ln](this, "init", arguments), this.legendDataProvider = function () {
+                    return this.getRawData()
+                }, this.updateSelectedMap(t.data), this._defaultLabelLine(t)
+            },
+            mergeOption: function (t) {
+                o[ae](this, sn, t), this.updateSelectedMap(this[un].data)
+            },
+            getInitialData: function (t) {
+                var i = r(["value"], t.data), n = new e(i, this);
+                return n[re](t.data), n
+            },
+            getDataParams: function (t) {
+                var e = this[qr](), i = o[ae](this, Hn, t), n = e.getSum("value");
+                return i.percent = n ? +(e.get("value", t) / n * 100)[ne](2) : 0, i.$vars.push("percent"), i
+            },
+            _defaultLabelLine: function (t) {
+                n[ie](t.labelLine, ["show"]);
+                var e = t.labelLine[qi], i = t.labelLine[Wi];
+                e.show = e.show && t.label[qi].show, i.show = i.show && t.label[Wi].show
+            },
+            defaultOption: {
+                zlevel: 0,
+                z: 2,
+                legendHoverLink: !0,
+                hoverAnimation: !0,
+                center: ["50%", "50%"],
+                radius: [0, "75%"],
+                clockwise: !0,
+                startAngle: 90,
+                minAngle: 0,
+                selectedOffset: 10,
+                avoidLabelOverlap: !0,
+                stillShowZeroSum: !0,
+                label: {normal: {rotate: !1, show: !0, position: "outer"}, emphasis: {}},
+                labelLine: {
+                    normal: {
+                        show: !0,
+                        length: 15,
+                        length2: 15,
+                        smooth: !1,
+                        lineStyle: {width: 1, type: "solid"}
+                    }
+                },
+                itemStyle: {normal: {borderWidth: 1}, emphasis: {}},
+                animationType: "expansion",
+                animationEasing: "cubicOut",
+                data: []
+            }
+        });
+        return i.mixin(o, a), o
+    }), e("echarts/action/createDataSelectAction", [Yr, "../echarts", Xr], function (t) {
+        var e = t("../echarts"), i = t(Xr);
+        return function (t, n) {
+            i.each(n, function (i) {
+                i[hr] = "updateView", e[Vn](i, function (e, n) {
+                    var r = {};
+                    return n[wr]({mainType: "series", subType: t, query: e}, function (t) {
+                        t[i.method] && t[i.method](e.name);
+                        var n = t[qr]();
+                        n.each(function (e) {
+                            var i = n[we](e);
+                            r[i] = t.isSelected(i) || !1
+                        })
+                    }), {name: e.name, selected: r}
+                })
+            })
+        }
+    }), e("echarts/visual/dataColor", [Yr], function () {
+        return function (t, e) {
+            var i = {};
+            e.eachRawSeriesByType(t, function (t) {
+                var n = t.getRawData(), r = {};
+                if (!e.isSeriesFiltered(t)) {
+                    var a = t[qr]();
+                    a.each(function (t) {
+                        var e = a[ee](t);
+                        r[e] = t
+                    }), n.each(function (e) {
+                        var o = r[e], s = null != o && a[fr](o, "color", !0);
+                        if (s)n[wi](e, "color", s); else {
+                            var l = n[Zi](e), u = l.get(te) || t.getColorFromPalette(n[we](e), i);
+                            n[wi](e, "color", u), null != o && a[wi](o, "color", u)
+                        }
+                    })
+                }
+            })
+        }
+    }), e("echarts/chart/scatter/ScatterView", [Yr, "../helper/SymbolDraw", "../helper/LargeSymbolDraw", Te], function (t) {
+        var e = t("../helper/SymbolDraw"), i = t("../helper/LargeSymbolDraw");
+        t(Te)[In]({
+            type: "scatter", init: function () {
+                this._normalSymbolDraw = new e, this._largeSymbolDraw = new i
+            }, render: function (t) {
+                var e = t[qr](), i = this._largeSymbolDraw, n = this._normalSymbolDraw, r = this.group, a = t.get("large") && e.count() > t.get("largeThreshold") ? i : n;
+                this._symbolDraw = a, a[Ke](e), r.add(a.group), r[nr](a === i ? n.group : i.group)
+            }, updateLayout: function (t) {
+                this._symbolDraw[sr](t)
+            }, remove: function (t, e) {
+                this._symbolDraw && this._symbolDraw[nr](e, !0)
+            }, dispose: function () {
+            }
+        })
+    }), e("echarts/processor/dataFilter", [], function () {
+        return function (t, e) {
+            var i = e.findComponents({mainType: "legend"});
+            i && i[yr] && e[Ur](t, function (t) {
+                var e = t[qr]();
+                e.filterSelf(function (t) {
+                    for (var n = e[we](t), r = 0; r < i[yr]; r++)if (!i[r].isSelected(n))return !1;
+                    return !0
+                }, this)
+            }, this)
+        }
+    }), e("echarts/chart/scatter/ScatterSeries", [Yr, "../helper/createListFromArray", Ei], function (t) {
+        var e = t("../helper/createListFromArray"), i = t(Ei);
+        return i[ir]({
+            type: "series.scatter",
+            dependencies: ["grid", "polar"],
+            getInitialData: function (t, i) {
+                var n = e(t.data, this, i);
+                return n
+            },
+            brushSelector: "point",
+            defaultOption: {
+                coordinateSystem: "cartesian2d",
+                zlevel: 0,
+                z: 2,
+                legendHoverLink: !0,
+                hoverAnimation: !0,
+                symbolSize: 10,
+                large: !1,
+                largeThreshold: 2e3,
+                itemStyle: {normal: {opacity: .8}}
+            }
+        })
+    }), e("echarts/model/Global", [Yr, Xr, "../util/model", "./Model", "./Component", "./globalDefault", "./mixin/colorPalette"], function (t) {
+        function e(t, e) {
+            l.each(e, function (e, i) {
+                m.hasClass(i) || ("object" == typeof e ? t[i] = t[i] ? l.merge(t[i], e, !1) : l.clone(e) : null == t[i] && (t[i] = e))
+            })
+        }
+
+        function i(t) {
+            t = t, this[un] = {}, this[un][x] = 1, this._componentsMap = {}, this._seriesIndices = null, e(t, this._theme[un]), l.merge(t, y, !1), this[sn](t)
+        }
+
+        function n(t, e) {
+            l[Rn](e) || (e = e ? [e] : []);
+            var i = {};
+            return h(e, function (e) {
+                i[e] = (t[e] || []).slice()
+            }), i
+        }
+
+        function r(t, e, i) {
+            var n = e.type ? e.type : i ? i.subType : m.determineSubType(t, e);
+            return n
+        }
+
+        function a(t) {
+            return f(t, function (t) {
+                    return t[ze]
+                }) || []
+        }
+
+        function o(t, e) {
+            return e.hasOwnProperty("subType") ? d(t, function (t) {
+                return t.subType === e.subType
+            }) : t
+        }
+
+        function s(t) {
+        }
+
+        var l = t(Xr), u = t("../util/model"), c = t("./Model"), h = l.each, d = l[Ln], f = l.map, p = l[Rn], v = l[mr], g = l[Ir], m = t("./Component"), y = t("./globalDefault"), x = "\x00_ec_inner", _ = c[ir]({
+            constructor: _,
+            init: function (t, e, i, n) {
+                i = i || {}, this[un] = null, this._theme = new c(i), this._optionManager = n
+            },
+            setOption: function (t, e) {
+                l[Pr](!(x in t), "please use chart.getOption()"), this._optionManager.setOption(t, e), this.resetOption()
+            },
+            resetOption: function (t) {
+                var e = !1, n = this._optionManager;
+                if (!t || "recreate" === t) {
+                    var r = n.mountOption("recreate" === t);
+                    this[un] && "recreate" !== t ? (this.restoreData(), this[sn](r)) : i.call(this, r), e = !0
+                }
+                if (("timeline" === t || "media" === t) && this.restoreData(), !t || "recreate" === t || "timeline" === t) {
+                    var a = n.getTimelineOption(this);
+                    a && (this[sn](a), e = !0)
+                }
+                if (!t || "recreate" === t || "media" === t) {
+                    var o = n.getMediaOption(this, this._api);
+                    o[yr] && h(o, function (t) {
+                        this[sn](t, e = !0)
+                    }, this)
+                }
+                return e
+            },
+            mergeOption: function (t) {
+                function e(e, s) {
+                    var c = u.normalizeToArray(t[e]), d = u.mappingToExists(o[e], c);
+                    u.makeIdAndName(d), h(d, function (t) {
+                        var i = t[un];
+                        g(i) && (t.keyInfo[or] = e, t.keyInfo.subType = r(e, i, t.exist))
+                    });
+                    var f = n(o, s);
+                    i[e] = [], o[e] = [], h(d, function (t, n) {
+                        var r = t.exist, a = t[un];
+                        if (l[Pr](g(a) || r, "Empty component definition"), a) {
+                            var s = m.getClass(e, t.keyInfo.subType, !0);
+                            if (r && r instanceof s)r.name = t.keyInfo.name, r[sn](a, this), r.optionUpdated(a, !1); else {
+                                var u = l[ir]({dependentModels: f, componentIndex: n}, t.keyInfo);
+                                r = new s(a, this, this, u), l[ir](r, u), r.init(a, this, this, u), r.optionUpdated(null, !0)
+                            }
+                        } else r[sn]({}, this), r.optionUpdated({}, !1);
+                        o[e][n] = r, i[e][n] = r[un]
+                    }, this), e === rr && (this._seriesIndices = a(o[rr]))
+                }
+
+                var i = this[un], o = this._componentsMap, s = [];
+                h(t, function (t, e) {
+                    null != t && (m.hasClass(e) ? s.push(e) : i[e] = null == i[e] ? l.clone(t) : l.merge(i[e], t, !0))
+                }), m.topologicalTravel(s, m.getAllClassMainTypes(), e, this), this._seriesIndices = this._seriesIndices || []
+            },
+            getOption: function () {
+                var t = l.clone(this[un]);
+                return h(t, function (e, i) {
+                    if (m.hasClass(i)) {
+                        for (var e = u.normalizeToArray(e), n = e[yr] - 1; n >= 0; n--)u.isIdInner(e[n]) && e[Yn](n, 1);
+                        t[i] = e
+                    }
+                }), delete t[x], t
+            },
+            getTheme: function () {
+                return this._theme
+            },
+            getComponent: function (t, e) {
+                var i = this._componentsMap[t];
+                return i ? i[e || 0] : void 0
+            },
+            queryComponents: function (t) {
+                var e = t[or];
+                if (!e)return [];
+                var i = t.index, n = t.id, r = t.name, a = this._componentsMap[e];
+                if (!a || !a[yr])return [];
+                var s;
+                if (null != i)p(i) || (i = [i]), s = d(f(i, function (t) {
+                    return a[t]
+                }), function (t) {
+                    return !!t
+                }); else if (null != n) {
+                    var l = p(n);
+                    s = d(a, function (t) {
+                        return l && v(n, t.id) >= 0 || !l && t.id === n
+                    })
+                } else if (null != r) {
+                    var u = p(r);
+                    s = d(a, function (t) {
+                        return u && v(r, t.name) >= 0 || !u && t.name === r
+                    })
+                } else s = a;
+                return o(s, t)
+            },
+            findComponents: function (t) {
+                function e(t) {
+                    var e = r + "Index", i = r + "Id", n = r + "Name";
+                    return !t || null == t[e] && null == t[i] && null == t[n] ? null : {
+                        mainType: r,
+                        index: t[e],
+                        id: t[i],
+                        name: t[n]
+                    }
+                }
+
+                function i(e) {
+                    return t[Ln] ? d(e, t[Ln]) : e
+                }
+
+                var n = t.query, r = t[or], a = e(n), s = a ? this[K](a) : this._componentsMap[r];
+                return i(o(s, t))
+            },
+            eachComponent: function (t, e, i) {
+                var n = this._componentsMap;
+                if (typeof t === On)i = e, e = t, h(n, function (t, n) {
+                    h(t, function (t, r) {
+                        e.call(i, n, t, r)
+                    })
+                }); else if (l[Tn](t))h(n[t], e, i); else if (g(t)) {
+                    var r = this.findComponents(t);
+                    h(r, e, i)
+                }
+            },
+            getSeriesByName: function (t) {
+                var e = this._componentsMap[rr];
+                return d(e, function (e) {
+                    return e.name === t
+                })
+            },
+            getSeriesByIndex: function (t) {
+                return this._componentsMap[rr][t]
+            },
+            getSeriesByType: function (t) {
+                var e = this._componentsMap[rr];
+                return d(e, function (e) {
+                    return e.subType === t
+                })
+            },
+            getSeries: function () {
+                return this._componentsMap[rr].slice()
+            },
+            eachSeries: function (t, e) {
+                s(this), h(this._seriesIndices, function (i) {
+                    var n = this._componentsMap[rr][i];
+                    t.call(e, n, i)
+                }, this)
+            },
+            eachRawSeries: function (t, e) {
+                h(this._componentsMap[rr], t, e)
+            },
+            eachSeriesByType: function (t, e, i) {
+                s(this), h(this._seriesIndices, function (n) {
+                    var r = this._componentsMap[rr][n];
+                    r.subType === t && e.call(i, r, n)
+                }, this)
+            },
+            eachRawSeriesByType: function (t, e, i) {
+                return h(this.getSeriesByType(t), e, i)
+            },
+            isSeriesFiltered: function (t) {
+                return s(this), l[mr](this._seriesIndices, t[ze]) < 0
+            },
+            filterSeries: function (t, e) {
+                s(this);
+                var i = d(this._componentsMap[rr], t, e);
+                this._seriesIndices = a(i)
+            },
+            restoreData: function () {
+                var t = this._componentsMap;
+                this._seriesIndices = a(t[rr]);
+                var e = [];
+                h(t, function (t, i) {
+                    e.push(i)
+                }), m.topologicalTravel(e, m.getAllClassMainTypes(), function (e) {
+                    h(t[e], function (t) {
+                        t.restoreData()
+                    })
+                })
+            }
+        });
+        return l.mixin(_, t("./mixin/colorPalette")), _
+    }), e(Zr, [], function () {
+        function t(t) {
+            var e = {}, i = {}, n = t.match(/Firefox\/([\d.]+)/), r = t.match(/MSIE\s([\d.]+)/) || t.match(/Trident\/.+?rv:(([\d.]+))/), a = t.match(/Edge\/([\d.]+)/), o = /micromessenger/i.test(t);
+            return n && (i.firefox = !0, i.version = n[1]), r && (i.ie = !0, i.version = r[1]), a && (i.edge = !0, i.version = a[1]), o && (i.weChat = !0), {
+                browser: i,
+                os: e,
+                node: !1,
+                canvasSupported: document[_i](Rr)[xi] ? !0 : !1,
+                touchEventsSupported: "ontouchstart"in window && !i.ie && !i.edge,
+                pointerEventsSupported: "onpointerdown"in window && (i.edge || i.ie && i.version >= 11)
+            }
+        }
+
+        var e = {};
+        return e = typeof navigator === Q ? {
+            browser: {},
+            os: {},
+            node: !0,
+            canvasSupported: !0
+        } : t(navigator.userAgent)
+    }), e("echarts/CoordinateSystem", [Yr, Xr], function (t) {
+        function e() {
+            this._coordinateSystems = []
+        }
+
+        var i = t(Xr), n = {};
+        return e[Nr] = {
+            constructor: e, create: function (t, e) {
+                var r = [];
+                i.each(n, function (i) {
+                    var n = i[dr](t, e);
+                    r = r[rn](n || [])
+                }), this._coordinateSystems = r
+            }, update: function (t, e) {
+                i.each(this._coordinateSystems, function (i) {
+                    i[hr] && i[hr](t, e)
+                })
+            }, getCoordinateSystems: function () {
+                return this._coordinateSystems.slice()
+            }
+        }, e[zn] = function (t, e) {
+            n[t] = e
+        }, e.get = function (t) {
+            return n[t]
+        }, e
+    }), e("echarts/ExtensionAPI", [Yr, Xr], function (t) {
+        function e(t) {
+            i.each(n, function (e) {
+                this[e] = i.bind(t[e], t)
+            }, this)
+        }
+
+        var i = t(Xr), n = ["getDom", "getZr", Cr, Tr, er, "isDisposed", "on", "off", "getDataURL", "getConnectedDataURL", Lr, "getOption"];
+        return e
+    }), e("echarts/model/Component", [Yr, "./Model", Xr, "../util/component", "../util/clazz", "../util/layout", "./mixin/boxLayout"], function (t) {
+        function e(t) {
+            var e = [];
+            return n.each(l.getClassesByMainType(t), function (t) {
+                r.apply(e, t[Nr].dependencies || [])
+            }), n.map(e, function (t) {
+                return o.parseClassType(t).main
+            })
+        }
+
+        var i = t("./Model"), n = t(Xr), r = Array[Nr].push, a = t("../util/component"), o = t("../util/clazz"), s = t("../util/layout"), l = i[ir]({
+            type: "component",
+            id: "",
+            name: "",
+            mainType: "",
+            subType: "",
+            componentIndex: 0,
+            defaultOption: null,
+            ecModel: null,
+            dependentModels: [],
+            uid: null,
+            layoutMode: null,
+            $constructor: function (t, e, n, r) {
+                i.call(this, t, e, n, r), this.uid = a.getUID("componentModel")
+            },
+            init: function (t, e, i) {
+                this[J](t, i)
+            },
+            mergeDefaultAndTheme: function (t, e) {
+                var i = this.layoutMode, r = i ? s.getLayoutParams(t) : {}, a = e.getTheme();
+                n.merge(t, a.get(this[or])), n.merge(t, this.getDefaultOption()), i && s.mergeLayoutParam(t, r, i)
+            },
+            mergeOption: function (t) {
+                n.merge(this[un], t, !0);
+                var e = this.layoutMode;
+                e && s.mergeLayoutParam(this[un], t, e)
+            },
+            optionUpdated: function () {
+            },
+            getDefaultOption: function () {
+                if (!o.hasOwn(this, "__defaultOption")) {
+                    for (var t = [], e = this.constructor; e;) {
+                        var i = e[Nr].defaultOption;
+                        i && t.push(i), e = e.superClass
+                    }
+                    for (var r = {}, a = t[yr] - 1; a >= 0; a--)r = n.merge(r, t[a], !0);
+                    o.set(this, "__defaultOption", r)
+                }
+                return o.get(this, "__defaultOption")
+            },
+            getReferringComponents: function (t) {
+                return this[$][K]({mainType: t, index: this.get(t + "Index", !0), id: this.get(t + "Id", !0)})
+            }
+        });
+        return o.enableClassManagement(l, {registerWhenExtend: !0}), a.enableSubTypeDefaulter(l), a.enableTopologicalTravel(l, e), n.mixin(l, t("./mixin/boxLayout")), l
+    }), e("echarts/view/Chart", [Yr, "zrender/container/Group", "../util/component", "../util/clazz", "../util/model", Xr], function (t) {
+        function e() {
+            this.group = new r, this.uid = a.getUID("viewChart")
+        }
+
+        function i(t, e) {
+            if (t && (t[Jn](e), "group" === t.type))for (var n = 0; n < t.childCount(); n++)i(t[Fi](n), e)
+        }
+
+        function n(t, e, n) {
+            var r = s.queryDataIndex(t, e);
+            null != r ? l.each(s.normalizeToArray(r), function (e) {
+                i(t[Xe](e), n)
+            }) : t[ei](function (t) {
+                i(t, n)
+            })
+        }
+
+        var r = t("zrender/container/Group"), a = t("../util/component"), o = t("../util/clazz"), s = t("../util/model"), l = t(Xr);
+        e[Nr] = {
+            type: "chart", init: function () {
+            }, render: function () {
+            }, highlight: function (t, e, i, r) {
+                n(t[qr](), r, Wi)
+            }, downplay: function (t, e, i, r) {
+                n(t[qr](), r, qi)
+            }, remove: function () {
+                this.group[An]()
+            }, dispose: function () {
+            }
+        };
+        var u = e[Nr];
+        return u.updateView = u[sr] = u.updateVisual = function (t, e, i, n) {
+            this[ar](t, e, i, n)
+        }, o.enableClassExtend(e, [$n]), o.enableClassManagement(e, {registerWhenExtend: !0}), e
+    }), e("echarts/view/Component", [Yr, "zrender/container/Group", "../util/component", "../util/clazz"], function (t) {
+        var e = t("zrender/container/Group"), i = t("../util/component"), n = t("../util/clazz"), r = function () {
+            this.group = new e, this.uid = i.getUID("viewComponent")
+        };
+        r[Nr] = {
+            constructor: r, init: function () {
+            }, render: function () {
+            }, dispose: function () {
+            }
+        };
+        var a = r[Nr];
+        return a.updateView = a[sr] = a.updateVisual = function () {
+        }, n.enableClassExtend(r), n.enableClassManagement(r, {registerWhenExtend: !0}), r
+    }), e("echarts/model/Series", [Yr, Xr, "../util/format", "../util/clazz", "../util/model", "./Component", "./mixin/colorPalette", Zr, "../util/layout"], function (t) {
+        var e = t(Xr), i = t("../util/format"), n = t("../util/clazz"), r = t("../util/model"), a = t("./Component"), o = t("./mixin/colorPalette"), s = t(Zr), l = t("../util/layout"), u = n.set, c = n.get, h = i[Oi], d = i[Vi], f = a[ir]({
+            type: "series.__base__",
+            seriesIndex: 0,
+            coordinateSystem: null,
+            defaultOption: null,
+            legendDataProvider: null,
+            visualColorAccessPath: "itemStyle.normal.color",
+            layoutMode: null,
+            init: function (t, e, i) {
+                this[Zn] = this[ze], this[J](t, i), u(this, "dataBeforeProcessed", this.getInitialData(t, i)), this.restoreData()
+            },
+            mergeDefaultAndTheme: function (t, i) {
+                var n = this.layoutMode, a = n ? l.getLayoutParams(t) : {};
+                e.merge(t, i.getTheme().get(this.subType)), e.merge(t, this.getDefaultOption()), r[ie](t.label, r.LABEL_OPTIONS), this.fillDataTextStyle(t.data), n && l.mergeLayoutParam(t, a, n)
+            },
+            mergeOption: function (t, i) {
+                t = e.merge(this[un], t, !0), this.fillDataTextStyle(t.data);
+                var n = this.layoutMode;
+                n && l.mergeLayoutParam(this[un], t, n);
+                var r = this.getInitialData(t, i);
+                r && (u(this, "data", r), u(this, "dataBeforeProcessed", r.cloneShallow()))
+            },
+            fillDataTextStyle: function (t) {
+                if (t)for (var e = 0; e < t[yr]; e++)t[e] && t[e].label && r[ie](t[e].label, r.LABEL_OPTIONS)
+            },
+            getInitialData: function () {
+            },
+            getData: function (t) {
+                var e = c(this, "data");
+                return null == t ? e : e.getLinkedData(t)
+            },
+            setData: function (t) {
+                u(this, "data", t)
+            },
+            getRawData: function () {
+                return c(this, "dataBeforeProcessed")
+            },
+            coordDimToDataDim: function (t) {
+                return [t]
+            },
+            dataDimToCoordDim: function (t) {
+                return t
+            },
+            getBaseAxis: function () {
+                var t = this[gr];
+                return t && t[Si] && t[Si]()
+            },
+            formatTooltip: function (t, n) {
+                function r(t) {
+                    var r = [];
+                    return e.each(t, function (t, e) {
+                        var o, s = a.getDimensionInfo(e), l = s && s.type;
+                        o = l === qe ? t + "" : "time" === l ? n ? "" : i.formatTime("yyyy/MM/dd hh:mm:ss", t) : d(t), o && r.push(o)
+                    }), r.join(", ")
+                }
+
+                var a = c(this, "data"), o = this[Ge](t), s = h(e[Rn](o) ? r(o) : d(o)), l = a[we](t), u = a[fr](t, "color");
+                e[Ir](u) && u[ur] && (u = (u[ur][0] || {}).color), u = u || cr;
+                var f = '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + h(u) + '"></span>', p = this.name;
+                return "\x00-" === p && (p = ""), n ? f + h(this.name) + " : " + s : (p && h(p) + zi) + f + (l ? h(l) + " : " + s : s)
+            },
+            isAnimationEnabled: function () {
+                if (s.node)return !1;
+                var t = this[Be](zr);
+                return t && this[qr]().count() > this[Be]("animationThreshold") && (t = !1), t
+            },
+            restoreData: function () {
+                u(this, "data", c(this, "dataBeforeProcessed").cloneShallow())
+            },
+            getColorFromPalette: function (t, e) {
+                var i = this[$], n = o.getColorFromPalette.call(this, t, e);
+                return n || (n = i.getColorFromPalette(t, e)), n
+            },
+            getAxisTooltipDataIndex: null,
+            getTooltipPosition: null
+        });
+        return e.mixin(f, r.dataFormatMixin), e.mixin(f, o), f
+    }), e("echarts/model/OptionManager", [Yr, Xr, "../util/model", "./Component"], function (t) {
+        function e(t) {
+            this._api = t, this._timelineOptions = [], this._mediaList = [], this._mediaDefault, this._currentMediaIndices = [], this._optionBackup, this._newBaseOption
+        }
+
+        function i(t, e, i) {
+            var n, r, a = [], o = [], l = t.timeline;
+            if (t.baseOption && (r = t.baseOption), (l || t.options) && (r = r || {}, a = (t.options || []).slice()), t.media) {
+                r = r || {};
+                var u = t.media;
+                c(u, function (t) {
+                    t && t[un] && (t.query ? o.push(t) : n || (n = t))
+                })
+            }
+            return r || (r = t), r.timeline || (r.timeline = l), c([r][rn](a)[rn](s.map(o, function (t) {
+                return t[un]
+            })), function (t) {
+                c(e, function (e) {
+                    e(t, i)
+                })
+            }), {baseOption: r, timelineOptions: a, mediaDefault: n, mediaList: o}
+        }
+
+        function n(t, e, i) {
+            var n = {width: e, height: i, aspectratio: e / i}, a = !0;
+            return s.each(t, function (t, e) {
+                var i = e.match(p);
+                if (i && i[1] && i[2]) {
+                    var o = i[1], s = i[2][Br]();
+                    r(n[s], t, o) || (a = !1)
+                }
+            }), a
+        }
+
+        function r(t, e, i) {
+            return "min" === i ? t >= e : "max" === i ? e >= t : t === e
+        }
+
+        function a(t, e) {
+            return t.join(",") === e.join(",")
+        }
+
+        function o(t, e) {
+            e = e || {}, c(e, function (e, i) {
+                if (null != e) {
+                    var n = t[i];
+                    if (u.hasClass(i)) {
+                        e = l.normalizeToArray(e), n = l.normalizeToArray(n);
+                        var r = l.mappingToExists(n, e);
+                        t[i] = d(r, function (t) {
+                            return t[un] && t.exist ? f(t.exist, t[un], !0) : t.exist || t[un]
+                        })
+                    } else t[i] = f(n, e, !0)
+                }
+            })
+        }
+
+        var s = t(Xr), l = t("../util/model"), u = t("./Component"), c = s.each, h = s.clone, d = s.map, f = s.merge, p = /^(min|max)?(.+)$/;
+        return e[Nr] = {
+            constructor: e, setOption: function (t, e) {
+                t = h(t, !0);
+                var n = this._optionBackup, r = i.call(this, t, e, !n);
+                this._newBaseOption = r.baseOption, n ? (o(n.baseOption, r.baseOption), r.timelineOptions[yr] && (n.timelineOptions = r.timelineOptions), r.mediaList[yr] && (n.mediaList = r.mediaList), r.mediaDefault && (n.mediaDefault = r.mediaDefault)) : this._optionBackup = r
+            }, mountOption: function (t) {
+                var e = this._optionBackup;
+                return this._timelineOptions = d(e.timelineOptions, h), this._mediaList = d(e.mediaList, h), this._mediaDefault = h(e.mediaDefault), this._currentMediaIndices = [], h(t ? e.baseOption : this._newBaseOption)
+            }, getTimelineOption: function (t) {
+                var e, i = this._timelineOptions;
+                if (i[yr]) {
+                    var n = t[Y]("timeline");
+                    n && (e = h(i[n.getCurrentIndex()], !0))
+                }
+                return e
+            }, getMediaOption: function () {
+                var t = this._api[Cr](), e = this._api[Tr](), i = this._mediaList, r = this._mediaDefault, o = [], s = [];
+                if (!i[yr] && !r)return s;
+                for (var l = 0, u = i[yr]; u > l; l++)n(i[l].query, t, e) && o.push(l);
+                return !o[yr] && r && (o = [-1]), o[yr] && !a(o, this._currentMediaIndices) && (s = d(o, function (t) {
+                    return h(-1 === t ? r[un] : i[t][un])
+                })), this._currentMediaIndices = o, s
+            }
+        }, e
+    }), e("echarts/util/graphic", [Yr, Xr, "zrender/tool/path", "zrender/graphic/Path", Hr, Fr, Gr, "zrender/container/Group", "zrender/graphic/Image", "zrender/graphic/Text", "zrender/graphic/shape/Circle", "zrender/graphic/shape/Sector", "zrender/graphic/shape/Ring", "zrender/graphic/shape/Polygon", "zrender/graphic/shape/Polyline", "zrender/graphic/shape/Rect", "zrender/graphic/shape/Line", "zrender/graphic/shape/BezierCurve", "zrender/graphic/shape/Arc", "zrender/graphic/CompoundPath", "zrender/graphic/LinearGradient", "zrender/graphic/RadialGradient", X], function (t) {
+        function e(t) {
+            return null != t && "none" != t
+        }
+
+        function i(t) {
+            return typeof t === Er ? y.lift(t, -.1) : t
+        }
+
+        function n(t) {
+            if (t.__hoverStlDirty) {
+                var n = t.style[Bi], r = t.style.fill, a = t.__hoverStl;
+                a.fill = a.fill || (e(r) ? i(r) : null), a[Bi] = a[Bi] || (e(n) ? i(n) : null);
+                var o = {};
+                for (var s in a)a.hasOwnProperty(s) && (o[s] = t.style[s]);
+                t.__normalStl = o, t.__hoverStlDirty = !1
+            }
+        }
+
+        function r(t) {
+            t.__isHover || (n(t), t.useHoverLayer ? t.__zr && t.__zr.addHover(t, t.__hoverStl) : (t[Bn](t.__hoverStl), t.z2 += 1), t.__isHover = !0)
+        }
+
+        function a(t) {
+            if (t.__isHover) {
+                var e = t.__normalStl;
+                t.useHoverLayer ? t.__zr && t.__zr.removeHover(t) : (e && t[Bn](e), t.z2 -= 1), t.__isHover = !1
+            }
+        }
+
+        function o(t) {
+            "group" === t.type ? t[Gn](function (t) {
+                "group" !== t.type && r(t)
+            }) : r(t)
+        }
+
+        function s(t) {
+            "group" === t.type ? t[Gn](function (t) {
+                "group" !== t.type && a(t)
+            }) : a(t)
+        }
+
+        function l(t, e) {
+            t.__hoverStl = t[ge] || e || {}, t.__hoverStlDirty = !0, t.__isHover && n(t)
+        }
+
+        function u(t) {
+            this.__hoverSilentOnTouch && t.zrByTouch || !this.__isEmphasis && o(this)
+        }
+
+        function c(t) {
+            this.__hoverSilentOnTouch && t.zrByTouch || !this.__isEmphasis && s(this)
+        }
+
+        function h() {
+            this.__isEmphasis = !0, o(this)
+        }
+
+        function d() {
+            this.__isEmphasis = !1, s(this)
+        }
+
+        function f(t, e, i, n, r, a) {
+            typeof r === On && (a = r, r = null);
+            var o = n && n[Ae]();
+            if (o) {
+                var s = t ? "Update" : "", l = n[Be]("animationDuration" + s), u = n[Be]("animationEasing" + s), c = n[Be]("animationDelay" + s);
+                typeof c === On && (c = c(r, n.getAnimationDelayParams ? n.getAnimationDelayParams(e, r) : null)), typeof l === On && (l = l(r)), l > 0 ? e.animateTo(i, l, c || 0, u, a) : (e.attr(i), a && a())
+            } else e.attr(i), a && a()
+        }
+
+        var p = t(Xr), v = t("zrender/tool/path"), g = Math.round, m = t("zrender/graphic/Path"), y = t(Hr), x = t(Fr), _ = t(Gr), w = {};
+        return w.Group = t("zrender/container/Group"), w.Image = t("zrender/graphic/Image"), w.Text = t("zrender/graphic/Text"), w[j] = t("zrender/graphic/shape/Circle"), w[li] = t("zrender/graphic/shape/Sector"), w.Ring = t("zrender/graphic/shape/Ring"), w[Ue] = t("zrender/graphic/shape/Polygon"), w[je] = t("zrender/graphic/shape/Polyline"), w.Rect = t("zrender/graphic/shape/Rect"), w.Line = t("zrender/graphic/shape/Line"), w.BezierCurve = t("zrender/graphic/shape/BezierCurve"), w.Arc = t("zrender/graphic/shape/Arc"), w.CompoundPath = t("zrender/graphic/CompoundPath"), w.LinearGradient = t("zrender/graphic/LinearGradient"), w.RadialGradient = t("zrender/graphic/RadialGradient"), w.BoundingRect = t(X), w.extendShape = function (t) {
+            return m[ir](t)
+        }, w.extendPath = function (t, e) {
+            return v.extendFromString(t, e)
+        }, w.makePath = function (t, e, i, n) {
+            var r = v.createFromString(t, e), a = r[yn]();
+            if (i) {
+                var o = a.width / a[Or];
+                if (n === fn) {
+                    var s, l = i[Or] * o;
+                    l <= i.width ? s = i[Or] : (l = i.width, s = l / o);
+                    var u = i.x + i.width / 2, c = i.y + i[Or] / 2;
+                    i.x = u - l / 2, i.y = c - s / 2, i.width = l, i[Or] = s
+                }
+                w.resizePath(r, i)
+            }
+            return r
+        }, w.mergePath = v.mergePath, w.resizePath = function (t, e) {
+            if (t[U]) {
+                var i = t[yn](), n = i.calculateTransform(e);
+                t[U](n)
+            }
+        }, w.subPixelOptimizeLine = function (t) {
+            var e = w.subPixelOptimize, i = t.shape, n = t.style[q];
+            return g(2 * i.x1) === g(2 * i.x2) && (i.x1 = i.x2 = e(i.x1, n, !0)), g(2 * i.y1) === g(2 * i.y2) && (i.y1 = i.y2 = e(i.y1, n, !0)), t
+        }, w.subPixelOptimizeRect = function (t) {
+            var e = w.subPixelOptimize, i = t.shape, n = t.style[q], r = i.x, a = i.y, o = i.width, s = i[Or];
+            return i.x = e(i.x, n, !0), i.y = e(i.y, n, !0), i.width = Math.max(e(r + o, n, !1) - i.x, 0 === o ? 0 : 1), i[Or] = Math.max(e(a + s, n, !1) - i.y, 0 === s ? 0 : 1), t
+        }, w.subPixelOptimize = function (t, e, i) {
+            var n = g(2 * t);
+            return (n + g(e)) % 2 === 0 ? n / 2 : (n + (i ? 1 : -1)) / 2
+        }, w[Ni] = function (t, e, i) {
+            t.__hoverSilentOnTouch = i && i.hoverSilentOnTouch, "group" === t.type ? t[Gn](function (t) {
+                "group" !== t.type && l(t, e)
+            }) : l(t, e), t.on(Xn, u).on(jn, c), t.on(Wi, h).on(qi, d)
+        }, w[W] = function (t, e, i) {
+            var n = e[Be](dn) || ye, r = e[Be](ii), a = n[mr](ye) >= 0 ? "white" : i, o = e[Lr](bn);
+            p[ir](t, {
+                textDistance: e[Be]("distance") || 5,
+                textFont: o[_n](),
+                textPosition: n,
+                textOffset: r,
+                textFill: o[xn]() || a
+            })
+        }, w[Ze] = function (t, e, i, n, r) {
+            f(!0, t, e, i, n, r)
+        }, w[ci] = function (t, e, i, n, r) {
+            f(!1, t, e, i, n, r)
+        }, w.getTransform = function (t, e) {
+            for (var i = x.identity([]); t && t !== e;)x.mul(i, t[Z](), i), t = t[an];
+            return i
+        }, w[U] = function (t, e, i) {
+            return i && (e = x.invert([], e)), _[U]([], t, e)
+        }, w.transformDirection = function (t, e, i) {
+            var n = 0 === e[4] || 0 === e[5] || 0 === e[0] ? 1 : Math.abs(2 * e[4] / e[0]), r = 0 === e[4] || 0 === e[5] || 0 === e[2] ? 1 : Math.abs(2 * e[4] / e[2]), a = ["left" === t ? -n : "right" === t ? n : 0, "top" === t ? -r : t === xr ? r : 0];
+            return a = w[U](a, e, i), Math.abs(a[0]) > Math.abs(a[1]) ? a[0] > 0 ? "right" : "left" : a[1] > 0 ? xr : "top"
+        }, w.groupTransition = function (t, e, i) {
+            function n(t) {
+                var e = {};
+                return t[Gn](function (t) {
+                    !t.isGroup && t.anid && (e[t.anid] = t)
+                }), e
+            }
+
+            function r(t) {
+                var e = {position: _.clone(t[dn]), rotation: t[pe]};
+                return t.shape && (e.shape = p[ir]({}, t.shape)), e
+            }
+
+            if (t && e) {
+                var a = n(t);
+                e[Gn](function (t) {
+                    if (!t.isGroup && t.anid) {
+                        var e = a[t.anid];
+                        if (e) {
+                            var n = r(t);
+                            t.attr(r(e)), w[Ze](t, n, i, t[pr])
+                        }
+                    }
+                })
+            }
+        }, w
+    }), e("echarts/util/model", [Yr, "./format", "./number", "../model/Model", Xr], function (t) {
+        function e(t, e) {
+            return t && t.hasOwnProperty(e)
+        }
+
+        var i = t("./format"), n = t("./number"), r = t("../model/Model"), a = t(Xr), o = a.each, s = a[Ir], l = {};
+        return l.normalizeToArray = function (t) {
+            return t instanceof Array ? t : null == t ? [] : [t]
+        }, l[ie] = function (t, e) {
+            if (t) {
+                var i = t[Wi] = t[Wi] || {}, n = t[qi] = t[qi] || {};
+                o(e, function (t) {
+                    var e = a[Pi](i[t], n[t]);
+                    null != e && (i[t] = e)
+                })
+            }
+        }, l.LABEL_OPTIONS = [dn, ii, "show", bn, "distance", H], l.getDataItemValue = function (t) {
+            return t && (null == t.value ? t : t.value)
+        }, l.isDataItemOption = function (t) {
+            return s(t) && !(t instanceof Array)
+        }, l.converDataValue = function (t, e) {
+            var i = e && e.type;
+            return i === qe ? t : ("time" !== i || isFinite(t) || null == t || "-" === t || (t = +n.parseDate(t)), null == t || "" === t ? 0 / 0 : +t)
+        }, l.createDataFormatModel = function (t, e) {
+            var i = new r;
+            return a.mixin(i, l.dataFormatMixin), i[Zn] = e[Zn], i.name = e.name || "", i[or] = e[or], i.subType = e.subType, i[qr] = function () {
+                return t
+            }, i
+        }, l.dataFormatMixin = {
+            getDataParams: function (t, e) {
+                var i = this[qr](e), n = this[Zn], r = this.name, a = this[Ge](t, e), o = i[ee](t), s = i[we](t, !0), l = i.getRawDataItem(t);
+                return {
+                    componentType: this[or],
+                    componentSubType: this.subType,
+                    seriesType: this[or] === rr ? this.subType : null,
+                    seriesIndex: n,
+                    seriesName: r,
+                    name: s,
+                    dataIndex: o,
+                    data: l,
+                    dataType: e,
+                    value: a,
+                    color: i[fr](t, "color"),
+                    $vars: ["seriesName", "name", "value"]
+                }
+            }, getFormattedLabel: function (t, e, n, r) {
+                e = e || qi;
+                var a = this[qr](n), o = a[Zi](t), s = this[Hn](t, n);
+                null != r && s.value instanceof Array && (s.value = s.value[r]);
+                var l = o.get(["label", e, H]);
+                return typeof l === On ? (s.status = e, l(s)) : typeof l === Er ? i.formatTpl(l, s) : void 0
+            }, getRawValue: function (t, e) {
+                var i = this[qr](e), n = i.getRawDataItem(t);
+                return null != n ? !s(n) || n instanceof Array ? n : n.value : void 0
+            }, formatTooltip: a.noop
+        }, l.mappingToExists = function (t, e) {
+            e = (e || []).slice();
+            var i = a.map(t || [], function (t) {
+                return {exist: t}
+            });
+            return o(e, function (t, n) {
+                if (s(t)) {
+                    for (var r = 0; r < i[yr]; r++)if (!i[r][un] && null != t.id && i[r].exist.id === t.id + "")return i[r][un] = t, void(e[n] = null);
+                    for (var r = 0; r < i[yr]; r++) {
+                        var a = i[r].exist;
+                        if (!(i[r][un] || null != a.id && null != t.id || null == t.name || l.isIdInner(t) || l.isIdInner(a) || a.name !== t.name + ""))return i[r][un] = t, void(e[n] = null)
+                    }
+                }
+            }), o(e, function (t) {
+                if (s(t)) {
+                    for (var e = 0; e < i[yr]; e++) {
+                        var n = i[e].exist;
+                        if (!i[e][un] && !l.isIdInner(n) && null == t.id) {
+                            i[e][un] = t;
+                            break
+                        }
+                    }
+                    e >= i[yr] && i.push({option: t})
+                }
+            }), i
+        }, l.makeIdAndName = function (t) {
+            var e = {};
+            o(t, function (t) {
+                var i = t.exist;
+                i && (e[i.id] = t)
+            }), o(t, function (t) {
+                var i = t[un];
+                a[Pr](!i || null == i.id || !e[i.id] || e[i.id] === t, "id duplicates: " + (i && i.id)), i && null != i.id && (e[i.id] = t), !t.keyInfo && (t.keyInfo = {})
+            }), o(t, function (t) {
+                var i = t.exist, n = t[un], r = t.keyInfo;
+                if (s(n)) {
+                    if (r.name = null != n.name ? n.name + "" : i ? i.name : "\x00-", i)r.id = i.id; else if (null != n.id)r.id = n.id + ""; else {
+                        var a = 0;
+                        do r.id = "\x00" + r.name + "\x00" + a++; while (e[r.id])
+                    }
+                    e[r.id] = t
+                }
+            })
+        }, l.isIdInner = function (t) {
+            return s(t) && t.id && 0 === (t.id + "")[mr]("\x00_ec_\x00")
+        }, l.compressBatches = function (t, e) {
+            function i(t, e, i) {
+                for (var n = 0, r = t[yr]; r > n; n++)for (var a = t[n].seriesId, o = l.normalizeToArray(t[n][pr]), s = i && i[a], u = 0, c = o[yr]; c > u; u++) {
+                    var h = o[u];
+                    s && s[h] ? s[h] = null : (e[a] || (e[a] = {}))[h] = 1
+                }
+            }
+
+            function n(t, e) {
+                var i = [];
+                for (var r in t)if (t.hasOwnProperty(r) && null != t[r])if (e)i.push(+r); else {
+                    var a = n(t[r], !0);
+                    a[yr] && i.push({seriesId: r, dataIndex: a})
+                }
+                return i
+            }
+
+            var r = {}, a = {};
+            return i(t || [], r), i(e || [], a, r), [n(r), n(a)]
+        }, l.queryDataIndex = function (t, e) {
+            return null != e.dataIndexInside ? e.dataIndexInside : null != e[pr] ? a[Rn](e[pr]) ? a.map(e[pr], function (e) {
+                return t.indexOfRawIndex(e)
+            }) : t.indexOfRawIndex(e[pr]) : null != e.name ? a[Rn](e.name) ? a.map(e.name, function (e) {
+                return t.indexOfName(e)
+            }) : t.indexOfName(e.name) : void 0
+        }, l.parseFinder = function (t, i, n) {
+            if (a[Tn](i)) {
+                var r = {};
+                r[i + "Index"] = 0, i = r
+            }
+            var s = n && n.defaultMainType;
+            !s || e(i, s + "Index") || e(i, s + "Id") || e(i, s + "Name") || (i[s + "Index"] = 0);
+            var l = {};
+            return o(i, function (e, n) {
+                var e = i[n];
+                if (n === pr || "dataIndexInside" === n)return void(l[n] = e);
+                var r = n.match(/^(\w+)(Index|Id|Name)$/) || [], a = r[1], o = r[2];
+                if (a && o) {
+                    var s = {mainType: a};
+                    s[o[Br]()] = e;
+                    var u = t[K](s);
+                    l[a + "Models"] = u, l[a + "Model"] = u[0]
+                }
+            }), l
+        }, l
+    }), e("echarts/util/throttle", [], function () {
+        var t = {}, e = "\x00__throttleOriginMethod", i = "\x00__throttleRate", n = "\x00__throttleType";
+        return t.throttle = function (t, e, i) {
+            function n() {
+                u = (new Date).getTime(), c = null, t.apply(o, s || [])
+            }
+
+            var r, a, o, s, l = 0, u = 0, c = null;
+            e = e || 0;
+            var h = function () {
+                r = (new Date).getTime(), o = this, s = arguments, a = r - (i ? l : u) - e, clearTimeout(c), i ? c = setTimeout(n, e) : a >= 0 ? n() : c = setTimeout(n, -a), l = r
+            };
+            return h.clear = function () {
+                c && (clearTimeout(c), c = null)
+            }, h
+        }, t.createOrUpdate = function (r, a, o, s) {
+            var l = r[a];
+            if (l) {
+                var u = l[e] || l, c = l[n], h = l[i];
+                if (h !== o || c !== s) {
+                    if (null == o || !s)return r[a] = u;
+                    l = r[a] = t.throttle(u, o, "debounce" === s), l[e] = u, l[n] = s, l[i] = o
+                }
+                return l
+            }
+        }, t.clear = function (t, i) {
+            var n = t[i];
+            n && n[e] && (t[i] = n[e])
+        }, t
+    }), e(Hr, [Yr], function () {
+        function t(t) {
+            return t = Math.round(t), 0 > t ? 0 : t > 255 ? 255 : t
+        }
+
+        function e(t) {
+            return t = Math.round(t), 0 > t ? 0 : t > 360 ? 360 : t
+        }
+
+        function i(t) {
+            return 0 > t ? 0 : t > 1 ? 1 : t
+        }
+
+        function n(e) {
+            return t(e[yr] && "%" === e.charAt(e[yr] - 1) ? parseFloat(e) / 100 * 255 : parseInt(e, 10))
+        }
+
+        function r(t) {
+            return i(t[yr] && "%" === t.charAt(t[yr] - 1) ? parseFloat(t) / 100 : parseFloat(t))
+        }
+
+        function a(t, e, i) {
+            return 0 > i ? i += 1 : i > 1 && (i -= 1), 1 > 6 * i ? t + (e - t) * i * 6 : 1 > 2 * i ? e : 2 > 3 * i ? t + (e - t) * (2 / 3 - i) * 6 : t
+        }
+
+        function o(t, e, i) {
+            return t + (e - t) * i
+        }
+
+        function s(t) {
+            if (t) {
+                t += "";
+                var e = t[En](/ /g, "")[Br]();
+                if (e in m)return m[e].slice();
+                if ("#" !== e.charAt(0)) {
+                    var i = e[mr]("("), a = e[mr](")");
+                    if (-1 !== i && a + 1 === e[yr]) {
+                        var o = e.substr(0, i), s = e.substr(i + 1, a - (i + 1)).split(","), u = 1;
+                        switch (o) {
+                            case"rgba":
+                                if (4 !== s[yr])return;
+                                u = r(s.pop());
+                            case"rgb":
+                                if (3 !== s[yr])return;
+                                return [n(s[0]), n(s[1]), n(s[2]), u];
+                            case"hsla":
+                                if (4 !== s[yr])return;
+                                return s[3] = r(s[3]), l(s);
+                            case"hsl":
+                                if (3 !== s[yr])return;
+                                return l(s);
+                            default:
+                                return
+                        }
+                    }
+                } else {
+                    if (4 === e[yr]) {
+                        var c = parseInt(e.substr(1), 16);
+                        if (!(c >= 0 && 4095 >= c))return;
+                        return [(3840 & c) >> 4 | (3840 & c) >> 8, 240 & c | (240 & c) >> 4, 15 & c | (15 & c) << 4, 1]
+                    }
+                    if (7 === e[yr]) {
+                        var c = parseInt(e.substr(1), 16);
+                        if (!(c >= 0 && 16777215 >= c))return;
+                        return [(16711680 & c) >> 16, (65280 & c) >> 8, 255 & c, 1]
+                    }
+                }
+            }
+        }
+
+        function l(e) {
+            var i = (parseFloat(e[0]) % 360 + 360) % 360 / 360, n = r(e[1]), o = r(e[2]), s = .5 >= o ? o * (n + 1) : o + n - o * n, l = 2 * o - s, u = [t(255 * a(l, s, i + 1 / 3)), t(255 * a(l, s, i)), t(255 * a(l, s, i - 1 / 3))];
+            return 4 === e[yr] && (u[3] = e[3]), u
+        }
+
+        function u(t) {
+            if (t) {
+                var e, i, n = t[0] / 255, r = t[1] / 255, a = t[2] / 255, o = Math.min(n, r, a), s = Math.max(n, r, a), l = s - o, u = (s + o) / 2;
+                if (0 === l)e = 0, i = 0; else {
+                    i = .5 > u ? l / (s + o) : l / (2 - s - o);
+                    var c = ((s - n) / 6 + l / 2) / l, h = ((s - r) / 6 + l / 2) / l, d = ((s - a) / 6 + l / 2) / l;
+                    n === s ? e = d - h : r === s ? e = 1 / 3 + c - d : a === s && (e = 2 / 3 + h - c), 0 > e && (e += 1), e > 1 && (e -= 1)
+                }
+                var f = [360 * e, i, u];
+                return null != t[3] && f.push(t[3]), f
+            }
+        }
+
+        function c(t, e) {
+            var i = s(t);
+            if (i) {
+                for (var n = 0; 3 > n; n++)i[n] = 0 > e ? i[n] * (1 - e) | 0 : (255 - i[n]) * e + i[n] | 0;
+                return g(i, 4 === i[yr] ? "rgba" : "rgb")
+            }
+        }
+
+        function h(t) {
+            var e = s(t);
+            return e ? ((1 << 24) + (e[0] << 16) + (e[1] << 8) + +e[2]).toString(16).slice(1) : void 0
+        }
+
+        function d(e, i, n) {
+            if (i && i[yr] && e >= 0 && 1 >= e) {
+                n = n || [0, 0, 0, 0];
+                var r = e * (i[yr] - 1), a = Math.floor(r), s = Math.ceil(r), l = i[a], u = i[s], c = r - a;
+                return n[0] = t(o(l[0], u[0], c)), n[1] = t(o(l[1], u[1], c)), n[2] = t(o(l[2], u[2], c)), n[3] = t(o(l[3], u[3], c)), n
+            }
+        }
+
+        function f(e, n, r) {
+            if (n && n[yr] && e >= 0 && 1 >= e) {
+                var a = e * (n[yr] - 1), l = Math.floor(a), u = Math.ceil(a), c = s(n[l]), h = s(n[u]), d = a - l, f = g([t(o(c[0], h[0], d)), t(o(c[1], h[1], d)), t(o(c[2], h[2], d)), i(o(c[3], h[3], d))], "rgba");
+                return r ? {color: f, leftIndex: l, rightIndex: u, value: a} : f
+            }
+        }
+
+        function p(t, i, n, a) {
+            return t = s(t), t ? (t = u(t), null != i && (t[0] = e(i)), null != n && (t[1] = r(n)), null != a && (t[2] = r(a)), g(l(t), "rgba")) : void 0
+        }
+
+        function v(t, e) {
+            return t = s(t), t && null != e ? (t[3] = i(e), g(t, "rgba")) : void 0
+        }
+
+        function g(t, e) {
+            var i = t[0] + "," + t[1] + "," + t[2];
+            return ("rgba" === e || "hsva" === e || "hsla" === e) && (i += "," + t[3]), e + "(" + i + ")"
+        }
+
+        var m = {
+            transparent: [0, 0, 0, 0],
+            aliceblue: [240, 248, 255, 1],
+            antiquewhite: [250, 235, 215, 1],
+            aqua: [0, 255, 255, 1],
+            aquamarine: [127, 255, 212, 1],
+            azure: [240, 255, 255, 1],
+            beige: [245, 245, 220, 1],
+            bisque: [255, 228, 196, 1],
+            black: [0, 0, 0, 1],
+            blanchedalmond: [255, 235, 205, 1],
+            blue: [0, 0, 255, 1],
+            blueviolet: [138, 43, 226, 1],
+            brown: [165, 42, 42, 1],
+            burlywood: [222, 184, 135, 1],
+            cadetblue: [95, 158, 160, 1],
+            chartreuse: [127, 255, 0, 1],
+            chocolate: [210, 105, 30, 1],
+            coral: [255, 127, 80, 1],
+            cornflowerblue: [100, 149, 237, 1],
+            cornsilk: [255, 248, 220, 1],
+            crimson: [220, 20, 60, 1],
+            cyan: [0, 255, 255, 1],
+            darkblue: [0, 0, 139, 1],
+            darkcyan: [0, 139, 139, 1],
+            darkgoldenrod: [184, 134, 11, 1],
+            darkgray: [169, 169, 169, 1],
+            darkgreen: [0, 100, 0, 1],
+            darkgrey: [169, 169, 169, 1],
+            darkkhaki: [189, 183, 107, 1],
+            darkmagenta: [139, 0, 139, 1],
+            darkolivegreen: [85, 107, 47, 1],
+            darkorange: [255, 140, 0, 1],
+            darkorchid: [153, 50, 204, 1],
+            darkred: [139, 0, 0, 1],
+            darksalmon: [233, 150, 122, 1],
+            darkseagreen: [143, 188, 143, 1],
+            darkslateblue: [72, 61, 139, 1],
+            darkslategray: [47, 79, 79, 1],
+            darkslategrey: [47, 79, 79, 1],
+            darkturquoise: [0, 206, 209, 1],
+            darkviolet: [148, 0, 211, 1],
+            deeppink: [255, 20, 147, 1],
+            deepskyblue: [0, 191, 255, 1],
+            dimgray: [105, 105, 105, 1],
+            dimgrey: [105, 105, 105, 1],
+            dodgerblue: [30, 144, 255, 1],
+            firebrick: [178, 34, 34, 1],
+            floralwhite: [255, 250, 240, 1],
+            forestgreen: [34, 139, 34, 1],
+            fuchsia: [255, 0, 255, 1],
+            gainsboro: [220, 220, 220, 1],
+            ghostwhite: [248, 248, 255, 1],
+            gold: [255, 215, 0, 1],
+            goldenrod: [218, 165, 32, 1],
+            gray: [128, 128, 128, 1],
+            green: [0, 128, 0, 1],
+            greenyellow: [173, 255, 47, 1],
+            grey: [128, 128, 128, 1],
+            honeydew: [240, 255, 240, 1],
+            hotpink: [255, 105, 180, 1],
+            indianred: [205, 92, 92, 1],
+            indigo: [75, 0, 130, 1],
+            ivory: [255, 255, 240, 1],
+            khaki: [240, 230, 140, 1],
+            lavender: [230, 230, 250, 1],
+            lavenderblush: [255, 240, 245, 1],
+            lawngreen: [124, 252, 0, 1],
+            lemonchiffon: [255, 250, 205, 1],
+            lightblue: [173, 216, 230, 1],
+            lightcoral: [240, 128, 128, 1],
+            lightcyan: [224, 255, 255, 1],
+            lightgoldenrodyellow: [250, 250, 210, 1],
+            lightgray: [211, 211, 211, 1],
+            lightgreen: [144, 238, 144, 1],
+            lightgrey: [211, 211, 211, 1],
+            lightpink: [255, 182, 193, 1],
+            lightsalmon: [255, 160, 122, 1],
+            lightseagreen: [32, 178, 170, 1],
+            lightskyblue: [135, 206, 250, 1],
+            lightslategray: [119, 136, 153, 1],
+            lightslategrey: [119, 136, 153, 1],
+            lightsteelblue: [176, 196, 222, 1],
+            lightyellow: [255, 255, 224, 1],
+            lime: [0, 255, 0, 1],
+            limegreen: [50, 205, 50, 1],
+            linen: [250, 240, 230, 1],
+            magenta: [255, 0, 255, 1],
+            maroon: [128, 0, 0, 1],
+            mediumaquamarine: [102, 205, 170, 1],
+            mediumblue: [0, 0, 205, 1],
+            mediumorchid: [186, 85, 211, 1],
+            mediumpurple: [147, 112, 219, 1],
+            mediumseagreen: [60, 179, 113, 1],
+            mediumslateblue: [123, 104, 238, 1],
+            mediumspringgreen: [0, 250, 154, 1],
+            mediumturquoise: [72, 209, 204, 1],
+            mediumvioletred: [199, 21, 133, 1],
+            midnightblue: [25, 25, 112, 1],
+            mintcream: [245, 255, 250, 1],
+            mistyrose: [255, 228, 225, 1],
+            moccasin: [255, 228, 181, 1],
+            navajowhite: [255, 222, 173, 1],
+            navy: [0, 0, 128, 1],
+            oldlace: [253, 245, 230, 1],
+            olive: [128, 128, 0, 1],
+            olivedrab: [107, 142, 35, 1],
+            orange: [255, 165, 0, 1],
+            orangered: [255, 69, 0, 1],
+            orchid: [218, 112, 214, 1],
+            palegoldenrod: [238, 232, 170, 1],
+            palegreen: [152, 251, 152, 1],
+            paleturquoise: [175, 238, 238, 1],
+            palevioletred: [219, 112, 147, 1],
+            papayawhip: [255, 239, 213, 1],
+            peachpuff: [255, 218, 185, 1],
+            peru: [205, 133, 63, 1],
+            pink: [255, 192, 203, 1],
+            plum: [221, 160, 221, 1],
+            powderblue: [176, 224, 230, 1],
+            purple: [128, 0, 128, 1],
+            red: [255, 0, 0, 1],
+            rosybrown: [188, 143, 143, 1],
+            royalblue: [65, 105, 225, 1],
+            saddlebrown: [139, 69, 19, 1],
+            salmon: [250, 128, 114, 1],
+            sandybrown: [244, 164, 96, 1],
+            seagreen: [46, 139, 87, 1],
+            seashell: [255, 245, 238, 1],
+            sienna: [160, 82, 45, 1],
+            silver: [192, 192, 192, 1],
+            skyblue: [135, 206, 235, 1],
+            slateblue: [106, 90, 205, 1],
+            slategray: [112, 128, 144, 1],
+            slategrey: [112, 128, 144, 1],
+            snow: [255, 250, 250, 1],
+            springgreen: [0, 255, 127, 1],
+            steelblue: [70, 130, 180, 1],
+            tan: [210, 180, 140, 1],
+            teal: [0, 128, 128, 1],
+            thistle: [216, 191, 216, 1],
+            tomato: [255, 99, 71, 1],
+            turquoise: [64, 224, 208, 1],
+            violet: [238, 130, 238, 1],
+            wheat: [245, 222, 179, 1],
+            white: [255, 255, 255, 1],
+            whitesmoke: [245, 245, 245, 1],
+            yellow: [255, 255, 0, 1],
+            yellowgreen: [154, 205, 50, 1]
+        };
+        return {
+            parse: s,
+            lift: c,
+            toHex: h,
+            fastMapToColor: d,
+            mapToColor: f,
+            modifyHSL: p,
+            modifyAlpha: v,
+            stringify: g
+        }
+    }), e("zrender/zrender", [Yr, "./core/guid", "./core/env", "./core/util", "./Handler", "./Storage", "./animation/Animation", "./dom/HandlerProxy", "./Painter"], function (t) {
+        function e(t) {
+            delete h[t]
+        }
+
+        var i = t("./core/guid"), n = t("./core/env"), r = t("./core/util"), a = t("./Handler"), o = t("./Storage"), s = t("./animation/Animation"), l = t("./dom/HandlerProxy"), u = !n[Ar], c = {canvas: t("./Painter")}, h = {}, d = {};
+        d.version = "3.3.0", d.init = function (t, e) {
+            var n = new f(i(), t, e);
+            return h[n.id] = n, n
+        }, d[$n] = function (t) {
+            if (t)t[$n](); else {
+                for (var e in h)h.hasOwnProperty(e) && h[e][$n]();
+                h = {}
+            }
+            return d
+        }, d.getInstance = function (t) {
+            return h[t]
+        }, d.registerPainter = function (t, e) {
+            c[t] = e
+        };
+        var f = function (t, e, i) {
+            i = i || {}, this.dom = e, this.id = t;
+            var h = this, d = new o, f = i.renderer;
+            if (u) {
+                if (!c.vml)throw new Error("You need to require 'zrender/vml/vml' to support IE8");
+                f = "vml"
+            } else f && c[f] || (f = Rr);
+            var p = new c[f](e, d, i);
+            this[Mr] = d, this.painter = p;
+            var v = n.node ? null : new l(p.getViewportRoot());
+            this.handler = new a(d, p, v, p.root), this[zr] = new s({stage: {update: r.bind(this.flush, this)}}), this[zr].start(), this._needsRefresh;
+            var g = d.delFromMap, m = d.addToMap;
+            d.delFromMap = function (t) {
+                var e = d.get(t);
+                g.call(d, t), e && e.removeSelfFromZr(h)
+            }, d.addToMap = function (t) {
+                m.call(d, t), t.addSelfToZr(h)
+            }
+        };
+        return f[Nr] = {
+            constructor: f, getId: function () {
+                return this.id
+            }, add: function (t) {
+                this[Mr].addRoot(t), this._needsRefresh = !0
+            }, remove: function (t) {
+                this[Mr].delRoot(t), this._needsRefresh = !0
+            }, configLayer: function (t, e) {
+                this.painter.configLayer(t, e), this._needsRefresh = !0
+            }, refreshImmediately: function () {
+                this._needsRefresh = !1, this.painter.refresh(), this._needsRefresh = !1
+            }, refresh: function () {
+                this._needsRefresh = !0
+            }, flush: function () {
+                this._needsRefresh && this.refreshImmediately(), this._needsRefreshHover && this.refreshHoverImmediately()
+            }, addHover: function (t, e) {
+                this.painter.addHover && (this.painter.addHover(t, e), this.refreshHover())
+            }, removeHover: function (t) {
+                this.painter.removeHover && (this.painter.removeHover(t), this.refreshHover())
+            }, clearHover: function () {
+                this.painter.clearHover && (this.painter.clearHover(), this.refreshHover())
+            }, refreshHover: function () {
+                this._needsRefreshHover = !0
+            }, refreshHoverImmediately: function () {
+                this._needsRefreshHover = !1, this.painter.refreshHover && this.painter.refreshHover()
+            }, resize: function (t) {
+                t = t || {}, this.painter[Vr](t.width, t[Or]), this.handler[Vr]()
+            }, clearAnimation: function () {
+                this[zr].clear()
+            }, getWidth: function () {
+                return this.painter[Cr]()
+            }, getHeight: function () {
+                return this.painter[Tr]()
+            }, pathToImage: function (t, e, n) {
+                var r = i();
+                return this.painter.pathToImage(r, t, e, n)
+            }, setCursorStyle: function (t) {
+                this.handler.setCursorStyle(t)
+            }, on: function (t, e, i) {
+                this.handler.on(t, e, i)
+            }, off: function (t, e) {
+                this.handler.off(t, e)
+            }, trigger: function (t, e) {
+                this.handler[Jn](t, e)
+            }, clear: function () {
+                this[Mr].delRoot(), this.painter.clear()
+            }, dispose: function () {
+                this[zr].stop(), this.clear(), this[Mr][$n](), this.painter[$n](), this.handler[$n](), this[zr] = this[Mr] = this.painter = this.handler = null, e(this.id)
+            }
+        }, d
+    }), e("zrender/mixin/Eventful", [Yr], function () {
+        var t = Array[Nr].slice, e = function () {
+            this._$handlers = {}
+        };
+        return e[Nr] = {
+            constructor: e, one: function (t, e, i) {
+                var n = this._$handlers;
+                if (!e || !t)return this;
+                n[t] || (n[t] = []);
+                for (var r = 0; r < n[t][yr]; r++)if (n[t][r].h === e)return this;
+                return n[t].push({h: e, one: !0, ctx: i || this}), this
+            }, on: function (t, e, i) {
+                var n = this._$handlers;
+                if (!e || !t)return this;
+                n[t] || (n[t] = []);
+                for (var r = 0; r < n[t][yr]; r++)if (n[t][r].h === e)return this;
+                return n[t].push({h: e, one: !1, ctx: i || this}), this
+            }, isSilent: function (t) {
+                var e = this._$handlers;
+                return e[t] && e[t][yr]
+            }, off: function (t, e) {
+                var i = this._$handlers;
+                if (!t)return this._$handlers = {}, this;
+                if (e) {
+                    if (i[t]) {
+                        for (var n = [], r = 0, a = i[t][yr]; a > r; r++)i[t][r].h != e && n.push(i[t][r]);
+                        i[t] = n
+                    }
+                    i[t] && 0 === i[t][yr] && delete i[t]
+                } else delete i[t];
+                return this
+            }, trigger: function (e) {
+                if (this._$handlers[e]) {
+                    var i = arguments, n = i[yr];
+                    n > 3 && (i = t.call(i, 1));
+                    for (var r = this._$handlers[e], a = r[yr], o = 0; a > o;) {
+                        switch (n) {
+                            case 1:
+                                r[o].h.call(r[o].ctx);
+                                break;
+                            case 2:
+                                r[o].h.call(r[o].ctx, i[1]);
+                                break;
+                            case 3:
+                                r[o].h.call(r[o].ctx, i[1], i[2]);
+                                break;
+                            default:
+                                r[o].h.apply(r[o].ctx, i)
+                        }
+                        r[o].one ? (r[Yn](o, 1), a--) : o++
+                    }
+                }
+                return this
+            }, triggerWithContext: function (e) {
+                if (this._$handlers[e]) {
+                    var i = arguments, n = i[yr];
+                    n > 4 && (i = t.call(i, 1, i[yr] - 1));
+                    for (var r = i[i[yr] - 1], a = this._$handlers[e], o = a[yr], s = 0; o > s;) {
+                        switch (n) {
+                            case 1:
+                                a[s].h.call(r);
+                                break;
+                            case 2:
+                                a[s].h.call(r, i[1]);
+                                break;
+                            case 3:
+                                a[s].h.call(r, i[1], i[2]);
+                                break;
+                            default:
+                                a[s].h.apply(r, i)
+                        }
+                        a[s].one ? (a[Yn](s, 1), o--) : s++
+                    }
+                }
+                return this
+            }
+        }, e
+    }), e("echarts/visual/seriesColor", [Yr, "zrender/graphic/Gradient"], function (t) {
+        var e = t("zrender/graphic/Gradient");
+        return function (t) {
+            function i(i) {
+                var n = (i.visualColorAccessPath || te).split("."), r = i[qr](), a = i.get(n) || i.getColorFromPalette(i.get("name"));
+                r[Wr]("color", a), t.isSeriesFiltered(i) || (typeof a !== On || a instanceof e || r.each(function (t) {
+                    r[wi](t, "color", a(i[Hn](t)))
+                }), r.each(function (t) {
+                    var e = r[Zi](t), i = e.get(n, !0);
+                    null != i && r[wi](t, "color", i)
+                }))
+            }
+
+            t.eachRawSeries(i)
+        }
+    }), e("zrender/core/timsort", [], function () {
+        function t(t) {
+            for (var e = 0; t >= l;)e |= 1 & t, t >>= 1;
+            return t + e
+        }
+
+        function e(t, e, n, r) {
+            var a = e + 1;
+            if (a === n)return 1;
+            if (r(t[a++], t[e]) < 0) {
+                for (; n > a && r(t[a], t[a - 1]) < 0;)a++;
+                i(t, e, a)
+            } else for (; n > a && r(t[a], t[a - 1]) >= 0;)a++;
+            return a - e
+        }
+
+        function i(t, e, i) {
+            for (i--; i > e;) {
+                var n = t[e];
+                t[e++] = t[i], t[i--] = n
+            }
+        }
+
+        function n(t, e, i, n, r) {
+            for (n === e && n++; i > n; n++) {
+                for (var a, o = t[n], s = e, l = n; l > s;)a = s + l >>> 1, r(o, t[a]) < 0 ? l = a : s = a + 1;
+                var u = n - s;
+                switch (u) {
+                    case 3:
+                        t[s + 3] = t[s + 2];
+                    case 2:
+                        t[s + 2] = t[s + 1];
+                    case 1:
+                        t[s + 1] = t[s];
+                        break;
+                    default:
+                        for (; u > 0;)t[s + u] = t[s + u - 1], u--
+                }
+                t[s] = o
+            }
+        }
+
+        function r(t, e, i, n, r, a) {
+            var o = 0, s = 0, l = 1;
+            if (a(t, e[i + r]) > 0) {
+                for (s = n - r; s > l && a(t, e[i + r + l]) > 0;)o = l, l = (l << 1) + 1, 0 >= l && (l = s);
+                l > s && (l = s), o += r, l += r
+            } else {
+                for (s = r + 1; s > l && a(t, e[i + r - l]) <= 0;)o = l, l = (l << 1) + 1, 0 >= l && (l = s);
+                l > s && (l = s);
+                var u = o;
+                o = r - l, l = r - u
+            }
+            for (o++; l > o;) {
+                var c = o + (l - o >>> 1);
+                a(t, e[i + c]) > 0 ? o = c + 1 : l = c
+            }
+            return l
+        }
+
+        function a(t, e, i, n, r, a) {
+            var o = 0, s = 0, l = 1;
+            if (a(t, e[i + r]) < 0) {
+                for (s = r + 1; s > l && a(t, e[i + r - l]) < 0;)o = l, l = (l << 1) + 1, 0 >= l && (l = s);
+                l > s && (l = s);
+                var u = o;
+                o = r - l, l = r - u
+            } else {
+                for (s = n - r; s > l && a(t, e[i + r + l]) >= 0;)o = l, l = (l << 1) + 1, 0 >= l && (l = s);
+                l > s && (l = s), o += r, l += r
+            }
+            for (o++; l > o;) {
+                var c = o + (l - o >>> 1);
+                a(t, e[i + c]) < 0 ? l = c : o = c + 1
+            }
+            return l
+        }
+
+        function o(t, e) {
+            function i(t, e) {
+                d[y] = t, f[y] = e, y += 1
+            }
+
+            function n() {
+                for (; y > 1;) {
+                    var t = y - 2;
+                    if (t >= 1 && f[t - 1] <= f[t] + f[t + 1] || t >= 2 && f[t - 2] <= f[t] + f[t - 1])f[t - 1] < f[t + 1] && t--; else if (f[t] > f[t + 1])break;
+                    s(t)
+                }
+            }
+
+            function o() {
+                for (; y > 1;) {
+                    var t = y - 2;
+                    t > 0 && f[t - 1] < f[t + 1] && t--, s(t)
+                }
+            }
+
+            function s(i) {
+                var n = d[i], o = f[i], s = d[i + 1], u = f[i + 1];
+                f[i] = o + u, i === y - 3 && (d[i + 1] = d[i + 2], f[i + 1] = f[i + 2]), y--;
+                var c = a(t[s], t, n, o, 0, e);
+                n += c, o -= c, 0 !== o && (u = r(t[n + o - 1], t, s, u, u - 1, e), 0 !== u && (u >= o ? l(n, o, s, u) : h(n, o, s, u)))
+            }
+
+            function l(i, n, o, s) {
+                var l = 0;
+                for (l = 0; n > l; l++)x[l] = t[i + l];
+                var c = 0, h = o, d = i;
+                if (t[d++] = t[h++], 0 !== --s) {
+                    if (1 === n) {
+                        for (l = 0; s > l; l++)t[d + l] = t[h + l];
+                        return void(t[d + s] = x[c])
+                    }
+                    for (var f, v, g, m = p; ;) {
+                        f = 0, v = 0, g = !1;
+                        do if (e(t[h], x[c]) < 0) {
+                            if (t[d++] = t[h++], v++, f = 0, 0 === --s) {
+                                g = !0;
+                                break
+                            }
+                        } else if (t[d++] = x[c++], f++, v = 0, 1 === --n) {
+                            g = !0;
+                            break
+                        } while (m > (f | v));
+                        if (g)break;
+                        do {
+                            if (f = a(t[h], x, c, n, 0, e), 0 !== f) {
+                                for (l = 0; f > l; l++)t[d + l] = x[c + l];
+                                if (d += f, c += f, n -= f, 1 >= n) {
+                                    g = !0;
+                                    break
+                                }
+                            }
+                            if (t[d++] = t[h++], 0 === --s) {
+                                g = !0;
+                                break
+                            }
+                            if (v = r(x[c], t, h, s, 0, e), 0 !== v) {
+                                for (l = 0; v > l; l++)t[d + l] = t[h + l];
+                                if (d += v, h += v, s -= v, 0 === s) {
+                                    g = !0;
+                                    break
+                                }
+                            }
+                            if (t[d++] = x[c++], 1 === --n) {
+                                g = !0;
+                                break
+                            }
+                            m--
+                        } while (f >= u || v >= u);
+                        if (g)break;
+                        0 > m && (m = 0), m += 2
+                    }
+                    if (p = m, 1 > p && (p = 1), 1 === n) {
+                        for (l = 0; s > l; l++)t[d + l] = t[h + l];
+                        t[d + s] = x[c]
+                    } else {
+                        if (0 === n)throw new Error;
+                        for (l = 0; n > l; l++)t[d + l] = x[c + l]
+                    }
+                } else for (l = 0; n > l; l++)t[d + l] = x[c + l]
+            }
+
+            function h(i, n, o, s) {
+                var l = 0;
+                for (l = 0; s > l; l++)x[l] = t[o + l];
+                var c = i + n - 1, h = s - 1, d = o + s - 1, f = 0, v = 0;
+                if (t[d--] = t[c--], 0 !== --n) {
+                    if (1 === s) {
+                        for (d -= n, c -= n, v = d + 1, f = c + 1, l = n - 1; l >= 0; l--)t[v + l] = t[f + l];
+                        return void(t[d] = x[h])
+                    }
+                    for (var g = p; ;) {
+                        var m = 0, y = 0, _ = !1;
+                        do if (e(x[h], t[c]) < 0) {
+                            if (t[d--] = t[c--], m++, y = 0, 0 === --n) {
+                                _ = !0;
+                                break
+                            }
+                        } else if (t[d--] = x[h--], y++, m = 0, 1 === --s) {
+                            _ = !0;
+                            break
+                        } while (g > (m | y));
+                        if (_)break;
+                        do {
+                            if (m = n - a(x[h], t, i, n, n - 1, e), 0 !== m) {
+                                for (d -= m, c -= m, n -= m, v = d + 1, f = c + 1, l = m - 1; l >= 0; l--)t[v + l] = t[f + l];
+                                if (0 === n) {
+                                    _ = !0;
+                                    break
+                                }
+                            }
+                            if (t[d--] = x[h--], 1 === --s) {
+                                _ = !0;
+                                break
+                            }
+                            if (y = s - r(t[c], x, 0, s, s - 1, e), 0 !== y) {
+                                for (d -= y, h -= y, s -= y, v = d + 1, f = h + 1, l = 0; y > l; l++)t[v + l] = x[f + l];
+                                if (1 >= s) {
+                                    _ = !0;
+                                    break
+                                }
+                            }
+                            if (t[d--] = t[c--], 0 === --n) {
+                                _ = !0;
+                                break
+                            }
+                            g--
+                        } while (m >= u || y >= u);
+                        if (_)break;
+                        0 > g && (g = 0), g += 2
+                    }
+                    if (p = g, 1 > p && (p = 1), 1 === s) {
+                        for (d -= n, c -= n, v = d + 1, f = c + 1, l = n - 1; l >= 0; l--)t[v + l] = t[f + l];
+                        t[d] = x[h]
+                    } else {
+                        if (0 === s)throw new Error;
+                        for (f = d - (s - 1), l = 0; s > l; l++)t[f + l] = x[l]
+                    }
+                } else for (f = d - (s - 1), l = 0; s > l; l++)t[f + l] = x[l]
+            }
+
+            var d, f, p = u, v = 0, g = c, m = 0, y = 0;
+            v = t[yr], 2 * c > v && (g = v >>> 1);
+            var x = [];
+            m = 120 > v ? 5 : 1542 > v ? 10 : 119151 > v ? 19 : 40, d = [], f = [], this.mergeRuns = n, this.forceMergeRuns = o, this.pushRun = i
+        }
+
+        function s(i, r, a, s) {
+            a || (a = 0), s || (s = i[yr]);
+            var u = s - a;
+            if (!(2 > u)) {
+                var c = 0;
+                if (l > u)return c = e(i, a, s, r), void n(i, a, s, a + c, r);
+                var h = new o(i, r), d = t(u);
+                do {
+                    if (c = e(i, a, s, r), d > c) {
+                        var f = u;
+                        f > d && (f = d), n(i, a, a + f, a + c, r), c = f
+                    }
+                    h.pushRun(a, c), h.mergeRuns(), u -= c, a += c
+                } while (0 !== u);
+                h.forceMergeRuns()
+            }
+        }
+
+        var l = 32, u = 7, c = 256;
+        return s
+    }), e("echarts/loading/default", [Yr, "../util/graphic", Xr], function (t) {
+        var e = t("../util/graphic"), i = t(Xr), n = Math.PI;
+        return function (t, r) {
+            r = r || {}, i[tr](r, {
+                text: "loading",
+                color: "#c23531",
+                textColor: "#000",
+                maskColor: "rgba(255, 255, 255, 0.8)",
+                zlevel: 0
+            });
+            var a = new e.Rect({
+                style: {fill: r.maskColor},
+                zlevel: r[Nn],
+                z: 1e4
+            }), o = new e.Arc({
+                shape: {startAngle: -n / 2, endAngle: -n / 2 + .1, r: 10},
+                style: {stroke: r.color, lineCap: "round", lineWidth: 5},
+                zlevel: r[Nn],
+                z: 10001
+            }), s = new e.Rect({
+                style: {
+                    fill: "none",
+                    text: r.text,
+                    textPosition: "right",
+                    textDistance: 10,
+                    textFill: r.textColor
+                }, zlevel: r[Nn], z: 10001
+            });
+            o.animateShape(!0).when(1e3, {endAngle: 3 * n / 2}).start("circularInOut"), o.animateShape(!0).when(1e3, {startAngle: 3 * n / 2}).delay(300).start("circularInOut");
+            var l = new e.Group;
+            return l.add(o), l.add(s), l.add(a), l[Vr] = function () {
+                var e = t[Cr]() / 2, i = t[Tr]() / 2;
+                o[Qe]({cx: e, cy: i});
+                var n = o.shape.r;
+                s[Qe]({x: e - n, y: i - n, width: 2 * n, height: 2 * n}), a[Qe]({
+                    x: 0,
+                    y: 0,
+                    width: t[Cr](),
+                    height: t[Tr]()
+                })
+            }, l[Vr](), l
+        }
+    }), e("echarts/preprocessor/backwardCompat", [Yr, Xr, "./helper/compatStyle"], function (t) {
+        function e(t, e) {
+            e = e.split(",");
+            for (var i = t, n = 0; n < e[yr] && (i = i && i[e[n]], null != i); n++);
+            return i
+        }
+
+        function i(t, e, i, n) {
+            e = e.split(",");
+            for (var r, a = t, o = 0; o < e[yr] - 1; o++)r = e[o], null == a[r] && (a[r] = {}), a = a[r];
+            (n || null == a[e[o]]) && (a[e[o]] = i)
+        }
+
+        function n(t) {
+            u(o, function (e) {
+                e[0]in t && !(e[1]in t) && (t[e[1]] = t[e[0]])
+            })
+        }
+
+        var r = t(Xr), a = t("./helper/compatStyle"), o = [["x", "left"], ["y", "top"], ["x2", "right"], ["y2", xr]], s = ["grid", "geo", "parallel", "legend", "toolbox", "title", "visualMap", F, "timeline"], l = ["bar", "boxplot", "candlestick", "chord", "effectScatter", "funnel", "gauge", "lines", "graph", "heatmap", "line", "map", "parallel", "pie", "radar", "sankey", "scatter", "treemap"], u = r.each;
+        return function (t) {
+            u(t[rr], function (t) {
+                if (r[Ir](t)) {
+                    var o = t.type;
+                    if (a(t), ("pie" === o || "gauge" === o) && null != t.clockWise && (t[ue] = t.clockWise), "gauge" === o) {
+                        var s = e(t, "pointer.color");
+                        null != s && i(t, te, s)
+                    }
+                    for (var u = 0; u < l[yr]; u++)if (l[u] === t.type) {
+                        n(t);
+                        break
+                    }
+                }
+            }), t.dataRange && (t.visualMap = t.dataRange), u(s, function (e) {
+                var i = t[e];
+                i && (r[Rn](i) || (i = [i]), u(i, function (t) {
+                    n(t)
+                }))
+            })
+        }
+    }), e("echarts/model/Model", [Yr, Xr, "../util/clazz", Zr, "./mixin/lineStyle", "./mixin/areaStyle", "./mixin/textStyle", "./mixin/itemStyle"], function (t) {
+        function e(t, e, i) {
+            this.parentModel = e, this[$] = i, this[un] = t
+        }
+
+        function i(t, e, i) {
+            for (var n = 0; n < e[yr] && (!e[n] || (t = t && "object" == typeof t ? t[e[n]] : null, null != t)); n++);
+            return null == t && i && (t = i.get(e)), t
+        }
+
+        function n(t, e) {
+            var i = a.get(t, "getParent");
+            return i ? i.call(t, e) : t.parentModel
+        }
+
+        var r = t(Xr), a = t("../util/clazz"), o = t(Zr);
+        e[Nr] = {
+            constructor: e, init: null, mergeOption: function (t) {
+                r.merge(this[un], t, !0)
+            }, get: function (t, e) {
+                return null == t ? this[un] : i(this[un], this.parsePath(t), !e && n(this, t))
+            }, getShallow: function (t, e) {
+                var i = this[un], r = null == i ? i : i[t], a = !e && n(this, t);
+                return null == r && a && (r = a[Be](t)), r
+            }, getModel: function (t, r) {
+                var a, o = null == t ? this[un] : i(this[un], t = this.parsePath(t));
+                return r = r || (a = n(this, t)) && a[Lr](t), new e(o, r, this[$])
+            }, isEmpty: function () {
+                return null == this[un]
+            }, restoreData: function () {
+            }, clone: function () {
+                var t = this.constructor;
+                return new t(r.clone(this[un]))
+            }, setReadOnly: function (t) {
+                a.setReadOnly(this, t)
+            }, parsePath: function (t) {
+                return typeof t === Er && (t = t.split(".")), t
+            }, customizeGetParent: function (t) {
+                a.set(this, "getParent", t)
+            }, isAnimationEnabled: function () {
+                if (!o.node) {
+                    if (null != this[un][zr])return !!this[un][zr];
+                    if (this.parentModel)return this.parentModel[Ae]()
+                }
+            }
+        }, a.enableClassExtend(e);
+        var s = r.mixin;
+        return s(e, t("./mixin/lineStyle")), s(e, t("./mixin/areaStyle")), s(e, t("./mixin/textStyle")), s(e, t("./mixin/itemStyle")), e
+    }), e("echarts/util/number", [Yr], function () {
+        function t(t) {
+            return t[En](/^\s+/, "")[En](/\s+$/, "")
+        }
+
+        var e = {}, i = 1e-4;
+        return e[G] = function (t, e, i, n) {
+            var r = e[1] - e[0], a = i[1] - i[0];
+            if (0 === r)return 0 === a ? i[0] : (i[0] + i[1]) / 2;
+            if (n)if (r > 0) {
+                if (t <= e[0])return i[0];
+                if (t >= e[1])return i[1]
+            } else {
+                if (t >= e[0])return i[0];
+                if (t <= e[1])return i[1]
+            } else {
+                if (t === e[0])return i[0];
+                if (t === e[1])return i[1]
+            }
+            return (t - e[0]) / r * a + i[0]
+        }, e[Ii] = function (e, i) {
+            switch (e) {
+                case fn:
+                case pn:
+                    e = "50%";
+                    break;
+                case"left":
+                case"top":
+                    e = "0%";
+                    break;
+                case"right":
+                case xr:
+                    e = "100%"
+            }
+            return typeof e === Er ? t(e).match(/%$/) ? parseFloat(e) / 100 * i : parseFloat(e) : null == e ? 0 / 0 : +e
+        }, e.round = function (t, e) {
+            return null == e && (e = 10), e = Math.min(Math.max(0, e), 20), +(+t)[ne](e)
+        }, e.asc = function (t) {
+            return t.sort(function (t, e) {
+                return t - e
+            }), t
+        }, e.getPrecision = function (t) {
+            if (t = +t, isNaN(t))return 0;
+            for (var e = 1, i = 0; Math.round(t * e) / e !== t;)e *= 10, i++;
+            return i
+        }, e.getPrecisionSafe = function (t) {
+            var e = t.toString(), i = e[mr](".");
+            return 0 > i ? 0 : e[yr] - 1 - i
+        }, e.getPixelPrecision = function (t, e) {
+            var i = Math.log, n = Math.LN10, r = Math.floor(i(t[1] - t[0]) / n), a = Math.round(i(Math.abs(e[1] - e[0])) / n), o = Math.min(Math.max(-r + a, 0), 20);
+            return isFinite(o) ? o : 20
+        }, e.MAX_SAFE_INTEGER = 9007199254740991, e.remRadian = function (t) {
+            var e = 2 * Math.PI;
+            return (t % e + e) % e
+        }, e.isRadianAroundZero = function (t) {
+            return t > -i && i > t
+        }, e.parseDate = function (t) {
+            if (t instanceof Date)return t;
+            if (typeof t === Er) {
+                var e = new Date(t);
+                return isNaN(+e) && (e = new Date(new Date(t[En](/-/g, "/")) - new Date("1970/01/01"))), e
+            }
+            return new Date(Math.round(t))
+        }, e.quantity = function (t) {
+            return Math.pow(10, Math.floor(Math.log(t) / Math.LN10))
+        }, e.nice = function (t, i) {
+            var n, r = e.quantity(t), a = t / r;
+            return n = i ? 1.5 > a ? 1 : 2.5 > a ? 2 : 4 > a ? 3 : 7 > a ? 5 : 10 : 1 > a ? 1 : 2 > a ? 2 : 3 > a ? 3 : 5 > a ? 5 : 10, n * r
+        }, e.reformIntervals = function (t) {
+            function e(t, i, n) {
+                return t[B][n] < i[B][n] || t[B][n] === i[B][n] && (t.close[n] - i.close[n] === (n ? -1 : 1) || !n && e(t, i, 1))
+            }
+
+            t.sort(function (t, i) {
+                return e(t, i, 0) ? -1 : 1
+            });
+            for (var i = -1 / 0, n = 1, r = 0; r < t[yr];) {
+                for (var a = t[r][B], o = t[r].close, s = 0; 2 > s; s++)a[s] <= i && (a[s] = i, o[s] = s ? 1 : 1 - n), i = a[s], n = o[s];
+                a[0] === a[1] && o[0] * o[1] !== 1 ? t[Yn](r, 1) : r++
+            }
+            return t
+        }, e.isNumeric = function (t) {
+            return t - parseFloat(t) >= 0
+        }, e
+    }), e(Fr, [], function () {
+        var t = typeof Float32Array === Q ? Array : Float32Array, e = {
+            create: function () {
+                var i = new t(6);
+                return e.identity(i), i
+            }, identity: function (t) {
+                return t[0] = 1, t[1] = 0, t[2] = 0, t[3] = 1, t[4] = 0, t[5] = 0, t
+            }, copy: function (t, e) {
+                return t[0] = e[0], t[1] = e[1], t[2] = e[2], t[3] = e[3], t[4] = e[4], t[5] = e[5], t
+            }, mul: function (t, e, i) {
+                var n = e[0] * i[0] + e[2] * i[1], r = e[1] * i[0] + e[3] * i[1], a = e[0] * i[2] + e[2] * i[3], o = e[1] * i[2] + e[3] * i[3], s = e[0] * i[4] + e[2] * i[5] + e[4], l = e[1] * i[4] + e[3] * i[5] + e[5];
+                return t[0] = n, t[1] = r, t[2] = a, t[3] = o, t[4] = s, t[5] = l, t
+            }, translate: function (t, e, i) {
+                return t[0] = e[0], t[1] = e[1], t[2] = e[2], t[3] = e[3], t[4] = e[4] + i[0], t[5] = e[5] + i[1], t
+            }, rotate: function (t, e, i) {
+                var n = e[0], r = e[2], a = e[4], o = e[1], s = e[3], l = e[5], u = Math.sin(i), c = Math.cos(i);
+                return t[0] = n * c + o * u, t[1] = -n * u + o * c, t[2] = r * c + s * u, t[3] = -r * u + c * s, t[4] = c * a + u * l, t[5] = c * l - u * a, t
+            }, scale: function (t, e, i) {
+                var n = i[0], r = i[1];
+                return t[0] = e[0] * n, t[1] = e[1] * r, t[2] = e[2] * n, t[3] = e[3] * r, t[4] = e[4] * n, t[5] = e[5] * r, t
+            }, invert: function (t, e) {
+                var i = e[0], n = e[2], r = e[4], a = e[1], o = e[3], s = e[5], l = i * o - a * n;
+                return l ? (l = 1 / l, t[0] = o * l, t[1] = -a * l, t[2] = -n * l, t[3] = i * l, t[4] = (n * s - o * r) * l, t[5] = (a * r - i * s) * l, t) : null
+            }
+        };
+        return e
+    }), e("echarts/util/format", [Yr, Xr, "./number", N], function (t) {
+        var e = t(Xr), i = t("./number"), n = t(N), r = {};
+        r[Vi] = function (t) {
+            return isNaN(t) ? "-" : (t = (t + "").split("."), t[0][En](/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, "$1,") + (t[yr] > 1 ? "." + t[1] : ""))
+        }, r.toCamelCase = function (t, e) {
+            return t = (t || "")[Br]()[En](/-(.)/g, function (t, e) {
+                return e.toUpperCase()
+            }), e && t && (t = t.charAt(0).toUpperCase() + t.slice(1)), t
+        }, r.normalizeCssArray = function (t) {
+            var e = t[yr];
+            return typeof t === kn ? [t, t, t, t] : 2 === e ? [t[0], t[1], t[0], t[1]] : 3 === e ? [t[0], t[1], t[2], t[1]] : t
+        };
+        var a = r[Oi] = function (t) {
+            return String(t)[En](/&/g, "&amp;")[En](/</g, "&lt;")[En](/>/g, "&gt;")[En](/"/g, "&quot;")[En](/'/g, "&#39;")
+        }, o = ["a", "b", "c", "d", "e", "f", "g"], s = function (t, e) {
+            return "{" + t + (null == e ? "" : e) + "}"
+        };
+        r.formatTpl = function (t, i, n) {
+            e[Rn](i) || (i = [i]);
+            var r = i[yr];
+            if (!r)return "";
+            for (var l = i[0].$vars || [], u = 0; u < l[yr]; u++) {
+                var c = o[u], h = s(c, 0);
+                t = t[En](s(c), n ? a(h) : h)
+            }
+            for (var d = 0; r > d; d++)for (var f = 0; f < l[yr]; f++) {
+                var h = i[d][l[f]];
+                t = t[En](s(o[f], d), n ? a(h) : h)
+            }
+            return t
+        };
+        var l = function (t) {
+            return 10 > t ? "0" + t : t
+        };
+        return r.formatTime = function (t, e) {
+            ("week" === t || "month" === t || "quarter" === t || "half-year" === t || "year" === t) && (t = "MM-dd\nyyyy");
+            var n = i.parseDate(e), r = n.getFullYear(), a = n.getMonth() + 1, o = n.getDate(), s = n.getHours(), u = n.getMinutes(), c = n.getSeconds();
+            return t = t[En]("MM", l(a))[Br]()[En]("yyyy", r)[En]("yy", r % 100)[En]("dd", l(o))[En]("d", o)[En]("hh", l(s))[En]("h", s)[En]("mm", l(u))[En]("m", u)[En]("ss", l(c))[En]("s", c)
+        }, r.capitalFirst = function (t) {
+            return t ? t.charAt(0).toUpperCase() + t.substr(1) : t
+        }, r.truncateText = n.truncateText, r
+    }), e(Gr, [], function () {
+        var t = typeof Float32Array === Q ? Array : Float32Array, e = {
+            create: function (e, i) {
+                var n = new t(2);
+                return null == e && (e = 0), null == i && (i = 0), n[0] = e, n[1] = i, n
+            }, copy: function (t, e) {
+                return t[0] = e[0], t[1] = e[1], t
+            }, clone: function (e) {
+                var i = new t(2);
+                return i[0] = e[0], i[1] = e[1], i
+            }, set: function (t, e, i) {
+                return t[0] = e, t[1] = i, t
+            }, add: function (t, e, i) {
+                return t[0] = e[0] + i[0], t[1] = e[1] + i[1], t
+            }, scaleAndAdd: function (t, e, i, n) {
+                return t[0] = e[0] + i[0] * n, t[1] = e[1] + i[1] * n, t
+            }, sub: function (t, e, i) {
+                return t[0] = e[0] - i[0], t[1] = e[1] - i[1], t
+            }, len: function (t) {
+                return Math.sqrt(this.lenSquare(t))
+            }, lenSquare: function (t) {
+                return t[0] * t[0] + t[1] * t[1]
+            }, mul: function (t, e, i) {
+                return t[0] = e[0] * i[0], t[1] = e[1] * i[1], t
+            }, div: function (t, e, i) {
+                return t[0] = e[0] / i[0], t[1] = e[1] / i[1], t
+            }, dot: function (t, e) {
+                return t[0] * e[0] + t[1] * e[1]
+            }, scale: function (t, e, i) {
+                return t[0] = e[0] * i, t[1] = e[1] * i, t
+            }, normalize: function (t, i) {
+                var n = e.len(i);
+                return 0 === n ? (t[0] = 0, t[1] = 0) : (t[0] = i[0] / n, t[1] = i[1] / n), t
+            }, distance: function (t, e) {
+                return Math.sqrt((t[0] - e[0]) * (t[0] - e[0]) + (t[1] - e[1]) * (t[1] - e[1]))
+            }, distanceSquare: function (t, e) {
+                return (t[0] - e[0]) * (t[0] - e[0]) + (t[1] - e[1]) * (t[1] - e[1])
+            }, negate: function (t, e) {
+                return t[0] = -e[0], t[1] = -e[1], t
+            }, lerp: function (t, e, i, n) {
+                return t[0] = e[0] + n * (i[0] - e[0]), t[1] = e[1] + n * (i[1] - e[1]), t
+            }, applyTransform: function (t, e, i) {
+                var n = e[0], r = e[1];
+                return t[0] = i[0] * n + i[2] * r + i[4], t[1] = i[1] * n + i[3] * r + i[5], t
+            }, min: function (t, e, i) {
+                return t[0] = Math.min(e[0], i[0]), t[1] = Math.min(e[1], i[1]), t
+            }, max: function (t, e, i) {
+                return t[0] = Math.max(e[0], i[0]), t[1] = Math.max(e[1], i[1]), t
+            }
+        };
+        return e[yr] = e.len, e.lengthSquare = e.lenSquare, e.dist = e.distance, e.distSquare = e.distanceSquare, e
+    }), e("echarts/chart/heatmap/HeatmapSeries", [Yr, Ei, "../helper/createListFromArray"], function (t) {
+        var e = t(Ei), i = t("../helper/createListFromArray");
+        return e[ir]({
+            type: "series.heatmap",
+            getInitialData: function (t, e) {
+                return i(t.data, this, e)
+            },
+            defaultOption: {
+                coordinateSystem: "cartesian2d",
+                zlevel: 0,
+                z: 2,
+                geoIndex: 0,
+                blurSize: 30,
+                pointSize: 20,
+                maxOpacity: 1,
+                minOpacity: 0
+            }
+        })
+    }), e("echarts/data/List", [Yr, "../model/Model", "./DataDiffer", Xr, "../util/model"], function (t) {
+        function e(t) {
+            return c[Rn](t) || (t = [t]), t
+        }
+
+        function i(t, e) {
+            var i = t[ki], n = new v(c.map(i, t.getDimensionInfo, t), t[Ye]);
+            p(n, t);
+            for (var r = n._storage = {}, a = t._storage, o = 0; o < i[yr]; o++) {
+                var s = i[o], l = a[s];
+                r[s] = c[mr](e, s) >= 0 ? new l.constructor(a[s][yr]) : a[s]
+            }
+            return n
+        }
+
+        var n = Q, r = typeof window === Q ? global : window, a = typeof r.Float64Array === n ? Array : r.Float64Array, o = typeof r.Int32Array === n ? Array : r.Int32Array, s = {
+            "float": a,
+            "int": o,
+            ordinal: Array,
+            number: Array,
+            time: Array
+        }, l = t("../model/Model"), u = t("./DataDiffer"), c = t(Xr), h = t("../util/model"), d = c[Ir], f = ["stackedOn", E, "_nameList", "_idList", "_rawData"], p = function (t, e) {
+            c.each(f[rn](e.__wrappedMethods || []), function (i) {
+                e.hasOwnProperty(i) && (t[i] = e[i])
+            }), t.__wrappedMethods = e.__wrappedMethods
+        }, v = function (t, e) {
+            t = t || ["x", "y"];
+            for (var i = {}, n = [], r = 0; r < t[yr]; r++) {
+                var a, o = {};
+                typeof t[r] === Er ? (a = t[r], o = {
+                    name: a,
+                    stackable: !1,
+                    type: "number"
+                }) : (o = t[r], a = o.name, o.type = o.type || kn), n.push(a), i[a] = o
+            }
+            this[ki] = n, this._dimensionInfos = i, this[Ye] = e, this[Fn], this.indices = [], this._storage = {}, this._nameList = [], this._idList = [], this._optionModels = [], this.stackedOn = null, this._visual = {}, this._layout = {}, this._itemVisuals = [], this._itemLayouts = [], this._graphicEls = [], this._rawData, this[en]
+        }, g = v[Nr];
+        g.type = "list", g[E] = !0, g.getDimension = function (t) {
+            return isNaN(t) || (t = this[ki][t] || t), t
+        }, g.getDimensionInfo = function (t) {
+            return c.clone(this._dimensionInfos[this.getDimension(t)])
+        }, g[re] = function (t, e, i) {
+            t = t || [], this._rawData = t;
+            var n = this._storage = {}, r = this.indices = [], a = this[ki], o = t[yr], l = this._dimensionInfos, u = [], c = {};
+            e = e || [];
+            for (var d = 0; d < a[yr]; d++) {
+                var f = l[a[d]], p = s[f.type];
+                n[a[d]] = new p(o)
+            }
+            var v = this;
+            i || (v[E] = !1), i = i || function (t, e, i, n) {
+                    var r = h.getDataItemValue(t);
+                    return h.isDataItemOption(t) && (v[E] = !0), h.converDataValue(r instanceof Array ? r[n] : r, l[e])
+                };
+            for (var g = 0; g < t[yr]; g++) {
+                for (var m = t[g], y = 0; y < a[yr]; y++) {
+                    var x = a[y], _ = n[x];
+                    _[g] = i(m, x, g, y)
+                }
+                r.push(g)
+            }
+            for (var d = 0; d < t[yr]; d++) {
+                e[d] || t[d] && null != t[d].name && (e[d] = t[d].name);
+                var w = e[d] || "", b = t[d] && t[d].id;
+                !b && w && (c[w] = c[w] || 0, b = w, c[w] > 0 && (b += "__ec__" + c[w]), c[w]++), b && (u[d] = b)
+            }
+            this._nameList = e, this._idList = u
+        }, g.count = function () {
+            return this.indices[yr]
+        }, g.get = function (t, e, i) {
+            var n = this._storage, r = this.indices[e];
+            if (null == r)return 0 / 0;
+            var a = n[t] && n[t][r];
+            if (i) {
+                var o = this._dimensionInfos[t];
+                if (o && o.stackable)for (var s = this.stackedOn; s;) {
+                    var l = s.get(t, e);
+                    (a >= 0 && l > 0 || 0 >= a && 0 > l) && (a += l), s = s.stackedOn
+                }
+            }
+            return a
+        }, g.getValues = function (t, e, i) {
+            var n = [];
+            c[Rn](t) || (i = e, e = t, t = this[ki]);
+            for (var r = 0, a = t[yr]; a > r; r++)n.push(this.get(t[r], e, i));
+            return n
+        }, g.hasValue = function (t) {
+            for (var e = this[ki], i = this._dimensionInfos, n = 0, r = e[yr]; r > n; n++)if (i[e[n]].type !== qe && isNaN(this.get(e[n], t)))return !1;
+            return !0
+        }, g[Xi] = function (t, e, i) {
+            t = this.getDimension(t);
+            var n = this._storage[t], r = this.getDimensionInfo(t);
+            e = r && r.stackable && e;
+            var a, o = (this[en] || (this[en] = {}))[t + !!e];
+            if (o)return o;
+            if (n) {
+                for (var s = 1 / 0, l = -1 / 0, u = 0, c = this.count(); c > u; u++)a = this.get(t, u, e), (!i || i(a, t, u)) && (s > a && (s = a), a > l && (l = a));
+                return this[en][t + !!e] = [s, l]
+            }
+            return [1 / 0, -1 / 0]
+        }, g.getSum = function (t, e) {
+            var i = this._storage[t], n = 0;
+            if (i)for (var r = 0, a = this.count(); a > r; r++) {
+                var o = this.get(t, r, e);
+                isNaN(o) || (n += o)
+            }
+            return n
+        }, g[mr] = function (t, e) {
+            var i = this._storage, n = i[t], r = this.indices;
+            if (n)for (var a = 0, o = r[yr]; o > a; a++) {
+                var s = r[a];
+                if (n[s] === e)return a
+            }
+            return -1
+        }, g.indexOfName = function (t) {
+            for (var e = this.indices, i = this._nameList, n = 0, r = e[yr]; r > n; n++) {
+                var a = e[n];
+                if (i[a] === t)return n
+            }
+            return -1
+        }, g.indexOfRawIndex = function (t) {
+            var e = this.indices, i = e[t];
+            if (null != i && i === t)return t;
+            for (var n = 0, r = e[yr] - 1; r >= n;) {
+                var a = (n + r) / 2 | 0;
+                if (e[a] < t)n = a + 1; else {
+                    if (!(e[a] > t))return a;
+                    r = a - 1
+                }
+            }
+            return -1
+        }, g.indexOfNearest = function (t, e, i, n) {
+            var r = this._storage, a = r[t];
+            null == n && (n = 1 / 0);
+            var o = -1;
+            if (a)for (var s = Number.MAX_VALUE, l = 0, u = this.count(); u > l; l++) {
+                var c = e - this.get(t, l, i), h = Math.abs(c);
+                n >= c && (s > h || h === s && c > 0) && (s = h, o = l)
+            }
+            return o
+        }, g[ee] = function (t) {
+            var e = this.indices[t];
+            return null == e ? -1 : e
+        }, g.getRawDataItem = function (t) {
+            return this._rawData[this[ee](t)]
+        }, g[we] = function (t) {
+            return this._nameList[this.indices[t]] || ""
+        }, g.getId = function (t) {
+            return this._idList[this.indices[t]] || this[ee](t) + ""
+        }, g.each = function (t, i, n, r) {
+            typeof t === On && (r = n, n = i, i = t, t = []), t = c.map(e(t), this.getDimension, this);
+            var a = [], o = t[yr], s = this.indices;
+            r = r || this;
+            for (var l = 0; l < s[yr]; l++)switch (o) {
+                case 0:
+                    i.call(r, l);
+                    break;
+                case 1:
+                    i.call(r, this.get(t[0], l, n), l);
+                    break;
+                case 2:
+                    i.call(r, this.get(t[0], l, n), this.get(t[1], l, n), l);
+                    break;
+                default:
+                    for (var u = 0; o > u; u++)a[u] = this.get(t[u], l, n);
+                    a[u] = l, i.apply(r, a)
+            }
+        }, g.filterSelf = function (t, i, n, r) {
+            typeof t === On && (r = n, n = i, i = t, t = []), t = c.map(e(t), this.getDimension, this);
+            var a = [], o = [], s = t[yr], l = this.indices;
+            r = r || this;
+            for (var u = 0; u < l[yr]; u++) {
+                var h;
+                if (1 === s)h = i.call(r, this.get(t[0], u, n), u); else {
+                    for (var d = 0; s > d; d++)o[d] = this.get(t[d], u, n);
+                    o[d] = u, h = i.apply(r, o)
+                }
+                h && a.push(l[u])
+            }
+            return this.indices = a, this[en] = {}, this
+        }, g[fi] = function (t, e, i, n) {
+            typeof t === On && (n = i, i = e, e = t, t = []);
+            var r = [];
+            return this.each(t, function () {
+                r.push(e && e.apply(this, arguments))
+            }, i, n), r
+        }, g.map = function (t, n, r, a) {
+            t = c.map(e(t), this.getDimension, this);
+            var o = i(this, t), s = o.indices = this.indices, l = o._storage, u = [];
+            return this.each(t, function () {
+                var e = arguments[arguments[yr] - 1], i = n && n.apply(this, arguments);
+                if (null != i) {
+                    typeof i === kn && (u[0] = i, i = u);
+                    for (var r = 0; r < i[yr]; r++) {
+                        var a = t[r], o = l[a], c = s[e];
+                        o && (o[c] = i[r])
+                    }
+                }
+            }, r, a), o
+        }, g.downSample = function (t, e, n, r) {
+            for (var a = i(this, [t]), o = this._storage, s = a._storage, l = this.indices, u = a.indices = [], c = [], h = [], d = Math.floor(1 / e), f = s[t], p = this.count(), v = 0; v < o[t][yr]; v++)s[t][v] = o[t][v];
+            for (var v = 0; p > v; v += d) {
+                d > p - v && (d = p - v, c[yr] = d);
+                for (var g = 0; d > g; g++) {
+                    var m = l[v + g];
+                    c[g] = f[m], h[g] = m
+                }
+                var y = n(c), m = h[r(c, y) || 0];
+                f[m] = y, u.push(m)
+            }
+            return a
+        }, g[Zi] = function (t) {
+            var e = this[Ye];
+            return t = this.indices[t], new l(this._rawData[t], e, e && e[$])
+        }, g.diff = function (t) {
+            var e, i = this._idList, n = t && t._idList, r = "e\x00\x00";
+            return new u(t ? t.indices : [], this.indices, function (t) {
+                return null != (e = n[t]) ? e : r + t
+            }, function (t) {
+                return null != (e = i[t]) ? e : r + t
+            })
+        }, g[vr] = function (t) {
+            var e = this._visual;
+            return e && e[t]
+        }, g[Wr] = function (t, e) {
+            if (d(t))for (var i in t)t.hasOwnProperty(i) && this[Wr](i, t[i]); else this._visual = this._visual || {}, this._visual[t] = e
+        }, g[le] = function (t, e) {
+            if (d(t))for (var i in t)t.hasOwnProperty(i) && this[le](i, t[i]); else this._layout[t] = e
+        }, g[R] = function (t) {
+            return this._layout[t]
+        }, g[bi] = function (t) {
+            return this._itemLayouts[t]
+        }, g[Ti] = function (t, e, i) {
+            this._itemLayouts[t] = i ? c[ir](this._itemLayouts[t] || {}, e) : e
+        }, g.clearItemLayouts = function () {
+            this._itemLayouts[yr] = 0
+        }, g[fr] = function (t, e, i) {
+            var n = this._itemVisuals[t], r = n && n[e];
+            return null != r || i ? r : this[vr](e)
+        }, g[wi] = function (t, e, i) {
+            var n = this._itemVisuals[t] || {};
+            if (this._itemVisuals[t] = n, d(e))for (var r in e)e.hasOwnProperty(r) && (n[r] = e[r]); else n[e] = i
+        }, g.clearAllVisual = function () {
+            this._visual = {}, this._itemVisuals = []
+        };
+        var m = function (t) {
+            t[Zn] = this[Zn], t[pr] = this[pr], t[Fn] = this[Fn]
+        };
+        return g[ti] = function (t, e) {
+            var i = this[Ye];
+            e && (e[pr] = t, e[Fn] = this[Fn], e[Zn] = i && i[Zn], "group" === e.type && e[Gn](m, e)), this._graphicEls[t] = e
+        }, g[Xe] = function (t) {
+            return this._graphicEls[t]
+        }, g[ei] = function (t, e) {
+            c.each(this._graphicEls, function (i, n) {
+                i && t && t.call(e, i, n)
+            })
+        }, g.cloneShallow = function () {
+            var t = c.map(this[ki], this.getDimensionInfo, this), e = new v(t, this[Ye]);
+            return e._storage = this._storage, p(e, this), e.indices = this.indices.slice(), this[en] && (e[en] = c[ir]({}, this[en])), e
+        }, g.wrapMethod = function (t, e) {
+            var i = this[t];
+            typeof i === On && (this.__wrappedMethods = this.__wrappedMethods || [], this.__wrappedMethods.push(t), this[t] = function () {
+                var t = i.apply(this, arguments);
+                return e.apply(this, [t][rn](c.slice(arguments)))
+            })
+        }, g.TRANSFERABLE_METHODS = ["cloneShallow", "downSample", "map"], g.CHANGABLE_METHODS = ["filterSelf"], v
+    }), e("echarts/chart/heatmap/HeatmapView", [Yr, ji, "./HeatmapLayer", Xr, Te], function (t) {
+        function e(t, e, i) {
+            var n = t[1] - t[0];
+            e = o.map(e, function (e) {
+                return {interval: [(e[B][0] - t[0]) / n, (e[B][1] - t[0]) / n]}
+            });
+            var r = e[yr], a = 0;
+            return function (t) {
+                for (var n = a; r > n; n++) {
+                    var o = e[n][B];
+                    if (o[0] <= t && t <= o[1]) {
+                        a = n;
+                        break
+                    }
+                }
+                if (n === r)for (var n = a - 1; n >= 0; n--) {
+                    var o = e[n][B];
+                    if (o[0] <= t && t <= o[1]) {
+                        a = n;
+                        break
+                    }
+                }
+                return n >= 0 && r > n && i[n]
+            }
+        }
+
+        function i(t, e) {
+            var i = t[1] - t[0];
+            return e = [(e[0] - t[0]) / i, (e[1] - t[0]) / i], function (t) {
+                return t >= e[0] && t <= e[1]
+            }
+        }
+
+        function n(t) {
+            var e = t[ki];
+            return "lng" === e[0] && "lat" === e[1]
+        }
+
+        var r = t(ji), a = t("./HeatmapLayer"), o = t(Xr);
+        return t(Te)[In]({
+            type: "heatmap", render: function (t, e, i) {
+                var r;
+                e[wr]("visualMap", function (e) {
+                    e.eachTargetSeries(function (i) {
+                        i === t && (r = e)
+                    })
+                }), this.group[An]();
+                var a = t[gr];
+                a.type === yi ? this._renderOnCartesian(a, t, i) : n(a) && this._renderOnGeo(a, t, r, i)
+            }, dispose: function () {
+            }, _renderOnCartesian: function (t, e) {
+                var i = t[di]("x"), n = t[di]("y"), a = this.group, s = i.getBandWidth(), l = n.getBandWidth(), u = e[qr](), c = Me, h = be, d = fe, f = de, p = e[Lr](c)[Mn](["color"]), v = e[Lr](h)[Mn](), g = e[Lr](fe), m = e[Lr](de);
+                u.each(["x", "y", "z"], function (i, n, y, x) {
+                    var _ = u[Zi](x), w = t[Ai]([i, n]);
+                    if (!isNaN(y)) {
+                        var b = new r.Rect({
+                            shape: {x: w[0] - s / 2, y: w[1] - l / 2, width: s, height: l},
+                            style: {fill: u[fr](x, "color"), opacity: u[fr](x, cn)}
+                        });
+                        u[E] && (p = _[Lr](c)[Mn](["color"]), v = _[Lr](h)[Mn](), g = _[Lr](d), m = _[Lr](f));
+                        var M = e[Ge](x), S = "-";
+                        M && null != M[2] && (S = M[2]), g[Be]("show") && (r[W](p, g), p.text = e[me](x, qi) || S), m[Be]("show") && (r[W](v, m), v.text = e[me](x, Wi) || S), b[Bn](p), r[Ni](b, u[E] ? v : o[ir]({}, v)), a.add(b), u[ti](x, b)
+                    }
+                })
+            }, _renderOnGeo: function (t, n, o, s) {
+                var l = o.targetVisuals.inRange, u = o.targetVisuals.outOfRange, c = n[qr](), h = this._hmLayer || this._hmLayer || new a;
+                h.blurSize = n.get("blurSize"), h.pointSize = n.get("pointSize"), h.minOpacity = n.get("minOpacity"), h.maxOpacity = n.get("maxOpacity");
+                var d = t.getViewRect().clone(), f = t.getRoamTransform()[O];
+                d[U](f);
+                var p = Math.max(d.x, 0), v = Math.max(d.y, 0), g = Math.min(d.width + d.x, s[Cr]()), m = Math.min(d[Or] + d.y, s[Tr]()), y = g - p, x = m - v, _ = c[fi](["lng", "lat", "value"], function (e, i, n) {
+                    var r = t[Ai]([e, i]);
+                    return r[0] -= p, r[1] -= v, r.push(n), r
+                }), w = o[Qi](), b = "visualMap.continuous" === o.type ? i(w, o[un].range) : e(w, o.getPieceList(), o[un][ve]);
+                h[hr](_, y, x, l.color.getNormalizer(), {
+                    inRange: l.color.getColorMapper(),
+                    outOfRange: u.color.getColorMapper()
+                }, b);
+                var M = new r.Image({style: {width: y, height: x, x: p, y: v, image: h[Rr]}, silent: !0});
+                this.group.add(M)
+            }
+        })
+    }), e("echarts/chart/radar/RadarSeries", [Yr, Ei, se, oe, Xr, Ri], function (t) {
+        var e = t(Ei), i = t(se), n = t(oe), r = t(Xr), a = t(Ri)[Oi], o = e[ir]({
+            type: "series.radar",
+            dependencies: ["radar"],
+            init: function () {
+                o[ln](this, "init", arguments), this.legendDataProvider = function () {
+                    return this.getRawData()
+                }
+            },
+            getInitialData: function (t) {
+                var e = t.data || [], r = n([], e, [], "indicator_"), a = new i(r, this);
+                return a[re](e), a
+            },
+            formatTooltip: function (t) {
+                var e = this[Ge](t), i = this[gr], n = i.getIndicatorAxes(), o = this[qr]()[we](t);
+                return a("" === o ? this.name : o) + "<br/>" + r.map(n, function (t, i) {
+                        return a(t.name + " : " + e[i])
+                    }).join(zi)
+            },
+            defaultOption: {
+                zlevel: 0,
+                z: 2,
+                coordinateSystem: "radar",
+                legendHoverLink: !0,
+                radarIndex: 0,
+                lineStyle: {normal: {width: 2, type: "solid"}},
+                label: {normal: {position: "top"}},
+                symbol: "emptyCircle",
+                symbolSize: 4
+            }
+        });
+        return o
+    }), e("echarts/component/radar", [Yr, "../coord/radar/Radar", "../coord/radar/RadarModel", "./radar/RadarView"], function (t) {
+        t("../coord/radar/Radar"), t("../coord/radar/RadarModel"), t("./radar/RadarView")
+    }), e("echarts/chart/radar/RadarView", [Yr, ji, Xr, V, Te], function (t) {
+        function e(t) {
+            return n[Rn](t) || (t = [+t, +t]), t
+        }
+
+        var i = t(ji), n = t(Xr), r = t(V);
+        return t(Te)[In]({
+            type: "radar", render: function (t) {
+                function a(t, i) {
+                    var n = t[fr](i, He) || jr, a = t[fr](i, "color");
+                    if ("none" !== n) {
+                        var o = r[z](n, -.5, -.5, 1, 1, a);
+                        return o.attr({style: {strokeNoScale: !0}, z2: 100, scale: e(t[fr](i, Fe))}), o
+                    }
+                }
+
+                function o(e, n, r, o, s, l) {
+                    r[An]();
+                    for (var u = 0; u < n[yr] - 1; u++) {
+                        var c = a(o, s);
+                        c && (c.__dimIdx = u, e[u] ? (c.attr(dn, e[u]), i[l ? ci : Ze](c, {position: n[u]}, t, s)) : c.attr(dn, n[u]), r.add(c))
+                    }
+                }
+
+                function s(t) {
+                    return n.map(t, function () {
+                        return [l.cx, l.cy]
+                    })
+                }
+
+                var l = t[gr], u = this.group, c = t[qr](), h = this._data;
+                c.diff(h).add(function (e) {
+                    var n = c[bi](e);
+                    if (n) {
+                        var r = new i[Ue], a = new i[je], l = {shape: {points: n}};
+                        r.shape[We] = s(n), a.shape[We] = s(n), i[ci](r, l, t, e), i[ci](a, l, t, e);
+                        var u = new i.Group, h = new i.Group;
+                        u.add(a), u.add(r), u.add(h), o(a.shape[We], n, h, c, e, !0), c[ti](e, u)
+                    }
+                })[hr](function (e, n) {
+                    var r = h[Xe](n), a = r[Fi](0), s = r[Fi](1), l = r[Fi](2), u = {shape: {points: c[bi](e)}};
+                    u.shape[We] && (o(a.shape[We], u.shape[We], l, c, e, !1), i[Ze](a, u, t), i[Ze](s, u, t), c[ti](e, r))
+                })[nr](function (t) {
+                    u[nr](h[Xe](t))
+                })[Se](), c[ei](function (e, r) {
+                    function a() {
+                        h.attr(_r, m)
+                    }
+
+                    function o() {
+                        h.attr(_r, g)
+                    }
+
+                    var s = c[Zi](r), l = e[Fi](0), h = e[Fi](1), d = e[Fi](2), f = c[fr](r, "color");
+                    u.add(e), l[Gi](n[tr](s[Lr]("lineStyle.normal")[Je](), {
+                        fill: "none",
+                        stroke: f
+                    })), l[ge] = s[Lr]("lineStyle.emphasis")[Je]();
+                    var p = s[Lr]("areaStyle.normal"), v = s[Lr]("areaStyle.emphasis"), g = p.isEmpty() && p.parentModel.isEmpty(), m = v.isEmpty() && v.parentModel.isEmpty();
+                    m = m && g, h[_r] = g, h[Gi](n[tr](p[$e](), {fill: f, opacity: .7})), h[ge] = v[$e]();
+                    var y = s[Lr](Me)[Mn](["color"]), x = s[Lr](be)[Mn](), _ = s[Lr](fe), w = s[Lr](de);
+                    d[ce](function (e) {
+                        e[Bn](y), e[ge] = n.clone(x);
+                        var a = c.get(c[ki][e.__dimIdx], r);
+                        i[W](e.style, _, f), e[Bn]({text: _.get("show") ? n[Pi](t[me](r, qi, null, e.__dimIdx), a) : ""}), i[W](e[ge], w, f), e[ge].text = w.get("show") ? n[Pi](t[me](r, Wi, null, e.__dimIdx), a) : ""
+                    }), e.off(Xn).off(jn).off(qi).off(Wi), e.on(Wi, a).on(Xn, a).on(qi, o).on(jn, o), i[Ni](e)
+                }), this._data = c
+            }, remove: function () {
+                this.group[An](), this._data = null
+            }, dispose: function () {
+            }
+        })
+    }), e("echarts/chart/radar/radarLayout", [Yr], function () {
+        return function (t) {
+            t[Ur]("radar", function (t) {
+                function e(t, e) {
+                    n[e] = n[e] || [], n[e][a] = r[Ai](t, a)
+                }
+
+                var i = t[qr](), n = [], r = t[gr];
+                if (r) {
+                    for (var a = 0; a < r.getIndicatorAxes()[yr]; a++) {
+                        var o = i[ki][a];
+                        i.each(o, e)
+                    }
+                    i.each(function (t) {
+                        n[t][0] && n[t].push(n[t][0].slice()), i[Ti](t, n[t])
+                    })
+                }
+            })
+        }
+    }), e("echarts/chart/radar/backwardCompat", [Yr, Xr], function (t) {
+        var e = t(Xr);
+        return function (t) {
+            var i = t.polar;
+            if (i) {
+                e[Rn](i) || (i = [i]);
+                var n = [];
+                e.each(i, function (i) {
+                    i.indicator ? (i.type && !i.shape && (i.shape = i.type), t.radar = t.radar || [], e[Rn](t.radar) || (t.radar = [t.radar]), t.radar.push(i)) : n.push(i)
+                }), t.polar = n
+            }
+            e.each(t[rr], function (t) {
+                "radar" === t.type && t[D] && (t.radarIndex = t[D])
+            })
+        }
+    }), e("echarts/chart/treemap/treemapVisual", [Yr, "../../visual/VisualMapping", Hr, Xr], function (t) {
+        function e(t, a, s, u, c, d) {
+            var p = t[Lr](), v = t[R]();
+            if (v && !v[P] && v.isInView) {
+                var g, m = t[Lr](f), y = s[t.depth], x = i(m, a, y, u), _ = m.get(Hi), w = m.get("borderColorSaturation");
+                null != w && (g = n(x, t), _ = r(w, g)), t[Wr](Hi, _);
+                var b = t.viewChildren;
+                if (b && b[yr]) {
+                    var M = o(t, p, v, m, x, b);
+                    h.each(b, function (t, i) {
+                        if (t.depth >= c[yr] || t === c[t.depth]) {
+                            var n = l(p, x, t, i, M, d);
+                            e(t, n, s, u, c, d)
+                        }
+                    })
+                } else g = n(x, t), t[Wr]("color", g)
+            }
+        }
+
+        function i(t, e, i, n) {
+            var r = h[ir]({}, e);
+            return h.each(["color", "colorAlpha", "colorSaturation"], function (a) {
+                var o = t.get(a, !0);
+                null == o && i && (o = i[a]), null == o && (o = e[a]), null == o && (o = n.get(a)), null != o && (r[a] = o)
+            }), r
+        }
+
+        function n(t) {
+            var e = a(t, "color");
+            if (e) {
+                var i = a(t, "colorAlpha"), n = a(t, "colorSaturation");
+                return n && (e = c.modifyHSL(e, null, null, n)), i && (e = c.modifyAlpha(e, i)), e
+            }
+        }
+
+        function r(t, e) {
+            return null != e ? c.modifyHSL(e, null, null, t) : null
+        }
+
+        function a(t, e) {
+            var i = t[e];
+            return null != i && "none" !== i ? i : void 0
+        }
+
+        function o(t, e, i, n, r, a) {
+            if (a && a[yr]) {
+                var o = s(e, "color") || null != r.color && "none" !== r.color && (s(e, "colorAlpha") || s(e, "colorSaturation"));
+                if (o) {
+                    var l = e.get("visualMin"), c = e.get("visualMax"), h = i.dataExtent.slice();
+                    null != l && l < h[0] && (h[0] = l), null != c && c > h[1] && (h[1] = c);
+                    var d = e.get("colorMappingBy"), f = {type: o.name, dataExtent: h, visual: o.range};
+                    "color" !== f.type || "index" !== d && "id" !== d ? f.mappingMethod = I : (f.mappingMethod = Mi, f.loop = !0);
+                    var p = new u(f);
+                    return p.__drColorMappingBy = d, p
+                }
+            }
+        }
+
+        function s(t, e) {
+            var i = t.get(e);
+            return d(i) && i[yr] ? {name: e, range: i} : null
+        }
+
+        function l(t, e, i, n, r, a) {
+            var o = h[ir]({}, e);
+            if (r) {
+                var s = r.type, l = "color" === s && r.__drColorMappingBy, u = "index" === l ? n : "id" === l ? a.mapIdToIndex(i.getId()) : i.getValue(t.get("visualDimension"));
+                o[s] = r.mapValueToVisual(u)
+            }
+            return o
+        }
+
+        var u = t("../../visual/VisualMapping"), c = t(Hr), h = t(Xr), d = h[Rn], f = Me;
+        return function (t, i, n) {
+            var r = {mainType: "series", subType: "treemap", query: n};
+            t[wr](r, function (t) {
+                var i = t[qr]().tree, n = i.root, r = t[Lr](f);
+                if (!n.isRemoved()) {
+                    var a = h.map(i.levelModels, function (t) {
+                        return t ? t.get(f) : null
+                    });
+                    e(n, {}, a, r, t.getViewRoot().getAncestors(), t)
+                }
+            })
+        }
+    }), e("echarts/chart/treemap/treemapLayout", [Yr, Xr, Di, Ne, Le, X], function (t) {
+        function e(t, e, n) {
+            var r = {mainType: "series", subType: "treemap", query: n};
+            t[wr](r, function (t) {
+                var r = e[Cr](), a = e[Tr](), o = t[un], s = p[gn](t[mn](), {
+                    width: e[Cr](),
+                    height: e[Tr]()
+                }), l = o.size || [], f = x(_(s.width, l[0]), r), m = x(_(s[Or], l[1]), a), y = n && n.type, b = v.retrieveTargetInfo(n, t), M = "treemapRender" === y || "treemapMove" === y ? n.rootRect : null, S = t.getViewRoot(), A = v.getPathToRoot(S);
+                if ("treemapMove" !== y) {
+                    var T = "treemapZoomToNode" === y ? u(t, b, S, f, m) : M ? [M.width, M[Or]] : [f, m], C = o.sort;
+                    C && "asc" !== C && "desc" !== C && (C = "desc");
+                    var L = {squareRatio: o.squareRatio, sort: C, leafDepth: o.leafDepth};
+                    S.hostTree.clearLayouts();
+                    var k = {x: 0, y: 0, width: T[0], height: T[1], area: T[0] * T[1]};
+                    S[le](k), i(S, L, !1, 0);
+                    var k = S[R]();
+                    w(A, function (t, e) {
+                        var i = (A[e + 1] || S).getValue();
+                        t[le](d[ir]({dataExtent: [i, i], borderWidth: 0}, k))
+                    })
+                }
+                var I = t[qr]().tree.root;
+                I[le](c(s, M, b), !0), t.setLayoutInfo(s), h(I, new g(-s.x, -s.y, r, a), A, S, 0)
+            })
+        }
+
+        function i(t, e, r, a) {
+            var o, u;
+            if (!t.isRemoved()) {
+                var c = t[R]();
+                o = c.width, u = c[Or];
+                var h = t[Lr](Me), d = h.get(k), f = h.get("gapWidth") / 2, p = d - f, v = t[Lr]();
+                t[le]({borderWidth: d}, !0), o = m(o - 2 * p, 0), u = m(u - 2 * p, 0);
+                var g = o * u, x = n(t, v, g, e, r, a);
+                if (x[yr]) {
+                    var _ = {x: p, y: p, width: o, height: u}, w = y(o, u), b = 1 / 0, M = [];
+                    M.area = 0;
+                    for (var S = 0, A = x[yr]; A > S;) {
+                        var T = x[S];
+                        M.push(T), M.area += T[R]().area;
+                        var C = s(M, w, e.squareRatio);
+                        b >= C ? (S++, b = C) : (M.area -= M.pop()[R]().area, l(M, w, _, f, !1), w = y(_.width, _[Or]), M[yr] = M.area = 0, b = 1 / 0)
+                    }
+                    if (M[yr] && l(M, w, _, f, !0), !r) {
+                        var L = v.get("childrenVisibleMin");
+                        null != L && L > g && (r = !0)
+                    }
+                    for (var S = 0, A = x[yr]; A > S; S++)i(x[S], e, r, a + 1)
+                }
+            }
+        }
+
+        function n(t, e, i, n, s, l) {
+            var u = t.children || [], c = n.sort;
+            "asc" !== c && "desc" !== c && (c = null);
+            var h = null != n.leafDepth && n.leafDepth <= l;
+            if (s && !h)return t.viewChildren = [];
+            u = d[Ln](u, function (t) {
+                return !t.isRemoved()
+            }), a(u, c);
+            var f = o(e, u, c);
+            if (0 === f.sum)return t.viewChildren = [];
+            if (f.sum = r(e, i, f.sum, c, u), 0 === f.sum)return t.viewChildren = [];
+            for (var p = 0, v = u[yr]; v > p; p++) {
+                var g = u[p].getValue() / f.sum * i;
+                u[p][le]({area: g})
+            }
+            return h && (u[yr] && t[le]({isLeafRoot: !0}, !0), u[yr] = 0), t.viewChildren = u, t[le]({dataExtent: f.dataExtent}, !0), u
+        }
+
+        function r(t, e, i, n, r) {
+            if (!n)return i;
+            for (var a = t.get("visibleMin"), o = r[yr], s = o, l = o - 1; l >= 0; l--) {
+                var u = r["asc" === n ? o - l - 1 : l].getValue();
+                a > u / i * e && (s = l, i -= u)
+            }
+            return "asc" === n ? r[Yn](0, o - s) : r[Yn](s, o - s), i
+        }
+
+        function a(t, e) {
+            return e && t.sort(function (t, i) {
+                return "asc" === e ? t.getValue() - i.getValue() : i.getValue() - t.getValue()
+            }), t
+        }
+
+        function o(t, e, i) {
+            for (var n = 0, r = 0, a = e[yr]; a > r; r++)n += e[r].getValue();
+            var o, s = t.get("visualDimension");
+            if (e && e[yr])if ("value" === s && i)o = [e[e[yr] - 1].getValue(), e[0].getValue()], "asc" === i && o[ni](); else {
+                var o = [1 / 0, -1 / 0];
+                w(e, function (t) {
+                    var e = t.getValue(s);
+                    e < o[0] && (o[0] = e), e > o[1] && (o[1] = e)
+                })
+            } else o = [0 / 0, 0 / 0];
+            return {sum: n, dataExtent: o}
+        }
+
+        function s(t, e, i) {
+            for (var n, r = 0, a = 1 / 0, o = 0, s = t[yr]; s > o; o++)n = t[o][R]().area, n && (a > n && (a = n), n > r && (r = n));
+            var l = t.area * t.area, u = e * e * i;
+            return l ? m(u * r / l, l / (u * a)) : 1 / 0
+        }
+
+        function l(t, e, i, n, r) {
+            var a = e === i.width ? 0 : 1, o = 1 - a, s = ["x", "y"], l = ["width", Or], u = i[s[a]], c = e ? t.area / e : 0;
+            (r || c > i[l[o]]) && (c = i[l[o]]);
+            for (var h = 0, d = t[yr]; d > h; h++) {
+                var f = t[h], p = {}, v = c ? f[R]().area / c : 0, g = p[l[o]] = m(c - 2 * n, 0), x = i[s[a]] + i[l[a]] - u, _ = h === d - 1 || v > x ? x : v, w = p[l[a]] = m(_ - 2 * n, 0);
+                p[s[o]] = i[s[o]] + y(n, g / 2), p[s[a]] = u + y(n, w / 2), u += _, f[le](p, !0)
+            }
+            i[s[o]] += c, i[l[o]] -= c
+        }
+
+        function u(t, e, i, n, r) {
+            var a = (e || {}).node, o = [n, r];
+            if (!a || a === i)return o;
+            for (var s, l = n * r, u = l * t[un].zoomToNodeRatio; s = a[L];) {
+                for (var c = 0, h = s.children, d = 0, p = h[yr]; p > d; d++)c += h[d].getValue();
+                var v = a.getValue();
+                if (0 === v)return o;
+                u *= c / v;
+                var g = s[Lr](Me).get(k);
+                isFinite(g) && (u += 4 * g * g + 4 * g * Math.pow(u, .5)), u > f.MAX_SAFE_INTEGER && (u = f.MAX_SAFE_INTEGER), a = s
+            }
+            l > u && (u = l);
+            var m = Math.pow(u / l, .5);
+            return [n * m, r * m]
+        }
+
+        function c(t, e, i) {
+            if (e)return {x: e.x, y: e.y};
+            var n = {x: 0, y: 0};
+            if (!i)return n;
+            var r = i.node, a = r[R]();
+            if (!a)return n;
+            for (var o = [a.width / 2, a[Or] / 2], s = r; s;) {
+                var l = s[R]();
+                o[0] += l.x, o[1] += l.y, s = s[L]
+            }
+            return {x: t.width / 2 - o[0], y: t[Or] / 2 - o[1]}
+        }
+
+        function h(t, e, i, n, r) {
+            var a = t[R](), o = i[r], s = o && o === t;
+            if (!(o && !s || r === i[yr] && t !== n)) {
+                t[le]({isInView: !0, invisible: !s && !e.intersect(a), isAboveViewRoot: s}, !0);
+                var l = new g(e.x - a.x, e.y - a.y, e.width, e[Or]);
+                w(t.viewChildren || [], function (t) {
+                    h(t, l, i, n, r + 1)
+                })
+            }
+        }
+
+        var d = t(Xr), f = t(Di), p = t(Ne), v = t(Le), g = t(X), v = t(Le), m = Math.max, y = Math.min, x = f[Ii], _ = d[Pi], w = d.each;
+        return e
+    }), e("echarts/chart/treemap/treemapAction", [Yr, Te, Le], function (t) {
+        for (var e = t(Te), i = t(Le), n = function () {
+        }, r = ["treemapZoomToNode", "treemapRender", "treemapMove"], a = 0; a < r[yr]; a++)e[Vn]({
+            type: r[a],
+            update: "updateView"
+        }, n);
+        e[Vn]({type: "treemapRootToNode", update: "updateView"}, function (t, e) {
+            function n(e) {
+                var n = i.retrieveTargetInfo(t, e);
+                if (n) {
+                    var r = e.getViewRoot();
+                    r && (t.direction = i.aboveViewRoot(r, n.node) ? "rollUp" : "drillDown"), e.resetViewRoot(n.node)
+                }
+            }
+
+            e[wr]({mainType: "series", subType: "treemap", query: t}, n)
+        })
+    }), e("echarts/chart/graph/GraphView", [Yr, "../helper/SymbolDraw", "../helper/LineDraw", "../../component/helper/RoamController", ji, "./adjustEdge", Xr, Te], function (t) {
+        function e(t, e) {
+            return t[vr](cn) || t[Lr]().get(e)
+        }
+
+        var i = t("../helper/SymbolDraw"), n = t("../helper/LineDraw"), r = t("../../component/helper/RoamController"), a = t(ji), o = t("./adjustEdge"), s = t(Xr), l = [Ui, qi, cn], u = [he, qi, cn];
+        t(Te)[In]({
+            type: "graph", init: function (t, e) {
+                var a = new i, o = new n, s = this.group, l = new r(e.getZr(), s);
+                s.add(a.group), s.add(o.group), this._symbolDraw = a, this._lineDraw = o, this._controller = l, this._firstRender = !0
+            }, render: function (t, e, i) {
+                var n = t[gr];
+                this[kr] = t, this._nodeScaleRatio = t.get("nodeScaleRatio");
+                var r = this._symbolDraw, s = this._lineDraw, l = this.group;
+                if ("view" === n.type) {
+                    var u = {position: n[dn], scale: n.scale};
+                    this._firstRender ? l.attr(u) : a[Ze](l, u, t)
+                }
+                o(t.getGraph(), this._getNodeGlobalScale(t));
+                var c = t[qr]();
+                r[Ke](c);
+                var h = t.getEdgeData();
+                s[Ke](h), this._updateNodeAndLinkScale(), this._updateController(t, i), clearTimeout(this._layoutTimeout);
+                var d = t.forceLayout, f = t.get("force.layoutAnimation");
+                d && this._startForceLayoutIteration(d, f), c[ei](function (e, n) {
+                    var r = c[Zi](n);
+                    e.off("drag").off("dragend");
+                    var a = c[Zi](n).get(C);
+                    a && e.on("drag", function () {
+                        d && (d.warmUp(), !this._layouting && this._startForceLayoutIteration(d, f), d.setFixed(n), c[Ti](n, e[dn]))
+                    }, this).on("dragend", function () {
+                        d && d.setUnfixed(n)
+                    }, this), e.setDraggable(a && d), e.off(Xn, e.__focusNodeAdjacency), e.off(jn, e.__unfocusNodeAdjacency), r.get("focusNodeAdjacency") && (e.on(Xn, e.__focusNodeAdjacency = function () {
+                        i[er]({type: "focusNodeAdjacency", seriesId: t.id, dataIndex: e[pr]})
+                    }), e.on(jn, e.__unfocusNodeAdjacency = function () {
+                        i[er]({type: "unfocusNodeAdjacency", seriesId: t.id})
+                    }))
+                }, this);
+                var p = "circular" === t.get(Li) && t.get("circular.rotateLabel"), v = c[R]("cx"), g = c[R]("cy");
+                c[ei](function (t, e) {
+                    var i = t.getSymbolPath();
+                    if (p) {
+                        var n = c[bi](e), r = Math.atan2(n[1] - g, n[0] - v);
+                        0 > r && (r = 2 * Math.PI + r);
+                        var a = n[0] < v;
+                        a && (r -= Math.PI);
+                        var o = a ? "left" : "right";
+                        i[Bn]({textRotation: r, textPosition: o}), i[ge] && (i[ge][T] = o)
+                    } else i[Bn]({textRotation: 0})
+                }), this._firstRender = !1
+            }, dispose: function () {
+                this._controller && this._controller[$n]()
+            }, focusNodeAdjacency: function (t, i, n, r) {
+                function a(t, i) {
+                    var n = e(t, i), r = t.getGraphicEl();
+                    null == n && (n = 1), r[Gn](function (t) {
+                        t[Jn](qi), "group" !== t.type && t[Bn](cn, .1 * n)
+                    })
+                }
+
+                function o(t, i) {
+                    var n = e(t, i), r = t.getGraphicEl();
+                    r[Gn](function (t) {
+                        t[Jn](Wi), "group" !== t.type && t[Bn](cn, n)
+                    })
+                }
+
+                var c = this[kr][qr](), h = r[pr], d = c[Xe](h);
+                if (d) {
+                    var f = c.graph, p = d[Fn];
+                    if (null !== h && "edge" !== p) {
+                        f.eachNode(function (t) {
+                            a(t, l)
+                        }), f.eachEdge(function (t) {
+                            a(t, u)
+                        });
+                        var v = f.getNodeByIndex(h);
+                        o(v, l), s.each(v.edges, function (t) {
+                            t[pr] < 0 || (o(t, u), o(t.node1, l), o(t.node2, l))
+                        })
+                    }
+                }
+            }, unfocusNodeAdjacency: function () {
+                var t = this[kr][qr]().graph;
+                t.eachNode(function (t) {
+                    var i = e(t, l);
+                    t.getGraphicEl()[Gn](function (t) {
+                        t[Jn](qi), "group" !== t.type && t[Bn](cn, i)
+                    })
+                }), t.eachEdge(function (t) {
+                    var i = e(t, u);
+                    t.getGraphicEl()[Gn](function (t) {
+                        t[Jn](qi), "group" !== t.type && t[Bn](cn, i)
+                    })
+                })
+            }, _startForceLayoutIteration: function (t, e) {
+                var i = this;
+                !function n() {
+                    t.step(function (t) {
+                        i[sr](i[kr]), (i._layouting = !t) && (e ? i._layoutTimeout = setTimeout(n, 16) : n())
+                    })
+                }()
+            }, _updateController: function (t, e) {
+                var i = this._controller, n = this.group;
+                return i.setContainsPoint(function (t, e) {
+                    var i = n[yn]();
+                    return i[U](n[O]), i[tn](t, e)
+                }), "view" !== t[gr].type ? void i.disable() : (i.enable(t.get("roam")), i[A] = t.get("scaleLimit"), i.zoom = t[gr].getZoom(), void i.off("pan").off("zoom").on("pan", function (i, n) {
+                    e[er]({seriesId: t.id, type: "graphRoam", dx: i, dy: n})
+                }).on("zoom", function (i, n, r) {
+                    e[er]({
+                        seriesId: t.id,
+                        type: "graphRoam",
+                        zoom: i,
+                        originX: n,
+                        originY: r
+                    }), this._updateNodeAndLinkScale(), o(t.getGraph(), this._getNodeGlobalScale(t)), this._lineDraw[sr]()
+                }, this))
+            }, _updateNodeAndLinkScale: function () {
+                var t = this[kr], e = t[qr](), i = this._getNodeGlobalScale(t), n = [i, i];
+                e[ei](function (t) {
+                    t.attr("scale", n)
+                })
+            }, _getNodeGlobalScale: function (t) {
+                var e = t[gr];
+                if ("view" !== e.type)return 1;
+                var i = this._nodeScaleRatio, n = e.scale, r = n && n[0] || 1, a = e.getZoom(), o = (a - 1) * i + 1;
+                return o / r
+            }, updateLayout: function (t) {
+                o(t.getGraph(), this._getNodeGlobalScale(t)), this._symbolDraw[sr](), this._lineDraw[sr]()
+            }, remove: function () {
+                this._symbolDraw && this._symbolDraw[nr](), this._lineDraw && this._lineDraw[nr]()
+            }
+        })
+    }), e("echarts/chart/graph/GraphSeries", [Yr, se, Xr, mi, Ce, Ri, "../helper/createGraphFromNodeEdge", Te], function (t) {
+        var e = t(se), i = t(Xr), n = t(mi), r = t(Ce), a = t(Ri), o = t("../helper/createGraphFromNodeEdge"), s = t(Te).extendSeriesModel({
+            type: "series.graph",
+            init: function (t) {
+                s[ln](this, "init", arguments), this.legendDataProvider = function () {
+                    return this._categoriesData
+                }, this.fillDataTextStyle(t.edges || t.links), this._updateCategoriesData()
+            },
+            mergeOption: function (t) {
+                s[ln](this, sn, arguments), this.fillDataTextStyle(t.edges || t.links), this._updateCategoriesData()
+            },
+            mergeDefaultAndTheme: function (t) {
+                s[ln](this, J, arguments), n[ie](t.edgeLabel, n.LABEL_OPTIONS)
+            },
+            getInitialData: function (t, e) {
+                function i(t, i) {
+                    function n(t) {
+                        return t = this.parsePath(t), t && "label" === t[0] ? o : this.parentModel
+                    }
+
+                    t.wrapMethod(Zi, function (t) {
+                        var e = s._categoriesModels, i = t[Be](Mi), n = e[i];
+                        return n && (n.parentModel = t.parentModel, t.parentModel = n), t
+                    });
+                    var a = s[Lr]("edgeLabel"), o = new r({label: a[un]}, a.parentModel, e);
+                    i.wrapMethod(Zi, function (t) {
+                        return t.customizeGetParent(n), t
+                    })
+                }
+
+                var n = t.edges || t.links || [], a = t.data || t.nodes || [], s = this;
+                return a && n ? o(a, n, this, !0, i).data : void 0
+            },
+            getGraph: function () {
+                return this[qr]().graph
+            },
+            getEdgeData: function () {
+                return this.getGraph().edgeData
+            },
+            getCategoriesData: function () {
+                return this._categoriesData
+            },
+            formatTooltip: function (t, e, i) {
+                if ("edge" === i) {
+                    var n = this[qr](), r = this[Hn](t, i), o = n.graph.getEdgeByIndex(t), l = n[we](o.node1[pr]), u = n[we](o.node2[pr]), c = [];
+                    return null != l && c.push(l), null != u && c.push(u), c = a[Oi](c.join(" > ")), r.value && (c += " : " + a[Oi](r.value)), c
+                }
+                return s[ln](this, "formatTooltip", arguments)
+            },
+            _updateCategoriesData: function () {
+                var t = i.map(this[un][S] || [], function (t) {
+                    return null != t.value ? t : i[ir]({value: 0}, t)
+                }), n = new e(["value"], this);
+                n[re](t), this._categoriesData = n, this._categoriesModels = n[fi](function (t) {
+                    return n[Zi](t, !0)
+                })
+            },
+            setZoom: function (t) {
+                this[un].zoom = t
+            },
+            setCenter: function (t) {
+                this[un][fn] = t
+            },
+            isAnimationEnabled: function () {
+                return s[ae](this, Ae) && !("force" === this.get(Li) && this.get("force.layoutAnimation"))
+            },
+            defaultOption: {
+                zlevel: 0,
+                z: 2,
+                coordinateSystem: "view",
+                legendHoverLink: !0,
+                hoverAnimation: !0,
+                layout: null,
+                focusNodeAdjacency: !1,
+                circular: {rotateLabel: !1},
+                force: {initLayout: null, repulsion: [0, 50], gravity: .1, edgeLength: 30, layoutAnimation: !0},
+                left: "center",
+                top: "center",
+                symbol: "circle",
+                symbolSize: 10,
+                edgeSymbol: ["none", "none"],
+                edgeSymbolSize: 10,
+                edgeLabel: {normal: {position: "middle"}, emphasis: {}},
+                draggable: !1,
+                roam: !1,
+                center: null,
+                zoom: 1,
+                nodeScaleRatio: .6,
+                label: {normal: {show: !1, formatter: "{b}"}, emphasis: {show: !0}},
+                itemStyle: {normal: {}, emphasis: {}},
+                lineStyle: {normal: {color: "#aaa", width: 1, curveness: 0, opacity: .5}, emphasis: {}}
+            }
+        });
+        return s
+    }), e("echarts/chart/graph/graphAction", [Yr, Te, "../../action/roamHelper"], function (t) {
+        var e = t(Te), i = t("../../action/roamHelper"), n = {type: "graphRoam", event: "graphRoam", update: "none"};
+        e[Vn](n, function (t, e) {
+            e[wr]({mainType: "series", query: t}, function (e) {
+                var n = e[gr], r = i.updateCenterAndZoom(n, t);
+                e.setCenter && e.setCenter(r[fn]), e.setZoom && e.setZoom(r.zoom)
+            })
+        }), e[Vn]({
+            type: "focusNodeAdjacency",
+            event: "focusNodeAdjacency",
+            update: "series.graph:focusNodeAdjacency"
+        }, function () {
+        }), e[Vn]({
+            type: "unfocusNodeAdjacency",
+            event: "unfocusNodeAdjacency",
+            update: "series.graph:unfocusNodeAdjacency"
+        }, function () {
+        })
+    }), e("echarts/chart/graph/categoryFilter", [Yr], function () {
+        return function (t) {
+            var e = t.findComponents({mainType: "legend"});
+            e && e[yr] && t[Ur]("graph", function (t) {
+                var i = t.getCategoriesData(), n = t.getGraph(), r = n.data, a = i[fi](i[we]);
+                r.filterSelf(function (t) {
+                    var i = r[Zi](t), n = i[Be](Mi);
+                    if (null != n) {
+                        typeof n === kn && (n = a[n]);
+                        for (var o = 0; o < e[yr]; o++)if (!e[o].isSelected(n))return !1
+                    }
+                    return !0
+                })
+            }, this)
+        }
+    }), e("echarts/chart/treemap/TreemapView", [Yr, Xr, ji, "../../data/DataDiffer", Le, "./Breadcrumb", "../../component/helper/RoamController", X, Fr, "../../util/animation", Te], function (t) {
+        function e() {
+            return {nodeGroup: [], background: [], content: []}
+        }
+
+        function i(t, e, i, o, s, l, u, c, h, d) {
+            function f(e) {
+                B[pr] = u[pr], B[Zn] = t[Zn];
+                var i = T[k], n = Math.max(C - 2 * i, 0), r = Math.max(I - 2 * i, 0);
+                B.culling = !0, B[Qe]({x: i, y: i, width: n, height: r});
+                var o = u[vr]("color", !0);
+                g(B, function () {
+                    var t = {fill: o}, e = u[Lr](be)[Mn]();
+                    m(t, e, o, n, r), B[Bn](t), a[Ni](B, e)
+                }), e.add(B)
+            }
+
+            function g(t, e) {
+                D ? !t[P] && l.push(t) : (e(), t.__tmWillVisible || (t[P] = !1))
+            }
+
+            function m(e, i, n, r, a) {
+                var o = u[Lr](), s = o.get("name");
+                if (T.isLeafRoot) {
+                    var l = t.get("drillDownIcon", !0);
+                    s = l ? l + " " + s : s
+                }
+                _(s, e, o, y, n, r, a), _(s, i, o, x, n, r, a)
+            }
+
+            function _(t, e, i, n, r, o, s) {
+                var l = i[Lr](n), u = l[Lr](bn);
+                a[W](e, l, r), e[wn] = u.get("align"), e[on] = u.get("baseline");
+                var c = u.getTextRect(t);
+                e.text = !l[Be]("show") || c[Or] > s ? "" : c.width > o ? u.get("ellipsis") ? u.truncateText(t, o, null, {minChar: 2}) : "" : t
+            }
+
+            function b(t, r, a, o) {
+                var l = null != V && i[t][V], u = s[t];
+                return l ? (i[t][V] = null, M(u, l, t)) : D || (l = new r({z: n(a, o)}), l.__tmDepth = a, l.__tmStorageName = t, A(u, l, t)), e[t][z] = l
+            }
+
+            function M(t, e, i) {
+                var n = t[z] = {};
+                n.old = "nodeGroup" === i ? e[dn].slice() : r[ir]({}, e.shape)
+            }
+
+            function A(t, e, i) {
+                var n = t[z] = {}, r = u[L];
+                if (r && (!o || "drillDown" === o.direction)) {
+                    var a = 0, l = 0, c = s.background[r[ee]()];
+                    !o && c && c.old && (a = c.old.width, l = c.old[Or]), n.old = "nodeGroup" === i ? [0, l] : {
+                        x: a,
+                        y: l,
+                        width: 0,
+                        height: 0
+                    }
+                }
+                n.fadein = "nodeGroup" !== i
+            }
+
+            if (u) {
+                var T = u[R]();
+                if (T && T.isInView) {
+                    var C = T.width, I = T[Or], D = T[P], z = u[ee](), V = c && c[ee](), O = b("nodeGroup", p);
+                    if (O) {
+                        if (h.add(O), O.attr(dn, [T.x || 0, T.y || 0]), O.__tmNodeWidth = C, O.__tmNodeHeight = I, T.isAboveViewRoot)return O;
+                        var E = b("background", v, d, w);
+                        E && (E[Qe]({x: 0, y: 0, width: C, height: I}), g(E, function () {
+                            E[Bn]("fill", u[vr](Hi, !0))
+                        }), O.add(E));
+                        var N = u.viewChildren;
+                        if (!N || !N[yr]) {
+                            var B = b("content", v, d, S);
+                            B && f(O)
+                        }
+                        return O
+                    }
+                }
+            }
+        }
+
+        function n(t, e) {
+            var i = t * _ + e;
+            return (i - 1) / i
+        }
+
+        var r = t(Xr), a = t(ji), o = t("../../data/DataDiffer"), s = t(Le), l = t("./Breadcrumb"), u = t("../../component/helper/RoamController"), c = t(X), h = t(Fr), d = t("../../util/animation"), f = r.bind, p = a.Group, v = a.Rect, g = r.each, m = 3, y = ["label", qi], x = ["label", Wi], _ = 10, w = 1, S = 2;
+        return t(Te)[In]({
+            type: "treemap", init: function () {
+                this._containerGroup, this._storage = e(), this._oldTree, this._breadcrumb, this._controller, this._state = "ready", this._mayClick
+            }, render: function (t, e, i, n) {
+                var a = e.findComponents({mainType: "series", subType: "treemap", query: n});
+                if (!(r[mr](a, t) < 0)) {
+                    this.seriesModel = t, this.api = i, this[$] = e;
+                    var o = s.retrieveTargetInfo(n, t), l = n && n.type, u = t.layoutInfo, c = !this._oldTree, h = this._storage, d = "treemapRootToNode" === l && o && h ? {
+                        rootNodeGroup: h.nodeGroup[o.node[ee]()],
+                        direction: n.direction
+                    } : null, f = this._giveContainerGroup(u), p = this._doRender(f, t, d);
+                    c || l && "treemapZoomToNode" !== l && "treemapRootToNode" !== l ? p.renderFinally() : this._doAnimation(f, p, t, d), this._resetController(i), this._renderBreadcrumb(t, i, o)
+                }
+            }, _giveContainerGroup: function (t) {
+                var e = this._containerGroup;
+                return e || (e = this._containerGroup = new p, this._initEvents(e), this.group.add(e)), e.attr(dn, [t.x, t.y]), e
+            }, _doRender: function (t, n, a) {
+                function s(t, e, i, n, a) {
+                    function l(t) {
+                        return t.getId()
+                    }
+
+                    function u(r, o) {
+                        var l = null != r ? t[r] : null, u = null != o ? e[o] : null, c = m(l, u, i, a);
+                        c && s(l && l.viewChildren || [], u && u.viewChildren || [], c, n, a + 1)
+                    }
+
+                    n ? (e = t, g(t, function (t, e) {
+                        !t.isRemoved() && u(e, e)
+                    })) : new o(e, t, l, l).add(u)[hr](u)[nr](r.curry(u, null))[Se]()
+                }
+
+                function l(t) {
+                    var i = e();
+                    return t && g(t, function (t, e) {
+                        var n = i[e];
+                        g(t, function (t) {
+                            t && (n.push(t), t.__tmWillDelete = 1)
+                        })
+                    }), i
+                }
+
+                function u() {
+                    g(y, function (t) {
+                        g(t, function (t) {
+                            t[an] && t[an][nr](t)
+                        })
+                    }), g(v, function (t) {
+                        t[P] = !0, t.dirty()
+                    })
+                }
+
+                var c = n[qr]().tree, h = this._oldTree, d = e(), f = e(), p = this._storage, v = [], m = r.curry(i, n, f, p, a, d, v);
+                s(c.root ? [c.root] : [], h && h.root ? [h.root] : [], t, c === h || !h, 0);
+                var y = l(p);
+                return this._oldTree = c, this._storage = f, {lastsForAnimation: d, willDeleteEls: y, renderFinally: u}
+            }, _doAnimation: function (t, e, i, n) {
+                if (i.get(zr)) {
+                    var a = i.get("animationDurationUpdate"), o = i.get("animationEasing"), s = d.createWrap();
+                    g(e.willDeleteEls, function (t, e) {
+                        g(t, function (t) {
+                            if (!t[P]) {
+                                var i, r = t[an];
+                                if (n && "drillDown" === n.direction)i = r === n.rootNodeGroup ? {
+                                    shape: {
+                                        x: 0,
+                                        y: 0,
+                                        width: r.__tmNodeWidth,
+                                        height: r.__tmNodeHeight
+                                    }, style: {opacity: 0}
+                                } : {style: {opacity: 0}}; else {
+                                    var l = 0, u = 0;
+                                    r.__tmWillDelete || (l = r.__tmNodeWidth / 2, u = r.__tmNodeHeight / 2), i = "nodeGroup" === e ? {
+                                        position: [l, u],
+                                        style: {opacity: 0}
+                                    } : {shape: {x: l, y: u, width: 0, height: 0}, style: {opacity: 0}}
+                                }
+                                i && s.add(t, i, a, o)
+                            }
+                        })
+                    }), g(this._storage, function (t, i) {
+                        g(t, function (t, n) {
+                            var l = e.lastsForAnimation[i][n], u = {};
+                            l && ("nodeGroup" === i ? l.old && (u[dn] = t[dn].slice(), t.attr(dn, l.old)) : (l.old && (u.shape = r[ir]({}, t.shape), t[Qe](l.old)), l.fadein ? (t[Bn](cn, 0), u.style = {opacity: 1}) : 1 !== t.style[cn] && (u.style = {opacity: 1})), s.add(t, u, a, o))
+                        })
+                    }, this), this._state = "animating", s.done(f(function () {
+                        this._state = "ready", e.renderFinally()
+                    }, this)).start()
+                }
+            }, _resetController: function (t) {
+                var e = this._controller;
+                e || (e = this._controller = new u(t.getZr()), e.enable(this.seriesModel.get("roam")), e.on("pan", f(this._onPan, this)), e.on("zoom", f(this._onZoom, this)));
+                var i = new c(0, 0, t[Cr](), t[Tr]());
+                e.setContainsPoint(function (t, e) {
+                    return i[tn](t, e)
+                })
+            }, _clearController: function () {
+                var t = this._controller;
+                t && (t[$n](), t = null)
+            }, _onPan: function (t, e) {
+                if (this._mayClick = !1, "animating" !== this._state && (Math.abs(t) > m || Math.abs(e) > m)) {
+                    var i = this.seriesModel[qr]().tree.root;
+                    if (!i)return;
+                    var n = i[R]();
+                    if (!n)return;
+                    this.api[er]({
+                        type: "treemapMove",
+                        from: this.uid,
+                        seriesId: this.seriesModel.id,
+                        rootRect: {x: n.x + t, y: n.y + e, width: n.width, height: n[Or]}
+                    })
+                }
+            }, _onZoom: function (t, e, i) {
+                if (this._mayClick = !1, "animating" !== this._state) {
+                    var n = this.seriesModel[qr]().tree.root;
+                    if (!n)return;
+                    var r = n[R]();
+                    if (!r)return;
+                    var a = new c(r.x, r.y, r.width, r[Or]), o = this.seriesModel.layoutInfo;
+                    e -= o.x, i -= o.y;
+                    var s = h[dr]();
+                    h.translate(s, s, [-e, -i]), h.scale(s, s, [t, t]), h.translate(s, s, [e, i]), a[U](s), this.api[er]({
+                        type: "treemapRender",
+                        from: this.uid,
+                        seriesId: this.seriesModel.id,
+                        rootRect: {x: a.x, y: a.y, width: a.width, height: a[Or]}
+                    })
+                }
+            }, _initEvents: function (t) {
+                function e(t) {
+                    var e = this.seriesModel.get("nodeClick", !0);
+                    if (e) {
+                        var i = this.findTarget(t[M], t[b]);
+                        if (i) {
+                            var n = i.node;
+                            if (n[R]().isLeafRoot)this._rootToNode(i); else if ("zoomToNode" === e)this._zoomToNode(i); else if ("link" === e) {
+                                var r = n.hostTree.data[Zi](n[pr]), a = r.get("link", !0), o = r.get(Wn, !0) || "blank";
+                                a && window.open(a, o)
+                            }
+                        }
+                    }
+                }
+
+                t.on(qn, function () {
+                    "ready" === this._state && (this._mayClick = !0)
+                }, this), t.on("mouseup", function (t) {
+                    this._mayClick && (this._mayClick = !1, "ready" === this._state && e.call(this, t))
+                }, this)
+            }, _renderBreadcrumb: function (t, e, i) {
+                function n(e) {
+                    "animating" !== this._state && (s.aboveViewRoot(t.getViewRoot(), e) ? this._rootToNode({node: e}) : this._zoomToNode({node: e}))
+                }
+
+                i || (i = null != t.get("leafDepth", !0) ? {node: t.getViewRoot()} : this.findTarget(e[Cr]() / 2, e[Tr]() / 2), i || (i = {node: t[qr]().tree.root})), (this._breadcrumb || (this._breadcrumb = new l(this.group)))[ar](t, e, i.node, f(n, this))
+            }, remove: function () {
+                this._clearController(), this._containerGroup && this._containerGroup[An](), this._storage = e(), this._state = "ready", this._breadcrumb && this._breadcrumb[nr]()
+            }, dispose: function () {
+                this._clearController()
+            }, _zoomToNode: function (t) {
+                this.api[er]({
+                    type: "treemapZoomToNode",
+                    from: this.uid,
+                    seriesId: this.seriesModel.id,
+                    targetNode: t.node
+                })
+            }, _rootToNode: function (t) {
+                this.api[er]({
+                    type: "treemapRootToNode",
+                    from: this.uid,
+                    seriesId: this.seriesModel.id,
+                    targetNode: t.node
+                })
+            }, findTarget: function (t, e) {
+                var i, n = this.seriesModel.getViewRoot();
+                return n.eachNode({attr: "viewChildren", order: "preorder"}, function (n) {
+                    var r = this._storage.background[n[ee]()];
+                    if (r) {
+                        var a = r.transformCoordToLocal(t, e), o = r.shape;
+                        if (!(o.x <= a[0] && a[0] <= o.x + o.width && o.y <= a[1] && a[1] <= o.y + o[Or]))return !1;
+                        i = {node: n, offsetX: a[0], offsetY: a[1]}
+                    }
+                }, this), i
+            }
+        })
+    }), e("echarts/chart/graph/categoryVisual", [Yr], function () {
+        return function (t) {
+            var e = {};
+            t[Ur]("graph", function (t) {
+                var i = t.getCategoriesData(), n = t[qr](), r = {};
+                i.each(function (n) {
+                    var a = i[we](n);
+                    r[a] = n;
+                    var o = i[Zi](n), s = o.get(te) || t.getColorFromPalette(a, e);
+                    i[wi](n, "color", s)
+                }), i.count() && n.each(function (t) {
+                    var e = n[Zi](t), a = e[Be](Mi);
+                    null != a && (typeof a === Er && (a = r[a]), n[fr](t, "color", !0) || n[wi](t, "color", i[fr](a, "color")))
+                })
+            })
+        }
+    }), e("echarts/chart/graph/simpleLayout", [Yr, "./simpleLayoutHelper", "./simpleLayoutEdge"], function (t) {
+        var e = t("./simpleLayoutHelper"), i = t("./simpleLayoutEdge");
+        return function (t) {
+            t[Ur]("graph", function (t) {
+                var n = t.get(Li), r = t[gr];
+                if (r && "view" !== r.type) {
+                    var a = t[qr]();
+                    a.each(r[ki], function (t, e, i) {
+                        isNaN(t) || isNaN(e) ? a[Ti](i, [0 / 0, 0 / 0]) : a[Ti](i, r[Ai]([t, e]))
+                    }), i(a.graph)
+                } else n && "none" !== n || e(t)
+            })
+        }
+    }),e("echarts/chart/graph/edgeVisual", [Yr], function () {
+        function t(t) {
+            return t instanceof Array || (t = [t, t]), t
+        }
+
+        return function (e) {
+            e[Ur]("graph", function (e) {
+                var i = e.getGraph(), n = e.getEdgeData(), r = t(e.get("edgeSymbol")), a = t(e.get("edgeSymbolSize")), o = "lineStyle.normal.color".split("."), s = "lineStyle.normal.opacity".split(".");
+                n[Wr]("fromSymbol", r && r[0]), n[Wr]("toSymbol", r && r[1]), n[Wr]("fromSymbolSize", a && a[0]), n[Wr]("toSymbolSize", a && a[1]), n[Wr]("color", e.get(o)), n[Wr](cn, e.get(s)), n.each(function (e) {
+                    var r = n[Zi](e), a = i.getEdgeByIndex(e), l = t(r[Be](He, !0)), u = t(r[Be](Fe, !0)), c = r.get(o), h = r.get(s);
+                    switch (c) {
+                        case"source":
+                            c = a.node1[vr]("color");
+                            break;
+                        case Wn:
+                            c = a.node2[vr]("color")
+                    }
+                    l[0] && a[Wr]("fromSymbol", l[0]), l[1] && a[Wr]("toSymbol", l[1]), u[0] && a[Wr]("fromSymbolSize", u[0]), u[1] && a[Wr]("toSymbolSize", u[1]), a[Wr]("color", c), a[Wr](cn, h)
+                })
+            })
+        }
+    }),e("echarts/chart/graph/circularLayout", [Yr, "./circularLayoutHelper"], function (t) {
+        var e = t("./circularLayoutHelper");
+        return function (t) {
+            t[Ur]("graph", function (t) {
+                "circular" === t.get(Li) && e(t)
+            })
+        }
+    }),e("echarts/chart/graph/forceLayout", [Yr, "./forceHelper", Di, "./simpleLayoutHelper", "./circularLayoutHelper", Gr, Xr], function (t) {
+        var e = t("./forceHelper"), i = t(Di), n = t("./simpleLayoutHelper"), r = t("./circularLayoutHelper"), a = t(Gr), o = t(Xr);
+        return function (t) {
+            t[Ur]("graph", function (t) {
+                var s = t[gr];
+                if (!s || "view" === s.type)if ("force" === t.get(Li)) {
+                    var l = t.preservedPoints || {}, u = t.getGraph(), c = u.data, h = u.edgeData, d = t[Lr]("force"), f = d.get("initLayout");
+                    t.preservedPoints ? c.each(function (t) {
+                        var e = c.getId(t);
+                        c[Ti](t, l[e] || [0 / 0, 0 / 0])
+                    }) : f && "none" !== f ? "circular" === f && r(t) : n(t);
+                    var p = c[Xi]("value"), v = h[Xi]("value"), g = d.get("repulsion"), m = d.get("edgeLength");
+                    o[Rn](g) || (g = [g, g]), o[Rn](m) || (m = [m, m]), m = [m[1], m[0]];
+                    var y = c[fi]("value", function (t, e) {
+                        var n = c[bi](e), r = i[G](t, p, g);
+                        return isNaN(r) && (r = (g[0] + g[1]) / 2), {
+                            w: r,
+                            rep: r,
+                            p: !n || isNaN(n[0]) || isNaN(n[1]) ? null : n
+                        }
+                    }), x = h[fi]("value", function (t, e) {
+                        var n = u.getEdgeByIndex(e), r = i[G](t, v, m);
+                        return isNaN(r) && (r = (m[0] + m[1]) / 2), {
+                            n1: y[n.node1[pr]],
+                            n2: y[n.node2[pr]],
+                            d: r,
+                            curveness: n[Lr]().get("lineStyle.normal.curveness") || 0
+                        }
+                    }), s = t[gr], _ = s[yn](), w = e(y, x, {rect: _, gravity: d.get("gravity")}), b = w.step;
+                    w.step = function (t) {
+                        for (var e = 0, i = y[yr]; i > e; e++)y[e].fixed && a.copy(y[e].p, u.getNodeByIndex(e)[R]());
+                        b(function (e, i, n) {
+                            for (var r = 0, o = e[yr]; o > r; r++)e[r].fixed || u.getNodeByIndex(r)[le](e[r].p), l[c.getId(r)] = e[r].p;
+                            for (var r = 0, o = i[yr]; o > r; r++) {
+                                var s = i[r], h = u.getEdgeByIndex(r), d = s.n1.p, f = s.n2.p, p = h[R]();
+                                p = p ? p.slice() : [], p[0] = p[0] || [], p[1] = p[1] || [], a.copy(p[0], d), a.copy(p[1], f), +s.curveness && (p[2] = [(d[0] + f[0]) / 2 - (d[1] - f[1]) * s.curveness, (d[1] + f[1]) / 2 - (f[0] - d[0]) * s.curveness]), h[le](p)
+                            }
+                            t && t(n)
+                        })
+                    }, t.forceLayout = w, t.preservedPoints = l, w.step()
+                } else t.forceLayout = null
+            })
+        }
+    }),e("echarts/chart/graph/createView", [Yr, "../../coord/View", Ne, "zrender/core/bbox"], function (t) {
+        function e(t, e, i) {
+            var r = t[mn]();
+            return r.aspect = i, n[gn](r, {width: e[Cr](), height: e[Tr]()})
+        }
+
+        var i = t("../../coord/View"), n = t(Ne), r = t("zrender/core/bbox");
+        return function (t, n) {
+            var a = [];
+            return t[Ur]("graph", function (t) {
+                var o = t.get(gr);
+                if (!o || "view" === o) {
+                    var s = t[qr](), l = s[fi](function (t) {
+                        var e = s[Zi](t);
+                        return [+e.get("x"), +e.get("y")]
+                    }), u = [], c = [];
+                    r.fromPoints(l, u, c), c[0] - u[0] === 0 && (c[0] += 1, u[0] -= 1), c[1] - u[1] === 0 && (c[1] += 1, u[1] -= 1);
+                    var h = (c[0] - u[0]) / (c[1] - u[1]), d = e(t, n, h);
+                    isNaN(h) && (u = [d.x, d.y], c = [d.x + d.width, d.y + d[Or]]);
+                    var f = c[0] - u[0], p = c[1] - u[1], v = d.width, g = d[Or], m = t[gr] = new i;
+                    m[A] = t.get("scaleLimit"), m.setBoundingRect(u[0], u[1], f, p), m.setViewRect(d.x, d.y, v, g), m.setCenter(t.get(fn)), m.setZoom(t.get("zoom")), a.push(m)
+                }
+            }), a
+        }
+    }),e("echarts/chart/boxplot/BoxplotSeries", [Yr, Xr, Ei, "../helper/whiskerBoxCommon"], function (t) {
+        var e = t(Xr), i = t(Ei), n = t("../helper/whiskerBoxCommon"), r = i[ir]({
+            type: "series.boxplot",
+            dependencies: ["xAxis", "yAxis", "grid"],
+            valueDimensions: ["min", "Q1", "median", "Q3", "max"],
+            dimensions: null,
+            defaultOption: {
+                zlevel: 0,
+                z: 2,
+                coordinateSystem: "cartesian2d",
+                legendHoverLink: !0,
+                hoverAnimation: !0,
+                layout: null,
+                boxWidth: [7, 50],
+                itemStyle: {
+                    normal: {color: "#fff", borderWidth: 1},
+                    emphasis: {
+                        borderWidth: 2,
+                        shadowBlur: 5,
+                        shadowOffsetX: 2,
+                        shadowOffsetY: 2,
+                        shadowColor: "rgba(0,0,0,0.4)"
+                    }
+                },
+                animationEasing: "elasticOut",
+                animationDuration: 800
+            }
+        });
+        return e.mixin(r, n.seriesModelMixin, !0), r
+    }),e("echarts/chart/boxplot/BoxplotView", [Yr, Xr, "../../view/Chart", ji, "../helper/whiskerBoxCommon"], function (t) {
+        function e(t, e, i) {
+            var n = e[Zi](i), a = n[Lr](s), o = e[fr](i, "color"), u = a[Mn]([Hi]), c = t[Fi](t.whiskerIndex);
+            c.style.set(u), c.style[Bi] = o, c.dirty();
+            var h = t[Fi](t.bodyIndex);
+            h.style.set(u), h.style[Bi] = o, h.dirty();
+            var d = n[Lr](l)[Mn]();
+            r[Ni](t, d)
+        }
+
+        var i = t(Xr), n = t("../../view/Chart"), r = t(ji), a = t("../helper/whiskerBoxCommon"), o = n[ir]({
+            type: "boxplot",
+            getStyleUpdater: function () {
+                return e
+            },
+            dispose: i.noop
+        });
+        i.mixin(o, a.viewMixin, !0);
+        var s = [Ui, qi], l = [Ui, Wi];
+        return o
+    }),e("echarts/chart/boxplot/boxplotVisual", [Yr], function () {
+        var t = [Ui, qi, Hi];
+        return function (e) {
+            var i = e.get("color");
+            e.eachRawSeriesByType("boxplot", function (n) {
+                var r = i[n[Zn] % i[yr]], a = n[qr]();
+                a[Wr]({legendSymbol: "roundRect", color: n.get(t) || r}), e.isSeriesFiltered(n) || a.each(function (e) {
+                    var i = a[Zi](e);
+                    a[wi](e, {color: i.get(t, !0)})
+                })
+            })
+        }
+    }),e("echarts/component/parallel", [Yr, "../coord/parallel/parallelCreator", "../coord/parallel/ParallelModel", "./parallelAxis", "../echarts", Xr, "../coord/parallel/parallelPreprocessor"], function (t) {
+        t("../coord/parallel/parallelCreator"), t("../coord/parallel/ParallelModel"), t("./parallelAxis");
+        var e = t("../echarts"), i = t(Xr), n = 5;
+        e[Pn]({
+            type: "parallel", render: function (t, e, r) {
+                var a = r.getZr();
+                if (!this.__onMouseDown) {
+                    var o;
+                    a.on(qn, this.__onMouseDown = function (t) {
+                        o = [t[M], t[b]]
+                    }), a.on("mouseup", this.__onMouseUp = function (e) {
+                        var a = [e[M], e[b]], s = Math.pow(o[0] - a[0], 2) + Math.pow(o[1] - a[1], 2);
+                        if (t.get("axisExpandable") && !(s > n)) {
+                            var l = t[gr], u = l.findClosestAxisDim(a);
+                            if (u) {
+                                var c = i[mr](l[ki], u);
+                                r[er]({type: "parallelAxisExpand", axisExpandCenter: c})
+                            }
+                        }
+                    })
+                }
+            }, dispose: function (t, e) {
+                e.getZr().off(this.__onMouseDown), e.getZr().off(this.__onMouseUp)
+            }
+        }), e.registerPreprocessor(t("../coord/parallel/parallelPreprocessor"))
+    }),e("echarts/chart/boxplot/boxplotLayout", [Yr, Xr, Di], function (t) {
+        function e(t) {
+            var e = [], i = [];
+            return t[Ur]("boxplot", function (t) {
+                var n = t[Si](), a = r[mr](i, n);
+                0 > a && (a = i[yr], i[a] = n, e[a] = {axis: n, seriesModels: []}), e[a].seriesModels.push(t)
+            }), e
+        }
+
+        function i(t) {
+            var e, i, n = t.axis, a = t.seriesModels, l = a[yr], u = t.boxWidthList = [], c = t.boxOffsetList = [], h = [];
+            if (n.type === Mi)i = n.getBandWidth(); else {
+                var d = 0;
+                s(a, function (t) {
+                    d = Math.max(d, t[qr]().count())
+                }), e = n[Qi](), Math.abs(e[1] - e[0]) / d
+            }
+            s(a, function (t) {
+                var e = t.get("boxWidth");
+                r[Rn](e) || (e = [e, e]), h.push([o(e[0], i) || 0, o(e[1], i) || 0])
+            });
+            var f = .8 * i - 2, p = f / l * .3, v = (f - p * (l - 1)) / l, g = v / 2 - f / 2;
+            s(a, function (t, e) {
+                c.push(g), g += p + v, u.push(Math.min(Math.max(v, h[e][0]), h[e][1]))
+            })
+        }
+
+        function n(t, e, i) {
+            var n = t[gr], r = t[qr](), a = t[ki], o = t.get(Li), s = i / 2;
+            r.each(a, function () {
+                function t(t) {
+                    var i = [];
+                    i[f] = h, i[p] = t;
+                    var r;
+                    return isNaN(h) || isNaN(t) ? r = [0 / 0, 0 / 0] : (r = n[Ai](i), r[f] += e), r
+                }
+
+                function i(t, e) {
+                    var i = t.slice(), n = t.slice();
+                    i[f] += s, n[f] -= s, e ? x.push(i, n) : x.push(n, i)
+                }
+
+                function l(t) {
+                    var e = [t.slice(), t.slice()];
+                    e[0][f] -= s, e[1][f] += s, y.push(e)
+                }
+
+                var u = arguments, c = a[yr], h = u[0], d = u[c], f = o === Ci ? 0 : 1, p = 1 - f, v = t(u[3]), g = t(u[1]), m = t(u[5]), y = [[g, t(u[2])], [m, t(u[4])]];
+                l(g), l(m), l(v);
+                var x = [];
+                i(y[0][1], 0), i(y[1][1], 1), r[Ti](d, {
+                    chartLayout: o,
+                    initBaseline: v[p],
+                    median: v,
+                    bodyEnds: x,
+                    whiskerEnds: y
+                })
+            })
+        }
+
+        var r = t(Xr), a = t(Di), o = a[Ii], s = r.each;
+        return function (t) {
+            var r = e(t);
+            s(r, function (t) {
+                var e = t.seriesModels;
+                e[yr] && (i(t), s(e, function (e, i) {
+                    n(e, t.boxOffsetList[i], t.boxWidthList[i])
+                }))
+            })
+        }
+    }),e("echarts/chart/parallel/ParallelSeries", [Yr, se, Xr, Ei, oe], function (t) {
+        function e(t, e, n) {
+            var r = t.get("data"), o = i(e);
+            r && r[yr] && a.each(n, function (t) {
+                if (t) {
+                    var e = a[mr](r, t[o]);
+                    t[o] = e >= 0 ? e : 0 / 0
+                }
+            })
+        }
+
+        function i(t) {
+            return +t[En]("dim", "")
+        }
+
+        function n(t, e) {
+            var n = 0;
+            a.each(t, function (t) {
+                var e = i(t);
+                e > n && (n = e)
+            });
+            var r = e[0];
+            r && r[yr] - 1 > n && (n = r[yr] - 1);
+            for (var o = [], s = 0; n >= s; s++)o.push("dim" + s);
+            return o
+        }
+
+        var r = t(se), a = t(Xr), o = t(Ei), s = t(oe);
+        return o[ir]({
+            type: "series.parallel",
+            dependencies: ["parallel"],
+            getInitialData: function (t, i) {
+                var o = i[Y]("parallel", this.get("parallelIndex")), l = o.parallelAxisIndex, u = t.data, c = o[ki], h = n(c, u), d = a.map(h, function (t, n) {
+                    var r = a[mr](c, t), o = r >= 0 && i[Y]("parallelAxis", l[r]);
+                    return o && o.get("type") === Mi ? (e(o, t, u), {
+                        name: t,
+                        type: "ordinal"
+                    }) : 0 > r && s.guessOrdinal(u, n) ? {name: t, type: "ordinal"} : t
+                }), f = new r(d, this);
+                return f[re](u), this[un].progressive && (this[un][zr] = !1), f
+            },
+            getRawIndicesByActiveState: function (t) {
+                var e = this[gr], i = this[qr](), n = [];
+                return e.eachActiveState(i, function (e, r) {
+                    t === e && n.push(i[ee](r))
+                }), n
+            },
+            defaultOption: {
+                zlevel: 0,
+                z: 2,
+                coordinateSystem: "parallel",
+                parallelIndex: 0,
+                label: {normal: {show: !1}, emphasis: {show: !1}},
+                inactiveOpacity: .05,
+                activeOpacity: 1,
+                lineStyle: {normal: {width: 1, opacity: .45, type: "solid"}},
+                progressive: !1,
+                smooth: !1,
+                animationEasing: "linear"
+            }
+        })
+    }),e("echarts/chart/parallel/ParallelView", [Yr, ji, Xr, "../../view/Chart"], function (t) {
+        function e(t, e, i) {
+            var n = t.model, r = t[Sn](), a = new o.Rect({
+                shape: {
+                    x: r.x,
+                    y: r.y,
+                    width: r.width,
+                    height: r[Or]
+                }
+            }), s = n.get(Li) === Ci ? "width" : Or;
+            return a[Qe](s, 0), o[ci](a, {shape: {width: r.width, height: r[Or]}}, e, i), a
+        }
+
+        function i(t, e, i, n) {
+            for (var r = [], o = 0; o < i[yr]; o++) {
+                var s = i[o], l = t.get(s, e);
+                a(l, n[di](s).type) || r.push(n[Ai](l, s))
+            }
+            return r
+        }
+
+        function n(t, e, n, r, a) {
+            var s = i(t, n, r, a), l = new o[je]({shape: {points: s}, silent: !0, z2: 10});
+            e.add(l), t[ti](n, l)
+        }
+
+        function r(t, e) {
+            var i = t[Ye][Lr]("lineStyle.normal"), n = i[Je]();
+            t[ei](function (r, a) {
+                if (t[E]) {
+                    var o = t[Zi](a), l = o[Lr]("lineStyle.normal", i);
+                    n = l[Je]()
+                }
+                r[Gi](s[ir](n, {fill: null, stroke: t[fr](a, "color"), opacity: t[fr](a, cn)})), r.shape.smooth = e
+            })
+        }
+
+        function a(t, e) {
+            return e === Mi ? null == t : null == t || isNaN(t)
+        }
+
+        var o = t(ji), s = t(Xr), l = .3, u = t("../../view/Chart")[ir]({
+            type: "parallel", init: function () {
+                this._dataGroup = new o.Group, this.group.add(this._dataGroup), this._data
+            }, render: function (t) {
+                this._renderForNormal(t)
+            }, dispose: function () {
+            }, _renderForNormal: function (t) {
+                function a(t) {
+                    n(h, c, t, p, f, null, g)
+                }
+
+                function s(e, n) {
+                    var r = d[Xe](n), a = i(h, e, p, f);
+                    h[ti](e, r), o[Ze](r, {shape: {points: a}}, t, e)
+                }
+
+                function u(t) {
+                    var e = d[Xe](t);
+                    c[nr](e)
+                }
+
+                var c = this._dataGroup, h = t[qr](), d = this._data, f = t[gr], p = f[ki], v = t[un], g = v.smooth ? l : null;
+                if (h.diff(d).add(a)[hr](s)[nr](u)[Se](), r(h, g), !this._data) {
+                    var m = e(f, t, function () {
+                        setTimeout(function () {
+                            c.removeClipPath()
+                        })
+                    });
+                    c.setClipPath(m)
+                }
+                this._data = h
+            }, remove: function () {
+                this._dataGroup && this._dataGroup[An](), this._data = null
+            }
+        });
+        return u
+    }),e("echarts/chart/map/MapSeries", [Yr, se, Ei, Xr, oe, Ri, "../../component/helper/selectableMixin", "../../coord/geo/geoCreator"], function (t) {
+        var e = t(se), i = t(Ei), n = t(Xr), r = t(oe), a = t(Ri), o = a[Oi], s = a[Vi], l = t("../../component/helper/selectableMixin"), u = t("../../coord/geo/geoCreator"), c = i[ir]({
+            type: "series.map",
+            dependencies: ["geo"],
+            layoutMode: "box",
+            needsDrawMap: !1,
+            seriesGroup: [],
+            init: function (t) {
+                t = this._fillOption(t, this.getMapType()), this[un] = t, c[ln](this, "init", arguments), this.updateSelectedMap(t.data)
+            },
+            getInitialData: function (t) {
+                var i = r(["value"], t.data || []), n = new e(i, this);
+                return n[re](t.data), n
+            },
+            mergeOption: function (t) {
+                t.data && (t = this._fillOption(t, this.getMapType())), c[ae](this, sn, t), this.updateSelectedMap(this[un].data)
+            },
+            getHostGeoModel: function () {
+                var t = this[un].geoIndex;
+                return null != t ? this.dependentModels.geo[t] : null
+            },
+            getMapType: function () {
+                return (this.getHostGeoModel() || this)[un].map
+            },
+            _fillOption: function (t, e) {
+                return t = n[ir]({}, t), t.data = u.getFilledRegions(t.data, e), t
+            },
+            getRawValue: function (t) {
+                return this[qr]().get("value", t)
+            },
+            getRegionModel: function (t) {
+                var e = this[qr]();
+                return e[Zi](e.indexOfName(t))
+            },
+            formatTooltip: function (t) {
+                for (var e = this[qr](), i = s(this[Ge](t)), n = e[we](t), r = this.seriesGroup, a = [], l = 0; l < r[yr]; l++) {
+                    var u = r[l].originalData.indexOfName(n);
+                    isNaN(r[l].originalData.get("value", u)) || a.push(o(r[l].name))
+                }
+                return a.join(", ") + zi + o(n + " : " + i)
+            },
+            getTooltipPosition: function (t) {
+                if (null != t) {
+                    var e = this[qr]()[we](t), i = this[gr], n = i.getRegion(e);
+                    return n && i[Ai](n[fn])
+                }
+            },
+            setZoom: function (t) {
+                this[un].zoom = t
+            },
+            setCenter: function (t) {
+                this[un][fn] = t
+            },
+            defaultOption: {
+                zlevel: 0,
+                z: 2,
+                coordinateSystem: "geo",
+                map: "",
+                left: "center",
+                top: "center",
+                aspectScale: .75,
+                showLegendSymbol: !0,
+                dataRangeHoverLink: !0,
+                center: null,
+                zoom: 1,
+                scaleLimit: null,
+                label: {
+                    normal: {show: !1, textStyle: {color: "#000"}},
+                    emphasis: {show: !0, textStyle: {color: "rgb(100,0,0)"}}
+                },
+                itemStyle: {
+                    normal: {borderWidth: .5, borderColor: "#444", areaColor: "#eee"},
+                    emphasis: {areaColor: "rgba(255,215,0,0.8)"}
+                }
+            }
+        });
+        return n.mixin(c, l), c
+    }),e("echarts/chart/parallel/parallelVisual", [Yr], function () {
+        return function (t) {
+            t[Ur]("parallel", function (e) {
+                var i = e[Lr](Me), n = e[Lr]("lineStyle.normal"), r = t.get("color"), a = n.get("color") || i.get("color") || r[e[Zn] % r[yr]], o = e.get("inactiveOpacity"), s = e.get("activeOpacity"), l = e[Lr]("lineStyle.normal")[Je](), u = e[gr], c = e[qr](), h = {
+                    normal: l[cn],
+                    active: s,
+                    inactive: o
+                };
+                u.eachActiveState(c, function (t, e) {
+                    c[wi](e, cn, h[t])
+                }), c[Wr]("color", a)
+            })
+        }
+    }),e("echarts/action/geoRoam", [Yr, Xr, "./roamHelper", "../echarts"], function (t) {
+        var e = t(Xr), i = t("./roamHelper"), n = t("../echarts");
+        n[Vn]({type: "geoRoam", event: "geoRoam", update: "updateLayout"}, function (t, n) {
+            var r = t.componentType || rr;
+            n[wr]({mainType: r, query: t}, function (n) {
+                var a = n[gr];
+                if ("geo" === a.type) {
+                    var o = i.updateCenterAndZoom(a, t, n.get("scaleLimit"));
+                    n.setCenter && n.setCenter(o[fn]), n.setZoom && n.setZoom(o.zoom), r === rr && e.each(n.seriesGroup, function (t) {
+                        t.setCenter(o[fn]), t.setZoom(o.zoom)
+                    })
+                }
+            })
+        })
+    }),e("echarts/chart/map/MapView", [Yr, ji, "../../component/helper/MapDraw", Te], function (t) {
+        var e = t(ji), i = t("../../component/helper/MapDraw");
+        t(Te)[In]({
+            type: "map", render: function (t, e, n, r) {
+                if (!r || "mapToggleSelect" !== r.type || r.from !== this.uid) {
+                    var a = this.group;
+                    if (a[An](), !t.getHostGeoModel()) {
+                        if (r && "geoRoam" === r.type && r.componentType === rr && r.seriesId === t.id) {
+                            var o = this._mapDraw;
+                            o && a.add(o.group)
+                        } else if (t.needsDrawMap) {
+                            var o = this._mapDraw || new i(n, !0);
+                            a.add(o.group), o.draw(t, e, n, this, r), this._mapDraw = o
+                        } else this._mapDraw && this._mapDraw[nr](), this._mapDraw = null;
+                        t.get("showLegendSymbol") && e[Y]("legend") && this._renderSymbols(t, e, n)
+                    }
+                }
+            }, remove: function () {
+                this._mapDraw && this._mapDraw[nr](), this._mapDraw = null, this.group[An]()
+            }, dispose: function () {
+                this._mapDraw && this._mapDraw[nr](), this._mapDraw = null
+            }, _renderSymbols: function (t) {
+                var i = t.originalData, n = this.group;
+                i.each("value", function (r, a) {
+                    if (!isNaN(r)) {
+                        var o = i[bi](a);
+                        if (o && o.point) {
+                            var s = o.point, l = o[ii], u = new e[j]({
+                                style: {fill: t[qr]()[vr]("color")},
+                                shape: {cx: s[0] + 9 * l, cy: s[1], r: 3},
+                                silent: !0,
+                                z2: 10
+                            });
+                            if (!l) {
+                                var c = t.mainSeries[qr](), h = i[we](a), d = h, f = c.indexOfName(h), p = i[Zi](a), v = p[Lr](fe), g = p[Lr](de), m = v[Lr](bn), y = g[Lr](bn), x = c[Xe](f);
+                                u[Bn]({textPosition: "bottom"});
+                                var _ = function () {
+                                    u[Bn]({text: g.get("show") ? d : "", textFill: y[xn](), textFont: y[_n]()})
+                                }, w = function () {
+                                    u[Bn]({text: v.get("show") ? d : "", textFill: m[xn](), textFont: m[_n]()})
+                                };
+                                x.on(Xn, _).on(jn, w).on(Wi, _).on(qi, w), w()
+                            }
+                            n.add(u)
+                        }
+                    }
+                })
+            }
+        })
+    }),e("echarts/chart/map/mapSymbolLayout", [Yr, Xr], function (t) {
+        var e = t(Xr);
+        return function (t) {
+            var i = {};
+            t[Ur]("map", function (n) {
+                var r = n.getMapType();
+                if (!n.getHostGeoModel() && !i[r]) {
+                    var a = {};
+                    e.each(n.seriesGroup, function (e) {
+                        var i = e[gr], n = e.originalData;
+                        e.get("showLegendSymbol") && t[Y]("legend") && n.each("value", function (t, e) {
+                            var r = n[we](e), o = i.getRegion(r);
+                            if (o && !isNaN(t)) {
+                                var s = a[r] || 0, l = i[Ai](o[fn]);
+                                a[r] = s + 1, n[Ti](e, {point: l, offset: s})
+                            }
+                        })
+                    });
+                    var o = n[qr]();
+                    o.each(function (t) {
+                        var e = o[we](t), i = o[bi](t) || {};
+                        i.showLabel = !a[e], o[Ti](t, i)
+                    }), i[r] = !0
+                }
+            })
+        }
+    }),e("echarts/coord/geo/geoCreator", [Yr, "./Geo", Ne, Xr, Di, Te], function (t) {
+        function e(t, e) {
+            var i, n = this[yn](), a = t.get("layoutCenter"), s = t.get("layoutSize"), l = e[Cr](), u = e[Tr](), c = t.get("aspectScale") || .75, h = n.width / n[Or] * c, d = !1;
+            a && s && (a = [o[Ii](a[0], l), o[Ii](a[1], u)], s = o[Ii](s, Math.min(l, u)), isNaN(a[0]) || isNaN(a[1]) || isNaN(s) || (d = !0));
+            var f;
+            if (d) {
+                var f = {};
+                h > 1 ? (f.width = s, f[Or] = s / h) : (f[Or] = s, f.width = s * h), f.y = a[1] - f[Or] / 2, f.x = a[0] - f.width / 2
+            } else i = t[mn](), i.aspect = h, f = r[gn](i, {width: l, height: u});
+            this.setViewRect(f.x, f.y, f.width, f[Or]), this.setCenter(t.get(fn)), this.setZoom(t.get("zoom"))
+        }
+
+        function i(t, e) {
+            a.each(e.get("geoCoord"), function (e, i) {
+                t.addGeoCoord(i, e)
+            })
+        }
+
+        var n = t("./Geo"), r = t(Ne), a = t(Xr), o = t(Di), s = {}, l = {
+            dimensions: n[Nr][ki],
+            create: function (t, r) {
+                var o = [];
+                t[wr]("geo", function (t, a) {
+                    var l = t.get("map"), u = s[l], c = new n(l + a, l, u && u.geoJson, u && u.specialAreas, t.get("nameMap"));
+                    c[A] = t.get("scaleLimit"), o.push(c), i(c, t), t[gr] = c, c.model = t, c[Vr] = e, c[Vr](t, r)
+                }), t[lr](function (t) {
+                    var e = t.get(gr);
+                    if ("geo" === e) {
+                        var i = t.get("geoIndex") || 0;
+                        t[gr] = o[i]
+                    }
+                });
+                var l = {};
+                return t[Ur]("map", function (t) {
+                    if (!t.getHostGeoModel()) {
+                        var e = t.getMapType();
+                        l[e] = l[e] || [], l[e].push(t)
+                    }
+                }), a.each(l, function (t, l) {
+                    var u = s[l], c = a.map(t, function (t) {
+                        return t.get("nameMap")
+                    }), h = new n(l, l, u && u.geoJson, u && u.specialAreas, a.mergeAll(c));
+                    h[A] = a[Pi].apply(null, a.map(t, function (t) {
+                        return t.get("scaleLimit")
+                    })), o.push(h), h[Vr] = e, h[Vr](t[0], r), a.each(t, function (t) {
+                        t[gr] = h, i(h, t)
+                    })
+                }), o
+            },
+            registerMap: function (t, e, i) {
+                e.geoJson && !e.features && (i = e.specialAreas, e = e.geoJson), typeof e === Er && (e = typeof JSON !== Q && JSON.parse ? JSON.parse(e) : new Function("return (" + e + ");")()), s[t] = {
+                    geoJson: e,
+                    specialAreas: i
+                }
+            },
+            getMap: function (t) {
+                return s[t]
+            },
+            getFilledRegions: function (t, e) {
+                var i = (t || []).slice(), n = l.getMap(e), r = n && n.geoJson;
+                if (!r)return t;
+                for (var a = {}, o = r.features, s = 0; s < i[yr]; s++)a[i[s].name] = i[s];
+                for (var s = 0; s < o[yr]; s++) {
+                    var u = o[s].properties.name;
+                    a[u] || i.push({name: u})
+                }
+                return i
+            }
+        }, u = t(Te);
+        return u.registerMap = l.registerMap, u.getMap = l.getMap, u.loadMap = function () {
+        }, u.registerCoordinateSystem("geo", l), l
+    }),e("echarts/chart/map/mapVisual", [Yr], function () {
+        return function (t) {
+            t[Ur]("map", function (t) {
+                var e = t.get("color"), i = t[Lr](Me), n = i.get("areaColor"), r = i.get("color") || e[t[Zn] % e[yr]];
+                t[qr]()[Wr]({areaColor: n, color: r})
+            })
+        }
+    }),e("echarts/chart/map/mapDataStatistic", [Yr, Xr], function (t) {
+        function e(t, e) {
+            var n = {}, r = ["value"];
+            return i.each(t, function (t) {
+                t.each(r, function (e, i) {
+                    var r = t[we](i);
+                    n[r] = n[r] || [], isNaN(e) || n[r].push(e)
+                })
+            }), t[0].map(r, function (i, r) {
+                for (var a = t[0][we](r), o = 0, s = 1 / 0, l = -1 / 0, u = n[a][yr], c = 0; u > c; c++)s = Math.min(s, n[a][c]), l = Math.max(l, n[a][c]), o += n[a][c];
+                var h;
+                return h = "min" === e ? s : "max" === e ? l : "average" === e ? o / u : o, 0 === u ? 0 / 0 : h
+            })
+        }
+
+        var i = t(Xr);
+        return function (t) {
+            var n = {};
+            t[Ur]("map", function (t) {
+                var e = t.getHostGeoModel(), i = e ? "o" + e.id : "i" + t.getMapType();
+                (n[i] = n[i] || []).push(t)
+            }), i.each(n, function (t) {
+                for (var n = e(i.map(t, function (t) {
+                    return t[qr]()
+                }), t[0].get("mapValueCalculation")), r = 0; r < t[yr]; r++)t[r].originalData = t[r][qr]();
+                for (var r = 0; r < t[yr]; r++)t[r].seriesGroup = t, t[r].needsDrawMap = 0 === r && !t[r].getHostGeoModel(), t[r].setData(n.cloneShallow()), t[r].mainSeries = t[0]
+            })
+        }
+    }),e("echarts/chart/lines/LinesSeries", [Yr, Ei, se, Xr, Ri, "../../CoordinateSystem"], function (t) {
+        function e(t) {
+            var e = t.data;
+            e && e[0] && e[0][0] && e[0][0].coord && (t.data = r.map(e, function (t) {
+                var e = [t[0].coord, t[1].coord], i = {coords: e};
+                return t[0].name && (i.fromName = t[0].name), t[1].name && (i.toName = t[1].name), r.mergeAll([i, t[0], t[1]])
+            }))
+        }
+
+        var i = t(Ei), n = t(se), r = t(Xr), a = t(Ri), o = (t("../../CoordinateSystem"), i[ir]({
+            type: "series.lines",
+            dependencies: ["grid", "polar"],
+            visualColorAccessPath: "lineStyle.normal.color",
+            init: function (t) {
+                e(t), o[ln](this, "init", arguments)
+            },
+            mergeOption: function (t) {
+                e(t), o[ln](this, sn, arguments)
+            },
+            getInitialData: function (t) {
+                var e = new n(["value"], this);
+                return e[E] = !1, e[re](t.data, [], function (t, i, n, r) {
+                    if (t instanceof Array)return 0 / 0;
+                    e[E] = !0;
+                    var a = t.value;
+                    return null != a ? a instanceof Array ? a[r] : a : void 0
+                }), e
+            },
+            formatTooltip: function (t) {
+                var e = this[qr](), i = e[Zi](t), n = i.get("name");
+                if (n)return n;
+                var r = i.get("fromName"), o = i.get("toName"), s = [];
+                return null != r && s.push(r), null != o && s.push(o), a[Oi](s.join(" > "))
+            },
+            defaultOption: {
+                coordinateSystem: "geo",
+                zlevel: 0,
+                z: 2,
+                legendHoverLink: !0,
+                hoverAnimation: !0,
+                xAxisIndex: 0,
+                yAxisIndex: 0,
+                symbol: ["none", "none"],
+                symbolSize: [10, 10],
+                geoIndex: 0,
+                effect: {
+                    show: !1,
+                    period: 4,
+                    constantSpeed: 0,
+                    symbol: "circle",
+                    symbolSize: 3,
+                    loop: !0,
+                    trailLength: .2
+                },
+                large: !1,
+                largeThreshold: 2e3,
+                polyline: !1,
+                label: {normal: {show: !1, position: "end"}},
+                lineStyle: {normal: {opacity: .5}}
+            }
+        }))
+    }),e("echarts/chart/map/backwardCompat", [Yr, Xr], function (t) {
+        var e = t(Xr);
+        return function (t) {
+            var i = [];
+            e.each(t[rr], function (t) {
+                "map" === t.type && i.push(t)
+            }), e.each(i, function (t) {
+                t.map = t.map || t.mapType, e[tr](t, t.mapLocation)
+            })
+        }
+    }),e("echarts/chart/lines/LinesView", [Yr, "../helper/LineDraw", "../helper/EffectLine", "../helper/Line", "../helper/Polyline", "../helper/EffectPolyline", "../helper/LargeLineDraw", Te], function (t) {
+        var e = t("../helper/LineDraw"), i = t("../helper/EffectLine"), n = t("../helper/Line"), r = t("../helper/Polyline"), a = t("../helper/EffectPolyline"), o = t("../helper/LargeLineDraw");
+        t(Te)[In]({
+            type: "lines", init: function () {
+            }, render: function (t, s, l) {
+                var u = t[qr](), c = this._lineDraw, h = t.get("effect.show"), d = t.get("polyline"), f = t.get("large") && u.count() >= t.get("largeThreshold");
+                (h !== this._hasEffet || d !== this._isPolyline || f !== this._isLarge) && (c && c[nr](), c = this._lineDraw = f ? new o : new e(d ? h ? a : r : h ? i : n), this._hasEffet = h, this._isPolyline = d, this._isLarge = f);
+                var p = t.get(Nn), v = t.get("effect.trailLength"), g = l.getZr();
+                if (g.painter.getLayer(p).clear(!0), null != this._lastZlevel && g.configLayer(this._lastZlevel, {motionBlur: !1}), h && v) {
+                    g.configLayer(p, {motionBlur: !0, lastFrameAlpha: Math.max(Math.min(v / 10 + .9, 1), 0)})
+                }
+                this.group.add(c.group), c[Ke](u), this._lastZlevel = p
+            }, updateLayout: function (t, e, i) {
+                this._lineDraw[sr](t);
+                var n = i.getZr();
+                n.painter.getLayer(this._lastZlevel).clear(!0)
+            }, remove: function (t, e) {
+                this._lineDraw && this._lineDraw[nr](e, !0)
+            }, dispose: function () {
+            }
+        })
+    }),e("echarts/chart/lines/linesLayout", [Yr], function () {
+        return function (t) {
+            t[Ur]("lines", function (t) {
+                var e = t[gr], i = t[qr]();
+                i.each(function (n) {
+                    var r = i[Zi](n), a = r[un]instanceof Array ? r[un] : r.get("coords"), o = [];
+                    if (t.get("polyline"))for (var s = 0; s < a[yr]; s++)o.push(e[Ai](a[s])); else {
+                        o[0] = e[Ai](a[0]), o[1] = e[Ai](a[1]);
+                        var l = r.get("lineStyle.normal.curveness");
+                        +l && (o[2] = [(o[0][0] + o[1][0]) / 2 - (o[0][1] - o[1][1]) * l, (o[0][1] + o[1][1]) / 2 - (o[1][0] - o[0][0]) * l])
+                    }
+                    i[Ti](n, o)
+                })
+            })
+        }
+    }),e("echarts/chart/lines/linesVisual", [Yr], function () {
+        function t(t) {
+            return t instanceof Array || (t = [t, t]), t
+        }
+
+        return function (e) {
+            e[Ur]("lines", function (e) {
+                var i = e[qr](), n = t(e.get(He)), r = t(e.get(Fe)), a = "lineStyle.normal.opacity".split(".");
+                i[Wr]("fromSymbol", n && n[0]), i[Wr]("toSymbol", n && n[1]), i[Wr]("fromSymbolSize", r && r[0]), i[Wr]("toSymbolSize", r && r[1]), i[Wr](cn, e.get(a)), i.each(function (e) {
+                    var n = i[Zi](e), r = t(n[Be](He, !0)), o = t(n[Be](Fe, !0)), s = n.get(a);
+                    r[0] && i[wi](e, "fromSymbol", r[0]), r[1] && i[wi](e, "toSymbol", r[1]), o[0] && i[wi](e, "fromSymbolSize", o[0]), o[1] && i[wi](e, "toSymbolSize", o[1]), i[wi](e, cn, s)
+                })
+            })
+        }
+    }),e("echarts/chart/funnel/FunnelSeries", [Yr, se, mi, oe, Te], function (t) {
+        var e = t(se), i = t(mi), n = t(oe), r = t(Te).extendSeriesModel({
+            type: "series.funnel",
+            init: function (t) {
+                r[ln](this, "init", arguments), this.legendDataProvider = function () {
+                    return this.getRawData()
+                }, this._defaultLabelLine(t)
+            },
+            getInitialData: function (t) {
+                var i = n(["value"], t.data), r = new e(i, this);
+                return r[re](t.data), r
+            },
+            _defaultLabelLine: function (t) {
+                i[ie](t.labelLine, ["show"]);
+                var e = t.labelLine[qi], n = t.labelLine[Wi];
+                e.show = e.show && t.label[qi].show, n.show = n.show && t.label[Wi].show
+            },
+            defaultOption: {
+                zlevel: 0,
+                z: 2,
+                legendHoverLink: !0,
+                left: 80,
+                top: 60,
+                right: 80,
+                bottom: 60,
+                minSize: "0%",
+                maxSize: "100%",
+                sort: "descending",
+                gap: 0,
+                funnelAlign: "center",
+                label: {normal: {show: !0, position: "outer"}, emphasis: {show: !0}},
+                labelLine: {normal: {show: !0, length: 20, lineStyle: {width: 1, type: "solid"}}, emphasis: {}},
+                itemStyle: {normal: {borderColor: "#fff", borderWidth: 1}, emphasis: {}}
+            }
+        });
+        return r
+    }),e("echarts/chart/funnel/FunnelView", [Yr, ji, Xr, "../../view/Chart"], function (t) {
+        function e(t, e) {
+            function i() {
+                o[_r] = o.hoverIgnore, s[_r] = s.hoverIgnore
+            }
+
+            function r() {
+                o[_r] = o.normalIgnore, s[_r] = s.normalIgnore
+            }
+
+            n.Group.call(this);
+            var a = new n[Ue], o = new n[je], s = new n.Text;
+            this.add(a), this.add(o), this.add(s), this[Ke](t, e, !0), this.on(Wi, i).on(qi, r).on(Xn, i).on(jn, r)
+        }
+
+        function i(t, e, i, n) {
+            var a = n[Lr](bn), o = n.get(dn), s = o === ye || "inner" === o || o === fn;
+            return {
+                fill: a[xn]() || (s ? "#fff" : t[fr](e, "color")),
+                textFont: a[_n](),
+                text: r[Pi](t[Ye][me](e, i), t[we](e))
+            }
+        }
+
+        var n = t(ji), r = t(Xr), a = e[Nr], o = [Ui, qi, cn];
+        a[Ke] = function (t, e, i) {
+            var a = this[Fi](0), s = t[Ye], l = t[Zi](e), u = t[bi](e), c = t[Zi](e).get(o);
+            c = null == c ? 1 : c, a[Gi]({}), i ? (a[Qe]({points: u[We]}), a[Bn]({opacity: 0}), n[ci](a, {style: {opacity: c}}, s, e)) : n[Ze](a, {
+                style: {opacity: c},
+                shape: {points: u[We]}
+            }, s, e);
+            var h = l[Lr](Ui), d = t[fr](e, "color");
+            a[Bn](r[tr]({
+                lineJoin: "round",
+                fill: d
+            }, h[Lr](qi)[Mn]([cn]))), a[ge] = h[Lr](Wi)[Mn](), this._updateLabel(t, e), n[Ni](this)
+        }, a._updateLabel = function (t, e) {
+            var r = this[Fi](1), a = this[Fi](2), o = t[Ye], s = t[Zi](e), l = t[bi](e), u = l.label, c = t[fr](e, "color");
+            n[Ze](r, {shape: {points: u.linePoints || u.linePoints}}, o, e), n[Ze](a, {
+                style: {
+                    x: u.x,
+                    y: u.y
+                }
+            }, o, e), a.attr({
+                style: {textAlign: u[wn], textVerticalAlign: u.verticalAlign, textFont: u.font},
+                rotation: u[pe],
+                origin: [u.x, u.y],
+                z2: 10
+            });
+            var h = s[Lr](fe), d = s[Lr](de), f = s[Lr]("labelLine.normal"), p = s[Lr]("labelLine.emphasis");
+            a[Bn](i(t, e, qi, h)), a[_r] = a.normalIgnore = !h.get("show"), a.hoverIgnore = !d.get("show"), r[_r] = r.normalIgnore = !f.get("show"), r.hoverIgnore = !p.get("show"), r[Bn]({stroke: c}), r[Bn](f[Lr](he)[Je]()), a[ge] = i(t, e, Wi, d), r[ge] = p[Lr](he)[Je]()
+        }, r[Cn](e, n.Group);
+        var s = t("../../view/Chart")[ir]({
+            type: "funnel", render: function (t) {
+                var i = t[qr](), n = this._data, r = this.group;
+                i.diff(n).add(function (t) {
+                    var n = new e(i, t);
+                    i[ti](t, n), r.add(n)
+                })[hr](function (t, e) {
+                    var a = n[Xe](e);
+                    a[Ke](i, t), r.add(a), i[ti](t, a)
+                })[nr](function (t) {
+                    var e = n[Xe](t);
+                    r[nr](e)
+                })[Se](), this._data = i
+            }, remove: function () {
+                this.group[An](), this._data = null
+            }, dispose: function () {
+            }
+        });
+        return s
+    }),e("echarts/chart/funnel/funnelLayout", [Yr, Ne, Di], function (t) {
+        function e(t, e) {
+            return r[gn](t[mn](), {width: e[Cr](), height: e[Tr]()})
+        }
+
+        function i(t, e) {
+            for (var i = t[fi]("value", function (t) {
+                return t
+            }), n = [], r = "ascending" === e, a = 0, o = t.count(); o > a; a++)n[a] = a;
+            return n.sort(function (t, e) {
+                return r ? i[t] - i[e] : i[e] - i[t]
+            }), n
+        }
+
+        function n(t) {
+            t.each(function (e) {
+                var i, n, r, a, o = t[Zi](e), s = o[Lr](fe), l = s.get(dn), u = o[Lr]("labelLine.normal"), c = t[bi](e), h = c[We], d = "inner" === l || l === ye || l === fn;
+                if (d)n = (h[0][0] + h[1][0] + h[2][0] + h[3][0]) / 4, r = (h[0][1] + h[1][1] + h[2][1] + h[3][1]) / 4, i = fn, a = [[n, r], [n, r]]; else {
+                    var f, p, v, g = u.get(yr);
+                    "left" === l ? (f = (h[3][0] + h[0][0]) / 2, p = (h[3][1] + h[0][1]) / 2, v = f - g, n = v - 5, i = "right") : (f = (h[1][0] + h[2][0]) / 2, p = (h[1][1] + h[2][1]) / 2, v = f + g, n = v + 5, i = "left");
+                    var m = p;
+                    a = [[f, p], [v, m]], r = m
+                }
+                c.label = {linePoints: a, x: n, y: r, verticalAlign: "middle", textAlign: i, inside: d}
+            })
+        }
+
+        var r = t(Ne), a = t(Di), o = a[Ii];
+        return function (t, r) {
+            t[Ur]("funnel", function (t) {
+                var s = t[qr](), l = t.get("sort"), u = e(t, r), c = i(s, l), h = [o(t.get("minSize"), u.width), o(t.get("maxSize"), u.width)], d = s[Xi]("value"), f = t.get("min"), p = t.get("max");
+                null == f && (f = Math.min(d[0], 0)), null == p && (p = d[1]);
+                var v = t.get("funnelAlign"), g = t.get("gap"), m = (u[Or] - g * (s.count() - 1)) / s.count(), y = u.y, x = function (t, e) {
+                    var i, n = s.get("value", t) || 0, r = a[G](n, [f, p], h, !0);
+                    switch (v) {
+                        case"left":
+                            i = u.x;
+                            break;
+                        case fn:
+                            i = u.x + (u.width - r) / 2;
+                            break;
+                        case"right":
+                            i = u.x + u.width - r
+                    }
+                    return [[i, e], [i + r, e]]
+                };
+                "ascending" === l && (m = -m, g = -g, y += u[Or], c = c[ni]());
+                for (var _ = 0; _ < c[yr]; _++) {
+                    var w = c[_], b = c[_ + 1], M = x(w, y), S = x(b, y + m);
+                    y += m + g, s[Ti](w, {points: M[rn](S.slice()[ni]())})
+                }
+                n(s)
+            })
+        }
+    }),e("echarts/chart/gauge/GaugeView", [Yr, "./PointerPath", ji, Di, "../../view/Chart"], function (t) {
+        function e(t, e) {
+            var i = t.get(fn), n = e[Cr](), r = e[Tr](), a = Math.min(n, r), s = o(i[0], e[Cr]()), l = o(i[1], e[Tr]()), u = o(t.get(pi), a / 2);
+            return {cx: s, cy: l, r: u}
+        }
+
+        function i(t, e) {
+            return e && (typeof e === Er ? t = e[En]("{value}", null != t ? t : "") : typeof e === On && (t = e(t))), t
+        }
+
+        var n = t("./PointerPath"), r = t(ji), a = t(Di), o = a[Ii], s = 2 * Math.PI, l = t("../../view/Chart")[ir]({
+            type: "gauge",
+            render: function (t, i, n) {
+                this.group[An]();
+                var r = t.get("axisLine.lineStyle.color"), a = e(t, n);
+                this._renderMain(t, i, n, r, a)
+            },
+            dispose: function () {
+            },
+            _renderMain: function (t, e, i, n, a) {
+                for (var o = this.group, l = t[Lr](w), u = l[Lr](he), c = t.get(ue), h = -t.get(_e) / 180 * Math.PI, d = -t.get(oi) / 180 * Math.PI, f = (d - h) % s, p = h, v = u.get("width"), g = 0; g < n[yr]; g++) {
+                    var m = Math.min(Math.max(n[g][0], 0), 1), d = h + f * m, y = new r[li]({
+                        shape: {
+                            startAngle: p,
+                            endAngle: d,
+                            cx: a.cx,
+                            cy: a.cy,
+                            clockwise: c,
+                            r0: a.r - v,
+                            r: a.r
+                        }, silent: !0
+                    });
+                    y[Bn]({fill: n[g][1]}), y[Bn](u[Je](["color", k, Hi])), o.add(y), p = d
+                }
+                var x = function (t) {
+                    if (0 >= t)return n[0][1];
+                    for (var e = 0; e < n[yr]; e++)if (n[e][0] >= t && (0 === e ? 0 : n[e - 1][0]) < t)return n[e][1];
+                    return n[e - 1][1]
+                };
+                if (!c) {
+                    var _ = h;
+                    h = d, d = _
+                }
+                this._renderTicks(t, e, i, x, a, h, d, c), this._renderPointer(t, e, i, x, a, h, d, c), this._renderTitle(t, e, i, x, a), this._renderDetail(t, e, i, x, a)
+            },
+            _renderTicks: function (t, e, n, s, l, u, c) {
+                for (var h = this.group, d = l.cx, f = l.cy, p = l.r, v = +t.get("min"), g = +t.get("max"), m = t[Lr]("splitLine"), y = t[Lr](_), w = t[Lr](x), b = t.get("splitNumber"), M = y.get("splitNumber"), S = o(m.get(yr), p), A = o(y.get(yr), p), T = u, C = (c - u) / b, L = C / M, k = m[Lr](he)[Je](), I = y[Lr](he)[Je](), P = w[Lr](bn), D = 0; b >= D; D++) {
+                    var z = Math.cos(T), V = Math.sin(T);
+                    if (m.get("show")) {
+                        var O = new r.Line({
+                            shape: {
+                                x1: z * p + d,
+                                y1: V * p + f,
+                                x2: z * (p - S) + d,
+                                y2: V * (p - S) + f
+                            }, style: k, silent: !0
+                        });
+                        "auto" === k[Bi] && O[Bn]({stroke: s(D / b)}), h.add(O)
+                    }
+                    if (w.get("show")) {
+                        var R = i(a.round(D / b * (g - v) + v), w.get(H)), E = w.get("distance"), N = new r.Text({
+                            style: {
+                                text: R,
+                                x: z * (p - S - E) + d,
+                                y: V * (p - S - E) + f,
+                                fill: P[xn](),
+                                textFont: P[_n](),
+                                textVerticalAlign: -.4 > V ? "top" : V > .4 ? xr : pn,
+                                textAlign: -.4 > z ? "left" : z > .4 ? "right" : fn
+                            }, silent: !0
+                        });
+                        "auto" === N.style.fill && N[Bn]({fill: s(D / b)}), h.add(N)
+                    }
+                    if (y.get("show") && D !== b) {
+                        for (var B = 0; M >= B; B++) {
+                            var z = Math.cos(T), V = Math.sin(T), G = new r.Line({
+                                shape: {
+                                    x1: z * p + d,
+                                    y1: V * p + f,
+                                    x2: z * (p - A) + d,
+                                    y2: V * (p - A) + f
+                                }, silent: !0, style: I
+                            });
+                            "auto" === I[Bi] && G[Bn]({stroke: s((D + B / M) / b)}), h.add(G), T += L
+                        }
+                        T -= L
+                    } else T += C
+                }
+            },
+            _renderPointer: function (t, e, i, s, l, u, c) {
+                var h = this.group, d = this._data;
+                if (!t.get("pointer.show"))return void d[ei](function (t) {
+                    h[nr](t)
+                });
+                var f = [+t.get("min"), +t.get("max")], p = [u, c], v = t[qr]();
+                v.diff(d).add(function (e) {
+                    var i = new n({shape: {angle: u}});
+                    r[Ze](i, {shape: {angle: a[G](v.get("value", e), f, p, !0)}}, t), h.add(i), v[ti](e, i)
+                })[hr](function (e, i) {
+                    var n = d[Xe](i);
+                    r[Ze](n, {shape: {angle: a[G](v.get("value", e), f, p, !0)}}, t), h.add(n), v[ti](e, n)
+                })[nr](function (t) {
+                    var e = d[Xe](t);
+                    h[nr](e)
+                })[Se](), v[ei](function (t, e) {
+                    var i = v[Zi](e), n = i[Lr]("pointer");
+                    t[Qe]({
+                        x: l.cx,
+                        y: l.cy,
+                        width: o(n.get("width"), l.r),
+                        r: o(n.get(yr), l.r)
+                    }), t[Gi](i[Lr](Me)[Mn]()), "auto" === t.style.fill && t[Bn]("fill", s((v.get("value", e) - f[0]) / (f[1] - f[0]))), r[Ni](t, i[Lr](be)[Mn]())
+                }), this._data = v
+            },
+            _renderTitle: function (t, e, i, n, a) {
+                var s = t[Lr]("title");
+                if (s.get("show")) {
+                    var l = s[Lr](bn), u = s.get("offsetCenter"), c = a.cx + o(u[0], a.r), h = a.cy + o(u[1], a.r), d = new r.Text({
+                        style: {
+                            x: c,
+                            y: h,
+                            text: t[qr]()[we](0),
+                            fill: l[xn](),
+                            textFont: l[_n](),
+                            textAlign: "center",
+                            textVerticalAlign: "middle"
+                        }
+                    });
+                    this.group.add(d)
+                }
+            },
+            _renderDetail: function (t, e, n, s, l) {
+                var u = t[Lr]("detail"), c = +t.get("min"), h = +t.get("max");
+                if (u.get("show")) {
+                    var d = u[Lr](bn), f = u.get("offsetCenter"), p = l.cx + o(f[0], l.r), v = l.cy + o(f[1], l.r), g = o(u.get("width"), l.r), m = o(u.get(Or), l.r), y = t[qr]().get("value", 0), x = new r.Rect({
+                        shape: {
+                            x: p - g / 2,
+                            y: v - m / 2,
+                            width: g,
+                            height: m
+                        }, style: {text: i(y, u.get(H)), fill: u.get(Sr), textFill: d[xn](), textFont: d[_n]()}
+                    });
+                    "auto" === x.style.textFill && x[Bn]("textFill", s(a[G](y, [c, h], [0, 1], !0))), x[Bn](u[Mn](["color"])), this.group.add(x)
+                }
+            }
+        });
+        return l
+    }),e("echarts/chart/gauge/GaugeSeries", [Yr, se, Ei, Xr], function (t) {
+        var e = t(se), i = t(Ei), n = t(Xr), r = i[ir]({
+            type: "series.gauge",
+            getInitialData: function (t) {
+                var i = new e(["value"], this), r = t.data || [];
+                return n[Rn](r) || (r = [r]), i[re](r), i
+            },
+            defaultOption: {
+                zlevel: 0,
+                z: 2,
+                center: ["50%", "50%"],
+                legendHoverLink: !0,
+                radius: "75%",
+                startAngle: 225,
+                endAngle: -45,
+                clockwise: !0,
+                min: 0,
+                max: 100,
+                splitNumber: 10,
+                axisLine: {show: !0, lineStyle: {color: [[.2, "#91c7ae"], [.8, "#63869e"], [1, "#c23531"]], width: 30}},
+                splitLine: {show: !0, length: 30, lineStyle: {color: "#eee", width: 2, type: "solid"}},
+                axisTick: {show: !0, splitNumber: 5, length: 8, lineStyle: {color: "#eee", width: 1, type: "solid"}},
+                axisLabel: {show: !0, distance: 5, textStyle: {color: "auto"}},
+                pointer: {show: !0, length: "80%", width: 8},
+                itemStyle: {normal: {color: "auto"}},
+                title: {show: !0, offsetCenter: [0, "-40%"], textStyle: {color: "#333", fontSize: 15}},
+                detail: {
+                    show: !0,
+                    backgroundColor: "rgba(0,0,0,0)",
+                    borderWidth: 0,
+                    borderColor: "#ccc",
+                    width: 100,
+                    height: 40,
+                    offsetCenter: [0, "40%"],
+                    textStyle: {color: "auto", fontSize: 30}
+                }
+            }
+        });
+        return r
+    }),e("echarts/chart/sankey/SankeySeries", [Yr, Ei, "../helper/createGraphFromNodeEdge", Ri], function (t) {
+        var e = t(Ei), i = t("../helper/createGraphFromNodeEdge"), n = t(Ri)[Oi], r = e[ir]({
+            type: "series.sankey",
+            layoutInfo: null,
+            getInitialData: function (t) {
+                var e = t.edges || t.links, n = t.data || t.nodes;
+                if (n && e) {
+                    var r = i(n, e, this, !0);
+                    return r.data
+                }
+            },
+            getGraph: function () {
+                return this[qr]().graph
+            },
+            getEdgeData: function () {
+                return this.getGraph().edgeData
+            },
+            formatTooltip: function (t, e, i) {
+                if ("edge" === i) {
+                    var a = this[Hn](t, i), o = a.data, s = o.source + " -- " + o[Wn];
+                    return a.value && (s += " : " + a.value), n(s)
+                }
+                return r[ae](this, "formatTooltip", t, e)
+            },
+            defaultOption: {
+                zlevel: 0,
+                z: 2,
+                coordinateSystem: "view",
+                layout: null,
+                left: "5%",
+                top: "5%",
+                right: "20%",
+                bottom: "5%",
+                nodeWidth: 20,
+                nodeGap: 8,
+                layoutIterations: 32,
+                label: {
+                    normal: {show: !0, position: "right", textStyle: {color: "#000", fontSize: 12}},
+                    emphasis: {show: !0}
+                },
+                itemStyle: {normal: {borderWidth: 1, borderColor: "#333"}},
+                lineStyle: {normal: {color: "#314656", opacity: .2, curveness: .5}, emphasis: {opacity: .6}},
+                animationEasing: "linear",
+                animationDuration: 1e3
+            }
+        });
+        return r
+    }),e("echarts/chart/sankey/SankeyView", [Yr, ji, Xr, Te], function (t) {
+        function e(t, e, n) {
+            var r = new i.Rect({shape: {x: t.x - 10, y: t.y - 10, width: 0, height: t[Or] + 20}});
+            return i[ci](r, {shape: {width: t.width + 20, height: t[Or] + 20}}, e, n), r
+        }
+
+        var i = t(ji), n = t(Xr), r = i.extendShape({
+            shape: {
+                x1: 0,
+                y1: 0,
+                x2: 0,
+                y2: 0,
+                cpx1: 0,
+                cpy1: 0,
+                cpx2: 0,
+                cpy2: 0,
+                extent: 0
+            }, buildPath: function (t, e) {
+                var i = e.extent / 2;
+                t[y](e.x1, e.y1 - i), t.bezierCurveTo(e.cpx1, e.cpy1 - i, e.cpx2, e.cpy2 - i, e.x2, e.y2 - i), t[m](e.x2, e.y2 + i), t.bezierCurveTo(e.cpx2, e.cpy2 + i, e.cpx1, e.cpy1 + i, e.x1, e.y1 + i), t[g]()
+            }
+        });
+        return t(Te)[In]({
+            type: "sankey", _model: null, render: function (t) {
+                var a = t.getGraph(), o = this.group, s = t.layoutInfo, l = t[qr](), u = t[qr]("edge");
+                this[kr] = t, o[An](), o[dn] = [s.x, s.y], a.eachEdge(function (e) {
+                    var n = new r;
+                    n[pr] = e[pr], n[Zn] = t[Zn], n[Fn] = "edge";
+                    var a = e[Lr]("lineStyle.normal"), s = a.get("curveness"), l = e.node1[R](), c = e.node2[R](), h = e[R]();
+                    n.shape.extent = Math.max(1, h.dy);
+                    var d = l.x + l.dx, f = l.y + h.sy + h.dy / 2, p = c.x, v = c.y + h.ty + h.dy / 2, g = d * (1 - s) + p * s, m = f, y = d * s + p * (1 - s), x = v;
+                    switch (n[Qe]({
+                        x1: d,
+                        y1: f,
+                        x2: p,
+                        y2: v,
+                        cpx1: g,
+                        cpy1: m,
+                        cpx2: y,
+                        cpy2: x
+                    }), n[Bn](a[Mn]()), n.style.fill) {
+                        case"source":
+                            n.style.fill = e.node1[vr]("color");
+                            break;
+                        case Wn:
+                            n.style.fill = e.node2[vr]("color")
+                    }
+                    i[Ni](n, e[Lr]("lineStyle.emphasis")[Mn]()), o.add(n), u[ti](e[pr], n)
+                }), a.eachNode(function (e) {
+                    var r = e[R](), a = e[Lr](), s = a[Lr](fe), u = s[Lr](bn), c = a[Lr](de), h = c[Lr](bn), d = new i.Rect({
+                        shape: {
+                            x: r.x,
+                            y: r.y,
+                            width: e[R]().dx,
+                            height: e[R]().dy
+                        },
+                        style: {
+                            text: s.get("show") ? t[me](e[pr], qi) || e.id : "",
+                            textFont: u[_n](),
+                            textFill: u[xn](),
+                            textPosition: s.get(dn)
+                        }
+                    });
+                    d[Bn](n[tr]({fill: e[vr]("color")}, a[Lr](Me)[Mn]())), i[Ni](d, n[ir](e[Lr](be), {
+                        text: c.get("show") ? t[me](e[pr], Wi) || e.id : "",
+                        textFont: h[_n](),
+                        textFill: h[xn](),
+                        textPosition: c.get(dn)
+                    })), o.add(d), l[ti](e[pr], d), d[Fn] = "node"
+                }), !this._data && t.get(zr) && o.setClipPath(e(o[yn](), t, function () {
+                    o.removeClipPath()
+                })), this._data = t[qr]()
+            }, dispose: function () {
+            }
+        })
+    }),e("echarts/chart/sankey/sankeyVisual", [Yr, "../../visual/VisualMapping", Xr], function (t) {
+        var e = t("../../visual/VisualMapping"), i = t(Xr);
+        return function (t) {
+            t[Ur]("sankey", function (t) {
+                var n = t.getGraph(), r = n.nodes;
+                r.sort(function (t, e) {
+                    return t[R]().value - e[R]().value
+                });
+                var a = r[0][R]().value, o = r[r[yr] - 1][R]().value;
+                i.each(r, function (i) {
+                    var n = new e({
+                        type: "color",
+                        mappingMethod: "linear",
+                        dataExtent: [a, o],
+                        visual: t.get("color")
+                    }), r = n.mapValueToVisual(i[R]().value);
+                    i[Wr]("color", r);
+                    var s = i[Lr](), l = s.get(te);
+                    null != l && i[Wr]("color", l)
+                })
+            })
+        }
+    }),e("echarts/component/axis", [Yr, "../coord/cartesian/AxisModel", "./axis/AxisView"], function (t) {
+        t("../coord/cartesian/AxisModel"), t("./axis/AxisView")
+    }),e("echarts/chart/sankey/sankeyLayout", [Yr, Ne, "../../util/array/nest", Xr], function (t) {
+        function e(t, e) {
+            return b[gn](t[mn](), {width: e[Cr](), height: e[Tr]()})
+        }
+
+        function i(t, e, i, n, a, o, l) {
+            r(t, i, a), s(t, e, o, n, l), p(t)
+        }
+
+        function n(t) {
+            S.each(t, function (t) {
+                var e = m(t.outEdges, w), i = m(t.inEdges, w), n = Math.max(e, i);
+                t[le]({value: n}, !0)
+            })
+        }
+
+        function r(t, e, i) {
+            for (var n = t, r = null, s = 0, l = 0; n[yr];) {
+                r = [];
+                for (var u = 0, c = n[yr]; c > u; u++) {
+                    var h = n[u];
+                    h[le]({x: s}, !0), h[le]({dx: e}, !0);
+                    for (var d = 0, f = h.outEdges[yr]; f > d; d++)r.push(h.outEdges[d].node2)
+                }
+                n = r, ++s
+            }
+            a(t, s), l = (i - e) / (s - 1), o(t, l)
+        }
+
+        function a(t, e) {
+            S.each(t, function (t) {
+                t.outEdges[yr] || t[le]({x: e - 1}, !0)
+            })
+        }
+
+        function o(t, e) {
+            S.each(t, function (t) {
+                var i = t[R]().x * e;
+                t[le]({x: i}, !0)
+            })
+        }
+
+        function s(t, e, i, n, r) {
+            var a = M().key(function (t) {
+                return t[R]().x
+            }).sortKeys(_).entries(t).map(function (t) {
+                return t.values
+            });
+            l(t, a, e, i, n), u(a, n, i);
+            for (var o = 1; r > 0; r--)o *= .99, c(a, o), u(a, n, i), d(a, o), u(a, n, i)
+        }
+
+        function l(t, e, i, n, r) {
+            var a = [];
+            S.each(e, function (t) {
+                var e = t[yr], i = 0;
+                S.each(t, function (t) {
+                    i += t[R]().value
+                });
+                var o = (n - (e - 1) * r) / i;
+                a.push(o)
+            }), a.sort(function (t, e) {
+                return t - e
+            });
+            var o = a[0];
+            S.each(e, function (t) {
+                S.each(t, function (t, e) {
+                    t[le]({y: e}, !0);
+                    var i = t[R]().value * o;
+                    t[le]({dy: i}, !0)
+                })
+            }), S.each(i, function (t) {
+                var e = +t.getValue() * o;
+                t[le]({dy: e}, !0)
+            })
+        }
+
+        function u(t, e, i) {
+            S.each(t, function (t) {
+                var n, r, a, o = 0, s = t[yr];
+                for (t.sort(x), a = 0; s > a; a++) {
+                    if (n = t[a], r = o - n[R]().y, r > 0) {
+                        var l = n[R]().y + r;
+                        n[le]({y: l}, !0)
+                    }
+                    o = n[R]().y + n[R]().dy + e
+                }
+                if (r = o - e - i, r > 0) {
+                    var l = n[R]().y - r;
+                    for (n[le]({y: l}, !0), o = n[R]().y, a = s - 2; a >= 0; --a)n = t[a], r = n[R]().y + n[R]().dy + e - o, r > 0 && (l = n[R]().y - r, n[le]({y: l}, !0)), o = n[R]().y
+                }
+            })
+        }
+
+        function c(t, e) {
+            S.each(t.slice()[ni](), function (t) {
+                S.each(t, function (t) {
+                    if (t.outEdges[yr]) {
+                        var i = m(t.outEdges, h) / m(t.outEdges, w), n = t[R]().y + (i - y(t)) * e;
+                        t[le]({y: n}, !0)
+                    }
+                })
+            })
+        }
+
+        function h(t) {
+            return y(t.node2) * t.getValue()
+        }
+
+        function d(t, e) {
+            S.each(t, function (t) {
+                S.each(t, function (t) {
+                    if (t.inEdges[yr]) {
+                        var i = m(t.inEdges, f) / m(t.inEdges, w), n = t[R]().y + (i - y(t)) * e;
+                        t[le]({y: n}, !0)
+                    }
+                })
+            })
+        }
+
+        function f(t) {
+            return y(t.node1) * t.getValue()
+        }
+
+        function p(t) {
+            S.each(t, function (t) {
+                t.outEdges.sort(v), t.inEdges.sort(g)
+            }), S.each(t, function (t) {
+                var e = 0, i = 0;
+                S.each(t.outEdges, function (t) {
+                    t[le]({sy: e}, !0), e += t[R]().dy
+                }), S.each(t.inEdges, function (t) {
+                    t[le]({ty: i}, !0), i += t[R]().dy
+                })
+            })
+        }
+
+        function v(t, e) {
+            return t.node2[R]().y - e.node2[R]().y
+        }
+
+        function g(t, e) {
+            return t.node1[R]().y - e.node1[R]().y
+        }
+
+        function m(t, e) {
+            for (var i = 0, n = t[yr], r = -1; ++r < n;) {
+                var a = +e.call(t, t[r], r);
+                isNaN(a) || (i += a)
+            }
+            return i
+        }
+
+        function y(t) {
+            return t[R]().y + t[R]().dy / 2
+        }
+
+        function x(t, e) {
+            return t[R]().y - e[R]().y
+        }
+
+        function _(t, e) {
+            return e > t ? -1 : t > e ? 1 : t === e ? 0 : 0 / 0
+        }
+
+        function w(t) {
+            return t.getValue()
+        }
+
+        var b = t(Ne), M = t("../../util/array/nest"), S = t(Xr);
+        return function (t, r) {
+            t[Ur]("sankey", function (t) {
+                var a = t.get("nodeWidth"), o = t.get("nodeGap"), s = e(t, r);
+                t.layoutInfo = s;
+                var l = s.width, u = s[Or], c = t.getGraph(), h = c.nodes, d = c.edges;
+                n(h);
+                var f = h[Ln](function (t) {
+                    return 0 === t[R]().value
+                }), p = 0 !== f[yr] ? 0 : t.get("layoutIterations");
+                i(h, d, a, o, l, u, p)
+            })
+        }
+    }),e("echarts/chart/effectScatter/EffectScatterSeries", [Yr, "../helper/createListFromArray", Ei], function (t) {
+        var e = t("../helper/createListFromArray"), i = t(Ei);
+        return i[ir]({
+            type: "series.effectScatter",
+            dependencies: ["grid", "polar"],
+            getInitialData: function (t, i) {
+                var n = e(t.data, this, i);
+                return n
+            },
+            brushSelector: "point",
+            defaultOption: {
+                coordinateSystem: "cartesian2d",
+                zlevel: 0,
+                z: 2,
+                legendHoverLink: !0,
+                effectType: "ripple",
+                progressive: 0,
+                showEffectOn: "render",
+                rippleEffect: {period: 4, scale: 2.5, brushType: "fill"},
+                symbolSize: 10
+            }
+        })
+    }),e("echarts/chart/effectScatter/EffectScatterView", [Yr, "../helper/SymbolDraw", "../helper/EffectSymbol", Te], function (t) {
+        var e = t("../helper/SymbolDraw"), i = t("../helper/EffectSymbol");
+        t(Te)[In]({
+            type: "effectScatter", init: function () {
+                this._symbolDraw = new e(i)
+            }, render: function (t) {
+                var e = t[qr](), i = this._symbolDraw;
+                i[Ke](e), this.group.add(i.group)
+            }, updateLayout: function () {
+                this._symbolDraw[sr]()
+            }, remove: function (t, e) {
+                this._symbolDraw && this._symbolDraw[nr](e)
+            }, dispose: function () {
+            }
+        })
+    }),e("echarts/coord/geo/GeoModel", [Yr, mi, v, Ce, Xr, "../../component/helper/selectableMixin", "./geoCreator"], function (t) {
+        var e = t(mi), i = t(v), n = t(Ce), r = t(Xr), a = t("../../component/helper/selectableMixin"), o = t("./geoCreator"), s = i[ir]({
+            type: "geo",
+            coordinateSystem: null,
+            layoutMode: "box",
+            init: function (t) {
+                i[Nr].init.apply(this, arguments), e[ie](t.label, [dn, "show", bn, "distance", H])
+            },
+            optionUpdated: function () {
+                var t = this[un], e = this;
+                t.regions = o.getFilledRegions(t.regions, t.map), this._optionModelMap = r.reduce(t.regions || [], function (t, i) {
+                    return i.name && (t[i.name] = new n(i, e)), t
+                }, {}), this.updateSelectedMap(t.regions)
+            },
+            defaultOption: {
+                zlevel: 0,
+                z: 0,
+                show: !0,
+                left: "center",
+                top: "center",
+                aspectScale: .75,
+                silent: !1,
+                map: "",
+                center: null,
+                zoom: 1,
+                scaleLimit: null,
+                label: {
+                    normal: {show: !1, textStyle: {color: "#000"}},
+                    emphasis: {show: !0, textStyle: {color: "rgb(100,0,0)"}}
+                },
+                itemStyle: {
+                    normal: {borderWidth: .5, borderColor: "#444", color: "#eee"},
+                    emphasis: {color: "rgba(255,215,0,0.8)"}
+                },
+                regions: []
+            },
+            getRegionModel: function (t) {
+                return this._optionModelMap[t]
+            },
+            getFormattedLabel: function (t, e) {
+                var i = this.get("label." + e + ".formatter"), n = {name: t};
+                if (typeof i === On)return n.status = e, i(n);
+                if (typeof i === Er) {
+                    var r = n.seriesName;
+                    return i[En]("{a}", null != r ? r : "")
+                }
+            },
+            setZoom: function (t) {
+                this[un].zoom = t
+            },
+            setCenter: function (t) {
+                this[un][fn] = t
+            }
+        });
+        return r.mixin(s, a), s
+    }),e("echarts/component/geo/GeoView", [Yr, "../helper/MapDraw", Te], function (t) {
+        var e = t("../helper/MapDraw");
+        return t(Te)[Pn]({
+            type: "geo", init: function (t, i) {
+                var n = new e(i, !0);
+                this._mapDraw = n, this.group.add(n.group)
+            }, render: function (t, e, i, n) {
+                if (!n || "geoToggleSelect" !== n.type || n.from !== this.uid) {
+                    var r = this._mapDraw;
+                    t.get("show") ? r.draw(t, e, i, this, n) : this._mapDraw.group[An](), this.group[Dr] = t.get(Dr)
+                }
+            }, dispose: function () {
+                this._mapDraw && this._mapDraw[nr]()
+            }
+        })
+    }),e("echarts/coord/polar/polarCreator", [Yr, "./Polar", Di, Xr, "../../coord/axisHelper", "./PolarModel", "../../CoordinateSystem"], function (t) {
+        function e(t, e) {
+            var i = t.get(fn), n = t.get(pi), r = e[Cr](), o = e[Tr](), s = a[Ii];
+            this.cx = s(i[0], r), this.cy = s(i[1], o);
+            var l = this.getRadiusAxis(), u = Math.min(r, o) / 2;
+            l[Yi](0, s(n, u))
+        }
+
+        function i(t) {
+            var e = this, i = e[ui](), n = e.getRadiusAxis();
+            if (i.scale[Yi](1 / 0, -1 / 0), n.scale[Yi](1 / 0, -1 / 0), t[lr](function (t) {
+                    if (t[gr] === e) {
+                        var r = t[qr]();
+                        n.scale[ke](r, pi), i.scale[ke](r, "angle")
+                    }
+                }), s(i, i.model), s(n, n.model), i.type === Mi && !i[gi]) {
+                var r = i[Qi](), a = 360 / i.scale.count();
+                i[si] ? r[1] += a : r[1] -= a, i[Yi](r[0], r[1])
+            }
+        }
+
+        function n(t, e) {
+            if (t.type = e.get("type"), t.scale = o[De](e), t[gi] = e.get(Pe) && t.type === Mi, "angleAxis" === e[or]) {
+                var i = e.get(_e);
+                t[si] = e.get(si) ^ e.get(ue), t[Yi](i, i + (t[si] ? -360 : 360))
+            }
+            e.axis = t, t.model = e
+        }
+
+        var r = t("./Polar"), a = t(Di), o = (t(Xr), t("../../coord/axisHelper")), s = o[Ee];
+        t("./PolarModel");
+        var l = {
+            dimensions: r[Nr][ki], create: function (t, a) {
+                var o = [];
+                return t[wr]("polar", function (t, s) {
+                    var l = new r(s);
+                    l[Vr] = e, l[hr] = i;
+                    var u = l.getRadiusAxis(), c = l[ui](), h = t.findAxisModel("radiusAxis"), d = t.findAxisModel("angleAxis");
+                    n(u, h), n(c, d), l[Vr](t, a), o.push(l), t[gr] = l
+                }), t[lr](function (e) {
+                    if ("polar" === e.get(gr)) {
+                        var i = t[K]({mainType: "polar", index: e.get(D), id: e.get("polarId")})[0];
+                        e[gr] = i[gr]
+                    }
+                }), o
+            }
+        };
+        t("../../CoordinateSystem")[zn]("polar", l)
+    }),e("echarts/component/angleAxis", [Yr, "../coord/polar/polarCreator", "./axis/AngleAxisView"], function (t) {
+        t("../coord/polar/polarCreator"), t("./axis/AngleAxisView")
+    }),e("echarts/component/radiusAxis", [Yr, "../coord/polar/polarCreator", "./axis/RadiusAxisView"], function (t) {
+        t("../coord/polar/polarCreator"), t("./axis/RadiusAxisView")
+    }),e("echarts/coord/single/singleCreator", [Yr, "./Single", "../../CoordinateSystem"], function (t) {
+        function e(t, e) {
+            var n = [];
+            return t[wr]("singleAxis", function (r, a) {
+                var o = new i(r, t, e);
+                o.name = "single_" + a, o[Vr](r, e), r[gr] = o, n.push(o)
+            }), t[lr](function (e) {
+                if ("singleAxis" === e.get(gr)) {
+                    var i = t[K]({
+                        mainType: "singleAxis",
+                        index: e.get("singleAxisIndex"),
+                        id: e.get("singleAxisId")
+                    })[0];
+                    e[gr] = i && i[gr]
+                }
+            }), n
+        }
+
+        var i = t("./Single");
+        t("../../CoordinateSystem")[zn](p, {create: e, dimensions: i[Nr][ki]})
+    }),e("echarts/component/axis/SingleAxisView", [Yr, "./AxisBuilder", Xr, ji, Te], function (t) {
+        function e(t) {
+            var e = t[gr], i = t.axis, n = {}, r = i[dn], a = i[d], o = e[Sn](), s = [o.x, o.x + o.width, o.y, o.y + o[Or]], l = {
+                horizontal: {
+                    top: s[2],
+                    bottom: s[3]
+                }, vertical: {left: s[0], right: s[1]}
+            };
+            n[dn] = [a === h ? l[h][r] : s[0], a === Ci ? l[Ci][r] : s[3]];
+            var u = {horizontal: 0, vertical: 1};
+            n[pe] = Math.PI / 2 * u[a];
+            var f = {top: -1, bottom: 1, right: 1, left: -1};
+            n.labelDirection = n.tickDirection = n.nameDirection = f[r], t[Lr](_).get(ye) && (n.tickDirection = -n.tickDirection), t[Lr](x).get(ye) && (n.labelDirection = -n.labelDirection);
+            var p = t[Lr](x).get(c);
+            return n.labelRotation = "top" === r ? -p : p, n.labelInterval = i.getLabelInterval(), n.z2 = 1, n
+        }
+
+        var i = t("./AxisBuilder"), n = t(Xr), r = t(ji), a = i.getInterval, o = i.ifIgnoreOnTick, s = [w, x, _, "axisName"], l = "splitLine", u = t(Te)[Pn]({
+            type: "singleAxis",
+            render: function (t) {
+                var r = this.group;
+                r[An]();
+                var a = e(t), o = new i(t, a);
+                n.each(s, o.add, o), r.add(o.getGroup()), t.get(l + ".show") && this["_" + l](t, a.labelInterval)
+            },
+            _splitLine: function (t, e) {
+                var i = t.axis;
+                if (!i[f]()) {
+                    var n = t[Lr]("splitLine"), s = n[Lr](he), l = s.get("width"), u = s.get("color"), c = a(n, e);
+                    u = u instanceof Array ? u : [u];
+                    for (var h = t[gr][Sn](), d = i[hi](), p = [], v = 0, g = i.getTicksCoords(), m = [], y = [], x = 0; x < g[yr]; ++x)if (!o(i, x, c)) {
+                        var _ = i[ai](g[x]);
+                        d ? (m[0] = _, m[1] = h.y, y[0] = _, y[1] = h.y + h[Or]) : (m[0] = h.x, m[1] = _, y[0] = h.x + h.width, y[1] = _);
+                        var w = v++ % u[yr];
+                        p[w] = p[w] || [], p[w].push(new r.Line(r.subPixelOptimizeLine({
+                            shape: {
+                                x1: m[0],
+                                y1: m[1],
+                                x2: y[0],
+                                y2: y[1]
+                            }, style: {lineWidth: l}, silent: !0
+                        })))
+                    }
+                    for (var x = 0; x < p[yr]; ++x)this.group.add(r.mergePath(p[x], {
+                        style: {
+                            stroke: u[x % u[yr]],
+                            lineDash: s.getLineDash(l),
+                            lineWidth: l
+                        }, silent: !0
+                    }))
+                }
+            }
+        });
+        return u
+    }),e("echarts/coord/single/AxisModel", [Yr, v, "../axisModelCreator", Xr, "../axisModelCommonMixin"], function (t) {
+        function e(t, e) {
+            return e.type || (e.data ? Mi : "value")
+        }
+
+        var i = t(v), n = t("../axisModelCreator"), r = t(Xr), a = i[ir]({
+            type: "singleAxis",
+            layoutMode: "box",
+            axis: null,
+            coordinateSystem: null,
+            getCoordSysModel: function () {
+                return this
+            }
+        }), o = {
+            left: "5%",
+            top: "5%",
+            right: "5%",
+            bottom: "5%",
+            type: "value",
+            position: "bottom",
+            orient: "horizontal",
+            axisLine: {show: !0, lineStyle: {width: 2, type: "solid"}},
+            axisTick: {show: !0, length: 6, lineStyle: {width: 2}},
+            axisLabel: {show: !0, interval: "auto"},
+            splitLine: {show: !0, lineStyle: {type: "dashed", opacity: .2}}
+        };
+        return r.merge(a[Nr], t("../axisModelCommonMixin")), n(p, a, e, o), a
+    }),e("echarts/component/tooltip/TooltipModel", [Yr, Te], function (t) {
+        t(Te)[Dn]({
+            type: "tooltip",
+            defaultOption: {
+                zlevel: 0,
+                z: 8,
+                show: !0,
+                showContent: !0,
+                trigger: "item",
+                triggerOn: "mousemove",
+                alwaysShowContent: !1,
+                confine: !1,
+                showDelay: 0,
+                hideDelay: 100,
+                transitionDuration: .4,
+                enterable: !1,
+                backgroundColor: "rgba(50,50,50,0.7)",
+                borderColor: "#333",
+                borderRadius: 4,
+                borderWidth: 0,
+                padding: 5,
+                extraCssText: "",
+                axisPointer: {
+                    type: "line",
+                    axis: "auto",
+                    animation: !0,
+                    animationDurationUpdate: 200,
+                    animationEasingUpdate: "exponentialOut",
+                    lineStyle: {color: "#555", width: 1, type: "solid"},
+                    crossStyle: {color: "#555", width: 1, type: "dashed", textStyle: {}},
+                    shadowStyle: {color: "rgba(150,150,150,0.3)"}
+                },
+                textStyle: {color: "#fff", fontSize: 14}
+            }
+        })
+    }),e("echarts/component/marker/MarkPointModel", [Yr, "./MarkerModel"], function (t) {
+        return t("./MarkerModel")[ir]({
+            type: "markPoint",
+            defaultOption: {
+                zlevel: 0,
+                z: 5,
+                symbol: "pin",
+                symbolSize: 50,
+                tooltip: {trigger: "item"},
+                label: {normal: {show: !0, position: "inside"}, emphasis: {show: !0}},
+                itemStyle: {normal: {borderWidth: 2}}
+            }
+        })
+    }),e("echarts/util/layout", [Yr, Xr, X, "./number", "./format"], function (t) {
+        function e(t, e, i, n, r) {
+            var a = 0, o = 0;
+            null == n && (n = 1 / 0), null == r && (r = 1 / 0);
+            var s = 0;
+            e[ce](function (l, u) {
+                var c, h, d = l[dn], f = l[yn](), p = e[Fi](u + 1), v = p && p[yn]();
+                if (t === Ci) {
+                    var g = f.width + (v ? -v.x + f.x : 0);
+                    c = a + g, c > n || l.newline ? (a = 0, c = g, o += s + i, s = f[Or]) : s = Math.max(s, f[Or])
+                } else {
+                    var m = f[Or] + (v ? -v.y + f.y : 0);
+                    h = o + m, h > r || l.newline ? (a += s + i, o = 0, h = m, s = f.width) : s = Math.max(s, f.width)
+                }
+                l.newline || (d[0] = a, d[1] = o, t === Ci ? a = c + i : o = h + i)
+            })
+        }
+
+        var i = t(Xr), n = t(X), r = t("./number"), a = t("./format"), o = r[Ii], s = i.each, l = {}, u = l.LOCATION_PARAMS = ["left", "right", "top", xr, "width", Or];
+        return l.box = e, l.vbox = i.curry(e, h), l.hbox = i.curry(e, Ci), l.getAvailableSize = function (t, e, i) {
+            var n = e.width, r = e[Or], s = o(t.x, n), l = o(t.y, r), u = o(t.x2, n), c = o(t.y2, r);
+            return (isNaN(s) || isNaN(parseFloat(t.x))) && (s = 0), (isNaN(u) || isNaN(parseFloat(t.x2))) && (u = n), (isNaN(l) || isNaN(parseFloat(t.y))) && (l = 0), (isNaN(c) || isNaN(parseFloat(t.y2))) && (c = r), i = a.normalizeCssArray(i || 0), {
+                width: Math.max(u - s - i[1] - i[3], 0),
+                height: Math.max(c - l - i[0] - i[2], 0)
+            }
+        }, l[gn] = function (t, e, i) {
+            i = a.normalizeCssArray(i || 0);
+            var r = e.width, s = e[Or], l = o(t.left, r), u = o(t.top, s), c = o(t.right, r), h = o(t[xr], s), d = o(t.width, r), f = o(t[Or], s), p = i[2] + i[0], v = i[1] + i[3], g = t.aspect;
+            switch (isNaN(d) && (d = r - c - v - l), isNaN(f) && (f = s - h - p - u), isNaN(d) && isNaN(f) && (g > r / s ? d = .8 * r : f = .8 * s), null != g && (isNaN(d) && (d = g * f), isNaN(f) && (f = d / g)), isNaN(l) && (l = r - c - d - v), isNaN(u) && (u = s - h - f - p), t.left || t.right) {
+                case fn:
+                    l = r / 2 - d / 2 - i[3];
+                    break;
+                case"right":
+                    l = r - d - v
+            }
+            switch (t.top || t[xr]) {
+                case pn:
+                case fn:
+                    u = s / 2 - f / 2 - i[0];
+                    break;
+                case xr:
+                    u = s - f - p
+            }
+            l = l || 0, u = u || 0, isNaN(d) && (d = r - l - (c || 0)), isNaN(f) && (f = s - u - (h || 0));
+            var m = new n(l + i[3], u + i[0], d, f);
+            return m[hn] = i, m
+        }, l.positionElement = function (t, e, r, a, o) {
+            var s = !o || !o.hv || o.hv[0], u = !o || !o.hv || o.hv[1], c = o && o.boundingMode || "all";
+            if (s || u) {
+                var h;
+                if ("raw" === c)h = "group" === t.type ? new n(0, 0, +e.width || 0, +e[Or] || 0) : t[yn](); else if (h = t[yn](), t.needLocalTransform()) {
+                    var d = t[Z]();
+                    h = h.clone(), h[U](d)
+                }
+                e = l[gn](i[tr]({width: h.width, height: h[Or]}, e), r, a);
+                var f = t[dn], p = s ? e.x - h.x : 0, v = u ? e.y - h.y : 0;
+                t.attr(dn, "raw" === c ? [p, v] : [f[0] + p, f[1] + v])
+            }
+        }, l.mergeLayoutParam = function (t, e, n) {
+            function r(i) {
+                var r = {}, l = 0, u = {}, c = 0, h = n.ignoreSize ? 1 : 2;
+                if (s(i, function (e) {
+                        u[e] = t[e]
+                    }), s(i, function (t) {
+                        a(e, t) && (r[t] = u[t] = e[t]), o(r, t) && l++, o(u, t) && c++
+                    }), c !== h && l) {
+                    if (l >= h)return r;
+                    for (var d = 0; d < i[yr]; d++) {
+                        var f = i[d];
+                        if (!a(r, f) && a(t, f)) {
+                            r[f] = t[f];
+                            break
+                        }
+                    }
+                    return r
+                }
+                return u
+            }
+
+            function a(t, e) {
+                return t.hasOwnProperty(e)
+            }
+
+            function o(t, e) {
+                return null != t[e] && "auto" !== t[e]
+            }
+
+            function l(t, e, i) {
+                s(t, function (t) {
+                    e[t] = i[t]
+                })
+            }
+
+            !i[Ir](n) && (n = {});
+            var u = ["width", "left", "right"], c = [Or, "top", xr], h = r(u), d = r(c);
+            l(u, t, h), l(c, t, d)
+        }, l.getLayoutParams = function (t) {
+            return l.copyLayoutParams({}, t)
+        }, l.copyLayoutParams = function (t, e) {
+            return e && t && s(u, function (i) {
+                e.hasOwnProperty(i) && (t[i] = e[i])
+            }), t
+        }, l
+    }),e("echarts/component/marker/MarkPointView", [Yr, "../../chart/helper/SymbolDraw", Xr, Di, se, "./markerHelper", "./MarkerView"], function (t) {
+        function e(t, e, i) {
+            var n = e[gr];
+            t.each(function (r) {
+                var o, s = t[Zi](r), l = a[Ii](s.get("x"), i[Cr]()), u = a[Ii](s.get("y"), i[Tr]());
+                if (isNaN(l) || isNaN(u)) {
+                    if (e.getMarkerPosition)o = e.getMarkerPosition(t.getValues(t[ki], r)); else if (n) {
+                        var c = t.get(n[ki][0], r), h = t.get(n[ki][1], r);
+                        o = n[Ai]([c, h])
+                    }
+                } else o = [l, u];
+                isNaN(l) || (o[0] = l), isNaN(u) || (o[1] = u), t[Ti](r, o)
+            })
+        }
+
+        function i(t, e, i) {
+            var n;
+            n = t ? r.map(t && t[ki], function (t) {
+                var i = e[qr]().getDimensionInfo(e[Ie](t)[0]) || {};
+                return i.name = t, i
+            }) : [{name: "value", type: "float"}];
+            var a = new o(n, i), l = r.map(i.get("data"), r.curry(s.dataTransform, e));
+            return t && (l = r[Ln](l, r.curry(s.dataFilter, t))), a[re](l, null, t ? s.dimValueGetter : function (t) {
+                return t.value
+            }), a
+        }
+
+        var n = t("../../chart/helper/SymbolDraw"), r = t(Xr), a = t(Di), o = t(se), s = t("./markerHelper");
+        t("./MarkerView")[ir]({
+            type: "markPoint", updateLayout: function (t, i, n) {
+                i[lr](function (t) {
+                    var i = t.markPointModel;
+                    i && (e(i[qr](), t, n), this.markerGroupMap[t.name][sr](i))
+                }, this)
+            }, renderSeries: function (t, r, a, o) {
+                var s = t[gr], l = t.name, u = t[qr](), c = this.markerGroupMap, h = c[l];
+                h || (h = c[l] = new n);
+                var d = i(s, t, r);
+                r.setData(d), e(r[qr](), t, o), d.each(function (t) {
+                    var e = d[Zi](t), i = e[Be](Fe);
+                    typeof i === On && (i = i(r[Ge](t), r[Hn](t))), d[wi](t, {
+                        symbolSize: i,
+                        color: e.get(te) || u[vr]("color"),
+                        symbol: e[Be](He)
+                    })
+                }), h[Ke](d), this.group.add(h.group), d[ei](function (t) {
+                    t[Gn](function (t) {
+                        t.dataModel = r
+                    })
+                }), h.__keep = !0, h.group[Dr] = r.get(Dr) || t.get(Dr)
+            }
+        })
+    }),e("echarts/component/legend/LegendModel", [Yr, Xr, Ce, Te], function (t) {
+        var e = t(Xr), i = t(Ce), n = t(Te)[Dn]({
+            type: "legend",
+            dependencies: [rr],
+            layoutMode: {type: "box", ignoreSize: !0},
+            init: function (t, e, i) {
+                this[J](t, i), t[ve] = t[ve] || {}
+            },
+            mergeOption: function (t) {
+                n[ae](this, sn, t)
+            },
+            optionUpdated: function () {
+                this._updateData(this[$]);
+                var t = this._data;
+                if (t[0] && this.get("selectedMode") === p) {
+                    for (var e = !1, i = 0; i < t[yr]; i++) {
+                        var n = t[i].get("name");
+                        if (this.isSelected(n)) {
+                            this.select(n), e = !0;
+                            break
+                        }
+                    }
+                    !e && this.select(t[0].get("name"))
+                }
+            },
+            _updateData: function (t) {
+                var n = e.map(this.get("data") || [], function (t) {
+                    return (typeof t === Er || typeof t === kn) && (t = {name: t}), new i(t, this, this[$])
+                }, this);
+                this._data = n;
+                var r = e.map(t.getSeries(), function (t) {
+                    return t.name
+                });
+                t[lr](function (t) {
+                    if (t.legendDataProvider) {
+                        var e = t.legendDataProvider();
+                        r = r[rn](e[fi](e[we]))
+                    }
+                }), this._availableNames = r
+            },
+            getData: function () {
+                return this._data
+            },
+            select: function (t) {
+                var i = this[un][ve], n = this.get("selectedMode");
+                if (n === p) {
+                    var r = this._data;
+                    e.each(r, function (t) {
+                        i[t.get("name")] = !1
+                    })
+                }
+                i[t] = !0
+            },
+            unSelect: function (t) {
+                this.get("selectedMode") !== p && (this[un][ve][t] = !1)
+            },
+            toggleSelected: function (t) {
+                var e = this[un][ve];
+                e.hasOwnProperty(t) || (e[t] = !0), this[e[t] ? "unSelect" : "select"](t)
+            },
+            isSelected: function (t) {
+                var i = this[un][ve];
+                return !(i.hasOwnProperty(t) && !i[t]) && e[mr](this._availableNames, t) >= 0
+            },
+            defaultOption: {
+                zlevel: 0,
+                z: 4,
+                show: !0,
+                orient: "horizontal",
+                left: "center",
+                top: "top",
+                align: "auto",
+                backgroundColor: "rgba(0,0,0,0)",
+                borderColor: "#ccc",
+                borderWidth: 0,
+                padding: 5,
+                itemGap: 10,
+                itemWidth: 25,
+                itemHeight: 14,
+                inactiveColor: "#ccc",
+                textStyle: {color: "#333"},
+                selectedMode: !0,
+                tooltip: {show: !1}
+            }
+        });
+        return n
+    }),e("echarts/component/legend/legendAction", [Yr, Te, Xr], function (t) {
+        function e(t, e, i) {
+            var r, a = {}, o = "toggleSelected" === t;
+            return i[wr]("legend", function (i) {
+                o && null != r ? i[r ? "select" : "unSelect"](e.name) : (i[t](e.name), r = i.isSelected(e.name));
+                var s = i[qr]();
+                n.each(s, function (t) {
+                    var e = t.get("name");
+                    if ("\n" !== e && "" !== e) {
+                        var n = i.isSelected(e);
+                        a[e] = e in a ? a[e] && n : n
+                    }
+                })
+            }), {name: e.name, selected: a}
+        }
+
+        var i = t(Te), n = t(Xr);
+        i[Vn]("legendToggleSelect", "legendselectchanged", n.curry(e, "toggleSelected")), i[Vn]("legendSelect", "legendselected", n.curry(e, "select")), i[Vn]("legendUnSelect", "legendunselected", n.curry(e, "unSelect"))
+    }),e("echarts/component/legend/LegendView", [Yr, Xr, V, ji, "../helper/listComponent", Te], function (t) {
+        function e(t, e) {
+            e[er]({type: "legendToggleSelect", name: t})
+        }
+
+        function i(t, e, i) {
+            var n = i.getZr()[Mr].getDisplayList()[0];
+            n && n.useHoverLayer || t.get("legendHoverLink") && i[er]({type: "highlight", seriesName: t.name, name: e})
+        }
+
+        function n(t, e, i) {
+            var n = i.getZr()[Mr].getDisplayList()[0];
+            n && n.useHoverLayer || t.get("legendHoverLink") && i[er]({type: "downplay", seriesName: t.name, name: e})
+        }
+
+        var r = t(Xr), a = t(V), o = t(ji), s = t("../helper/listComponent"), l = r.curry;
+        return t(Te)[Pn]({
+            type: "legend", init: function () {
+                this._symbolTypeStore = {}
+            }, render: function (t, a, u) {
+                var c = this.group;
+                if (c[An](), t.get("show")) {
+                    var f = t.get("selectedMode"), p = t.get("align");
+                    "auto" === p && (p = "right" === t.get("left") && t.get(d) === h ? "right" : "left");
+                    var v = {};
+                    r.each(t[qr](), function (r) {
+                        var s = r.get("name");
+                        if ("" === s || "\n" === s)return void c.add(new o.Group({newline: !0}));
+                        var h = a.getSeriesByName(s)[0];
+                        if (!v[s])if (h) {
+                            var d = h[qr](), g = d[vr]("color");
+                            typeof g === On && (g = g(h[Hn](0)));
+                            var m = d[vr]("legendSymbol") || "roundRect", y = d[vr](He), x = this._createItem(s, r, t, m, y, p, g, f);
+                            x.on("click", l(e, s, u)).on(Xn, l(i, h, null, u)).on(jn, l(n, h, null, u)), v[s] = !0
+                        } else a.eachRawSeries(function (a) {
+                            if (!v[s] && a.legendDataProvider) {
+                                var o = a.legendDataProvider(), c = o.indexOfName(s);
+                                if (0 > c)return;
+                                var h = o[fr](c, "color"), d = "roundRect", g = this._createItem(s, r, t, d, null, p, h, f);
+                                g.on("click", l(e, s, u)).on(Xn, l(i, a, s, u)).on(jn, l(n, a, s, u)), v[s] = !0
+                            }
+                        }, this)
+                    }, this), s[Li](c, t, u), s.addBackground(c, t)
+                }
+            }, _createItem: function (t, e, i, n, s, l, u, c) {
+                var h = i.get("itemWidth"), d = i.get("itemHeight"), f = i.get("inactiveColor"), p = i.isSelected(t), v = new o.Group, g = e[Lr](bn), m = e.get("icon"), y = e[Lr]("tooltip"), x = y.parentModel;
+                if (n = m || n, v.add(a[z](n, 0, 0, h, d, p ? u : f)), !m && s && (s !== n || "none" == s)) {
+                    var _ = .8 * d;
+                    "none" === s && (s = jr), v.add(a[z](s, (h - _) / 2, (d - _) / 2, _, _, p ? u : f))
+                }
+                var w = "left" === l ? h + 5 : -5, b = l, M = i.get(H), S = t;
+                typeof M === Er && M ? S = M[En]("{name}", null != t ? t : "") : typeof M === On && (S = M(t));
+                var A = new o.Text({
+                    style: {
+                        text: S,
+                        x: w,
+                        y: d / 2,
+                        fill: p ? g[xn]() : f,
+                        textFont: g[_n](),
+                        textAlign: b,
+                        textVerticalAlign: "middle"
+                    }
+                });
+                v.add(A);
+                var T = new o.Rect({
+                    shape: v[yn](),
+                    invisible: !0,
+                    tooltip: y.get("show") ? r[ir]({
+                        content: t, formatter: x.get(H, !0) || function () {
+                            return t
+                        }, formatterParams: {componentType: "legend", legendIndex: i[ze], name: t, $vars: ["name"]}
+                    }, y[un]) : null
+                });
+                return v.add(T), v[ce](function (t) {
+                    t[Dr] = !0
+                }), T[Dr] = !c, this.group.add(v), o[Ni](v), v
+            }
+        })
+    }),e("echarts/component/marker/MarkLineView", [Yr, Xr, se, Di, "./markerHelper", "../../chart/helper/LineDraw", "./MarkerView"], function (t) {
+        function e(t) {
+            return !isNaN(t) && !isFinite(t)
+        }
+
+        function i(t, i, n, r) {
+            var a = 1 - t, o = r[ki][t];
+            return e(i[a]) && e(n[a]) && i[t] === n[t] && r[di](o).containData(i[t])
+        }
+
+        function n(t, e) {
+            if (t.type === yi) {
+                var n = e[0].coord, r = e[1].coord;
+                if (n && r && (i(1, n, r, t) || i(0, n, r, t)))return !0
+            }
+            return u.dataFilter(t, e[0]) && u.dataFilter(t, e[1])
+        }
+
+        function r(t, i, n, r, a) {
+            var o, s = r[gr], u = t[Zi](i), c = l[Ii](u.get("x"), a[Cr]()), h = l[Ii](u.get("y"), a[Tr]());
+            if (isNaN(c) || isNaN(h)) {
+                if (r.getMarkerPosition)o = r.getMarkerPosition(t.getValues(t[ki], i)); else {
+                    var d = s[ki], f = t.get(d[0], i), p = t.get(d[1], i);
+                    o = s[Ai]([f, p])
+                }
+                if (s.type === yi) {
+                    var v = s[di]("x"), g = s[di]("y"), d = s[ki];
+                    e(t.get(d[0], i)) ? o[0] = v[ai](v[Qi]()[n ? 0 : 1]) : e(t.get(d[1], i)) && (o[1] = g[ai](g[Qi]()[n ? 0 : 1]))
+                }
+                isNaN(c) || (o[0] = c), isNaN(h) || (o[1] = h)
+            } else o = [c, h];
+            t[Ti](i, o)
+        }
+
+        function a(t, e, i) {
+            var r;
+            r = t ? o.map(t && t[ki], function (t) {
+                var i = e[qr]().getDimensionInfo(e[Ie](t)[0]) || {};
+                return i.name = t, i
+            }) : [{name: "value", type: "float"}];
+            var a = new s(r, i), l = new s(r, i), c = new s([], i), d = o.map(i.get("data"), o.curry(h, e, t, i));
+            t && (d = o[Ln](d, o.curry(n, t)));
+            var f = t ? u.dimValueGetter : function (t) {
+                return t.value
+            };
+            return a[re](o.map(d, function (t) {
+                return t[0]
+            }), null, f), l[re](o.map(d, function (t) {
+                return t[1]
+            }), null, f), c[re](o.map(d, function (t) {
+                return t[2]
+            })), c[E] = !0, {from: a, to: l, line: c}
+        }
+
+        var o = t(Xr), s = t(se), l = t(Di), u = t("./markerHelper"), c = t("../../chart/helper/LineDraw"), h = function (t, e, i, n) {
+            var r = t[qr](), a = n.type;
+            if (!o[Rn](n) && ("min" === a || "max" === a || "average" === a || null != n.xAxis || null != n.yAxis)) {
+                var s, l, c;
+                if (null != n.yAxis || null != n.xAxis)l = null != n.yAxis ? "y" : "x", s = e[di](l), c = o[Pi](n.yAxis, n.xAxis); else {
+                    var h = u.getAxisInfo(n, r, e, t);
+                    l = h.valueDataDim, s = h.valueAxis, c = u.numCalculate(r, l, a)
+                }
+                var d = "x" === l ? 0 : 1, f = 1 - d, p = o.clone(n), v = {};
+                p.type = null, p.coord = [], v.coord = [], p.coord[f] = -1 / 0, v.coord[f] = 1 / 0;
+                var g = i.get("precision");
+                g >= 0 && typeof c === kn && (c = +c[ne](g)), p.coord[d] = v.coord[d] = c, n = [p, v, {
+                    type: a,
+                    valueIndex: n.valueIndex,
+                    value: c
+                }]
+            }
+            return n = [u.dataTransform(t, n[0]), u.dataTransform(t, n[1]), o[ir]({}, n[2])], n[2].type = n[2].type || "", o.merge(n[2], n[0]), o.merge(n[2], n[1]), n
+        };
+        t("./MarkerView")[ir]({
+            type: "markLine", updateLayout: function (t, e, i) {
+                e[lr](function (t) {
+                    var e = t.markLineModel;
+                    if (e) {
+                        var n = e[qr](), a = e.__from, o = e.__to;
+                        a.each(function (e) {
+                            r(a, e, !0, t, i), r(o, e, !1, t, i)
+                        }), n.each(function (t) {
+                            n[Ti](t, [a[bi](t), o[bi](t)])
+                        }), this.markerGroupMap[t.name][sr]()
+                    }
+                }, this)
+            }, renderSeries: function (t, e, i, n) {
+                function s(e, i, a) {
+                    var o = e[Zi](i);
+                    r(e, i, a, t, n), e[wi](i, {
+                        symbolSize: o.get(Fe) || x[a ? 0 : 1],
+                        symbol: o.get(He, !0) || y[a ? 0 : 1],
+                        color: o.get(te) || h[vr]("color")
+                    })
+                }
+
+                var l = t[gr], u = t.name, h = t[qr](), d = this.markerGroupMap, f = d[u];
+                f || (f = d[u] = new c), this.group.add(f.group);
+                var p = a(l, t, e), v = p.from, g = p.to, m = p.line;
+                e.__from = v, e.__to = g, e.setData(m);
+                var y = e.get(He), x = e.get(Fe);
+                o[Rn](y) || (y = [y, y]), typeof x === kn && (x = [x, x]), p.from.each(function (t) {
+                    s(v, t, !0), s(g, t, !1)
+                }), m.each(function (t) {
+                    var e = m[Zi](t).get("lineStyle.normal.color");
+                    m[wi](t, {color: e || v[fr](t, "color")}), m[Ti](t, [v[bi](t), g[bi](t)]), m[wi](t, {
+                        fromSymbolSize: v[fr](t, Fe),
+                        fromSymbol: v[fr](t, He),
+                        toSymbolSize: g[fr](t, Fe),
+                        toSymbol: g[fr](t, He)
+                    })
+                }), f[Ke](m), p.line[ei](function (t) {
+                    t[Gn](function (t) {
+                        t.dataModel = e
+                    })
+                }), f.__keep = !0, f.group[Dr] = e.get(Dr) || t.get(Dr)
+            }
+        })
+    }),e("echarts/component/legend/legendFilter", [], function () {
+        return function (t) {
+            var e = t.findComponents({mainType: "legend"});
+            e && e[yr] && t.filterSeries(function (t) {
+                for (var i = 0; i < e[yr]; i++)if (!e[i].isSelected(t.name))return !1;
+                return !0
+            })
+        }
+    }),e("echarts/component/marker/MarkLineModel", [Yr, "./MarkerModel"], function (t) {
+        return t("./MarkerModel")[ir]({
+            type: "markLine",
+            defaultOption: {
+                zlevel: 0,
+                z: 5,
+                symbol: [jr, "arrow"],
+                symbolSize: [8, 16],
+                precision: 2,
+                tooltip: {trigger: "item"},
+                label: {normal: {show: !0, position: "end"}, emphasis: {show: !0}},
+                lineStyle: {normal: {type: "dashed"}, emphasis: {width: 3}},
+                animationEasing: "linear"
+            }
+        })
+    }),e("echarts/component/marker/MarkAreaModel", [Yr, "./MarkerModel"], function (t) {
+        return t("./MarkerModel")[ir]({
+            type: "markArea",
+            defaultOption: {
+                zlevel: 0,
+                z: 1,
+                tooltip: {trigger: "item"},
+                animation: !1,
+                label: {normal: {show: !0, position: "top"}, emphasis: {show: !0, position: "top"}},
+                itemStyle: {normal: {borderWidth: 0}}
+            }
+        })
+    }),e("echarts/component/marker/MarkAreaView", [Yr, Xr, se, Di, ji, Hr, "./markerHelper", "./MarkerView"], function (t) {
+        function e(t) {
+            return !isNaN(t) && !isFinite(t)
+        }
+
+        function i(t, i, n) {
+            var r = 1 - t;
+            return e(i[r]) && e(n[r])
+        }
+
+        function n(t, e) {
+            var n = e.coord[0], r = e.coord[1];
+            return t.type === yi && n && r && (i(1, n, r, t) || i(0, n, r, t)) ? !0 : h.dataFilter(t, {
+                coord: n,
+                x: e.x0,
+                y: e.y0
+            }) || h.dataFilter(t, {coord: r, x: e.x1, y: e.y1})
+        }
+
+        function r(t, i, n, r, a) {
+            var o, s = r[gr], u = t[Zi](i), c = l[Ii](u.get(n[0]), a[Cr]()), h = l[Ii](u.get(n[1]), a[Tr]());
+            if (isNaN(c) || isNaN(h)) {
+                if (r.getMarkerPosition)o = r.getMarkerPosition(t.getValues(n, i)); else {
+                    var d = t.get(n[0], i), f = t.get(n[1], i);
+                    o = s[Ai]([d, f], !0)
+                }
+                if (s.type === yi) {
+                    var p = s[di]("x"), v = s[di]("y"), d = t.get(n[0], i), f = t.get(n[1], i);
+                    e(d) ? o[0] = p[ai](p[Qi]()["x0" === n[0] ? 0 : 1]) : e(f) && (o[1] = v[ai](v[Qi]()["y0" === n[1] ? 0 : 1]))
+                }
+                isNaN(c) || (o[0] = c), isNaN(h) || (o[1] = h)
+            } else o = [c, h];
+            return o
+        }
+
+        function a(t, e, i) {
+            var r, a, l = ["x0", "y0", "x1", "y1"];
+            t ? (r = o.map(t && t[ki], function (t) {
+                var i = e[qr]().getDimensionInfo(e[Ie](t)[0]) || {};
+                return i.name = t, i
+            }), a = new s(o.map(l, function (t, e) {
+                return {name: t, type: r[e % 2].type}
+            }), i)) : (r = [{name: "value", type: "float"}], a = new s(r, i));
+            var u = o.map(i.get("data"), o.curry(d, e, t, i));
+            t && (u = o[Ln](u, o.curry(n, t)));
+            var c = t ? function (t, e, i, n) {
+                return t.coord[Math.floor(n / 2)][n % 2]
+            } : function (t) {
+                return t.value
+            };
+            return a[re](u, null, c), a[E] = !0, a
+        }
+
+        var o = t(Xr), s = t(se), l = t(Di), u = t(ji), c = t(Hr), h = t("./markerHelper"), d = function (t, e, i, n) {
+            var r = h.dataTransform(t, n[0]), a = h.dataTransform(t, n[1]), s = o[Pi], l = r.coord, u = a.coord;
+            l[0] = s(l[0], -1 / 0), l[1] = s(l[1], -1 / 0), u[0] = s(u[0], 1 / 0), u[1] = s(u[1], 1 / 0);
+            var c = o.mergeAll([{}, r, a]);
+            return c.coord = [r.coord, a.coord], c.x0 = r.x, c.y0 = r.y, c.x1 = a.x, c.y1 = a.y, c
+        }, f = [["x0", "y0"], ["x1", "y0"], ["x1", "y1"], ["x0", "y1"]];
+        t("./MarkerView")[ir]({
+            type: "markArea", updateLayout: function (t, e, i) {
+                e[lr](function (t) {
+                    var e = t.markAreaModel;
+                    if (e) {
+                        var n = e[qr]();
+                        n.each(function (e) {
+                            var a = o.map(f, function (a) {
+                                return r(n, e, a, t, i)
+                            });
+                            n[Ti](e, a);
+                            var s = n[Xe](e);
+                            s[Qe](We, a)
+                        })
+                    }
+                }, this)
+            }, renderSeries: function (t, e, i, n) {
+                var s = t[gr], l = t.name, h = t[qr](), d = this.markerGroupMap, p = d[l];
+                p || (p = d[l] = {group: new u.Group}), this.group.add(p.group), p.__keep = !0;
+                var v = a(s, t, e);
+                e.setData(v), v.each(function (e) {
+                    v[Ti](e, o.map(f, function (i) {
+                        return r(v, e, i, t, n)
+                    })), v[wi](e, {color: h[vr]("color")})
+                }), v.diff(p.__data).add(function (t) {
+                    var e = new u[Ue]({shape: {points: v[bi](t)}});
+                    v[ti](t, e), p.group.add(e)
+                })[hr](function (t, i) {
+                    var n = p.__data[Xe](i);
+                    u[Ze](n, {shape: {points: v[bi](t)}}, e, t), p.group.add(n), v[ti](t, n)
+                })[nr](function (t) {
+                    var e = p.__data[Xe](t);
+                    p.group[nr](e)
+                })[Se](), v[ei](function (t, i) {
+                    var n = v[Zi](i), r = n[Lr](fe), a = n[Lr](de), s = v[fr](i, "color");
+                    t[Gi](o[tr](n[Lr](Me)[Mn](), {fill: c.modifyAlpha(s, .4), stroke: s})), t[ge] = n[Lr](Me)[Mn]();
+                    var l = v[we](i) || "", h = s || t.style.fill;
+                    r[Be]("show") ? (u[W](t.style, r, h), t.style.text = o[Pi](e[me](i, qi), l)) : t.style.text = "", a[Be]("show") ? (u[W](t[ge], a, h), t[ge].text = o[Pi](e[me](i, Wi), l)) : t[ge].text = "", u[Ni](t, {}), t.dataModel = e
+                }), p.__data = v, p.group[Dr] = e.get(Dr) || t.get(Dr)
+            }
+        })
+    }),e("echarts/component/dataZoom/typeDefaulter", [Yr, v], function (t) {
+        t(v).registerSubTypeDefaulter(F, function () {
+            return "slider"
+        })
+    }),e("echarts/component/dataZoom/DataZoomView", [Yr, "../../view/Component"], function (t) {
+        var e = t("../../view/Component");
+        return e[ir]({
+            type: "dataZoom", render: function (t, e, i) {
+                this.dataZoomModel = t, this[$] = e, this.api = i
+            }, getTargetCoordInfo: function () {
+                function t(t, e, i, n) {
+                    for (var r, a = 0; a < i[yr]; a++)if (i[a].model === t) {
+                        r = i[a];
+                        break
+                    }
+                    r || i.push(r = {model: t, axisModels: [], coordIndex: n}), r.axisModels.push(e)
+                }
+
+                var e = this.dataZoomModel, i = this[$], n = {};
+                return e.eachTargetAxis(function (e, r) {
+                    var a = i[Y](e.axis, r);
+                    if (a) {
+                        var o = a.getCoordSysModel();
+                        o && t(o, a, n[o[or]] || (n[o[or]] = []), o[ze])
+                    }
+                }, this), n
+            }
+        })
+    }),e("echarts/component/dataZoom/DataZoomModel", [Yr, Xr, Zr, Te, mi, Le, "./AxisProxy"], function (t) {
+        function e(t) {
+            var e = {};
+            return c(["start", "end", "startValue", "endValue", "throttle"], function (i) {
+                t.hasOwnProperty(i) && (e[i] = t[i])
+            }), e
+        }
+
+        function i(t, e, i, n) {
+            null != i[e] && null == i[t] && (n[t] = null)
+        }
+
+        var n = t(Xr), r = t(Zr), a = t(Te), o = t(mi), s = t(Le), l = t("./AxisProxy"), c = n.each, f = s.eachAxisDim, p = a[Dn]({
+            type: "dataZoom",
+            dependencies: ["xAxis", "yAxis", "zAxis", "radiusAxis", "angleAxis", "singleAxis", rr],
+            defaultOption: {
+                zlevel: 0,
+                z: 4,
+                orient: null,
+                xAxisIndex: null,
+                yAxisIndex: null,
+                filterMode: "filter",
+                throttle: null,
+                start: 0,
+                end: 100,
+                startValue: null,
+                endValue: null
+            },
+            init: function (t, i, n) {
+                this._dataIntervalByAxis = {}, this._dataInfo = {}, this._axisProxies = {}, this.textStyleModel, this._autoThrottle = !0;
+                var r = e(t);
+                this[J](t, n), this.doInit(r)
+            },
+            mergeOption: function (t) {
+                var i = e(t);
+                n.merge(this[un], t, !0), this.doInit(i)
+            },
+            doInit: function (t) {
+                var e = this[un];
+                r[Ar] || (e[u] = !1), this._setDefaultThrottle(t), i("start", "startValue", t, e), i("end", "endValue", t, e), this.textStyleModel = this[Lr](bn), this._resetTarget(), this._giveAxisProxies()
+            },
+            _giveAxisProxies: function () {
+                var t = this._axisProxies;
+                this.eachTargetAxis(function (e, i, n, r) {
+                    var a = this.dependentModels[e.axis][i], o = a.__dzAxisProxy || (a.__dzAxisProxy = new l(e.name, i, this, r));
+                    t[e.name + "_" + i] = o
+                }, this)
+            },
+            _resetTarget: function () {
+                var t = this[un], e = this._judgeAutoMode();
+                f(function (e) {
+                    var i = e.axisIndex;
+                    t[i] = o.normalizeToArray(t[i])
+                }, this), "axisIndex" === e ? this._autoSetAxisIndex() : e === d && this._autoSetOrient()
+            },
+            _judgeAutoMode: function () {
+                var t = this[un], e = !1;
+                f(function (i) {
+                    null != t[i.axisIndex] && (e = !0)
+                }, this);
+                var i = t[d];
+                return null == i && e ? d : e ? void 0 : (null == i && (t[d] = Ci), "axisIndex")
+            },
+            _autoSetAxisIndex: function () {
+                var t = !0, e = this.get(d, !0), i = this[un], r = this.dependentModels;
+                if (t) {
+                    var a = e === h ? "y" : "x";
+                    r[a + "Axis"][yr] ? (i[a + "AxisIndex"] = [0], t = !1) : c(r.singleAxis, function (n) {
+                        t && n.get(d, !0) === e && (i.singleAxisIndex = [n[ze]], t = !1)
+                    })
+                }
+                t && f(function (e) {
+                    if (t) {
+                        var n = [], r = this.dependentModels[e.axis];
+                        if (r[yr] && !n[yr])for (var a = 0, o = r[yr]; o > a; a++)r[a].get("type") === Mi && n.push(a);
+                        i[e.axisIndex] = n, n[yr] && (t = !1)
+                    }
+                }, this), t && this[$][lr](function (t) {
+                    this._isSeriesHasAllAxesTypeOf(t, "value") && f(function (e) {
+                        var r = i[e.axisIndex], a = t.get(e.axisIndex), o = t.get(e.axisId), s = t[$][K]({
+                            mainType: e.axis,
+                            index: a,
+                            id: o
+                        })[0];
+                        a = s[ze], n[mr](r, a) < 0 && r.push(a)
+                    })
+                }, this)
+            },
+            _autoSetOrient: function () {
+                var t;
+                this.eachTargetAxis(function (e) {
+                    !t && (t = e.name)
+                }, this), this[un][d] = "y" === t ? h : Ci
+            },
+            _isSeriesHasAllAxesTypeOf: function (t, e) {
+                var i = !0;
+                return f(function (n) {
+                    var r = t.get(n.axisIndex), a = this.dependentModels[n.axis][r];
+                    a && a.get("type") === e || (i = !1)
+                }, this), i
+            },
+            _setDefaultThrottle: function (t) {
+                if (t.hasOwnProperty("throttle") && (this._autoThrottle = !1), this._autoThrottle) {
+                    var e = this[$][un];
+                    this[un].throttle = e[zr] && e.animationDurationUpdate > 0 ? 100 : 20
+                }
+            },
+            getFirstTargetAxisModel: function () {
+                var t;
+                return f(function (e) {
+                    if (null == t) {
+                        var i = this.get(e.axisIndex);
+                        i[yr] && (t = this.dependentModels[e.axis][i[0]])
+                    }
+                }, this), t
+            },
+            eachTargetAxis: function (t, e) {
+                var i = this[$];
+                f(function (n) {
+                    c(this.get(n.axisIndex), function (r) {
+                        t.call(e, n, r, this, i)
+                    }, this)
+                }, this)
+            },
+            getAxisProxy: function (t, e) {
+                return this._axisProxies[t + "_" + e]
+            },
+            setRawRange: function (t) {
+                c(["start", "end", "startValue", "endValue"], function (e) {
+                    this[un][e] = t[e]
+                }, this)
+            },
+            getPercentRange: function () {
+                var t = this.findRepresentativeAxisProxy();
+                return t ? t.getDataPercentWindow() : void 0
+            },
+            getValueRange: function (t, e) {
+                if (null != t || null != e)return this.getAxisProxy(t, e).getDataValueWindow();
+                var i = this.findRepresentativeAxisProxy();
+                return i ? i.getDataValueWindow() : void 0
+            },
+            findRepresentativeAxisProxy: function () {
+                var t = this._axisProxies;
+                for (var e in t)if (t.hasOwnProperty(e) && t[e].hostedBy(this))return t[e];
+                for (var e in t)if (t.hasOwnProperty(e) && !t[e].hostedBy(this))return t[e]
+            }
+        });
+        return p
+    }),e("echarts/component/tooltip/TooltipView", [Yr, "./TooltipContent", ji, Xr, Ri, Di, mi, Zr, Ce, Te], function (t) {
+        function e(t, e) {
+            if (!t || !e)return !1;
+            var i = g.round;
+            return i(t[0]) === i(e[0]) && i(t[1]) === i(e[1])
+        }
+
+        function i(t, e, i, n) {
+            return {x1: t, y1: e, x2: i, y2: n}
+        }
+
+        function n(t, e, i, n) {
+            return {x: t, y: e, width: i, height: n}
+        }
+
+        function r(t, e, i, n, r, a) {
+            return {cx: t, cy: e, r0: i, r: n, startAngle: r, endAngle: a, clockwise: !0}
+        }
+
+        function a(t, e, i, n, r) {
+            var a = i.clientWidth, o = i.clientHeight, s = 20;
+            return t + a + s > n ? t -= a + s : t += s, e + o + s > r ? e -= o + s : e += s, [t, e]
+        }
+
+        function o(t, e, i, n, r) {
+            var a = i.clientWidth, o = i.clientHeight;
+            return t = Math.min(t + a, n) - a, e = Math.min(e + o, r) - o, t = Math.max(t, 0), e = Math.max(e, 0), [t, e]
+        }
+
+        function s(t, e, i) {
+            var n = i.clientWidth, r = i.clientHeight, a = 5, o = 0, s = 0, l = e.width, u = e[Or];
+            switch (t) {
+                case ye:
+                    o = e.x + l / 2 - n / 2, s = e.y + u / 2 - r / 2;
+                    break;
+                case"top":
+                    o = e.x + l / 2 - n / 2, s = e.y - r - a;
+                    break;
+                case xr:
+                    o = e.x + l / 2 - n / 2, s = e.y + u + a;
+                    break;
+                case"left":
+                    o = e.x - n - a, s = e.y + u / 2 - r / 2;
+                    break;
+                case"right":
+                    o = e.x + l + a, s = e.y + u / 2 - r / 2
+            }
+            return [o, s]
+        }
+
+        function l(t, e, i, n, r, l, u, c) {
+            var h = c[Cr](), d = c[Tr](), f = u && u[yn]().clone();
+            if (u && f[U](u[O]), typeof t === On && (t = t([e, i], l, r.el, f)), p[Rn](t))e = x(t[0], h), i = x(t[1], d); else if (typeof t === Er && u) {
+                var v = s(t, f, r.el);
+                e = v[0], i = v[1]
+            } else {
+                var v = a(e, i, r.el, h, d);
+                e = v[0], i = v[1]
+            }
+            if (n) {
+                var v = o(e, i, r.el, h, d);
+                e = v[0], i = v[1]
+            }
+            r[y](e, i)
+        }
+
+        function u(t) {
+            var e = t[gr], i = t.get("tooltip.trigger", !0);
+            return !(!e || e.type !== yi && "polar" !== e.type && "singleAxis" !== e.type || "item" === i)
+        }
+
+        var c = t("./TooltipContent"), h = t(ji), p = t(Xr), v = t(Ri), g = t(Di), m = t(mi), x = g[Ii], _ = t(Zr), w = t(Ce);
+        t(Te)[Pn]({
+            type: "tooltip", _axisPointers: {}, init: function (t, e) {
+                if (!_.node) {
+                    var i = new c(e.getDom(), e);
+                    this._tooltipContent = i
+                }
+            }, render: function (t, e, i) {
+                if (!_.node) {
+                    this.group[An](), this._axisPointers = {}, this._tooltipModel = t, this._ecModel = e, this._api = i, this._lastHover = {};
+                    var n = this._tooltipContent;
+                    n[hr](), n.enterable = t.get("enterable"), this._alwaysShowContent = t.get("alwaysShowContent"), this._seriesGroupByAxis = this._prepareAxisTriggerData(t, e);
+                    var r = this._crossText;
+                    r && this.group.add(r);
+                    var a = t.get("triggerOn");
+                    if (null != this._lastX && null != this._lastY && "none" !== a) {
+                        var o = this;
+                        clearTimeout(this._refreshUpdateTimeout), this._refreshUpdateTimeout = setTimeout(function () {
+                            o.manuallyShowTip(t, e, i, {x: o._lastX, y: o._lastY})
+                        })
+                    }
+                    var s = this._api.getZr();
+                    s.off("click", this._tryShow), s.off(Un, this._mousemove), s.off(jn, this._hide), s.off("globalout", this._hide), "click" === a ? s.on("click", this._tryShow, this) : a === Un && (s.on(Un, this._mousemove, this), s.on(jn, this._hide, this), s.on("globalout", this._hide, this))
+                }
+            }, _mousemove: function (t) {
+                var e = this._tooltipModel.get("showDelay"), i = this;
+                clearTimeout(this._showTimeout), e > 0 ? this._showTimeout = setTimeout(function () {
+                    i._tryShow(t)
+                }, e) : this._tryShow(t)
+            }, manuallyShowTip: function (t, e, i, n) {
+                function r(t) {
+                    var e = t[qr](), i = m.queryDataIndex(e, n);
+                    return null != i && !p[Rn](i) && e.hasValue(i) ? !0 : void 0
+                }
+
+                if (n.from !== this.uid) {
+                    var e = this._ecModel, a = n[Zn], o = e.getSeriesByIndex(a), i = this._api, s = "axis" === this._tooltipModel.get(Jn);
+                    if (null == n.x || null == n.y) {
+                        if (s ? (o && !r(o) && (o = null), o || e[lr](function (t) {
+                                u(t) && !o && r(t) && (o = t)
+                            })) : o = o || e.getSeriesByIndex(0), o) {
+                            var l = o[qr](), c = m.queryDataIndex(l, n);
+                            if (null == c || p[Rn](c))return;
+                            var h, d, f = l[Xe](c), v = o[gr];
+                            if (o.getTooltipPosition) {
+                                var g = o.getTooltipPosition(c) || [];
+                                h = g[0], d = g[1]
+                            } else if (v && v[Ai]) {
+                                var g = v[Ai](l.getValues(p.map(v[ki], function (t) {
+                                    return o[Ie](t)[0]
+                                }), c, !0));
+                                h = g && g[0], d = g && g[1]
+                            } else if (f) {
+                                var y = f[yn]().clone();
+                                y[U](f[O]), h = y.x + y.width / 2, d = y.y + y[Or] / 2
+                            }
+                            null != h && null != d && this._tryShow({
+                                offsetX: h,
+                                offsetY: d,
+                                position: n[dn],
+                                target: f,
+                                event: {}
+                            })
+                        }
+                    } else {
+                        var f = i.getZr().handler.findHover(n.x, n.y);
+                        this._tryShow({offsetX: n.x, offsetY: n.y, position: n[dn], target: f, event: {}})
+                    }
+                }
+            }, manuallyHideTip: function (t, e, i, n) {
+                n.from !== this.uid && this._hide()
+            }, _prepareAxisTriggerData: function (t, e) {
+                var i = {};
+                return e[lr](function (t) {
+                    if (u(t)) {
+                        var e, n, r = t[gr];
+                        r.type === yi ? (e = r[Si](), n = e.dim + e.index) : "singleAxis" === r.type ? (e = r[di](), n = e.dim + e.type) : (e = r[Si](), n = e.dim + r.name), i[n] = i[n] || {
+                                coordSys: [],
+                                series: []
+                            }, i[n].coordSys.push(r), i[n][rr].push(t)
+                    }
+                }, this), i
+            }, _tryShow: function (t) {
+                var e = t[Wn], i = this._tooltipModel, n = i.get(Jn), r = this._ecModel, a = this._api;
+                if (i)if (this._lastX = t[M], this._lastY = t[b], e && null != e[pr]) {
+                    var o = e.dataModel || r.getSeriesByIndex(e[Zn]), s = e[pr], l = o[qr](), u = l[Zi](s);
+                    "axis" === (u.get("tooltip.trigger") || n) ? this._showAxisTooltip(i, r, t) : (this._ticket = "", this._hideAxisPointer(), this._resetLastHover(), this._showItemTooltipContent(o, s, e[Fn], t)), a[er]({
+                        type: "showTip",
+                        from: this.uid,
+                        dataIndexInside: s,
+                        dataIndex: l[ee](s),
+                        seriesIndex: e[Zn]
+                    })
+                } else if (e && e.tooltip) {
+                    var c = e.tooltip;
+                    if (typeof c === Er) {
+                        var h = c;
+                        c = {content: h, formatter: h}
+                    }
+                    var d = new w(c, i), f = d.get("content"), p = Math.random();
+                    this._showTooltipContent(d, f, d.get("formatterParams") || {}, p, t[M], t[b], t[dn], e, a)
+                } else"item" === n ? this._hide() : this._showAxisTooltip(i, r, t), "cross" === i.get("axisPointer.type") && a[er]({
+                    type: "showTip",
+                    from: this.uid,
+                    x: t[M],
+                    y: t[b]
+                })
+            }, _showAxisTooltip: function (t, i, n) {
+                var r = t[Lr]("axisPointer"), a = r.get("type");
+                if ("cross" === a) {
+                    var o = n[Wn];
+                    if (o && null != o[pr]) {
+                        var s = i.getSeriesByIndex(o[Zn]), l = o[pr];
+                        this._showItemTooltipContent(s, l, o[Fn], n)
+                    }
+                }
+                this._showAxisPointer();
+                var u = !0;
+                p.each(this._seriesGroupByAxis, function (i) {
+                    var o = i.coordSys, s = o[0], l = [n[M], n[b]];
+                    if (!s.containPoint(l))return void this._hideAxisPointer(s.name);
+                    u = !1;
+                    var c = s[ki], h = s[Oe](l, !0);
+                    l = s[Ai](h);
+                    var d = s[Si](), v = r.get("axis");
+                    if ("auto" === v && (v = d.dim), d[f]() || p.eqNaN(l[0]) || p.eqNaN(l[1]))return void this._hideAxisPointer(s.name);
+                    var g = !1, m = this._lastHover;
+                    if ("cross" === a)e(m.data, h) && (g = !0), m.data = h; else {
+                        var y = p[mr](c, v);
+                        m.data === h[y] && (g = !0), m.data = h[y]
+                    }
+                    var x = t.get(zr);
+                    s.type !== yi || g ? "polar" !== s.type || g ? "singleAxis" !== s.type || g || this._showSinglePointer(r, s, v, l, x) : this._showPolarPointer(r, s, v, l, x) : this._showCartesianPointer(r, s, v, l, x), "cross" !== a && this._dispatchAndShowSeriesTooltipContent(s, i[rr], l, h, g, n[dn])
+                }, this), this._tooltipModel.get("show") || this._hideAxisPointer(), u && this._hide()
+            }, _showCartesianPointer: function (t, e, r, a, o) {
+                function s(n, r, a) {
+                    var o = "x" === n ? i(r[0], a[0], r[0], a[1]) : i(a[0], r[1], a[1], r[1]), s = u._getPointerElement(e, t, n, o);
+                    h.subPixelOptimizeLine({shape: o, style: s.style}), f ? h[Ze](s, {shape: o}, t) : s.attr({shape: o})
+                }
+
+                function l(i, r, a) {
+                    var o = e[di](i), s = o.getBandWidth(), l = a[1] - a[0], c = "x" === i ? n(r[0] - s / 2, a[0], s, l) : n(a[0], r[1] - s / 2, l, s), d = u._getPointerElement(e, t, i, c);
+                    f ? h[Ze](d, {shape: c}, t) : d.attr({shape: c})
+                }
+
+                var u = this, c = t.get("type"), d = e[Si](), f = o && "cross" !== c && d.type === Mi && d.getBandWidth() > 20;
+                if ("cross" === c)s("x", a, e[di]("y").getGlobalExtent()), s("y", a, e[di]("x").getGlobalExtent()), this._updateCrossText(e, a, t); else {
+                    var p = e[di]("x" === r ? "y" : "x"), v = p.getGlobalExtent();
+                    e.type === yi && ("line" === c ? s : l)(r, a, v)
+                }
+            }, _showSinglePointer: function (t, e, n, r, a) {
+                function o(n, r, a) {
+                    var o = e[di](), l = o[d], c = l === Ci ? i(r[0], a[0], r[0], a[1]) : i(a[0], r[1], a[1], r[1]), f = s._getPointerElement(e, t, n, c);
+                    u ? h[Ze](f, {shape: c}, t) : f.attr({shape: c})
+                }
+
+                var s = this, l = t.get("type"), u = a && "cross" !== l && e[Si]().type === Mi, c = e[Sn](), f = [c.y, c.y + c[Or]];
+                o(n, r, f)
+            }, _showPolarPointer: function (t, e, n, a, o) {
+                function s(n, r, a) {
+                    var o, s = e.pointToCoord(r);
+                    if ("angle" === n) {
+                        var l = e.coordToPoint([a[0], s[1]]), c = e.coordToPoint([a[1], s[1]]);
+                        o = i(l[0], l[1], c[0], c[1])
+                    } else o = {cx: e.cx, cy: e.cy, r: s[0]};
+                    var d = u._getPointerElement(e, t, n, o);
+                    p ? h[Ze](d, {shape: o}, t) : d.attr({shape: o})
+                }
+
+                function l(i, n, a) {
+                    var o, s = e[di](i), l = s.getBandWidth(), c = e.pointToCoord(n), d = Math.PI / 180;
+                    o = "angle" === i ? r(e.cx, e.cy, a[0], a[1], (-c[1] - l / 2) * d, (-c[1] + l / 2) * d) : r(e.cx, e.cy, c[0] - l / 2, c[0] + l / 2, 0, 2 * Math.PI);
+                    var f = u._getPointerElement(e, t, i, o);
+                    p ? h[Ze](f, {shape: o}, t) : f.attr({shape: o})
+                }
+
+                var u = this, c = t.get("type"), d = e[ui](), f = e.getRadiusAxis(), p = o && "cross" !== c && e[Si]().type === Mi;
+                if ("cross" === c)s("angle", a, f[Qi]()), s(pi, a, d[Qi]()), this._updateCrossText(e, a, t); else {
+                    var v = e[di](n === pi ? "angle" : pi), g = v[Qi]();
+                    ("line" === c ? s : l)(n, a, g)
+                }
+            }, _updateCrossText: function (t, e, i) {
+                var n = i[Lr]("crossStyle"), r = n[Lr](bn), a = this._tooltipModel, o = this._crossText;
+                o || (o = this._crossText = new h.Text({
+                    style: {
+                        textAlign: "left",
+                        textVerticalAlign: "bottom"
+                    }
+                }), this.group.add(o));
+                var s = t[Oe](e), l = t[ki];
+                s = p.map(s, function (e, i) {
+                    var n = t[di](l[i]);
+                    return e = n.type === Mi || "time" === n.type ? n.scale[$i](e) : v[Vi](e[ne](n.getPixelPrecision()))
+                }), o[Bn]({
+                    fill: r[xn]() || n.get("color"),
+                    textFont: r[_n](),
+                    text: s.join(", "),
+                    x: e[0] + 5,
+                    y: e[1] - 5
+                }), o.z = a.get("z"), o[Nn] = a.get(Nn)
+            }, _getPointerElement: function (t, e, i, n) {
+                var r = this._tooltipModel, a = r.get("z"), o = r.get(Nn), s = this._axisPointers, l = t.name;
+                if (s[l] = s[l] || {}, s[l][i])return s[l][i];
+                var u = e.get("type"), c = e[Lr](u + "Style"), d = "shadow" === u, f = c[d ? $e : Je](), p = "polar" === t.type ? d ? li : i === pi ? j : "Line" : d ? "Rect" : "Line";
+                d ? f[Bi] = null : f.fill = null;
+                var v = s[l][i] = new h[p]({style: f, z: a, zlevel: o, silent: !0, shape: n});
+                return this.group.add(v), v
+            }, _dispatchAndShowSeriesTooltipContent: function (t, e, i, n, r, a) {
+                var o = this._tooltipModel, s = t[Si](), u = {x: 1, radius: 1, single: 1}[s.dim] ? 0 : 1;
+                if (e[yr]) {
+                    var c, h = p.map(e, function (t) {
+                        return {
+                            seriesIndex: t[Zn],
+                            dataIndexInside: t.getAxisTooltipDataIndex ? t.getAxisTooltipDataIndex(t[Ie](s.dim), n, s) : t[qr]().indexOfNearest(t[Ie](s.dim)[0], n[u], !1, s.type === Mi ? .5 : null)
+                        }
+                    });
+                    p.each(h, function (t, i) {
+                        e[i][qr]().hasValue(t.dataIndexInside) && (c = i)
+                    }), c = c || 0;
+                    var d = this._lastHover, f = this._api;
+                    d.payloadBatch && !r && f[er]({
+                        type: "downplay",
+                        batch: d.payloadBatch
+                    }), r || (f[er]({type: "highlight", batch: h}), d.payloadBatch = h);
+                    var g = h[c].dataIndexInside;
+                    if (f[er]({
+                            type: "showTip",
+                            dataIndexInside: g,
+                            dataIndex: e[c][qr]()[ee](g),
+                            seriesIndex: h[c][Zn],
+                            from: this.uid
+                        }), s && o.get("showContent") && o.get("show")) {
+                        var m = p.map(e, function (t, e) {
+                            return t[Hn](h[e].dataIndexInside)
+                        });
+                        if (r)l(a || o.get(dn), i[0], i[1], o.get("confine"), this._tooltipContent, m, null, f); else {
+                            var y = h[c].dataIndexInside, x = "time" === s.type ? s.scale[$i](n[u]) : e[c][qr]()[we](y), _ = (x ? v[Oi](x) + zi : "") + p.map(e, function (t, e) {
+                                    return t.formatTooltip(h[e].dataIndexInside, !0)
+                                }).join(zi), w = "axis_" + t.name + "_" + y;
+                            this._showTooltipContent(o, _, m, w, i[0], i[1], a, null, f)
+                        }
+                    }
+                }
+            }, _showItemTooltipContent: function (t, e, i, n) {
+                var r = this._api, a = t[qr](i), o = a[Zi](e), s = o.get("tooltip", !0);
+                if (typeof s === Er) {
+                    var l = s;
+                    s = {formatter: l}
+                }
+                var u = this._tooltipModel, c = t[Lr]("tooltip", u), h = new w(s, c, c[$]), d = t[Hn](e, i), f = t.formatTooltip(e, !1, i), p = "item_" + t.name + "_" + e;
+                this._showTooltipContent(h, f, d, p, n[M], n[b], n[dn], n[Wn], r)
+            }, _showTooltipContent: function (t, e, i, n, r, a, o, s, u) {
+                if (this._ticket = "", t.get("showContent") && t.get("show")) {
+                    var c = this._tooltipContent, h = t.get("confine"), d = t.get(H);
+                    o = o || t.get(dn);
+                    var f = e;
+                    if (d)if (typeof d === Er)f = v.formatTpl(d, i, !0); else if (typeof d === On) {
+                        var p = this, g = n, m = function (t, e) {
+                            t === p._ticket && (c.setContent(e), l(o, r, a, h, c, i, s, u))
+                        };
+                        p._ticket = g, f = d(i, g, m)
+                    }
+                    c.show(t), c.setContent(f), l(o, r, a, h, c, i, s, u)
+                }
+            }, _showAxisPointer: function (t) {
+                if (t) {
+                    var e = this._axisPointers[t];
+                    e && p.each(e, function (t) {
+                        t.show()
+                    })
+                } else this.group[ce](function (t) {
+                    t.show()
+                }), this.group.show()
+            }, _resetLastHover: function () {
+                var t = this._lastHover;
+                t.payloadBatch && this._api[er]({type: "downplay", batch: t.payloadBatch}), this._lastHover = {}
+            }, _hideAxisPointer: function (t) {
+                if (t) {
+                    var e = this._axisPointers[t];
+                    e && p.each(e, function (t) {
+                        t.hide()
+                    })
+                } else this.group.children()[yr] && this.group.hide()
+            }, _hide: function () {
+                clearTimeout(this._showTimeout), this._hideAxisPointer(), this._resetLastHover(), this._alwaysShowContent || this._tooltipContent.hideLater(this._tooltipModel.get("hideDelay")), this._api[er]({
+                    type: "hideTip",
+                    from: this.uid
+                }), this._lastX = this._lastY = null
+            }, dispose: function (t, e) {
+                if (!_.node) {
+                    var i = e.getZr();
+                    this._tooltipContent.hide(), i.off("click", this._tryShow), i.off(Un, this._mousemove), i.off(jn, this._hide), i.off("globalout", this._hide)
+                }
+            }
+        })
+    }),e("echarts/component/dataZoom/SliderZoomModel", [Yr, "./DataZoomModel"], function (t) {
+        var e = t("./DataZoomModel"), i = e[ir]({
+            type: "dataZoom.slider",
+            layoutMode: "box",
+            defaultOption: {
+                show: !0,
+                right: "ph",
+                top: "ph",
+                width: "ph",
+                height: "ph",
+                left: null,
+                bottom: null,
+                backgroundColor: "rgba(47,69,84,0)",
+                dataBackground: {
+                    lineStyle: {color: "#2f4554", width: .5, opacity: .3},
+                    areaStyle: {color: "rgba(47,69,84,0.3)", opacity: .3}
+                },
+                borderColor: "#ddd",
+                fillerColor: "rgba(167,183,204,0.4)",
+                handleIcon: "M8.2,13.6V3.9H6.3v9.7H3.1v14.9h3.3v9.7h1.8v-9.7h3.3V13.6H8.2z M9.7,24.4H4.8v-1.4h4.9V24.4z M9.7,19.1H4.8v-1.4h4.9V19.1z",
+                handleSize: "100%",
+                handleStyle: {color: "#a7b7cc"},
+                labelPrecision: null,
+                labelFormatter: null,
+                showDetail: !0,
+                showDataShadow: "auto",
+                realtime: !0,
+                zoomLock: !1,
+                textStyle: {color: "#333"}
+            }
+        });
+        return i
+    }),e("echarts/component/dataZoom/InsideZoomModel", [Yr, "./DataZoomModel"], function (t) {
+        return t("./DataZoomModel")[ir]({type: "dataZoom.inside", defaultOption: {disabled: !1, zoomLock: !1}})
+    }),e("echarts/component/dataZoom/SliderZoomView", [Yr, Xr, ji, "../../util/throttle", "./DataZoomView", Di, Ne, "../helper/sliderMove"], function (t) {
+        function e(t) {
+            var e = {x: "y", y: "x", radius: "angle", angle: "radius"};
+            return e[t]
+        }
+
+        var i = t(Xr), n = t(ji), r = t("../../util/throttle"), a = t("./DataZoomView"), o = n.Rect, s = t(Di), l = s[G], c = t(Ne), f = t("../helper/sliderMove"), p = s.asc, v = i.bind, g = i.each, m = 7, y = 1, x = 30, _ = Ci, w = h, b = 5, M = ["line", "bar", "candlestick", "scatter"], S = a[ir]({
+            type: "dataZoom.slider",
+            init: function (t, e) {
+                this._displayables = {}, this._orient, this._range, this._handleEnds, this._size, this._handleWidth, this._handleHeight, this._location, this._dragging, this._dataShadowInfo, this.api = e
+            },
+            render: function (t, e, i, n) {
+                return S[ln](this, ar, arguments), r.createOrUpdate(this, "_dispatchZoomAction", this.dataZoomModel.get("throttle"), "fixRate"), this._orient = t.get(d), this.dataZoomModel.get("show") === !1 ? void this.group[An]() : (n && n.type === F && n.from === this.uid || this._buildView(), void this._updateView())
+            },
+            remove: function () {
+                S[ln](this, nr, arguments), r.clear(this, "_dispatchZoomAction")
+            },
+            dispose: function () {
+                S[ln](this, $n, arguments), r.clear(this, "_dispatchZoomAction")
+            },
+            _buildView: function () {
+                var t = this.group;
+                t[An](), this._resetLocation(), this._resetInterval();
+                var e = this._displayables.barGroup = new n.Group;
+                this._renderBackground(), this._renderHandle(), this._renderDataShadow(), t.add(e), this._positionGroup()
+            },
+            _resetLocation: function () {
+                var t = this.dataZoomModel, e = this.api, n = this._findCoordRect(), r = {
+                    width: e[Cr](),
+                    height: e[Tr]()
+                }, a = this._orient === _ ? {
+                    right: r.width - n.x - n.width,
+                    top: r[Or] - x - m,
+                    width: n.width,
+                    height: x
+                } : {right: m, top: n.y, width: x, height: n[Or]}, o = c.getLayoutParams(t[un]);
+                i.each(["right", "top", "width", Or], function (t) {
+                    "ph" === o[t] && (o[t] = a[t])
+                });
+                var s = c[gn](o, r, t[vn]);
+                this._location = {x: s.x, y: s.y}, this._size = [s.width, s[Or]], this._orient === w && this._size[ni]()
+            },
+            _positionGroup: function () {
+                var t = this.group, e = this._location, i = this._orient, n = this.dataZoomModel.getFirstTargetAxisModel(), r = n && n.get(si), a = this._displayables.barGroup, o = (this._dataShadowInfo || {}).otherAxisInverse;
+                a.attr(i !== _ || r ? i === _ && r ? {scale: o ? [-1, 1] : [-1, -1]} : i !== w || r ? {
+                    scale: o ? [-1, -1] : [-1, 1],
+                    rotation: Math.PI / 2
+                } : {scale: o ? [1, -1] : [1, 1], rotation: Math.PI / 2} : {scale: o ? [1, 1] : [1, -1]});
+                var s = t[yn]([a]);
+                t.attr(dn, [e.x - s.x, e.y - s.y])
+            },
+            _getViewExtent: function () {
+                return [0, this._size[0]]
+            },
+            _renderBackground: function () {
+                var t = this.dataZoomModel, e = this._size;
+                this._displayables.barGroup.add(new o({
+                    silent: !0,
+                    shape: {x: 0, y: 0, width: e[0], height: e[1]},
+                    style: {fill: t.get(Sr)},
+                    z2: -40
+                }))
+            },
+            _renderDataShadow: function () {
+                var t = this._dataShadowInfo = this._prepareDataShadowInfo();
+                if (t) {
+                    var e = this._size, r = t[rr], a = r.getRawData(), o = r.getShadowDim ? r.getShadowDim() : t.otherDim;
+                    if (null != o) {
+                        var s = a[Xi](o), u = .3 * (s[1] - s[0]);
+                        s = [s[0] - u, s[1] + u];
+                        var c, h = [0, e[1]], d = [0, e[0]], f = [[e[0], 0], [0, 0]], p = [], v = d[1] / (a.count() - 1), g = 0, m = Math.round(a.count() / e[0]);
+                        a.each([o], function (t, e) {
+                            if (m > 0 && e % m)return void(g += v);
+                            var i = null == t || isNaN(t) || "" === t, n = i ? 0 : l(t, s, h, !0);
+                            i && !c && e ? (f.push([f[f[yr] - 1][0], 0]), p.push([p[p[yr] - 1][0], 0])) : !i && c && (f.push([g, 0]), p.push([g, 0])), f.push([g, n]), p.push([g, n]), g += v, c = i
+                        });
+                        var y = this.dataZoomModel;
+                        this._displayables.barGroup.add(new n[Ue]({
+                            shape: {points: f},
+                            style: i[tr]({fill: y.get("dataBackgroundColor")}, y[Lr]("dataBackground.areaStyle")[$e]()),
+                            silent: !0,
+                            z2: -20
+                        })), this._displayables.barGroup.add(new n[je]({
+                            shape: {points: p},
+                            style: y[Lr]("dataBackground.lineStyle")[Je](),
+                            silent: !0,
+                            z2: -19
+                        }))
+                    }
+                }
+            },
+            _prepareDataShadowInfo: function () {
+                var t = this.dataZoomModel, n = t.get("showDataShadow");
+                if (n !== !1) {
+                    var r, a = this[$];
+                    return t.eachTargetAxis(function (o, s) {
+                        var l = t.getAxisProxy(o.name, s).getTargetSeriesModels();
+                        i.each(l, function (t) {
+                            if (!(r || n !== !0 && i[mr](M, t.get("type")) < 0)) {
+                                var l, u = a[Y](o.axis, s).axis, c = e(o.name), h = t[gr];
+                                null != c && h[vi] && (l = h[vi](u)[si]), r = {
+                                    thisAxis: u,
+                                    series: t,
+                                    thisDim: o.name,
+                                    otherDim: c,
+                                    otherAxisInverse: l
+                                }
+                            }
+                        }, this)
+                    }, this), r
+                }
+            },
+            _renderHandle: function () {
+                var t = this._displayables, e = t.handles = [], i = t.handleLabels = [], r = this._displayables.barGroup, a = this._size, l = this.dataZoomModel;
+                r.add(t.filler = new o({
+                    draggable: !0,
+                    cursor: "move",
+                    drift: v(this._onDragMove, this, "all"),
+                    ondragstart: v(this._showDataInfo, this, !0),
+                    ondragend: v(this._onDragEnd, this),
+                    onmouseover: v(this._showDataInfo, this, !0),
+                    onmouseout: v(this._showDataInfo, this, !1),
+                    style: {fill: l.get("fillerColor"), textPosition: "inside"}
+                })), r.add(new o(n.subPixelOptimizeRect({
+                    silent: !0,
+                    shape: {x: 0, y: 0, width: a[0], height: a[1]},
+                    style: {stroke: l.get("dataBackgroundColor") || l.get(Hi), lineWidth: y, fill: "rgba(0,0,0,0)"}
+                })));
+                var u = l.get("handleIcon");
+                g([0, 1], function (t) {
+                    var a = n.makePath(u, {
+                        style: {strokeNoScale: !0},
+                        rectHover: !0,
+                        cursor: this._orient === h ? "ns-resize" : "ew-resize",
+                        draggable: !0,
+                        drift: v(this._onDragMove, this, t),
+                        ondragend: v(this._onDragEnd, this),
+                        onmouseover: v(this._showDataInfo, this, !0),
+                        onmouseout: v(this._showDataInfo, this, !1)
+                    }, {x: -.5, y: 0, width: 1, height: 1}, fn), o = a[yn]();
+                    this._handleHeight = s[Ii](l.get("handleSize"), this._size[1]), this._handleWidth = o.width / o[Or] * this._handleHeight, a[Bn](l[Lr]("handleStyle")[Mn]());
+                    var c = l.get("handleColor");
+                    null != c && (a.style.fill = c), r.add(e[t] = a);
+                    var d = l.textStyleModel;
+                    this.group.add(i[t] = new n.Text({
+                        silent: !0,
+                        invisible: !0,
+                        style: {
+                            x: 0,
+                            y: 0,
+                            text: "",
+                            textVerticalAlign: "middle",
+                            textAlign: "center",
+                            fill: d[xn](),
+                            textFont: d[_n]()
+                        },
+                        z2: 10
+                    }))
+                }, this)
+            },
+            _resetInterval: function () {
+                var t = this._range = this.dataZoomModel.getPercentRange(), e = this._getViewExtent();
+                this._handleEnds = [l(t[0], [0, 100], e, !0), l(t[1], [0, 100], e, !0)]
+            },
+            _updateInterval: function (t, e) {
+                var i = this._handleEnds, n = this._getViewExtent();
+                f(e, i, n, "all" === t || this.dataZoomModel.get("zoomLock") ? "rigid" : "cross", t), this._range = p([l(i[0], n, [0, 100], !0), l(i[1], n, [0, 100], !0)])
+            },
+            _updateView: function (t) {
+                var e = this._displayables, i = this._handleEnds, n = p(i.slice()), r = this._size;
+                g([0, 1], function (t) {
+                    var n = e.handles[t], a = this._handleHeight;
+                    n.attr({scale: [a, a], position: [i[t], r[1] / 2 - a / 2]})
+                }, this), e.filler[Qe]({x: n[0], y: 0, width: n[1] - n[0], height: r[1]}), this._updateDataInfo(t)
+            },
+            _updateDataInfo: function (t) {
+                function e(t) {
+                    var e = n.getTransform(r.handles[t][an], this.group), i = n.transformDirection(0 === t ? "right" : "left", e), l = this._handleWidth / 2 + b, u = n[U]([d[t] + (0 === t ? -l : l), this._size[1] / 2], e);
+                    a[t][Bn]({
+                        x: u[0],
+                        y: u[1],
+                        textVerticalAlign: o === _ ? pn : i,
+                        textAlign: o === _ ? i : fn,
+                        text: s[t]
+                    })
+                }
+
+                var i = this.dataZoomModel, r = this._displayables, a = r.handleLabels, o = this._orient, s = ["", ""];
+                if (i.get("showDetail")) {
+                    var l = i.findRepresentativeAxisProxy();
+                    if (l) {
+                        var u = l.getAxisModel().axis, c = this._range, h = t ? l.calculateDataWindow({
+                            start: c[0],
+                            end: c[1]
+                        }).valueWindow : l.getDataValueWindow();
+                        s = [this._formatLabel(h[0], u), this._formatLabel(h[1], u)]
+                    }
+                }
+                var d = p(this._handleEnds.slice());
+                e.call(this, 0), e.call(this, 1)
+            },
+            _formatLabel: function (t, e) {
+                var n = this.dataZoomModel, r = n.get("labelFormatter"), a = n.get("labelPrecision");
+                (null == a || "auto" === a) && (a = e.getPixelPrecision());
+                var o = null == t || isNaN(t) ? "" : e.type === Mi || "time" === e.type ? e.scale[$i](Math.round(t)) : t[ne](Math.min(a, 20));
+                return i.isFunction(r) ? r(t, o) : i[Tn](r) ? r[En]("{value}", o) : o
+            },
+            _showDataInfo: function (t) {
+                t = this._dragging || t;
+                var e = this._displayables.handleLabels;
+                e[0].attr(P, !t), e[1].attr(P, !t)
+            },
+            _onDragMove: function (t, e, i) {
+                this._dragging = !0;
+                var n = this._applyBarTransform([e, i], !0);
+                this._updateInterval(t, n[0]);
+                var r = this.dataZoomModel.get(u);
+                this._updateView(!r), r && r && this._dispatchZoomAction()
+            },
+            _onDragEnd: function () {
+                this._dragging = !1, this._showDataInfo(!1), this._dispatchZoomAction()
+            },
+            _dispatchZoomAction: function () {
+                var t = this._range;
+                this.api[er]({
+                    type: "dataZoom",
+                    from: this.uid,
+                    dataZoomId: this.dataZoomModel.id,
+                    start: t[0],
+                    end: t[1]
+                })
+            },
+            _applyBarTransform: function (t, e) {
+                var i = this._displayables.barGroup[Z]();
+                return n[U](t, i, e)
+            },
+            _findCoordRect: function () {
+                var t;
+                if (g(this.getTargetCoordInfo(), function (e) {
+                        if (!t && e[yr]) {
+                            var i = e[0].model[gr];
+                            t = i[Sn] && i[Sn]()
+                        }
+                    }), !t) {
+                    var e = this.api[Cr](), i = this.api[Tr]();
+                    t = {x: .2 * e, y: .2 * i, width: .6 * e, height: .6 * i}
+                }
+                return t
+            }
+        });
+        return S
+    }),e("echarts/chart/pie/pieLayout", [Yr, Di, "./labelLayout", Xr], function (t) {
+        var e = t(Di), i = e[Ii], n = t("./labelLayout"), r = t(Xr), a = 2 * Math.PI, o = Math.PI / 180;
+        return function (t, s, l) {
+            s[Ur](t, function (t) {
+                var s = t.get(fn), u = t.get(pi);
+                r[Rn](u) || (u = [0, u]), r[Rn](s) || (s = [s, s]);
+                var c = l[Cr](), h = l[Tr](), d = Math.min(c, h), f = i(s[0], c), p = i(s[1], h), v = i(u[0], d / 2), g = i(u[1], d / 2), m = t[qr](), y = -t.get(_e) * o, x = t.get("minAngle") * o, _ = m.getSum("value"), w = Math.PI / (_ || m.count()) * 2, b = t.get(ue), M = t.get("roseType"), S = t.get("stillShowZeroSum"), A = m[Xi]("value");
+                A[0] = 0;
+                var T = a, C = 0, L = y, k = b ? 1 : -1;
+                if (m.each("value", function (t, i) {
+                        var n;
+                        if (isNaN(t))return void m[Ti](i, {
+                            angle: 0 / 0,
+                            startAngle: 0 / 0,
+                            endAngle: 0 / 0,
+                            clockwise: b,
+                            cx: f,
+                            cy: p,
+                            r0: v,
+                            r: M ? 0 / 0 : g
+                        });
+                        n = "area" !== M ? 0 === _ && S ? w : t * w : a / (m.count() || 1), x > n ? (n = x, T -= x) : C += t;
+                        var r = L + k * n;
+                        m[Ti](i, {
+                            angle: n,
+                            startAngle: L,
+                            endAngle: r,
+                            clockwise: b,
+                            cx: f,
+                            cy: p,
+                            r0: v,
+                            r: M ? e[G](t, A, [v, g]) : g
+                        }), L = r
+                    }, !0), a > T)if (.001 >= T) {
+                    var I = a / m.count();
+                    m.each(function (t) {
+                        var e = m[bi](t);
+                        e[_e] = y + k * t * I, e[oi] = y + k * (t + 1) * I
+                    })
+                } else w = T / C, L = y, m.each("value", function (t, e) {
+                    var i = m[bi](e), n = i.angle === x ? x : t * w;
+                    i[_e] = L, i[oi] = L + k * n, L += k * n
+                });
+                n(t, g, c, h)
+            })
+        }
+    }),e("echarts/component/dataZoom/InsideZoomView", [Yr, "./DataZoomView", Xr, "../helper/sliderMove", "./roams"], function (t) {
+        function e(t) {
+            var e = [0, 100];
+            return !(t[0] <= e[1]) && (t[0] = e[1]), !(t[1] <= e[1]) && (t[1] = e[1]), !(t[0] >= e[0]) && (t[0] = e[0]), !(t[1] >= e[0]) && (t[1] = e[0]), t
+        }
+
+        var i = t("./DataZoomView"), n = t(Xr), r = t("../helper/sliderMove"), a = t("./roams"), o = n.bind, s = i[ir]({
+            type: "dataZoom.inside",
+            init: function () {
+                this._range
+            },
+            render: function (t, e, i, r) {
+                s[ln](this, ar, arguments), a.shouldRecordRange(r, t.id) && (this._range = t.getPercentRange()), n.each(this.getTargetCoordInfo(), function (e, r) {
+                    var s = n.map(e, function (t) {
+                        return a.generateCoordId(t.model)
+                    });
+                    n.each(e, function (e) {
+                        var n = e.model;
+                        a[zn](i, {
+                            coordId: a.generateCoordId(n),
+                            allCoordIds: s,
+                            containsPoint: function (t, e) {
+                                return n[gr].containPoint([t, e])
+                            },
+                            dataZoomId: t.id,
+                            throttleRate: t.get("throttle", !0),
+                            panGetRange: o(this._onPan, this, e, r),
+                            zoomGetRange: o(this._onZoom, this, e, r)
+                        })
+                    }, this)
+                }, this)
+            },
+            dispose: function () {
+                a.unregister(this.api, this.dataZoomModel.id), s[ln](this, $n, arguments), this._range = null
+            },
+            _onPan: function (t, e, i, n, a, o, s, u, c) {
+                if (this.dataZoomModel[un].disabled)return this._range;
+                var h = this._range.slice(), d = t.axisModels[0];
+                if (d) {
+                    var f = l[e]([o, s], [u, c], d, i, t), p = f.signal * (h[1] - h[0]) * f.pixel / f.pixelLength;
+                    return r(p, h, [0, 100], "rigid"), this._range = h
+                }
+            },
+            _onZoom: function (t, i, n, r, a, o) {
+                var s = this.dataZoomModel[un];
+                if (s.disabled || s.zoomLock)return this._range;
+                var u = this._range.slice(), c = t.axisModels[0];
+                if (c) {
+                    var h = l[i](null, [a, o], c, n, t), d = (h.pixel - h.pixelStart) / h.pixelLength * (u[1] - u[0]) + u[0];
+                    return r = Math.max(1 / r, 0), u[0] = (u[0] - d) * r + d, u[1] = (u[1] - d) * r + d, this._range = e(u)
+                }
+            }
+        }), l = {
+            grid: function (t, e, i, n, r) {
+                var a = i.axis, o = {}, s = r.model[gr][Sn]();
+                return t = t || [0, 0], "x" === a.dim ? (o.pixel = e[0] - t[0], o.pixelLength = s.width, o.pixelStart = s.x, o.signal = a[si] ? 1 : -1) : (o.pixel = e[1] - t[1], o.pixelLength = s[Or], o.pixelStart = s.y, o.signal = a[si] ? -1 : 1), o
+            }, polar: function (t, e, i, n, r) {
+                var a = i.axis, o = {}, s = r.model[gr], l = s.getRadiusAxis()[Qi](), u = s[ui]()[Qi]();
+                return t = t ? s.pointToCoord(t) : [0, 0], e = s.pointToCoord(e), "radiusAxis" === i[or] ? (o.pixel = e[0] - t[0], o.pixelLength = l[1] - l[0], o.pixelStart = l[0], o.signal = a[si] ? 1 : -1) : (o.pixel = e[1] - t[1], o.pixelLength = u[1] - u[0], o.pixelStart = u[0], o.signal = a[si] ? -1 : 1), o
+            }, singleAxis: function (t, e, i, n, r) {
+                var a = i.axis, o = r.model[gr][Sn](), s = {};
+                return t = t || [0, 0], a[d] === Ci ? (s.pixel = e[0] - t[0], s.pixelLength = o.width, s.pixelStart = o.x, s.signal = a[si] ? 1 : -1) : (s.pixel = e[1] - t[1], s.pixelLength = o[Or], s.pixelStart = o.y, s.signal = a[si] ? -1 : 1), s
+            }
+        };
+        return s
+    }),e("echarts/component/dataZoom/dataZoomProcessor", [Yr, Te], function (t) {
+        function e(t, e, i) {
+            i.getAxisProxy(t.name, e).reset(i)
+        }
+
+        function i(t, e, i) {
+            i.getAxisProxy(t.name, e).filterData(i)
+        }
+
+        var n = t(Te);
+        n.registerProcessor(function (t) {
+            t[wr](F, function (t) {
+                t.eachTargetAxis(e), t.eachTargetAxis(i)
+            }), t[wr](F, function (t) {
+                var e = t.findRepresentativeAxisProxy(), i = e.getDataPercentWindow(), n = e.getDataValueWindow();
+                t.setRawRange({start: i[0], end: i[1], startValue: n[0], endValue: n[1]})
+            })
+        })
+    }),e("echarts/component/timeline/preprocessor", [Yr, Xr], function (t) {
+        function e(t) {
+            var e = t.type, a = {number: "value", time: "time"};
+            if (a[e] && (t.axisType = a[e], delete t.type), i(t), n(t, "controlPosition")) {
+                var o = t.controlStyle || (t.controlStyle = {});
+                n(o, dn) || (o[dn] = t.controlPosition), "none" !== o[dn] || n(o, "show") || (o.show = !1, delete o[dn]), delete t.controlPosition
+            }
+            r.each(t.data || [], function (t) {
+                r[Ir](t) && !r[Rn](t) && (!n(t, "value") && n(t, "name") && (t.value = t.name), i(t))
+            })
+        }
+
+        function i(t) {
+            var e = t[Ui] || (t[Ui] = {}), i = e[Wi] || (e[Wi] = {}), a = t.label || t.label || {}, o = a[qi] || (a[qi] = {}), s = {
+                normal: 1,
+                emphasis: 1
+            };
+            r.each(a, function (t, e) {
+                s[e] || n(o, e) || (o[e] = t)
+            }), i.label && !n(a, Wi) && (a[Wi] = i.label, delete i.label)
+        }
+
+        function n(t, e) {
+            return t.hasOwnProperty(e)
+        }
+
+        var r = t(Xr);
+        return function (t) {
+            var i = t && t.timeline;
+            r[Rn](i) || (i = i ? [i] : []), r.each(i, function (t) {
+                t && e(t)
+            })
+        }
+    }),e("echarts/component/timeline/timelineAction", [Yr, Te, Xr], function (t) {
+        var e = t(Te), i = t(Xr);
+        e[Vn]({type: "timelineChange", event: "timelineChanged", update: "prepareAndUpdate"}, function (t, e) {
+            var n = e[Y]("timeline");
+            return n && null != t.currentIndex && (n.setCurrentIndex(t.currentIndex), !n.get("loop", !0) && n.isIndexMax() && n.setPlayState(!1)), e.resetOption("timeline"), i[tr]({currentIndex: n[un].currentIndex}, t)
+        }), e[Vn]({type: "timelinePlayChange", event: "timelinePlayChanged", update: "update"}, function (t, e) {
+            var i = e[Y]("timeline");
+            i && null != t.playState && i.setPlayState(t.playState)
+        })
+    }),e("echarts/component/dataZoom/dataZoomAction", [Yr, Xr, Le, Te], function (t) {
+        var e = t(Xr), i = t(Le), n = t(Te);
+        n[Vn](F, function (t, n) {
+            var r = i.createLinkedNodesFinder(e.bind(n[wr], n, F), i.eachAxisDim, function (t, e) {
+                return t.get(e.axisIndex)
+            }), a = [];
+            n[wr]({mainType: "dataZoom", query: t}, function (t) {
+                a.push.apply(a, r(t).nodes)
+            }), e.each(a, function (e) {
+                e.setRawRange({start: t.start, end: t.end, startValue: t.startValue, endValue: t.endValue})
+            })
+        })
+    }),e("echarts/component/timeline/typeDefaulter", [Yr, v], function (t) {
+        t(v).registerSubTypeDefaulter("timeline", function () {
+            return "slider"
+        })
+    }),e("echarts/component/timeline/SliderTimelineModel", [Yr, "./TimelineModel", Xr, mi], function (t) {
+        var e = t("./TimelineModel"), i = t(Xr), n = t(mi), r = e[ir]({
+            type: "timeline.slider",
+            defaultOption: {
+                backgroundColor: "rgba(0,0,0,0)",
+                borderColor: "#ccc",
+                borderWidth: 0,
+                orient: "horizontal",
+                inverse: !1,
+                tooltip: {trigger: "item"},
+                symbol: "emptyCircle",
+                symbolSize: 10,
+                lineStyle: {show: !0, width: 2, color: "#304654"},
+                label: {
+                    position: "auto",
+                    normal: {show: !0, interval: "auto", rotate: 0, textStyle: {color: "#304654"}},
+                    emphasis: {show: !0, textStyle: {color: "#c23531"}}
+                },
+                itemStyle: {normal: {color: "#304654", borderWidth: 1}, emphasis: {color: "#c23531"}},
+                checkpointStyle: {
+                    symbol: "circle",
+                    symbolSize: 13,
+                    color: "#c23531",
+                    borderWidth: 5,
+                    borderColor: "rgba(194,53,49, 0.5)",
+                    animation: !0,
+                    animationDuration: 300,
+                    animationEasing: "quinticInOut"
+                },
+                controlStyle: {
+                    show: !0,
+                    showPlayBtn: !0,
+                    showPrevBtn: !0,
+                    showNextBtn: !0,
+                    itemSize: 22,
+                    itemGap: 12,
+                    position: "left",
+                    playIcon: "path://M31.6,53C17.5,53,6,41.5,6,27.4S17.5,1.8,31.6,1.8C45.7,1.8,57.2,13.3,57.2,27.4S45.7,53,31.6,53z M31.6,3.3 C18.4,3.3,7.5,14.1,7.5,27.4c0,13.3,10.8,24.1,24.1,24.1C44.9,51.5,55.7,40.7,55.7,27.4C55.7,14.1,44.9,3.3,31.6,3.3z M24.9,21.3 c0-2.2,1.6-3.1,3.5-2l10.5,6.1c1.899,1.1,1.899,2.9,0,4l-10.5,6.1c-1.9,1.1-3.5,0.2-3.5-2V21.3z",
+                    stopIcon: "path://M30.9,53.2C16.8,53.2,5.3,41.7,5.3,27.6S16.8,2,30.9,2C45,2,56.4,13.5,56.4,27.6S45,53.2,30.9,53.2z M30.9,3.5C17.6,3.5,6.8,14.4,6.8,27.6c0,13.3,10.8,24.1,24.101,24.1C44.2,51.7,55,40.9,55,27.6C54.9,14.4,44.1,3.5,30.9,3.5z M36.9,35.8c0,0.601-0.4,1-0.9,1h-1.3c-0.5,0-0.9-0.399-0.9-1V19.5c0-0.6,0.4-1,0.9-1H36c0.5,0,0.9,0.4,0.9,1V35.8z M27.8,35.8 c0,0.601-0.4,1-0.9,1h-1.3c-0.5,0-0.9-0.399-0.9-1V19.5c0-0.6,0.4-1,0.9-1H27c0.5,0,0.9,0.4,0.9,1L27.8,35.8L27.8,35.8z",
+                    nextIcon: "path://M18.6,50.8l22.5-22.5c0.2-0.2,0.3-0.4,0.3-0.7c0-0.3-0.1-0.5-0.3-0.7L18.7,4.4c-0.1-0.1-0.2-0.3-0.2-0.5 c0-0.4,0.3-0.8,0.8-0.8c0.2,0,0.5,0.1,0.6,0.3l23.5,23.5l0,0c0.2,0.2,0.3,0.4,0.3,0.7c0,0.3-0.1,0.5-0.3,0.7l-0.1,0.1L19.7,52 c-0.1,0.1-0.3,0.2-0.5,0.2c-0.4,0-0.8-0.3-0.8-0.8C18.4,51.2,18.5,51,18.6,50.8z",
+                    prevIcon: "path://M43,52.8L20.4,30.3c-0.2-0.2-0.3-0.4-0.3-0.7c0-0.3,0.1-0.5,0.3-0.7L42.9,6.4c0.1-0.1,0.2-0.3,0.2-0.5 c0-0.4-0.3-0.8-0.8-0.8c-0.2,0-0.5,0.1-0.6,0.3L18.3,28.8l0,0c-0.2,0.2-0.3,0.4-0.3,0.7c0,0.3,0.1,0.5,0.3,0.7l0.1,0.1L41.9,54 c0.1,0.1,0.3,0.2,0.5,0.2c0.4,0,0.8-0.3,0.8-0.8C43.2,53.2,43.1,53,43,52.8z",
+                    normal: {color: "#304654", borderColor: "#304654", borderWidth: 1},
+                    emphasis: {color: "#c23531", borderColor: "#c23531", borderWidth: 2}
+                },
+                data: []
+            }
+        });
+        return i.mixin(r, n.dataFormatMixin), r
+    }),e("echarts/component/brush/BrushModel", [Yr, Te, Xr, "../../visual/visualSolution", Ce], function (t) {
+        var e = t(Te), i = t(Xr), n = t("../../visual/visualSolution"), r = t(Ce), a = ["#ddd"], o = e[Dn]({
+            type: "brush",
+            dependencies: ["geo", "grid", "xAxis", "yAxis", "parallel", rr],
+            defaultOption: {
+                toolbox: null,
+                brushLink: null,
+                seriesIndex: "all",
+                geoIndex: null,
+                xAxisIndex: null,
+                yAxisIndex: null,
+                brushType: "rect",
+                brushMode: "single",
+                transformable: !0,
+                brushStyle: {
+                    borderWidth: 1,
+                    color: "rgba(120,140,180,0.3)",
+                    borderColor: "rgba(120,140,180,0.8)",
+                    width: null
+                },
+                throttleType: "fixRate",
+                throttleDelay: 0,
+                removeOnClick: !0
+            },
+            areas: [],
+            brushType: null,
+            brushOption: {},
+            coordInfoList: [],
+            optionUpdated: function (t, e) {
+                var i = this[un];
+                !e && n.replaceVisualOption(i, t, ["inBrush", "outOfBrush"]), i.inBrush = i.inBrush || {}, i.outOfBrush = i.outOfBrush || {color: a}
+            },
+            setAreas: function (t) {
+                t && (this.areas = i.map(t, function (t) {
+                    return this._mergeBrushOption(t)
+                }, this))
+            },
+            setBrushOption: function (t) {
+                this.brushOption = this._mergeBrushOption(t), this.brushType = this.brushOption.brushType
+            },
+            _mergeBrushOption: function (t) {
+                var e = this[un];
+                return i.merge({
+                    brushType: e.brushType,
+                    brushMode: e.brushMode,
+                    transformable: e.transformable,
+                    brushStyle: new r(e.brushStyle)[Mn](),
+                    removeOnClick: e.removeOnClick
+                }, t, !0)
+            }
+        });
+        return o
+    }),e("echarts/component/timeline/SliderTimelineView", [Yr, Xr, ji, Ne, "./TimelineView", "./TimelineAxis", V, "../../coord/axisHelper", X, Fr, Di, Ri], function (t) {
+        function e(t, e) {
+            return s[gn](t[mn](), {width: e[Cr](), height: e[Tr]()}, t.get(vn))
+        }
+
+        function i(t, e, i, n) {
+            var r = o.makePath(t.get(e)[En](/^path:\/\//, ""), a.clone(n || {}), new m(i[0], i[1], i[2], i[3]), fn);
+            return r
+        }
+
+        function n(t, e, i, n, r, o) {
+            var s = e.get("color");
+            if (r)r.setColor(s), i.add(r), o && o.onUpdate(r); else {
+                var u = t.get(He);
+                r = v[z](u, -1, -1, 2, 2, s), r[Bn]("strokeNoScale", !0), i.add(r), o && o.onCreate(r)
+            }
+            var c = e[Mn](["color", He, Fe]);
+            r[Bn](c), n = a.merge({rectHover: !0, z2: 100}, n, !0);
+            var h = t.get(Fe);
+            h = h instanceof Array ? h.slice() : [+h, +h], h[0] /= 2, h[1] /= 2, n.scale = h;
+            var d = t.get("symbolOffset");
+            if (d) {
+                var f = n[dn] = n[dn] || [0, 0];
+                f[0] += x[Ii](d[0], h[0]), f[1] += x[Ii](d[1], h[1])
+            }
+            var p = t.get("symbolRotate");
+            return n[pe] = (p || 0) * Math.PI / 180 || 0, r.attr(n), r[l](), r
+        }
+
+        function r(t, e, i, n, r) {
+            if (!t.dragging) {
+                var a = n[Lr]("checkpointStyle"), o = i[ri](n[qr]().get(["value"], e));
+                r || !a.get(zr, !0) ? t.attr({position: [o, 0]}) : (t[br](!0), t.animateTo({position: [o, 0]}, a.get("animationDuration", !0), a.get("animationEasing", !0)))
+            }
+        }
+
+        var a = t(Xr), o = t(ji), s = t(Ne), f = t("./TimelineView"), p = t("./TimelineAxis"), v = t(V), g = t("../../coord/axisHelper"), m = t(X), y = t(Fr), x = t(Di), _ = t(Ri), w = _[Oi], S = a.bind, A = a.each, T = Math.PI;
+        return f[ir]({
+            type: "timeline.slider", init: function (t, e) {
+                this.api = e, this._axis, this._viewRect, this._timer, this._currentPointer, this._mainGroup, this._labelGroup
+            }, render: function (t, e, i) {
+                if (this.model = t, this.api = i, this[$] = e, this.group[An](), t.get("show", !0)) {
+                    var n = this._layout(t, i), r = this._createGroup("mainGroup"), a = this._createGroup("labelGroup"), o = this._axis = this._createAxis(n, t);
+                    t.formatTooltip = function (t) {
+                        return w(o.scale[$i](t))
+                    }, A(["AxisLine", "AxisTick", "Control", "CurrentPointer"], function (e) {
+                        this["_render" + e](n, r, o, t)
+                    }, this), this._renderAxisLabel(n, a, o, t), this._position(n, t)
+                }
+                this._doPlayStop()
+            }, remove: function () {
+                this._clearTimer(), this.group[An]()
+            }, dispose: function () {
+                this._clearTimer()
+            }, _layout: function (t, i) {
+                var n = t.get("label.normal.position"), r = t.get(d), a = e(t, i);
+                null == n || "auto" === n ? n = r === Ci ? a.y + a[Or] / 2 < i[Tr]() / 2 ? "-" : "+" : a.x + a.width / 2 < i[Cr]() / 2 ? "+" : "-" : isNaN(n) && (n = {
+                    horizontal: {
+                        top: "-",
+                        bottom: "+"
+                    }, vertical: {left: "-", right: "+"}
+                }[r][n]);
+                var o = {
+                    horizontal: "center",
+                    vertical: n >= 0 || "+" === n ? "left" : "right"
+                }, s = {horizontal: n >= 0 || "+" === n ? "top" : xr, vertical: "middle"}, l = {
+                    horizontal: 0,
+                    vertical: T / 2
+                }, u = r === h ? a[Or] : a.width, c = t[Lr]("controlStyle"), f = c.get("show"), p = f ? c.get("itemSize") : 0, v = f ? c.get("itemGap") : 0, g = p + v, m = t.get("label.normal.rotate") || 0;
+                m = m * T / 180;
+                var y, x, _, w, b = c.get(dn, !0), f = c.get("show", !0), M = f && c.get("showPlayBtn", !0), S = f && c.get("showPrevBtn", !0), A = f && c.get("showNextBtn", !0), C = 0, L = u;
+                return "left" === b || b === xr ? (M && (y = [0, 0], C += g), S && (x = [C, 0], C += g), A && (_ = [L - p, 0], L -= g)) : (M && (y = [L - p, 0], L -= g), S && (x = [0, 0], C += g), A && (_ = [L - p, 0], L -= g)), w = [C, L], t.get(si) && w[ni](), {
+                    viewRect: a,
+                    mainLength: u,
+                    orient: r,
+                    rotation: l[r],
+                    labelRotation: m,
+                    labelPosOpt: n,
+                    labelAlign: o[r],
+                    labelBaseline: s[r],
+                    playPosition: y,
+                    prevBtnPosition: x,
+                    nextBtnPosition: _,
+                    axisExtent: w,
+                    controlSize: p,
+                    controlGap: v
+                }
+            }, _position: function (t) {
+                function e(t) {
+                    var e = t[dn];
+                    t.origin = [f[0][0] - e[0], f[1][0] - e[1]]
+                }
+
+                function i(t) {
+                    return [[t.x, t.x + t.width], [t.y, t.y + t[Or]]]
+                }
+
+                function n(t, e, i, n, r) {
+                    t[n] += i[n][r] - e[n][r]
+                }
+
+                var r = this._mainGroup, a = this._labelGroup, o = t.viewRect;
+                if (t[d] === h) {
+                    var s = y[dr](), l = o.x, u = o.y + o[Or];
+                    y.translate(s, s, [-l, -u]), y[c](s, s, -T / 2), y.translate(s, s, [l, u]), o = o.clone(), o[U](s)
+                }
+                var f = i(o), p = i(r[yn]()), v = i(a[yn]()), g = r[dn], m = a[dn];
+                m[0] = g[0] = f[0][0];
+                var x = t.labelPosOpt;
+                if (isNaN(x)) {
+                    var _ = "+" === x ? 0 : 1;
+                    n(g, p, f, 1, _), n(m, v, f, 1, 1 - _)
+                } else {
+                    var _ = x >= 0 ? 0 : 1;
+                    n(g, p, f, 1, _), m[1] = g[1] + x
+                }
+                r.attr(dn, g), a.attr(dn, m), r[pe] = a[pe] = t[pe], e(r), e(a)
+            }, _createAxis: function (t, e) {
+                var i = e[qr](), n = e.get("axisType"), r = g[De](e, n), a = i[Xi]("value");
+                r[Yi](a[0], a[1]), this._customizeScale(r, i), r.niceTicks();
+                var o = new p("value", r, t.axisExtent, n);
+                return o.model = e, o
+            }, _customizeScale: function (t, e) {
+                t[Ji] = function () {
+                    return e[fi](["value"], function (t) {
+                        return t
+                    })
+                }, t.getTicksLabels = function () {
+                    return a.map(this[Ji](), t[$i], t)
+                }
+            }, _createGroup: function (t) {
+                var e = this["_" + t] = new o.Group;
+                return this.group.add(e), e
+            }, _renderAxisLine: function (t, e, i, n) {
+                var r = i[Qi]();
+                n.get("lineStyle.show") && e.add(new o.Line({
+                    shape: {x1: r[0], y1: 0, x2: r[1], y2: 0},
+                    style: a[ir]({lineCap: "round"}, n[Lr](he)[Je]()),
+                    silent: !0,
+                    z2: 1
+                }))
+            }, _renderAxisTick: function (t, e, i, r) {
+                var a = r[qr](), s = i.scale[Ji]();
+                A(s, function (t, s) {
+                    var l = i[ri](t), u = a[Zi](s), c = u[Lr](Me), h = u[Lr](be), d = {
+                        position: [l, 0],
+                        onclick: S(this._changeTimeline, this, s)
+                    }, f = n(u, c, e, d);
+                    o[Ni](f, h[Mn]()), u.get("tooltip") ? (f[pr] = s, f.dataModel = r) : f[pr] = f.dataModel = null
+                }, this)
+            }, _renderAxisLabel: function (t, e, i, n) {
+                var r = n[Lr](fe);
+                if (r.get("show")) {
+                    var a = n[qr](), s = i.scale[Ji](), l = g[Re](i, r.get(H)), u = i.getLabelInterval();
+                    A(s, function (n, r) {
+                        if (!i.isLabelIgnored(r, u)) {
+                            var s = a[Zi](r), c = s[Lr]("label.normal.textStyle"), h = s[Lr]("label.emphasis.textStyle"), d = i[ri](n), f = new o.Text({
+                                style: {
+                                    text: l[r],
+                                    textAlign: t.labelAlign,
+                                    textVerticalAlign: t.labelBaseline,
+                                    textFont: c[_n](),
+                                    fill: c[xn]()
+                                },
+                                position: [d, 0],
+                                rotation: t.labelRotation - t[pe],
+                                onclick: S(this._changeTimeline, this, r),
+                                silent: !1
+                            });
+                            e.add(f), o[Ni](f, h[Mn]())
+                        }
+                    }, this)
+                }
+            }, _renderControl: function (t, e, n, r) {
+                function a(t, n, a, d) {
+                    if (t) {
+                        var f = {
+                            position: t,
+                            origin: [s / 2, 0],
+                            rotation: d ? -l : 0,
+                            rectHover: !0,
+                            style: u,
+                            onclick: a
+                        }, p = i(r, n, h, f);
+                        e.add(p), o[Ni](p, c)
+                    }
+                }
+
+                var s = t.controlSize, l = t[pe], u = r[Lr]("controlStyle.normal")[Mn](), c = r[Lr]("controlStyle.emphasis")[Mn](), h = [0, -s / 2, s, s], d = r.getPlayState(), f = r.get(si, !0);
+                a(t.nextBtnPosition, "controlStyle.nextIcon", S(this._changeTimeline, this, f ? "-" : "+")), a(t.prevBtnPosition, "controlStyle.prevIcon", S(this._changeTimeline, this, f ? "+" : "-")), a(t.playPosition, "controlStyle." + (d ? "stopIcon" : "playIcon"), S(this._handlePlayClick, this, !d), !0)
+            }, _renderCurrentPointer: function (t, e, i, a) {
+                var o = a[qr](), s = a.getCurrentIndex(), l = o[Zi](s)[Lr]("checkpointStyle"), u = this, c = {
+                    onCreate: function (t) {
+                        t[C] = !0, t.drift = S(u._handlePointerDrag, u), t.ondragend = S(u._handlePointerDragend, u), r(t, s, i, a, !0)
+                    }, onUpdate: function (t) {
+                        r(t, s, i, a)
+                    }
+                };
+                this._currentPointer = n(l, l, this._mainGroup, {}, this._currentPointer, c)
+            }, _handlePlayClick: function (t) {
+                this._clearTimer(), this.api[er]({type: "timelinePlayChange", playState: t, from: this.uid})
+            }, _handlePointerDrag: function (t, e, i) {
+                this._clearTimer(), this._pointerChangeTimeline([i[M], i[b]])
+            }, _handlePointerDragend: function (t) {
+                this._pointerChangeTimeline([t[M], t[b]], !0)
+            }, _pointerChangeTimeline: function (t, e) {
+                var i = this._toAxisCoord(t)[0], n = this._axis, r = x.asc(n[Qi]().slice());
+                i > r[1] && (i = r[1]), i < r[0] && (i = r[0]), this._currentPointer[dn][0] = i, this._currentPointer.dirty();
+                var a = this._findNearestTick(i), o = this.model;
+                (e || a !== o.getCurrentIndex() && o.get(u)) && this._changeTimeline(a)
+            }, _doPlayStop: function () {
+                function t() {
+                    var t = this.model;
+                    this._changeTimeline(t.getCurrentIndex() + (t.get("rewind", !0) ? -1 : 1))
+                }
+
+                this._clearTimer(), this.model.getPlayState() && (this._timer = setTimeout(S(t, this), this.model.get("playInterval")))
+            }, _toAxisCoord: function (t) {
+                var e = this._mainGroup[Z]();
+                return o[U](t, e, !0)
+            }, _findNearestTick: function (t) {
+                var e, i = this.model[qr](), n = 1 / 0, r = this._axis;
+                return i.each(["value"], function (i, a) {
+                    var o = r[ri](i), s = Math.abs(o - t);
+                    n > s && (n = s, e = a)
+                }), e
+            }, _clearTimer: function () {
+                this._timer && (clearTimeout(this._timer), this._timer = null)
+            }, _changeTimeline: function (t) {
+                var e = this.model.getCurrentIndex();
+                "+" === t ? t = e + 1 : "-" === t && (t = e - 1), this.api[er]({
+                    type: "timelineChange",
+                    currentIndex: t,
+                    from: this.uid
+                })
+            }
+        })
+    }),e("echarts/component/brush/visualEncoding", [Yr, Te, "../../visual/visualSolution", Xr, X, "./selector", "../../util/throttle", "../helper/brushHelper"], function (t) {
+        function e(t, e, n, r, a) {
+            if (a) {
+                var o = t.getZr();
+                if (!o[m]) {
+                    o[g] || (o[g] = i);
+                    var s = f.createOrUpdate(o, g, n, e);
+                    s(t, r)
+                }
+            }
+        }
+
+        function i(t, e) {
+            if (!t.isDisposed()) {
+                var i = t.getZr();
+                i[m] = !0, t[er]({type: "brushSelect", batch: e}), i[m] = !1
+            }
+        }
+
+        function n(t, e, i, n) {
+            for (var r = i[bi](n), a = 0, o = e[yr]; o > a; a++) {
+                var s = e[a];
+                if (t[s.brushType](r, s.selectors, s))return !0
+            }
+        }
+
+        function r(t) {
+            var e = t.brushSelector;
+            if (c[Tn](e)) {
+                var i = [];
+                return c.each(d, function (t, n) {
+                    i[n] = t[e]
+                }), i
+            }
+            if (c.isFunction(e)) {
+                var n = {};
+                return c.each(d, function (t, i) {
+                    n[i] = e
+                }), n
+            }
+            return e
+        }
+
+        function a(t, e) {
+            var i = t[un][Zn];
+            return null != i && "all" !== i && (c[Rn](i) ? c[mr](i, e) < 0 : e !== i)
+        }
+
+        function o(t) {
+            var e = t.selectors = {};
+            return c.each(d[t.brushType], function (i, n) {
+                e[n] = function (n) {
+                    return i(n, e, t)
+                }
+            }), t
+        }
+
+        function s(t) {
+            return new h(t[0][0], t[1][0], t[0][1] - t[0][0], t[1][1] - t[1][0])
+        }
+
+        var l = t(Te), u = t("../../visual/visualSolution"), c = t(Xr), h = t(X), d = t("./selector"), f = t("../../util/throttle"), p = t("../helper/brushHelper"), v = ["inBrush", "outOfBrush"], g = "__ecBrushSelect", m = "__ecInBrushSelectEvent", y = l.PRIORITY.VISUAL.BRUSH;
+        l.registerLayout(y, function (t, e, i) {
+            t[wr]({mainType: "brush"}, function (e) {
+                i && "takeGlobalCursor" === i.type && e.setBrushOption("brush" === i.key ? i.brushOption : {brushType: !1}), e.coordInfoList = p.makeCoordInfoList(e[un], t), p.parseInputRanges(e, t)
+            })
+        }), l.registerVisual(y, function (t, i, s) {
+            var l, h, d = [];
+            t[wr]({mainType: "brush"}, function (e, i) {
+                function s(t) {
+                    return "all" === w || b[t]
+                }
+
+                function f(t) {
+                    return !!t[yr]
+                }
+
+                function g(t, e) {
+                    var i = t[gr];
+                    A |= i.hasAxisbrushed(), s(e) && i.eachActiveState(t[qr](), function (t, e) {
+                        "active" === t && (M[e] = 1)
+                    })
+                }
+
+                function m(t, i, o) {
+                    var l = r(t);
+                    if (l && !a(e, i) && (c.each(T, function (i) {
+                            l[i.brushType] && p.controlSeries(i, e, t) && o.push(i), A |= f(o)
+                        }), s(i) && f(o))) {
+                        var u = t[qr]();
+                        u.each(function (t) {
+                            n(l, o, u, t) && (M[t] = 1)
+                        })
+                    }
+                }
+
+                var y = {brushId: e.id, brushIndex: i, brushName: e.name, areas: c.clone(e.areas), selected: []};
+                d.push(y);
+                var _ = e[un], w = _.brushLink, b = [], M = [], S = [], A = 0;
+                i || (l = _.throttleType, h = _.throttleDelay);
+                var T = c.map(e.areas, function (t) {
+                    return o(c[tr]({boundingRect: x[t.brushType](t)}, t))
+                }), C = u.createVisualMappings(e[un], v, function (t) {
+                    t.mappingMethod = "fixed"
+                });
+                c[Rn](w) && c.each(w, function (t) {
+                    b[t] = 1
+                }), t[lr](function (t, e) {
+                    var i = S[e] = [];
+                    "parallel" === t.subType ? g(t, e, i) : m(t, e, i)
+                }), t[lr](function (t, e) {
+                    var i = {seriesId: t.id, seriesIndex: e, seriesName: t.name, dataIndex: []};
+                    y[ve].push(i);
+                    var a = r(t), o = S[e], l = t[qr](), c = s(e) ? function (t) {
+                        return M[t] ? (i[pr].push(l[ee](t)), "inBrush") : "outOfBrush"
+                    } : function (t) {
+                        return n(a, o, l, t) ? (i[pr].push(l[ee](t)), "inBrush") : "outOfBrush"
+                    };
+                    (s(e) ? A : f(o)) && u.applyVisual(v, C, l, c)
+                })
+            }), e(i, l, h, d, s)
+        });
+        var x = {
+            lineX: c.noop, lineY: c.noop, rect: function (t) {
+                return s(t.range)
+            }, polygon: function (t) {
+                for (var e, i = t.range, n = 0, r = i[yr]; r > n; n++) {
+                    e = e || [[1 / 0, -1 / 0], [1 / 0, -1 / 0]];
+                    var a = i[n];
+                    a[0] < e[0][0] && (e[0][0] = a[0]), a[0] > e[0][1] && (e[0][1] = a[0]), a[1] < e[1][0] && (e[1][0] = a[1]), a[1] > e[1][1] && (e[1][1] = a[1])
+                }
+                return e && s(e)
+            }
+        }
+    }),e("echarts/component/brush/preprocessor", [Yr, Xr], function (t) {
+        function e(t) {
+            var e = {};
+            i.each(t, function (t) {
+                e[t] = 1
+            }), t[yr] = 0, i.each(e, function (e, i) {
+                t.push(i)
+            })
+        }
+
+        var i = t(Xr), n = ["rect", "polygon", "keep", "clear"];
+        return function (t, r) {
+            var a = t && t.brush;
+            if (i[Rn](a) || (a = a ? [a] : []), a[yr]) {
+                var o = [];
+                i.each(a, function (t) {
+                    var e = t.hasOwnProperty("toolbox") ? t.toolbox : [];
+                    e instanceof Array && (o = o[rn](e))
+                });
+                var s = t && t.toolbox;
+                i[Rn](s) && (s = s[0]), s || (s = {feature: {}}, t.toolbox = [s]);
+                var l = s.feature || (s.feature = {}), u = l.brush || (l.brush = {}), c = u.type || (u.type = []);
+                c.push.apply(c, o), e(c), r && !c[yr] && c.push.apply(c, n)
+            }
+        }
+    }),e("echarts/component/brush/BrushView", [Yr, Xr, "../helper/BrushController", Te, "../helper/brushHelper"], function (t) {
+        function e(t, e, i, n) {
+            (!n || n.$from !== t.id) && this._brushController.setPanels(a.makePanelOpts(t.coordInfoList)).enableBrush(t.brushOption).updateCovers(t.areas.slice())
+        }
+
+        var i = t(Xr), n = t("../helper/BrushController"), r = t(Te), a = t("../helper/brushHelper");
+        return r[Pn]({
+            type: "brush", init: function (t, e) {
+                this[$] = t, this.api = e, this.model, (this._brushController = new n(e.getZr())).on("brush", i.bind(this._onBrush, this)).mount()
+            }, render: function (t) {
+                return this.model = t, e.apply(this, arguments)
+            }, updateView: e, updateLayout: e, updateVisual: e, dispose: function () {
+                this._brushController[$n]()
+            }, _onBrush: function (t, e) {
+                var n = this.model.id;
+                a.parseOutputRanges(t, this.model.coordInfoList, this[$]), (!e.isEnd || e.removeOnClick) && this.api[er]({
+                    type: "brush",
+                    brushId: n,
+                    areas: i.clone(t),
+                    $from: n
+                })
+            }
+        })
+    }),e("echarts/component/brush/brushAction", [Yr, Te], function (t) {
+        var e = t(Te);
+        e[Vn]({type: "brush", event: "brush", update: "updateView"}, function (t, e) {
+            e[wr]({mainType: "brush", query: t}, function (e) {
+                e.setAreas(t.areas)
+            })
+        }), e[Vn]({type: "brushSelect", event: "brushSelected", update: "none"}, function () {
+        })
+    }),e("echarts/component/toolbox/feature/Brush", [Yr, "../featureManager", Xr], function (t) {
+        function e(t, e, i) {
+            this.model = t, this[$] = e, this.api = i, this._brushType, this._brushMode
+        }
+
+        var i = t("../featureManager"), n = t(Xr);
+        e.defaultOption = {
+            show: !0,
+            type: ["rect", "polygon", "lineX", "lineY", "keep", "clear"],
+            icon: {
+                rect: "M7.3,34.7 M0.4,10V-0.2h9.8 M89.6,10V-0.2h-9.8 M0.4,60v10.2h9.8 M89.6,60v10.2h-9.8 M12.3,22.4V10.5h13.1 M33.6,10.5h7.8 M49.1,10.5h7.8 M77.5,22.4V10.5h-13 M12.3,31.1v8.2 M77.7,31.1v8.2 M12.3,47.6v11.9h13.1 M33.6,59.5h7.6 M49.1,59.5 h7.7 M77.5,47.6v11.9h-13",
+                polygon: "M55.2,34.9c1.7,0,3.1,1.4,3.1,3.1s-1.4,3.1-3.1,3.1 s-3.1-1.4-3.1-3.1S53.5,34.9,55.2,34.9z M50.4,51c1.7,0,3.1,1.4,3.1,3.1c0,1.7-1.4,3.1-3.1,3.1c-1.7,0-3.1-1.4-3.1-3.1 C47.3,52.4,48.7,51,50.4,51z M55.6,37.1l1.5-7.8 M60.1,13.5l1.6-8.7l-7.8,4 M59,19l-1,5.3 M24,16.1l6.4,4.9l6.4-3.3 M48.5,11.6 l-5.9,3.1 M19.1,12.8L9.7,5.1l1.1,7.7 M13.4,29.8l1,7.3l6.6,1.6 M11.6,18.4l1,6.1 M32.8,41.9 M26.6,40.4 M27.3,40.2l6.1,1.6 M49.9,52.1l-5.6-7.6l-4.9-1.2",
+                lineX: "M15.2,30 M19.7,15.6V1.9H29 M34.8,1.9H40.4 M55.3,15.6V1.9H45.9 M19.7,44.4V58.1H29 M34.8,58.1H40.4 M55.3,44.4 V58.1H45.9 M12.5,20.3l-9.4,9.6l9.6,9.8 M3.1,29.9h16.5 M62.5,20.3l9.4,9.6L62.3,39.7 M71.9,29.9H55.4",
+                lineY: "M38.8,7.7 M52.7,12h13.2v9 M65.9,26.6V32 M52.7,46.3h13.2v-9 M24.9,12H11.8v9 M11.8,26.6V32 M24.9,46.3H11.8v-9 M48.2,5.1l-9.3-9l-9.4,9.2 M38.9-3.9V12 M48.2,53.3l-9.3,9l-9.4-9.2 M38.9,62.3V46.4",
+                keep: "M4,10.5V1h10.3 M20.7,1h6.1 M33,1h6.1 M55.4,10.5V1H45.2 M4,17.3v6.6 M55.6,17.3v6.6 M4,30.5V40h10.3 M20.7,40 h6.1 M33,40h6.1 M55.4,30.5V40H45.2 M21,18.9h62.9v48.6H21V18.9z",
+                clear: "M22,14.7l30.9,31 M52.9,14.7L22,45.7 M4.7,16.8V4.2h13.1 M26,4.2h7.8 M41.6,4.2h7.8 M70.3,16.8V4.2H57.2 M4.7,25.9v8.6 M70.3,25.9v8.6 M4.7,43.2v12.6h13.1 M26,55.8h7.8 M41.6,55.8h7.8 M70.3,43.2v12.6H57.2"
+            },
+            title: {rect: "矩形选择", polygon: "圈选", lineX: "横向选择", lineY: "纵向选择", keep: "保持选择", clear: "清除选择"}
+        };
+        var r = e[Nr];
+        return r[ar] = r.updateView = r[sr] = function (t, e) {
+            var i, r, a;
+            e[wr]({mainType: "brush"}, function (t) {
+                i = t.brushType, r = t.brushOption.brushMode || p, a |= t.areas[yr]
+            }), this._brushType = i, this._brushMode = r, n.each(t.get("type", !0), function (e) {
+                t.setIconStatus(e, ("keep" === e ? "multiple" === r : "clear" === e ? a : e === i) ? Wi : qi)
+            })
+        }, r.getIcons = function () {
+            var t = this.model, e = t.get("icon", !0), i = {};
+            return n.each(t.get("type", !0), function (t) {
+                e[t] && (i[t] = e[t])
+            }), i
+        }, r.onclick = function (t, e, i) {
+            var e = this.api, n = this._brushType, r = this._brushMode;
+            e[er]("clear" === i ? {type: "brush", areas: []} : {
+                type: "takeGlobalCursor",
+                key: "brush",
+                brushOption: {
+                    brushType: "keep" === i ? n : n === i ? !1 : i,
+                    brushMode: "keep" === i ? "multiple" === r ? p : "multiple" : r
+                }
+            })
+        }, i[zn]("brush", e), e
+    }),e("echarts/component/toolbox/feature/MagicType", [Yr, Xr, "../../../echarts", "../featureManager"], function (t) {
+        function e(t) {
+            this.model = t
+        }
+
+        var i = t(Xr);
+        e.defaultOption = {
+            show: !0,
+            type: [],
+            icon: {
+                line: "M4.1,28.9h7.1l9.3-22l7.4,38l9.7-19.7l3,12.8h14.9M4.1,58h51.4",
+                bar: "M6.7,22.9h10V48h-10V22.9zM24.9,13h10v35h-10V13zM43.2,2h10v46h-10V2zM3.1,58h53.7",
+                stack: "M8.2,38.4l-8.4,4.1l30.6,15.3L60,42.5l-8.1-4.1l-21.5,11L8.2,38.4z M51.9,30l-8.1,4.2l-13.4,6.9l-13.9-6.9L8.2,30l-8.4,4.2l8.4,4.2l22.2,11l21.5-11l8.1-4.2L51.9,30z M51.9,21.7l-8.1,4.2L35.7,30l-5.3,2.8L24.9,30l-8.4-4.1l-8.3-4.2l-8.4,4.2L8.2,30l8.3,4.2l13.9,6.9l13.4-6.9l8.1-4.2l8.1-4.1L51.9,21.7zM30.4,2.2L-0.2,17.5l8.4,4.1l8.3,4.2l8.4,4.2l5.5,2.7l5.3-2.7l8.1-4.2l8.1-4.2l8.1-4.1L30.4,2.2z",
+                tiled: "M2.3,2.2h22.8V25H2.3V2.2z M35,2.2h22.8V25H35V2.2zM2.3,35h22.8v22.8H2.3V35z M35,35h22.8v22.8H35V35z"
+            },
+            title: {line: "切换为折线图", bar: "切换为柱状图", stack: "切换为堆叠", tiled: "切换为平铺"},
+            option: {},
+            seriesIndex: {}
+        };
+        var n = e[Nr];
+        n.getIcons = function () {
+            var t = this.model, e = t.get("icon"), n = {};
+            return i.each(t.get("type"), function (t) {
+                e[t] && (n[t] = e[t])
+            }), n
+        };
+        var r = {
+            line: function (t, e, n, r) {
+                return "bar" === t ? i.merge({
+                    id: e,
+                    type: "line",
+                    data: n.get("data"),
+                    stack: n.get("stack"),
+                    markPoint: n.get("markPoint"),
+                    markLine: n.get("markLine")
+                }, r.get("option.line") || {}, !0) : void 0
+            }, bar: function (t, e, n, r) {
+                return "line" === t ? i.merge({
+                    id: e,
+                    type: "bar",
+                    data: n.get("data"),
+                    stack: n.get("stack"),
+                    markPoint: n.get("markPoint"),
+                    markLine: n.get("markLine")
+                }, r.get("option.bar") || {}, !0) : void 0
+            }, stack: function (t, e, n, r) {
+                return "line" === t || "bar" === t ? i.merge({
+                    id: e,
+                    stack: "__ec_magicType_stack__"
+                }, r.get("option.stack") || {}, !0) : void 0
+            }, tiled: function (t, e, n, r) {
+                return "line" === t || "bar" === t ? i.merge({
+                    id: e,
+                    stack: ""
+                }, r.get("option.tiled") || {}, !0) : void 0
+            }
+        }, a = [["line", "bar"], ["stack", "tiled"]];
+        n.onclick = function (t, e, n) {
+            var o = this.model, s = o.get("seriesIndex." + n);
+            if (r[n]) {
+                var l = {series: []}, u = function (e) {
+                    var a = e.subType, s = e.id, u = r[n](a, s, e, o);
+                    u && (i[tr](u, e[un]), l[rr].push(u));
+                    var c = e[gr];
+                    if (c && c.type === yi && ("line" === n || "bar" === n)) {
+                        var h = c.getAxesByScale(qe)[0];
+                        if (h) {
+                            var d = h.dim, f = d + "Axis", p = t[K]({
+                                mainType: f,
+                                index: e.get(name + "Index"),
+                                id: e.get(name + "Id")
+                            })[0], v = p[ze];
+                            l[f] = l[f] || [];
+                            for (var g = 0; v >= g; g++)l[f][v] = l[f][v] || {};
+                            l[f][v][Pe] = "bar" === n ? !0 : !1
+                        }
+                    }
+                };
+                i.each(a, function (t) {
+                    i[mr](t, n) >= 0 && i.each(t, function (t) {
+                        o.setIconStatus(t, qi)
+                    })
+                }), o.setIconStatus(n, Wi), t[wr]({
+                    mainType: "series",
+                    query: null == s ? null : {seriesIndex: s}
+                }, u), e[er]({type: "changeMagicType", currentType: n, newOption: l})
+            }
+        };
+        var o = t("../../../echarts");
+        return o[Vn]({type: "changeMagicType", event: "magicTypeChanged", update: "prepareAndUpdate"}, function (t, e) {
+            e[sn](t.newOption)
+        }), t("../featureManager")[zn]("magicType", e), e
+    }),e("echarts/component/toolbox/feature/SaveAsImage", [Yr, Zr, "../featureManager"], function (t) {
+        function e(t) {
+            this.model = t
+        }
+
+        var i = t(Zr);
+        e.defaultOption = {
+            show: !0,
+            icon: "M4.7,22.9L29.3,45.5L54.7,23.4M4.6,43.6L4.6,58L53.8,58L53.8,43.6M29.2,45.1L29.2,0",
+            title: "保存为图片",
+            type: "png",
+            name: "",
+            excludeComponents: ["toolbox"],
+            pixelRatio: 1,
+            lang: ["右键另存为图片"]
+        }, e[Nr].unusable = !i[Ar];
+        var n = e[Nr];
+        return n.onclick = function (t, e) {
+            var n = this.model, r = n.get("name") || t.get("title.0.text") || "echarts", a = document[_i]("a"), o = n.get("type", !0) || "png";
+            a.download = r + "." + o, a[Wn] = "_blank";
+            var s = e.getConnectedDataURL({
+                type: o,
+                backgroundColor: n.get(Sr, !0) || t.get(Sr) || "#fff",
+                excludeComponents: n.get("excludeComponents"),
+                pixelRatio: n.get("pixelRatio")
+            });
+            if (a.href = s, typeof MouseEvent !== On || i.browser.ie || i.browser.edge) {
+                var l = n.get("lang"), u = '<body style="margin:0;"><img src="' + s + '" style="max-width:100%;" title="' + (l && l[0] || "") + '" /></body>', c = window.open();
+                c.document.write(u)
+            } else {
+                var h = new MouseEvent("click", {view: window, bubbles: !0, cancelable: !1});
+                a.dispatchEvent(h)
+            }
+        }, t("../featureManager")[zn]("saveAsImage", e), e
+    }),e("echarts/component/toolbox/ToolboxView", [Yr, "./featureManager", Xr, ji, Ce, "../../data/DataDiffer", "../helper/listComponent", N, Te], function (t) {
+        function e(t) {
+            return 0 === t[mr]("my")
+        }
+
+        var i = t("./featureManager"), n = t(Xr), r = t(ji), a = t(Ce), o = t("../../data/DataDiffer"), s = t("../helper/listComponent"), l = t(N);
+        return t(Te)[Pn]({
+            type: "toolbox", render: function (t, u, c, h) {
+                function d(n, r) {
+                    var o, s = y[n], l = y[r], d = g[s], p = new a(d, t, t[$]);
+                    if (s && !l) {
+                        if (e(s))o = {model: p, onclick: p[un].onclick, featureName: s}; else {
+                            var v = i.get(s);
+                            if (!v)return;
+                            o = new v(p, u, c)
+                        }
+                        m[s] = o
+                    } else {
+                        if (o = m[l], !o)return;
+                        o.model = p, o[$] = u, o.api = c
+                    }
+                    return !s && l ? void(o[$n] && o[$n](u, c)) : !p.get("show") || o.unusable ? void(o[nr] && o[nr](u, c)) : (f(p, o, s), p.setIconStatus = function (t, e) {
+                        var i = this[un], n = this.iconPaths;
+                        i.iconStatus = i.iconStatus || {}, i.iconStatus[t] = e, n[t] && n[t][Jn](e)
+                    }, void(o[ar] && o[ar](p, u, c, h)))
+                }
+
+                function f(e, i, a) {
+                    var o = e[Lr]("iconStyle"), s = i.getIcons ? i.getIcons() : e.get("icon"), l = e.get("title") || {};
+                    if (typeof s === Er) {
+                        var h = s, d = l;
+                        s = {}, l = {}, s[a] = h, l[a] = d
+                    }
+                    var f = e.iconPaths = {};
+                    n.each(s, function (a, s) {
+                        var h = o[Lr](qi)[Mn](), d = o[Lr](Wi)[Mn](), g = {
+                            x: -v / 2,
+                            y: -v / 2,
+                            width: v,
+                            height: v
+                        }, m = 0 === a[mr]("image://") ? (g.image = a.slice(8), new r.Image({style: g})) : r.makePath(a[En]("path://", ""), {
+                            style: h,
+                            hoverStyle: d,
+                            rectHover: !0
+                        }, g, fn);
+                        r[Ni](m), t.get("showTitle") && (m.__title = l[s], m.on(Xn, function () {
+                            var t = o[Lr](Wi)[Mn]();
+                            m[Bn]({
+                                text: l[s],
+                                textPosition: t[T] || xr,
+                                textFill: t.fill || t[Bi] || "#000",
+                                textAlign: t[wn] || fn
+                            })
+                        }).on(jn, function () {
+                            m[Bn]({textFill: null})
+                        })), m[Jn](e.get("iconStatus." + s) || qi), p.add(m), m.on("click", n.bind(i.onclick, i, u, c, s)), f[s] = m
+                    })
+                }
+
+                var p = this.group;
+                if (p[An](), t.get("show")) {
+                    var v = +t.get("itemSize"), g = t.get("feature") || {}, m = this._features || (this._features = {}), y = [];
+                    n.each(g, function (t, e) {
+                        y.push(e)
+                    }), new o(this._featureNames || [], y).add(d)[hr](d)[nr](n.curry(d, null))[Se](), this._featureNames = y, s[Li](p, t, c), s.addBackground(p, t), p[ce](function (t) {
+                        var e = t.__title, i = t[ge];
+                        if (i && e) {
+                            var n = l[yn](e, i.font), r = t[dn][0] + p[dn][0], a = t[dn][1] + p[dn][1] + v, o = !1;
+                            a + n[Or] > c[Tr]() && (i[T] = "top", o = !0);
+                            var s = o ? -5 - n[Or] : v + 8;
+                            r + n.width / 2 > c[Cr]() ? (i[T] = ["100%", s], i[wn] = "right") : r - n.width / 2 < 0 && (i[T] = [0, s], i[wn] = "left")
+                        }
+                    })
+                }
+            }, updateView: function (t, e, i, r) {
+                n.each(this._features, function (t) {
+                    t.updateView && t.updateView(t.model, e, i, r)
+                })
+            }, updateLayout: function (t, e, i, r) {
+                n.each(this._features, function (t) {
+                    t[sr] && t[sr](t.model, e, i, r)
+                })
+            }, remove: function (t, e) {
+                n.each(this._features, function (i) {
+                    i[nr] && i[nr](t, e)
+                }), this.group[An]()
+            }, dispose: function (t, e) {
+                n.each(this._features, function (i) {
+                    i[$n] && i[$n](t, e)
+                })
+            }
+        })
+    }),e("echarts/component/toolbox/feature/DataView", [Yr, Xr, "zrender/core/event", "../featureManager", "../../../echarts"], function (t) {
+        function e(t) {
+            var e = {}, i = [], n = [];
+            return t.eachRawSeries(function (t) {
+                var r = t[gr];
+                if (!r || r.type !== yi && "polar" !== r.type)i.push(t); else {
+                    var a = r[Si]();
+                    if (a.type === Mi) {
+                        var o = a.dim + "_" + a.index;
+                        e[o] || (e[o] = {categoryAxis: a, valueAxis: r[vi](a), series: []}, n.push({
+                            axisDim: a.dim,
+                            axisIndex: a.index
+                        })), e[o][rr].push(t)
+                    } else i.push(t)
+                }
+            }), {seriesGroupByCategoryAxis: e, other: i, meta: n}
+        }
+
+        function i(t) {
+            var e = [];
+            return d.each(t, function (t) {
+                var i = t.categoryAxis, n = t.valueAxis, r = n.dim, a = [" "][rn](d.map(t[rr], function (t) {
+                    return t.name
+                })), o = [i.model.getCategories()];
+                d.each(t[rr], function (t) {
+                    o.push(t.getRawData()[fi](r, function (t) {
+                        return t
+                    }))
+                });
+                for (var s = [a.join(v)], l = 0; l < o[0][yr]; l++) {
+                    for (var u = [], c = 0; c < o[yr]; c++)u.push(o[c][l]);
+                    s.push(u.join(v))
+                }
+                e.push(s.join("\n"))
+            }), e.join("\n\n" + p + "\n\n")
+        }
+
+        function n(t) {
+            return d.map(t, function (t) {
+                var e = t.getRawData(), i = [t.name], n = [];
+                return e.each(e[ki], function () {
+                    for (var t = arguments[yr], r = arguments[t - 1], a = e[we](r), o = 0; t - 1 > o; o++)n[o] = arguments[o];
+                    i.push((a ? a + v : "") + n.join(v))
+                }), i.join("\n")
+            }).join("\n\n" + p + "\n\n")
+        }
+
+        function r(t) {
+            var r = e(t);
+            return {
+                value: d[Ln]([i(r.seriesGroupByCategoryAxis), n(r.other)], function (t) {
+                    return t[En](/[\n\t\s]/g, "")
+                }).join("\n\n" + p + "\n\n"), meta: r.meta
+            }
+        }
+
+        function a(t) {
+            return t[En](/^\s\s*/, "")[En](/\s\s*$/, "")
+        }
+
+        function o(t) {
+            var e = t.slice(0, t[mr]("\n"));
+            return e[mr](v) >= 0 ? !0 : void 0
+        }
+
+        function s(t) {
+            for (var e = t.split(/\n+/g), i = a(e.shift()).split(g), n = [], r = d.map(i, function (t) {
+                return {name: t, data: []}
+            }), o = 0; o < e[yr]; o++) {
+                var s = a(e[o]).split(g);
+                n.push(s.shift());
+                for (var l = 0; l < s[yr]; l++)r[l] && (r[l].data[o] = s[l])
+            }
+            return {series: r, categories: n}
+        }
+
+        function l(t) {
+            for (var e = t.split(/\n+/g), i = a(e.shift()), n = [], r = 0; r < e[yr]; r++) {
+                var o, s = a(e[r]).split(g), l = "", u = !1;
+                isNaN(s[0]) ? (u = !0, l = s[0], s = s.slice(1), n[r] = {
+                    name: l,
+                    value: []
+                }, o = n[r].value) : o = n[r] = [];
+                for (var c = 0; c < s[yr]; c++)o.push(+s[c]);
+                1 === o[yr] && (u ? n[r].value = o[0] : n[r] = o[0])
+            }
+            return {name: i, data: n}
+        }
+
+        function u(t, e) {
+            var i = t.split(new RegExp("\n*" + p + "\n*", "g")), n = {series: []};
+            return d.each(i, function (t, i) {
+                if (o(t)) {
+                    var r = s(t), a = e[i], u = a.axisDim + "Axis";
+                    a && (n[u] = n[u] || [], n[u][a.axisIndex] = {data: r[S]}, n[rr] = n[rr][rn](r[rr]))
+                } else {
+                    var r = l(t);
+                    n[rr].push(r)
+                }
+            }), n
+        }
+
+        function c(t) {
+            this._dom = null, this.model = t
+        }
+
+        function h(t, e) {
+            return d.map(t, function (t, i) {
+                var n = e && e[i];
+                return d[Ir](n) && !d[Rn](n) ? (d[Ir](t) && !d[Rn](t) && (t = t.value), d[tr]({value: t}, n)) : t
+            })
+        }
+
+        var d = t(Xr), f = t("zrender/core/event"), p = new Array(60).join("-"), v = "	", g = new RegExp("[" + v + "]+", "g");
+        return c.defaultOption = {
+            show: !0,
+            readOnly: !1,
+            optionToContent: null,
+            contentToOption: null,
+            icon: "M17.5,17.3H33 M17.5,17.3H33 M45.4,29.5h-28 M11.5,2v56H51V14.8L38.4,2H11.5z M38.4,2.2v12.7H51 M45.4,41.7h-28",
+            title: "数据视图",
+            lang: ["数据视图", "关闭", "刷新"],
+            backgroundColor: "#fff",
+            textColor: "#000",
+            textareaColor: "#fff",
+            textareaBorderColor: "#333",
+            buttonColor: "#c23531",
+            buttonTextColor: "#fff"
+        }, c[Nr].onclick = function (t, e) {
+            function i() {
+                n.removeChild(o), S._dom = null
+            }
+
+            var n = e.getDom(), a = this.model;
+            this._dom && n.removeChild(this._dom);
+            var o = document[_i]("div");
+            o.style.cssText = "position:absolute;left:5px;top:5px;bottom:5px;right:5px;", o.style[Sr] = a.get(Sr) || "#fff";
+            var s = document[_i]("h4"), l = a.get("lang") || [];
+            s.innerHTML = l[0] || a.get("title"), s.style.cssText = "margin: 10px 20px;", s.style.color = a.get("textColor");
+            var c = document[_i]("div"), h = document[_i]("textarea");
+            c.style.cssText = "display:block;width:100%;overflow:hidden;";
+            var p = a.get("optionToContent"), g = a.get("contentToOption"), m = r(t);
+            if (typeof p === On) {
+                var y = p(e.getOption());
+                typeof y === Er ? c.innerHTML = y : d.isDom(y) && c.appendChild(y)
+            } else c.appendChild(h), h.readOnly = a.get("readOnly"), h.style.cssText = "width:100%;height:100%;font-family:monospace;font-size:14px;line-height:1.6rem;", h.style.color = a.get("textColor"), h.style[Hi] = a.get("textareaBorderColor"), h.style[Sr] = a.get("textareaColor"), h.value = m.value;
+            var x = m.meta, _ = document[_i]("div");
+            _.style.cssText = "position:absolute;bottom:0;left:0;right:0;";
+            var w = "float:right;margin-right:20px;border:none;cursor:pointer;padding:2px 5px;font-size:12px;border-radius:3px", b = document[_i]("div"), M = document[_i]("div");
+            w += ";background-color:" + a.get("buttonColor"), w += ";color:" + a.get("buttonTextColor");
+            var S = this;
+            f.addEventListener(b, "click", i), f.addEventListener(M, "click", function () {
+                var t;
+                try {
+                    t = typeof g === On ? g(c, e.getOption()) : u(h.value, x)
+                } catch (n) {
+                    throw i(), new Error("Data view format error " + n)
+                }
+                t && e[er]({type: "changeDataView", newOption: t}), i()
+            }), b.innerHTML = l[1], M.innerHTML = l[2], M.style.cssText = w, b.style.cssText = w, !a.get("readOnly") && _.appendChild(M), _.appendChild(b), f.addEventListener(h, "keydown", function (t) {
+                if (9 === (t.keyCode || t.which)) {
+                    var e = this.value, i = this.selectionStart, n = this.selectionEnd;
+                    this.value = e.substring(0, i) + v + e.substring(n), this.selectionStart = this.selectionEnd = i + 1, f.stop(t)
+                }
+            }), o.appendChild(s), o.appendChild(c), o.appendChild(_), c.style[Or] = n.clientHeight - 80 + "px", n.appendChild(o), this._dom = o
+        }, c[Nr][nr] = function (t, e) {
+            this._dom && e.getDom().removeChild(this._dom)
+        }, c[Nr][$n] = function (t, e) {
+            this[nr](t, e)
+        }, t("../featureManager")[zn]("dataView", c), t("../../../echarts")[Vn]({
+            type: "changeDataView",
+            event: "dataViewChanged",
+            update: "prepareAndUpdate"
+        }, function (t, e) {
+            var i = [];
+            d.each(t.newOption[rr], function (t) {
+                var n = e.getSeriesByName(t.name)[0];
+                if (n) {
+                    var r = n.get("data");
+                    i.push({name: t.name, data: h(t.data, r)})
+                } else i.push(d[ir]({type: "scatter"}, t))
+            }), e[sn](d[tr]({series: i}, t.newOption))
+        }), c
+    }),e("echarts/component/toolbox/feature/Restore", [Yr, "../../dataZoom/history", "../featureManager", "../../../echarts"], function (t) {
+        function e(t) {
+            this.model = t
+        }
+
+        var i = t("../../dataZoom/history");
+        e.defaultOption = {
+            show: !0,
+            icon: "M3.8,33.4 M47,18.9h9.8V8.7 M56.3,20.1 C52.1,9,40.5,0.6,26.8,2.1C12.6,3.7,1.6,16.2,2.1,30.6 M13,41.1H3.1v10.2 M3.7,39.9c4.2,11.1,15.8,19.5,29.5,18 c14.2-1.6,25.2-14.1,24.7-28.5",
+            title: "还原"
+        };
+        var n = e[Nr];
+        return n.onclick = function (t, e) {
+            i.clear(t), e[er]({type: "restore", from: this.uid})
+        }, t("../featureManager")[zn]("restore", e), t("../../../echarts")[Vn]({
+            type: "restore",
+            event: "restore",
+            update: "prepareAndUpdate"
+        }, function (t, e) {
+            e.resetOption("recreate")
+        }), e
+    }),e("echarts/component/toolbox/feature/DataZoom", [Yr, Xr, "../../helper/BrushController", "../../helper/brushHelper", "../../dataZoom/history", "../../dataZoomSelect", "../featureManager", "../../../echarts"], function (t) {
+        function e(t, e, i) {
+            (this._brushController = new o(i.getZr())).on("brush", a.bind(this._onBrush, this)).mount(), this._isZoomActive
+        }
+
+        function i(t) {
+            var e = {};
+            return a.each(["xAxisIndex", "yAxisIndex"], function (i) {
+                e[i] = t[i], null == e[i] && (e[i] = "all"), (e[i] === !1 || "none" === e[i]) && (e[i] = [])
+            }), e
+        }
+
+        function n(t, e) {
+            t.setIconStatus("back", l.count(e) > 1 ? Wi : qi)
+        }
+
+        function r(t, e, n, r) {
+            var a = n._isZoomActive;
+            r && "takeGlobalCursor" === r.type && (a = "dataZoomSelect" === r.key ? r.dataZoomSelectActive : !1), n._isZoomActive = a, t.setIconStatus("zoom", a ? Wi : qi);
+            var o = s.makeCoordInfoList(i(t[un]), e), l = o.xAxisHas && !o.yAxisHas ? "lineX" : !o.xAxisHas && o.yAxisHas ? "lineY" : "rect";
+            n._brushController.setPanels(s.makePanelOpts(o)).enableBrush(a ? {
+                brushType: l,
+                brushStyle: {lineWidth: 0, fill: "rgba(0,0,0,0.2)"}
+            } : !1)
+        }
+
+        var a = t(Xr), o = t("../../helper/BrushController"), s = t("../../helper/brushHelper"), l = t("../../dataZoom/history"), u = a.each;
+        t("../../dataZoomSelect");
+        var c = "\x00_ec_\x00toolbox-dataZoom_";
+        e.defaultOption = {
+            show: !0,
+            icon: {
+                zoom: "M0,13.5h26.9 M13.5,26.9V0 M32.1,13.5H58V58H13.5 V32.1",
+                back: "M22,1.4L9.9,13.5l12.3,12.3 M10.3,13.5H54.9v44.6 H10.3v-26"
+            },
+            title: {zoom: "区域缩放", back: "区域缩放还原"}
+        };
+        var h = e[Nr];
+        h[ar] = function (t, e, i, a) {
+            this.model = t, this[$] = e, this.api = i, r(t, e, this, a), n(t, e)
+        }, h.onclick = function (t, e, i) {
+            d[i].call(this)
+        }, h[nr] = function () {
+            this._brushController.unmount()
+        }, h[$n] = function () {
+            this._brushController[$n]()
+        };
+        var d = {
+            zoom: function () {
+                var t = !this._isZoomActive;
+                this.api[er]({type: "takeGlobalCursor", key: "dataZoomSelect", dataZoomSelectActive: t})
+            }, back: function () {
+                this._dispatchZoomAction(l.pop(this[$]))
+            }
+        };
+        return h._onBrush = function (t, e) {
+            function n(t, e, i) {
+                var n = r(t, i[t], o);
+                n && (a[n.id] = {dataZoomId: n.id, startValue: e[0], endValue: e[1]})
+            }
+
+            function r(t, e, i) {
+                var n;
+                return i[wr]({mainType: "dataZoom", subType: "select"}, function (r) {
+                    var a = r.get(t + "Index");
+                    null != a && i[Y](t, a) === e && (n = r)
+                }), n
+            }
+
+            if (e.isEnd && t[yr]) {
+                var a = {}, o = this[$];
+                this._brushController.updateCovers([]);
+                var u = s.makeCoordInfoList(i(this.model[un]), o), c = [];
+                s.parseOutputRanges(t, u, o, c);
+                var h = t[0], d = c[0], f = h.coordRange, p = h.brushType;
+                if (d && f)if ("rect" === p)n("xAxis", f[0], d), n("yAxis", f[1], d); else {
+                    var v = {lineX: "xAxis", lineY: "yAxis"};
+                    n(v[p], f, d)
+                }
+                l.push(o, a), this._dispatchZoomAction(a)
+            }
+        }, h._dispatchZoomAction = function (t) {
+            var e = [];
+            u(t, function (t) {
+                e.push(a.clone(t))
+            }), e[yr] && this.api[er]({type: "dataZoom", from: this.uid, batch: e})
+        }, t("../featureManager")[zn](F, e), t("../../../echarts").registerPreprocessor(function (t) {
+            function e(t, e) {
+                if (e) {
+                    var r = t + "Index", o = e[r];
+                    null == o || "all" == o || a[Rn](o) || (o = o === !1 || "none" === o ? [] : [o]), i(t, function (e, i) {
+                        if (null == o || "all" == o || -1 !== a[mr](o, i)) {
+                            var s = {type: "select", $fromToolbox: !0, id: c + t + i};
+                            s[r] = i, n.push(s)
+                        }
+                    })
+                }
+            }
+
+            function i(e, i) {
+                var n = t[e];
+                a[Rn](n) || (n = n ? [n] : []), u(n, i)
+            }
+
+            if (t) {
+                var n = t[F] || (t[F] = []);
+                a[Rn](n) || (t[F] = n = [n]);
+                var r = t.toolbox;
+                if (r && (a[Rn](r) && (r = r[0]), r && r.feature)) {
+                    var o = r.feature[F];
+                    e("xAxis", o), e("yAxis", o)
+                }
+            }
+        }), e
+    }),e("echarts/component/visualMapContinuous", [Yr, "../echarts", "./visualMap/preprocessor", "./visualMap/typeDefaulter", "./visualMap/visualEncoding", "./visualMap/ContinuousModel", "./visualMap/ContinuousView", "./visualMap/visualMapAction"], function (t) {
+        t("../echarts").registerPreprocessor(t("./visualMap/preprocessor")), t("./visualMap/typeDefaulter"), t("./visualMap/visualEncoding"), t("./visualMap/ContinuousModel"), t("./visualMap/ContinuousView"), t("./visualMap/visualMapAction")
+    }),e("echarts/component/visualMapPiecewise", [Yr, "../echarts", "./visualMap/preprocessor", "./visualMap/typeDefaulter", "./visualMap/visualEncoding", "./visualMap/PiecewiseModel", "./visualMap/PiecewiseView", "./visualMap/visualMapAction"], function (t) {
+        t("../echarts").registerPreprocessor(t("./visualMap/preprocessor")), t("./visualMap/typeDefaulter"), t("./visualMap/visualEncoding"), t("./visualMap/PiecewiseModel"), t("./visualMap/PiecewiseView"), t("./visualMap/visualMapAction")
+    }),e("zrender/vml/Painter", [Yr, "../core/log", "./core"], function (t) {
+        function e(t) {
+            return parseInt(t, 10)
+        }
+
+        function i(t, e) {
+            a.initVML(), this.root = t, this[Mr] = e;
+            var i = document[_i]("div"), n = document[_i]("div");
+            i.style.cssText = "display:inline-block;overflow:hidden;position:relative;width:300px;height:150px;", n.style.cssText = "position:absolute;left:0;top:0;", t.appendChild(i), this._vmlRoot = n, this._vmlViewport = i, this[Vr]();
+            var r = e.delFromMap, o = e.addToMap;
+            e.delFromMap = function (t) {
+                var i = e.get(t);
+                r.call(e, t), i && i.onRemove && i.onRemove(n)
+            }, e.addToMap = function (t) {
+                t.onAdd && t.onAdd(n), o.call(e, t)
+            }, this._firstPaint = !0
+        }
+
+        function n(t) {
+            return function () {
+                r('In IE8.0 VML mode painter not support method "' + t + '"')
+            }
+        }
+
+        var r = t("../core/log"), a = t("./core");
+        i[Nr] = {
+            constructor: i, getViewportRoot: function () {
+                return this._vmlViewport
+            }, refresh: function () {
+                var t = this[Mr].getDisplayList(!0, !0);
+                this._paintList(t)
+            }, _paintList: function (t) {
+                for (var e = this._vmlRoot, i = 0; i < t[yr]; i++) {
+                    var n = t[i];
+                    n[P] || n[_r] ? (n.__alreadyNotVisible || n.onRemove(e), n.__alreadyNotVisible = !0) : (n.__alreadyNotVisible && n.onAdd(e), n.__alreadyNotVisible = !1, n[s] && (n.beforeBrush && n.beforeBrush(), (n.brushVML || n.brush).call(n, e), n.afterBrush && n.afterBrush())), n[s] = !1
+                }
+                this._firstPaint && (this._vmlViewport.appendChild(e), this._firstPaint = !1)
+            }, resize: function (t, e) {
+                var t = null == t ? this._getWidth() : t, e = null == e ? this._getHeight() : e;
+                if (this._width != t || this._height != e) {
+                    this._width = t, this._height = e;
+                    var i = this._vmlViewport.style;
+                    i.width = t + "px", i[Or] = e + "px"
+                }
+            }, dispose: function () {
+                this.root.innerHTML = "", this._vmlRoot = this._vmlViewport = this[Mr] = null
+            }, getWidth: function () {
+                return this._width
+            }, getHeight: function () {
+                return this._height
+            }, clear: function () {
+                this._vmlViewport && this.root.removeChild(this._vmlViewport)
+            }, _getWidth: function () {
+                var t = this.root, i = t.currentStyle;
+                return (t.clientWidth || e(i.width)) - e(i.paddingLeft) - e(i.paddingRight) | 0
+            }, _getHeight: function () {
+                var t = this.root, i = t.currentStyle;
+                return (t.clientHeight || e(i[Or])) - e(i.paddingTop) - e(i.paddingBottom) | 0
+            }
+        };
+        for (var o = ["getLayer", "insertLayer", "eachLayer", "eachBuildinLayer", "eachOtherLayer", "getLayers", "modLayer", "delLayer", "clearLayer", "toDataURL", "pathToImage"], l = 0; l < o[yr]; l++) {
+            var u = o[l];
+            i[Nr][u] = n(u)
+        }
+        return i
+    }),e("echarts/scale/Scale", [Yr, "../util/clazz"], function (t) {
+        function e() {
+            this[en] = [1 / 0, -1 / 0], this._interval = 0, this.init && this.init.apply(this, arguments)
+        }
+
+        var i = t("../util/clazz"), n = e[Nr];
+        return n.parse = function (t) {
+            return t
+        }, n[tn] = function (t) {
+            var e = this[en];
+            return t >= e[0] && t <= e[1]
+        }, n[Ki] = function (t) {
+            var e = this[en];
+            return e[1] === e[0] ? .5 : (t - e[0]) / (e[1] - e[0])
+        }, n.scale = function (t) {
+            var e = this[en];
+            return t * (e[1] - e[0]) + e[0]
+        }, n.unionExtent = function (t) {
+            var e = this[en];
+            t[0] < e[0] && (e[0] = t[0]), t[1] > e[1] && (e[1] = t[1])
+        }, n[ke] = function (t, e) {
+            this.unionExtent(t[Xi](e, !0))
+        }, n[Qi] = function () {
+            return this[en].slice()
+        }, n[Yi] = function (t, e) {
+            var i = this[en];
+            isNaN(t) || (i[0] = t), isNaN(e) || (i[1] = e)
+        }, n.getTicksLabels = function () {
+            for (var t = [], e = this[Ji](), i = 0; i < e[yr]; i++)t.push(this[$i](e[i]));
+            return t
+        }, i.enableClassExtend(e), i.enableClassManagement(e, {registerWhenExtend: !0}), e
+    }),e("echarts/coord/axisHelper", [Yr, "../scale/Ordinal", "../scale/Interval", "../scale/Time", "../scale/Log", "../scale/Scale", nn, Xr, N], function (t) {
+        var e = t("../scale/Ordinal"), i = t("../scale/Interval");
+        t("../scale/Time"), t("../scale/Log");
+        var n = t("../scale/Scale"), r = t(nn), a = t(Xr), o = t(N), s = {};
+        return s.getScaleExtent = function (t, e) {
+            var i, n, o, s = t.scale, l = s.type, u = e.getMin(), c = e.getMax(), h = null != u, d = null != c, f = s[Qi]();
+            return l === qe ? i = (e.get("data") || [])[yr] : (n = e.get(Pe), a[Rn](n) || (n = [n || 0, n || 0]), n[0] = r[Ii](n[0], 1), n[1] = r[Ii](n[1], 1), o = f[1] - f[0]), null == u && (u = l === qe ? i ? 0 : 0 / 0 : f[0] - n[0] * o), null == c && (c = l === qe ? i ? i - 1 : 0 / 0 : f[1] + n[1] * o), "dataMin" === u && (u = f[0]), "dataMax" === c && (c = f[1]), (null == u || !isFinite(u)) && (u = 0 / 0), (null == c || !isFinite(c)) && (c = 0 / 0), t.setBlank(a.eqNaN(u) || a.eqNaN(c)), e.getNeedCrossZero() && (u > 0 && c > 0 && !h && (u = 0), 0 > u && 0 > c && !d && (c = 0)), [u, c]
+        }, s[Ee] = function (t, e) {
+            var i = t.scale, n = s.getScaleExtent(t, e), r = null != e.getMin(), a = null != e.getMax(), o = e.get("splitNumber");
+            "log" === i.type && (i.base = e.get("logBase")), i[Yi](n[0], n[1]), i.niceExtent(o, r, a);
+            var l = e.get("minInterval");
+            if (isFinite(l) && !r && !a && i.type === B) {
+                var u = i.getInterval(), c = Math.max(Math.abs(u), l) / u;
+                n = i[Qi]();
+                var h = (n[1] + n[0]) / 2;
+                i[Yi](c * (n[0] - h) + h, c * (n[1] - h) + h), i.niceExtent(o)
+            }
+            var u = e.get(B);
+            null != u && i.setInterval && i.setInterval(u)
+        }, s[De] = function (t, r) {
+            if (r = r || t.get("type"))switch (r) {
+                case Mi:
+                    return new e(t.getCategories(), [1 / 0, -1 / 0]);
+                case"value":
+                    return new i;
+                default:
+                    return (n.getClass(r) || i)[dr](t)
+            }
+        }, s.ifAxisCrossZero = function (t) {
+            var e = t.scale[Qi](), i = e[0], n = e[1];
+            return !(i > 0 && n > 0 || 0 > i && 0 > n)
+        }, s.getAxisLabelInterval = function (t, e, i, n) {
+            var r, a = 0, s = 0, l = 1;
+            e[yr] > 40 && (l = Math.floor(e[yr] / 40));
+            for (var u = 0; u < t[yr]; u += l) {
+                var c = t[u], h = o[yn](e[u], i, fn, "top");
+                h[n ? "x" : "y"] += c, h[n ? "width" : Or] *= 1.3, r ? r.intersect(h) ? (s++, a = Math.max(a, s)) : (r.union(h), s = 0) : r = h.clone()
+            }
+            return 0 === a && l > 1 ? l : (a + 1) * l - 1
+        }, s[Re] = function (t, e) {
+            var i = t.scale, n = i.getTicksLabels(), r = i[Ji]();
+            return typeof e === Er ? (e = function (t) {
+                return function (e) {
+                    return t[En]("{value}", null != e ? e : "")
+                }
+            }(e), a.map(n, e)) : typeof e === On ? a.map(r, function (n, r) {
+                return e(t.type === Mi ? i[$i](n) : n, r)
+            }, this) : n
+        }, s
+    }),e("echarts/coord/cartesian/Axis2D", [Yr, Xr, "../Axis", "./axisLabelInterval"], function (t) {
+        var e = t(Xr), i = t("../Axis"), n = t("./axisLabelInterval"), r = function (t, e, n, r, a) {
+            i.call(this, t, e, n), this.type = r || "value", this[dn] = a || xr
+        };
+        return r[Nr] = {
+            constructor: r, index: 0, onZero: !1, model: null, isHorizontal: function () {
+                var t = this[dn];
+                return "top" === t || t === xr
+            }, getGlobalExtent: function () {
+                var t = this[Qi]();
+                return t[0] = this[ai](t[0]), t[1] = this[ai](t[1]), t
+            }, getLabelInterval: function () {
+                var t = this._labelInterval;
+                return t || (t = this._labelInterval = n(this)), t
+            }, isLabelIgnored: function (t) {
+                if (this.type === Mi) {
+                    var e = this.getLabelInterval();
+                    return typeof e === On && !e(t, this.scale[$i](t)) || t % (e + 1)
+                }
+            }, toLocalCoord: null, toGlobalCoord: null
+        }, e[Cn](r, i), r
+    }),e("echarts/chart/treemap/TreemapSeries", [Yr, Ei, "../../data/Tree", Xr, Ce, Ri, Le], function (t) {
+        function e(t, i) {
+            var n = 0;
+            a.each(t.children, function (t) {
+                e(t, i);
+                var r = t.value;
+                a[Rn](r) && (r = r[0]), n += r
+            });
+            var r = t.value;
+            i >= 0 && (a[Rn](r) ? r = r[0] : t.value = new Array(i)), (null == r || isNaN(r)) && (r = n), 0 > r && (r = 0), i >= 0 ? t.value[0] = r : t.value = r
+        }
+
+        function i(t, e) {
+            var i = e.get("color");
+            if (i) {
+                t = t || [];
+                var n;
+                if (a.each(t, function (t) {
+                        var e = new o(t), i = e.get("color");
+                        (e.get(te) || i && "none" !== i) && (n = !0)
+                    }), !n) {
+                    var r = t[0] || (t[0] = {});
+                    r.color = i.slice()
+                }
+                return t
+            }
+        }
+
+        var n = t(Ei), r = t("../../data/Tree"), a = t(Xr), o = t(Ce), s = t(Ri), l = t(Le), u = s[Oi], c = s[Vi];
+        return n[ir]({
+            type: "series.treemap",
+            layoutMode: "box",
+            dependencies: ["grid", "polar"],
+            _viewRoot: null,
+            defaultOption: {
+                progressive: 0,
+                hoverLayerThreshold: 1 / 0,
+                left: "center",
+                top: "middle",
+                right: null,
+                bottom: null,
+                width: "80%",
+                height: "80%",
+                sort: !0,
+                clipWindow: "origin",
+                squareRatio: .5 * (1 + Math.sqrt(5)),
+                leafDepth: null,
+                drillDownIcon: "▶",
+                zoomToNodeRatio: .1024,
+                roam: !0,
+                nodeClick: "zoomToNode",
+                animation: !0,
+                animationDurationUpdate: 900,
+                animationEasing: "quinticInOut",
+                breadcrumb: {
+                    show: !0,
+                    height: 22,
+                    left: "center",
+                    top: "bottom",
+                    emptyItemWidth: 25,
+                    itemStyle: {
+                        normal: {
+                            color: "rgba(0,0,0,0.7)",
+                            borderColor: "rgba(255,255,255,0.7)",
+                            borderWidth: 1,
+                            shadowColor: "rgba(150,150,150,1)",
+                            shadowBlur: 3,
+                            shadowOffsetX: 0,
+                            shadowOffsetY: 0,
+                            textStyle: {color: "#fff"}
+                        }, emphasis: {textStyle: {}}
+                    }
+                },
+                label: {normal: {show: !0, position: "inside", textStyle: {color: "#fff", ellipsis: !0}}},
+                itemStyle: {
+                    normal: {
+                        color: null,
+                        colorAlpha: null,
+                        colorSaturation: null,
+                        borderWidth: 0,
+                        gapWidth: 0,
+                        borderColor: "#fff",
+                        borderColorSaturation: null
+                    }, emphasis: {}
+                },
+                visualDimension: 0,
+                visualMin: null,
+                visualMax: null,
+                color: [],
+                colorAlpha: null,
+                colorSaturation: null,
+                colorMappingBy: "index",
+                visibleMin: 10,
+                childrenVisibleMin: null,
+                levels: []
+            },
+            getInitialData: function (t, n) {
+                var o = t.data || [], s = t.name;
+                null == s && (s = t.name);
+                var l = {name: s, children: t.data}, u = (o[0] || {}).value;
+                e(l, a[Rn](u) ? u[yr] : -1);
+                var c = t.levels || [];
+                return c = t.levels = i(c, n), r.createTree(l, this, c).data
+            },
+            optionUpdated: function () {
+                this.resetViewRoot()
+            },
+            formatTooltip: function (t) {
+                var e = this[qr](), i = this[Ge](t), n = c(a[Rn](i) ? i[0] : i), r = e[we](t);
+                return u(r + ": " + n)
+            },
+            getDataParams: function (t) {
+                var e = n[Nr][Hn].apply(this, arguments), i = this[qr]().tree.getNodeByDataIndex(t);
+                return e.treePathInfo = l.wrapTreePathInfo(i, this), e
+            },
+            setLayoutInfo: function (t) {
+                this.layoutInfo = this.layoutInfo || {}, a[ir](this.layoutInfo, t)
+            },
+            mapIdToIndex: function (t) {
+                var e = this._idIndexMap;
+                e || (e = this._idIndexMap = {}, this._idIndexMapCount = 0);
+                var i = e[t];
+                return null == i && (e[t] = i = this._idIndexMapCount++), i
+            },
+            getViewRoot: function () {
+                return this._viewRoot
+            },
+            resetViewRoot: function (t) {
+                t ? this._viewRoot = t : t = this._viewRoot;
+                var e = this[qr]().tree.root;
+                (!t || t !== e && !e.contains(t)) && (this._viewRoot = e)
+            }
+        })
+    }),e("echarts/coord/cartesian/Cartesian2D", [Yr, Xr, "./Cartesian"], function (t) {
+        function e(t) {
+            n.call(this, t)
+        }
+
+        var i = t(Xr), n = t("./Cartesian");
+        return e[Nr] = {
+            constructor: e, type: "cartesian2d", dimensions: ["x", "y"], getBaseAxis: function () {
+                return this.getAxesByScale(qe)[0] || this.getAxesByScale("time")[0] || this[di]("x")
+            }, containPoint: function (t) {
+                var e = this[di]("x"), i = this[di]("y");
+                return e[tn](e.toLocalCoord(t[0])) && i[tn](i.toLocalCoord(t[1]))
+            }, containData: function (t) {
+                return this[di]("x").containData(t[0]) && this[di]("y").containData(t[1])
+            }, dataToPoints: function (t, e) {
+                return t[fi](["x", "y"], function (t, e) {
+                    return this[Ai]([t, e])
+                }, e, this)
+            }, dataToPoint: function (t, e) {
+                var i = this[di]("x"), n = this[di]("y");
+                return [i[ai](i[ri](t[0], e)), n[ai](n[ri](t[1], e))]
+            }, pointToData: function (t, e) {
+                var i = this[di]("x"), n = this[di]("y");
+                return [i[Ve](i.toLocalCoord(t[0]), e), n[Ve](n.toLocalCoord(t[1]), e)]
+            }, getOtherAxis: function (t) {
+                return this[di]("x" === t.dim ? "y" : "x")
+            }
+        }, i[Cn](e, n), e
+    }),e("echarts/model/globalDefault", [], function () {
+        var t = "";
+        return typeof navigator !== Q && (t = navigator.platform || ""), {
+            color: ["#ff0000", "#ffab1b", "#21de21", "#07e0ca", "#0000ff", "#ce0ace", "#158cf9", "#e037f7", "#c57d00", "#39a3ff"],
+            textStyle: {
+                fontFamily: t.match(/^Win/) ? "Microsoft YaHei" : "sans-serif",
+                fontSize: 12,
+                fontStyle: "normal",
+                fontWeight: "normal"
+            },
+            blendMode: null,
+            animation: !0,
+            animationDuration: 1e3,
+            animationDurationUpdate: 300,
+            animationEasing: "exponentialOut",
+            animationEasingUpdate: "cubicOut",
+            animationThreshold: 2e3,
+            progressiveThreshold: 3e3,
+            progressive: 400,
+            hoverLayerThreshold: 3e3
+        }
+    }),e("echarts/coord/cartesian/GridModel", [Yr, "./AxisModel", v], function (t) {
+        t("./AxisModel");
+        var e = t(v);
+        return e[ir]({
+            type: "grid",
+            dependencies: ["xAxis", "yAxis"],
+            layoutMode: "box",
+            coordinateSystem: null,
+            defaultOption: {
+                show: !1,
+                zlevel: 0,
+                z: 0,
+                left: "10%",
+                top: 60,
+                right: "10%",
+                bottom: 60,
+                containLabel: !1,
+                backgroundColor: "rgba(0,0,0,0)",
+                borderWidth: 1,
+                borderColor: "#ccc"
+            }
+        })
+    }),e("echarts/model/mixin/colorPalette", [Yr, "../../util/clazz"], function (t) {
+        var e = t("../../util/clazz"), i = e.set, n = e.get;
+        return {
+            clearColorPalette: function () {
+                i(this, "colorIdx", 0), i(this, "colorNameMap", {})
+            }, getColorFromPalette: function (t, e) {
+                e = e || this;
+                var r = n(e, "colorIdx") || 0, a = n(e, "colorNameMap") || i(e, "colorNameMap", {});
+                if (a[t])return a[t];
+                var o = this.get("color", !0) || [];
+                if (o[yr]) {
+                    var s = o[r];
+                    return t && (a[t] = s), i(e, "colorIdx", (r + 1) % o[yr]), s
+                }
+            }
+        }
+    }),e("zrender/tool/path", [Yr, "../graphic/Path", "../core/PathProxy", "./transformPath", "../core/matrix"], function (t) {
+        function e(t, e, i, n, r, a, o, s, l, u, c) {
+            var v = l * (p / 180), y = f(v) * (t - i) / 2 + d(v) * (e - n) / 2, x = -1 * d(v) * (t - i) / 2 + f(v) * (e - n) / 2, _ = y * y / (o * o) + x * x / (s * s);
+            _ > 1 && (o *= h(_), s *= h(_));
+            var w = (r === a ? -1 : 1) * h((o * o * s * s - o * o * x * x - s * s * y * y) / (o * o * x * x + s * s * y * y)) || 0, b = w * o * x / s, M = w * -s * y / o, S = (t + i) / 2 + f(v) * b - d(v) * M, A = (e + n) / 2 + d(v) * b + f(v) * M, T = m([1, 0], [(y - b) / o, (x - M) / s]), C = [(y - b) / o, (x - M) / s], L = [(-1 * y - b) / o, (-1 * x - M) / s], k = m(C, L);
+            g(C, L) <= -1 && (k = p), g(C, L) >= 1 && (k = 0), 0 === a && k > 0 && (k -= 2 * p), 1 === a && 0 > k && (k += 2 * p), c.addData(u, S, A, o, s, T, k, v, a)
+        }
+
+        function i(t) {
+            if (!t)return [];
+            var i, n = t[En](/-/g, " -")[En](/  /g, " ")[En](/ /g, ",")[En](/,,/g, ",");
+            for (i = 0; i < c[yr]; i++)n = n[En](new RegExp(c[i], "g"), "|" + c[i]);
+            var r, o = n.split("|"), s = 0, l = 0, u = new a, h = a.CMD;
+            for (i = 1; i < o[yr]; i++) {
+                var d, f = o[i], p = f.charAt(0), v = 0, g = f.slice(1)[En](/e,-/g, "e-").split(",");
+                g[yr] > 0 && "" === g[0] && g.shift();
+                for (var m = 0; m < g[yr]; m++)g[m] = parseFloat(g[m]);
+                for (; v < g[yr] && !isNaN(g[v]) && !isNaN(g[0]);) {
+                    var y, x, _, w, b, M, S, A = s, T = l;
+                    switch (p) {
+                        case"l":
+                            s += g[v++], l += g[v++], d = h.L, u.addData(d, s, l);
+                            break;
+                        case"L":
+                            s = g[v++], l = g[v++], d = h.L, u.addData(d, s, l);
+                            break;
+                        case"m":
+                            s += g[v++], l += g[v++], d = h.M, u.addData(d, s, l), p = "l";
+                            break;
+                        case"M":
+                            s = g[v++], l = g[v++], d = h.M, u.addData(d, s, l), p = "L";
+                            break;
+                        case"h":
+                            s += g[v++], d = h.L, u.addData(d, s, l);
+                            break;
+                        case"H":
+                            s = g[v++], d = h.L, u.addData(d, s, l);
+                            break;
+                        case"v":
+                            l += g[v++], d = h.L, u.addData(d, s, l);
+                            break;
+                        case"V":
+                            l = g[v++], d = h.L, u.addData(d, s, l);
+                            break;
+                        case"C":
+                            d = h.C, u.addData(d, g[v++], g[v++], g[v++], g[v++], g[v++], g[v++]), s = g[v - 2], l = g[v - 1];
+                            break;
+                        case"c":
+                            d = h.C, u.addData(d, g[v++] + s, g[v++] + l, g[v++] + s, g[v++] + l, g[v++] + s, g[v++] + l), s += g[v - 2], l += g[v - 1];
+                            break;
+                        case"S":
+                            y = s, x = l;
+                            var C = u.len(), L = u.data;
+                            r === h.C && (y += s - L[C - 4], x += l - L[C - 3]), d = h.C, A = g[v++], T = g[v++], s = g[v++], l = g[v++], u.addData(d, y, x, A, T, s, l);
+                            break;
+                        case"s":
+                            y = s, x = l;
+                            var C = u.len(), L = u.data;
+                            r === h.C && (y += s - L[C - 4], x += l - L[C - 3]), d = h.C, A = s + g[v++], T = l + g[v++], s += g[v++], l += g[v++], u.addData(d, y, x, A, T, s, l);
+                            break;
+                        case"Q":
+                            A = g[v++], T = g[v++], s = g[v++], l = g[v++], d = h.Q, u.addData(d, A, T, s, l);
+                            break;
+                        case"q":
+                            A = g[v++] + s, T = g[v++] + l, s += g[v++], l += g[v++], d = h.Q, u.addData(d, A, T, s, l);
+                            break;
+                        case"T":
+                            y = s, x = l;
+                            var C = u.len(), L = u.data;
+                            r === h.Q && (y += s - L[C - 4], x += l - L[C - 3]), s = g[v++], l = g[v++], d = h.Q, u.addData(d, y, x, s, l);
+                            break;
+                        case"t":
+                            y = s, x = l;
+                            var C = u.len(), L = u.data;
+                            r === h.Q && (y += s - L[C - 4], x += l - L[C - 3]), s += g[v++], l += g[v++], d = h.Q, u.addData(d, y, x, s, l);
+                            break;
+                        case"A":
+                            _ = g[v++], w = g[v++], b = g[v++], M = g[v++], S = g[v++], A = s, T = l, s = g[v++], l = g[v++], d = h.A, e(A, T, s, l, M, S, _, w, b, d, u);
+                            break;
+                        case"a":
+                            _ = g[v++], w = g[v++], b = g[v++], M = g[v++], S = g[v++], A = s, T = l, s += g[v++], l += g[v++], d = h.A, e(A, T, s, l, M, S, _, w, b, d, u)
+                    }
+                }
+                ("z" === p || "Z" === p) && (d = h.Z, u.addData(d)), r = d
+            }
+            return u.toStatic(), u
+        }
+
+        function n(t, e) {
+            var n, r = i(t);
+            return e = e || {}, e[o] = function (t) {
+                t.setData(r.data), n && l(t, n);
+                var e = t[xi]();
+                e && t.rebuildPath(e)
+            }, e[U] = function (t) {
+                n || (n = u[dr]()), u.mul(n, t, n), this.dirty(!0)
+            }, e
+        }
+
+        var r = t("../graphic/Path"), a = t("../core/PathProxy"), l = t("./transformPath"), u = t("../core/matrix"), c = ["m", "M", "l", "L", "v", "V", "h", "H", "z", "Z", "c", "C", "q", "Q", "t", "T", "s", "S", "a", "A"], h = Math.sqrt, d = Math.sin, f = Math.cos, p = Math.PI, v = function (t) {
+            return Math.sqrt(t[0] * t[0] + t[1] * t[1])
+        }, g = function (t, e) {
+            return (t[0] * e[0] + t[1] * e[1]) / (v(t) * v(e))
+        }, m = function (t, e) {
+            return (t[0] * e[1] < t[1] * e[0] ? -1 : 1) * Math.acos(g(t, e))
+        };
+        return {
+            createFromString: function (t, e) {
+                return new r(n(t, e))
+            }, extendFromString: function (t, e) {
+                return r[ir](n(t, e))
+            }, mergePath: function (t, e) {
+                for (var i = [], n = t[yr], a = 0; n > a; a++) {
+                    var l = t[a];
+                    l[s] && l[o](l.path, l.shape, !0), i.push(l.path)
+                }
+                var u = new r(e);
+                return u[o] = function (t) {
+                    t.appendPath(i);
+                    var e = t[xi]();
+                    e && t.rebuildPath(e)
+                }, u
+            }
+        }
+    }),e("zrender/graphic/Path", [Yr, "./Displayable", a, "../core/PathProxy", "../contain/path", "./Pattern"], function (t) {
+        function e(t) {
+            i.call(this, t), this.path = new r
+        }
+
+        var i = t("./Displayable"), n = t(a), r = t("../core/PathProxy"), l = t("../contain/path"), u = t("./Pattern"), c = u[Nr].getCanvasPattern, h = Math.abs;
+        return e[Nr] = {
+            constructor: e,
+            type: "path",
+            __dirtyPath: !0,
+            strokeContainThreshold: 5,
+            brush: function (t, e) {
+                var i = this.style, n = this.path, r = i.hasStroke(), a = i.hasFill(), l = i.fill, u = i[Bi], h = a && !!l[ur], d = r && !!u[ur], f = a && !!l.image, p = r && !!u.image;
+                if (i.bind(t, this, e), this.setTransform(t), this[s]) {
+                    var v = this[yn]();
+                    h && (this._fillGradient = i.getGradient(t, l, v)), d && (this._strokeGradient = i.getGradient(t, u, v))
+                }
+                h ? t.fillStyle = this._fillGradient : f && (t.fillStyle = c.call(l, t)), d ? t.strokeStyle = this._strokeGradient : p && (t.strokeStyle = c.call(u, t));
+                var g = i.lineDash, m = i.lineDashOffset, y = !!t.setLineDash, x = this.getGlobalScale();
+                n.setScale(x[0], x[1]), this.__dirtyPath || g && !y && r ? (n = this.path.beginPath(t), g && !y && (n.setLineDash(g), n.setLineDashOffset(m)), this[o](n, this.shape, !1), this.__dirtyPath = !1) : (t.beginPath(), this.path.rebuildPath(t)), a && n.fill(t), g && y && (t.setLineDash(g), t.lineDashOffset = m), r && n[Bi](t), g && y && t.setLineDash([]), this.restoreTransform(t), null != i.text && this.drawRectText(t, this[yn]())
+            },
+            buildPath: function () {
+            },
+            getBoundingRect: function () {
+                var t = this._rect, e = this.style, i = !t;
+                if (i) {
+                    var n = this.path;
+                    this.__dirtyPath && (n.beginPath(), this[o](n, this.shape, !1)), t = n[yn]()
+                }
+                if (this._rect = t, e.hasStroke()) {
+                    var r = this._rectWithStroke || (this._rectWithStroke = t.clone());
+                    if (this[s] || i) {
+                        r.copy(t);
+                        var a = e[q], l = e.strokeNoScale ? this.getLineScale() : 1;
+                        e.hasFill() || (a = Math.max(a, this.strokeContainThreshold || 4)), l > 1e-10 && (r.width += a / l, r[Or] += a / l, r.x -= a / l / 2, r.y -= a / l / 2)
+                    }
+                    return r
+                }
+                return t
+            },
+            contain: function (t, e) {
+                var i = this.transformCoordToLocal(t, e), n = this[yn](), r = this.style;
+                if (t = i[0], e = i[1], n[tn](t, e)) {
+                    var a = this.path.data;
+                    if (r.hasStroke()) {
+                        var o = r[q], s = r.strokeNoScale ? this.getLineScale() : 1;
+                        if (s > 1e-10 && (r.hasFill() || (o = Math.max(o, this.strokeContainThreshold)), l.containStroke(a, o / s, t, e)))return !0
+                    }
+                    if (r.hasFill())return l[tn](a, t, e)
+                }
+                return !1
+            },
+            dirty: function (t) {
+                null == t && (t = !0), t && (this.__dirtyPath = t, this._rect = null), this[s] = !0, this.__zr && this.__zr.refresh(), this.__clipTarget && this.__clipTarget.dirty()
+            },
+            animateShape: function (t) {
+                return this[xe]("shape", t)
+            },
+            attrKV: function (t, e) {
+                "shape" === t ? (this[Qe](e), this.__dirtyPath = !0, this._rect = null) : i[Nr].attrKV.call(this, t, e)
+            },
+            setShape: function (t, e) {
+                var i = this.shape;
+                if (i) {
+                    if (n[Ir](t))for (var r in t)t.hasOwnProperty(r) && (i[r] = t[r]); else i[t] = e;
+                    this.dirty(!0)
+                }
+                return this
+            },
+            getLineScale: function () {
+                var t = this[O];
+                return t && h(t[0] - 1) > 1e-10 && h(t[3] - 1) > 1e-10 ? Math.sqrt(h(t[0] * t[3] - t[2] * t[1])) : 1
+            }
+        }, e[ir] = function (t) {
+            var i = function (i) {
+                e.call(this, i), t.style && this.style.extendFrom(t.style, !1);
+                var n = t.shape;
+                if (n) {
+                    this.shape = this.shape || {};
+                    var r = this.shape;
+                    for (var a in n)!r.hasOwnProperty(a) && n.hasOwnProperty(a) && (r[a] = n[a])
+                }
+                t.init && t.init.call(this, i)
+            };
+            n[Cn](i, e);
+            for (var r in t)"style" !== r && "shape" !== r && (i[Nr][r] = t[r]);
+            return i
+        }, n[Cn](e, i), e
+    }),e("zrender/graphic/Image", [Yr, "./Displayable", "../core/BoundingRect", a, "../core/LRU"], function (t) {
+        function e(t) {
+            i.call(this, t)
+        }
+
+        var i = t("./Displayable"), n = t("../core/BoundingRect"), r = t(a), o = t("../core/LRU"), s = new o(50);
+        return e[Nr] = {
+            constructor: e, type: "image", brush: function (t, e) {
+                var i, n = this.style, r = n.image;
+                if (n.bind(t, this, e), i = typeof r === Er ? this._image : r, !i && r) {
+                    var a = s.get(r);
+                    if (!a)return i = new Image, i.onload = function () {
+                        i.onload = null;
+                        for (var t = 0; t < a.pending[yr]; t++)a.pending[t].dirty()
+                    }, a = {image: i, pending: [this]}, i.src = r, s.put(r, a), void(this._image = i);
+                    if (i = a.image, this._image = i, !i.width || !i[Or])return void a.pending.push(this)
+                }
+                if (i) {
+                    var o = n.width || i.width, l = n[Or] || i[Or], u = n.x || 0, c = n.y || 0;
+                    if (!i.width || !i[Or])return;
+                    if (this.setTransform(t), n.sWidth && n.sHeight) {
+                        var h = n.sx || 0, d = n.sy || 0;
+                        t.drawImage(i, h, d, n.sWidth, n.sHeight, u, c, o, l)
+                    } else if (n.sx && n.sy) {
+                        var h = n.sx, d = n.sy, f = o - h, p = l - d;
+                        t.drawImage(i, h, d, f, p, u, c, o, l)
+                    } else t.drawImage(i, u, c, o, l);
+                    null == n.width && (n.width = o), null == n[Or] && (n[Or] = l), this.restoreTransform(t), null != n.text && this.drawRectText(t, this[yn]())
+                }
+            }, getBoundingRect: function () {
+                var t = this.style;
+                return this._rect || (this._rect = new n(t.x || 0, t.y || 0, t.width || 0, t[Or] || 0)), this._rect
+            }
+        }, r[Cn](e, i), e
+    }),e("zrender/container/Group", [Yr, a, "../Element", "../core/BoundingRect"], function (t) {
+        var e = t(a), i = t("../Element"), n = t("../core/BoundingRect"), r = function (t) {
+            t = t || {}, i.call(this, t);
+            for (var e in t)t.hasOwnProperty(e) && (this[e] = t[e]);
+            this._children = [], this.__storage = null, this[s] = !0
+        };
+        return r[Nr] = {
+            constructor: r, isGroup: !0, type: "group", silent: !1, children: function () {
+                return this._children.slice()
+            }, childAt: function (t) {
+                return this._children[t]
+            }, childOfName: function (t) {
+                for (var e = this._children, i = 0; i < e[yr]; i++)if (e[i].name === t)return e[i]
+            }, childCount: function () {
+                return this._children[yr]
+            }, add: function (t) {
+                return t && t !== this && t[an] !== this && (this._children.push(t), this._doAdd(t)), this
+            }, addBefore: function (t, e) {
+                if (t && t !== this && t[an] !== this && e && e[an] === this) {
+                    var i = this._children, n = i[mr](e);
+                    n >= 0 && (i[Yn](n, 0, t), this._doAdd(t))
+                }
+                return this
+            }, _doAdd: function (t) {
+                t[an] && t[an][nr](t), t[an] = this;
+                var e = this.__storage, i = this.__zr;
+                e && e !== t.__storage && (e.addToMap(t), t instanceof r && t.addChildrenToStorage(e)), i && i.refresh()
+            }, remove: function (t) {
+                var i = this.__zr, n = this.__storage, a = this._children, o = e[mr](a, t);
+                return 0 > o ? this : (a[Yn](o, 1), t[an] = null, n && (n.delFromMap(t.id), t instanceof r && t.delChildrenFromStorage(n)), i && i.refresh(), this)
+            }, removeAll: function () {
+                var t, e, i = this._children, n = this.__storage;
+                for (e = 0; e < i[yr]; e++)t = i[e], n && (n.delFromMap(t.id), t instanceof r && t.delChildrenFromStorage(n)), t[an] = null;
+                return i[yr] = 0, this
+            }, eachChild: function (t, e) {
+                for (var i = this._children, n = 0; n < i[yr]; n++) {
+                    var r = i[n];
+                    t.call(e, r, n)
+                }
+                return this
+            }, traverse: function (t, e) {
+                for (var i = 0; i < this._children[yr]; i++) {
+                    var n = this._children[i];
+                    t.call(e, n), "group" === n.type && n[Gn](t, e)
+                }
+                return this
+            }, addChildrenToStorage: function (t) {
+                for (var e = 0; e < this._children[yr]; e++) {
+                    var i = this._children[e];
+                    t.addToMap(i), i instanceof r && i.addChildrenToStorage(t)
+                }
+            }, delChildrenFromStorage: function (t) {
+                for (var e = 0; e < this._children[yr]; e++) {
+                    var i = this._children[e];
+                    t.delFromMap(i.id), i instanceof r && i.delChildrenFromStorage(t)
+                }
+            }, dirty: function () {
+                return this[s] = !0, this.__zr && this.__zr.refresh(), this
+            }, getBoundingRect: function (t) {
+                for (var e = null, i = new n(0, 0, 0, 0), r = t || this._children, a = [], o = 0; o < r[yr]; o++) {
+                    var s = r[o];
+                    if (!s[_r] && !s[P]) {
+                        var l = s[yn](), u = s[Z](a);
+                        u ? (i.copy(l), i[U](u), e = e || i.clone(), e.union(i)) : (e = e || l.clone(), e.union(l))
+                    }
+                }
+                return e || i
+            }
+        }, e[Cn](r, i), r
+    }),e("zrender/graphic/Text", [Yr, "./Displayable", a, "../contain/text"], function (t) {
+        var e = t("./Displayable"), i = t(a), n = t("../contain/text"), r = function (t) {
+            e.call(this, t)
+        };
+        return r[Nr] = {
+            constructor: r, type: "text", brush: function (t, e) {
+                var i = this.style, r = i.x || 0, a = i.y || 0, o = i.text;
+                if (null != o && (o += ""), i.bind(t, this, e), o) {
+                    this.setTransform(t);
+                    var s, l = i[wn], u = i.textFont || i.font;
+                    if (i[on]) {
+                        var c = n[yn](o, u, i[wn], "top");
+                        switch (s = pn, i[on]) {
+                            case pn:
+                                a -= c[Or] / 2 - c.lineHeight / 2;
+                                break;
+                            case xr:
+                                a -= c[Or] - c.lineHeight / 2;
+                                break;
+                            default:
+                                a += c.lineHeight / 2
+                        }
+                    } else s = i.textBaseline;
+                    t.font = u || "12px sans-serif", t[wn] = l || "left", t[wn] !== l && (t[wn] = "left"), t.textBaseline = s || "alphabetic", t.textBaseline !== s && (t.textBaseline = "alphabetic");
+                    for (var h = n.measureText("国", t.font).width, d = o.split("\n"), f = 0; f < d[yr]; f++)i.hasFill() && t.fillText(d[f], r, a), i.hasStroke() && t.strokeText(d[f], r, a), a += h;
+                    this.restoreTransform(t)
+                }
+            }, getBoundingRect: function () {
+                if (!this._rect) {
+                    var t = this.style, e = t[on], i = n[yn](t.text + "", t.textFont || t.font, t[wn], e ? "top" : t.textBaseline);
+                    switch (e) {
+                        case pn:
+                            i.y -= i[Or] / 2;
+                            break;
+                        case xr:
+                            i.y -= i[Or]
+                    }
+                    i.x += t.x || 0, i.y += t.y || 0, this._rect = i
+                }
+                return this._rect
+            }
+        }, i[Cn](r, e), r
+    }),e("zrender/graphic/shape/Sector", [Yr, "../../core/env", "../Path"], function (t) {
+        var e = t("../../core/env"), a = t("../Path"), o = [[r, 0], [n, "#000"], [i, 0], ["shadowOffsetY", 0]];
+        return a[ir]({
+            type: "sector",
+            shape: {cx: 0, cy: 0, r0: 0, r: 0, startAngle: 0, endAngle: 2 * Math.PI, clockwise: !0},
+            brush: e.browser.ie && e.browser.version >= 11 ? function () {
+                var t, e = this.__clipPaths, i = this.style;
+                if (e)for (var n = 0; n < e[yr]; n++) {
+                    var r = e[n] && e[n].shape;
+                    if (r && r[_e] === r[oi]) {
+                        for (var s = 0; s < o[yr]; s++)o[s][2] = i[o[s][0]], i[o[s][0]] = o[s][1];
+                        t = !0;
+                        break
+                    }
+                }
+                if (a[Nr].brush.apply(this, arguments), t)for (var s = 0; s < o[yr]; s++)i[o[s][0]] = o[s][2]
+            } : a[Nr].brush,
+            buildPath: function (t, e) {
+                var i = e.cx, n = e.cy, r = Math.max(e.r0 || 0, 0), a = Math.max(e.r, 0), o = e[_e], s = e[oi], l = e[ue], u = Math.cos(o), c = Math.sin(o);
+                t[y](u * r + i, c * r + n), t[m](u * a + i, c * a + n), t.arc(i, n, a, o, s, !l), t[m](Math.cos(s) * r + i, Math.sin(s) * r + n), 0 !== r && t.arc(i, n, r, s, o, l), t[g]()
+            }
+        })
+    }),e("zrender/graphic/shape/Circle", [Yr, "../Path"], function (t) {
+        return t("../Path")[ir]({
+            type: "circle", shape: {cx: 0, cy: 0, r: 0}, buildPath: function (t, e, i) {
+                i && t[y](e.cx + e.r, e.cy), t.arc(e.cx, e.cy, e.r, 0, 2 * Math.PI, !0)
+            }
+        })
+    }),e("zrender/graphic/shape/Ring", [Yr, "../Path"], function (t) {
+        return t("../Path")[ir]({
+            type: "ring", shape: {cx: 0, cy: 0, r: 0, r0: 0}, buildPath: function (t, e) {
+                var i = e.cx, n = e.cy, r = 2 * Math.PI;
+                t[y](i + e.r, n), t.arc(i, n, e.r, 0, r, !1), t[y](i + e.r0, n), t.arc(i, n, e.r0, 0, r, !0)
+            }
+        })
+    }),e("zrender/graphic/shape/Polyline", [Yr, "../helper/poly", "../Path"], function (t) {
+        var e = t("../helper/poly");
+        return t("../Path")[ir]({
+            type: "polyline",
+            shape: {points: null, smooth: !1, smoothConstraint: null},
+            style: {stroke: "#000", fill: null},
+            buildPath: function (t, i) {
+                e[o](t, i, !1)
+            }
+        })
+    }),e("zrender/graphic/shape/Polygon", [Yr, "../helper/poly", "../Path"], function (t) {
+        var e = t("../helper/poly");
+        return t("../Path")[ir]({
+            type: "polygon",
+            shape: {points: null, smooth: !1, smoothConstraint: null},
+            buildPath: function (t, i) {
+                e[o](t, i, !0)
+            }
+        })
+    }),e("zrender/graphic/shape/Rect", [Yr, "../helper/roundRect", "../Path"], function (t) {
+        var e = t("../helper/roundRect");
+        return t("../Path")[ir]({
+            type: "rect",
+            shape: {r: 0, x: 0, y: 0, width: 0, height: 0},
+            buildPath: function (t, i) {
+                var n = i.x, r = i.y, a = i.width, s = i[Or];
+                i.r ? e[o](t, i) : t.rect(n, r, a, s), t[g]()
+            }
+        })
+    }),e("zrender/graphic/shape/Line", [Yr, "../Path"], function (t) {
+        return t("../Path")[ir]({
+            type: "line",
+            shape: {x1: 0, y1: 0, x2: 0, y2: 0, percent: 1},
+            style: {stroke: "#000", fill: null},
+            buildPath: function (t, e) {
+                var i = e.x1, n = e.y1, r = e.x2, a = e.y2, o = e.percent;
+                0 !== o && (t[y](i, n), 1 > o && (r = i * (1 - o) + r * o, a = n * (1 - o) + a * o), t[m](r, a))
+            },
+            pointAt: function (t) {
+                var e = this.shape;
+                return [e.x1 * (1 - t) + e.x2 * t, e.y1 * (1 - t) + e.y2 * t]
+            }
+        })
+    }),e("zrender/graphic/shape/Arc", [Yr, "../Path"], function (t) {
+        return t("../Path")[ir]({
+            type: "arc",
+            shape: {cx: 0, cy: 0, r: 0, startAngle: 0, endAngle: 2 * Math.PI, clockwise: !0},
+            style: {stroke: "#000", fill: null},
+            buildPath: function (t, e) {
+                var i = e.cx, n = e.cy, r = Math.max(e.r, 0), a = e[_e], o = e[oi], s = e[ue], l = Math.cos(a), u = Math.sin(a);
+                t[y](l * r + i, u * r + n), t.arc(i, n, r, a, o, !s)
+            }
+        })
+    }),e("zrender/graphic/shape/BezierCurve", [Yr, "../../core/curve", "../../core/vector", "../Path"], function (t) {
+        function e(t, e, i) {
+            var n = t.cpx2, r = t.cpy2;
+            return null === n || null === r ? [(i ? u : s)(t.x1, t.cpx1, t.cpx2, t.x2, e), (i ? u : s)(t.y1, t.cpy1, t.cpy2, t.y2, e)] : [(i ? l : o)(t.x1, t.cpx1, t.x2, e), (i ? l : o)(t.y1, t.cpy1, t.y2, e)]
+        }
+
+        var i = t("../../core/curve"), n = t("../../core/vector"), r = i.quadraticSubdivide, a = i.cubicSubdivide, o = i.quadraticAt, s = i.cubicAt, l = i.quadraticDerivativeAt, u = i.cubicDerivativeAt, c = [];
+        return t("../Path")[ir]({
+            type: "bezier-curve",
+            shape: {x1: 0, y1: 0, x2: 0, y2: 0, cpx1: 0, cpy1: 0, percent: 1},
+            style: {stroke: "#000", fill: null},
+            buildPath: function (t, e) {
+                var i = e.x1, n = e.y1, o = e.x2, s = e.y2, l = e.cpx1, u = e.cpy1, h = e.cpx2, d = e.cpy2, f = e.percent;
+                0 !== f && (t[y](i, n), null == h || null == d ? (1 > f && (r(i, l, o, f, c), l = c[1], o = c[2], r(n, u, s, f, c), u = c[1], s = c[2]), t.quadraticCurveTo(l, u, o, s)) : (1 > f && (a(i, l, h, o, f, c), l = c[1], h = c[2], o = c[3], a(n, u, d, s, f, c), u = c[1], d = c[2], s = c[3]), t.bezierCurveTo(l, u, h, d, o, s)))
+            },
+            pointAt: function (t) {
+                return e(this.shape, t, !1)
+            },
+            tangentAt: function (t) {
+                var i = e(this.shape, t, !0);
+                return n[Ki](i, i)
+            }
+        })
+    }),e("zrender/graphic/CompoundPath", [Yr, "./Path"], function (t) {
+        var e = t("./Path");
+        return e[ir]({
+            type: "compound", shape: {paths: null}, _updatePathDirty: function () {
+                for (var t = this.__dirtyPath, e = this.shape.paths, i = 0; i < e[yr]; i++)t = t || e[i].__dirtyPath;
+                this.__dirtyPath = t, this[s] = this[s] || t
+            }, beforeBrush: function () {
+                this._updatePathDirty();
+                for (var t = this.shape.paths || [], e = this.getGlobalScale(), i = 0; i < t[yr]; i++)t[i].path.setScale(e[0], e[1])
+            }, buildPath: function (t, e) {
+                for (var i = e.paths || [], n = 0; n < i[yr]; n++)i[n][o](t, i[n].shape, !0)
+            }, afterBrush: function () {
+                for (var t = this.shape.paths, e = 0; e < t[yr]; e++)t[e].__dirtyPath = !1
+            }, getBoundingRect: function () {
+                return this._updatePathDirty(), e[Nr][yn].call(this)
+            }
+        })
+    }),e("zrender/graphic/LinearGradient", [Yr, a, "./Gradient"], function (t) {
+        var e = t(a), i = t("./Gradient"), n = function (t, e, n, r, a, o) {
+            this.x = null == t ? 0 : t, this.y = null == e ? 0 : e, this.x2 = null == n ? 1 : n, this.y2 = null == r ? 0 : r, this.type = I, this.global = o || !1, i.call(this, a)
+        };
+        return n[Nr] = {constructor: n}, e[Cn](n, i), n
+    }),e("zrender/graphic/RadialGradient", [Yr, a, "./Gradient"], function (t) {
+        var e = t(a), i = t("./Gradient"), n = function (t, e, n, r, a) {
+            this.x = null == t ? .5 : t, this.y = null == e ? .5 : e, this.r = null == n ? .5 : n, this.type = "radial", this.global = a || !1, i.call(this, r)
+        };
+        return n[Nr] = {constructor: n}, e[Cn](n, i), n
+    }),e(N, [Yr, a, "../core/BoundingRect"], function (t) {
+        function e(t, e) {
+            var i = t + ":" + e;
+            if (s[i])return s[i];
+            for (var n = (t + "").split("\n"), r = 0, a = 0, o = n[yr]; o > a; a++)r = Math.max(f.measureText(n[a], e).width, r);
+            return l > u && (l = 0, s = {}), l++, s[i] = r, r
+        }
+
+        function i(t, i, n, r) {
+            var a = ((t || "") + "").split("\n")[yr], o = e(t, i), s = e("国", i), l = a * s, u = new h(0, 0, o, l);
+            switch (u.lineHeight = s, r) {
+                case xr:
+                case"alphabetic":
+                    u.y -= s;
+                    break;
+                case pn:
+                    u.y -= s / 2
+            }
+            switch (n) {
+                case"end":
+                case"right":
+                    u.x -= u.width;
+                    break;
+                case fn:
+                    u.x -= u.width / 2
+            }
+            return u
+        }
+
+        function n(t, e, i, n) {
+            var r = e.x, a = e.y, o = e[Or], s = e.width, l = i[Or], u = o / 2 - l / 2, c = "left";
+            switch (t) {
+                case"left":
+                    r -= n, a += u, c = "right";
+                    break;
+                case"right":
+                    r += n + s, a += u, c = "left";
+                    break;
+                case"top":
+                    r += s / 2, a -= n + l, c = fn;
+                    break;
+                case xr:
+                    r += s / 2, a += o + n, c = fn;
+                    break;
+                case ye:
+                    r += s / 2, a += u, c = fn;
+                    break;
+                case"insideLeft":
+                    r += n, a += u, c = "left";
+                    break;
+                case"insideRight":
+                    r += s - n, a += u, c = "right";
+                    break;
+                case"insideTop":
+                    r += s / 2, a += n, c = fn;
+                    break;
+                case"insideBottom":
+                    r += s / 2, a += o - l - n, c = fn;
+                    break;
+                case"insideTopLeft":
+                    r += n, a += n, c = "left";
+                    break;
+                case"insideTopRight":
+                    r += s - n, a += n, c = "right";
+                    break;
+                case"insideBottomLeft":
+                    r += n, a += o - l - n;
+                    break;
+                case"insideBottomRight":
+                    r += s - n, a += o - l - n, c = "right"
+            }
+            return {x: r, y: a, textAlign: c, textBaseline: "top"}
+        }
+
+        function r(t, i, n, r, a) {
+            if (!i)return "";
+            a = a || {}, r = d(r, "...");
+            for (var s = d(a.maxIterations, 2), l = d(a.minChar, 0), u = e("国", n), c = e("a", n), h = d(a.placeholder, ""), f = i = Math.max(0, i - 1), p = 0; l > p && f >= c; p++)f -= c;
+            var v = e(r);
+            v > f && (r = "", v = 0), f = i - v;
+            for (var g = (t + "").split("\n"), p = 0, m = g[yr]; m > p; p++) {
+                var y = g[p], x = e(y, n);
+                if (!(i >= x)) {
+                    for (var _ = 0; ; _++) {
+                        if (f >= x || _ >= s) {
+                            y += r;
+                            break
+                        }
+                        var w = 0 === _ ? o(y, f, c, u) : x > 0 ? Math.floor(y[yr] * f / x) : 0;
+                        y = y.substr(0, w), x = e(y, n)
+                    }
+                    "" === y && (y = h), g[p] = y
+                }
+            }
+            return g.join("\n")
+        }
+
+        function o(t, e, i, n) {
+            for (var r = 0, a = 0, o = t[yr]; o > a && e > r; a++) {
+                var s = t.charCodeAt(a);
+                r += s >= 0 && 127 >= s ? i : n
+            }
+            return a
+        }
+
+        var s = {}, l = 0, u = 5e3, c = t(a), h = t("../core/BoundingRect"), d = c[Pi], f = {
+            getWidth: e,
+            getBoundingRect: i,
+            adjustTextPositionOnRect: n,
+            truncateText: r,
+            measureText: function (t, e) {
+                var i = c[xi]();
+                return i.font = e || "12px sans-serif", i.measureText(t)
+            }
+        };
+        return f
+    }),e(X, [Yr, "./vector", "./matrix"], function (t) {
+        function e(t, e, i, n) {
+            0 > i && (t += i, i = -i), 0 > n && (e += n, n = -n), this.x = t, this.y = e, this.width = i, this[Or] = n
+        }
+
+        var i = t("./vector"), n = t("./matrix"), r = i[U], a = Math.min, o = Math.max;
+        return e[Nr] = {
+            constructor: e, union: function (t) {
+                var e = a(t.x, this.x), i = a(t.y, this.y);
+                this.width = o(t.x + t.width, this.x + this.width) - e, this[Or] = o(t.y + t[Or], this.y + this[Or]) - i, this.x = e, this.y = i
+            }, applyTransform: function () {
+                var t = [], e = [], i = [], n = [];
+                return function (s) {
+                    if (s) {
+                        t[0] = i[0] = this.x, t[1] = n[1] = this.y, e[0] = n[0] = this.x + this.width, e[1] = i[1] = this.y + this[Or], r(t, t, s), r(e, e, s), r(i, i, s), r(n, n, s), this.x = a(t[0], e[0], i[0], n[0]), this.y = a(t[1], e[1], i[1], n[1]);
+                        var l = o(t[0], e[0], i[0], n[0]), u = o(t[1], e[1], i[1], n[1]);
+                        this.width = l - this.x, this[Or] = u - this.y
+                    }
+                }
+            }(), calculateTransform: function (t) {
+                var e = this, i = t.width / e.width, r = t[Or] / e[Or], a = n[dr]();
+                return n.translate(a, a, [-e.x, -e.y]), n.scale(a, a, [i, r]), n.translate(a, a, [t.x, t.y]), a
+            }, intersect: function (t) {
+                if (!t)return !1;
+                t instanceof e || (t = e[dr](t));
+                var i = this, n = i.x, r = i.x + i.width, a = i.y, o = i.y + i[Or], s = t.x, l = t.x + t.width, u = t.y, c = t.y + t[Or];
+                return !(s > r || n > l || u > o || a > c)
+            }, contain: function (t, e) {
+                var i = this;
+                return t >= i.x && t <= i.x + i.width && e >= i.y && e <= i.y + i[Or]
+            }, clone: function () {
+                return new e(this.x, this.y, this.width, this[Or])
+            }, copy: function (t) {
+                this.x = t.x, this.y = t.y, this.width = t.width, this[Or] = t[Or]
+            }, plain: function () {
+                return {x: this.x, y: this.y, width: this.width, height: this[Or]}
+            }
+        }, e[dr] = function (t) {
+            return new e(t.x, t.y, t.width, t[Or])
+        }, e
+    }),e("echarts/chart/helper/createListFromArray", [Yr, se, oe, Xr, mi, "../../CoordinateSystem"], function (t) {
+        function e(t) {
+            for (var e = 0; e < t[yr] && null == t[e];)e++;
+            return t[e]
+        }
+
+        function i(t) {
+            var i = e(t);
+            return null != i && !u[Rn](d(i))
+        }
+
+        function n(t, e, n) {
+            t = t || [];
+            var r = e.get(gr), a = v[r], p = h.get(r), g = a && a(t, e, n), m = g && g[ki];
+            m || (m = p && p[ki] || ["x", "y"], m = l(m, t, m[rn](["value"])));
+            var y = g ? g.categoryIndex : -1, x = new s(m, e), _ = o(g, t), w = {}, b = y >= 0 && i(t) ? function (t, e, i, n) {
+                return c.isDataItemOption(t) && (x[E] = !0), n === y ? i : f(d(t), m[n])
+            } : function (t, e, i, n) {
+                var r = d(t), a = f(r && r[n], m[n]);
+                c.isDataItemOption(t) && (x[E] = !0);
+                var o = g && g.categoryAxesModels;
+                return o && o[e] && typeof a === Er && (w[e] = w[e] || o[e].getCategories(), a = u[mr](w[e], a), 0 > a && !isNaN(a) && (a = +a)), a
+            };
+            return x[E] = !1, x[re](t, _, b), x
+        }
+
+        function r(t) {
+            return t !== Mi && "time" !== t
+        }
+
+        function a(t) {
+            return t === Mi ? qe : "time" === t ? "time" : "float"
+        }
+
+        function o(t, e) {
+            var i, n = [], r = t && t[ki][t.categoryIndex];
+            if (r && (i = t.categoryAxesModels[r.name]), i) {
+                var a = i.getCategories();
+                if (a) {
+                    var o = e[yr];
+                    if (u[Rn](e[0]) && e[0][yr] > 1) {
+                        n = [];
+                        for (var s = 0; o > s; s++)n[s] = a[e[s][t.categoryIndex || 0]]
+                    } else n = a.slice(0)
+                }
+            }
+            return n
+        }
+
+        var s = t(se), l = t(oe), u = t(Xr), c = t(mi), h = t("../../CoordinateSystem"), d = c.getDataItemValue, f = c.converDataValue, v = {
+            cartesian2d: function (t, e, i) {
+                var n = u.map(["xAxis", "yAxis"], function (t) {
+                    return i[K]({mainType: t, index: e.get(t + "Index"), id: e.get(t + "Id")})[0]
+                }), o = n[0], s = n[1], c = o.get("type"), h = s.get("type"), d = [{
+                    name: "x",
+                    type: a(c),
+                    stackable: r(c)
+                }, {name: "y", type: a(h), stackable: r(h)}], f = c === Mi, p = h === Mi;
+                l(d, t, ["x", "y", "z"]);
+                var v = {};
+                return f && (v.x = o), p && (v.y = s), {
+                    dimensions: d,
+                    categoryIndex: f ? 0 : p ? 1 : -1,
+                    categoryAxesModels: v
+                }
+            }, singleAxis: function (t, e, i) {
+                var n = i[K]({
+                    mainType: "singleAxis",
+                    index: e.get("singleAxisIndex"),
+                    id: e.get("singleAxisId")
+                })[0], o = n.get("type"), s = o === Mi, u = [{name: "single", type: a(o), stackable: r(o)}];
+                l(u, t);
+                var c = {};
+                return s && (c[p] = n), {dimensions: u, categoryIndex: s ? 0 : -1, categoryAxesModels: c}
+            }, polar: function (t, e, i) {
+                var n = i[K]({
+                    mainType: "polar",
+                    index: e.get(D),
+                    id: e.get("polarId")
+                })[0], o = n.findAxisModel("angleAxis"), s = n.findAxisModel("radiusAxis"), u = s.get("type"), c = o.get("type"), h = [{
+                    name: "radius",
+                    type: a(u),
+                    stackable: r(u)
+                }, {name: "angle", type: a(c), stackable: r(c)}], d = c === Mi, f = u === Mi;
+                l(h, t, [pi, "angle", "value"]);
+                var p = {};
+                return f && (p[pi] = s), d && (p.angle = o), {
+                    dimensions: h,
+                    categoryIndex: d ? 1 : f ? 0 : -1,
+                    categoryAxesModels: p
+                }
+            }, geo: function (t) {
+                return {dimensions: l([{name: "lng"}, {name: "lat"}], t, ["lng", "lat", "value"])}
+            }
+        };
+        return n
+    }),e("echarts/util/clazz", [Yr, Xr], function (t) {
+        function e(t) {
+            r[Pr](/^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)?$/.test(t), 'componentType "' + t + '" illegal')
+        }
+
+        function i(t, e) {
+            var i = r.slice(arguments, 2);
+            return this.superClass[Nr][e].apply(t, i)
+        }
+
+        function n(t, e, i) {
+            return this.superClass[Nr][e].apply(t, i)
+        }
+
+        var r = t(Xr), a = {}, o = ".", s = "___EC__COMPONENT__CONTAINER___", l = "\x00ec_\x00";
+        a.set = function (t, e, i) {
+            return t[l + e] = i
+        }, a.get = function (t, e) {
+            return t[l + e]
+        }, a.hasOwn = function (t, e) {
+            return t.hasOwnProperty(l + e)
+        };
+        var u = a.parseClassType = function (t) {
+            var e = {main: "", sub: ""};
+            return t && (t = t.split(o), e.main = t[0] || "", e.sub = t[1] || ""), e
+        };
+        return a.enableClassExtend = function (t, e) {
+            t.$constructor = t, t[ir] = function (t) {
+                var e = this, a = function () {
+                    t.$constructor ? t.$constructor.apply(this, arguments) : e.apply(this, arguments)
+                };
+                return r[ir](a[Nr], t), a[ir] = this[ir], a[ae] = i, a[ln] = n, r[Cn](a, this), a.superClass = e, a
+            }
+        }, a.enableClassManagement = function (t, i) {
+            function n(t) {
+                var e = a[t.main];
+                return e && e[s] || (e = a[t.main] = {}, e[s] = !0), e
+            }
+
+            i = i || {};
+            var a = {};
+            if (t.registerClass = function (t, i) {
+                    if (i)if (e(i), i = u(i), i.sub) {
+                        if (i.sub !== s) {
+                            var r = n(i);
+                            r[i.sub] = t
+                        }
+                    } else a[i.main] = t;
+                    return t
+                }, t.getClass = function (t, e, i) {
+                    var n = a[t];
+                    if (n && n[s] && (n = e ? n[e] : null), i && !n)throw new Error(e ? "Component " + t + "." + (e || "") + " not exists. Load it first." : t + ".type should be specified.");
+                    return n
+                }, t.getClassesByMainType = function (t) {
+                    t = u(t);
+                    var e = [], i = a[t.main];
+                    return i && i[s] ? r.each(i, function (t, i) {
+                        i !== s && e.push(t)
+                    }) : e.push(i), e
+                }, t.hasClass = function (t) {
+                    return t = u(t), !!a[t.main]
+                }, t.getAllClassMainTypes = function () {
+                    var t = [];
+                    return r.each(a, function (e, i) {
+                        t.push(i)
+                    }), t
+                }, t.hasSubTypes = function (t) {
+                    t = u(t);
+                    var e = a[t.main];
+                    return e && e[s]
+                }, t.parseClassType = u, i.registerWhenExtend) {
+                var o = t[ir];
+                o && (t[ir] = function (e) {
+                    var i = o.call(this, e);
+                    return t.registerClass(i, e.type)
+                })
+            }
+            return t
+        }, a.setReadOnly = function () {
+        }, a
+    }),e("echarts/model/mixin/lineStyle", [Yr, "./makeStyleMapper"], function (t) {
+        var e = t("./makeStyleMapper")([[q, "width"], [Bi, "color"], [cn], [r], [i], ["shadowOffsetY"], [n]]);
+        return {
+            getLineStyle: function (t) {
+                var i = e.call(this, t), n = this.getLineDash(i[q]);
+                return n && (i.lineDash = n), i
+            }, getLineDash: function (t) {
+                null == t && (t = 1);
+                var e = this.get("type"), i = Math.max(t, 2), n = 4 * t;
+                return "solid" === e || null == e ? null : "dashed" === e ? [n, n] : [i, i]
+            }
+        }
+    }),e("echarts/data/DataDiffer", [Yr], function () {
+        function t(t) {
+            return t
+        }
+
+        function e(e, i, n, r) {
+            this._old = e, this._new = i, this._oldKeyGetter = n || t, this._newKeyGetter = r || t
+        }
+
+        function i(t, e, i, n) {
+            for (var r = 0; r < t[yr]; r++) {
+                var a = n(t[r], r), o = e[a];
+                null == o ? (i.push(a), e[a] = r) : (o[yr] || (e[a] = o = [o]), o.push(r))
+            }
+        }
+
+        return e[Nr] = {
+            constructor: e, add: function (t) {
+                return this._add = t, this
+            }, update: function (t) {
+                return this._update = t, this
+            }, remove: function (t) {
+                return this._remove = t, this
+            }, execute: function () {
+                var t, e = this._old, n = this._new, r = this._oldKeyGetter, a = this._newKeyGetter, o = {}, s = {}, l = [], u = [];
+                for (i(e, o, l, r), i(n, s, u, a), t = 0; t < e[yr]; t++) {
+                    var c = l[t], h = s[c];
+                    if (null != h) {
+                        var d = h[yr];
+                        d ? (1 === d && (s[c] = null), h = h.unshift()) : s[c] = null, this._update && this._update(h, t)
+                    } else this._remove && this._remove(t)
+                }
+                for (var t = 0; t < u[yr]; t++) {
+                    var c = u[t];
+                    if (s.hasOwnProperty(c)) {
+                        var h = s[c];
+                        if (null == h)continue;
+                        if (h[yr])for (var f = 0, d = h[yr]; d > f; f++)this._add && this._add(h[f]); else this._add && this._add(h)
+                    }
+                }
+            }
+        }, e
+    }),e("echarts/model/mixin/areaStyle", [Yr, "./makeStyleMapper"], function (t) {
+        return {getAreaStyle: t("./makeStyleMapper")([["fill", "color"], [r], [i], ["shadowOffsetY"], [cn], [n]])}
+    }),e("echarts/model/mixin/itemStyle", [Yr, "./makeStyleMapper"], function (t) {
+        var e = t("./makeStyleMapper")([["fill", "color"], [Bi, Hi], [q, k], [cn], [r], [i], ["shadowOffsetY"], [n], [T], [wn]]);
+        return {
+            getItemStyle: function (t) {
+                var i = e.call(this, t), n = this.getBorderLineDash();
+                return n && (i.lineDash = n), i
+            }, getBorderLineDash: function () {
+                var t = this.get("borderType");
+                return "solid" === t || null == t ? null : "dashed" === t ? [5, 5] : [1, 1]
+            }
+        }
+    }),e("echarts/model/mixin/textStyle", [Yr, N], function (t) {
+        function e(t, e) {
+            return t && t[Be](e)
+        }
+
+        var i = t(N);
+        return {
+            getTextColor: function () {
+                var t = this[$];
+                return this[Be]("color") || t && t.get("textStyle.color")
+            }, getFont: function () {
+                var t = this[$], i = t && t[Lr](bn);
+                return [this[Be]("fontStyle") || e(i, "fontStyle"), this[Be]("fontWeight") || e(i, "fontWeight"), (this[Be]("fontSize") || e(i, "fontSize") || 12) + "px", this[Be]("fontFamily") || e(i, "fontFamily") || "sans-serif"].join(" ")
+            }, getTextRect: function (t) {
+                return i[yn](t, this[_n](), this[Be]("align"), this[Be]("baseline"))
+            }, truncateText: function (t, e, n, r) {
+                return i.truncateText(t, e, this[_n](), n, r)
+            }
+        }
+    }),e("echarts/component/helper/selectableMixin", [Yr, Xr], function (t) {
+        var e = t(Xr);
+        return {
+            updateSelectedMap: function (t) {
+                this._selectTargetMap = e.reduce(t || [], function (t, e) {
+                    return t[e.name] = e, t
+                }, {})
+            }, select: function (t) {
+                var i = this._selectTargetMap, n = i[t], r = this.get("selectedMode");
+                r === p && e.each(i, function (t) {
+                    t[ve] = !1
+                }), n && (n[ve] = !0)
+            }, unSelect: function (t) {
+                var e = this._selectTargetMap[t];
+                e && (e[ve] = !1)
+            }, toggleSelected: function (t) {
+                var e = this._selectTargetMap[t];
+                return null != e ? (this[e[ve] ? "unSelect" : "select"](t), e[ve]) : void 0
+            }, isSelected: function (t) {
+                var e = this._selectTargetMap[t];
+                return e && e[ve]
+            }
+        }
+    }),e("zrender/vml/graphic", [Yr, "../core/env", "../core/vector", "../core/BoundingRect", "../core/PathProxy", "../tool/color", "../contain/text", "../graphic/mixin/RectText", "../graphic/Displayable", "../graphic/Image", "../graphic/Text", "../graphic/Path", "../graphic/Gradient", "./core"], function (t) {
+        if (!t("../core/env")[Ar]) {
+            var e = t("../core/vector"), i = t("../core/BoundingRect"), n = t("../core/PathProxy").CMD, r = t("../tool/color"), a = t("../contain/text"), s = t("../graphic/mixin/RectText"), l = t("../graphic/Displayable"), u = t("../graphic/Image"), c = t("../graphic/Text"), h = t("../graphic/Path"), d = t("../graphic/Gradient"), f = t("./core"), p = Math.round, v = Math.sqrt, g = Math.abs, m = Math.cos, y = Math.sin, x = Math.max, _ = e[U], w = ",", b = "progid:DXImageTransform.Microsoft", M = 21600, S = M / 2, A = 1e5, C = 1e3, k = function (t) {
+                t.style.cssText = "position:absolute;left:0;top:0;width:1px;height:1px;", t.coordsize = M + "," + M, t.coordorigin = "0,0"
+            }, P = function (t) {
+                return String(t)[En](/&/g, "&amp;")[En](/"/g, "&quot;")
+            }, D = function (t, e, i) {
+                return "rgb(" + [t, e, i].join(",") + ")"
+            }, z = function (t, e) {
+                e && t && e[L] !== t && t.appendChild(e)
+            }, V = function (t, e) {
+                e && t && e[L] === t && t.removeChild(e)
+            }, R = function (t, e, i) {
+                return (parseFloat(t) || 0) * A + (parseFloat(e) || 0) * C + i
+            }, E = function (t, e) {
+                return typeof t === Er ? t.lastIndexOf("%") >= 0 ? parseFloat(t) / 100 * e : parseFloat(t) : t
+            }, N = function (t, e, i) {
+                var n = r.parse(e);
+                i = +i, isNaN(i) && (i = 1), n && (t.color = D(n[0], n[1], n[2]), t[cn] = i * n[3])
+            }, B = function (t) {
+                var e = r.parse(t);
+                return [D(e[0], e[1], e[2]), e[3]]
+            }, G = function (t, e, i) {
+                var n = e.fill;
+                if (null != n)if (n instanceof d) {
+                    var r, a = 0, o = [0, 0], s = 0, l = 1, u = i[yn](), c = u.width, h = u[Or];
+                    if (n.type === I) {
+                        r = "gradient";
+                        var f = i[O], p = [n.x * c, n.y * h], v = [n.x2 * c, n.y2 * h];
+                        f && (_(p, p, f), _(v, v, f));
+                        var g = v[0] - p[0], m = v[1] - p[1];
+                        a = 180 * Math.atan2(g, m) / Math.PI, 0 > a && (a += 360), 1e-6 > a && (a = 0)
+                    } else {
+                        r = "gradientradial";
+                        var p = [n.x * c, n.y * h], f = i[O], y = i.scale, w = c, b = h;
+                        o = [(p[0] - u.x) / w, (p[1] - u.y) / b], f && _(p, p, f), w /= y[0] * M, b /= y[1] * M;
+                        var S = x(w, b);
+                        s = 0 / S, l = 2 * n.r / S - s
+                    }
+                    var A = n[ur].slice();
+                    A.sort(function (t, e) {
+                        return t[ii] - e[ii]
+                    });
+                    for (var T = A[yr], C = [], L = [], k = 0; T > k; k++) {
+                        var P = A[k], D = B(P.color);
+                        L.push(P[ii] * l + s + " " + D[0]), (0 === k || k === T - 1) && C.push(D)
+                    }
+                    if (T >= 2) {
+                        var z = C[0][0], V = C[1][0], R = C[0][1] * e[cn], E = C[1][1] * e[cn];
+                        t.type = r, t.method = "none", t.focus = "100%", t.angle = a, t.color = z, t.color2 = V, t.colors = L.join(","), t[cn] = E, t.opacity2 = R
+                    }
+                    "radial" === r && (t.focusposition = o.join(","))
+                } else N(t, n, e[cn])
+            }, F = function (t, e) {
+                null != e.lineDash && (t.dashstyle = e.lineDash.join(" ")), null == e[Bi] || e[Bi]instanceof d || N(t, e[Bi], e[cn])
+            }, H = function (t, e, i, n) {
+                var r = "fill" == e, a = t.getElementsByTagName(e)[0];
+                null != i[e] && "none" !== i[e] && (r || !r && i[q]) ? (t[r ? "filled" : "stroked"] = "true", i[e]instanceof d && V(t, a), a || (a = f.createNode(e)), r ? G(a, i, n) : F(a, i), z(t, a)) : (t[r ? "filled" : "stroked"] = "false", V(t, a))
+            }, Z = [[], [], []], W = function (t, e) {
+                var i, r, a, o, s, l, u = n.M, c = n.C, h = n.L, d = n.A, f = n.Q, g = [];
+                for (o = 0; o < t[yr];) {
+                    switch (a = t[o++], r = "", i = 0, a) {
+                        case u:
+                            r = " m ", i = 1, s = t[o++], l = t[o++], Z[0][0] = s, Z[0][1] = l;
+                            break;
+                        case h:
+                            r = " l ", i = 1, s = t[o++], l = t[o++], Z[0][0] = s, Z[0][1] = l;
+                            break;
+                        case f:
+                        case c:
+                            r = " c ", i = 3;
+                            var x, b, A = t[o++], T = t[o++], C = t[o++], L = t[o++];
+                            a === f ? (x = C, b = L, C = (C + 2 * A) / 3, L = (L + 2 * T) / 3, A = (s + 2 * A) / 3, T = (l + 2 * T) / 3) : (x = t[o++], b = t[o++]), Z[0][0] = A, Z[0][1] = T, Z[1][0] = C, Z[1][1] = L, Z[2][0] = x, Z[2][1] = b, s = x, l = b;
+                            break;
+                        case d:
+                            var k = 0, I = 0, P = 1, D = 1, z = 0;
+                            e && (k = e[4], I = e[5], P = v(e[0] * e[0] + e[1] * e[1]), D = v(e[2] * e[2] + e[3] * e[3]), z = Math.atan2(-e[1] / D, e[0] / P));
+                            var V = t[o++], O = t[o++], R = t[o++], E = t[o++], N = t[o++] + z, B = t[o++] + N + z;
+                            o++;
+                            var G = t[o++], F = V + m(N) * R, H = O + y(N) * E, A = V + m(B) * R, T = O + y(B) * E, W = G ? " wa " : " at ";
+                            Math.abs(F - A) < 1e-4 && (Math.abs(B - N) > .01 ? G && (F += 270 / M) : Math.abs(H - O) < 1e-4 ? G && V > F || !G && F > V ? T -= 270 / M : T += 270 / M : G && O > H || !G && H > O ? A += 270 / M : A -= 270 / M), g.push(W, p(((V - R) * P + k) * M - S), w, p(((O - E) * D + I) * M - S), w, p(((V + R) * P + k) * M - S), w, p(((O + E) * D + I) * M - S), w, p((F * P + k) * M - S), w, p((H * D + I) * M - S), w, p((A * P + k) * M - S), w, p((T * D + I) * M - S)), s = A, l = T;
+                            break;
+                        case n.R:
+                            var q = Z[0], U = Z[1];
+                            q[0] = t[o++], q[1] = t[o++], U[0] = q[0] + t[o++], U[1] = q[1] + t[o++], e && (_(q, q, e), _(U, U, e)), q[0] = p(q[0] * M - S), U[0] = p(U[0] * M - S), q[1] = p(q[1] * M - S), U[1] = p(U[1] * M - S), g.push(" m ", q[0], w, q[1], " l ", U[0], w, q[1], " l ", U[0], w, U[1], " l ", q[0], w, U[1]);
+                            break;
+                        case n.Z:
+                            g.push(" x ")
+                    }
+                    if (i > 0) {
+                        g.push(r);
+                        for (var j = 0; i > j; j++) {
+                            var X = Z[j];
+                            e && _(X, X, e), g.push(p(X[0] * M - S), w, p(X[1] * M - S), i - 1 > j ? w : "")
+                        }
+                    }
+                }
+                return g.join("")
+            };
+            h[Nr].brushVML = function (t) {
+                var e = this.style, i = this._vmlEl;
+                i || (i = f.createNode("shape"), k(i), this._vmlEl = i), H(i, "fill", e, this), H(i, Bi, e, this);
+                var n = this[O], r = null != n, a = i.getElementsByTagName(Bi)[0];
+                if (a) {
+                    var s = e[q];
+                    if (r && !e.strokeNoScale) {
+                        var l = n[0] * n[3] - n[1] * n[2];
+                        s *= v(g(l))
+                    }
+                    a.weight = s + "px"
+                }
+                var u = this.path;
+                this.__dirtyPath && (u.beginPath(), this[o](u, this.shape), u.toStatic(), this.__dirtyPath = !1), i.path = W(u.data, this[O]), i.style.zIndex = R(this[Nn], this.z, this.z2), z(t, i), null != e.text ? this.drawRectText(t, this[yn]()) : this.removeRectText(t)
+            }, h[Nr].onRemove = function (t) {
+                V(t, this._vmlEl), this.removeRectText(t)
+            }, h[Nr].onAdd = function (t) {
+                z(t, this._vmlEl), this.appendRectText(t)
+            };
+            var j = function (t) {
+                return "object" == typeof t && t.tagName && "IMG" === t.tagName.toUpperCase()
+            };
+            u[Nr].brushVML = function (t) {
+                var e, i, n = this.style, r = n.image;
+                if (j(r)) {
+                    var a = r.src;
+                    if (a === this._imageSrc)e = this._imageWidth, i = this._imageHeight; else {
+                        var o = r.runtimeStyle, s = o.width, l = o[Or];
+                        o.width = "auto", o[Or] = "auto", e = r.width, i = r[Or], o.width = s, o[Or] = l, this._imageSrc = a, this._imageWidth = e, this._imageHeight = i
+                    }
+                    r = a
+                } else r === this._imageSrc && (e = this._imageWidth, i = this._imageHeight);
+                if (r) {
+                    var u = n.x || 0, c = n.y || 0, h = n.width, d = n[Or], g = n.sWidth, m = n.sHeight, y = n.sx || 0, M = n.sy || 0, S = g && m, A = this._vmlEl;
+                    A || (A = f.doc[_i]("div"), k(A), this._vmlEl = A);
+                    var T, C = A.style, I = !1, P = 1, D = 1;
+                    if (this[O] && (T = this[O], P = v(T[0] * T[0] + T[1] * T[1]), D = v(T[2] * T[2] + T[3] * T[3]), I = T[1] || T[2]), I) {
+                        var V = [u, c], E = [u + h, c], N = [u, c + d], B = [u + h, c + d];
+                        _(V, V, T), _(E, E, T), _(N, N, T), _(B, B, T);
+                        var G = x(V[0], E[0], N[0], B[0]), F = x(V[1], E[1], N[1], B[1]), H = [];
+                        H.push("M11=", T[0] / P, w, "M12=", T[2] / D, w, "M21=", T[1] / P, w, "M22=", T[3] / D, w, "Dx=", p(u * P + T[4]), w, "Dy=", p(c * D + T[5])), C[vn] = "0 " + p(G) + "px " + p(F) + "px 0", C[Ln] = b + ".Matrix(" + H.join("") + ", SizingMethod=clip)"
+                    } else T && (u = u * P + T[4], c = c * D + T[5]), C[Ln] = "", C.left = p(u) + "px", C.top = p(c) + "px";
+                    var Z = this._imageEl, W = this._cropEl;
+                    Z || (Z = f.doc[_i]("div"), this._imageEl = Z);
+                    var q = Z.style;
+                    if (S) {
+                        if (e && i)q.width = p(P * e * h / g) + "px", q[Or] = p(D * i * d / m) + "px"; else {
+                            var U = new Image, X = this;
+                            U.onload = function () {
+                                U.onload = null, e = U.width, i = U[Or], q.width = p(P * e * h / g) + "px", q[Or] = p(D * i * d / m) + "px", X._imageWidth = e, X._imageHeight = i, X._imageSrc = r
+                            }, U.src = r
+                        }
+                        W || (W = f.doc[_i]("div"), W.style.overflow = "hidden", this._cropEl = W);
+                        var Y = W.style;
+                        Y.width = p((h + y * h / g) * P), Y[Or] = p((d + M * d / m) * D), Y[Ln] = b + ".Matrix(Dx=" + -y * h / g * P + ",Dy=" + -M * d / m * D + ")", W[L] || A.appendChild(W), Z[L] != W && W.appendChild(Z)
+                    } else q.width = p(P * h) + "px", q[Or] = p(D * d) + "px", A.appendChild(Z), W && W[L] && (A.removeChild(W), this._cropEl = null);
+                    var $ = "", J = n[cn];
+                    1 > J && ($ += ".Alpha(opacity=" + p(100 * J) + ") "), $ += b + ".AlphaImageLoader(src=" + r + ", SizingMethod=scale)", q[Ln] = $, A.style.zIndex = R(this[Nn], this.z, this.z2), z(t, A), null != n.text && this.drawRectText(t, this[yn]())
+                }
+            }, u[Nr].onRemove = function (t) {
+                V(t, this._vmlEl), this._vmlEl = null, this._cropEl = null, this._imageEl = null, this.removeRectText(t)
+            }, u[Nr].onAdd = function (t) {
+                z(t, this._vmlEl), this.appendRectText(t)
+            };
+            var X, Y = qi, $ = {}, J = 0, Q = 100, K = document[_i]("div"), te = function (t) {
+                var e = $[t];
+                if (!e) {
+                    J > Q && (J = 0, $ = {});
+                    var i, n = K.style;
+                    try {
+                        n.font = t, i = n.fontFamily.split(",")[0]
+                    } catch (r) {
+                    }
+                    e = {
+                        style: n.fontStyle || Y,
+                        variant: n.fontVariant || Y,
+                        weight: n.fontWeight || Y,
+                        size: 0 | parseFloat(n.fontSize || 12),
+                        family: i || "Microsoft YaHei"
+                    }, $[t] = e, J++
+                }
+                return e
+            };
+            a.measureText = function (t, e) {
+                var i = f.doc;
+                X || (X = i[_i]("div"), X.style.cssText = "position:absolute;top:-20000px;left:0;padding:0;margin:0;border:none;white-space:pre;", f.doc.body.appendChild(X));
+                try {
+                    X.style.font = e
+                } catch (n) {
+                }
+                return X.innerHTML = "", X.appendChild(i.createTextNode(t)), {width: X.offsetWidth}
+            };
+            for (var ee = new i, ie = function (t, e, i, n) {
+                var r = this.style, o = r.text;
+                if (null != o && (o += ""), o) {
+                    var s, l, u = r[wn], c = te(r.textFont), h = c.style + " " + c.variant + " " + c.weight + " " + c.size + 'px "' + c.family + '"', d = r.textBaseline, v = r[on];
+                    i = i || a[yn](o, h, u, d);
+                    var g = this[O];
+                    if (g && !n && (ee.copy(e), ee[U](g), e = ee), n)s = e.x, l = e.y; else {
+                        var m = r[T], y = r.textDistance;
+                        if (m instanceof Array)s = e.x + E(m[0], e.width), l = e.y + E(m[1], e[Or]), u = u || "left", d = d || "top"; else {
+                            var x = a.adjustTextPositionOnRect(m, e, i, y);
+                            s = x.x, l = x.y, u = u || x[wn], d = d || x.textBaseline
+                        }
+                    }
+                    if (v) {
+                        switch (v) {
+                            case pn:
+                                l -= i[Or] / 2;
+                                break;
+                            case xr:
+                                l -= i[Or]
+                        }
+                        d = "top"
+                    }
+                    var b = c.size;
+                    switch (d) {
+                        case"hanging":
+                        case"top":
+                            l += b / 1.75;
+                            break;
+                        case pn:
+                            break;
+                        default:
+                            l -= b / 2.25
+                    }
+                    switch (u) {
+                        case"left":
+                            break;
+                        case fn:
+                            s -= i.width / 2;
+                            break;
+                        case"right":
+                            s -= i.width
+                    }
+                    var M, S, A, C = f.createNode, L = this._textVmlEl;
+                    L ? (A = L.firstChild, M = A.nextSibling, S = M.nextSibling) : (L = C("line"), M = C("path"), S = C("textpath"), A = C("skew"), S.style["v-text-align"] = "left", k(L), M.textpathok = !0, S.on = !0, L.from = "0 0", L.to = "1000 0.05", z(L, A), z(L, M), z(L, S), this._textVmlEl = L);
+                    var I = [s, l], D = L.style;
+                    g && n ? (_(I, I, g), A.on = !0, A.matrix = g[0][ne](3) + w + g[2][ne](3) + w + g[1][ne](3) + w + g[3][ne](3) + ",0,0", A[ii] = (p(I[0]) || 0) + "," + (p(I[1]) || 0), A.origin = "0 0", D.left = "0px", D.top = "0px") : (A.on = !1, D.left = p(s) + "px", D.top = p(l) + "px"), S[Er] = P(o);
+                    try {
+                        S.style.font = h
+                    } catch (V) {
+                    }
+                    H(L, "fill", {
+                        fill: n ? r.fill : r.textFill,
+                        opacity: r[cn]
+                    }, this), H(L, Bi, {
+                        stroke: n ? r[Bi] : r.textStroke,
+                        opacity: r[cn],
+                        lineDash: r.lineDash
+                    }, this), L.style.zIndex = R(this[Nn], this.z, this.z2), z(t, L)
+                }
+            }, re = function (t) {
+                V(t, this._textVmlEl), this._textVmlEl = null
+            }, ae = function (t) {
+                z(t, this._textVmlEl)
+            }, oe = [s, l, u, h, c], se = 0; se < oe[yr]; se++) {
+                var le = oe[se][Nr];
+                le.drawRectText = ie, le.removeRectText = re, le.appendRectText = ae
+            }
+            c[Nr].brushVML = function (t) {
+                var e = this.style;
+                null != e.text ? this.drawRectText(t, {
+                    x: e.x || 0,
+                    y: e.y || 0,
+                    width: 0,
+                    height: 0
+                }, this[yn](), !0) : this.removeRectText(t)
+            }, c[Nr].onRemove = function (t) {
+                this.removeRectText(t)
+            }, c[Nr].onAdd = function (t) {
+                this.appendRectText(t)
+            }
+        }
+    }),e("echarts/coord/polar/Polar", [Yr, "./RadiusAxis", "./AngleAxis"], function (t) {
+        var e = t("./RadiusAxis"), i = t("./AngleAxis"), n = function (t) {
+            this.name = t || "", this.cx = 0, this.cy = 0, this._radiusAxis = new e, this._angleAxis = new i
+        };
+        return n[Nr] = {
+            constructor: n, type: "polar", dimensions: [pi, "angle"], containPoint: function (t) {
+                var e = this.pointToCoord(t);
+                return this._radiusAxis[tn](e[0]) && this._angleAxis[tn](e[1])
+            }, containData: function (t) {
+                return this._radiusAxis.containData(t[0]) && this._angleAxis.containData(t[1])
+            }, getAxis: function (t) {
+                return this["_" + t + "Axis"]
+            }, getAxesByScale: function (t) {
+                var e = [], i = this._angleAxis, n = this._radiusAxis;
+                return i.scale.type === t && e.push(i), n.scale.type === t && e.push(n), e
+            }, getAngleAxis: function () {
+                return this._angleAxis
+            }, getRadiusAxis: function () {
+                return this._radiusAxis
+            }, getOtherAxis: function (t) {
+                var e = this._angleAxis;
+                return t === e ? this._radiusAxis : e
+            }, getBaseAxis: function () {
+                return this.getAxesByScale(qe)[0] || this.getAxesByScale("time")[0] || this[ui]()
+            }, dataToPoints: function (t) {
+                return t[fi](this[ki], function (t, e) {
+                    return this[Ai]([t, e])
+                }, this)
+            }, dataToPoint: function (t, e) {
+                return this.coordToPoint([this._radiusAxis.dataToRadius(t[0], e), this._angleAxis.dataToAngle(t[1], e)])
+            }, pointToData: function (t, e) {
+                var i = this.pointToCoord(t);
+                return [this._radiusAxis.radiusToData(i[0], e), this._angleAxis.angleToData(i[1], e)]
+            }, pointToCoord: function (t) {
+                var e = t[0] - this.cx, i = t[1] - this.cy, n = this[ui](), r = n[Qi](), a = Math.min(r[0], r[1]), o = Math.max(r[0], r[1]);
+                n[si] ? a = o - 360 : o = a + 360;
+                var s = Math.sqrt(e * e + i * i);
+                e /= s, i /= s;
+                for (var l = Math.atan2(-i, e) / Math.PI * 180, u = a > l ? 1 : -1; a > l || l > o;)l += 360 * u;
+                return [s, l]
+            }, coordToPoint: function (t) {
+                var e = t[0], i = t[1] / 180 * Math.PI, n = Math.cos(i) * e + this.cx, r = -Math.sin(i) * e + this.cy;
+                return [n, r]
+            }
+        }, n
+    }),e("echarts/coord/single/Single", [Yr, "./SingleAxis", "../axisHelper", Ne], function (t) {
+        function e(t, e, i) {
+            this.dimension = p, this[ki] = [p], this._axis = null, this._rect, this._init(t, e, i), this[kr] = t
+        }
+
+        var i = t("./SingleAxis"), n = t("../axisHelper"), r = t(Ne);
+        return e[Nr] = {
+            type: "singleAxis", constructor: e, _init: function (t) {
+                var e = this.dimension, r = new i(e, n[De](t), [0, 0], t.get("type"), t.get(dn)), a = r.type === Mi;
+                r[gi] = a && t.get(Pe), r[si] = t.get(si), r[d] = t.get(d), t.axis = r, r.model = t, this._axis = r
+            }, update: function (t) {
+                t[lr](function (t) {
+                    if (t[gr] === this) {
+                        var e = t[qr](), i = this.dimension;
+                        this._axis.scale[ke](e, t[Ie](i)), n[Ee](this._axis, this._axis.model)
+                    }
+                }, this)
+            }, resize: function (t, e) {
+                this._rect = r[gn]({
+                    left: t.get("left"),
+                    top: t.get("top"),
+                    right: t.get("right"),
+                    bottom: t.get(xr),
+                    width: t.get("width"),
+                    height: t.get(Or)
+                }, {width: e[Cr](), height: e[Tr]()}), this._adjustAxis()
+            }, getRect: function () {
+                return this._rect
+            }, _adjustAxis: function () {
+                var t = this._rect, e = this._axis, i = e[hi](), n = i ? [0, t.width] : [0, t[Or]], r = e[ni] ? 1 : 0;
+                e[Yi](n[r], n[1 - r]), this._updateAxisTransform(e, i ? t.x : t.y)
+            }, _updateAxisTransform: function (t, e) {
+                var i = t[Qi](), n = i[0] + i[1], r = t[hi]();
+                t[ai] = r ? function (t) {
+                    return t + e
+                } : function (t) {
+                    return n - t + e
+                }, t.toLocalCoord = r ? function (t) {
+                    return t - e
+                } : function (t) {
+                    return n - t + e
+                }
+            }, getAxis: function () {
+                return this._axis
+            }, getBaseAxis: function () {
+                return this._axis
+            }, containPoint: function (t) {
+                var e = this[Sn](), i = this[di](), n = i[d];
+                return n === Ci ? i[tn](i.toLocalCoord(t[0])) && t[1] >= e.y && t[1] <= e.y + e[Or] : i[tn](i.toLocalCoord(t[1])) && t[0] >= e.y && t[0] <= e.y + e[Or]
+            }, pointToData: function (t) {
+                var e = this[di]();
+                return [e[Ve](e.toLocalCoord(t[e[d] === Ci ? 0 : 1]))]
+            }, dataToPoint: function (t) {
+                var e = this[di](), i = this[Sn](), n = [], r = e[d] === Ci ? 0 : 1;
+                return n[r] = e[ai](e[ri](+t)), n[1 - r] = 0 === r ? i.y + i[Or] / 2 : i.x + i.width / 2, n
+            }
+        }, e
+    }),e("echarts/component/marker/MarkerModel", [Yr, mi, Xr, Zr, Ri, Te], function (t) {
+        function e(t) {
+            i[ie](t.label, i.LABEL_OPTIONS)
+        }
+
+        var i = t(mi), n = t(Xr), r = t(Zr), a = t(Ri), o = a[Vi], s = a[Oi], l = t(Te)[Dn]({
+            type: "marker",
+            dependencies: [rr, "grid", "polar", "geo"],
+            init: function (t, e, i, n) {
+                this[J](t, i), this[sn](t, i, n.createdBySelf, !0)
+            },
+            isAnimationEnabled: function () {
+                if (r.node)return !1;
+                var t = this.__hostSeries;
+                return this[Be](zr) && t && t[Ae]()
+            },
+            mergeOption: function (t, i, r, a) {
+                var o = this.constructor, s = this[or] + "Model";
+                r || i[lr](function (t) {
+                    var r = t.get(this[or]), l = t[s];
+                    return r && r.data ? (l ? l[sn](r, i, !0) : (a && e(r), n.each(r.data, function (t) {
+                        t instanceof Array ? (e(t[0]), e(t[1])) : e(t)
+                    }), l = new o(r, this, i), n[ir](l, {
+                        mainType: this[or],
+                        seriesIndex: t[Zn],
+                        name: t.name,
+                        createdBySelf: !0
+                    }), l.__hostSeries = t), void(t[s] = l)) : void(t[s] = null)
+                }, this)
+            },
+            formatTooltip: function (t) {
+                var e = this[qr](), i = this[Ge](t), r = n[Rn](i) ? n.map(i, o).join(", ") : o(i), a = e[we](t), l = s(this.name);
+                return (null != i || a) && (l += zi), a && (l += s(a), null != i && (l += " : ")), null != i && (l += s(r)), l
+            },
+            getData: function () {
+                return this._data
+            },
+            setData: function (t) {
+                this._data = t
+            }
+        });
+        return n.mixin(l, i.dataFormatMixin), l
+    }),e("echarts/coord/polar/PolarModel", [Yr, "./AxisModel", Te], function (t) {
+        t("./AxisModel"), t(Te)[Dn]({
+            type: "polar",
+            dependencies: ["polarAxis", "angleAxis"],
+            coordinateSystem: null,
+            findAxisModel: function (t) {
+                var e, i = this[$];
+                return i[wr](t, function (t) {
+                    t.getCoordSysModel() === this && (e = t)
+                }, this), e
+            },
+            defaultOption: {zlevel: 0, z: 0, center: ["50%", "50%"], radius: "80%"}
+        })
+    }),e("echarts/model/mixin/boxLayout", [Yr], function () {
+        return {
+            getBoxLayoutParams: function () {
+                return {
+                    left: this.get("left"),
+                    top: this.get("top"),
+                    right: this.get("right"),
+                    bottom: this.get(xr),
+                    width: this.get("width"),
+                    height: this.get(Or)
+                }
+            }
+        }
+    }),e("echarts/util/component", [Yr, Xr, "./clazz"], function (t) {
+        var e = t(Xr), i = t("./clazz"), n = i.parseClassType, r = 0, a = {}, o = "_";
+        return a.getUID = function (t) {
+            return [t || "", r++, Math.random()].join(o)
+        }, a.enableSubTypeDefaulter = function (t) {
+            var e = {};
+            return t.registerSubTypeDefaulter = function (t, i) {
+                t = n(t), e[t.main] = i
+            }, t.determineSubType = function (i, r) {
+                var a = r.type;
+                if (!a) {
+                    var o = n(i).main;
+                    t.hasSubTypes(i) && e[o] && (a = e[o](r))
+                }
+                return a
+            }, t
+        }, a.enableTopologicalTravel = function (t, i) {
+            function n(t) {
+                var n = {}, o = [];
+                return e.each(t, function (s) {
+                    var l = r(n, s), u = l.originalDeps = i(s), c = a(u, t);
+                    l.entryCount = c[yr], 0 === l.entryCount && o.push(s), e.each(c, function (t) {
+                        e[mr](l.predecessor, t) < 0 && l.predecessor.push(t);
+                        var i = r(n, t);
+                        e[mr](i.successor, t) < 0 && i.successor.push(s)
+                    })
+                }), {graph: n, noEntryList: o}
+            }
+
+            function r(t, e) {
+                return t[e] || (t[e] = {predecessor: [], successor: []}), t[e]
+            }
+
+            function a(t, i) {
+                var n = [];
+                return e.each(t, function (t) {
+                    e[mr](i, t) >= 0 && n.push(t)
+                }), n
+            }
+
+            t.topologicalTravel = function (t, i, r, a) {
+                function o(t) {
+                    u[t].entryCount--, 0 === u[t].entryCount && c.push(t)
+                }
+
+                function s(t) {
+                    h[t] = !0, o(t)
+                }
+
+                if (t[yr]) {
+                    var l = n(i), u = l.graph, c = l.noEntryList, h = {};
+                    for (e.each(t, function (t) {
+                        h[t] = !0
+                    }); c[yr];) {
+                        var d = c.pop(), f = u[d], p = !!h[d];
+                        p && (r.call(a, d, f.originalDeps.slice()), delete h[d]), e.each(f.successor, p ? s : o)
+                    }
+                    e.each(h, function () {
+                        throw new Error("Circle dependency may exists")
+                    })
+                }
+            }
+        }, a
+    }),e("echarts/component/visualMap/preprocessor", [Yr, Xr], function (t) {
+        function e(t, e) {
+            return t && t.hasOwnProperty && t.hasOwnProperty(e)
+        }
+
+        var i = t(Xr), n = i.each;
+        return function (t) {
+            var r = t && t.visualMap;
+            i[Rn](r) || (r = r ? [r] : []), n(r, function (t) {
+                if (t) {
+                    e(t, "splitList") && !e(t, "pieces") && (t.pieces = t.splitList, delete t.splitList);
+                    var r = t.pieces;
+                    r && i[Rn](r) && n(r, function (t) {
+                        i[Ir](t) && (e(t, "start") && !e(t, "min") && (t.min = t.start), e(t, "end") && !e(t, "max") && (t.max = t.end))
+                    })
+                }
+            })
+        }
+    }),e("echarts/component/visualMap/typeDefaulter", [Yr, v], function (t) {
+        t(v).registerSubTypeDefaulter("visualMap", function (t) {
+            return t[S] || (t.pieces ? t.pieces[yr] > 0 : t.splitNumber > 0) && !t.calculable ? "piecewise" : "continuous"
+        })
+    }),e("echarts/component/visualMap/ContinuousModel", [Yr, "./VisualMapModel", Xr, Di], function (t) {
+        function e(t, e, i) {
+            if (i[0] === i[1])return i.slice();
+            for (var n = 200, r = (i[1] - i[0]) / n, a = i[0], o = [], s = 0; n >= s && a < i[1]; s++)o.push(a), a += r;
+            return o.push(i[1]), o
+        }
+
+        var i = t("./VisualMapModel"), n = t(Xr), r = t(Di), a = [20, 140], o = i[ir]({
+            type: "visualMap.continuous",
+            defaultOption: {
+                align: "auto",
+                calculable: !1,
+                range: null,
+                realtime: !0,
+                itemHeight: null,
+                itemWidth: null,
+                hoverLink: !0,
+                hoverLinkDataSize: null,
+                hoverLinkOnHandle: !0
+            },
+            optionUpdated: function () {
+                o[ln](this, "optionUpdated", arguments), this.resetTargetSeries(), this.resetExtent(), this.resetVisual(function (t) {
+                    t.mappingMethod = I, t.dataExtent = this[Qi]()
+                }), this._resetRange()
+            },
+            resetItemSize: function () {
+                o[ln](this, "resetItemSize", arguments);
+                var t = this.itemSize;
+                this._orient === Ci && t[ni](), (null == t[0] || isNaN(t[0])) && (t[0] = a[0]), (null == t[1] || isNaN(t[1])) && (t[1] = a[1])
+            },
+            _resetRange: function () {
+                var t = this[Qi](), e = this[un].range;
+                !e || e.auto ? (t.auto = 1, this[un].range = t) : n[Rn](e) && (e[0] > e[1] && e[ni](), e[0] = Math.max(e[0], t[0]), e[1] = Math.min(e[1], t[1]))
+            },
+            completeVisualOption: function () {
+                i[Nr].completeVisualOption.apply(this, arguments), n.each(this.stateList, function (t) {
+                    var e = this[un].controller[t][Fe];
+                    e && e[0] !== e[1] && (e[0] = 0)
+                }, this)
+            },
+            setSelected: function (t) {
+                this[un].range = t.slice(), this._resetRange()
+            },
+            getSelected: function () {
+                var t = this[Qi](), e = r.asc((this.get("range") || []).slice());
+                return e[0] > t[1] && (e[0] = t[1]), e[1] > t[1] && (e[1] = t[1]), e[0] < t[0] && (e[0] = t[0]), e[1] < t[0] && (e[1] = t[0]), e
+            },
+            getValueState: function (t) {
+                var e = this[un].range, i = this[Qi]();
+                return (e[0] <= i[0] || e[0] <= t) && (e[1] >= i[1] || t <= e[1]) ? "inRange" : "outOfRange"
+            },
+            findTargetDataIndices: function (t) {
+                var e = [];
+                return this.eachTargetSeries(function (i) {
+                    var n = [], r = i[qr]();
+                    r.each(this.getDataDimension(r), function (e, i) {
+                        t[0] <= e && e <= t[1] && n.push(i)
+                    }, !0, this), e.push({seriesId: i.id, dataIndex: n})
+                }, this), e
+            },
+            getVisualMeta: function (t) {
+                function i(e, i) {
+                    a.push({value: e, color: t(e, i)})
+                }
+
+                for (var n = e(this, "outOfRange", this[Qi]()), r = e(this, "inRange", this[un].range.slice()), a = [], o = 0, s = 0, l = r[yr], u = n[yr]; u > s && (!r[yr] || n[s] <= r[0]); s++)n[s] < r[o] && i(n[s], "outOfRange");
+                for (var c = 1; l > o; o++, c = 0)c && a[yr] && i(r[o], "outOfRange"), i(r[o], "inRange");
+                for (var c = 1; u > s; s++)(!r[yr] || r[r[yr] - 1] < n[s]) && (c && (a[yr] && i(a[a[yr] - 1].value, "outOfRange"), c = 0), i(n[s], "outOfRange"));
+                var h = a[yr];
+                return {stops: a, outerColors: [h ? a[0].color : cr, h ? a[h - 1].color : cr]}
+            }
+        });
+        return o
+    }),e("echarts/component/visualMap/visualEncoding", [Yr, Te, "../../visual/visualSolution", "../../visual/VisualMapping", Xr], function (t) {
+        function e(t) {
+            t.eachTargetSeries(function (e) {
+                var i = e[qr]();
+                a.applyVisual(t.stateList, t.targetVisuals, i, t.getValueState, t, t.getDataDimension(i))
+            })
+        }
+
+        function i(t) {
+            t[lr](function (e) {
+                var i = e[qr](), r = [];
+                t[wr]("visualMap", function (t) {
+                    if (t.isTargetSeries(e)) {
+                        var a = t.getVisualMeta(s.bind(n, null, e, t)) || {stops: [], outerColors: []};
+                        a.dimension = t.getDataDimension(i), r.push(a)
+                    }
+                }), e[qr]()[Wr]("visualMeta", r)
+            })
+        }
+
+        function n(t, e, i, n) {
+            function r(t) {
+                return u[t]
+            }
+
+            function a(t, e) {
+                u[t] = e
+            }
+
+            for (var s = e.targetVisuals[n], l = o.prepareVisualTypes(s), u = {color: t[qr]()[vr]("color")}, c = 0, h = l[yr]; h > c; c++) {
+                var d = l[c], f = s[d === cn ? "__alphaForOpacity" : d];
+                f && f.applyVisual(i, r, a)
+            }
+            return u.color
+        }
+
+        var r = t(Te), a = t("../../visual/visualSolution"), o = t("../../visual/VisualMapping"), s = t(Xr);
+        r.registerVisual(r.PRIORITY.VISUAL.COMPONENT, function (t) {
+            t[wr]("visualMap", function (i) {
+                e(i, t)
+            }), i(t)
+        })
+    }),e("echarts/component/visualMap/visualMapAction", [Yr, Te], function (t) {
+        var e = t(Te), i = {type: "selectDataRange", event: "dataRangeSelected", update: "update"};
+        e[Vn](i, function (t, e) {
+            e[wr]({mainType: "visualMap", query: t}, function (e) {
+                e.setSelected(t[ve])
+            })
+        })
+    }),e("echarts/component/visualMap/ContinuousView", [Yr, "./VisualMapView", ji, Xr, Di, "../helper/sliderMove", "zrender/graphic/LinearGradient", Le, mi], function (t) {
+        function e(t, e, i, n) {
+            return new s[Ue]({shape: {points: t}, draggable: !!i, cursor: e, drift: i, ondragend: n})
+        }
+
+        function i(t, e) {
+            return 0 === t ? [[0, 0], [e, 0], [e, -e]] : [[0, 0], [e, 0], [e, e]]
+        }
+
+        function n(t, e, i, n) {
+            return t ? [[0, -x(e, _(i, 0))], [S, 0], [0, x(e, _(n - i, 0))]] : [[0, 0], [5, -5], [5, 5]]
+        }
+
+        function r(t, e, i) {
+            var n = w / 2, r = t.get("hoverLinkDataSize");
+            return r && (n = m(r, e, i, !0) / 2), n
+        }
+
+        function a(t) {
+            return !t.get(u) && t.get("hoverLinkOnHandle")
+        }
+
+        var o = t("./VisualMapView"), s = t(ji), l = t(Xr), c = t(Di), f = t("../helper/sliderMove"), p = t("zrender/graphic/LinearGradient"), v = t(Le), g = t(mi), m = c[G], y = l.each, x = Math.min, _ = Math.max, w = 12, S = 6, A = o[ir]({
+            type: "visualMap.continuous",
+            init: function () {
+                A[ln](this, "init", arguments), this._shapes = {}, this._dataInterval = [], this._handleEnds = [], this._orient, this._useHandle, this._hoverLinkDataIndices = [], this._dragging, this._hovering
+            },
+            doRender: function (t, e, i, n) {
+                n && "selectDataRange" === n.type && n.from === this.uid || this._buildView()
+            },
+            _buildView: function () {
+                this.group[An]();
+                var t = this.visualMapModel, e = this.group;
+                this._orient = t.get(d), this._useHandle = t.get("calculable"), this._resetInterval(), this._renderBar(e);
+                var i = t.get("text");
+                this._renderEndsText(e, i, 0), this._renderEndsText(e, i, 1), this._updateView(!0), this.renderBackground(e), this._updateView(), this._enableHoverLinkToSeries(), this._enableHoverLinkFromSeries(), this.positionGroup(e)
+            },
+            _renderEndsText: function (t, e, i) {
+                if (e) {
+                    var n = e[1 - i];
+                    n = null != n ? n + "" : "";
+                    var r = this.visualMapModel, a = r.get("textGap"), o = r.itemSize, l = this._shapes.barGroup, u = this._applyTransform([o[0] / 2, 0 === i ? -a : o[1] + a], l), c = this._applyTransform(0 === i ? xr : "top", l), h = this._orient, d = this.visualMapModel.textStyleModel;
+                    this.group.add(new s.Text({
+                        style: {
+                            x: u[0],
+                            y: u[1],
+                            textVerticalAlign: h === Ci ? pn : c,
+                            textAlign: h === Ci ? c : fn,
+                            text: n,
+                            textFont: d[_n](),
+                            fill: d[xn]()
+                        }
+                    }))
+                }
+            },
+            _renderBar: function (t) {
+                var i = this.visualMapModel, n = this._shapes, r = i.itemSize, a = this._orient, o = this._useHandle, s = v.getItemAlign(i, this.api, r), u = n.barGroup = this._createBarGroup(s);
+                u.add(n.outOfRange = e()), u.add(n.inRange = e(null, o ? "move" : null, l.bind(this._dragHandle, this, "all", !1), l.bind(this._dragHandle, this, "all", !0)));
+                var c = i.textStyleModel.getTextRect("国"), h = _(c.width, c[Or]);
+                o && (n.handleThumbs = [], n.handleLabels = [], n.handleLabelPoints = [], this._createHandle(u, 0, r, h, a, s), this._createHandle(u, 1, r, h, a, s)), this._createIndicator(u, r, h, a), t.add(u)
+            },
+            _createHandle: function (t, n, r, a, o) {
+                var u = l.bind(this._dragHandle, this, n, !1), c = l.bind(this._dragHandle, this, n, !0), h = e(i(n, a), "move", u, c);
+                h[dn][0] = r[0], t.add(h);
+                var d = this.visualMapModel.textStyleModel, f = new s.Text({
+                    draggable: !0,
+                    drift: u,
+                    ondragend: c,
+                    style: {x: 0, y: 0, text: "", textFont: d[_n](), fill: d[xn]()}
+                });
+                this.group.add(f);
+                var p = [o === Ci ? a / 2 : 1.5 * a, o === Ci ? 0 === n ? -(1.5 * a) : 1.5 * a : 0 === n ? -a / 2 : a / 2], v = this._shapes;
+                v.handleThumbs[n] = h, v.handleLabelPoints[n] = p, v.handleLabels[n] = f
+            },
+            _createIndicator: function (t, i, n, r) {
+                var a = e([[0, 0]], "move");
+                a[dn][0] = i[0], a.attr({invisible: !0, silent: !0}), t.add(a);
+                var o = this.visualMapModel.textStyleModel, l = new s.Text({
+                    silent: !0,
+                    invisible: !0,
+                    style: {x: 0, y: 0, text: "", textFont: o[_n](), fill: o[xn]()}
+                });
+                this.group.add(l);
+                var u = [r === Ci ? n / 2 : S + 3, 0], c = this._shapes;
+                c.indicator = a, c.indicatorLabel = l, c.indicatorLabelPoint = u
+            },
+            _dragHandle: function (t, e, i, n) {
+                if (this._useHandle) {
+                    if (this._dragging = !e, !e) {
+                        var r = this._applyTransform([i, n], this._shapes.barGroup, !0);
+                        this._updateInterval(t, r[1]), this._updateView()
+                    }
+                    e === !this.visualMapModel.get(u) && this.api[er]({
+                        type: "selectDataRange",
+                        from: this.uid,
+                        visualMapId: this.visualMapModel.id,
+                        selected: this._dataInterval.slice()
+                    }), e ? !this._hovering && this._clearHoverLinkToSeries() : a(this.visualMapModel) && this._doHoverLinkToSeries(this._handleEnds[t], !1)
+                }
+            },
+            _resetInterval: function () {
+                var t = this.visualMapModel, e = this._dataInterval = t.getSelected(), i = t[Qi](), n = [0, t.itemSize[1]];
+                this._handleEnds = [m(e[0], i, n, !0), m(e[1], i, n, !0)]
+            },
+            _updateInterval: function (t, e) {
+                e = e || 0;
+                var i = this.visualMapModel, n = this._handleEnds;
+                f(e, n, [0, i.itemSize[1]], "all" === t ? "rigid" : "push", t);
+                var r = i[Qi](), a = [0, i.itemSize[1]];
+                this._dataInterval = [m(n[0], a, r, !0), m(n[1], a, r, !0)]
+            },
+            _updateView: function (t) {
+                var e = this.visualMapModel, i = e[Qi](), n = this._shapes, r = [0, e.itemSize[1]], a = t ? r : this._handleEnds, o = this._createBarVisual(this._dataInterval, i, a, "inRange"), s = this._createBarVisual(i, i, r, "outOfRange");
+                n.inRange[Bn]({
+                    fill: o.barColor,
+                    opacity: o[cn]
+                })[Qe](We, o.barPoints), n.outOfRange[Bn]({
+                    fill: s.barColor,
+                    opacity: s[cn]
+                })[Qe](We, s.barPoints), this._updateHandle(a, o)
+            },
+            _createBarVisual: function (t, e, i, n) {
+                var r = {
+                    forceState: n,
+                    convertOpacityToAlpha: !0
+                }, a = this._makeColorGradient(t, r), o = [this.getControllerVisual(t[0], Fe, r), this.getControllerVisual(t[1], Fe, r)], s = this._createBarPoints(i, o);
+                return {barColor: new p(0, 0, 0, 1, a), barPoints: s, handlesColor: [a[0].color, a[a[yr] - 1].color]}
+            },
+            _makeColorGradient: function (t, e) {
+                var i = 100, n = [], r = (t[1] - t[0]) / i;
+                n.push({color: this.getControllerVisual(t[0], "color", e), offset: 0});
+                for (var a = 1; i > a; a++) {
+                    var o = t[0] + r * a;
+                    if (o > t[1])break;
+                    n.push({color: this.getControllerVisual(o, "color", e), offset: a / i})
+                }
+                return n.push({color: this.getControllerVisual(t[1], "color", e), offset: 1}), n
+            },
+            _createBarPoints: function (t, e) {
+                var i = this.visualMapModel.itemSize;
+                return [[i[0] - e[0], t[0]], [i[0], t[0]], [i[0], t[1]], [i[0] - e[1], t[1]]]
+            },
+            _createBarGroup: function (t) {
+                var e = this._orient, i = this.visualMapModel.get(si);
+                return new s.Group(e !== Ci || i ? e === Ci && i ? {
+                    scale: t === xr ? [-1, 1] : [1, 1],
+                    rotation: -Math.PI / 2
+                } : e !== h || i ? {scale: "left" === t ? [1, 1] : [-1, 1]} : {scale: "left" === t ? [1, -1] : [-1, -1]} : {
+                    scale: t === xr ? [1, 1] : [-1, 1],
+                    rotation: Math.PI / 2
+                })
+            },
+            _updateHandle: function (t, e) {
+                if (this._useHandle) {
+                    var i = this._shapes, n = this.visualMapModel, r = i.handleThumbs, a = i.handleLabels;
+                    y([0, 1], function (o) {
+                        var l = r[o];
+                        l[Bn]("fill", e.handlesColor[o]), l[dn][1] = t[o];
+                        var u = s[U](i.handleLabelPoints[o], s.getTransform(l, this.group));
+                        a[o][Bn]({
+                            x: u[0],
+                            y: u[1],
+                            text: n.formatValueText(this._dataInterval[o]),
+                            textVerticalAlign: "middle",
+                            textAlign: this._applyTransform(this._orient === Ci ? 0 === o ? xr : "top" : "left", i.barGroup)
+                        })
+                    }, this)
+                }
+            },
+            _showIndicator: function (t, e, i, r) {
+                var a = this.visualMapModel, o = a[Qi](), l = a.itemSize, u = [0, l[1]], c = m(t, o, u, !0), h = this._shapes, d = h.indicator;
+                if (d) {
+                    d[dn][1] = c, d.attr(P, !1), d[Qe](We, n(!!i, r, c, l[1]));
+                    var f = {convertOpacityToAlpha: !0}, p = this.getControllerVisual(t, "color", f);
+                    d[Bn]("fill", p);
+                    var v = s[U](h.indicatorLabelPoint, s.getTransform(d, this.group)), g = h.indicatorLabel;
+                    g.attr(P, !1);
+                    var y = this._applyTransform("left", h.barGroup), x = this._orient;
+                    g[Bn]({
+                        text: (i ? i : "") + a.formatValueText(e),
+                        textVerticalAlign: x === Ci ? y : pn,
+                        textAlign: x === Ci ? fn : y,
+                        x: v[0],
+                        y: v[1]
+                    })
+                }
+            },
+            _enableHoverLinkToSeries: function () {
+                var t = this;
+                this._shapes.barGroup.on(Un, function (e) {
+                    if (t._hovering = !0, !t._dragging) {
+                        var i = t.visualMapModel.itemSize, n = t._applyTransform([e[M], e[b]], t._shapes.barGroup, !0, !0);
+                        n[1] = x(_(0, n[1]), i[1]), t._doHoverLinkToSeries(n[1], 0 <= n[0] && n[0] <= i[0])
+                    }
+                }).on(jn, function () {
+                    t._hovering = !1, !t._dragging && t._clearHoverLinkToSeries()
+                })
+            },
+            _enableHoverLinkFromSeries: function () {
+                var t = this.api.getZr();
+                this.visualMapModel[un].hoverLink ? (t.on(Xn, this._hoverLinkFromSeriesMouseOver, this), t.on(jn, this._hideIndicator, this)) : this._clearHoverLinkFromSeries()
+            },
+            _doHoverLinkToSeries: function (t, e) {
+                var i = this.visualMapModel, n = i.itemSize;
+                if (i[un].hoverLink) {
+                    var o = [0, n[1]], s = i[Qi]();
+                    t = x(_(o[0], t), o[1]);
+                    var l = r(i, s, o), u = [t - l, t + l], c = m(t, o, s, !0), h = [m(u[0], o, s, !0), m(u[1], o, s, !0)];
+                    u[0] < o[0] && (h[0] = -1 / 0), u[1] > o[1] && (h[1] = 1 / 0), e && (h[0] === -1 / 0 ? this._showIndicator(c, h[1], "< ", l) : 1 / 0 === h[1] ? this._showIndicator(c, h[0], "> ", l) : this._showIndicator(c, c, "≈ ", l));
+                    var d = this._hoverLinkDataIndices, f = [];
+                    (e || a(i)) && (f = this._hoverLinkDataIndices = i.findTargetDataIndices(h));
+                    var p = g.compressBatches(d, f);
+                    this._dispatchHighDown(Qn, v.convertDataIndex(p[0])), this._dispatchHighDown(Kn, v.convertDataIndex(p[1]))
+                }
+            },
+            _hoverLinkFromSeriesMouseOver: function (t) {
+                var e = t[Wn];
+                if (e && null != e[pr]) {
+                    var i = e.dataModel || this[$].getSeriesByIndex(e[Zn]), n = i[qr](e[Fn]), r = n.getDimension(this.visualMapModel.getDataDimension(n)), a = n.get(r, e[pr], !0);
+                    isNaN(a) || this._showIndicator(a, a)
+                }
+            },
+            _hideIndicator: function () {
+                var t = this._shapes;
+                t.indicator && t.indicator.attr(P, !0), t.indicatorLabel && t.indicatorLabel.attr(P, !0)
+            },
+            _clearHoverLinkToSeries: function () {
+                this._hideIndicator();
+                var t = this._hoverLinkDataIndices;
+                this._dispatchHighDown(Qn, v.convertDataIndex(t)), t[yr] = 0
+            },
+            _clearHoverLinkFromSeries: function () {
+                this._hideIndicator();
+                var t = this.api.getZr();
+                t.off(Xn, this._hoverLinkFromSeriesMouseOver), t.off(jn, this._hideIndicator)
+            },
+            _applyTransform: function (t, e, i, n) {
+                var r = s.getTransform(e, n ? null : this.group);
+                return s[l[Rn](t) ? U : "transformDirection"](t, r, i)
+            },
+            _dispatchHighDown: function (t, e) {
+                e && e[yr] && this.api[er]({type: t, batch: e})
+            },
+            dispose: function () {
+                this._clearHoverLinkFromSeries(), this._clearHoverLinkToSeries()
+            },
+            remove: function () {
+                this._clearHoverLinkFromSeries(), this._clearHoverLinkToSeries()
+            }
+        });
+        return A
+    }),e("echarts/component/toolbox/ToolboxModel", [Yr, "./featureManager", Xr, Te], function (t) {
+        var e = t("./featureManager"), i = t(Xr), n = t(Te)[Dn]({
+            type: "toolbox",
+            layoutMode: {type: "box", ignoreSize: !0},
+            mergeDefaultAndTheme: function () {
+                n[ln](this, J, arguments), i.each(this[un].feature, function (t, n) {
+                    var r = e.get(n);
+                    r && i.merge(t, r.defaultOption)
+                })
+            },
+            defaultOption: {
+                show: !0,
+                z: 6,
+                zlevel: 0,
+                orient: "horizontal",
+                left: "right",
+                top: "top",
+                backgroundColor: "transparent",
+                borderColor: "#ccc",
+                borderWidth: 0,
+                padding: 5,
+                itemSize: 15,
+                itemGap: 8,
+                showTitle: !0,
+                iconStyle: {normal: {borderColor: "#666", color: "none"}, emphasis: {borderColor: "#3E98C5"}}
+            }
+        });
+        return n
+    }),e("echarts/scale/Interval", [Yr, nn, "../util/format", "./Scale"], function (t) {
+        var e = t(nn), i = t("../util/format"), n = t("./Scale"), r = Math.floor, a = Math.ceil, o = e.getPrecisionSafe, s = e.round, l = n[ir]({
+            type: "interval",
+            _interval: 0,
+            setExtent: function (t, e) {
+                var i = this[en];
+                isNaN(t) || (i[0] = parseFloat(t)), isNaN(e) || (i[1] = parseFloat(e))
+            },
+            unionExtent: function (t) {
+                var e = this[en];
+                t[0] < e[0] && (e[0] = t[0]), t[1] > e[1] && (e[1] = t[1]), l[Nr][Yi].call(this, e[0], e[1])
+            },
+            getInterval: function () {
+                return this._interval || this.niceTicks(), this._interval
+            },
+            setInterval: function (t) {
+                this._interval = t, this._niceExtent = this[en].slice()
+            },
+            getTicks: function () {
+                this._interval || this.niceTicks();
+                var t = this._interval, e = this[en], i = [], n = 1e4;
+                if (t) {
+                    var r = this._niceExtent, a = o(t) + 2;
+                    e[0] < r[0] && i.push(e[0]);
+                    for (var l = r[0]; l <= r[1];)if (i.push(l), l = s(l + t, a), i[yr] > n)return [];
+                    e[1] > (i[yr] ? i[i[yr] - 1] : r[1]) && i.push(e[1])
+                }
+                return i
+            },
+            getTicksLabels: function () {
+                for (var t = [], e = this[Ji](), i = 0; i < e[yr]; i++)t.push(this[$i](e[i]));
+                return t
+            },
+            getLabel: function (t) {
+                return i[Vi](t)
+            },
+            niceTicks: function (t) {
+                t = t || 5;
+                var i = this[en], n = i[1] - i[0];
+                if (isFinite(n)) {
+                    0 > n && (n = -n, i[ni]());
+                    var l = s(e.nice(n / t, !0), Math.max(o(i[0]), o(i[1])) + 2), u = o(l) + 2, c = [s(a(i[0] / l) * l, u), s(r(i[1] / l) * l, u)];
+                    this._interval = l, this._niceExtent = c
+                }
+            },
+            niceExtent: function (t, e, i) {
+                var n = this[en];
+                if (n[0] === n[1])if (0 !== n[0]) {
+                    var o = n[0];
+                    i ? n[0] -= o / 2 : (n[1] += o / 2, n[0] -= o / 2)
+                } else n[1] = 1;
+                var l = n[1] - n[0];
+                isFinite(l) || (n[0] = 0, n[1] = 1), this.niceTicks(t);
+                var u = this._interval;
+                e || (n[0] = s(r(n[0] / u) * u)), i || (n[1] = s(a(n[1] / u) * u))
+            }
+        });
+        return l[dr] = function () {
+            return new l
+        }, l
+    }),e("zrender/tool/transformPath", [Yr, "../core/PathProxy", "../core/vector"], function (t) {
+        function e(t, e) {
+            var n, l, u, c, h, d, f = t.data, p = i.M, v = i.C, g = i.L, m = i.R, y = i.A, x = i.Q;
+            for (u = 0, c = 0; u < f[yr];) {
+                switch (n = f[u++], c = u, l = 0, n) {
+                    case p:
+                        l = 1;
+                        break;
+                    case g:
+                        l = 1;
+                        break;
+                    case v:
+                        l = 3;
+                        break;
+                    case x:
+                        l = 2;
+                        break;
+                    case y:
+                        var _ = e[4], w = e[5], b = o(e[0] * e[0] + e[1] * e[1]), M = o(e[2] * e[2] + e[3] * e[3]), S = s(-e[1] / M, e[0] / b);
+                        f[u++] += _, f[u++] += w, f[u++] *= b, f[u++] *= M, f[u++] += S, f[u++] += S, u += 2, c = u;
+                        break;
+                    case m:
+                        d[0] = f[u++], d[1] = f[u++], r(d, d, e), f[c++] = d[0], f[c++] = d[1], d[0] += f[u++], d[1] += f[u++], r(d, d, e), f[c++] = d[0], f[c++] = d[1]
+                }
+                for (h = 0; l > h; h++) {
+                    var d = a[h];
+                    d[0] = f[u++], d[1] = f[u++], r(d, d, e), f[c++] = d[0], f[c++] = d[1]
+                }
+            }
+        }
+
+        var i = t("../core/PathProxy").CMD, n = t("../core/vector"), r = n[U], a = [[], [], []], o = Math.sqrt, s = Math.atan2;
+        return e
+    }),e("zrender/core/PathProxy", [Yr, "./curve", "./vector", "./bbox", "./BoundingRect", "../config"], function (t) {
+        var e = t("./curve"), i = t("./vector"), n = t("./bbox"), r = t("./BoundingRect"), a = t("../config").devicePixelRatio, o = {
+            M: 1,
+            L: 2,
+            C: 3,
+            Q: 4,
+            A: 5,
+            Z: 6,
+            R: 7
+        }, s = [], l = [], u = [], h = [], d = Math.min, f = Math.max, p = Math.cos, v = Math.sin, x = Math.sqrt, _ = Math.abs, w = typeof Float32Array != Q, b = function () {
+            this.data = [], this._len = 0, this._ctx = null, this._xi = 0, this._yi = 0, this._x0 = 0, this._y0 = 0, this._ux = 0, this._uy = 0
+        };
+        return b[Nr] = {
+            constructor: b,
+            _lineDash: null,
+            _dashOffset: 0,
+            _dashIdx: 0,
+            _dashSum: 0,
+            setScale: function (t, e) {
+                this._ux = _(1 / a / t) || 0, this._uy = _(1 / a / e) || 0
+            },
+            getContext: function () {
+                return this._ctx
+            },
+            beginPath: function (t) {
+                return this._ctx = t, t && t.beginPath(), t && (this.dpr = t.dpr), this._len = 0, this._lineDash && (this._lineDash = null, this._dashOffset = 0), this
+            },
+            moveTo: function (t, e) {
+                return this.addData(o.M, t, e), this._ctx && this._ctx[y](t, e), this._x0 = t, this._y0 = e, this._xi = t, this._yi = e, this
+            },
+            lineTo: function (t, e) {
+                var i = _(t - this._xi) > this._ux || _(e - this._yi) > this._uy || this._len < 5;
+                return this.addData(o.L, t, e), this._ctx && i && (this._needsDash() ? this._dashedLineTo(t, e) : this._ctx[m](t, e)), i && (this._xi = t, this._yi = e), this
+            },
+            bezierCurveTo: function (t, e, i, n, r, a) {
+                return this.addData(o.C, t, e, i, n, r, a), this._ctx && (this._needsDash() ? this._dashedBezierTo(t, e, i, n, r, a) : this._ctx.bezierCurveTo(t, e, i, n, r, a)), this._xi = r, this._yi = a, this
+            },
+            quadraticCurveTo: function (t, e, i, n) {
+                return this.addData(o.Q, t, e, i, n), this._ctx && (this._needsDash() ? this._dashedQuadraticTo(t, e, i, n) : this._ctx.quadraticCurveTo(t, e, i, n)), this._xi = i, this._yi = n, this
+            },
+            arc: function (t, e, i, n, r, a) {
+                return this.addData(o.A, t, e, i, i, n, r - n, 0, a ? 0 : 1), this._ctx && this._ctx.arc(t, e, i, n, r, a), this._xi = p(r) * i + t, this._yi = v(r) * i + t, this
+            },
+            arcTo: function (t, e, i, n, r) {
+                return this._ctx && this._ctx.arcTo(t, e, i, n, r), this
+            },
+            rect: function (t, e, i, n) {
+                return this._ctx && this._ctx.rect(t, e, i, n), this.addData(o.R, t, e, i, n), this
+            },
+            closePath: function () {
+                this.addData(o.Z);
+                var t = this._ctx, e = this._x0, i = this._y0;
+                return t && (this._needsDash() && this._dashedLineTo(e, i), t[g]()), this._xi = e, this._yi = i, this
+            },
+            fill: function (t) {
+                t && t.fill(), this.toStatic()
+            },
+            stroke: function (t) {
+                t && t[Bi](), this.toStatic()
+            },
+            setLineDash: function (t) {
+                if (t instanceof Array) {
+                    this._lineDash = t, this._dashIdx = 0;
+                    for (var e = 0, i = 0; i < t[yr]; i++)e += t[i];
+                    this._dashSum = e
+                }
+                return this
+            },
+            setLineDashOffset: function (t) {
+                return this._dashOffset = t, this
+            },
+            len: function () {
+                return this._len
+            },
+            setData: function (t) {
+                var e = t[yr];
+                this.data && this.data[yr] == e || !w || (this.data = new Float32Array(e));
+                for (var i = 0; e > i; i++)this.data[i] = t[i];
+                this._len = e
+            },
+            appendPath: function (t) {
+                t instanceof Array || (t = [t]);
+                for (var e = t[yr], i = 0, n = this._len, r = 0; e > r; r++)i += t[r].len();
+                w && this.data instanceof Float32Array && (this.data = new Float32Array(n + i));
+                for (var r = 0; e > r; r++)for (var a = t[r].data, o = 0; o < a[yr]; o++)this.data[n++] = a[o];
+                this._len = n
+            },
+            addData: function (t) {
+                var e = this.data;
+                this._len + arguments[yr] > e[yr] && (this._expandData(), e = this.data);
+                for (var i = 0; i < arguments[yr]; i++)e[this._len++] = arguments[i];
+                this._prevCmd = t
+            },
+            _expandData: function () {
+                if (!(this.data instanceof Array)) {
+                    for (var t = [], e = 0; e < this._len; e++)t[e] = this.data[e];
+                    this.data = t
+                }
+            },
+            _needsDash: function () {
+                return this._lineDash
+            },
+            _dashedLineTo: function (t, e) {
+                var i, n, r = this._dashSum, a = this._dashOffset, o = this._lineDash, s = this._ctx, l = this._xi, u = this._yi, c = t - l, h = e - u, p = x(c * c + h * h), v = l, g = u, _ = o[yr];
+                for (c /= p, h /= p, 0 > a && (a = r + a), a %= r, v -= a * c, g -= a * h; c > 0 && t >= v || 0 > c && v >= t || 0 == c && (h > 0 && e >= g || 0 > h && g >= e);)n = this._dashIdx, i = o[n], v += c * i, g += h * i, this._dashIdx = (n + 1) % _, c > 0 && l > v || 0 > c && v > l || h > 0 && u > g || 0 > h && g > u || s[n % 2 ? y : m](c >= 0 ? d(v, t) : f(v, t), h >= 0 ? d(g, e) : f(g, e));
+                c = v - t, h = g - e, this._dashOffset = -x(c * c + h * h)
+            },
+            _dashedBezierTo: function (t, i, n, r, a, o) {
+                var s, l, u, c, h, d = this._dashSum, f = this._dashOffset, p = this._lineDash, v = this._ctx, g = this._xi, _ = this._yi, w = e.cubicAt, b = 0, M = this._dashIdx, S = p[yr], A = 0;
+                for (0 > f && (f = d + f), f %= d, s = 0; 1 > s; s += .1)l = w(g, t, n, a, s + .1) - w(g, t, n, a, s), u = w(_, i, r, o, s + .1) - w(_, i, r, o, s), b += x(l * l + u * u);
+                for (; S > M && (A += p[M], !(A > f)); M++);
+                for (s = (A - f) / b; 1 >= s;)c = w(g, t, n, a, s), h = w(_, i, r, o, s), M % 2 ? v[y](c, h) : v[m](c, h), s += p[M] / b, M = (M + 1) % S;
+                M % 2 !== 0 && v[m](a, o), l = a - c, u = o - h, this._dashOffset = -x(l * l + u * u)
+            },
+            _dashedQuadraticTo: function (t, e, i, n) {
+                var r = i, a = n;
+                i = (i + 2 * t) / 3, n = (n + 2 * e) / 3, t = (this._xi + 2 * t) / 3, e = (this._yi + 2 * e) / 3, this._dashedBezierTo(t, e, i, n, r, a)
+            },
+            toStatic: function () {
+                var t = this.data;
+                t instanceof Array && (t[yr] = this._len, w && (this.data = new Float32Array(t)))
+            },
+            getBoundingRect: function () {
+                s[0] = s[1] = u[0] = u[1] = Number.MAX_VALUE, l[0] = l[1] = h[0] = h[1] = -Number.MAX_VALUE;
+                for (var t = this.data, e = 0, a = 0, c = 0, d = 0, f = 0; f < t[yr];) {
+                    var g = t[f++];
+                    switch (1 == f && (e = t[f], a = t[f + 1], c = e, d = a), g) {
+                        case o.M:
+                            c = t[f++], d = t[f++], e = c, a = d, u[0] = c, u[1] = d, h[0] = c, h[1] = d;
+                            break;
+                        case o.L:
+                            n.fromLine(e, a, t[f], t[f + 1], u, h), e = t[f++], a = t[f++];
+                            break;
+                        case o.C:
+                            n.fromCubic(e, a, t[f++], t[f++], t[f++], t[f++], t[f], t[f + 1], u, h), e = t[f++], a = t[f++];
+                            break;
+                        case o.Q:
+                            n.fromQuadratic(e, a, t[f++], t[f++], t[f], t[f + 1], u, h), e = t[f++], a = t[f++];
+                            break;
+                        case o.A:
+                            var m = t[f++], y = t[f++], x = t[f++], _ = t[f++], w = t[f++], b = t[f++] + w, M = (t[f++], 1 - t[f++]);
+                            1 == f && (c = p(w) * x + m, d = v(w) * _ + y), n.fromArc(m, y, x, _, w, b, M, u, h), e = p(b) * x + m, a = v(b) * _ + y;
+                            break;
+                        case o.R:
+                            c = e = t[f++], d = a = t[f++];
+                            var S = t[f++], A = t[f++];
+                            n.fromLine(c, d, c + S, d + A, u, h);
+                            break;
+                        case o.Z:
+                            e = c, a = d
+                    }
+                    i.min(s, s, u), i.max(l, l, h)
+                }
+                return 0 === f && (s[0] = s[1] = l[0] = l[1] = 0), new r(s[0], s[1], l[0] - s[0], l[1] - s[1])
+            },
+            rebuildPath: function (t) {
+                for (var e, i, n, r, a, s, l = this.data, u = this._ux, h = this._uy, d = this._len, f = 0; d > f;) {
+                    var x = l[f++];
+                    switch (1 == f && (n = l[f], r = l[f + 1], e = n, i = r), x) {
+                        case o.M:
+                            e = n = l[f++], i = r = l[f++], t[y](n, r);
+                            break;
+                        case o.L:
+                            a = l[f++], s = l[f++], (_(a - n) > u || _(s - r) > h || f === d - 1) && (t[m](a, s), n = a, r = s);
+                            break;
+                        case o.C:
+                            t.bezierCurveTo(l[f++], l[f++], l[f++], l[f++], l[f++], l[f++]), n = l[f - 2], r = l[f - 1];
+                            break;
+                        case o.Q:
+                            t.quadraticCurveTo(l[f++], l[f++], l[f++], l[f++]), n = l[f - 2], r = l[f - 1];
+                            break;
+                        case o.A:
+                            var w = l[f++], b = l[f++], M = l[f++], S = l[f++], A = l[f++], T = l[f++], C = l[f++], L = l[f++], k = M > S ? M : S, I = M > S ? 1 : M / S, P = M > S ? S / M : 1, D = Math.abs(M - S) > .001, z = A + T;
+                            D ? (t.translate(w, b), t[c](C), t.scale(I, P), t.arc(0, 0, k, A, z, 1 - L), t.scale(1 / I, 1 / P), t[c](-C), t.translate(-w, -b)) : t.arc(w, b, k, A, z, 1 - L), 1 == f && (e = p(A) * M + w, i = v(A) * S + b), n = p(z) * M + w, r = v(z) * S + b;
+                            break;
+                        case o.R:
+                            e = n = l[f], i = r = l[f + 1], t.rect(l[f++], l[f++], l[f++], l[f++]);
+                            break;
+                        case o.Z:
+                            t[g](), n = e, r = i
+                    }
+                }
+            }
+        }, b.CMD = o, b
+    }),e("zrender/graphic/Displayable", [Yr, a, "./Style", "../Element", "./mixin/RectText"], function (t) {
+        function e(t) {
+            t = t || {}, r.call(this, t);
+            for (var e in t)t.hasOwnProperty(e) && "style" !== e && (this[e] = t[e]);
+            this.style = new n(t.style), this._rect = null, this.__clipPaths = []
+        }
+
+        var i = t(a), n = t("./Style"), r = t("../Element"), o = t("./mixin/RectText");
+        return e[Nr] = {
+            constructor: e,
+            type: "displayable",
+            __dirty: !0,
+            invisible: !1,
+            z: 0,
+            z2: 0,
+            zlevel: 0,
+            draggable: !1,
+            dragging: !1,
+            silent: !1,
+            culling: !1,
+            cursor: "pointer",
+            rectHover: !1,
+            progressive: -1,
+            beforeBrush: function () {
+            },
+            afterBrush: function () {
+            },
+            brush: function () {
+            },
+            getBoundingRect: function () {
+            },
+            contain: function (t, e) {
+                return this.rectContain(t, e)
+            },
+            traverse: function (t, e) {
+                t.call(e, this)
+            },
+            rectContain: function (t, e) {
+                var i = this.transformCoordToLocal(t, e), n = this[yn]();
+                return n[tn](i[0], i[1])
+            },
+            dirty: function () {
+                this[s] = !0, this._rect = null, this.__zr && this.__zr.refresh()
+            },
+            animateStyle: function (t) {
+                return this[xe]("style", t)
+            },
+            attrKV: function (t, e) {
+                "style" !== t ? r[Nr].attrKV.call(this, t, e) : this.style.set(e)
+            },
+            setStyle: function (t, e) {
+                return this.style.set(t, e), this.dirty(!1), this
+            },
+            useStyle: function (t) {
+                return this.style = new n(t), this.dirty(!1), this
+            }
+        }, i[Cn](e, r), i.mixin(e, o), e
+    }),e("zrender/contain/path", [Yr, "../core/PathProxy", "./line", "./cubic", "./quadratic", "./arc", "./util", "../core/curve", "./windingLine"], function (t) {
+        function e(t, e) {
+            return Math.abs(t - e) < m
+        }
+
+        function i() {
+            var t = x[0];
+            x[0] = x[1], x[1] = t
+        }
+
+        function n(t, e, n, r, a, o, s, l, u, c) {
+            if (c > e && c > r && c > o && c > l || e > c && r > c && o > c && l > c)return 0;
+            var h = f.cubicRootAt(e, r, o, l, c, y);
+            if (0 === h)return 0;
+            for (var d, p, v = 0, g = -1, m = 0; h > m; m++) {
+                var _ = y[m], w = 0 === _ || 1 === _ ? .5 : 1, b = f.cubicAt(t, n, a, s, _);
+                u > b || (0 > g && (g = f.cubicExtrema(e, r, o, l, x), x[1] < x[0] && g > 1 && i(), d = f.cubicAt(e, r, o, l, x[0]), g > 1 && (p = f.cubicAt(e, r, o, l, x[1]))), v += 2 == g ? _ < x[0] ? e > d ? w : -w : _ < x[1] ? d > p ? w : -w : p > l ? w : -w : _ < x[0] ? e > d ? w : -w : d > l ? w : -w)
+            }
+            return v
+        }
+
+        function r(t, e, i, n, r, a, o, s) {
+            if (s > e && s > n && s > a || e > s && n > s && a > s)return 0;
+            var l = f.quadraticRootAt(e, n, a, s, y);
+            if (0 === l)return 0;
+            var u = f.quadraticExtremum(e, n, a);
+            if (u >= 0 && 1 >= u) {
+                for (var c = 0, h = f.quadraticAt(e, n, a, u), d = 0; l > d; d++) {
+                    var p = 0 === y[d] || 1 === y[d] ? .5 : 1, v = f.quadraticAt(t, i, r, y[d]);
+                    o > v || (c += y[d] < u ? e > h ? p : -p : h > a ? p : -p)
+                }
+                return c
+            }
+            var p = 0 === y[0] || 1 === y[0] ? .5 : 1, v = f.quadraticAt(t, i, r, y[0]);
+            return o > v ? 0 : e > a ? p : -p
+        }
+
+        function a(t, e, i, n, r, a, o, s) {
+            if (s -= e, s > i || -i > s)return 0;
+            var l = Math.sqrt(i * i - s * s);
+            y[0] = -l, y[1] = l;
+            var u = Math.abs(n - r);
+            if (1e-4 > u)return 0;
+            if (1e-4 > u % g) {
+                n = 0, r = g;
+                var c = a ? 1 : -1;
+                return o >= y[0] + t && o <= y[1] + t ? c : 0
+            }
+            if (a) {
+                var l = n;
+                n = d(r), r = d(l)
+            } else n = d(n), r = d(r);
+            n > r && (r += g);
+            for (var h = 0, f = 0; 2 > f; f++) {
+                var p = y[f];
+                if (p + t > o) {
+                    var v = Math.atan2(s, p), c = a ? 1 : -1;
+                    0 > v && (v = g + v), (v >= n && r >= v || v + g >= n && r >= v + g) && (v > Math.PI / 2 && v < 1.5 * Math.PI && (c = -c), h += c)
+                }
+            }
+            return h
+        }
+
+        function o(t, i, o, l, d) {
+            for (var f = 0, g = 0, m = 0, y = 0, x = 0, _ = 0; _ < t[yr];) {
+                var w = t[_++];
+                switch (w === s.M && _ > 1 && (o || (f += p(g, m, y, x, l, d))), 1 == _ && (g = t[_], m = t[_ + 1], y = g, x = m), w) {
+                    case s.M:
+                        y = t[_++], x = t[_++], g = y, m = x;
+                        break;
+                    case s.L:
+                        if (o) {
+                            if (v(g, m, t[_], t[_ + 1], i, l, d))return !0
+                        } else f += p(g, m, t[_], t[_ + 1], l, d) || 0;
+                        g = t[_++], m = t[_++];
+                        break;
+                    case s.C:
+                        if (o) {
+                            if (u.containStroke(g, m, t[_++], t[_++], t[_++], t[_++], t[_], t[_ + 1], i, l, d))return !0
+                        } else f += n(g, m, t[_++], t[_++], t[_++], t[_++], t[_], t[_ + 1], l, d) || 0;
+                        g = t[_++], m = t[_++];
+                        break;
+                    case s.Q:
+                        if (o) {
+                            if (c.containStroke(g, m, t[_++], t[_++], t[_], t[_ + 1], i, l, d))return !0
+                        } else f += r(g, m, t[_++], t[_++], t[_], t[_ + 1], l, d) || 0;
+                        g = t[_++], m = t[_++];
+                        break;
+                    case s.A:
+                        var b = t[_++], M = t[_++], S = t[_++], A = t[_++], T = t[_++], C = t[_++], L = (t[_++], 1 - t[_++]), k = Math.cos(T) * S + b, I = Math.sin(T) * A + M;
+                        _ > 1 ? f += p(g, m, k, I, l, d) : (y = k, x = I);
+                        var P = (l - b) * A / S + b;
+                        if (o) {
+                            if (h.containStroke(b, M, A, T, T + C, L, i, P, d))return !0
+                        } else f += a(b, M, A, T, T + C, L, P, d);
+                        g = Math.cos(T + C) * S + b, m = Math.sin(T + C) * A + M;
+                        break;
+                    case s.R:
+                        y = g = t[_++], x = m = t[_++];
+                        var D = t[_++], z = t[_++], k = y + D, I = x + z;
+                        if (o) {
+                            if (v(y, x, k, x, i, l, d) || v(k, x, k, I, i, l, d) || v(k, I, y, I, i, l, d) || v(y, I, y, x, i, l, d))return !0
+                        } else f += p(k, x, k, I, l, d), f += p(y, I, y, x, l, d);
+                        break;
+                    case s.Z:
+                        if (o) {
+                            if (v(g, m, y, x, i, l, d))return !0
+                        } else f += p(g, m, y, x, l, d);
+                        g = y, m = x
+                }
+            }
+            return o || e(m, x) || (f += p(g, m, y, x, l, d) || 0), 0 !== f
+        }
+
+        var s = t("../core/PathProxy").CMD, l = t("./line"), u = t("./cubic"), c = t("./quadratic"), h = t("./arc"), d = t("./util").normalizeRadian, f = t("../core/curve"), p = t("./windingLine"), v = l.containStroke, g = 2 * Math.PI, m = 1e-4, y = [-1, -1, -1], x = [-1, -1];
+        return {
+            contain: function (t, e, i) {
+                return o(t, 0, !1, e, i)
+            }, containStroke: function (t, e, i, n) {
+                return o(t, e, !0, i, n)
+            }
+        }
+    }),e("zrender/graphic/Pattern", [Yr], function () {
+        var t = function (t, e) {
+            this.image = t, this.repeat = e, this.type = "pattern"
+        };
+        return t[Nr].getCanvasPattern = function (t) {
+            return this._canvasPattern || (this._canvasPattern = t.createPattern(this.image, this.repeat))
+        }, t
+    }),e("echarts/scale/Ordinal", [Yr, Xr, "./Scale"], function (t) {
+        var e = t(Xr), i = t("./Scale"), n = i[Nr], r = i[ir]({
+            type: "ordinal", init: function (t, e) {
+                this._data = t, this[en] = e || [0, t[yr] - 1]
+            }, parse: function (t) {
+                return typeof t === Er ? e[mr](this._data, t) : Math.round(t)
+            }, contain: function (t) {
+                return t = this.parse(t), n[tn].call(this, t) && null != this._data[t]
+            }, normalize: function (t) {
+                return n[Ki].call(this, this.parse(t))
+            }, scale: function (t) {
+                return Math.round(n.scale.call(this, t))
+            }, getTicks: function () {
+                for (var t = [], e = this[en], i = e[0]; i <= e[1];)t.push(i), i++;
+                return t
+            }, getLabel: function (t) {
+                return this._data[t]
+            }, count: function () {
+                return this[en][1] - this[en][0] + 1
+            }, unionExtentFromData: function (t, e) {
+                this.unionExtent(t[Xi](e, !1))
+            }, niceTicks: e.noop, niceExtent: e.noop
+        });
+        return r[dr] = function () {
+            return new r
+        }, r
+    }),e("echarts/model/mixin/makeStyleMapper", [Yr, Xr], function (t) {
+        var e = t(Xr);
+        return function (t) {
+            for (var i = 0; i < t[yr]; i++)t[i][1] || (t[i][1] = t[i][0]);
+            return function (i) {
+                for (var n = {}, r = 0; r < t[yr]; r++) {
+                    var a = t[r][1];
+                    if (!(i && e[mr](i, a) >= 0)) {
+                        var o = this[Be](a);
+                        null != o && (n[t[r][0]] = o)
+                    }
+                }
+                return n
+            }
+        }
+    }),e("zrender/graphic/Gradient", [Yr], function () {
+        var t = function (t) {
+            this[ur] = t || []
+        };
+        return t[Nr] = {
+            constructor: t, addColorStop: function (t, e) {
+                this[ur].push({offset: t, color: e})
+            }
+        }, t
+    }),e("zrender/graphic/mixin/RectText", [Yr, "../../contain/text", "../../core/BoundingRect"], function (t) {
+        function e(t, e) {
+            return typeof t === Er ? t.lastIndexOf("%") >= 0 ? parseFloat(t) / 100 * e : parseFloat(t) : t
+        }
+
+        var a = t("../../contain/text"), o = t("../../core/BoundingRect"), s = new o, l = function () {
+        };
+        return l[Nr] = {
+            constructor: l, drawRectText: function (t, o, l) {
+                var u = this.style, h = u.text;
+                if (null != h && (h += ""), h) {
+                    t.save();
+                    var d, f, p = u[T], v = u.textOffset, g = u.textDistance, m = u[wn], y = u.textFont || u.font, x = u.textBaseline, _ = u[on];
+                    l = l || a[yn](h, y, m, x);
+                    var w = this[O];
+                    if (u.textTransform ? this.setTransform(t) : w && (s.copy(o), s[U](w), o = s), p instanceof Array) {
+                        if (d = o.x + e(p[0], o.width), f = o.y + e(p[1], o[Or]), m = m || "left", x = x || "top", _) {
+                            switch (_) {
+                                case pn:
+                                    f -= l[Or] / 2 - l.lineHeight / 2;
+                                    break;
+                                case xr:
+                                    f -= l[Or] - l.lineHeight / 2;
+                                    break;
+                                default:
+                                    f += l.lineHeight / 2
+                            }
+                            x = pn
+                        }
+                    } else {
+                        var b = a.adjustTextPositionOnRect(p, o, l, g);
+                        d = b.x, f = b.y, m = m || b[wn], x = x || b.textBaseline
+                    }
+                    v && (d += v[0], f += v[1]), t[wn] = m || "left", t.textBaseline = x || "alphabetic";
+                    var M = u.textFill, S = u.textStroke;
+                    M && (t.fillStyle = M), S && (t.strokeStyle = S), t.font = y || "12px sans-serif", t[r] = u.textShadowBlur, t[n] = u.textShadowColor || cr, t[i] = u.textShadowOffsetX, t.shadowOffsetY = u.textShadowOffsetY;
+                    var A = h.split("\n");
+                    u.textRotation && (w && t.translate(w[4], w[5]), t[c](u.textRotation), w && t.translate(-w[4], -w[5]));
+                    for (var C = 0; C < A[yr]; C++)M && t.fillText(A[C], d, f), S && t.strokeText(A[C], d, f), f += l.lineHeight;
+                    t.restore()
+                }
+            }
+        }, l
+    }),e("zrender/vml/core", [Yr, "exports", "module", "../core/env"], function (t, e, i) {
+        if (!t("../core/env")[Ar]) {
+            var n, r = "urn:schemas-microsoft-com:vml", a = window, o = a.document, s = !1;
+            try {
+                !o.namespaces.zrvml && o.namespaces.add("zrvml", r), n = function (t) {
+                    return o[_i]("<zrvml:" + t + ' class="zrvml">')
+                }
+            } catch (l) {
+                n = function (t) {
+                    return o[_i]("<" + t + ' xmlns="' + r + '" class="zrvml">')
+                }
+            }
+            var u = function () {
+                if (!s) {
+                    s = !0;
+                    var t = o.styleSheets;
+                    t[yr] < 31 ? o.createStyleSheet().addRule(".zrvml", "behavior:url(#default#VML)") : t[0].addRule(".zrvml", "behavior:url(#default#VML)")
+                }
+            };
+            i.exports = {doc: o, initVML: u, createNode: n}
+        }
+    }),e("echarts/coord/polar/RadiusAxis", [Yr, Xr, "../Axis"], function (t) {
+        function e(t, e) {
+            n.call(this, pi, t, e), this.type = Mi
+        }
+
+        var i = t(Xr), n = t("../Axis");
+        return e[Nr] = {constructor: e, dataToRadius: n[Nr][ri], radiusToData: n[Nr][Ve]}, i[Cn](e, n), e
+    }),e("echarts/coord/polar/AngleAxis", [Yr, Xr, "../Axis"], function (t) {
+        function e(t, e) {
+            e = e || [0, 360], n.call(this, "angle", t, e), this.type = Mi
+        }
+
+        var i = t(Xr), n = t("../Axis");
+        return e[Nr] = {constructor: e, dataToAngle: n[Nr][ri], angleToData: n[Nr][Ve]}, i[Cn](e, n), e
+    }),e("echarts/coord/single/SingleAxis", [Yr, Xr, "../Axis", "../axisHelper"], function (t) {
+        var e = t(Xr), i = t("../Axis"), n = t("../axisHelper"), r = function (t, e, n, r, a) {
+            i.call(this, t, e, n), this.type = r || "value", this[dn] = a || xr, this[d] = null, this._labelInterval = null
+        };
+        return r[Nr] = {
+            constructor: r, model: null, isHorizontal: function () {
+                var t = this[dn];
+                return "top" === t || t === xr
+            }, getLabelInterval: function () {
+                var t = this._labelInterval;
+                if (!t) {
+                    var i = this.model, r = i[Lr](x), a = r.get(B);
+                    if (this.type !== Mi || "auto" !== a)return t = this._labelInterval = "auto" === a ? 0 : a;
+                    t = this._labelInterval = n.getAxisLabelInterval(e.map(this.scale[Ji](), this[ri], this), i[Re](), r[Lr](bn)[_n](), this[hi]())
+                }
+                return t
+            }, toGlobalCoord: null, toLocalCoord: null
+        }, e[Cn](r, i), r
+    }),e("echarts/component/toolbox/featureManager", [Yr], function () {
+        var t = {};
+        return {
+            register: function (e, i) {
+                t[e] = i
+            }, get: function (e) {
+                return t[e]
+            }
+        }
+    }),e("zrender/config", [], function () {
+        var t = 1;
+        typeof window !== Q && (t = Math.max(window.devicePixelRatio || 1, 1));
+        var e = {debugMode: 0, devicePixelRatio: t};
+        return e
+    }),e("zrender/core/curve", [Yr, "./vector"], function (t) {
+        function e(t) {
+            return t > -_ && _ > t
+        }
+
+        function i(t) {
+            return t > _ || -_ > t
+        }
+
+        function n(t, e, i, n, r) {
+            var a = 1 - r;
+            return a * a * (a * t + 3 * r * e) + r * r * (r * n + 3 * a * i)
+        }
+
+        function r(t, e, i, n, r) {
+            var a = 1 - r;
+            return 3 * (((e - t) * a + 2 * (i - e) * r) * a + (n - i) * r * r)
+        }
+
+        function a(t, i, n, r, a, o) {
+            var s = r + 3 * (i - n) - t, l = 3 * (n - 2 * i + t), u = 3 * (i - t), c = t - a, h = l * l - 3 * s * u, d = l * u - 9 * s * c, f = u * u - 3 * l * c, p = 0;
+            if (e(h) && e(d))if (e(l))o[0] = 0; else {
+                var v = -u / l;
+                v >= 0 && 1 >= v && (o[p++] = v)
+            } else {
+                var g = d * d - 4 * h * f;
+                if (e(g)) {
+                    var m = d / h, v = -l / s + m, _ = -m / 2;
+                    v >= 0 && 1 >= v && (o[p++] = v), _ >= 0 && 1 >= _ && (o[p++] = _)
+                } else if (g > 0) {
+                    var w = x(g), S = h * l + 1.5 * s * (-d + w), A = h * l + 1.5 * s * (-d - w);
+                    S = 0 > S ? -y(-S, M) : y(S, M), A = 0 > A ? -y(-A, M) : y(A, M);
+                    var v = (-l - (S + A)) / (3 * s);
+                    v >= 0 && 1 >= v && (o[p++] = v)
+                } else {
+                    var T = (2 * h * l - 3 * s * d) / (2 * x(h * h * h)), C = Math.acos(T) / 3, L = x(h), k = Math.cos(C), v = (-l - 2 * L * k) / (3 * s), _ = (-l + L * (k + b * Math.sin(C))) / (3 * s), I = (-l + L * (k - b * Math.sin(C))) / (3 * s);
+                    v >= 0 && 1 >= v && (o[p++] = v), _ >= 0 && 1 >= _ && (o[p++] = _), I >= 0 && 1 >= I && (o[p++] = I)
+                }
+            }
+            return p
+        }
+
+        function o(t, n, r, a, o) {
+            var s = 6 * r - 12 * n + 6 * t, l = 9 * n + 3 * a - 3 * t - 9 * r, u = 3 * n - 3 * t, c = 0;
+            if (e(l)) {
+                if (i(s)) {
+                    var h = -u / s;
+                    h >= 0 && 1 >= h && (o[c++] = h)
+                }
+            } else {
+                var d = s * s - 4 * l * u;
+                if (e(d))o[0] = -s / (2 * l); else if (d > 0) {
+                    var f = x(d), h = (-s + f) / (2 * l), p = (-s - f) / (2 * l);
+                    h >= 0 && 1 >= h && (o[c++] = h), p >= 0 && 1 >= p && (o[c++] = p)
+                }
+            }
+            return c
+        }
+
+        function s(t, e, i, n, r, a) {
+            var o = (e - t) * r + t, s = (i - e) * r + e, l = (n - i) * r + i, u = (s - o) * r + o, c = (l - s) * r + s, h = (c - u) * r + u;
+            a[0] = t, a[1] = o, a[2] = u, a[3] = h, a[4] = h, a[5] = c, a[6] = l, a[7] = n
+        }
+
+        function l(t, e, i, r, a, o, s, l, u, c, h) {
+            var d, f, p, v, g, y = .005, _ = 1 / 0;
+            S[0] = u, S[1] = c;
+            for (var b = 0; 1 > b; b += .05)A[0] = n(t, i, a, s, b), A[1] = n(e, r, o, l, b), v = m(S, A), _ > v && (d = b, _ = v);
+            _ = 1 / 0;
+            for (var M = 0; 32 > M && !(w > y); M++)f = d - y, p = d + y, A[0] = n(t, i, a, s, f), A[1] = n(e, r, o, l, f), v = m(A, S), f >= 0 && _ > v ? (d = f, _ = v) : (T[0] = n(t, i, a, s, p), T[1] = n(e, r, o, l, p), g = m(T, S), 1 >= p && _ > g ? (d = p, _ = g) : y *= .5);
+            return h && (h[0] = n(t, i, a, s, d), h[1] = n(e, r, o, l, d)), x(_)
+        }
+
+        function u(t, e, i, n) {
+            var r = 1 - n;
+            return r * (r * t + 2 * n * e) + n * n * i
+        }
+
+        function c(t, e, i, n) {
+            return 2 * ((1 - n) * (e - t) + n * (i - e))
+        }
+
+        function h(t, n, r, a, o) {
+            var s = t - 2 * n + r, l = 2 * (n - t), u = t - a, c = 0;
+            if (e(s)) {
+                if (i(l)) {
+                    var h = -u / l;
+                    h >= 0 && 1 >= h && (o[c++] = h)
+                }
+            } else {
+                var d = l * l - 4 * s * u;
+                if (e(d)) {
+                    var h = -l / (2 * s);
+                    h >= 0 && 1 >= h && (o[c++] = h)
+                } else if (d > 0) {
+                    var f = x(d), h = (-l + f) / (2 * s), p = (-l - f) / (2 * s);
+                    h >= 0 && 1 >= h && (o[c++] = h), p >= 0 && 1 >= p && (o[c++] = p)
+                }
+            }
+            return c
+        }
+
+        function d(t, e, i) {
+            var n = t + i - 2 * e;
+            return 0 === n ? .5 : (t - e) / n
+        }
+
+        function f(t, e, i, n, r) {
+            var a = (e - t) * n + t, o = (i - e) * n + e, s = (o - a) * n + a;
+            r[0] = t, r[1] = a, r[2] = s, r[3] = s, r[4] = o, r[5] = i
+        }
+
+        function p(t, e, i, n, r, a, o, s, l) {
+            var c, h = .005, d = 1 / 0;
+            S[0] = o, S[1] = s;
+            for (var f = 0; 1 > f; f += .05) {
+                A[0] = u(t, i, r, f), A[1] = u(e, n, a, f);
+                var p = m(S, A);
+                d > p && (c = f, d = p)
+            }
+            d = 1 / 0;
+            for (var v = 0; 32 > v && !(w > h); v++) {
+                var g = c - h, y = c + h;
+                A[0] = u(t, i, r, g), A[1] = u(e, n, a, g);
+                var p = m(A, S);
+                if (g >= 0 && d > p)c = g, d = p; else {
+                    T[0] = u(t, i, r, y), T[1] = u(e, n, a, y);
+                    var _ = m(T, S);
+                    1 >= y && d > _ ? (c = y, d = _) : h *= .5
+                }
+            }
+            return l && (l[0] = u(t, i, r, c), l[1] = u(e, n, a, c)), x(d)
+        }
+
+        var v = t("./vector"), g = v[dr], m = v.distSquare, y = Math.pow, x = Math.sqrt, _ = 1e-8, w = 1e-4, b = x(3), M = 1 / 3, S = g(), A = g(), T = g();
+        return {
+            cubicAt: n,
+            cubicDerivativeAt: r,
+            cubicRootAt: a,
+            cubicExtrema: o,
+            cubicSubdivide: s,
+            cubicProjectPoint: l,
+            quadraticAt: u,
+            quadraticDerivativeAt: c,
+            quadraticRootAt: h,
+            quadraticExtremum: d,
+            quadraticSubdivide: f,
+            quadraticProjectPoint: p
+        }
+    }),e("zrender/core/bbox", [Yr, "./vector", "./curve"], function (t) {
+        var e = t("./vector"), i = t("./curve"), n = {}, r = Math.min, a = Math.max, o = Math.sin, s = Math.cos, l = e[dr](), u = e[dr](), c = e[dr](), h = 2 * Math.PI;
+        n.fromPoints = function (t, e, i) {
+            if (0 !== t[yr]) {
+                var n, o = t[0], s = o[0], l = o[0], u = o[1], c = o[1];
+                for (n = 1; n < t[yr]; n++)o = t[n], s = r(s, o[0]), l = a(l, o[0]), u = r(u, o[1]), c = a(c, o[1]);
+                e[0] = s, e[1] = u, i[0] = l, i[1] = c
+            }
+        }, n.fromLine = function (t, e, i, n, o, s) {
+            o[0] = r(t, i), o[1] = r(e, n), s[0] = a(t, i), s[1] = a(e, n)
+        };
+        var d = [], f = [];
+        return n.fromCubic = function (t, e, n, o, s, l, u, c, h, p) {
+            var v, g = i.cubicExtrema, m = i.cubicAt, y = g(t, n, s, u, d);
+            for (h[0] = 1 / 0, h[1] = 1 / 0, p[0] = -1 / 0, p[1] = -1 / 0, v = 0; y > v; v++) {
+                var x = m(t, n, s, u, d[v]);
+                h[0] = r(x, h[0]), p[0] = a(x, p[0])
+            }
+            for (y = g(e, o, l, c, f), v = 0; y > v; v++) {
+                var _ = m(e, o, l, c, f[v]);
+                h[1] = r(_, h[1]), p[1] = a(_, p[1])
+            }
+            h[0] = r(t, h[0]), p[0] = a(t, p[0]), h[0] = r(u, h[0]), p[0] = a(u, p[0]), h[1] = r(e, h[1]), p[1] = a(e, p[1]), h[1] = r(c, h[1]), p[1] = a(c, p[1])
+        }, n.fromQuadratic = function (t, e, n, o, s, l, u, c) {
+            var h = i.quadraticExtremum, d = i.quadraticAt, f = a(r(h(t, n, s), 1), 0), p = a(r(h(e, o, l), 1), 0), v = d(t, n, s, f), g = d(e, o, l, p);
+            u[0] = r(t, s, v), u[1] = r(e, l, g), c[0] = a(t, s, v), c[1] = a(e, l, g)
+        }, n.fromArc = function (t, i, n, r, a, d, f, p, v) {
+            var g = e.min, m = e.max, y = Math.abs(a - d);
+            if (1e-4 > y % h && y > 1e-4)return p[0] = t - n, p[1] = i - r, v[0] = t + n, void(v[1] = i + r);
+            if (l[0] = s(a) * n + t, l[1] = o(a) * r + i, u[0] = s(d) * n + t, u[1] = o(d) * r + i, g(p, l, u), m(v, l, u), a %= h, 0 > a && (a += h), d %= h, 0 > d && (d += h), a > d && !f ? d += h : d > a && f && (a += h), f) {
+                var x = d;
+                d = a, a = x
+            }
+            for (var _ = 0; d > _; _ += Math.PI / 2)_ > a && (c[0] = s(_) * n + t, c[1] = o(_) * r + i, g(p, c, p), m(v, c, v))
+        }, n
+    }),e("zrender/Element", [Yr, "./core/guid", "./mixin/Eventful", "./mixin/Transformable", "./mixin/Animatable", "./core/util"], function (t) {
+        var e = t("./core/guid"), i = t("./mixin/Eventful"), n = t("./mixin/Transformable"), r = t("./mixin/Animatable"), a = t("./core/util"), o = function (t) {
+            n.call(this, t), i.call(this, t), r.call(this, t), this.id = t.id || e()
+        };
+        return o[Nr] = {
+            type: "element", name: "", __zr: null, ignore: !1, clipPath: null, drift: function (t, e) {
+                switch (this[C]) {
+                    case Ci:
+                        e = 0;
+                        break;
+                    case h:
+                        t = 0
+                }
+                var i = this[O];
+                i || (i = this[O] = [1, 0, 0, 1, 0, 0]), i[4] += t, i[5] += e, this.decomposeTransform(), this.dirty(!1)
+            }, beforeUpdate: function () {
+            }, afterUpdate: function () {
+            }, update: function () {
+                this[l]()
+            }, traverse: function () {
+            }, attrKV: function (t, e) {
+                if (t === dn || "scale" === t || "origin" === t) {
+                    if (e) {
+                        var i = this[t];
+                        i || (i = this[t] = []), i[0] = e[0], i[1] = e[1]
+                    }
+                } else this[t] = e
+            }, hide: function () {
+                this[_r] = !0, this.__zr && this.__zr.refresh()
+            }, show: function () {
+                this[_r] = !1, this.__zr && this.__zr.refresh()
+            }, attr: function (t, e) {
+                if (typeof t === Er)this.attrKV(t, e); else if (a[Ir](t))for (var i in t)t.hasOwnProperty(i) && this.attrKV(i, t[i]);
+                return this.dirty(!1), this
+            }, setClipPath: function (t) {
+                var e = this.__zr;
+                e && t.addSelfToZr(e), this.clipPath && this.clipPath !== t && this.removeClipPath(), this.clipPath = t, t.__zr = e, t.__clipTarget = this, this.dirty(!1)
+            }, removeClipPath: function () {
+                var t = this.clipPath;
+                t && (t.__zr && t.removeSelfFromZr(t.__zr), t.__zr = null, t.__clipTarget = null, this.clipPath = null, this.dirty(!1))
+            }, addSelfToZr: function (t) {
+                this.__zr = t;
+                var e = this.animators;
+                if (e)for (var i = 0; i < e[yr]; i++)t[zr].addAnimator(e[i]);
+                this.clipPath && this.clipPath.addSelfToZr(t)
+            }, removeSelfFromZr: function (t) {
+                this.__zr = null;
+                var e = this.animators;
+                if (e)for (var i = 0; i < e[yr]; i++)t[zr].removeAnimator(e[i]);
+                this.clipPath && this.clipPath.removeSelfFromZr(t)
+            }
+        }, a.mixin(o, r), a.mixin(o, n), a.mixin(o, i), o
+    }),e("zrender/graphic/Style", [Yr], function () {
+        function t(t, e, i) {
+            var n = e.x, r = e.x2, a = e.y, o = e.y2;
+            e.global || (n = n * i.width + i.x, r = r * i.width + i.x, a = a * i[Or] + i.y, o = o * i[Or] + i.y);
+            var s = t.createLinearGradient(n, a, r, o);
+            return s
+        }
+
+        function e(t, e, i) {
+            var n = i.width, r = i[Or], a = Math.min(n, r), o = e.x, s = e.y, l = e.r;
+            e.global || (o = o * n + i.x, s = s * r + i.y, l *= a);
+            var u = t.createRadialGradient(o, s, 0, o, s, l);
+            return u
+        }
+
+        var a = [[r, 0], [i, 0], ["shadowOffsetY", 0], [n, "#000"], ["lineCap", "butt"], ["lineJoin", "miter"], ["miterLimit", 10]], o = function (t) {
+            this.extendFrom(t)
+        };
+        o[Nr] = {
+            constructor: o,
+            fill: "#000000",
+            stroke: null,
+            opacity: 1,
+            lineDash: null,
+            lineDashOffset: 0,
+            shadowBlur: 0,
+            shadowOffsetX: 0,
+            shadowOffsetY: 0,
+            lineWidth: 1,
+            strokeNoScale: !1,
+            text: null,
+            textFill: "#000",
+            textStroke: null,
+            textPosition: "inside",
+            textOffset: null,
+            textBaseline: null,
+            textAlign: null,
+            textVerticalAlign: null,
+            textDistance: 5,
+            textShadowBlur: 0,
+            textShadowOffsetX: 0,
+            textShadowOffsetY: 0,
+            textTransform: !1,
+            textRotation: 0,
+            blend: null,
+            bind: function (t, e, i) {
+                for (var n = this, r = i && i.style, o = !r, s = 0; s < a[yr]; s++) {
+                    var l = a[s], u = l[0];
+                    (o || n[u] !== r[u]) && (t[u] = n[u] || l[1])
+                }
+                if ((o || n.fill !== r.fill) && (t.fillStyle = n.fill), (o || n[Bi] !== r[Bi]) && (t.strokeStyle = n[Bi]), (o || n[cn] !== r[cn]) && (t.globalAlpha = null == n[cn] ? 1 : n[cn]), (o || n.blend !== r.blend) && (t.globalCompositeOperation = n.blend || "source-over"), this.hasStroke()) {
+                    var c = n[q];
+                    t[q] = c / (this.strokeNoScale && e && e.getLineScale ? e.getLineScale() : 1)
+                }
+            },
+            hasFill: function () {
+                var t = this.fill;
+                return null != t && "none" !== t
+            },
+            hasStroke: function () {
+                var t = this[Bi];
+                return null != t && "none" !== t && this[q] > 0
+            },
+            extendFrom: function (t, e) {
+                if (t) {
+                    var i = this;
+                    for (var n in t)!t.hasOwnProperty(n) || !e && i.hasOwnProperty(n) || (i[n] = t[n])
+                }
+            },
+            set: function (t, e) {
+                typeof t === Er ? this[t] = e : this.extendFrom(t, !0)
+            },
+            clone: function () {
+                var t = new this.constructor;
+                return t.extendFrom(this, !0), t
+            },
+            getGradient: function (i, n, r) {
+                for (var a = "radial" === n.type ? e : t, o = a(i, n, r), s = n[ur], l = 0; l < s[yr]; l++)o.addColorStop(s[l][ii], s[l].color);
+                return o
+            }
+        };
+        for (var s = o[Nr], l = 0; l < a[yr]; l++) {
+            var u = a[l];
+            u[0]in s || (s[u[0]] = u[1])
+        }
+        return o.getGradient = s.getGradient, o
+    }),e("echarts/coord/cartesian/Cartesian", [Yr, Xr], function (t) {
+        function e(t) {
+            return this._axes[t]
+        }
+
+        var i = t(Xr), n = function (t) {
+            this._axes = {}, this._dimList = [], this.name = t || ""
+        };
+        return n[Nr] = {
+            constructor: n, type: "cartesian", getAxis: function (t) {
+                return this._axes[t]
+            }, getAxes: function () {
+                return i.map(this._dimList, e, this)
+            }, getAxesByScale: function (t) {
+                return t = t[Br](), i[Ln](this.getAxes(), function (e) {
+                    return e.scale.type === t
+                })
+            }, addAxis: function (t) {
+                var e = t.dim;
+                this._axes[e] = t, this._dimList.push(e)
+            }, dataToCoord: function (t) {
+                return this._dataCoordConvert(t, ri)
+            }, coordToData: function (t) {
+                return this._dataCoordConvert(t, Ve)
+            }, _dataCoordConvert: function (t, e) {
+                for (var i = this._dimList, n = t instanceof Array ? [] : {}, r = 0; r < i[yr]; r++) {
+                    var a = i[r], o = this._axes[a];
+                    n[a] = o[e](t[a])
+                }
+                return n
+            }
+        }, n
+    }),e("echarts/data/helper/completeDimensions", [Yr, Xr], function (t) {
+        function e(t, e, a, o) {
+            if (!e)return t;
+            var s = i(e[0]), l = n[Rn](s) && s[yr] || 1;
+            a = a || [], o = o || "extra";
+            for (var u = 0; l > u; u++)if (!t[u]) {
+                var c = a[u] || o + (u - a[yr]);
+                t[u] = r(e, u) ? {type: "ordinal", name: c} : c
+            }
+            return t
+        }
+
+        function i(t) {
+            return n[Rn](t) ? t : n[Ir](t) ? t.value : t
+        }
+
+        var n = t(Xr), r = e.guessOrdinal = function (t, e) {
+            for (var r = 0, a = t[yr]; a > r; r++) {
+                var o = i(t[r]);
+                if (!n[Rn](o))return !1;
+                var o = o[e];
+                if (null != o && isFinite(o))return !1;
+                if (n[Tn](o) && "-" !== o)return !0
+            }
+            return !1
+        };
+        return e
+    }),e("echarts/chart/helper/EffectLine", [Yr, ji, "./Line", Xr, V, Gr, "zrender/core/curve"], function (t) {
+        function e(t, e, n) {
+            i.Group.call(this), this.add(this.createLine(t, e, n)), this._updateEffectSymbol(t, e)
+        }
+
+        var i = t(ji), r = t("./Line"), a = t(Xr), o = t(V), s = t(Gr), l = t("zrender/core/curve"), u = e[Nr];
+        return u.createLine = function (t, e, i) {
+            return new r(t, e, i)
+        }, u._updateEffectSymbol = function (t, e) {
+            var i = t[Zi](e), r = i[Lr]("effect"), s = r.get(Fe), l = r.get(He);
+            a[Rn](s) || (s = [s, s]);
+            var u = r.get("color") || t[fr](e, "color"), c = this[Fi](1);
+            this._symbolType !== l && (this[nr](c), c = o[z](l, -.5, -.5, 1, 1, u), c.z2 = 100, c.culling = !0, this.add(c)), c && (c[Bn](n, u), c[Bn](r[Mn](["color"])), c.attr("scale", s), c.setColor(u), c.attr("scale", s), this._symbolType = l, this._updateEffectAnimation(t, r, e))
+        }, u._updateEffectAnimation = function (t, e, i) {
+            var n = this[Fi](1);
+            if (n) {
+                var r = this, o = t[bi](i), s = 1e3 * e.get("period"), l = e.get("loop"), u = e.get("constantSpeed"), c = a[Pi](e.get("delay"), function (e) {
+                    return e / t.count() * s / 3
+                }), h = typeof c === On;
+                if (n[_r] = !0, this.updateAnimationPoints(n, o), u > 0 && (s = this.getLineLength(n) / u * 1e3), s !== this._period || l !== this._loop) {
+                    n[br]();
+                    var d = c;
+                    h && (d = c(i)), n.__t > 0 && (d = -s * n.__t), n.__t = 0;
+                    var f = n[xe]("", l).when(s, {__t: 1}).delay(d).during(function () {
+                        r.updateSymbolPosition(n)
+                    });
+                    l || f.done(function () {
+                        r[nr](n)
+                    }), f.start()
+                }
+                this._period = s, this._loop = l
+            }
+        }, u.getLineLength = function (t) {
+            return s.dist(t.__p1, t.__cp1) + s.dist(t.__cp1, t.__p2)
+        }, u.updateAnimationPoints = function (t, e) {
+            t.__p1 = e[0], t.__p2 = e[1], t.__cp1 = e[2] || [(e[0][0] + e[1][0]) / 2, (e[0][1] + e[1][1]) / 2]
+        }, u[Ke] = function (t, e, i) {
+            this[Fi](0)[Ke](t, e, i), this._updateEffectSymbol(t, e)
+        }, u.updateSymbolPosition = function (t) {
+            var e = t.__p1, i = t.__p2, n = t.__cp1, r = t.__t, a = t[dn], o = l.quadraticAt, s = l.quadraticDerivativeAt;
+            a[0] = o(e[0], n[0], i[0], r), a[1] = o(e[1], n[1], i[1], r);
+            var u = s(e[0], n[0], i[0], r), c = s(e[1], n[1], i[1], r);
+            t[pe] = -Math.atan2(c, u) - Math.PI / 2, t[_r] = !1
+        }, u[sr] = function (t, e) {
+            this[Fi](0)[sr](t, e);
+            var i = t[Zi](e)[Lr]("effect");
+            this._updateEffectAnimation(t, i, e)
+        }, a[Cn](e, i.Group), e
+    }),e("echarts/chart/helper/EffectPolyline", [Yr, "./Polyline", Xr, "./EffectLine", Gr], function (t) {
+        function e(t, e, i) {
+            r.call(this, t, e, i), this._lastFrame = 0, this._lastFramePercent = 0
+        }
+
+        var i = t("./Polyline"), n = t(Xr), r = t("./EffectLine"), a = t(Gr), o = e[Nr];
+        return o.createLine = function (t, e, n) {
+            return new i(t, e, n)
+        }, o.updateAnimationPoints = function (t, e) {
+            this._points = e;
+            for (var i = [0], n = 0, r = 1; r < e[yr]; r++) {
+                var o = e[r - 1], s = e[r];
+                n += a.dist(o, s), i.push(n)
+            }
+            if (0 !== n) {
+                for (var r = 0; r < i[yr]; r++)i[r] /= n;
+                this._offsets = i, this._length = n
+            }
+        }, o.getLineLength = function () {
+            return this._length
+        }, o.updateSymbolPosition = function (t) {
+            var e = t.__t, i = this._points, n = this._offsets, r = i[yr];
+            if (n) {
+                var o, s = this._lastFrame;
+                if (e < this._lastFramePercent) {
+                    var l = Math.min(s + 1, r - 1);
+                    for (o = l; o >= 0 && !(n[o] <= e); o--);
+                    o = Math.min(o, r - 2)
+                } else {
+                    for (var o = s; r > o && !(n[o] > e); o++);
+                    o = Math.min(o - 1, r - 2)
+                }
+                a.lerp(t[dn], i[o], i[o + 1], (e - n[o]) / (n[o + 1] - n[o]));
+                var u = i[o + 1][0] - i[o][0], c = i[o + 1][1] - i[o][1];
+                t[pe] = -Math.atan2(c, u) - Math.PI / 2, this._lastFrame = o, this._lastFramePercent = e, t[_r] = !1
+            }
+        }, n[Cn](e, r), e
+    }),e("echarts/chart/helper/Line", [Yr, V, Gr, "./LinePath", ji, Xr, Di], function (t) {
+        function e(t) {
+            return "_" + t + "Type"
+        }
+
+        function i(t, e, i) {
+            var n = e[fr](i, "color"), r = e[fr](i, t), a = e[fr](i, t + "Size");
+            if (r && "none" !== r) {
+                d[Rn](a) || (a = [a, a]);
+                var o = l[z](r, -a[0] / 2, -a[1] / 2, a[0], a[1], n);
+                return o.name = t, o
+            }
+        }
+
+        function n(t) {
+            var e = new c({name: "line"});
+            return r(e.shape, t), e
+        }
+
+        function r(t, e) {
+            var i = e[0], n = e[1], r = e[2];
+            t.x1 = i[0], t.y1 = i[1], t.x2 = n[0], t.y2 = n[1], t.percent = 1, r ? (t.cpx1 = r[0], t.cpy1 = r[1]) : (t.cpx1 = 0 / 0, t.cpy1 = 0 / 0)
+        }
+
+        function a() {
+            var t = this, e = t.childOfName("fromSymbol"), i = t.childOfName("toSymbol"), n = t.childOfName("label");
+            if (e || i || !n[_r]) {
+                for (var r = 1, a = this[an]; a;)a.scale && (r /= a.scale[0]), a = a[an];
+                var o = t.childOfName("line");
+                if (this[s] || o[s]) {
+                    var l = o.shape.percent, c = o.pointAt(0), h = o.pointAt(l), d = u.sub([], h, c);
+                    if (u[Ki](d, d), e) {
+                        e.attr(dn, c);
+                        var f = o.tangentAt(0);
+                        e.attr(pe, Math.PI / 2 - Math.atan2(f[1], f[0])), e.attr("scale", [r * l, r * l])
+                    }
+                    if (i) {
+                        i.attr(dn, h);
+                        var f = o.tangentAt(1);
+                        i.attr(pe, -Math.PI / 2 - Math.atan2(f[1], f[0])), i.attr("scale", [r * l, r * l])
+                    }
+                    if (!n[_r]) {
+                        n.attr(dn, h);
+                        var p, v, g, m = 5 * r;
+                        if ("end" === n.__position)p = [d[0] * m + h[0], d[1] * m + h[1]], v = d[0] > .8 ? "left" : d[0] < -.8 ? "right" : fn, g = d[1] > .8 ? "top" : d[1] < -.8 ? xr : pn; else if (n.__position === pn) {
+                            var y = l / 2, f = o.tangentAt(y), x = [f[1], -f[0]], _ = o.pointAt(y);
+                            x[1] > 0 && (x[0] = -x[0], x[1] = -x[1]), p = [_[0] + x[0] * m, _[1] + x[1] * m], v = fn, g = xr;
+                            var w = -Math.atan2(f[1], f[0]);
+                            h[0] < c[0] && (w = Math.PI + w), n.attr(pe, w)
+                        } else p = [-d[0] * m + c[0], -d[1] * m + c[1]], v = d[0] > .8 ? "right" : d[0] < -.8 ? "left" : fn, g = d[1] > .8 ? xr : d[1] < -.8 ? "top" : pn;
+                        n.attr({
+                            style: {textVerticalAlign: n.__verticalAlign || g, textAlign: n.__textAlign || v},
+                            position: p,
+                            scale: [r, r]
+                        })
+                    }
+                }
+            }
+        }
+
+        function o(t, e, i) {
+            h.Group.call(this), this._createLine(t, e, i)
+        }
+
+        var l = t(V), u = t(Gr), c = t("./LinePath"), h = t(ji), d = t(Xr), f = t(Di), p = ["fromSymbol", "toSymbol"], v = o[Nr];
+        return v.beforeUpdate = a, v._createLine = function (t, r, a) {
+            var o = t[Ye], s = t[bi](r), l = n(s);
+            l.shape.percent = 0, h[ci](l, {shape: {percent: 1}}, o, r), this.add(l);
+            var u = new h.Text({name: "label"});
+            this.add(u), d.each(p, function (n) {
+                var a = i(n, t, r);
+                this.add(a), this[e(n)] = t[fr](r, n)
+            }, this), this._updateCommonStl(t, r, a)
+        }, v[Ke] = function (t, n, a) {
+            var o = t[Ye], s = this.childOfName("line"), l = t[bi](n), u = {shape: {}};
+            r(u.shape, l), h[Ze](s, u, o, n), d.each(p, function (r) {
+                var a = t[fr](n, r), o = e(r);
+                if (this[o] !== a) {
+                    this[nr](this.childOfName(r));
+                    var s = i(r, t, n);
+                    this.add(s)
+                }
+                this[o] = a
+            }, this), this._updateCommonStl(t, n, a)
+        }, v._updateCommonStl = function (t, e, i) {
+            var n = t[Ye], r = this.childOfName("line"), a = i && i[he], o = i && i.hoverLineStyle, s = i && i.labelModel, l = i && i.hoverLabelModel;
+            if (!i || t[E]) {
+                var u = t[Zi](e);
+                a = u[Lr]("lineStyle.normal")[Je](), o = u[Lr]("lineStyle.emphasis")[Je](), s = u[Lr](fe), l = u[Lr](de)
+            }
+            var c = t[fr](e, "color"), v = d[Pi](t[fr](e, cn), a[cn], 1);
+            r[Gi](d[tr]({
+                strokeNoScale: !0,
+                fill: "none",
+                stroke: c,
+                opacity: v
+            }, a)), r[ge] = o, d.each(p, function (t) {
+                var e = this.childOfName(t);
+                e && (e.setColor(c), e[Bn]({opacity: v}))
+            }, this);
+            var g, m, y = s[Be]("show"), x = l[Be]("show"), _ = this.childOfName("label");
+            if (y || x) {
+                var w = n[Ge](e);
+                m = null == w ? m = t[we](e) : isFinite(w) ? f.round(w) : w, g = c || "#000"
+            }
+            if (y) {
+                var b = s[Lr](bn);
+                _[Bn]({
+                    text: d[Pi](n[me](e, qi, t[Fn]), m),
+                    textFont: b[_n](),
+                    fill: b[xn]() || g
+                }), _.__textAlign = b.get("align"), _.__verticalAlign = b.get("baseline"), _.__position = s.get(dn)
+            } else _[Bn]("text", "");
+            if (x) {
+                var M = l[Lr](bn);
+                _[ge] = {text: d[Pi](n[me](e, Wi, t[Fn]), m), textFont: M[_n](), fill: M[xn]() || g}
+            } else _[ge] = {text: ""};
+            _[_r] = !y && !x, h[Ni](this)
+        }, v[sr] = function (t, e) {
+            this.setLinePoints(t[bi](e))
+        }, v.setLinePoints = function (t) {
+            var e = this.childOfName("line");
+            r(e.shape, t), e.dirty()
+        }, d[Cn](o, h.Group), o
+    }),e("echarts/chart/helper/LineDraw", [Yr, ji, "./Line"], function (t) {
+        function e(t) {
+            return isNaN(t[0]) || isNaN(t[1])
+        }
+
+        function i(t) {
+            return !e(t[0]) && !e(t[1])
+        }
+
+        function n(t) {
+            this._ctor = t || a, this.group = new r.Group
+        }
+
+        var r = t(ji), a = t("./Line"), o = n[Nr];
+        return o[Ke] = function (t) {
+            var e = this._lineData, n = this.group, r = this._ctor, a = t[Ye], o = {
+                lineStyle: a[Lr]("lineStyle.normal")[Je](),
+                hoverLineStyle: a[Lr]("lineStyle.emphasis")[Je](),
+                labelModel: a[Lr](fe),
+                hoverLabelModel: a[Lr](de)
+            };
+            t.diff(e).add(function (e) {
+                if (i(t[bi](e))) {
+                    var a = new r(t, e, o);
+                    t[ti](e, a), n.add(a)
+                }
+            })[hr](function (a, s) {
+                var l = e[Xe](s);
+                return i(t[bi](a)) ? (l ? l[Ke](t, a, o) : l = new r(t, a, o), t[ti](a, l), void n.add(l)) : void n[nr](l)
+            })[nr](function (t) {
+                n[nr](e[Xe](t))
+            })[Se](), this._lineData = t
+        }, o[sr] = function () {
+            var t = this._lineData;
+            t[ei](function (e, i) {
+                e[sr](t, i)
+            }, this)
+        }, o[nr] = function () {
+            this.group[An]()
+        }, n
+    }),e("echarts/chart/helper/Polyline", [Yr, ji, Xr], function (t) {
+        function e(t, e, n) {
+            i.Group.call(this), this._createPolyline(t, e, n)
+        }
+
+        var i = t(ji), n = t(Xr), r = e[Nr];
+        return r._createPolyline = function (t, e, n) {
+            var r = t[bi](e), a = new i[je]({shape: {points: r}});
+            this.add(a), this._updateCommonStl(t, e, n)
+        }, r[Ke] = function (t, e, n) {
+            var r = t[Ye], a = this[Fi](0), o = {shape: {points: t[bi](e)}};
+            i[Ze](a, o, r, e), this._updateCommonStl(t, e, n)
+        }, r._updateCommonStl = function (t, e, r) {
+            var a = this[Fi](0), o = t[Zi](e), s = t[fr](e, "color"), l = r && r[he], u = r && r.hoverLineStyle;
+            (!r || t[E]) && (l = o[Lr]("lineStyle.normal")[Je](), u = o[Lr]("lineStyle.emphasis")[Je]()), a[Gi](n[tr]({
+                strokeNoScale: !0,
+                fill: "none",
+                stroke: s
+            }, l)), a[ge] = u, i[Ni](this)
+        }, r[sr] = function (t, e) {
+            var i = this[Fi](0);
+            i[Qe](We, t[bi](e))
+        }, n[Cn](e, i.Group), e
+    }),e("echarts/chart/helper/LargeLineDraw", [Yr, ji, "zrender/contain/quadratic", "zrender/contain/line"], function (t) {
+        function e() {
+            this.group = new i.Group, this._lineEl = new a
+        }
+
+        var i = t(ji), n = t("zrender/contain/quadratic"), r = t("zrender/contain/line"), a = i.extendShape({
+            shape: {
+                polyline: !1,
+                segs: []
+            }, buildPath: function (t, e) {
+                for (var i = e.segs, n = e.polyline, r = 0; r < i[yr]; r++) {
+                    var a = i[r];
+                    if (n) {
+                        t[y](a[0][0], a[0][1]);
+                        for (var o = 1; o < a[yr]; o++)t[m](a[o][0], a[o][1])
+                    } else t[y](a[0][0], a[0][1]), a[yr] > 2 ? t.quadraticCurveTo(a[2][0], a[2][1], a[1][0], a[1][1]) : t[m](a[1][0], a[1][1])
+                }
+            }, findDataIndex: function (t, e) {
+                for (var i = this.shape, a = i.segs, o = i.polyline, s = Math.max(this.style[q], 1), l = 0; l < a[yr]; l++) {
+                    var u = a[l];
+                    if (o) {
+                        for (var c = 1; c < u[yr]; c++)if (r.containStroke(u[c - 1][0], u[c - 1][1], u[c][0], u[c][1], s, t, e))return l
+                    } else if (u[yr] > 2) {
+                        if (n.containStroke(u[0][0], u[0][1], u[2][0], u[2][1], u[1][0], u[1][1], s, t, e))return l
+                    } else if (r.containStroke(u[0][0], u[0][1], u[1][0], u[1][1], s, t, e))return l
+                }
+                return -1
+            }
+        }), o = e[Nr];
+        return o[Ke] = function (t) {
+            this.group[An]();
+            var e = this._lineEl, i = t[Ye];
+            e[Qe]({segs: t[fi](t[bi]), polyline: i.get("polyline")}), e[Gi](i[Lr]("lineStyle.normal")[Je]());
+            var n = t[vr]("color");
+            n && e[Bn](Bi, n), e[Bn]("fill"), e[Zn] = i[Zn], e.on(Un, function (t) {
+                e[pr] = null;
+                var i = e.findDataIndex(t[M], t[b]);
+                i > 0 && (e[pr] = i)
+            }), this.group.add(e)
+        }, o[sr] = function (t) {
+            var e = t[qr]();
+            this._lineEl[Qe]({segs: e[fi](e[bi])})
+        }, o[nr] = function () {
+            this.group[An]()
+        }, e
+    }),e("echarts/chart/gauge/PointerPath", [Yr, "zrender/graphic/Path"], function (t) {
+        return t("zrender/graphic/Path")[ir]({
+            type: "echartsGaugePointer",
+            shape: {angle: 0, width: 10, r: 10, x: 0, y: 0},
+            buildPath: function (t, e) {
+                var i = Math.cos, n = Math.sin, r = e.r, a = e.width, o = e.angle, s = e.x - i(o) * a * (a >= r / 3 ? 1 : 2), l = e.y - n(o) * a * (a >= r / 3 ? 1 : 2);
+                o = e.angle - Math.PI / 2, t[y](s, l), t[m](e.x + i(o) * a, e.y + n(o) * a), t[m](e.x + i(e.angle) * r, e.y + n(e.angle) * r), t[m](e.x - i(o) * a, e.y - n(o) * a), t[m](s, l)
+            }
+        })
+    }),e("echarts/coord/geo/Geo", [Yr, "./parseGeoJson", Xr, X, "../View", "./fix/nanhai", "./fix/textCoord", "./fix/geoCoord"], function (t) {
+        function e(t, e, i, n, r) {
+            o.call(this, t), this.map = e, this._nameCoordMap = {}, this.loadGeoJson(i, n, r)
+        }
+
+        function i(t, e, i, n) {
+            var r = i.geoModel, a = i.seriesModel, o = r ? r[gr] : a ? a[gr] || (a.getReferringComponents("geo")[0] || {})[gr] : null;
+            return o === this ? o[t](n) : null
+        }
+
+        var n = t("./parseGeoJson"), r = t(Xr), a = t(X), o = t("../View"), s = [t("./fix/nanhai"), t("./fix/textCoord"), t("./fix/geoCoord")];
+        return e[Nr] = {
+            constructor: e, type: "geo", dimensions: ["lng", "lat"], containCoord: function (t) {
+                for (var e = this.regions, i = 0; i < e[yr]; i++)if (e[i][tn](t))return !0;
+                return !1
+            }, loadGeoJson: function (t, e, i) {
+                try {
+                    this.regions = t ? n(t) : []
+                } catch (a) {
+                    throw"Invalid geoJson format\n" + a
+                }
+                e = e || {}, i = i || {};
+                for (var o = this.regions, l = {}, u = 0; u < o[yr]; u++) {
+                    var c = o[u].name;
+                    c = i[c] || c, o[u].name = c, l[c] = o[u], this.addGeoCoord(c, o[u][fn]);
+                    var h = e[c];
+                    h && o[u].transformTo(h.left, h.top, h.width, h[Or])
+                }
+                this._regionsMap = l, this._rect = null, r.each(s, function (t) {
+                    t(this)
+                }, this)
+            }, transformTo: function (t, e, i, n) {
+                var r = this[yn]();
+                r = r.clone(), r.y = -r.y - r[Or];
+                var o = this._viewTransform;
+                o[O] = r.calculateTransform(new a(t, e, i, n)), o.decomposeTransform();
+                var s = o.scale;
+                s[1] = -s[1], o[l](), this._updateTransform()
+            }, getRegion: function (t) {
+                return this._regionsMap[t]
+            }, getRegionByCoord: function (t) {
+                for (var e = this.regions, i = 0; i < e[yr]; i++)if (e[i][tn](t))return e[i]
+            }, addGeoCoord: function (t, e) {
+                this._nameCoordMap[t] = e
+            }, getGeoCoord: function (t) {
+                return this._nameCoordMap[t]
+            }, getBoundingRect: function () {
+                if (this._rect)return this._rect;
+                for (var t, e = this.regions, i = 0; i < e[yr]; i++) {
+                    var n = e[i][yn]();
+                    t = t || n.clone(), t.union(n)
+                }
+                return this._rect = t || new a(0, 0, 0, 0)
+            }, dataToPoints: function (t) {
+                var e = [];
+                return t[fi](["lng", "lat"], function (t, i) {
+                    return e[0] = t, e[1] = i, this[Ai](e)
+                }, this)
+            }, dataToPoint: function (t) {
+                return typeof t === Er && (t = this.getGeoCoord(t)), t ? o[Nr][Ai].call(this, t) : void 0
+            }, convertToPixel: r.curry(i, Ai), convertFromPixel: r.curry(i, Oe)
+        }, r.mixin(e, o), e
+    }),e("echarts/component/dataZoom/helper", [Yr, Ri, Xr], function (t) {
+        var e = t(Ri), i = t(Xr), n = {}, r = ["x", "y", "z", pi, "angle", p], a = [yi, "polar", "singleAxis"];
+        return n.isCoordSupported = function (t) {
+            return i[mr](a, t) >= 0
+        }, n.createNameEach = function (t, n) {
+            t = t.slice();
+            var r = i.map(t, e.capitalFirst);
+            n = (n || []).slice();
+            var a = i.map(n, e.capitalFirst);
+            return function (e, o) {
+                i.each(t, function (t, i) {
+                    for (var s = {name: t, capital: r[i]}, l = 0; l < n[yr]; l++)s[n[l]] = t + a[l];
+                    e.call(o, s)
+                })
+            }
+        }, n.eachAxisDim = n.createNameEach(r, ["axisIndex", "axis", "index", "id"]), n.createLinkedNodesFinder = function (t, e, n) {
+            function r(t, e) {
+                return i[mr](e.nodes, t) >= 0
+            }
+
+            function a(t, r) {
+                var a = !1;
+                return e(function (e) {
+                    i.each(n(t, e) || [], function (t) {
+                        r.records[e.name][t] && (a = !0)
+                    })
+                }), a
+            }
+
+            function o(t, r) {
+                r.nodes.push(t), e(function (e) {
+                    i.each(n(t, e) || [], function (t) {
+                        r.records[e.name][t] = !0
+                    })
+                })
+            }
+
+            return function (i) {
+                function n(t) {
+                    !r(t, s) && a(t, s) && (o(t, s), l = !0)
+                }
+
+                var s = {nodes: [], records: {}};
+                if (e(function (t) {
+                        s.records[t.name] = {}
+                    }), !i)return s;
+                o(i, s);
+                var l;
+                do l = !1, t(n); while (l);
+                return s
+            }
+        }, n
+    }),e("echarts/component/dataZoom/AxisProxy", [Yr, Xr, Di, Le], function (t) {
+        function e(t, e) {
+            var i = [1 / 0, -1 / 0];
+            return s(e, function (e) {
+                var n = e[qr]();
+                n && s(e[Ie](t), function (t) {
+                    var e = n[Xi](t);
+                    e[0] < i[0] && (i[0] = e[0]), e[1] > i[1] && (i[1] = e[1])
+                })
+            }, this), i[1] < i[0] && (i = [0 / 0, 0 / 0]), i
+        }
+
+        function i(t, e) {
+            var i = e.getMin(!0);
+            null != i && "dataMin" !== i && (t[0] = i);
+            var n = e.getMax(!0);
+            return null != n && "dataMax" !== n && (t[1] = n), e.get("scale", !0) || (t[0] > 0 && (t[0] = 0), t[1] < 0 && (t[1] = 0)), t
+        }
+
+        function n(t, e) {
+            var i = t.getAxisModel(), n = t._percentWindow, r = t._valueWindow;
+            if (n) {
+                var o = a.getPixelPrecision(r, [0, 500]), s = e || 0 === n[0] && 100 === n[1];
+                i.setRange(s ? null : +r[0][ne](o), s ? null : +r[1][ne](o))
+            }
+        }
+
+        var r = t(Xr), a = t(Di), o = t(Le), s = r.each, l = a.asc, u = function (t, e, i, n) {
+            this._dimName = t, this._axisIndex = e, this._valueWindow, this._percentWindow, this._dataExtent, this[$] = n, this._dataZoomModel = i
+        };
+        return u[Nr] = {
+            constructor: u, hostedBy: function (t) {
+                return this._dataZoomModel === t
+            }, getDataValueWindow: function () {
+                return this._valueWindow.slice()
+            }, getDataPercentWindow: function () {
+                return this._percentWindow.slice()
+            }, getTargetSeriesModels: function () {
+                var t = [], e = this[$];
+                return e[lr](function (i) {
+                    if (o.isCoordSupported(i.get(gr))) {
+                        var n = this._dimName, r = e[K]({
+                            mainType: n + "Axis",
+                            index: i.get(n + "AxisIndex"),
+                            id: i.get(n + "AxisId")
+                        })[0];
+                        this._axisIndex === (r && r[ze]) && t.push(i)
+                    }
+                }, this), t
+            }, getAxisModel: function () {
+                return this[$][Y](this._dimName + "Axis", this._axisIndex)
+            }, getOtherAxisModel: function () {
+                var t, e, i = this._dimName, n = this[$], r = this.getAxisModel(), a = "x" === i || "y" === i;
+                a ? (e = "gridIndex", t = "x" === i ? "y" : "x") : (e = D, t = "angle" === i ? pi : "angle");
+                var o;
+                return n[wr](t + "Axis", function (t) {
+                    (t.get(e) || 0) === (r.get(e) || 0) && (o = t)
+                }), o
+            }, calculateDataWindow: function (t) {
+                var e = this._dataExtent, n = this.getAxisModel(), r = n.axis.scale, o = [0, 100], u = [t.start, t.end], c = [];
+                return e = e.slice(), i(e, n), s(["startValue", "endValue"], function (e) {
+                    c.push(null != t[e] ? r.parse(t[e]) : null)
+                }), s([0, 1], function (t) {
+                    var i = c[t], n = u[t];
+                    null != n || null == i ? (null == n && (n = o[t]), i = r.parse(a[G](n, o, e, !0))) : n = a[G](i, e, o, !0), c[t] = i, u[t] = n
+                }), {valueWindow: l(c), percentWindow: l(u)}
+            }, reset: function (t) {
+                if (t === this._dataZoomModel) {
+                    this._dataExtent = e(this._dimName, this.getTargetSeriesModels());
+                    var i = this.calculateDataWindow(t[un]);
+                    this._valueWindow = i.valueWindow, this._percentWindow = i.percentWindow, n(this)
+                }
+            }, restore: function (t) {
+                t === this._dataZoomModel && (this._valueWindow = this._percentWindow = null, n(this, !0))
+            }, filterData: function (t) {
+                function e(t) {
+                    return t >= a[0] && t <= a[1]
+                }
+
+                if (t === this._dataZoomModel) {
+                    var i = this._dimName, n = this.getTargetSeriesModels(), r = t.get("filterMode"), a = this._valueWindow, o = this.getOtherAxisModel();
+                    t.get("$fromToolbox") && o && o.get("type") === Mi && (r = "empty"), s(n, function (t) {
+                        var n = t[qr]();
+                        n && s(t[Ie](i), function (i) {
+                            "empty" === r ? t.setData(n.map(i, function (t) {
+                                return e(t) ? t : 0 / 0
+                            })) : n.filterSelf(i, e)
+                        })
+                    })
+                }
+            }
+        }, u
+    }),e("echarts/coord/Axis", [Yr, nn, Xr], function (t) {
+        function e(t, e) {
+            var i = t[1] - t[0], n = e, r = i / n / 2;
+            t[0] += r, t[1] -= r
+        }
+
+        var i = t(nn), n = i[G], r = t(Xr), a = [0, 1], o = function (t, e, i) {
+            this.dim = t, this.scale = e, this[en] = i || [0, 0], this[si] = !1, this[gi] = !1
+        };
+        return o[Nr] = {
+            constructor: o, contain: function (t) {
+                var e = this[en], i = Math.min(e[0], e[1]), n = Math.max(e[0], e[1]);
+                return t >= i && n >= t
+            }, containData: function (t) {
+                return this[tn](this[ri](t))
+            }, getExtent: function () {
+                var t = this[en].slice();
+                return t
+            }, getPixelPrecision: function (t) {
+                return i.getPixelPrecision(t || this.scale[Qi](), this[en])
+            }, setExtent: function (t, e) {
+                var i = this[en];
+                i[0] = t, i[1] = e
+            }, dataToCoord: function (t, i) {
+                var r = this[en], o = this.scale;
+                return t = o[Ki](t), this[gi] && o.type === qe && (r = r.slice(), e(r, o.count())), n(t, a, r, i)
+            }, coordToData: function (t, i) {
+                var r = this[en], o = this.scale;
+                this[gi] && o.type === qe && (r = r.slice(), e(r, o.count()));
+                var s = n(t, r, a, i);
+                return this.scale.scale(s)
+            }, getTicksCoords: function (t) {
+                if (this[gi] && !t) {
+                    for (var e = this.getBands(), i = [], n = 0; n < e[yr]; n++)i.push(e[n][0]);
+                    return e[n - 1] && i.push(e[n - 1][1]), i
+                }
+                return r.map(this.scale[Ji](), this[ri], this)
+            }, getLabelsCoords: function () {
+                return r.map(this.scale[Ji](), this[ri], this)
+            }, getBands: function () {
+                for (var t = this[Qi](), e = [], i = this.scale.count(), n = t[0], r = t[1], a = r - n, o = 0; i > o; o++)e.push([a * o / i + n, a * (o + 1) / i + n]);
+                return e
+            }, getBandWidth: function () {
+                var t = this[en], e = this.scale[Qi](), i = e[1] - e[0] + (this[gi] ? 1 : 0);
+                0 === i && (i = 1);
+                var n = Math.abs(t[1] - t[0]);
+                return Math.abs(n) / i
+            }, isBlank: function () {
+                return this._isBlank
+            }, setBlank: function (t) {
+                this._isBlank = t
+            }
+        }, o
+    }),e("zrender/mixin/Animatable", [Yr, "../animation/Animator", a, "../core/log"], function (t) {
+        var e = t("../animation/Animator"), i = t(a), n = i[Tn], r = i.isFunction, o = i[Ir], s = t("../core/log"), l = function () {
+            this.animators = []
+        };
+        return l[Nr] = {
+            constructor: l, animate: function (t, n) {
+                var r, a = !1, o = this, l = this.__zr;
+                if (t) {
+                    var u = t.split("."), c = o;
+                    a = "shape" === u[0];
+                    for (var h = 0, d = u[yr]; d > h; h++)c && (c = c[u[h]]);
+                    c && (r = c)
+                } else r = o;
+                if (!r)return void s('Property "' + t + '" is not existed in element ' + o.id);
+                var f = o.animators, p = new e(r, n);
+                return p.during(function () {
+                    o.dirty(a)
+                }).done(function () {
+                    f[Yn](i[mr](f, p), 1)
+                }), f.push(p), l && l[zr].addAnimator(p), p
+            }, stopAnimation: function (t) {
+                for (var e = this.animators, i = e[yr], n = 0; i > n; n++)e[n].stop(t);
+                return e[yr] = 0, this
+            }, animateTo: function (t, e, i, a, o) {
+                function s() {
+                    u--, u || o && o()
+                }
+
+                n(i) ? (o = a, a = i, i = 0) : r(a) ? (o = a, a = I, i = 0) : r(i) ? (o = i, i = 0) : r(e) ? (o = e, e = 500) : e || (e = 500), this[br](), this._animateToShallow("", this, t, e, i, a, o);
+                var l = this.animators.slice(), u = l[yr];
+                u || o && o();
+                for (var c = 0; c < l[yr]; c++)l[c].done(s).start(a)
+            }, _animateToShallow: function (t, e, n, r, a) {
+                var s = {}, l = 0;
+                for (var u in n)if (n.hasOwnProperty(u))if (null != e[u])o(n[u]) && !i.isArrayLike(n[u]) ? this._animateToShallow(t ? t + "." + u : u, e[u], n[u], r, a) : (s[u] = n[u], l++); else if (null != n[u])if (t) {
+                    var c = {};
+                    c[t] = {}, c[t][u] = n[u], this.attr(c)
+                } else this.attr(u, n[u]);
+                return l > 0 && this[xe](t, !1).when(null == r ? 500 : r, s).delay(a || 0), this
+            }
+        }, l
+    }),e("zrender/mixin/Transformable", [Yr, "../core/matrix", "../core/vector"], function (t) {
+        function e(t) {
+            return t > a || -a > t
+        }
+
+        var i = t("../core/matrix"), n = t("../core/vector"), r = i.identity, a = 5e-5, o = function (t) {
+            t = t || {}, t[dn] || (this[dn] = [0, 0]), null == t[pe] && (this[pe] = 0), t.scale || (this.scale = [1, 1]), this.origin = this.origin || null
+        }, s = o[Nr];
+        s[O] = null, s.needLocalTransform = function () {
+            return e(this[pe]) || e(this[dn][0]) || e(this[dn][1]) || e(this.scale[0] - 1) || e(this.scale[1] - 1)
+        }, s[l] = function () {
+            var t = this[an], e = t && t[O], n = this.needLocalTransform(), a = this[O];
+            return n || e ? (a = a || i[dr](), n ? this[Z](a) : r(a), e && (n ? i.mul(a, t[O], a) : i.copy(a, t[O])), this[O] = a, this.invTransform = this.invTransform || i[dr](), void i.invert(this.invTransform, a)) : void(a && r(a))
+        }, s[Z] = function (t) {
+            t = t || [], r(t);
+            var e = this.origin, n = this.scale, a = this[pe], o = this[dn];
+            return e && (t[4] -= e[0], t[5] -= e[1]), i.scale(t, t, n), a && i[c](t, t, a), e && (t[4] += e[0], t[5] += e[1]), t[4] += o[0], t[5] += o[1], t
+        }, s.setTransform = function (t) {
+            var e = this[O], i = t.dpr || 1;
+            e ? t.setTransform(i * e[0], i * e[1], i * e[2], i * e[3], i * e[4], i * e[5]) : t.setTransform(i, 0, 0, i, 0, 0)
+        }, s.restoreTransform = function (t) {
+            var e = (this[O], t.dpr || 1);
+            t.setTransform(e, 0, 0, e, 0, 0)
+        };
+        var u = [];
+        return s.decomposeTransform = function () {
+            if (this[O]) {
+                var t = this[an], n = this[O];
+                t && t[O] && (i.mul(u, t.invTransform, n), n = u);
+                var r = n[0] * n[0] + n[1] * n[1], a = n[2] * n[2] + n[3] * n[3], o = this[dn], s = this.scale;
+                e(r - 1) && (r = Math.sqrt(r)), e(a - 1) && (a = Math.sqrt(a)), n[0] < 0 && (r = -r), n[3] < 0 && (a = -a), o[0] = n[4], o[1] = n[5], s[0] = r, s[1] = a, this[pe] = Math.atan2(-n[1] / a, n[0] / r)
+            }
+        }, s.getGlobalScale = function () {
+            var t = this[O];
+            if (!t)return [1, 1];
+            var e = Math.sqrt(t[0] * t[0] + t[1] * t[1]), i = Math.sqrt(t[2] * t[2] + t[3] * t[3]);
+            return t[0] < 0 && (e = -e), t[3] < 0 && (i = -i), [e, i]
+        }, s.transformCoordToLocal = function (t, e) {
+            var i = [t, e], r = this.invTransform;
+            return r && n[U](i, i, r), i
+        }, s.transformCoordToGlobal = function (t, e) {
+            var i = [t, e], r = this[O];
+            return r && n[U](i, i, r), i
+        }, o
+    }),e("zrender/core/guid", [], function () {
+        var t = 2311;
+        return function () {
+            return t++
+        }
+    }),e("echarts/coord/cartesian/axisLabelInterval", [Yr, Xr, "../axisHelper"], function (t) {
+        var e = t(Xr), i = t("../axisHelper");
+        return function (t) {
+            var n = t.model, r = n[Lr](x), a = r.get(B);
+            return t.type !== Mi || "auto" !== a ? "auto" === a ? 0 : a : i.getAxisLabelInterval(e.map(t.scale[Ji](), t[ri], t), n[Re](), r[Lr](bn)[_n](), t[hi]())
+        }
+    }),e("echarts/chart/heatmap/HeatmapLayer", [Yr, Xr], function (t) {
+        function e() {
+            var t = o.createCanvas();
+            this[Rr] = t, this.blurSize = 30, this.pointSize = 20, this.maxOpacity = 1, this.minOpacity = 0, this._gradientPixels = {}
+        }
+
+        var a = 256, o = t(Xr);
+        return e[Nr] = {
+            update: function (t, e, i, n, r, o) {
+                var s = this._getBrush(), l = this._getGradient(t, r, "inRange"), u = this._getGradient(t, r, "outOfRange"), c = this.pointSize + this.blurSize, h = this[Rr], d = h[xi]("2d"), f = t[yr];
+                h.width = e, h[Or] = i;
+                for (var p = 0; f > p; ++p) {
+                    var v = t[p], g = v[0], m = v[1], y = v[2], x = n(y);
+                    d.globalAlpha = x, d.drawImage(s, g - c, m - c)
+                }
+                for (var _ = d.getImageData(0, 0, h.width, h[Or]), w = _.data, b = 0, M = w[yr], S = this.minOpacity, A = this.maxOpacity, T = A - S; M > b;) {
+                    var x = w[b + 3] / 256, C = 4 * Math.floor(x * (a - 1));
+                    if (x > 0) {
+                        var L = o(x) ? l : u;
+                        x > 0 && (x = x * T + S), w[b++] = L[C], w[b++] = L[C + 1], w[b++] = L[C + 2], w[b++] = L[C + 3] * x * 256
+                    } else b += 4
+                }
+                return d.putImageData(_, 0, 0), h
+            }, _getBrush: function () {
+                var t = this._brushCanvas || (this._brushCanvas = o.createCanvas()), e = this.pointSize + this.blurSize, a = 2 * e;
+                t.width = a, t[Or] = a;
+                var s = t[xi]("2d");
+                return s.clearRect(0, 0, a, a), s[i] = a, s[r] = this.blurSize, s[n] = "#000", s.beginPath(), s.arc(-e, e, this.pointSize, 0, 2 * Math.PI, !0), s[g](), s.fill(), t
+            }, _getGradient: function (t, e, i) {
+                for (var n = this._gradientPixels, r = n[i] || (n[i] = new Uint8ClampedArray(1024)), a = [], o = 0, s = 0; 256 > s; s++)e[i](s / 255, !0, a), r[o++] = a[0], r[o++] = a[1], r[o++] = a[2], r[o++] = a[3];
+                return r
+            }
+        }, e
+    }),e("echarts/coord/geo/parseGeoJson", [Yr, Xr, "./Region"], function (t) {
+        function e(t) {
+            if (!t.UTF8Encoding)return t;
+            for (var e = t.features, n = 0; n < e[yr]; n++)for (var r = e[n], a = r.geometry, o = a.coordinates, s = a.encodeOffsets, l = 0; l < o[yr]; l++) {
+                var u = o[l];
+                if (a.type === Ue)o[l] = i(u, s[l]); else if ("MultiPolygon" === a.type)for (var c = 0; c < u[yr]; c++) {
+                    var h = u[c];
+                    u[c] = i(h, s[l][c])
+                }
+            }
+            return t.UTF8Encoding = !1, t
+        }
+
+        function i(t, e) {
+            for (var i = [], n = e[0], r = e[1], a = 0; a < t[yr]; a += 2) {
+                var o = t.charCodeAt(a) - 64, s = t.charCodeAt(a + 1) - 64;
+                o = o >> 1 ^ -(1 & o), s = s >> 1 ^ -(1 & s), o += n, s += r, n = o, r = s, i.push([o / 1024, s / 1024])
+            }
+            return i
+        }
+
+        function n(t) {
+            for (var e = [], i = 0; i < t[yr]; i++)for (var n = 0; n < t[i][yr]; n++)e.push(t[i][n]);
+            return e
+        }
+
+        var r = t(Xr), a = t("./Region");
+        return function (t) {
+            return e(t), r.map(r[Ln](t.features, function (t) {
+                return t.geometry && t.properties
+            }), function (t) {
+                var e = t.properties, i = t.geometry, r = i.coordinates;
+                return "MultiPolygon" === i.type && (r = n(r)), new a(e.name, r, e.cp)
+            })
+        }
+    }),e("echarts/coord/geo/fix/geoCoord", [Yr, Xr], function (t) {
+        var e = t(Xr), i = {Russia: [100, 60], "United States of America": [-99, 38]};
+        return function (t) {
+            e.each(t.regions, function (t) {
+                var e = i[t.name];
+                if (e) {
+                    var n = t[fn];
+                    n[0] = e[0], n[1] = e[1]
+                }
+            })
+        }
+    }),e("echarts/coord/geo/fix/nanhai", [Yr, "../Region"], function (t) {
+        for (var e = t("../Region"), i = [126, 25], n = [[[0, 3.5], [7, 11.2], [15, 11.9], [30, 7], [42, .7], [52, .7], [56, 7.7], [59, .7], [64, .7], [64, 0], [5, 0], [0, 3.5]], [[13, 16.1], [19, 14.7], [16, 21.7], [11, 23.1], [13, 16.1]], [[12, 32.2], [14, 38.5], [15, 38.5], [13, 32.2], [12, 32.2]], [[16, 47.6], [12, 53.2], [13, 53.2], [18, 47.6], [16, 47.6]], [[6, 64.4], [8, 70], [9, 70], [8, 64.4], [6, 64.4]], [[23, 82.6], [29, 79.8], [30, 79.8], [25, 82.6], [23, 82.6]], [[37, 70.7], [43, 62.3], [44, 62.3], [39, 70.7], [37, 70.7]], [[48, 51.1], [51, 45.5], [53, 45.5], [50, 51.1], [48, 51.1]], [[51, 35], [51, 28.7], [53, 28.7], [53, 35], [51, 35]], [[52, 22.4], [55, 17.5], [56, 17.5], [53, 22.4], [52, 22.4]], [[58, 12.6], [62, 7], [63, 7], [60, 12.6], [58, 12.6]], [[0, 3.5], [0, 93.1], [64, 93.1], [64, 0], [63, 0], [63, 92.4], [1, 92.4], [1, 3.5], [0, 3.5]]], r = 0; r < n[yr]; r++)for (var a = 0; a < n[r][yr]; a++)n[r][a][0] /= 10.5, n[r][a][1] /= -14, n[r][a][0] += i[0], n[r][a][1] += i[1];
+        return function (t) {
+            "china" === t.map && t.regions.push(new e("南海诸岛", n, i))
+        }
+    }),e("echarts/coord/geo/fix/textCoord", [Yr, Xr], function (t) {
+        var e = t(Xr), i = {"南海诸岛": [32, 80], "广东": [0, -10], "香港": [10, 5], "澳门": [-10, 10], "天津": [5, 5]};
+        return function (t) {
+            e.each(t.regions, function (t) {
+                var e = i[t.name];
+                if (e) {
+                    var n = t[fn];
+                    n[0] += e[0] / 10.5, n[1] += -e[1] / 14
+                }
+            })
+        }
+    }),e("echarts/coord/View", [Yr, Gr, Fr, "zrender/mixin/Transformable", Xr, X], function (t) {
+        function e() {
+            o.call(this)
+        }
+
+        function i(t) {
+            this.name = t, this[A], o.call(this), this._roamTransform = new e, this._viewTransform = new e, this._center, this._zoom
+        }
+
+        function n(t, e, i, n) {
+            var r = i.seriesModel, a = r ? r[gr] : null;
+            return a === this ? a[t](n) : null
+        }
+
+        var r = t(Gr), a = t(Fr), o = t("zrender/mixin/Transformable"), s = t(Xr), u = t(X), c = r[U];
+        return s.mixin(e, o), i[Nr] = {
+            constructor: i,
+            type: "view",
+            dimensions: ["x", "y"],
+            setBoundingRect: function (t, e, i, n) {
+                return this._rect = new u(t, e, i, n), this._rect
+            },
+            getBoundingRect: function () {
+                return this._rect
+            },
+            setViewRect: function (t, e, i, n) {
+                this.transformTo(t, e, i, n), this._viewRect = new u(t, e, i, n)
+            },
+            transformTo: function (t, e, i, n) {
+                var r = this[yn](), a = this._viewTransform;
+                a[O] = r.calculateTransform(new u(t, e, i, n)), a.decomposeTransform(), this._updateTransform()
+            },
+            setCenter: function (t) {
+                t && (this._center = t, this._updateCenterAndZoom())
+            },
+            setZoom: function (t) {
+                t = t || 1;
+                var e = this[A];
+                e && (null != e.max && (t = Math.min(e.max, t)), null != e.min && (t = Math.max(e.min, t))), this._zoom = t, this._updateCenterAndZoom()
+            },
+            getDefaultCenter: function () {
+                var t = this[yn](), e = t.x + t.width / 2, i = t.y + t[Or] / 2;
+                return [e, i]
+            },
+            getCenter: function () {
+                return this._center || this.getDefaultCenter()
+            },
+            getZoom: function () {
+                return this._zoom || 1
+            },
+            getRoamTransform: function () {
+                return this._roamTransform
+            },
+            _updateCenterAndZoom: function () {
+                var t = this._viewTransform[Z](), e = this._roamTransform, i = this.getDefaultCenter(), n = this.getCenter(), a = this.getZoom();
+                n = r[U]([], n, t), i = r[U]([], i, t), e.origin = n, e[dn] = [i[0] - n[0], i[1] - n[1]], e.scale = [a, a], this._updateTransform()
+            },
+            _updateTransform: function () {
+                var t = this._roamTransform, e = this._viewTransform;
+                e[an] = t, t[l](), e[l](), e[O] && a.copy(this[O] || (this[O] = []), e[O]), this[O] ? (this.invTransform = this.invTransform || [], a.invert(this.invTransform, this[O])) : this.invTransform = null, this.decomposeTransform()
+            },
+            getViewRect: function () {
+                return this._viewRect
+            },
+            getViewRectAfterRoam: function () {
+                var t = this[yn]().clone();
+                return t[U](this[O]), t
+            },
+            dataToPoint: function (t) {
+                var e = this[O];
+                return e ? c([], t, e) : [t[0], t[1]]
+            },
+            pointToData: function (t) {
+                var e = this.invTransform;
+                return e ? c([], t, e) : [t[0], t[1]]
+            },
+            convertToPixel: s.curry(n, Ai),
+            convertFromPixel: s.curry(n, Oe),
+            containPoint: function (t) {
+                return this.getViewRectAfterRoam()[tn](t[0], t[1])
+            }
+        }, s.mixin(i, o), i
+    }),e("echarts/component/axis/AxisBuilder", [Yr, Xr, Ri, ji, Ce, Di, Gr], function (t) {
+        function e(t) {
+            var e = {componentType: t[or]};
+            return e[t[or] + "Index"] = t[ze], e
+        }
+
+        function i(t, e, i) {
+            var n, r, a = d(e - t[pe]);
+            return p(a) ? (r = i > 0 ? "top" : xr, n = fn) : p(a - y) ? (r = i > 0 ? xr : "top", n = fn) : (r = pn, n = a > 0 && y > a ? i > 0 ? "right" : "left" : i > 0 ? "left" : "right"), {
+                rotation: a,
+                textAlign: n,
+                verticalAlign: r
+            }
+        }
+
+        function n(t, e, i, n) {
+            var r, a, o = d(i - t[pe]), s = n[0] > n[1], l = "start" === e && !s || "start" !== e && s;
+            return p(o - y / 2) ? (a = l ? xr : "top", r = fn) : p(o - 1.5 * y) ? (a = l ? "top" : xr, r = fn) : (a = pn, r = 1.5 * y > o && o > y / 2 ? l ? "left" : "right" : l ? "right" : "left"), {
+                rotation: o,
+                textAlign: r,
+                verticalAlign: a
+            }
+        }
+
+        function r(t) {
+            var e = t.get("tooltip");
+            return t.get(Dr) || !(t.get("triggerEvent") || e && e.show)
+        }
+
+        var a = t(Xr), o = t(Ri), s = t(ji), u = t(Ce), h = t(Di), d = h.remRadian, p = h.isRadianAroundZero, v = t(Gr), g = v[U], m = a[Pi], y = Math.PI, w = function (t, e) {
+            this.opt = e, this.axisModel = t, a[tr](e, {
+                labelOffset: 0,
+                nameDirection: 1,
+                tickDirection: 1,
+                labelDirection: 1,
+                silent: !0
+            }), this.group = new s.Group;
+            var i = new s.Group({position: e[dn].slice(), rotation: e[pe]});
+            i[l](), this._transform = i[O], this._dumbGroup = i
+        };
+        w[Nr] = {
+            constructor: w, hasBuilder: function (t) {
+                return !!b[t]
+            }, add: function (t) {
+                b[t].call(this)
+            }, getGroup: function () {
+                return this.group
+            }
+        };
+        var b = {
+            axisLine: function () {
+                var t = this.opt, e = this.axisModel;
+                if (e.get("axisLine.show")) {
+                    var i = this.axisModel.axis[Qi](), n = this._transform, r = [i[0], 0], o = [i[1], 0];
+                    n && (g(r, r, n), g(o, o, n)), this.group.add(new s.Line(s.subPixelOptimizeLine({
+                        anid: "line",
+                        shape: {x1: r[0], y1: r[1], x2: o[0], y2: o[1]},
+                        style: a[ir]({lineCap: "round"}, e[Lr]("axisLine.lineStyle")[Je]()),
+                        strokeContainThreshold: t.strokeContainThreshold || 5,
+                        silent: !0,
+                        z2: 1
+                    })))
+                }
+            }, axisTick: function () {
+                var t = this.axisModel, e = t.axis;
+                if (t.get("axisTick.show") && !e[f]())for (var i = t[Lr](_), n = this.opt, r = i[Lr](he), o = i.get(yr), l = S(i, n.labelInterval), u = e.getTicksCoords(i.get("alignWithLabel")), c = e.scale[Ji](), h = [], d = [], p = this._transform, v = 0; v < u[yr]; v++)if (!M(e, v, l)) {
+                    var m = u[v];
+                    h[0] = m, h[1] = 0, d[0] = m, d[1] = n.tickDirection * o, p && (g(h, h, p), g(d, d, p)), this.group.add(new s.Line(s.subPixelOptimizeLine({
+                        anid: "tick_" + c[v],
+                        shape: {x1: h[0], y1: h[1], x2: d[0], y2: d[1]},
+                        style: a[tr](r[Je](), {stroke: t.get("axisLine.lineStyle.color")}),
+                        z2: 2,
+                        silent: !0
+                    })))
+                }
+            }, axisLabel: function () {
+                function t(t, e) {
+                    var i = t && t[yn]().clone(), n = e && e[yn]().clone();
+                    return i && n ? (i[U](t[Z]()), n[U](e[Z]()), i.intersect(n)) : void 0
+                }
+
+                var n = this.opt, o = this.axisModel, h = o.axis, d = m(n.axisLabelShow, o.get("axisLabel.show"));
+                if (d && !h[f]()) {
+                    var p = o[Lr](x), v = p[Lr](bn), g = p.get(hn), _ = h.scale[Ji](), w = o[Re](), b = m(n.labelRotation, p.get(c)) || 0;
+                    b = b * y / 180;
+                    var S = i(n, b, n.labelDirection), A = o.get("data"), T = [], C = r(o), L = o.get("triggerEvent");
+                    if (a.each(_, function (t, i) {
+                            if (!M(h, i, n.labelInterval)) {
+                                var r = v;
+                                A && A[t] && A[t][bn] && (r = new u(A[t][bn], v, o[$]));
+                                var a = r[xn]() || o.get("axisLine.lineStyle.color"), c = h[ri](t), d = [c, n.labelOffset + n.labelDirection * g], f = h.scale[$i](t), p = new s.Text({
+                                    anid: "label_" + t,
+                                    style: {
+                                        text: w[i],
+                                        textAlign: r.get("align", !0) || S[wn],
+                                        textVerticalAlign: r.get("baseline", !0) || S.verticalAlign,
+                                        textFont: r[_n](),
+                                        fill: typeof a === On ? a(f) : a
+                                    },
+                                    position: d,
+                                    rotation: S[pe],
+                                    silent: C,
+                                    z2: 10
+                                });
+                                L && (p.eventData = e(o), p.eventData.targetType = x, p.eventData.value = f), this._dumbGroup.add(p), p[l](), T.push(p), this.group.add(p), p.decomposeTransform()
+                            }
+                        }, this), null != o.getMin()) {
+                        var k = T[0], I = T[1];
+                        t(k, I) && (k[_r] = !0)
+                    }
+                    if (null != o.getMax()) {
+                        var P = T[T[yr] - 1], D = T[T[yr] - 2];
+                        t(D, P) && (P[_r] = !0)
+                    }
+                }
+            }, axisName: function () {
+                var t = this.opt, u = this.axisModel, c = m(t.axisName, u.get("name"));
+                if (c) {
+                    var h, d = u.get("nameLocation"), f = t.nameDirection, p = u[Lr]("nameTextStyle"), v = u.get("nameGap") || 0, g = this.axisModel.axis[Qi](), x = g[0] > g[1] ? -1 : 1, _ = ["start" === d ? g[0] - x * v : "end" === d ? g[1] + x * v : (g[0] + g[1]) / 2, d === pn ? t.labelOffset + f * v : 0], w = u.get("nameRotate");
+                    null != w && (w = w * y / 180);
+                    var b;
+                    d === pn ? h = i(t, null != w ? w : t[pe], f) : (h = n(t, d, w || 0, g), b = t.axisNameAvailableWidth, null != b && (b = Math.abs(b / Math.sin(h[pe])), !isFinite(b) && (b = null)));
+                    var M = p[_n](), S = u.get("nameTruncate", !0) || {}, A = S.ellipsis, T = m(S.maxWidth, b), C = null != A && null != T ? o.truncateText(c, T, M, A, {
+                        minChar: 2,
+                        placeholder: S.placeholder
+                    }) : c, L = u.get("tooltip", !0), k = u[or], I = {componentType: k, name: c, $vars: ["name"]};
+                    I[k + "Index"] = u[ze];
+                    var P = new s.Text({
+                        anid: "name",
+                        __fullText: c,
+                        __truncatedText: C,
+                        style: {
+                            text: C,
+                            textFont: M,
+                            fill: p[xn]() || u.get("axisLine.lineStyle.color"),
+                            textAlign: h[wn],
+                            textVerticalAlign: h.verticalAlign
+                        },
+                        position: _,
+                        rotation: h[pe],
+                        silent: r(u),
+                        z2: 1,
+                        tooltip: L && L.show ? a[ir]({
+                            content: c, formatter: function () {
+                                return c
+                            }, formatterParams: I
+                        }, L) : null
+                    });
+                    u.get("triggerEvent") && (P.eventData = e(u), P.eventData.targetType = "axisName", P.eventData.name = c), this._dumbGroup.add(P), P[l](), this.group.add(P), P.decomposeTransform()
+                }
+            }
+        }, M = w.ifIgnoreOnTick = function (t, e, i) {
+            var n, r = t.scale;
+            return r.type === qe && (typeof i === On ? (n = r[Ji]()[e], !i(n, r[$i](n))) : e % (i + 1))
+        }, S = w.getInterval = function (t, e) {
+            var i = t.get(B);
+            return (null == i || "auto" == i) && (i = e), i
+        };
+        return w
+    }),e("echarts/coord/polar/AxisModel", [Yr, Xr, v, "../axisModelCreator", "../axisModelCommonMixin"], function (t) {
+        function e(t, e) {
+            return e.type || (e.data ? Mi : "value")
+        }
+
+        var i = t(Xr), n = t(v), r = t("../axisModelCreator"), a = n[ir]({
+            type: "polarAxis",
+            axis: null,
+            getCoordSysModel: function () {
+                return this[$][K]({mainType: "polar", index: this[un][D], id: this[un].polarId})[0]
+            }
+        });
+        i.merge(a[Nr], t("../axisModelCommonMixin"));
+        var o = {
+            angle: {startAngle: 90, clockwise: !0, splitNumber: 12, axisLabel: {rotate: !1}},
+            radius: {splitNumber: 5}
+        };
+        r("angle", a, e, o.angle), r(pi, a, e, o[pi])
+    }),e("zrender/animation/Animator", [Yr, "./Clip", "../tool/color", a], function (t) {
+        function e(t, e) {
+            return t[e]
+        }
+
+        function i(t, e, i) {
+            t[e] = i
+        }
+
+        function n(t, e, i) {
+            return (e - t) * i + t
+        }
+
+        function r(t, e, i) {
+            return i > .5 ? e : t
+        }
+
+        function o(t, e, i, r, a) {
+            var o = t[yr];
+            if (1 == a)for (var s = 0; o > s; s++)r[s] = n(t[s], e[s], i); else for (var l = t[0][yr], s = 0; o > s; s++)for (var u = 0; l > u; u++)r[s][u] = n(t[s][u], e[s][u], i)
+        }
+
+        function s(t, e, i) {
+            var n = t[yr], r = e[yr];
+            if (n !== r) {
+                var a = n > r;
+                if (a)t[yr] = r; else for (var o = n; r > o; o++)t.push(1 === i ? e[o] : y.call(e[o]))
+            }
+            for (var s = t[0] && t[0][yr], o = 0; o < t[yr]; o++)if (1 === i)isNaN(t[o]) && (t[o] = e[o]); else for (var l = 0; s > l; l++)isNaN(t[o][l]) && (t[o][l] = e[o][l])
+        }
+
+        function l(t, e, i) {
+            if (t === e)return !0;
+            var n = t[yr];
+            if (n !== e[yr])return !1;
+            if (1 === i) {
+                for (var r = 0; n > r; r++)if (t[r] !== e[r])return !1
+            } else for (var a = t[0][yr], r = 0; n > r; r++)for (var o = 0; a > o; o++)if (t[r][o] !== e[r][o])return !1;
+            return !0
+        }
+
+        function u(t, e, i, n, r, a, o, s, l) {
+            var u = t[yr];
+            if (1 == l)for (var h = 0; u > h; h++)s[h] = c(t[h], e[h], i[h], n[h], r, a, o); else for (var d = t[0][yr], h = 0; u > h; h++)for (var f = 0; d > f; f++)s[h][f] = c(t[h][f], e[h][f], i[h][f], n[h][f], r, a, o)
+        }
+
+        function c(t, e, i, n, r, a, o) {
+            var s = .5 * (i - t), l = .5 * (n - e);
+            return (2 * (e - i) + s + l) * o + (-3 * (e - i) - 2 * s - l) * a + s * r + e
+        }
+
+        function h(t) {
+            if (m(t)) {
+                var e = t[yr];
+                if (m(t[0])) {
+                    for (var i = [], n = 0; e > n; n++)i.push(y.call(t[n]));
+                    return i
+                }
+                return y.call(t)
+            }
+            return t
+        }
+
+        function d(t) {
+            return t[0] = Math.floor(t[0]), t[1] = Math.floor(t[1]), t[2] = Math.floor(t[2]), "rgba(" + t.join(",") + ")"
+        }
+
+        function f(t, e, i, a, h) {
+            var f = t._getter, g = t._setter, y = "spline" === e, x = a[yr];
+            if (x) {
+                var _, w = a[0].value, b = m(w), M = !1, S = !1, A = b && m(w[0]) ? 2 : 1;
+                a.sort(function (t, e) {
+                    return t.time - e.time
+                }), _ = a[x - 1].time;
+                for (var T = [], C = [], L = a[0].value, k = !0, I = 0; x > I; I++) {
+                    T.push(a[I].time / _);
+                    var P = a[I].value;
+                    if (b && l(P, L, A) || !b && P === L || (k = !1), L = P, typeof P == Er) {
+                        var D = v.parse(P);
+                        D ? (P = D, M = !0) : S = !0
+                    }
+                    C.push(P)
+                }
+                if (!k) {
+                    for (var z = C[x - 1], I = 0; x - 1 > I; I++)b ? s(C[I], z, A) : !isNaN(C[I]) || isNaN(z) || S || M || (C[I] = z);
+                    b && s(f(t._target, h), z, A);
+                    var V, O, R, E, N, B, G = 0, F = 0;
+                    if (M)var H = [0, 0, 0, 0];
+                    var Z = function (t, e) {
+                        var i;
+                        if (0 > e)i = 0; else if (F > e) {
+                            for (V = Math.min(G + 1, x - 1), i = V; i >= 0 && !(T[i] <= e); i--);
+                            i = Math.min(i, x - 2)
+                        } else {
+                            for (i = G; x > i && !(T[i] > e); i++);
+                            i = Math.min(i - 1, x - 2)
+                        }
+                        G = i, F = e;
+                        var a = T[i + 1] - T[i];
+                        if (0 !== a)if (O = (e - T[i]) / a, y)if (E = C[i], R = C[0 === i ? i : i - 1], N = C[i > x - 2 ? x - 1 : i + 1], B = C[i > x - 3 ? x - 1 : i + 2], b)u(R, E, N, B, O, O * O, O * O * O, f(t, h), A); else {
+                            var s;
+                            if (M)s = u(R, E, N, B, O, O * O, O * O * O, H, 1), s = d(H); else {
+                                if (S)return r(E, N, O);
+                                s = c(R, E, N, B, O, O * O, O * O * O)
+                            }
+                            g(t, h, s)
+                        } else if (b)o(C[i], C[i + 1], O, f(t, h), A); else {
+                            var s;
+                            if (M)o(C[i], C[i + 1], O, H, 1), s = d(H); else {
+                                if (S)return r(C[i], C[i + 1], O);
+                                s = n(C[i], C[i + 1], O)
+                            }
+                            g(t, h, s)
+                        }
+                    }, W = new p({
+                        target: t._target,
+                        life: _,
+                        loop: t._loop,
+                        delay: t._delay,
+                        onframe: Z,
+                        ondestroy: i
+                    });
+                    return e && "spline" !== e && (W.easing = e), W
+                }
+            }
+        }
+
+        var p = t("./Clip"), v = t("../tool/color"), g = t(a), m = g.isArrayLike, y = Array[Nr].slice, x = function (t, n, r, a) {
+            this._tracks = {}, this._target = t, this._loop = n || !1, this._getter = r || e, this._setter = a || i, this._clipCount = 0, this._delay = 0, this._doneList = [], this._onframeList = [], this._clipList = []
+        };
+        return x[Nr] = {
+            when: function (t, e) {
+                var i = this._tracks;
+                for (var n in e)if (e.hasOwnProperty(n)) {
+                    if (!i[n]) {
+                        i[n] = [];
+                        var r = this._getter(this._target, n);
+                        if (null == r)continue;
+                        0 !== t && i[n].push({time: 0, value: h(r)})
+                    }
+                    i[n].push({time: t, value: e[n]})
+                }
+                return this
+            }, during: function (t) {
+                return this._onframeList.push(t), this
+            }, _doneCallback: function () {
+                this._tracks = {}, this._clipList[yr] = 0;
+                for (var t = this._doneList, e = t[yr], i = 0; e > i; i++)t[i].call(this)
+            }, start: function (t) {
+                var e, i = this, n = 0, r = function () {
+                    n--, n || i._doneCallback()
+                };
+                for (var a in this._tracks)if (this._tracks.hasOwnProperty(a)) {
+                    var o = f(this, t, r, this._tracks[a], a);
+                    o && (this._clipList.push(o), n++, this[zr] && this[zr].addClip(o), e = o)
+                }
+                if (e) {
+                    var s = e.onframe;
+                    e.onframe = function (t, e) {
+                        s(t, e);
+                        for (var n = 0; n < i._onframeList[yr]; n++)i._onframeList[n](t, e)
+                    }
+                }
+                return n || this._doneCallback(), this
+            }, stop: function (t) {
+                for (var e = this._clipList, i = this[zr], n = 0; n < e[yr]; n++) {
+                    var r = e[n];
+                    t && r.onframe(this._target, 1), i && i.removeClip(r)
+                }
+                e[yr] = 0
+            }, delay: function (t) {
+                return this._delay = t, this
+            }, done: function (t) {
+                return t && this._doneList.push(t), this
+            }, getClips: function () {
+                return this._clipList
+            }
+        }, x
+    }),e("zrender/core/log", [Yr, "../config"], function (t) {
+        var e = t("../config");
+        return function () {
+            if (0 !== e.debugMode)if (1 == e.debugMode)for (var t in arguments)throw new Error(arguments[t]); else if (e.debugMode > 1)for (var t in arguments)console.log(arguments[t])
+        }
+    }),e("echarts/coord/cartesian/AxisModel", [Yr, v, Xr, "../axisModelCreator", "../axisModelCommonMixin"], function (t) {
+        function e(t, e) {
+            return e.type || (e.data ? Mi : "value")
+        }
+
+        var i = t(v), n = t(Xr), r = t("../axisModelCreator"), a = i[ir]({
+            type: "cartesian2dAxis",
+            axis: null,
+            init: function () {
+                a[ln](this, "init", arguments), this.resetRange()
+            },
+            mergeOption: function () {
+                a[ln](this, sn, arguments), this.resetRange()
+            },
+            restoreData: function () {
+                a[ln](this, "restoreData", arguments), this.resetRange()
+            },
+            getCoordSysModel: function () {
+                return this[$][K]({mainType: "grid", index: this[un].gridIndex, id: this[un].gridId})[0]
+            }
+        });
+        n.merge(a[Nr], t("../axisModelCommonMixin"));
+        var o = {offset: 0};
+        return r("x", a, e, o), r("y", a, e, o), a
+    }),e("echarts/coord/geo/Region", [Yr, "zrender/contain/polygon", X, "zrender/core/bbox", Gr], function (t) {
+        function e(t, e, i) {
+            if (this.name = t, this.contours = e, i)i = [i[0], i[1]]; else {
+                var n = this[yn]();
+                i = [n.x + n.width / 2, n.y + n[Or] / 2]
+            }
+            this[fn] = i
+        }
+
+        var i = t("zrender/contain/polygon"), n = t(X), r = t("zrender/core/bbox"), a = t(Gr);
+        return e[Nr] = {
+            constructor: e, getBoundingRect: function () {
+                var t = this._rect;
+                if (t)return t;
+                for (var e = Number.MAX_VALUE, i = [e, e], o = [-e, -e], s = [], l = [], u = this.contours, c = 0; c < u[yr]; c++)r.fromPoints(u[c], s, l), a.min(i, i, s), a.max(o, o, l);
+                return 0 === c && (i[0] = i[1] = o[0] = o[1] = 0), this._rect = new n(i[0], i[1], o[0] - i[0], o[1] - i[1])
+            }, contain: function (t) {
+                var e = this[yn](), n = this.contours;
+                if (e[tn](t[0], t[1]))for (var r = 0, a = n[yr]; a > r; r++)if (i[tn](n[r], t[0], t[1]))return !0;
+                return !1
+            }, transformTo: function (t, e, i, r) {
+                var o = this[yn](), s = o.width / o[Or];
+                i ? r || (r = i / s) : i = s * r;
+                for (var l = new n(t, e, i, r), u = o.calculateTransform(l), c = this.contours, h = 0; h < c[yr]; h++)for (var d = 0; d < c[h][yr]; d++)a[U](c[h][d], c[h][d], u);
+                o = this._rect, o.copy(l), this[fn] = [o.x + o.width / 2, o.y + o[Or] / 2]
+            }
+        }, e
+    }),e("zrender/animation/Clip", [Yr, "./easing"], function (t) {
+        function e(t) {
+            this._target = t[Wn], this._life = t.life || 1e3, this._delay = t.delay || 0, this._initialized = !1, this.loop = null == t.loop ? !1 : t.loop, this.gap = t.gap || 0, this.easing = t.easing || "Linear", this.onframe = t.onframe, this.ondestroy = t.ondestroy, this.onrestart = t.onrestart
+        }
+
+        var i = t("./easing");
+        return e[Nr] = {
+            constructor: e, step: function (t) {
+                this._initialized || (this._startTime = t + this._delay, this._initialized = !0);
+                var e = (t - this._startTime) / this._life;
+                if (!(0 > e)) {
+                    e = Math.min(e, 1);
+                    var n = this.easing, r = typeof n == Er ? i[n] : n, a = typeof r === On ? r(e) : e;
+                    return this.fire("frame", a), 1 == e ? this.loop ? (this.restart(t), "restart") : (this._needsRemove = !0, "destroy") : null
+                }
+            }, restart: function (t) {
+                var e = (t - this._startTime) % this._life;
+                this._startTime = t - e + this.gap, this._needsRemove = !1
+            }, fire: function (t, e) {
+                t = "on" + t, this[t] && this[t](this._target, e)
+            }
+        }, e
+    }),e("echarts/coord/axisModelCommonMixin", [Yr, Xr, "./axisHelper"], function (t) {
+        function e(t) {
+            return i[Ir](t) && null != t.value ? t.value : t
+        }
+
+        var i = t(Xr), n = t("./axisHelper");
+        return {
+            getFormattedLabels: function () {
+                return n[Re](this.axis, this.get("axisLabel.formatter"))
+            }, getCategories: function () {
+                return this.get("type") === Mi && i.map(this.get("data"), e)
+            }, getMin: function (t) {
+                var e = this[un], n = t || null == e.rangeStart ? e.min : e.rangeStart;
+                return null == n || "dataMin" === n || i.eqNaN(n) || (n = this.axis.scale.parse(n)), n
+            }, getMax: function (t) {
+                var e = this[un], n = t || null == e.rangeEnd ? e.max : e.rangeEnd;
+                return null == n || "dataMax" === n || i.eqNaN(n) || (n = this.axis.scale.parse(n)), n
+            }, getNeedCrossZero: function () {
+                var t = this[un];
+                return null != t.rangeStart || null != t.rangeEnd ? !1 : !t.scale
+            }, getCoordSysModel: i.noop, setRange: function (t, e) {
+                this[un].rangeStart = t, this[un].rangeEnd = e
+            }, resetRange: function () {
+                this[un].rangeStart = this[un].rangeEnd = null
+            }
+        }
+    }),e("echarts/coord/axisModelCreator", [Yr, "./axisDefault", Xr, "../model/Component", "../util/layout"], function (t) {
+        var e = t("./axisDefault"), i = t(Xr), n = t("../model/Component"), r = t("../util/layout"), a = ["value", Mi, "time", "log"];
+        return function (t, o, s, l) {
+            i.each(a, function (n) {
+                o[ir]({
+                    type: t + "Axis." + n, mergeDefaultAndTheme: function (e, a) {
+                        var o = this.layoutMode, l = o ? r.getLayoutParams(e) : {}, u = a.getTheme();
+                        i.merge(e, u.get(n + "Axis")), i.merge(e, this.getDefaultOption()), e.type = s(t, e), o && r.mergeLayoutParam(e, l, o)
+                    }, defaultOption: i.mergeAll([{}, e[n + "Axis"], l], !0)
+                })
+            }), n.registerSubTypeDefaulter(t + "Axis", i.curry(s, t))
+        }
+    }),e("zrender/contain/polygon", [Yr, "./windingLine"], function (t) {
+        function e(t, e) {
+            return Math.abs(t - e) < r
+        }
+
+        function i(t, i, r) {
+            var a = 0, o = t[0];
+            if (!o)return !1;
+            for (var s = 1; s < t[yr]; s++) {
+                var l = t[s];
+                a += n(o[0], o[1], l[0], l[1], i, r), o = l
+            }
+            var u = t[0];
+            return e(o[0], u[0]) && e(o[1], u[1]) || (a += n(o[0], o[1], u[0], u[1], i, r)), 0 !== a
+        }
+
+        var n = t("./windingLine"), r = 1e-8;
+        return {contain: i}
+    }),e("zrender/animation/easing", [], function () {
+        var t = {
+            linear: function (t) {
+                return t
+            }, quadraticIn: function (t) {
+                return t * t
+            }, quadraticOut: function (t) {
+                return t * (2 - t)
+            }, quadraticInOut: function (t) {
+                return (t *= 2) < 1 ? .5 * t * t : -.5 * (--t * (t - 2) - 1)
+            }, cubicIn: function (t) {
+                return t * t * t
+            }, cubicOut: function (t) {
+                return --t * t * t + 1
+            }, cubicInOut: function (t) {
+                return (t *= 2) < 1 ? .5 * t * t * t : .5 * ((t -= 2) * t * t + 2)
+            }, quarticIn: function (t) {
+                return t * t * t * t
+            }, quarticOut: function (t) {
+                return 1 - --t * t * t * t
+            }, quarticInOut: function (t) {
+                return (t *= 2) < 1 ? .5 * t * t * t * t : -.5 * ((t -= 2) * t * t * t - 2)
+            }, quinticIn: function (t) {
+                return t * t * t * t * t
+            }, quinticOut: function (t) {
+                return --t * t * t * t * t + 1
+            }, quinticInOut: function (t) {
+                return (t *= 2) < 1 ? .5 * t * t * t * t * t : .5 * ((t -= 2) * t * t * t * t + 2)
+            }, sinusoidalIn: function (t) {
+                return 1 - Math.cos(t * Math.PI / 2)
+            }, sinusoidalOut: function (t) {
+                return Math.sin(t * Math.PI / 2)
+            }, sinusoidalInOut: function (t) {
+                return .5 * (1 - Math.cos(Math.PI * t))
+            }, exponentialIn: function (t) {
+                return 0 === t ? 0 : Math.pow(1024, t - 1)
+            }, exponentialOut: function (t) {
+                return 1 === t ? 1 : 1 - Math.pow(2, -10 * t)
+            }, exponentialInOut: function (t) {
+                return 0 === t ? 0 : 1 === t ? 1 : (t *= 2) < 1 ? .5 * Math.pow(1024, t - 1) : .5 * (-Math.pow(2, -10 * (t - 1)) + 2)
+            }, circularIn: function (t) {
+                return 1 - Math.sqrt(1 - t * t)
+            }, circularOut: function (t) {
+                return Math.sqrt(1 - --t * t)
+            }, circularInOut: function (t) {
+                return (t *= 2) < 1 ? -.5 * (Math.sqrt(1 - t * t) - 1) : .5 * (Math.sqrt(1 - (t -= 2) * t) + 1)
+            }, elasticIn: function (t) {
+                var e, i = .1, n = .4;
+                return 0 === t ? 0 : 1 === t ? 1 : (!i || 1 > i ? (i = 1, e = n / 4) : e = n * Math.asin(1 / i) / (2 * Math.PI), -(i * Math.pow(2, 10 * (t -= 1)) * Math.sin(2 * (t - e) * Math.PI / n)))
+            }, elasticOut: function (t) {
+                var e, i = .1, n = .4;
+                return 0 === t ? 0 : 1 === t ? 1 : (!i || 1 > i ? (i = 1, e = n / 4) : e = n * Math.asin(1 / i) / (2 * Math.PI), i * Math.pow(2, -10 * t) * Math.sin(2 * (t - e) * Math.PI / n) + 1)
+            }, elasticInOut: function (t) {
+                var e, i = .1, n = .4;
+                return 0 === t ? 0 : 1 === t ? 1 : (!i || 1 > i ? (i = 1, e = n / 4) : e = n * Math.asin(1 / i) / (2 * Math.PI), (t *= 2) < 1 ? -.5 * i * Math.pow(2, 10 * (t -= 1)) * Math.sin(2 * (t - e) * Math.PI / n) : i * Math.pow(2, -10 * (t -= 1)) * Math.sin(2 * (t - e) * Math.PI / n) * .5 + 1)
+            }, backIn: function (t) {
+                var e = 1.70158;
+                return t * t * ((e + 1) * t - e)
+            }, backOut: function (t) {
+                var e = 1.70158;
+                return --t * t * ((e + 1) * t + e) + 1
+            }, backInOut: function (t) {
+                var e = 2.5949095;
+                return (t *= 2) < 1 ? .5 * t * t * ((e + 1) * t - e) : .5 * ((t -= 2) * t * ((e + 1) * t + e) + 2)
+            }, bounceIn: function (e) {
+                return 1 - t.bounceOut(1 - e)
+            }, bounceOut: function (t) {
+                return 1 / 2.75 > t ? 7.5625 * t * t : 2 / 2.75 > t ? 7.5625 * (t -= 1.5 / 2.75) * t + .75 : 2.5 / 2.75 > t ? 7.5625 * (t -= 2.25 / 2.75) * t + .9375 : 7.5625 * (t -= 2.625 / 2.75) * t + .984375
+            }, bounceInOut: function (e) {
+                return .5 > e ? .5 * t.bounceIn(2 * e) : .5 * t.bounceOut(2 * e - 1) + .5
+            }
+        };
+        return t
+    }),e("echarts/coord/axisDefault", [Yr, Xr], function (t) {
+        var e = t(Xr), i = {
+            show: !0,
+            zlevel: 0,
+            z: 0,
+            inverse: !1,
+            name: "",
+            nameLocation: "end",
+            nameRotate: null,
+            nameTruncate: {maxWidth: null, ellipsis: "...", placeholder: "."},
+            nameTextStyle: {},
+            nameGap: 15,
+            silent: !1,
+            triggerEvent: !1,
+            tooltip: {show: !1},
+            axisLine: {show: !0, onZero: !0, lineStyle: {color: "#333", width: 1, type: "solid"}},
+            axisTick: {show: !0, inside: !1, length: 5, lineStyle: {width: 1}},
+            axisLabel: {show: !0, inside: !1, rotate: 0, margin: 8, textStyle: {fontSize: 12}},
+            splitLine: {show: !0, lineStyle: {color: ["#ccc"], width: 1, type: "solid"}},
+            splitArea: {show: !1, areaStyle: {color: ["rgba(250,250,250,0.3)", "rgba(200,200,200,0.3)"]}}
+        }, n = e.merge({
+            boundaryGap: !0,
+            splitLine: {show: !1},
+            axisTick: {alignWithLabel: !1, interval: "auto"},
+            axisLabel: {interval: "auto"}
+        }, i), r = e.merge({boundaryGap: [0, 0], splitNumber: 5}, i), a = e[tr]({
+            scale: !0,
+            min: "dataMin",
+            max: "dataMax"
+        }, r), o = e[tr]({logBase: 10}, r);
+        return o.scale = !0, {categoryAxis: n, valueAxis: r, timeAxis: a, logAxis: o}
+    }),e("zrender/contain/windingLine", [], function () {
+        return function (t, e, i, n, r, a) {
+            if (a > e && a > n || e > a && n > a)return 0;
+            if (n === e)return 0;
+            var o = e > n ? 1 : -1, s = (a - e) / (n - e);
+            (1 === s || 0 === s) && (o = e > n ? .5 : -.5);
+            var l = s * (i - t) + t;
+            return l > r ? o : 0
+        }
+    }),e("zrender/contain/line", [], function () {
+        return {
+            containStroke: function (t, e, i, n, r, a, o) {
+                if (0 === r)return !1;
+                var s = r, l = 0, u = t;
+                if (o > e + s && o > n + s || e - s > o && n - s > o || a > t + s && a > i + s || t - s > a && i - s > a)return !1;
+                if (t === i)return Math.abs(a - t) <= s / 2;
+                l = (e - n) / (t - i), u = (t * n - i * e) / (t - i);
+                var c = l * a - o + u, h = c * c / (l * l + 1);
+                return s / 2 * s / 2 >= h
+            }
+        }
+    }),e("zrender/contain/cubic", [Yr, "../core/curve"], function (t) {
+        var e = t("../core/curve");
+        return {
+            containStroke: function (t, i, n, r, a, o, s, l, u, c, h) {
+                if (0 === u)return !1;
+                var d = u;
+                if (h > i + d && h > r + d && h > o + d && h > l + d || i - d > h && r - d > h && o - d > h && l - d > h || c > t + d && c > n + d && c > a + d && c > s + d || t - d > c && n - d > c && a - d > c && s - d > c)return !1;
+                var f = e.cubicProjectPoint(t, i, n, r, a, o, s, l, c, h, null);
+                return d / 2 >= f
+            }
+        }
+    }),e("zrender/contain/arc", [Yr, "./util"], function (t) {
+        var e = t("./util").normalizeRadian, i = 2 * Math.PI;
+        return {
+            containStroke: function (t, n, r, a, o, s, l, u, c) {
+                if (0 === l)return !1;
+                var h = l;
+                u -= t, c -= n;
+                var d = Math.sqrt(u * u + c * c);
+                if (d - h > r || r > d + h)return !1;
+                if (Math.abs(a - o) % i < 1e-4)return !0;
+                if (s) {
+                    var f = a;
+                    a = e(o), o = e(f)
+                } else a = e(a), o = e(o);
+                a > o && (o += i);
+                var p = Math.atan2(c, u);
+                return 0 > p && (p += i), p >= a && o >= p || p + i >= a && o >= p + i
+            }
+        }
+    }),e("zrender/contain/util", [Yr], function () {
+        var t = 2 * Math.PI;
+        return {
+            normalizeRadian: function (e) {
+                return e %= t, 0 > e && (e += t), e
+            }
+        }
+    }),e("zrender/contain/quadratic", [Yr, "../core/curve"], function (t) {
+        var e = t("../core/curve");
+        return {
+            containStroke: function (t, i, n, r, a, o, s, l, u) {
+                if (0 === s)return !1;
+                var c = s;
+                if (u > i + c && u > r + c && u > o + c || i - c > u && r - c > u && o - c > u || l > t + c && l > n + c && l > a + c || t - c > l && n - c > l && a - c > l)return !1;
+                var h = e.quadraticProjectPoint(t, i, n, r, a, o, l, u, null);
+                return c / 2 >= h
+            }
+        }
+    }),e("zrender/core/LRU", [Yr], function () {
+        var t = function () {
+            this.head = null, this.tail = null, this._len = 0
+        }, e = t[Nr];
+        e.insert = function (t) {
+            var e = new i(t);
+            return this.insertEntry(e), e
+        }, e.insertEntry = function (t) {
+            this.head ? (this.tail.next = t, t.prev = this.tail, this.tail = t) : this.head = this.tail = t, this._len++
+        }, e[nr] = function (t) {
+            var e = t.prev, i = t.next;
+            e ? e.next = i : this.head = i, i ? i.prev = e : this.tail = e, t.next = t.prev = null, this._len--
+        }, e.len = function () {
+            return this._len
+        };
+        var i = function (t) {
+            this.value = t, this.next, this.prev
+        }, n = function (e) {
+            this._list = new t, this._map = {}, this._maxSize = e || 10
+        }, r = n[Nr];
+        return r.put = function (t, e) {
+            var i = this._list, n = this._map;
+            if (null == n[t]) {
+                var r = i.len();
+                if (r >= this._maxSize && r > 0) {
+                    var a = i.head;
+                    i[nr](a), delete n[a.key]
+                }
+                var o = i.insert(e);
+                o.key = t, n[t] = o
+            }
+        }, r.get = function (t) {
+            var e = this._map[t], i = this._list;
+            return null != e ? (e !== i.tail && (i[nr](e), i.insertEntry(e)), e.value) : void 0
+        }, r.clear = function () {
+            this._list.clear(), this._map = {}
+        }, n
+    }),e("echarts/chart/bar/BaseBarSeries", [Yr, Ei, "../helper/createListFromArray"], function (t) {
+        var e = t(Ei), i = t("../helper/createListFromArray");
+        return e[ir]({
+            type: "series.__base_bar__",
+            getInitialData: function (t, e) {
+                return i(t.data, this, e)
+            },
+            getMarkerPosition: function (t) {
+                var e = this[gr];
+                if (e) {
+                    var i = e[Ai](t, !0), n = this[qr](), r = n[R](ii), a = n[R]("size"), o = e[Si]()[hi]() ? 0 : 1;
+                    return i[o] += r + a / 2, i
+                }
+                return [0 / 0, 0 / 0]
+            },
+            defaultOption: {
+                zlevel: 0,
+                z: 2,
+                coordinateSystem: "cartesian2d",
+                legendHoverLink: !0,
+                barMinHeight: 0,
+                itemStyle: {normal: {}, emphasis: {}}
+            }
+        })
+    }),e("zrender/graphic/helper/poly", [Yr, "./smoothSpline", "./smoothBezier"], function (t) {
+        var e = t("./smoothSpline"), i = t("./smoothBezier");
+        return {
+            buildPath: function (t, n, r) {
+                var a = n[We], o = n.smooth;
+                if (a && a[yr] >= 2) {
+                    if (o && "spline" !== o) {
+                        var s = i(a, o, r, n.smoothConstraint);
+                        t[y](a[0][0], a[0][1]);
+                        for (var l = a[yr], u = 0; (r ? l : l - 1) > u; u++) {
+                            var c = s[2 * u], h = s[2 * u + 1], d = a[(u + 1) % l];
+                            t.bezierCurveTo(c[0], c[1], h[0], h[1], d[0], d[1])
+                        }
+                    } else {
+                        "spline" === o && (a = e(a, r)), t[y](a[0][0], a[0][1]);
+                        for (var u = 1, f = a[yr]; f > u; u++)t[m](a[u][0], a[u][1])
+                    }
+                    r && t[g]()
+                }
+            }
+        }
+    }),e("zrender/Handler", [Yr, "./core/util", "./mixin/Draggable", "./mixin/Eventful"], function (t) {
+        function e(t, e, i) {
+            return {
+                type: t,
+                event: i,
+                target: e,
+                cancelBubble: !1,
+                offsetX: i.zrX,
+                offsetY: i.zrY,
+                gestureEvent: i.gestureEvent,
+                pinchX: i.pinchX,
+                pinchY: i.pinchY,
+                pinchScale: i.pinchScale,
+                wheelDelta: i.zrDelta,
+                zrByTouch: i.zrByTouch
+            }
+        }
+
+        function i() {
+        }
+
+        function n(t, e, i) {
+            if (t[t.rectHover ? "rectContain" : tn](e, i)) {
+                for (var n = t; n;) {
+                    if (n[Dr] || n.clipPath && !n.clipPath[tn](e, i))return !1;
+                    n = n[an]
+                }
+                return !0
+            }
+            return !1
+        }
+
+        var r = t("./core/util"), a = t("./mixin/Draggable"), o = t("./mixin/Eventful");
+        i[Nr][$n] = function () {
+        };
+        var s = ["click", "dblclick", "mousewheel", jn, "mouseup", qn, Un, "contextmenu"], l = function (t, e, n, l) {
+            o.call(this), this[Mr] = t, this.painter = e, this.painterRoot = l, n = n || new i, this.proxy = n, n.handler = this, this._hovered, this._lastTouchMoment, this._lastX, this._lastY, a.call(this), r.each(s, function (t) {
+                n.on && n.on(t, this[t], this)
+            }, this)
+        };
+        return l[Nr] = {
+            constructor: l, mousemove: function (t) {
+                var e = t.zrX, i = t.zrY, n = this.findHover(e, i, null), r = this._hovered, a = this.proxy;
+                this._hovered = n, a.setCursor && a.setCursor(n ? n.cursor : "default"), r && n !== r && r.__zr && this.dispatchToElement(r, jn, t), this.dispatchToElement(n, Un, t), n && n !== r && this.dispatchToElement(n, Xn, t)
+            }, mouseout: function (t) {
+                this.dispatchToElement(this._hovered, jn, t);
+                var e, i = t.toElement || t.relatedTarget;
+                do i = i && i[L]; while (i && 9 != i.nodeType && !(e = i === this.painterRoot));
+                !e && this[Jn]("globalout", {event: t})
+            }, resize: function () {
+                this._hovered = null
+            }, dispatch: function (t, e) {
+                var i = this[t];
+                i && i.call(this, e)
+            }, dispose: function () {
+                this.proxy[$n](), this[Mr] = this.proxy = this.painter = null
+            }, setCursorStyle: function (t) {
+                var e = this.proxy;
+                e.setCursor && e.setCursor(t)
+            }, dispatchToElement: function (t, i, n) {
+                for (var r = "on" + i, a = e(i, t, n), o = t; o && (o[r] && (a.cancelBubble = o[r].call(o, a)), o[Jn](i, a), o = o[an], !a.cancelBubble););
+                a.cancelBubble || (this[Jn](i, a), this.painter && this.painter.eachOtherLayer(function (t) {
+                    typeof t[r] == On && t[r].call(t, a), t[Jn] && t[Jn](i, a)
+                }))
+            }, findHover: function (t, e, i) {
+                for (var r = this[Mr].getDisplayList(), a = r[yr] - 1; a >= 0; a--)if (!r[a][Dr] && r[a] !== i && !r[a][_r] && n(r[a], t, e))return r[a]
+            }
+        }, r.each(["click", qn, "mouseup", "mousewheel", "dblclick", "contextmenu"], function (t) {
+            l[Nr][t] = function (e) {
+                var i = this.findHover(e.zrX, e.zrY, null);
+                if (t === qn)this._downel = i, this._upel = i; else if ("mosueup" === t)this._upel = i; else if ("click" === t && this._downel !== this._upel)return;
+                this.dispatchToElement(i, t, e)
+            }
+        }), r.mixin(l, o), r.mixin(l, a), l
+    }),e("zrender/dom/HandlerProxy", [Yr, "../core/event", a, "../mixin/Eventful", "../core/env", "../core/GestureMgr"], function (t) {
+        function e(t) {
+            return "mousewheel" === t && h.browser.firefox ? "DOMMouseScroll" : t
+        }
+
+        function i(t, e, i) {
+            var n = t._gestureMgr;
+            "start" === i && n.clear();
+            var r = n.recognize(e, t.handler.findHover(e.zrX, e.zrY, null), t.dom);
+            if ("end" === i && n.clear(), r) {
+                var a = r.type;
+                e.gestureEvent = a, t.handler.dispatchToElement(r[Wn], a, r.event)
+            }
+        }
+
+        function n(t) {
+            t._touching = !0, clearTimeout(t._touchTimer), t._touchTimer = setTimeout(function () {
+                t._touching = !1
+            }, 700)
+        }
+
+        function r(t) {
+            var e = t.pointerType;
+            return "pen" === e || "touch" === e
+        }
+
+        function o(t) {
+            function e(t, e) {
+                return function () {
+                    return e._touching ? void 0 : t.apply(e, arguments)
+                }
+            }
+
+            u.each(y, function (e) {
+                t._handlers[e] = u.bind(w[e], t)
+            }), u.each(_, function (e) {
+                t._handlers[e] = u.bind(w[e], t)
+            }), u.each(m, function (i) {
+                t._handlers[i] = e(w[i], t)
+            })
+        }
+
+        function s(t) {
+            function i(i, n) {
+                u.each(i, function (i) {
+                    f(t, e(i), n._handlers[i])
+                }, n)
+            }
+
+            c.call(this), this.dom = t, this._touching = !1, this._touchTimer, this._gestureMgr = new d, this._handlers = {}, o(this), h.pointerEventsSupported ? i(_, this) : (h.touchEventsSupported && i(y, this), i(m, this))
+        }
+
+        var l = t("../core/event"), u = t(a), c = t("../mixin/Eventful"), h = t("../core/env"), d = t("../core/GestureMgr"), f = l.addEventListener, p = l.removeEventListener, v = l.normalizeEvent, g = 300, m = ["click", "dblclick", "mousewheel", jn, "mouseup", qn, Un, "contextmenu"], y = ["touchstart", "touchend", "touchmove"], x = {
+            pointerdown: 1,
+            pointerup: 1,
+            pointermove: 1,
+            pointerout: 1
+        }, _ = u.map(m, function (t) {
+            var e = t[En]("mouse", "pointer");
+            return x[e] ? e : t
+        }), w = {
+            mousemove: function (t) {
+                t = v(this.dom, t), this[Jn](Un, t)
+            }, mouseout: function (t) {
+                t = v(this.dom, t);
+                var e = t.toElement || t.relatedTarget;
+                if (e != this.dom)for (; e && 9 != e.nodeType;) {
+                    if (e === this.dom)return;
+                    e = e[L]
+                }
+                this[Jn](jn, t)
+            }, touchstart: function (t) {
+                t = v(this.dom, t), t.zrByTouch = !0, this._lastTouchMoment = new Date, i(this, t, "start"), w[Un].call(this, t), w[qn].call(this, t), n(this)
+            }, touchmove: function (t) {
+                t = v(this.dom, t), t.zrByTouch = !0, i(this, t, "change"), w[Un].call(this, t), n(this)
+            }, touchend: function (t) {
+                t = v(this.dom, t), t.zrByTouch = !0, i(this, t, "end"), w.mouseup.call(this, t), +new Date - this._lastTouchMoment < g && w.click.call(this, t), n(this)
+            }, pointerdown: function (t) {
+                w[qn].call(this, t)
+            }, pointermove: function (t) {
+                r(t) || w[Un].call(this, t)
+            }, pointerup: function (t) {
+                w.mouseup.call(this, t)
+            }, pointerout: function (t) {
+                r(t) || w[jn].call(this, t)
+            }
+        };
+        u.each(["click", qn, "mouseup", "mousewheel", "dblclick", "contextmenu"], function (t) {
+            w[t] = function (e) {
+                e = v(this.dom, e), this[Jn](t, e)
+            }
+        });
+        var b = s[Nr];
+        return b[$n] = function () {
+            for (var t = m[rn](y), i = 0; i < t[yr]; i++) {
+                var n = t[i];
+                p(this.dom, e(n), this._handlers[n])
+            }
+        }, b.setCursor = function (t) {
+            this.dom.style.cursor = t || "default"
+        }, u.mixin(s, c), s
+    }),e("zrender/Storage", [Yr, "./core/util", "./core/env", "./container/Group", "./core/timsort"], function (t) {
+        function e(t, e) {
+            return t[Nn] === e[Nn] ? t.z === e.z ? t.z2 - e.z2 : t.z - e.z : t[Nn] - e[Nn]
+        }
+
+        var i = t("./core/util"), n = t("./core/env"), r = t("./container/Group"), a = t("./core/timsort"), o = function () {
+            this._elements = {}, this._roots = [], this._displayList = [], this._displayListLen = 0
+        };
+        return o[Nr] = {
+            constructor: o, traverse: function (t, e) {
+                for (var i = 0; i < this._roots[yr]; i++)this._roots[i][Gn](t, e)
+            }, getDisplayList: function (t, e) {
+                return e = e || !1, t && this.updateDisplayList(e), this._displayList
+            }, updateDisplayList: function (t) {
+                this._displayListLen = 0;
+                for (var i = this._roots, r = this._displayList, o = 0, s = i[yr]; s > o; o++)this._updateAndAddDisplayable(i[o], null, t);
+                r[yr] = this._displayListLen, n[Ar] && a(r, e)
+            }, _updateAndAddDisplayable: function (t, e, i) {
+                if (!t[_r] || i) {
+                    t.beforeUpdate(), t[s] && t[hr](), t.afterUpdate();
+                    var n = t.clipPath;
+                    if (n) {
+                        e = e ? e.slice() : [];
+                        for (var r = n, a = t; r;)r[an] = a, r[l](), e.push(r), a = r, r = r.clipPath
+                    }
+                    if (t.isGroup) {
+                        for (var o = t._children, u = 0; u < o[yr]; u++) {
+                            var c = o[u];
+                            t[s] && (c[s] = !0), this._updateAndAddDisplayable(c, e, i)
+                        }
+                        t[s] = !1
+                    } else t.__clipPaths = e, this._displayList[this._displayListLen++] = t
+                }
+            }, addRoot: function (t) {
+                this._elements[t.id] || (t instanceof r && t.addChildrenToStorage(this), this.addToMap(t), this._roots.push(t))
+            }, delRoot: function (t) {
+                if (null == t) {
+                    for (var e = 0; e < this._roots[yr]; e++) {
+                        var n = this._roots[e];
+                        n instanceof r && n.delChildrenFromStorage(this)
+                    }
+                    return this._elements = {}, this._roots = [], this._displayList = [], void(this._displayListLen = 0)
+                }
+                if (t instanceof Array)for (var e = 0, a = t[yr]; a > e; e++)this.delRoot(t[e]); else {
+                    var o;
+                    o = typeof t == Er ? this._elements[t] : t;
+                    var s = i[mr](this._roots, o);
+                    s >= 0 && (this.delFromMap(o.id), this._roots[Yn](s, 1), o instanceof r && o.delChildrenFromStorage(this))
+                }
+            }, addToMap: function (t) {
+                return t instanceof r && (t.__storage = this), t.dirty(!1), this._elements[t.id] = t, this
+            }, get: function (t) {
+                return this._elements[t]
+            }, delFromMap: function (t) {
+                var e = this._elements, i = e[t];
+                return i && (delete e[t], i instanceof r && (i.__storage = null)), this
+            }, dispose: function () {
+                this._elements = this._renderList = this._roots = null
+            }, displayableSortFunc: e
+        }, o
+    }),e("zrender/animation/Animation", [Yr, a, "../core/event", "./requestAnimationFrame", "./Animator"], function (t) {
+        var e = t(a), i = t("../core/event").Dispatcher, n = t("./requestAnimationFrame"), r = t("./Animator"), o = function (t) {
+            t = t || {}, this.stage = t.stage || {}, this.onframe = t.onframe || function () {
+                }, this._clips = [], this._running = !1, this._time, this._pausedTime, this._pauseStart, this._paused = !1, i.call(this)
+        };
+        return o[Nr] = {
+            constructor: o, addClip: function (t) {
+                this._clips.push(t)
+            }, addAnimator: function (t) {
+                t[zr] = this;
+                for (var e = t.getClips(), i = 0; i < e[yr]; i++)this.addClip(e[i])
+            }, removeClip: function (t) {
+                var i = e[mr](this._clips, t);
+                i >= 0 && this._clips[Yn](i, 1)
+            }, removeAnimator: function (t) {
+                for (var e = t.getClips(), i = 0; i < e[yr]; i++)this.removeClip(e[i]);
+                t[zr] = null
+            }, _update: function () {
+                for (var t = (new Date).getTime() - this._pausedTime, e = t - this._time, i = this._clips, n = i[yr], r = [], a = [], o = 0; n > o; o++) {
+                    var s = i[o], l = s.step(t);
+                    l && (r.push(l), a.push(s))
+                }
+                for (var o = 0; n > o;)i[o]._needsRemove ? (i[o] = i[n - 1], i.pop(), n--) : o++;
+                n = r[yr];
+                for (var o = 0; n > o; o++)a[o].fire(r[o]);
+                this._time = t, this.onframe(e), this[Jn]("frame", e), this.stage[hr] && this.stage[hr]()
+            }, _startLoop: function () {
+                function t() {
+                    e._running && (n(t), !e._paused && e._update())
+                }
+
+                var e = this;
+                this._running = !0, n(t)
+            }, start: function () {
+                this._time = (new Date).getTime(), this._pausedTime = 0, this._startLoop()
+            }, stop: function () {
+                this._running = !1
+            }, pause: function () {
+                this._paused || (this._pauseStart = (new Date).getTime(), this._paused = !0)
+            }, resume: function () {
+                this._paused && (this._pausedTime += (new Date).getTime() - this._pauseStart, this._paused = !1)
+            }, clear: function () {
+                this._clips = []
+            }, animate: function (t, e) {
+                e = e || {};
+                var i = new r(t, e.loop, e.getter, e.setter);
+                return this.addAnimator(i), i
+            }
+        }, e.mixin(o, i), o
+    }),e("echarts/chart/bar/helper", [Yr, Xr, ji], function (t) {
+        function e(t, e, i, r, a) {
+            n[W](t, e, i), t.text = r, "outside" === t[T] && (t[T] = a)
+        }
+
+        var i = t(Xr), n = t(ji), r = {};
+        return r.setLabel = function (t, n, r, a, o, s, l) {
+            var u = r[Lr](fe), c = r[Lr](de);
+            u.get("show") ? e(t, u, a, i[Pi](o[me](s, qi), o[Ge](s)), l) : t.text = "", c.get("show") ? e(n, c, a, i[Pi](o[me](s, Wi), o[Ge](s)), l) : n.text = ""
+        }, r
+    }),e("zrender/Painter", [Yr, "./config", "./core/util", "./core/log", "./core/BoundingRect", "./core/timsort", "./Layer", "./animation/requestAnimationFrame", "./graphic/Image"], function (t) {
+        function e(t) {
+            return parseInt(t, 10)
+        }
+
+        function i(t) {
+            return t ? t.isBuildin ? !0 : typeof t[Vr] !== On || typeof t.refresh !== On ? !1 : !0 : !1
+        }
+
+        function n(t) {
+            t.__unusedCount++
+        }
+
+        function a(t) {
+            1 == t.__unusedCount && t.clear()
+        }
+
+        function l(t, e, i) {
+            return _.copy(t[yn]()), t[O] && _[U](t[O]), w.width = e, w[Or] = i, !_.intersect(w)
+        }
+
+        function u(t, e) {
+            if (t == e)return !1;
+            if (!t || !e || t[yr] !== e[yr])return !0;
+            for (var i = 0; i < t[yr]; i++)if (t[i] !== e[i])return !0
+        }
+
+        function c(t, e) {
+            for (var i = 0; i < t[yr]; i++) {
+                var n = t[i], r = n.path;
+                n.setTransform(e), r.beginPath(e), n[o](r, n.shape), e.clip(), n.restoreTransform(e)
+            }
+        }
+
+        function h(t, e) {
+            var i = document[_i]("div");
+            return i.style.cssText = ["position:relative", "overflow:hidden", "width:" + t + "px", "height:" + e + "px", "padding:0", "margin:0", "border-width:0"].join(";") + ";", i
+        }
+
+        var d = t("./config"), f = t("./core/util"), p = t("./core/log"), v = t("./core/BoundingRect"), g = t("./core/timsort"), m = t("./Layer"), y = t("./animation/requestAnimationFrame"), x = 5, _ = new v(0, 0, 0, 0), w = new v(0, 0, 0, 0), b = function (t, e, i) {
+            var n = !t.nodeName || "CANVAS" === t.nodeName.toUpperCase();
+            this._opts = i = f[ir]({}, i || {}), this.dpr = i.devicePixelRatio || d.devicePixelRatio, this._singleCanvas = n, this.root = t;
+            var r = t.style;
+            r && (r["-webkit-tap-highlight-color"] = cr, r["-webkit-user-select"] = r["user-select"] = r["-webkit-touch-callout"] = "none", t.innerHTML = ""), this[Mr] = e;
+            var a = this._zlevelList = [], o = this._layers = {};
+            if (this._layerConfig = {}, n) {
+                var s = t.width, l = t[Or];
+                this._width = s, this._height = l;
+                var u = new m(t, this, 1);
+                u.initContext(), o[0] = u, a.push(0), this._domRoot = t
+            } else {
+                this._width = this._getSize(0), this._height = this._getSize(1);
+                var c = this._domRoot = h(this._width, this._height);
+                t.appendChild(c)
+            }
+            this.pathToImage = this._createPathToImage(), this._progressiveLayers = [], this._hoverlayer, this._hoverElements = []
+        };
+        return b[Nr] = {
+            constructor: b, isSingleCanvas: function () {
+                return this._singleCanvas
+            }, getViewportRoot: function () {
+                return this._domRoot
+            }, refresh: function (t) {
+                var e = this[Mr].getDisplayList(!0), i = this._zlevelList;
+                this._paintList(e, t);
+                for (var n = 0; n < i[yr]; n++) {
+                    var r = i[n], a = this._layers[r];
+                    !a.isBuildin && a.refresh && a.refresh()
+                }
+                return this.refreshHover(), this._progressiveLayers[yr] && this._startProgessive(), this
+            }, addHover: function (t, e) {
+                if (!t.__hoverMir) {
+                    var i = new t.constructor({style: t.style, shape: t.shape});
+                    i.__from = t, t.__hoverMir = i, i[Bn](e), this._hoverElements.push(i)
+                }
+            }, removeHover: function (t) {
+                var e = t.__hoverMir, i = this._hoverElements, n = f[mr](i, e);
+                n >= 0 && i[Yn](n, 1), t.__hoverMir = null
+            }, clearHover: function () {
+                for (var t = this._hoverElements, e = 0; e < t[yr]; e++) {
+                    var i = t[e].__from;
+                    i && (i.__hoverMir = null)
+                }
+                t[yr] = 0
+            }, refreshHover: function () {
+                var t = this._hoverElements, e = t[yr], i = this._hoverlayer;
+                if (i && i.clear(), e) {
+                    g(t, this[Mr].displayableSortFunc), i || (i = this._hoverlayer = this.getLayer(1e5));
+                    var n = {};
+                    i.ctx.save();
+                    for (var r = 0; e > r;) {
+                        var a = t[r], o = a.__from;
+                        o && o.__zr ? (r++, o[P] || (a[O] = o[O], a.invTransform = o.invTransform, a.__clipPaths = o.__clipPaths, this._doPaintEl(a, i, !0, n))) : (t[Yn](r, 1), o.__hoverMir = null, e--)
+                    }
+                    i.ctx.restore()
+                }
+            }, _startProgessive: function () {
+                function t() {
+                    i === e._progressiveToken && e[Mr] && (e._doPaintList(e[Mr].getDisplayList()), e._furtherProgressive ? (e._progress++, y(t)) : e._progressiveToken = -1)
+                }
+
+                var e = this;
+                if (e._furtherProgressive) {
+                    var i = e._progressiveToken = +new Date;
+                    e._progress++, y(t)
+                }
+            }, _clearProgressive: function () {
+                this._progressiveToken = -1, this._progress = 0, f.each(this._progressiveLayers, function (t) {
+                    t[s] && t.clear()
+                })
+            }, _paintList: function (t, e) {
+                null == e && (e = !1), this._updateLayerStatus(t), this._clearProgressive(), this.eachBuildinLayer(n), this._doPaintList(t, e), this.eachBuildinLayer(a)
+            }, _doPaintList: function (t, e) {
+                function i(t) {
+                    var e = o.dpr || 1;
+                    o.save(), o.globalAlpha = 1, o[r] = 0, n[s] = !0, o.setTransform(1, 0, 0, 1, 0, 0), o.drawImage(t.dom, 0, 0, d * e, v * e), o.restore()
+                }
+
+                for (var n, a, o, l, u, c, h = 0, d = this._width, v = this._height, g = this._progress, m = 0, y = t[yr]; y > m; m++) {
+                    var _ = t[m], w = this._singleCanvas ? 0 : _[Nn], b = _.__frame;
+                    if (0 > b && u && (i(u), u = null), a !== w && (o && o.restore(), l = {}, a = w, n = this.getLayer(a), n.isBuildin || p("ZLevel " + a + " has been used by unkown layer " + n.id), o = n.ctx, o.save(), n.__unusedCount = 0, (n[s] || e) && n.clear()), n[s] || e) {
+                        if (b >= 0) {
+                            if (!u) {
+                                if (u = this._progressiveLayers[Math.min(h++, x - 1)], u.ctx.save(), u.renderScope = {}, u && u.__progress > u.__maxProgress) {
+                                    m = u.__nextIdxNotProg - 1;
+                                    continue
+                                }
+                                c = u.__progress, u[s] || (g = c), u.__progress = g + 1
+                            }
+                            b === g && this._doPaintEl(_, u, !0, u.renderScope)
+                        } else this._doPaintEl(_, n, e, l);
+                        _[s] = !1
+                    }
+                }
+                u && i(u), o && o.restore(), this._furtherProgressive = !1, f.each(this._progressiveLayers, function (t) {
+                    t.__maxProgress >= t.__progress && (this._furtherProgressive = !0)
+                }, this)
+            }, _doPaintEl: function (t, e, i, n) {
+                var r = e.ctx, a = t[O];
+                if (!(!e[s] && !i || t[P] || 0 === t.style[cn] || a && !a[0] && !a[3] || t.culling && l(t, this._width, this._height))) {
+                    var o = t.__clipPaths;
+                    (n.prevClipLayer !== e || u(o, n.prevElClipPaths)) && (n.prevElClipPaths && (n.prevClipLayer.ctx.restore(), n.prevClipLayer = n.prevElClipPaths = null, n.prevEl = null), o && (r.save(), c(o, r), n.prevClipLayer = e, n.prevElClipPaths = o)), t.beforeBrush && t.beforeBrush(r), t.brush(r, n.prevEl || null), n.prevEl = t, t.afterBrush && t.afterBrush(r)
+                }
+            }, getLayer: function (t) {
+                if (this._singleCanvas)return this._layers[0];
+                var e = this._layers[t];
+                return e || (e = new m("zr_" + t, this, this.dpr), e.isBuildin = !0, this._layerConfig[t] && f.merge(e, this._layerConfig[t], !0), this.insertLayer(t, e), e.initContext()), e
+            }, insertLayer: function (t, e) {
+                var n = this._layers, r = this._zlevelList, a = r[yr], o = null, s = -1, l = this._domRoot;
+                if (n[t])return void p("ZLevel " + t + " has been used already");
+                if (!i(e))return void p("Layer of zlevel " + t + " is not valid");
+                if (a > 0 && t > r[0]) {
+                    for (s = 0; a - 1 > s && !(r[s] < t && r[s + 1] > t); s++);
+                    o = n[r[s]]
+                }
+                if (r[Yn](s + 1, 0, t), o) {
+                    var u = o.dom;
+                    u.nextSibling ? l.insertBefore(e.dom, u.nextSibling) : l.appendChild(e.dom)
+                } else l.firstChild ? l.insertBefore(e.dom, l.firstChild) : l.appendChild(e.dom);
+                n[t] = e
+            }, eachLayer: function (t, e) {
+                var i, n, r = this._zlevelList;
+                for (n = 0; n < r[yr]; n++)i = r[n], t.call(e, this._layers[i], i)
+            }, eachBuildinLayer: function (t, e) {
+                var i, n, r, a = this._zlevelList;
+                for (r = 0; r < a[yr]; r++)n = a[r], i = this._layers[n], i.isBuildin && t.call(e, i, n)
+            }, eachOtherLayer: function (t, e) {
+                var i, n, r, a = this._zlevelList;
+                for (r = 0; r < a[yr]; r++)n = a[r], i = this._layers[n], i.isBuildin || t.call(e, i, n)
+            }, getLayers: function () {
+                return this._layers
+            }, _updateLayerStatus: function (t) {
+                var e = this._layers, i = this._progressiveLayers, n = {}, r = {};
+                this.eachBuildinLayer(function (t, e) {
+                    n[e] = t.elCount, t.elCount = 0, t[s] = !1
+                }), f.each(i, function (t, e) {
+                    r[e] = t.elCount, t.elCount = 0, t[s] = !1
+                });
+                for (var a, o, l = 0, u = 0, c = 0, h = t[yr]; h > c; c++) {
+                    var d = t[c], p = this._singleCanvas ? 0 : d[Nn], v = e[p], g = d.progressive;
+                    if (v && (v.elCount++, v[s] = v[s] || d[s]), g >= 0) {
+                        o !== g && (o = g, u++);
+                        var y = d.__frame = u - 1;
+                        if (!a) {
+                            var _ = Math.min(l, x - 1);
+                            a = i[_], a || (a = i[_] = new m("progressive", this, this.dpr), a.initContext()), a.__maxProgress = 0
+                        }
+                        a[s] = a[s] || d[s], a.elCount++, a.__maxProgress = Math.max(a.__maxProgress, y), a.__maxProgress >= a.__progress && (v[s] = !0)
+                    } else d.__frame = -1, a && (a.__nextIdxNotProg = c, l++, a = null)
+                }
+                a && (l++, a.__nextIdxNotProg = c), this.eachBuildinLayer(function (t, e) {
+                    n[e] !== t.elCount && (t[s] = !0)
+                }), i[yr] = Math.min(l, x), f.each(i, function (t, e) {
+                    r[e] !== t.elCount && (d[s] = !0), t[s] && (t.__progress = 0)
+                })
+            }, clear: function () {
+                return this.eachBuildinLayer(this._clearLayer), this
+            }, _clearLayer: function (t) {
+                t.clear()
+            }, configLayer: function (t, e) {
+                if (e) {
+                    var i = this._layerConfig;
+                    i[t] ? f.merge(i[t], e, !0) : i[t] = e;
+                    var n = this._layers[t];
+                    n && f.merge(n, i[t], !0)
+                }
+            }, delLayer: function (t) {
+                var e = this._layers, i = this._zlevelList, n = e[t];
+                n && (n.dom[L].removeChild(n.dom), delete e[t], i[Yn](f[mr](i, t), 1))
+            }, resize: function (t, e) {
+                var i = this._domRoot;
+                i.style.display = "none";
+                var n = this._opts;
+                if (null != t && (n.width = t), null != e && (n[Or] = e), t = this._getSize(0), e = this._getSize(1), i.style.display = "", this._width != t || e != this._height) {
+                    i.style.width = t + "px", i.style[Or] = e + "px";
+                    for (var r in this._layers)this._layers.hasOwnProperty(r) && this._layers[r][Vr](t, e);
+                    f.each(this._progressiveLayers, function (i) {
+                        i[Vr](t, e)
+                    }), this.refresh(!0)
+                }
+                return this._width = t, this._height = e, this
+            }, clearLayer: function (t) {
+                var e = this._layers[t];
+                e && e.clear()
+            }, dispose: function () {
+                this.root.innerHTML = "", this.root = this[Mr] = this._domRoot = this._layers = null
+            }, getRenderedCanvas: function (t) {
+                if (t = t || {}, this._singleCanvas)return this._layers[0].dom;
+                var e = new m("image", this, t.pixelRatio || this.dpr);
+                e.initContext(), e.clearColor = t[Sr], e.clear();
+                for (var i = this[Mr].getDisplayList(!0), n = {}, r = 0; r < i[yr]; r++) {
+                    var a = i[r];
+                    this._doPaintEl(a, e, !0, n)
+                }
+                return e.dom
+            }, getWidth: function () {
+                return this._width
+            }, getHeight: function () {
+                return this._height
+            }, _getSize: function (t) {
+                var i = this._opts, n = ["width", Or][t], r = ["clientWidth", "clientHeight"][t], a = ["paddingLeft", "paddingTop"][t], o = ["paddingRight", "paddingBottom"][t];
+                if (null != i[n] && "auto" !== i[n])return parseFloat(i[n]);
+                var s = this.root, l = document.defaultView.getComputedStyle(s);
+                return (s[r] || e(l[n]) || e(s.style[n])) - (e(l[a]) || 0) - (e(l[o]) || 0) | 0
+            }, _pathToImage: function (e, i, n, r, a) {
+                var o = document[_i](Rr), s = o[xi]("2d");
+                o.width = n * a, o[Or] = r * a, s.clearRect(0, 0, n * a, r * a);
+                var l = {position: i[dn], rotation: i[pe], scale: i.scale};
+                i[dn] = [0, 0, 0], i[pe] = 0, i.scale = [1, 1], i && i.brush(s);
+                var u = t("./graphic/Image"), c = new u({id: e, style: {x: 0, y: 0, image: o}});
+                return null != l[dn] && (c[dn] = i[dn] = l[dn]), null != l[pe] && (c[pe] = i[pe] = l[pe]), null != l.scale && (c.scale = i.scale = l.scale), c
+            }, _createPathToImage: function () {
+                var t = this;
+                return function (e, i, n, r) {
+                    return t._pathToImage(e, i, n, r, t.dpr)
+                }
+            }
+        }, b
+    }),e("echarts/chart/bar/barItemStyle", [Yr, "../../model/mixin/makeStyleMapper"], function (t) {
+        var e = t("../../model/mixin/makeStyleMapper")([["fill", "color"], [Bi, Hi], [q, k], [Bi, "barBorderColor"], [q, "barBorderWidth"], [cn], [r], [i], ["shadowOffsetY"], [n]]);
+        return {
+            getBarItemStyle: function (t) {
+                var i = e.call(this, t);
+                if (this.getBorderLineDash) {
+                    var n = this.getBorderLineDash();
+                    n && (i.lineDash = n)
+                }
+                return i
+            }
+        }
+    }),e("zrender/graphic/helper/smoothSpline", [Yr, "../../core/vector"], function (t) {
+        function e(t, e, i, n, r, a, o) {
+            var s = .5 * (i - t), l = .5 * (n - e);
+            return (2 * (e - i) + s + l) * o + (-3 * (e - i) - 2 * s - l) * a + s * r + e
+        }
+
+        var i = t("../../core/vector");
+        return function (t, n) {
+            for (var r = t[yr], a = [], o = 0, s = 1; r > s; s++)o += i.distance(t[s - 1], t[s]);
+            var l = o / 2;
+            l = r > l ? r : l;
+            for (var s = 0; l > s; s++) {
+                var u, c, h, d = s / (l - 1) * (n ? r : r - 1), f = Math.floor(d), p = d - f, v = t[f % r];
+                n ? (u = t[(f - 1 + r) % r], c = t[(f + 1) % r], h = t[(f + 2) % r]) : (u = t[0 === f ? f : f - 1], c = t[f > r - 2 ? r - 1 : f + 1], h = t[f > r - 3 ? r - 1 : f + 2]);
+                var g = p * p, m = p * g;
+                a.push([e(u[0], v[0], c[0], h[0], p, g, m), e(u[1], v[1], c[1], h[1], p, g, m)])
+            }
+            return a
+        }
+    }),e("zrender/graphic/helper/smoothBezier", [Yr, "../../core/vector"], function (t) {
+        var e = t("../../core/vector"), i = e.min, n = e.max, r = e.scale, a = e.distance, o = e.add;
+        return function (t, s, l, u) {
+            var c, h, d, f, p = [], v = [], g = [], m = [];
+            if (u) {
+                d = [1 / 0, 1 / 0], f = [-1 / 0, -1 / 0];
+                for (var y = 0, x = t[yr]; x > y; y++)i(d, d, t[y]), n(f, f, t[y]);
+                i(d, d, u[0]), n(f, f, u[1])
+            }
+            for (var y = 0, x = t[yr]; x > y; y++) {
+                var _ = t[y];
+                if (l)c = t[y ? y - 1 : x - 1], h = t[(y + 1) % x]; else {
+                    if (0 === y || y === x - 1) {
+                        p.push(e.clone(t[y]));
+                        continue
+                    }
+                    c = t[y - 1], h = t[y + 1]
+                }
+                e.sub(v, h, c), r(v, v, s);
+                var w = a(_, c), b = a(_, h), M = w + b;
+                0 !== M && (w /= M, b /= M), r(g, v, -w), r(m, v, b);
+                var S = o([], _, g), A = o([], _, m);
+                u && (n(S, S, d), i(S, S, f), n(A, A, d), i(A, A, f)), p.push(S), p.push(A)
+            }
+            return l && p.push(p.shift()), p
+        }
+    }),e("zrender/mixin/Draggable", [Yr], function () {
+        function t() {
+            this.on(qn, this._dragStart, this), this.on(Un, this._drag, this), this.on("mouseup", this._dragEnd, this), this.on("globalout", this._dragEnd, this)
+        }
+
+        return t[Nr] = {
+            constructor: t, _dragStart: function (t) {
+                var e = t[Wn];
+                e && e[C] && (this._draggingTarget = e, e.dragging = !0, this._x = t[M], this._y = t[b], this.dispatchToElement(e, "dragstart", t.event))
+            }, _drag: function (t) {
+                var e = this._draggingTarget;
+                if (e) {
+                    var i = t[M], n = t[b], r = i - this._x, a = n - this._y;
+                    this._x = i, this._y = n, e.drift(r, a, t), this.dispatchToElement(e, "drag", t.event);
+                    var o = this.findHover(i, n, e), s = this._dropTarget;
+                    this._dropTarget = o, e !== o && (s && o !== s && this.dispatchToElement(s, "dragleave", t.event), o && o !== s && this.dispatchToElement(o, "dragenter", t.event))
+                }
+            }, _dragEnd: function (t) {
+                var e = this._draggingTarget;
+                e && (e.dragging = !1), this.dispatchToElement(e, "dragend", t.event), this._dropTarget && this.dispatchToElement(this._dropTarget, "drop", t.event), this._draggingTarget = null, this._dropTarget = null
+            }
+        }, t
+    }),e("zrender/graphic/helper/roundRect", [Yr], function () {
+        return {
+            buildPath: function (t, e) {
+                var i, n, r, a, o = e.x, s = e.y, l = e.width, u = e[Or], c = e.r;
+                0 > l && (o += l, l = -l), 0 > u && (s += u, u = -u), typeof c === kn ? i = n = r = a = c : c instanceof Array ? 1 === c[yr] ? i = n = r = a = c[0] : 2 === c[yr] ? (i = r = c[0], n = a = c[1]) : 3 === c[yr] ? (i = c[0], n = a = c[1], r = c[2]) : (i = c[0], n = c[1], r = c[2], a = c[3]) : i = n = r = a = 0;
+                var h;
+                i + n > l && (h = i + n, i *= l / h, n *= l / h), r + a > l && (h = r + a, r *= l / h, a *= l / h), n + r > u && (h = n + r, n *= u / h, r *= u / h), i + a > u && (h = i + a, i *= u / h, a *= u / h), t[y](o + i, s), t[m](o + l - n, s), 0 !== n && t.quadraticCurveTo(o + l, s, o + l, s + n), t[m](o + l, s + u - r), 0 !== r && t.quadraticCurveTo(o + l, s + u, o + l - r, s + u), t[m](o + a, s + u), 0 !== a && t.quadraticCurveTo(o, s + u, o, s + u - a), t[m](o, s + i), 0 !== i && t.quadraticCurveTo(o, s, o + i, s)
+            }
+        }
+    }),e("zrender/animation/requestAnimationFrame", [Yr], function () {
+        return typeof window !== Q && (window.requestAnimationFrame || window.msRequestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame) || function (t) {
+                setTimeout(t, 16)
+            }
+    }),e("zrender/core/event", [Yr, "../mixin/Eventful", "./env"], function (t) {
+        function e(t) {
+            return t.getBoundingClientRect ? t.getBoundingClientRect() : {left: 0, top: 0}
+        }
+
+        function i(t, e, i, r) {
+            return i = i || {}, r || !l[Ar] ? n(t, e, i) : l.browser.firefox && null != e.layerX && e.layerX !== e[M] ? (i.zrX = e.layerX, i.zrY = e.layerY) : null != e[M] ? (i.zrX = e[M], i.zrY = e[b]) : n(t, e, i), i
+        }
+
+        function n(t, i, n) {
+            var r = e(t);
+            n.zrX = i.clientX - r.left, n.zrY = i.clientY - r.top
+        }
+
+        function r(t, e, n) {
+            if (e = e || window.event, null != e.zrX)return e;
+            var r = e.type, a = r && r[mr]("touch") >= 0;
+            if (a) {
+                var o = "touchend" != r ? e.targetTouches[0] : e.changedTouches[0];
+                o && i(t, o, e, n)
+            } else i(t, e, e, n), e.zrDelta = e.wheelDelta ? e.wheelDelta / 120 : -(e.detail || 0) / 3;
+            return e
+        }
+
+        function a(t, e, i) {
+            u ? t.addEventListener(e, i) : t.attachEvent("on" + e, i)
+        }
+
+        function o(t, e, i) {
+            u ? t.removeEventListener(e, i) : t.detachEvent("on" + e, i)
+        }
+
+        var s = t("../mixin/Eventful"), l = t("./env"), u = typeof window !== Q && !!window.addEventListener, c = u ? function (t) {
+            t.preventDefault(), t.stopPropagation(), t.cancelBubble = !0
+        } : function (t) {
+            t.returnValue = !1, t.cancelBubble = !0
+        };
+        return {
+            clientToLocal: i,
+            normalizeEvent: r,
+            addEventListener: a,
+            removeEventListener: o,
+            stop: c,
+            Dispatcher: s
+        }
+    }),e("echarts/chart/helper/LinePath", [Yr, ji, Gr], function (t) {
+        function e(t) {
+            return isNaN(+t.cpx1) || isNaN(+t.cpy1)
+        }
+
+        var i = t(ji), n = t(Gr), r = i.Line[Nr], a = i.BezierCurve[Nr];
+        return i.extendShape({
+            type: "ec-line",
+            style: {stroke: "#000", fill: null},
+            shape: {x1: 0, y1: 0, x2: 0, y2: 0, percent: 1, cpx1: null, cpy1: null},
+            buildPath: function (t, i) {
+                (e(i) ? r : a)[o](t, i)
+            },
+            pointAt: function (t) {
+                return e(this.shape) ? r.pointAt.call(this, t) : a.pointAt.call(this, t)
+            },
+            tangentAt: function (t) {
+                var i = this.shape, r = e(i) ? [i.x2 - i.x1, i.y2 - i.y1] : a.tangentAt.call(this, t);
+                return n[Ki](r, r)
+            }
+        })
+    }),e("echarts/util/symbol", [Yr, "./graphic", X], function (t) {
+        var e = t("./graphic"), i = t(X), n = e.extendShape({
+            type: "triangle",
+            shape: {cx: 0, cy: 0, width: 0, height: 0},
+            buildPath: function (t, e) {
+                var i = e.cx, n = e.cy, r = e.width / 2, a = e[Or] / 2;
+                t[y](i, n - a), t[m](i + r, n + a), t[m](i - r, n + a), t[g]()
+            }
+        }), r = e.extendShape({
+            type: "diamond", shape: {cx: 0, cy: 0, width: 0, height: 0}, buildPath: function (t, e) {
+                var i = e.cx, n = e.cy, r = e.width / 2, a = e[Or] / 2;
+                t[y](i, n - a), t[m](i + r, n), t[m](i, n + a), t[m](i - r, n), t[g]()
+            }
+        }), a = e.extendShape({
+            type: "pin", shape: {x: 0, y: 0, width: 0, height: 0}, buildPath: function (t, e) {
+                var i = e.x, n = e.y, r = e.width / 5 * 3, a = Math.max(r, e[Or]), o = r / 2, s = o * o / (a - o), l = n - a + o + s, u = Math.asin(s / o), c = Math.cos(u) * o, h = Math.sin(u), d = Math.cos(u);
+                t.arc(i, l, o, Math.PI - u, 2 * Math.PI + u);
+                var f = .6 * o, p = .7 * o;
+                t.bezierCurveTo(i + c - h * f, l + s + d * f, i, n - p, i, n), t.bezierCurveTo(i, n - p, i - c + h * f, l + s + d * f, i - c, l + s), t[g]()
+            }
+        }), s = e.extendShape({
+            type: "arrow", shape: {x: 0, y: 0, width: 0, height: 0}, buildPath: function (t, e) {
+                var i = e[Or], n = e.width, r = e.x, a = e.y, o = n / 3 * 2;
+                t[y](r, a), t[m](r + o, a + i), t[m](r, a + i / 4 * 3), t[m](r - o, a + i), t[m](r, a), t[g]()
+            }
+        }), l = {
+            line: e.Line,
+            rect: e.Rect,
+            roundRect: e.Rect,
+            square: e.Rect,
+            circle: e[j],
+            diamond: r,
+            pin: a,
+            arrow: s,
+            triangle: n
+        }, u = {
+            line: function (t, e, i, n, r) {
+                r.x1 = t, r.y1 = e + n / 2, r.x2 = t + i, r.y2 = e + n / 2
+            }, rect: function (t, e, i, n, r) {
+                r.x = t, r.y = e, r.width = i, r[Or] = n
+            }, roundRect: function (t, e, i, n, r) {
+                r.x = t, r.y = e, r.width = i, r[Or] = n, r.r = Math.min(i, n) / 4
+            }, square: function (t, e, i, n, r) {
+                var a = Math.min(i, n);
+                r.x = t, r.y = e, r.width = a, r[Or] = a
+            }, circle: function (t, e, i, n, r) {
+                r.cx = t + i / 2, r.cy = e + n / 2, r.r = Math.min(i, n) / 2
+            }, diamond: function (t, e, i, n, r) {
+                r.cx = t + i / 2, r.cy = e + n / 2, r.width = i, r[Or] = n
+            }, pin: function (t, e, i, n, r) {
+                r.x = t + i / 2, r.y = e + n / 2, r.width = i, r[Or] = n
+            }, arrow: function (t, e, i, n, r) {
+                r.x = t + i / 2, r.y = e + n / 2, r.width = i, r[Or] = n
+            }, triangle: function (t, e, i, n, r) {
+                r.cx = t + i / 2, r.cy = e + n / 2, r.width = i, r[Or] = n
+            }
+        }, c = {};
+        for (var h in l)l.hasOwnProperty(h) && (c[h] = new l[h]);
+        var d = e.extendShape({
+            type: "symbol",
+            shape: {symbolType: "", x: 0, y: 0, width: 0, height: 0},
+            beforeBrush: function () {
+                var t = this.style, e = this.shape;
+                "pin" === e.symbolType && t[T] === ye && (t[T] = ["50%", "40%"], t[wn] = fn, t[on] = pn)
+            },
+            buildPath: function (t, e, i) {
+                var n = e.symbolType, r = c[n];
+                "none" !== e.symbolType && (r || (n = "rect", r = c[n]), u[n](e.x, e.y, e.width, e[Or], r.shape), r[o](t, r.shape, i))
+            }
+        }), f = function (t) {
+            if ("image" !== this.type) {
+                var e = this.style, i = this.shape;
+                i && "line" === i.symbolType ? e[Bi] = t : this.__isEmptyBrush ? (e[Bi] = t, e.fill = "#fff") : (e.fill && (e.fill = t), e[Bi] && (e[Bi] = t)), this.dirty(!1)
+            }
+        }, p = {
+            createSymbol: function (t, n, r, a, o, s) {
+                var l = 0 === t[mr]("empty");
+                l && (t = t.substr(5, 1)[Br]() + t.substr(6));
+                var u;
+                return u = 0 === t[mr]("image://") ? new e.Image({
+                    style: {
+                        image: t.slice(8),
+                        x: n,
+                        y: r,
+                        width: a,
+                        height: o
+                    }
+                }) : 0 === t[mr]("path://") ? e.makePath(t.slice(7), {}, new i(n, r, a, o)) : new d({
+                    shape: {
+                        symbolType: t,
+                        x: n,
+                        y: r,
+                        width: a,
+                        height: o
+                    }
+                }), u.__isEmptyBrush = l, u.setColor = f, u.setColor(s), u
+            }
+        };
+        return p
+    }),e("zrender/core/GestureMgr", [Yr, "./event"], function (t) {
+        function e(t) {
+            var e = t[1][0] - t[0][0], i = t[1][1] - t[0][1];
+            return Math.sqrt(e * e + i * i)
+        }
+
+        function i(t) {
+            return [(t[0][0] + t[1][0]) / 2, (t[0][1] + t[1][1]) / 2]
+        }
+
+        var n = t("./event"), r = function () {
+            this._track = []
+        };
+        r[Nr] = {
+            constructor: r, recognize: function (t, e, i) {
+                return this._doTrack(t, e, i), this._recognize(t)
+            }, clear: function () {
+                return this._track[yr] = 0, this
+            }, _doTrack: function (t, e, i) {
+                var r = t.touches;
+                if (r) {
+                    for (var a = {points: [], touches: [], target: e, event: t}, o = 0, s = r[yr]; s > o; o++) {
+                        var l = r[o], u = n.clientToLocal(i, l, {});
+                        a[We].push([u.zrX, u.zrY]), a.touches.push(l)
+                    }
+                    this._track.push(a)
+                }
+            }, _recognize: function (t) {
+                for (var e in a)if (a.hasOwnProperty(e)) {
+                    var i = a[e](this._track, t);
+                    if (i)return i
+                }
+            }
+        };
+        var a = {
+            pinch: function (t, n) {
+                var r = t[yr];
+                if (r) {
+                    var a = (t[r - 1] || {})[We], o = (t[r - 2] || {})[We] || a;
+                    if (o && o[yr] > 1 && a && a[yr] > 1) {
+                        var s = e(a) / e(o);
+                        !isFinite(s) && (s = 1), n.pinchScale = s;
+                        var l = i(a);
+                        return n.pinchX = l[0], n.pinchY = l[1], {type: "pinch", target: t[0][Wn], event: n}
+                    }
+                }
+            }
+        };
+        return r
+    }),e("zrender/Layer", [Yr, "./core/util", "./config", "./graphic/Style", "./graphic/Pattern"], function (t) {
+        function e() {
+            return !1
+        }
+
+        function i(t, e, i, n) {
+            var r = document[_i](e), a = i[Cr](), o = i[Tr](), s = r.style;
+            return s[dn] = "absolute", s.left = 0, s.top = 0, s.width = a + "px", s[Or] = o + "px", r.width = a * n, r[Or] = o * n, r.setAttribute("data-zr-dom-id", t), r
+        }
+
+        var n = t("./core/util"), r = t("./config"), a = t("./graphic/Style"), o = t("./graphic/Pattern"), s = function (t, a, o) {
+            var s;
+            o = o || r.devicePixelRatio, typeof t === Er ? s = i(t, Rr, a, o) : n[Ir](t) && (s = t, t = s.id), this.id = t, this.dom = s;
+            var l = s.style;
+            l && (s.onselectstart = e, l["-webkit-user-select"] = "none", l["user-select"] = "none", l["-webkit-touch-callout"] = "none", l["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)", l[vn] = 0, l[hn] = 0, l["border-width"] = 0), this.domBack = null, this.ctxBack = null, this.painter = a, this.config = null, this.clearColor = 0, this.motionBlur = !1, this.lastFrameAlpha = .7, this.dpr = o
+        };
+        return s[Nr] = {
+            constructor: s, elCount: 0, __dirty: !0, initContext: function () {
+                this.ctx = this.dom[xi]("2d"), this.ctx.dpr = this.dpr
+            }, createBackBuffer: function () {
+                var t = this.dpr;
+                this.domBack = i("back-" + this.id, Rr, this.painter, t), this.ctxBack = this.domBack[xi]("2d"), 1 != t && this.ctxBack.scale(t, t)
+            }, resize: function (t, e) {
+                var i = this.dpr, n = this.dom, r = n.style, a = this.domBack;
+                r.width = t + "px", r[Or] = e + "px", n.width = t * i, n[Or] = e * i, a && (a.width = t * i, a[Or] = e * i, 1 != i && this.ctxBack.scale(i, i))
+            }, clear: function (t) {
+                var e = this.dom, i = this.ctx, n = e.width, r = e[Or], s = this.clearColor, l = this.motionBlur && !t, u = this.lastFrameAlpha, c = this.dpr;
+                if (l && (this.domBack || this.createBackBuffer(), this.ctxBack.globalCompositeOperation = "copy", this.ctxBack.drawImage(e, 0, 0, n / c, r / c)), i.clearRect(0, 0, n, r), s) {
+                    var h;
+                    s[ur] ? (h = s.__canvasGradient || a.getGradient(i, s, {
+                            x: 0,
+                            y: 0,
+                            width: n,
+                            height: r
+                        }), s.__canvasGradient = h) : s.image && (h = o[Nr].getCanvasPattern.call(s, i)), i.save(), i.fillStyle = h || s, i.fillRect(0, 0, n, r), i.restore()
+                }
+                if (l) {
+                    var d = this.domBack;
+                    i.save(), i.globalAlpha = u, i.drawImage(d, 0, 0, n, r), i.restore()
+                }
+            }
+        }, s
+    }),e("echarts/preprocessor/helper/compatStyle", [Yr, Xr], function (t) {
+        function e(t) {
+            var e = t && t[Ui];
+            e && i.each(n, function (n) {
+                var r = e[qi], a = e[Wi];
+                r && r[n] && (t[n] = t[n] || {}, t[n][qi] ? i.merge(t[n][qi], r[n]) : t[n][qi] = r[n], r[n] = null), a && a[n] && (t[n] = t[n] || {}, t[n][Wi] ? i.merge(t[n][Wi], a[n]) : t[n][Wi] = a[n], a[n] = null)
+            })
+        }
+
+        var i = t(Xr), n = ["areaStyle", he, "nodeStyle", "linkStyle", "chordStyle", "label", "labelLine"];
+        return function (t) {
+            if (t) {
+                e(t), e(t.markPoint), e(t.markLine);
+                var n = t.data;
+                if (n) {
+                    for (var r = 0; r < n[yr]; r++)e(n[r]);
+                    var a = t.markPoint;
+                    if (a && a.data)for (var o = a.data, r = 0; r < o[yr]; r++)e(o[r]);
+                    var s = t.markLine;
+                    if (s && s.data)for (var l = s.data, r = 0; r < l[yr]; r++)i[Rn](l[r]) ? (e(l[r][0]), e(l[r][1])) : e(l[r])
+                }
+            }
+        }
+    }),e("echarts/chart/helper/SymbolDraw", [Yr, ji, "./Symbol"], function (t) {
+        function e(t) {
+            this.group = new n.Group, this._symbolCtor = t || r
+        }
+
+        function i(t, e, i) {
+            var n = t[bi](e);
+            return !(!n || isNaN(n[0]) || isNaN(n[1]) || i && i(e) || "none" === t[fr](e, He))
+        }
+
+        var n = t(ji), r = t("./Symbol"), a = e[Nr];
+        return a[Ke] = function (t, e) {
+            var r = this.group, a = t[Ye], o = this._data, s = this._symbolCtor, l = {
+                itemStyle: a[Lr](Me)[Mn](["color"]),
+                hoverItemStyle: a[Lr](be)[Mn](),
+                symbolRotate: a.get("symbolRotate"),
+                symbolOffset: a.get("symbolOffset"),
+                hoverAnimation: a.get("hoverAnimation"),
+                labelModel: a[Lr](fe),
+                hoverLabelModel: a[Lr](de)
+            };
+            t.diff(o).add(function (n) {
+                var a = t[bi](n);
+                if (i(t, n, e)) {
+                    var o = new s(t, n, l);
+                    o.attr(dn, a), t[ti](n, o), r.add(o)
+                }
+            })[hr](function (u, c) {
+                var h = o[Xe](c), d = t[bi](u);
+                return i(t, u, e) ? (h ? (h[Ke](t, u, l), n[Ze](h, {position: d}, a)) : (h = new s(t, u), h.attr(dn, d)), r.add(h), void t[ti](u, h)) : void r[nr](h)
+            })[nr](function (t) {
+                var e = o[Xe](t);
+                e && e.fadeOut(function () {
+                    r[nr](e)
+                })
+            })[Se](), this._data = t
+        }, a[sr] = function () {
+            var t = this._data;
+            t && t[ei](function (e, i) {
+                var n = t[bi](i);
+                e.attr(dn, n)
+            })
+        }, a[nr] = function (t) {
+            var e = this.group, i = this._data;
+            i && (t ? i[ei](function (t) {
+                t.fadeOut(function () {
+                    e[nr](t)
+                })
+            }) : e[An]())
+        }, e
+    }),e("echarts/chart/helper/Symbol", [Yr, Xr, V, ji, Di], function (t) {
+        function e(t, e) {
+            var i = t[fr](e, Fe);
+            return i instanceof Array ? i.slice() : [+i, +i]
+        }
+
+        function i(t) {
+            return [t[0] / 2, t[1] / 2]
+        }
+
+        function n(t, e, i) {
+            s.Group.call(this), this[Ke](t, e, i)
+        }
+
+        function r(t, e) {
+            this[an].drift(t, e)
+        }
+
+        var a = t(Xr), o = t(V), s = t(ji), l = t(Di), u = n[Nr];
+        u._createSymbol = function (t, e, n, a) {
+            this[An]();
+            var l = e[Ye], u = e[fr](n, "color"), c = o[z](t, -1, -1, 2, 2, u);
+            c.attr({
+                z2: 100,
+                culling: !0,
+                scale: [0, 0]
+            }), c.drift = r, s[ci](c, {scale: i(a)}, l, n), this._symbolType = t, this.add(c)
+        }, u.stopSymbolAnimation = function (t) {
+            this[Fi](0)[br](t)
+        }, u.getSymbolPath = function () {
+            return this[Fi](0)
+        }, u.getScale = function () {
+            return this[Fi](0).scale
+        }, u[Kn] = function () {
+            this[Fi](0)[Jn](Wi)
+        }, u[Qn] = function () {
+            this[Fi](0)[Jn](qi)
+        }, u.setZ = function (t, e) {
+            var i = this[Fi](0);
+            i[Nn] = t, i.z = e
+        }, u.setDraggable = function (t) {
+            var e = this[Fi](0);
+            e[C] = t, e.cursor = t ? "move" : "pointer"
+        }, u[Ke] = function (t, n, r) {
+            this[Dr] = !1;
+            var a = t[fr](n, He) || jr, o = t[Ye], l = e(t, n);
+            if (a !== this._symbolType)this._createSymbol(a, t, n, l); else {
+                var u = this[Fi](0);
+                s[Ze](u, {scale: i(l)}, o, n)
+            }
+            this._updateCommon(t, n, l, r), this._seriesModel = o
+        };
+        var c = [Ui, qi], h = [Ui, Wi], d = ["label", qi], f = ["label", Wi];
+        return u._updateCommon = function (t, e, n, r) {
+            var o = this[Fi](0), u = t[Ye], p = t[fr](e, "color");
+            "image" !== o.type && o[Gi]({strokeNoScale: !0}), r = r || null;
+            var v = r && r[Ui], g = r && r.hoverItemStyle, m = r && r.symbolRotate, y = r && r.symbolOffset, x = r && r.labelModel, _ = r && r.hoverLabelModel, w = r && r.hoverAnimation;
+            if (!r || t[E]) {
+                var b = t[Zi](e);
+                v = b[Lr](c)[Mn](["color"]), g = b[Lr](h)[Mn](), m = b[Be]("symbolRotate"), y = b[Be]("symbolOffset"), x = b[Lr](d), _ = b[Lr](f), w = b[Be]("hoverAnimation")
+            } else g = a[ir]({}, g);
+            var M = o.style;
+            o.attr(pe, (m || 0) * Math.PI / 180 || 0), y && o.attr(dn, [l[Ii](y[0], n[0]), l[Ii](y[1], n[1])]), o.setColor(p), o[Bn](v);
+            var S = t[fr](e, cn);
+            null != S && (M[cn] = S);
+            for (var A, T, C = t[ki].slice(); C[yr] && (A = C.pop(), T = t.getDimensionInfo(A).type, T === qe || "time" === T););
+            null != A && x[Be]("show") ? (s[W](M, x, p), M.text = a[Pi](u[me](e, qi), t.get(A, e))) : M.text = "", null != A && _[Be]("show") ? (s[W](g, _, p), g.text = a[Pi](u[me](e, Wi), t.get(A, e))) : g.text = "", o.off(Xn).off(jn).off(Wi).off(qi), o[ge] = g, s[Ni](o);
+            var L = i(n);
+            if (w && u[Ae]()) {
+                var k = function () {
+                    var t = L[1] / L[0];
+                    this.animateTo({scale: [Math.max(1.1 * L[0], L[0] + 3), Math.max(1.1 * L[1], L[1] + 3 * t)]}, 400, "elasticOut")
+                }, I = function () {
+                    this.animateTo({scale: L}, 400, "elasticOut")
+                };
+                o.on(Xn, k).on(jn, I).on(Wi, k).on(qi, I)
+            }
+        }, u.fadeOut = function (t) {
+            var e = this[Fi](0);
+            this[Dr] = !0, e.style.text = "", s[Ze](e, {scale: [0, 0]}, this._seriesModel, this[pr], t)
+        }, a[Cn](n, s.Group), n
+    }),e("echarts/chart/line/poly", [Yr, "zrender/graphic/Path", Gr], function (t) {
+        function e(t) {
+            return isNaN(t[0]) || isNaN(t[1])
+        }
+
+        function i(t, i, n, r, f, p, v, g, x, _, w) {
+            for (var b = 0, M = n, S = 0; r > S; S++) {
+                var A = i[M];
+                if (M >= f || 0 > M)break;
+                if (e(A)) {
+                    if (w) {
+                        M += p;
+                        continue
+                    }
+                    break
+                }
+                if (M === n)t[p > 0 ? y : m](A[0], A[1]), u(h, A); else if (x > 0) {
+                    var T = M + p, C = i[T];
+                    if (w)for (; C && e(i[T]);)T += p, C = i[T];
+                    var L = .5, k = i[b], C = i[T];
+                    if (!C || e(C))u(d, A); else {
+                        e(C) && !w && (C = A), a.sub(c, C, k);
+                        var I, P;
+                        if ("x" === _ || "y" === _) {
+                            var D = "x" === _ ? 0 : 1;
+                            I = Math.abs(A[D] - k[D]), P = Math.abs(A[D] - C[D])
+                        } else I = a.dist(A, k), P = a.dist(A, C);
+                        L = P / (P + I), l(d, A, c, -x * (1 - L))
+                    }
+                    o(h, h, g), s(h, h, v), o(d, d, g), s(d, d, v), t.bezierCurveTo(h[0], h[1], d[0], d[1], A[0], A[1]), l(h, A, c, x * L)
+                } else t[m](A[0], A[1]);
+                b = M, M += p
+            }
+            return S
+        }
+
+        function n(t, e) {
+            var i = [1 / 0, 1 / 0], n = [-1 / 0, -1 / 0];
+            if (e)for (var r = 0; r < t[yr]; r++) {
+                var a = t[r];
+                a[0] < i[0] && (i[0] = a[0]), a[1] < i[1] && (i[1] = a[1]), a[0] > n[0] && (n[0] = a[0]), a[1] > n[1] && (n[1] = a[1])
+            }
+            return {min: e ? i : n, max: e ? n : i}
+        }
+
+        var r = t("zrender/graphic/Path"), a = t(Gr), o = a.min, s = a.max, l = a.scaleAndAdd, u = a.copy, c = [], h = [], d = [];
+        return {
+            Polyline: r[ir]({
+                type: "ec-polyline",
+                shape: {points: [], smooth: 0, smoothConstraint: !0, smoothMonotone: null, connectNulls: !1},
+                style: {fill: null, stroke: "#000"},
+                buildPath: function (t, r) {
+                    var a = r[We], o = 0, s = a[yr], l = n(a, r.smoothConstraint);
+                    if (r.connectNulls) {
+                        for (; s > 0 && e(a[s - 1]); s--);
+                        for (; s > o && e(a[o]); o++);
+                    }
+                    for (; s > o;)o += i(t, a, o, s, s, 1, l.min, l.max, r.smooth, r.smoothMonotone, r.connectNulls) + 1
+                }
+            }),
+            Polygon: r[ir]({
+                type: "ec-polygon",
+                shape: {
+                    points: [],
+                    stackedOnPoints: [],
+                    smooth: 0,
+                    stackedOnSmooth: 0,
+                    smoothConstraint: !0,
+                    smoothMonotone: null,
+                    connectNulls: !1
+                },
+                buildPath: function (t, r) {
+                    var a = r[We], o = r.stackedOnPoints, s = 0, l = a[yr], u = r.smoothMonotone, c = n(a, r.smoothConstraint), h = n(o, r.smoothConstraint);
+                    if (r.connectNulls) {
+                        for (; l > 0 && e(a[l - 1]); l--);
+                        for (; l > s && e(a[s]); s++);
+                    }
+                    for (; l > s;) {
+                        var d = i(t, a, s, l, l, 1, c.min, c.max, r.smooth, u, r.connectNulls);
+                        i(t, o, s + d - 1, d, l, -1, h.min, h.max, r.stackedOnSmooth, u, r.connectNulls), s += d + 1, t[g]()
+                    }
+                }
+            })
+        }
+    }),e("echarts/component/axis/AxisView", [Yr, Xr, ji, "./AxisBuilder", Te], function (t) {
+        function e(t, e) {
+            function i(t) {
+                var e = n[di](t);
+                return e[ai](e[ri](0))
+            }
+
+            var n = t[gr], r = e.axis, a = {}, o = r[dn], s = r.onZero ? "onZero" : o, l = r.dim, u = n[Sn](), h = [u.x, u.x + u.width, u.y, u.y + u[Or]], d = e.get(ii) || 0, f = {
+                x: {
+                    top: h[2] - d,
+                    bottom: h[3] + d
+                }, y: {left: h[0] - d, right: h[1] + d}
+            };
+            f.x.onZero = Math.max(Math.min(i("y"), f.x[xr]), f.x.top), f.y.onZero = Math.max(Math.min(i("x"), f.y.right), f.y.left), a[dn] = ["y" === l ? f.y[s] : h[0], "x" === l ? f.x[s] : h[3]], a[pe] = Math.PI / 2 * ("x" === l ? 0 : 1);
+            var p = {top: -1, bottom: 1, left: -1, right: 1};
+            a.labelDirection = a.tickDirection = a.nameDirection = p[o], r.onZero && (a.labelOffset = f[l][o] - f[l].onZero), e[Lr](_).get(ye) && (a.tickDirection = -a.tickDirection), e[Lr](x).get(ye) && (a.labelDirection = -a.labelDirection);
+            var v = e[Lr](x).get(c);
+            return a.labelRotation = "top" === s ? -v : v, a.labelInterval = r.getLabelInterval(), a.z2 = 1, a
+        }
+
+        var i = t(Xr), n = t(ji), r = t("./AxisBuilder"), a = r.ifIgnoreOnTick, o = r.getInterval, s = [w, x, _, "axisName"], l = ["splitArea", "splitLine"], u = t(Te)[Pn]({
+            type: "axis",
+            render: function (t) {
+                this.group[An]();
+                var a = this._axisGroup;
+                if (this._axisGroup = new n.Group, this.group.add(this._axisGroup), t.get("show")) {
+                    var o = t.getCoordSysModel(), u = e(o, t), c = new r(t, u);
+                    i.each(s, c.add, c), this._axisGroup.add(c.getGroup()), i.each(l, function (e) {
+                        t.get(e + ".show") && this["_" + e](t, o, u.labelInterval)
+                    }, this), n.groupTransition(a, this._axisGroup, t)
+                }
+            },
+            _splitLine: function (t, e, r) {
+                var s = t.axis;
+                if (!s[f]()) {
+                    var l = t[Lr]("splitLine"), u = l[Lr](he), c = u.get("color"), h = o(l, r);
+                    c = i[Rn](c) ? c : [c];
+                    for (var d = e[gr][Sn](), p = s[hi](), v = 0, g = s.getTicksCoords(), m = s.scale[Ji](), y = [], x = [], _ = u[Je](), w = 0; w < g[yr]; w++)if (!a(s, w, h)) {
+                        var b = s[ai](g[w]);
+                        p ? (y[0] = b, y[1] = d.y, x[0] = b, x[1] = d.y + d[Or]) : (y[0] = d.x, y[1] = b, x[0] = d.x + d.width, x[1] = b);
+                        var M = v++ % c[yr];
+                        this._axisGroup.add(new n.Line(n.subPixelOptimizeLine({
+                            anid: "line_" + m[w],
+                            shape: {x1: y[0], y1: y[1], x2: x[0], y2: x[1]},
+                            style: i[tr]({stroke: c[M]}, _),
+                            silent: !0
+                        })))
+                    }
+                }
+            },
+            _splitArea: function (t, e, r) {
+                var s = t.axis;
+                if (!s[f]()) {
+                    var l = t[Lr]("splitArea"), u = l[Lr]("areaStyle"), c = u.get("color"), h = e[gr][Sn](), d = s.getTicksCoords(), p = s.scale[Ji](), v = s[ai](d[0]), g = s[ai](d[0]), m = 0, y = o(l, r), x = u[$e]();
+                    c = i[Rn](c) ? c : [c];
+                    for (var _ = 1; _ < d[yr]; _++)if (!a(s, _, y)) {
+                        var w, b, M, S, A = s[ai](d[_]);
+                        s[hi]() ? (w = v, b = h.y, M = A - w, S = h[Or]) : (w = h.x, b = g, M = h.width, S = A - b);
+                        var T = m++ % c[yr];
+                        this._axisGroup.add(new n.Rect({
+                            anid: "area_" + p[_],
+                            shape: {x: w, y: b, width: M, height: S},
+                            style: i[tr]({fill: c[T]}, x),
+                            silent: !0
+                        })), v = w + M, g = b + S
+                    }
+                }
+            }
+        });
+        u[ir]({type: "xAxis"}), u[ir]({type: "yAxis"})
+    }),e("echarts/chart/pie/labelLayout", [Yr, N], function (t) {
+        function e(t, e, i, n, r, a, o) {
+            function s(e, i, n) {
+                for (var r = e; i > r; r++)if (t[r].y += n, r > e && i > r + 1 && t[r + 1].y > t[r].y + t[r][Or])return void l(r, n / 2);
+                l(i - 1, n / 2)
+            }
+
+            function l(e, i) {
+                for (var n = e; n >= 0 && (t[n].y -= i, !(n > 0 && t[n].y > t[n - 1].y + t[n - 1][Or])); n--);
+            }
+
+            function u(t, e, i, n, r, a) {
+                for (var o = a > 0 ? e ? Number.MAX_VALUE : 0 : e ? Number.MAX_VALUE : 0, s = 0, l = t[yr]; l > s; s++)if (t[s][dn] !== fn) {
+                    var u = Math.abs(t[s].y - n), c = t[s].len, h = t[s].len2, d = r + c > u ? Math.sqrt((r + c + h) * (r + c + h) - u * u) : Math.abs(t[s].x - i);
+                    e && d >= o && (d = o - 10), !e && o >= d && (d = o + 10), t[s].x = i + d * a, o = d
+                }
+            }
+
+            t.sort(function (t, e) {
+                return t.y - e.y
+            });
+            for (var c, h = 0, d = t[yr], f = [], p = [], v = 0; d > v; v++)c = t[v].y - h, 0 > c && s(v, d, -c, r), h = t[v].y + t[v][Or];
+            0 > o - h && l(d - 1, h - o);
+            for (var v = 0; d > v; v++)t[v].y >= i ? p.push(t[v]) : f.push(t[v]);
+            u(f, !1, e, i, n, r), u(p, !0, e, i, n, r)
+        }
+
+        function i(t, i, n, r, a, o) {
+            for (var s = [], l = [], u = 0; u < t[yr]; u++)t[u].x < i ? s.push(t[u]) : l.push(t[u]);
+            e(l, i, n, r, 1, a, o), e(s, i, n, r, -1, a, o);
+            for (var u = 0; u < t[yr]; u++) {
+                var c = t[u].linePoints;
+                if (c) {
+                    var h = c[1][0] - c[2][0];
+                    c[2][0] = t[u].x < i ? t[u].x + 3 : t[u].x - 3, c[1][1] = c[2][1] = t[u].y, c[1][0] = c[2][0] + h
+                }
+            }
+        }
+
+        var n = t(N);
+        return function (t, e, r, a) {
+            var o, s, l = t[qr](), u = [], h = !1;
+            l.each(function (i) {
+                var r, a, d, f, p = l[bi](i), v = l[Zi](i), g = v[Lr](fe), m = g.get(dn) || v.get("label.emphasis.position"), y = v[Lr]("labelLine.normal"), x = y.get(yr), _ = y.get("length2"), w = (p[_e] + p[oi]) / 2, b = Math.cos(w), M = Math.sin(w);
+                o = p.cx, s = p.cy;
+                var S = m === ye || "inner" === m;
+                if (m === fn)r = p.cx, a = p.cy, f = fn; else {
+                    var A = (S ? (p.r + p.r0) / 2 * b : p.r * b) + o, T = (S ? (p.r + p.r0) / 2 * M : p.r * M) + s;
+                    if (r = A + 3 * b, a = T + 3 * M, !S) {
+                        var C = A + b * (x + e - p.r), L = T + M * (x + e - p.r), k = C + (0 > b ? -1 : 1) * _, I = L;
+                        r = k + (0 > b ? -5 : 5), a = I, d = [[A, T], [C, L], [k, I]]
+                    }
+                    f = S ? fn : b > 0 ? "left" : "right"
+                }
+                var P = g[Lr](bn)[_n](), D = g.get(c) ? 0 > b ? -w + Math.PI : -w : 0, z = t[me](i, qi) || l[we](i), V = n[yn](z, P, f, "top");
+                h = !!D, p.label = {
+                    x: r,
+                    y: a,
+                    position: m,
+                    height: V[Or],
+                    len: x,
+                    len2: _,
+                    linePoints: d,
+                    textAlign: f,
+                    verticalAlign: "middle",
+                    font: P,
+                    rotation: D
+                }, S || u.push(p.label)
+            }), !h && t.get("avoidLabelOverlap") && i(u, o, s, e, r, a)
+        }
+    }),e("echarts/chart/helper/LargeSymbolDraw", [Yr, ji, V], function (t) {
+        function e() {
+            this.group = new i.Group, this._symbolEl = new r({})
+        }
+
+        var i = t(ji), n = t(V), r = i.extendShape({
+            shape: {points: null, sizes: null},
+            symbolProxy: null,
+            buildPath: function (t, e) {
+                for (var i = e[We], n = e.sizes, r = this.symbolProxy, a = r.shape, s = 0; s < i[yr]; s++) {
+                    var l = i[s], u = n[s];
+                    u[0] < 4 ? t.rect(l[0] - u[0] / 2, l[1] - u[1] / 2, u[0], u[1]) : (a.x = l[0] - u[0] / 2, a.y = l[1] - u[1] / 2, a.width = u[0], a[Or] = u[1], r[o](t, a, !0))
+                }
+            },
+            findDataIndex: function (t, e) {
+                for (var i = this.shape, n = i[We], r = i.sizes, a = n[yr] - 1; a >= 0; a--) {
+                    var o = n[a], s = r[a], l = o[0] - s[0] / 2, u = o[1] - s[1] / 2;
+                    if (t >= l && e >= u && t <= l + s[0] && e <= u + s[1])return a
+                }
+                return -1
+            }
+        }), a = e[Nr];
+        return a[Ke] = function (t) {
+            this.group[An]();
+            var e = this._symbolEl, i = t[Ye];
+            e[Qe]({
+                points: t[fi](t[bi]), sizes: t[fi](function (e) {
+                    var i = t[fr](e, Fe);
+                    return i instanceof Array || (i = [i, i]), i
+                })
+            }), e.symbolProxy = n[z](t[vr](He), 0, 0, 0, 0), e.setColor = e.symbolProxy.setColor, e[Gi](i[Lr](Me)[Mn](["color"]));
+            var r = t[vr]("color");
+            r && e.setColor(r), e[Zn] = i[Zn], e.on(Un, function (t) {
+                e[pr] = null;
+                var i = e.findDataIndex(t[M], t[b]);
+                i > 0 && (e[pr] = i)
+            }), this.group.add(e)
+        }, a[sr] = function (t) {
+            var e = t[qr]();
+            this._symbolEl[Qe]({points: e[fi](e[bi])})
+        }, a[nr] = function () {
+            this.group[An]()
+        }, e
+    }),e("echarts/chart/helper/whiskerBoxCommon", [Yr, se, oe, "../helper/WhiskerBoxDraw", Xr], function (t) {
+        function e(t) {
+            return null == t.value ? t : t.value
+        }
+
+        var i = t(se), n = t(oe), r = t("../helper/WhiskerBoxDraw"), a = t(Xr), o = {
+            _baseAxisDim: null,
+            getInitialData: function (t, r) {
+                var a, o, s = r[Y]("xAxis", this.get("xAxisIndex")), l = r[Y]("yAxis", this.get("yAxisIndex")), u = s.get("type"), c = l.get("type");
+                u === Mi ? (t[Li] = Ci, a = s.getCategories(), o = !0) : c === Mi ? (t[Li] = h, a = l.getCategories(), o = !0) : t[Li] = t[Li] || Ci, this._baseAxisDim = t[Li] === Ci ? "x" : "y";
+                var d = t.data, f = this[ki] = ["base"][rn](this.valueDimensions);
+                n(f, d);
+                var p = new i(f, this);
+                return p[re](d, a ? a.slice() : null, function (t, i, n, r) {
+                    var a = e(t);
+                    return o ? "base" === i ? n : a[r - 1] : a[r]
+                }), p
+            },
+            coordDimToDataDim: function (t) {
+                var e = this.valueDimensions.slice(), i = ["base"], n = {
+                    horizontal: {x: i, y: e},
+                    vertical: {x: e, y: i}
+                };
+                return n[this.get(Li)][t]
+            },
+            dataDimToCoordDim: function (t) {
+                var e;
+                return a.each(["x", "y"], function (i) {
+                    var n = this[Ie](i);
+                    a[mr](n, t) >= 0 && (e = i)
+                }, this), e
+            },
+            getBaseAxis: function () {
+                var t = this._baseAxisDim;
+                return this[$][Y](t + "Axis", this.get(t + "AxisIndex")).axis
+            }
+        }, s = {
+            init: function () {
+                var t = this._whiskerBoxDraw = new r(this.getStyleUpdater());
+                this.group.add(t.group)
+            }, render: function (t) {
+                this._whiskerBoxDraw[Ke](t[qr]())
+            }, remove: function () {
+                this._whiskerBoxDraw[nr]()
+            }
+        };
+        return {seriesModelMixin: o, viewMixin: s}
+    }),e("echarts/component/radar/RadarView", [Yr, "../axis/AxisBuilder", Xr, ji, Te], function (t) {
+        var e = t("../axis/AxisBuilder"), i = t(Xr), n = t(ji), r = [w, x, _, "axisName"];
+        return t(Te)[Pn]({
+            type: "radar", render: function (t) {
+                var e = this.group;
+                e[An](), this._buildAxes(t), this._buildSplitLineAndArea(t)
+            }, _buildAxes: function (t) {
+                var n = t[gr], a = n.getIndicatorAxes(), o = i.map(a, function (t) {
+                    var i = new e(t.model, {
+                        position: [n.cx, n.cy],
+                        rotation: t.angle,
+                        labelDirection: -1,
+                        tickDirection: -1,
+                        nameDirection: 1
+                    });
+                    return i
+                });
+                i.each(o, function (t) {
+                    i.each(r, t.add, t), this.group.add(t.getGroup())
+                }, this)
+            }, _buildSplitLineAndArea: function (t) {
+                function e(t, e, i) {
+                    var n = i % e[yr];
+                    return t[n] = t[n] || [], n
+                }
+
+                var r = t[gr], a = r.getIndicatorAxes();
+                if (a[yr]) {
+                    var o = t.get("shape"), s = t[Lr]("splitLine"), l = t[Lr]("splitArea"), u = s[Lr](he), c = l[Lr]("areaStyle"), h = s.get("show"), d = l.get("show"), f = u.get("color"), p = c.get("color");
+                    f = i[Rn](f) ? f : [f], p = i[Rn](p) ? p : [p];
+                    var v = [], g = [];
+                    if (o === jr)for (var m = a[0].getTicksCoords(), y = r.cx, x = r.cy, _ = 0; _ < m[yr]; _++) {
+                        if (h) {
+                            var w = e(v, f, _);
+                            v[w].push(new n[j]({shape: {cx: y, cy: x, r: m[_]}}))
+                        }
+                        if (d && _ < m[yr] - 1) {
+                            var w = e(g, p, _);
+                            g[w].push(new n.Ring({shape: {cx: y, cy: x, r0: m[_], r: m[_ + 1]}}))
+                        }
+                    } else for (var b = -1, M = i.map(a, function (t, e) {
+                        var n = t.getTicksCoords();
+                        return b = Math.max(n[yr] - 1, b), i.map(n, function (t) {
+                            return r.coordToPoint(t, e)
+                        })
+                    }), S = [], _ = 0; b >= _; _++) {
+                        for (var A = [], T = 0; T < a[yr]; T++)A.push(M[T][_]);
+                        if (A[0] && A.push(A[0].slice()), h) {
+                            var w = e(v, f, _);
+                            v[w].push(new n[je]({shape: {points: A}}))
+                        }
+                        if (d && S) {
+                            var w = e(g, p, _ - 1);
+                            g[w].push(new n[Ue]({shape: {points: A[rn](S)}}))
+                        }
+                        S = A.slice()[ni]()
+                    }
+                    var C = u[Je](), L = c[$e]();
+                    i.each(g, function (t, e) {
+                        this.group.add(n.mergePath(t, {
+                            style: i[tr]({stroke: "none", fill: p[e % p[yr]]}, L),
+                            silent: !0
+                        }))
+                    }, this), i.each(v, function (t, e) {
+                        this.group.add(n.mergePath(t, {
+                            style: i[tr]({fill: "none", stroke: f[e % f[yr]]}, C),
+                            silent: !0
+                        }))
+                    }, this)
+                }
+            }
+        })
+    }),e("echarts/chart/treemap/helper", [Yr, Xr], function (t) {
+        var e = t(Xr), i = {
+            retrieveTargetInfo: function (t, e) {
+                if (t && ("treemapZoomToNode" === t.type || "treemapRootToNode" === t.type)) {
+                    var i = e[qr]().tree.root, n = t.targetNode;
+                    if (n && i.contains(n))return {node: n};
+                    var r = t.targetNodeId;
+                    if (null != r && (n = i.getNodeById(r)))return {node: n}
+                }
+            }, getPathToRoot: function (t) {
+                for (var e = []; t;)t = t[L], t && e.push(t);
+                return e[ni]()
+            }, aboveViewRoot: function (t, n) {
+                var r = i.getPathToRoot(t);
+                return e[mr](r, n) >= 0
+            }, wrapTreePathInfo: function (t, e) {
+                for (var i = []; t;) {
+                    var n = t[pr];
+                    i.push({name: t.name, dataIndex: n, value: e[Ge](n)}), t = t[L]
+                }
+                return i[ni](), i
+            }
+        };
+        return i
+    }),e("echarts/coord/radar/RadarModel", [Yr, "../axisDefault", Ce, Xr, "../axisModelCommonMixin", Te], function (t) {
+        function e(t, e) {
+            return a[tr]({show: e}, t)
+        }
+
+        var i = t("../axisDefault"), n = i.valueAxis, r = t(Ce), a = t(Xr), o = t("../axisModelCommonMixin"), s = t(Te)[Dn]({
+            type: "radar",
+            optionUpdated: function () {
+                var t = this.get(Pe), e = this.get("splitNumber"), i = this.get("scale"), n = this.get(w), s = this.get(_), l = this.get(x), u = this.get("name.textStyle"), c = this.get("name.show"), h = this.get("name.formatter"), d = this.get("nameGap"), f = this.get("triggerEvent"), p = a.map(this.get("indicator") || [], function (p) {
+                    if (null != p.max && p.max > 0 && !p.min ? p.min = 0 : null != p.min && p.min < 0 && !p.max && (p.max = 0), p = a.merge(a.clone(p), {
+                            boundaryGap: t,
+                            splitNumber: e,
+                            scale: i,
+                            axisLine: n,
+                            axisTick: s,
+                            axisLabel: l,
+                            name: p.text,
+                            nameLocation: "end",
+                            nameGap: d,
+                            nameTextStyle: u,
+                            triggerEvent: f
+                        }, !1), c || (p.name = ""), typeof h === Er) {
+                        var v = p.name;
+                        p.name = h[En]("{value}", null != v ? v : "")
+                    } else typeof h === On && (p.name = h(p.name, p));
+                    var g = a[ir](new r(p, null, this[$]), o);
+                    return g[or] = "radar", g[ze] = this[ze], g
+                }, this);
+                this.getIndicatorModels = function () {
+                    return p
+                }
+            },
+            defaultOption: {
+                zlevel: 0,
+                z: 0,
+                center: ["50%", "50%"],
+                radius: "75%",
+                startAngle: 90,
+                name: {show: !0},
+                boundaryGap: [0, 0],
+                splitNumber: 5,
+                nameGap: 15,
+                scale: !1,
+                shape: "polygon",
+                axisLine: a.merge({lineStyle: {color: "#bbb"}}, n[w]),
+                axisLabel: e(n[x], !1),
+                axisTick: e(n[_], !1),
+                splitLine: e(n.splitLine, !0),
+                splitArea: e(n.splitArea, !0),
+                indicator: []
+            }
+        });
+        return s
+    }),e("echarts/coord/radar/Radar", [Yr, Xr, "./IndicatorAxis", "../../scale/Interval", Di, "../axisHelper", "../../CoordinateSystem"], function (t) {
+        function e(t, e, a) {
+            this[kr] = t, this[ki] = [], this._indicatorAxes = i.map(t.getIndicatorModels(), function (t, e) {
+                var i = "indicator_" + e, a = new n(i, new r);
+                return a.name = t.get("name"), a.model = t, t.axis = a, this[ki].push(i), a
+            }, this), this[Vr](t, a), this.cx, this.cy, this.r, this[_e]
+        }
+
+        var i = t(Xr), n = t("./IndicatorAxis"), r = t("../../scale/Interval"), a = t(Di), o = t("../axisHelper");
+        return e[Nr].getIndicatorAxes = function () {
+            return this._indicatorAxes
+        }, e[Nr][Ai] = function (t, e) {
+            var i = this._indicatorAxes[e];
+            return this.coordToPoint(i[ri](t), e)
+        }, e[Nr].coordToPoint = function (t, e) {
+            var i = this._indicatorAxes[e], n = i.angle, r = this.cx + t * Math.cos(n), a = this.cy - t * Math.sin(n);
+            return [r, a]
+        }, e[Nr][Oe] = function (t) {
+            var e = t[0] - this.cx, i = t[1] - this.cy, n = Math.sqrt(e * e + i * i);
+            e /= n, i /= n;
+            for (var r, a = Math.atan2(-i, e), o = 1 / 0, s = -1, l = 0; l < this._indicatorAxes[yr]; l++) {
+                var u = this._indicatorAxes[l], c = Math.abs(a - u.angle);
+                o > c && (r = u, s = l, o = c)
+            }
+            return [s, +(r && r.coodToData(n))]
+        }, e[Nr][Vr] = function (t, e) {
+            var n = t.get(fn), r = e[Cr](), o = e[Tr](), s = Math.min(r, o) / 2;
+            this.cx = a[Ii](n[0], r), this.cy = a[Ii](n[1], o), this[_e] = t.get(_e) * Math.PI / 180, this.r = a[Ii](t.get(pi), s), i.each(this._indicatorAxes, function (t, e) {
+                t[Yi](0, this.r);
+                var i = this[_e] + e * Math.PI * 2 / this._indicatorAxes[yr];
+                i = Math.atan2(Math.sin(i), Math.cos(i)), t.angle = i
+            }, this)
+        }, e[Nr][hr] = function (t) {
+            function e(t) {
+                var e = Math.pow(10, Math.floor(Math.log(t) / Math.LN10)), i = t / e;
+                return 2 === i ? i = 5 : i *= 2, i * e
+            }
+
+            var n = this._indicatorAxes, r = this[kr];
+            i.each(n, function (t) {
+                t.scale[Yi](1 / 0, -1 / 0)
+            }), t[Ur]("radar", function (e) {
+                if ("radar" === e.get(gr) && t[Y]("radar", e.get("radarIndex")) === r) {
+                    var a = e[qr]();
+                    i.each(n, function (t) {
+                        t.scale[ke](a, t.dim)
+                    })
+                }
+            }, this);
+            var s = r.get("splitNumber");
+            i.each(n, function (t) {
+                var i = o.getScaleExtent(t, t.model);
+                o[Ee](t, t.model);
+                var n = t.model, r = t.scale, l = n.getMin(), u = n.getMax(), c = r.getInterval();
+                if (null != l && null != u)r.setInterval((u - l) / s); else if (null != l) {
+                    var h;
+                    do h = l + c * s, r[Yi](+l, h), r.setInterval(c), c = e(c); while (h < i[1] && isFinite(h) && isFinite(i[1]))
+                } else if (null != u) {
+                    var d;
+                    do d = u - c * s, r[Yi](d, +u), r.setInterval(c), c = e(c); while (d > i[0] && isFinite(d) && isFinite(i[0]))
+                } else {
+                    var f = r[Ji]()[yr] - 1;
+                    f > s && (c = e(c));
+                    var p = Math.round((i[0] + i[1]) / 2 / c) * c, v = Math.round(s / 2);
+                    r[Yi](a.round(p - v * c), a.round(p + (s - v) * c)), r.setInterval(c)
+                }
+            })
+        }, e[ki] = [], e[dr] = function (t, i) {
+            var n = [];
+            return t[wr]("radar", function (r) {
+                var a = new e(r, t, i);
+                n.push(a), r[gr] = a
+            }), t[Ur]("radar", function (t) {
+                "radar" === t.get(gr) && (t[gr] = n[t.get("radarIndex") || 0])
+            }), n
+        }, t("../../CoordinateSystem")[zn]("radar", e), e
+    }),e("echarts/component/helper/MapDraw", [Yr, "./RoamController", ji, Xr], function (t) {
+        function e(t) {
+            var e = t[Mn](), i = t.get("areaColor");
+            return null != i && (e.fill = i), e
+        }
+
+        function i(t, e, i, r, a) {
+            i.off("click"), i.off(qn), e.get("selectedMode") && (i.on(qn, function () {
+                t._mouseDownFlag = !0
+            }), i.on("click", function (o) {
+                if (t._mouseDownFlag) {
+                    t._mouseDownFlag = !1;
+                    for (var s = o[Wn]; !s.__region;)s = s[an];
+                    if (s) {
+                        var l = s.__region, u = {
+                            type: ("geo" === e[or] ? "geo" : "map") + "ToggleSelect",
+                            name: l.name,
+                            from: a.uid
+                        };
+                        u[e[or] + "Id"] = e.id, r[er](u), n(e, i)
+                    }
+                }
+            }))
+        }
+
+        function n(t, e) {
+            e[ce](function (e) {
+                e.__region && e[Jn](t.isSelected(e.__region.name) ? Wi : qi)
+            })
+        }
+
+        function r(t, e) {
+            var i = new o.Group;
+            this._controller = new a(t.getZr(), e ? i : null, null), this.group = i, this._updateGroup = e, this._mouseDownFlag
+        }
+
+        var a = t("./RoamController"), o = t(ji), s = t(Xr);
+        return r[Nr] = {
+            constructor: r, draw: function (t, r, a, l, u) {
+                var c = "geo" === t[or], h = t[qr] && t[qr]();
+                c && r[wr]({mainType: "series", subType: "map"}, function (e) {
+                    h || e.getHostGeoModel() !== t || (h = e[qr]())
+                });
+                var d = t[gr], f = this.group, p = d.scale, v = {position: d[dn], scale: p};
+                !f[Fi](0) || u ? f.attr(v) : o[Ze](f, v, t), f[An]();
+                var g = [Ui, qi], m = [Ui, Wi], y = ["label", qi], x = ["label", Wi];
+                s.each(d.regions, function (i) {
+                    var n = new o.Group, r = new o.CompoundPath({shape: {paths: []}});
+                    n.add(r);
+                    var a, l = t.getRegionModel(i.name) || t, u = l[Lr](g), d = l[Lr](m), v = e(u, p), _ = e(d, p), w = l[Lr](y), b = l[Lr](x);
+                    if (h) {
+                        a = h.indexOfName(i.name);
+                        var M = h[fr](a, "color", !0);
+                        M && (v.fill = M)
+                    }
+                    var S = w[Lr](bn), A = b[Lr](bn);
+                    s.each(i.contours, function (t) {
+                        var e = new o[Ue]({shape: {points: t}});
+                        r.shape.paths.push(e)
+                    }), r[Bn](v), r.style.strokeNoScale = !0, r.culling = !0;
+                    var T = w.get("show"), C = b.get("show"), L = h && isNaN(h.get("value", a)), k = h && h[bi](a);
+                    if (c || L && (T || C) || k && k.showLabel) {
+                        var I = h ? a : i.name, P = t[me](I, qi), D = t[me](I, Wi), z = new o.Text({
+                            style: {
+                                text: T ? P || i.name : "",
+                                fill: S[xn](),
+                                textFont: S[_n](),
+                                textAlign: "center",
+                                textVerticalAlign: "middle"
+                            },
+                            hoverStyle: {text: C ? D || i.name : "", fill: A[xn](), textFont: A[_n]()},
+                            position: i[fn].slice(),
+                            scale: [1 / p[0], 1 / p[1]],
+                            z2: 10,
+                            silent: !0
+                        });
+                        n.add(z)
+                    }
+                    if (h)h[ti](a, n); else {
+                        var l = t.getRegionModel(i.name);
+                        r.eventData = {componentType: "geo", geoIndex: t[ze], name: i.name, region: l && l[un] || {}}
+                    }
+                    n.__region = i, o[Ni](n, _, {hoverSilentOnTouch: !!t.get("selectedMode")}), f.add(n)
+                }), this._updateController(t, r, a), i(this, t, f, a, l), n(t, f)
+            }, remove: function () {
+                this.group[An](), this._controller[$n]()
+            }, _updateController: function (t, e, i) {
+                function n() {
+                    var e = {type: "geoRoam", componentType: o};
+                    return e[o + "Id"] = t.id, e
+                }
+
+                var r = t[gr], a = this._controller;
+                a[A] = t.get("scaleLimit"), a.zoom = r.getZoom(), a.enable(t.get("roam") || !1);
+                var o = t[or];
+                a.off("pan").on("pan", function (t, e) {
+                    this._mouseDownFlag = !1, i[er](s[ir](n(), {dx: t, dy: e}))
+                }, this), a.off("zoom").on("zoom", function (t, e, r) {
+                    if (this._mouseDownFlag = !1, i[er](s[ir](n(), {
+                            zoom: t,
+                            originX: e,
+                            originY: r
+                        })), this._updateGroup) {
+                        var a = this.group, o = a.scale;
+                        a[Gn](function (t) {
+                            "text" === t.type && t.attr("scale", [1 / o[0], 1 / o[1]])
+                        })
+                    }
+                }, this), a.setContainsPoint(function (t, e) {
+                    return r.getViewRectAfterRoam()[tn](t, e)
+                })
+            }
+        }, r
+    }),e("echarts/data/Tree", [Yr, Xr, "../model/Model", "./List", "./helper/linkList", "./helper/completeDimensions"], function (t) {
+        function e(t, e) {
+            this.root, this.data, this._nodes = [], this[Ye] = t, this.levelModels = n.map(e || [], function (e) {
+                return new r(e, t, t[$])
+            })
+        }
+
+        function i(t, e) {
+            var i = e.children;
+            t[L] !== e && (i.push(t), t[L] = e)
+        }
+
+        var n = t(Xr), r = t("../model/Model"), a = t("./List"), o = t("./helper/linkList"), s = t("./helper/completeDimensions"), l = function (t, e) {
+            this.name = t || "", this.depth = 0, this[Or] = 0, this[L] = null, this[pr] = -1, this.children = [], this.viewChildren = [], this.hostTree = e
+        };
+        return l[Nr] = {
+            constructor: l, isRemoved: function () {
+                return this[pr] < 0
+            }, eachNode: function (t, e, i) {
+                typeof t === On && (i = e, e = t, t = null), t = t || {}, n[Tn](t) && (t = {order: t});
+                var r, a = t.order || "preorder", o = this[t.attr || "children"];
+                "preorder" === a && (r = e.call(i, this));
+                for (var s = 0; !r && s < o[yr]; s++)o[s].eachNode(t, e, i);
+                "postorder" === a && e.call(i, this)
+            }, updateDepthAndHeight: function (t) {
+                var e = 0;
+                this.depth = t;
+                for (var i = 0; i < this.children[yr]; i++) {
+                    var n = this.children[i];
+                    n.updateDepthAndHeight(t + 1), n[Or] > e && (e = n[Or])
+                }
+                this[Or] = e + 1
+            }, getNodeById: function (t) {
+                if (this.getId() === t)return this;
+                for (var e = 0, i = this.children, n = i[yr]; n > e; e++) {
+                    var r = i[e].getNodeById(t);
+                    if (r)return r
+                }
+            }, contains: function (t) {
+                if (t === this)return !0;
+                for (var e = 0, i = this.children, n = i[yr]; n > e; e++) {
+                    var r = i[e].contains(t);
+                    if (r)return r
+                }
+            }, getAncestors: function (t) {
+                for (var e = [], i = t ? this : this[L]; i;)e.push(i), i = i[L];
+                return e[ni](), e
+            }, getValue: function (t) {
+                var e = this.hostTree.data;
+                return e.get(e.getDimension(t || "value"), this[pr])
+            }, setLayout: function (t, e) {
+                this[pr] >= 0 && this.hostTree.data[Ti](this[pr], t, e)
+            }, getLayout: function () {
+                return this.hostTree.data[bi](this[pr])
+            }, getModel: function (t) {
+                if (!(this[pr] < 0)) {
+                    var e = this.hostTree, i = e.data[Zi](this[pr]), n = this.getLevelModel();
+                    return i[Lr](t, (n || e[Ye])[Lr](t))
+                }
+            }, getLevelModel: function () {
+                return (this.hostTree.levelModels || [])[this.depth]
+            }, setVisual: function (t, e) {
+                this[pr] >= 0 && this.hostTree.data[wi](this[pr], t, e)
+            }, getVisual: function (t, e) {
+                return this.hostTree.data[fr](this[pr], t, e)
+            }, getRawIndex: function () {
+                return this.hostTree.data[ee](this[pr])
+            }, getId: function () {
+                return this.hostTree.data.getId(this[pr])
+            }
+        }, e[Nr] = {
+            constructor: e, type: "tree", eachNode: function (t, e, i) {
+                this.root.eachNode(t, e, i)
+            }, getNodeByDataIndex: function (t) {
+                var e = this.data[ee](t);
+                return this._nodes[e]
+            }, getNodeByName: function (t) {
+                return this.root.getNodeByName(t)
+            }, update: function () {
+                for (var t = this.data, e = this._nodes, i = 0, n = e[yr]; n > i; i++)e[i][pr] = -1;
+                for (var i = 0, n = t.count(); n > i; i++)e[t[ee](i)][pr] = i
+            }, clearLayouts: function () {
+                this.data.clearItemLayouts()
+            }
+        }, e.createTree = function (t, n, r) {
+            function u(t, e) {
+                h.push(t);
+                var n = new l(t.name, c);
+                e ? i(n, e) : c.root = n, c._nodes.push(n);
+                var r = t.children;
+                if (r)for (var a = 0; a < r[yr]; a++)u(r[a], n)
+            }
+
+            var c = new e(n, r), h = [];
+            u(t), c.root.updateDepthAndHeight(0);
+            var d = s([{name: "value"}], h), f = new a(d, n);
+            return f[re](h), o({mainData: f, struct: c, structAttr: "tree"}), c[hr](), c
+        }, e
+    }),e("echarts/coord/parallel/parallelCreator", [Yr, "./Parallel", "../../CoordinateSystem"], function (t) {
+        function e(t, e) {
+            var n = [];
+            return t[wr]("parallel", function (r, a) {
+                var o = new i(r, t, e);
+                o.name = "parallel_" + a, o[Vr](r, e), r[gr] = o, o.model = r, n.push(o)
+            }), t[lr](function (e) {
+                if ("parallel" === e.get(gr)) {
+                    var i = t[K]({mainType: "parallel", index: e.get("parallelIndex"), id: e.get("parallelId")})[0];
+                    e[gr] = i[gr]
+                }
+            }), n
+        }
+
+        var i = t("./Parallel");
+        t("../../CoordinateSystem")[zn]("parallel", {create: e})
+    }),e("echarts/coord/parallel/ParallelModel", [Yr, Xr, v, "./AxisModel"], function (t) {
+        var e = t(Xr), i = t(v);
+        t("./AxisModel"), i[ir]({
+            type: "parallel",
+            dependencies: ["parallelAxis"],
+            coordinateSystem: null,
+            dimensions: null,
+            parallelAxisIndex: null,
+            layoutMode: "box",
+            defaultOption: {
+                zlevel: 0,
+                z: 0,
+                left: 80,
+                top: 60,
+                right: 80,
+                bottom: 60,
+                layout: "horizontal",
+                axisExpandable: !1,
+                axisExpandCenter: null,
+                axisExpandCount: 0,
+                axisExpandWidth: 50,
+                parallelAxisDefault: null
+            },
+            init: function () {
+                i[Nr].init.apply(this, arguments), this[sn]({})
+            },
+            mergeOption: function (t) {
+                var i = this[un];
+                t && e.merge(i, t, !0), this._initDimensions()
+            },
+            contains: function (t, e) {
+                var i = t.get("parallelIndex");
+                return null != i && e[Y]("parallel", i) === this
+            },
+            setAxisExpand: function (t) {
+                e.each(["axisExpandable", "axisExpandCenter", "axisExpandCount", "axisExpandWidth"], function (e) {
+                    t.hasOwnProperty(e) && (this[un][e] = t[e])
+                }, this)
+            },
+            _initDimensions: function () {
+                var t = this[ki] = [], i = this.parallelAxisIndex = [], n = e[Ln](this.dependentModels.parallelAxis, function (t) {
+                    return t.get("parallelIndex") === this[ze]
+                });
+                e.each(n, function (e) {
+                    t.push("dim" + e.get("dim")), i.push(e[ze])
+                })
+            }
+        })
+    }),e("echarts/chart/helper/createGraphFromNodeEdge", [Yr, se, "../../data/Graph", "../../data/helper/linkList", oe, "../../CoordinateSystem", Xr, "./createListFromArray"], function (t) {
+        var e = t(se), i = t("../../data/Graph"), n = t("../../data/helper/linkList"), r = t(oe), a = t("../../CoordinateSystem"), o = t(Xr), s = t("./createListFromArray");
+        return function (t, l, u, c, h) {
+            for (var d = new i(c), f = 0; f < t[yr]; f++)d.addNode(o[Pi](t[f].id, t[f].name, f), f);
+            for (var p = [], v = [], g = 0, f = 0; f < l[yr]; f++) {
+                var m = l[f], y = m.source, x = m[Wn];
+                d.addEdge(y, x, g) && (v.push(m), p.push(o[Pi](m.id, y + " > " + x)), g++)
+            }
+            var _, w = u.get(gr);
+            if (w === yi || "polar" === w)_ = s(t, u, u[$]); else {
+                var b = a.get(w), M = r((b && "view" !== b.type ? b[ki] || [] : [])[rn](["value"]), t);
+                _ = new e(M, u), _[re](t)
+            }
+            var S = new e(["value"], u);
+            return S[re](v, p), h && h(_, S), n({
+                mainData: _,
+                struct: d,
+                structAttr: "graph",
+                datas: {node: _, edge: S},
+                datasAttr: {node: "data", edge: "edgeData"}
+            }), d[hr](), d
+        }
+    }),e("echarts/component/parallelAxis", [Yr, "../coord/parallel/parallelCreator", "./axis/parallelAxisAction", "./axis/ParallelAxisView"], function (t) {
+        t("../coord/parallel/parallelCreator"), t("./axis/parallelAxisAction"), t("./axis/ParallelAxisView")
+    }),e("echarts/coord/parallel/parallelPreprocessor", [Yr, Xr, mi], function (t) {
+        function e(t) {
+            if (!t.parallel) {
+                var e = !1;
+                n.each(t[rr], function (t) {
+                    t && "parallel" === t.type && (e = !0)
+                }), e && (t.parallel = [{}])
+            }
+        }
+
+        function i(t) {
+            var e = r.normalizeToArray(t.parallelAxis);
+            n.each(e, function (e) {
+                if (n[Ir](e)) {
+                    var i = e.parallelIndex || 0, a = r.normalizeToArray(t.parallel)[i];
+                    a && a.parallelAxisDefault && n.merge(e, a.parallelAxisDefault, !1)
+                }
+            })
+        }
+
+        var n = t(Xr), r = t(mi);
+        return function (t) {
+            e(t), i(t)
+        }
+    }),e("echarts/chart/helper/EffectSymbol", [Yr, Xr, V, ji, Di, "./Symbol"], function (t) {
+        function e(t) {
+            return r[Rn](t) || (t = [+t, +t]), t
+        }
+
+        function i(t, e) {
+            t[ce](function (t) {
+                t.attr({
+                    z: e.z,
+                    zlevel: e[Nn],
+                    style: {stroke: e.brushType === Bi ? e.color : null, fill: "fill" === e.brushType ? e.color : null}
+                })
+            })
+        }
+
+        function n(t, e) {
+            u.call(this);
+            var i = new l(t, e), n = new u;
+            this.add(i), this.add(n), n.beforeUpdate = function () {
+                this.attr(i.getScale())
+            }, this[Ke](t, e)
+        }
+
+        var r = t(Xr), a = t(V), o = t(ji), s = t(Di), l = t("./Symbol"), u = o.Group, c = 3, h = n[Nr];
+        return h.stopEffectAnimation = function () {
+            this[Fi](1)[An]()
+        }, h.startEffectAnimation = function (t) {
+            for (var e = t.symbolType, n = t.color, r = this[Fi](1), o = 0; c > o; o++) {
+                var s = a[z](e, -1, -1, 2, 2, n);
+                s.attr({style: {strokeNoScale: !0}, z2: 99, silent: !0, scale: [.5, .5]});
+                var l = -o / c * t.period + t.effectOffset;
+                s[xe]("", !0).when(t.period, {scale: [t.rippleScale / 2, t.rippleScale / 2]}).delay(l).start(), s.animateStyle(!0).when(t.period, {opacity: 0}).delay(l).start(), r.add(s)
+            }
+            i(r, t)
+        }, h.updateEffectAnimation = function (t) {
+            for (var e = this._effectCfg, n = this[Fi](1), r = ["symbolType", "period", "rippleScale"], a = 0; r > a; a++) {
+                var o = r[a];
+                if (e[o] !== t[o])return this.stopEffectAnimation(), void this.startEffectAnimation(t)
+            }
+            i(n, t)
+        }, h[Kn] = function () {
+            this[Jn](Wi)
+        }, h[Qn] = function () {
+            this[Jn](qi)
+        }, h[Ke] = function (t, i) {
+            var n = t[Ye];
+            this[Fi](0)[Ke](t, i);
+            var r = this[Fi](1), a = t[Zi](i), o = t[fr](i, He), l = e(t[fr](i, Fe)), u = t[fr](i, "color");
+            r.attr("scale", l), r[Gn](function (t) {
+                t.attr({fill: u})
+            });
+            var c = a[Be]("symbolOffset");
+            if (c) {
+                var h = r[dn];
+                h[0] = s[Ii](c[0], l[0]), h[1] = s[Ii](c[1], l[1])
+            }
+            r[pe] = (a[Be]("symbolRotate") || 0) * Math.PI / 180 || 0;
+            var d = {};
+            if (d.showEffectOn = n.get("showEffectOn"), d.rippleScale = a.get("rippleEffect.scale"), d.brushType = a.get("rippleEffect.brushType"), d.period = 1e3 * a.get("rippleEffect.period"), d.effectOffset = i / t.count(), d.z = a[Be]("z") || 0, d[Nn] = a[Be](Nn) || 0, d.symbolType = o, d.color = u, this.off(Xn).off(jn).off(Wi).off(qi), d.showEffectOn === ar)this._effectCfg ? this.updateEffectAnimation(d) : this.startEffectAnimation(d), this._effectCfg = d; else {
+                this._effectCfg = null, this.stopEffectAnimation();
+                var f = this[Fi](0), p = function () {
+                    f[Jn](Wi), d.showEffectOn !== ar && this.startEffectAnimation(d)
+                }, v = function () {
+                    f[Jn](qi), d.showEffectOn !== ar && this.stopEffectAnimation()
+                };
+                this.on(Xn, p, this).on(jn, v, this).on(Wi, p, this).on(qi, v, this)
+            }
+            this._effectCfg = d
+        }, h.fadeOut = function (t) {
+            this.off(Xn).off(jn).off(Wi).off(qi), t && t()
+        }, r[Cn](n, u), n
+    }),e("echarts/component/helper/listComponent", [Yr, Ne, Ri, ji], function (t) {
+        function e(t, e, n) {
+            i.positionElement(t, e[mn](), {width: n[Cr](), height: n[Tr]()}, e.get(vn))
+        }
+
+        var i = t(Ne), n = t(Ri), r = t(ji);
+        return {
+            layout: function (t, n, r) {
+                var a = i[gn](n[mn](), {width: r[Cr](), height: r[Tr]()}, n.get(vn));
+                i.box(n.get(d), t, n.get("itemGap"), a.width, a[Or]), e(t, n, r)
+            }, addBackground: function (t, e) {
+                var i = n.normalizeCssArray(e.get(vn)), a = t[yn](), o = e[Mn](["color", cn]);
+                o.fill = e.get(Sr);
+                var s = new r.Rect({
+                    shape: {
+                        x: a.x - i[3],
+                        y: a.y - i[0],
+                        width: a.width + i[1] + i[3],
+                        height: a[Or] + i[0] + i[2]
+                    }, style: o, silent: !0, z2: -1
+                });
+                r.subPixelOptimizeRect(s), t.add(s)
+            }
+        }
+    }),e("echarts/component/axis/AngleAxisView", [Yr, Xr, ji, Ce, Te], function (t) {
+        function e(t, e, i, n) {
+            var r = t.coordToPoint([e, n]), a = t.coordToPoint([i, n]);
+            return {x1: r[0], y1: r[1], x2: a[0], y2: a[1]}
+        }
+
+        var i = t(Xr), n = t(ji), r = t(Ce), a = [w, x, _, "splitLine", "splitArea"];
+        t(Te)[Pn]({
+            type: "angleAxis", render: function (t, e) {
+                if (this.group[An](), t.get("show")) {
+                    var n = e[Y]("polar", t.get(D)), r = t.axis, o = n[gr], s = o.getRadiusAxis()[Qi](), l = r.getTicksCoords();
+                    r.type !== Mi && l.pop(), i.each(a, function (e) {
+                        !t.get(e + ".show") || r[f]() && e !== w || this["_" + e](t, o, l, s)
+                    }, this)
+                }
+            }, _axisLine: function (t, e, i, r) {
+                var a = t[Lr]("axisLine.lineStyle"), o = new n[j]({
+                    shape: {cx: e.cx, cy: e.cy, r: r[1]},
+                    style: a[Je](),
+                    z2: 1,
+                    silent: !0
+                });
+                o.style.fill = null, this.group.add(o)
+            }, _axisTick: function (t, r, a, o) {
+                var s = t[Lr](_), l = (s.get(ye) ? -1 : 1) * s.get(yr), u = i.map(a, function (t) {
+                    return new n.Line({shape: e(r, o[1], o[1] + l, t)})
+                });
+                this.group.add(n.mergePath(u, {style: i[tr](s[Lr](he)[Je](), {stroke: t.get("axisLine.lineStyle.color")})}))
+            }, _axisLabel: function (t, e, i, a) {
+                for (var o = t.axis, s = t.get("data"), l = t[Lr](x), u = l[Lr](bn), c = t[Re](), h = l.get(hn), d = o.getLabelsCoords(), f = 0; f < i[yr]; f++) {
+                    var p = a[1], v = e.coordToPoint([p + h, d[f]]), g = e.cx, m = e.cy, y = Math.abs(v[0] - g) / p < .3 ? fn : v[0] > g ? "left" : "right", _ = Math.abs(v[1] - m) / p < .3 ? pn : v[1] > m ? "top" : xr, w = u;
+                    s && s[f] && s[f][bn] && (w = new r(s[f][bn], u)), this.group.add(new n.Text({
+                        style: {
+                            x: v[0],
+                            y: v[1],
+                            fill: w[xn]() || t.get("axisLine.lineStyle.color"),
+                            text: c[f],
+                            textAlign: y,
+                            textVerticalAlign: _,
+                            textFont: w[_n]()
+                        }, silent: !0
+                    }))
+                }
+            }, _splitLine: function (t, r, a, o) {
+                var s = t[Lr]("splitLine"), l = s[Lr](he), u = l.get("color"), c = 0;
+                u = u instanceof Array ? u : [u];
+                for (var h = [], d = 0; d < a[yr]; d++) {
+                    var f = c++ % u[yr];
+                    h[f] = h[f] || [], h[f].push(new n.Line({shape: e(r, o[0], o[1], a[d])}))
+                }
+                for (var d = 0; d < h[yr]; d++)this.group.add(n.mergePath(h[d], {
+                    style: i[tr]({stroke: u[d % u[yr]]}, l[Je]()),
+                    silent: !0,
+                    z: t.get("z")
+                }))
+            }, _splitArea: function (t, e, r, a) {
+                var o = t[Lr]("splitArea"), s = o[Lr]("areaStyle"), l = s.get("color"), u = 0;
+                l = l instanceof Array ? l : [l];
+                for (var c = [], h = Math.PI / 180, d = -r[0] * h, f = Math.min(a[0], a[1]), p = Math.max(a[0], a[1]), v = t.get(ue), g = 1; g < r[yr]; g++) {
+                    var m = u++ % l[yr];
+                    c[m] = c[m] || [], c[m].push(new n[li]({
+                        shape: {
+                            cx: e.cx,
+                            cy: e.cy,
+                            r0: f,
+                            r: p,
+                            startAngle: d,
+                            endAngle: -r[g] * h,
+                            clockwise: v
+                        }, silent: !0
+                    })), d = -r[g] * h
+                }
+                for (var g = 0; g < c[yr]; g++)this.group.add(n.mergePath(c[g], {
+                    style: i[tr]({fill: l[g % l[yr]]}, s[$e]()),
+                    silent: !0
+                }))
+            }
+        })
+    }),e("echarts/component/tooltip/TooltipContent", [Yr, Xr, Hr, "zrender/core/event", Ri, Zr], function (t) {
+        function e(t) {
+            var e = "cubic-bezier(0.23, 1, 0.32, 1)", i = "left " + t + "s " + e + ",top " + t + "s " + e;
+            return a.map(d, function (t) {
+                return t + "transition:" + i
+            }).join(";")
+        }
+
+        function i(t) {
+            var e = [], i = t.get("fontSize"), n = t[xn]();
+            return n && e.push("color:" + n), e.push("font:" + t[_n]()), i && e.push("line-height:" + Math.round(3 * i / 2) + "px"), u(["decoration", "align"], function (i) {
+                var n = t.get(i);
+                n && e.push("text-" + i + ":" + n)
+            }), e.join(";")
+        }
+
+        function n(t) {
+            t = t;
+            var n = [], r = t.get("transitionDuration"), a = t.get(Sr), s = t[Lr](bn), d = t.get(vn);
+            return r && n.push(e(r)), a && (h[Ar] ? n.push("background-Color:" + a) : (n.push("background-Color:#" + o.toHex(a)), n.push("filter:alpha(opacity=70)"))), u(["width", "color", pi], function (e) {
+                var i = "border-" + e, r = c(i), a = t.get(r);
+                null != a && n.push(i + ":" + a + ("color" === e ? "" : "px"))
+            }), n.push(i(s)), null != d && n.push("padding:" + l.normalizeCssArray(d).join("px ") + "px"), n.join(";") + ";"
+        }
+
+        function r(t, e) {
+            var i = document[_i]("div"), n = e.getZr();
+            this.el = i, this._x = e[Cr]() / 2, this._y = e[Tr]() / 2, t.appendChild(i), this._container = t, this._show = !1, this._hideTimeout;
+            var r = this;
+            i.onmouseenter = function () {
+                r.enterable && (clearTimeout(r._hideTimeout), r._show = !0), r._inContent = !0
+            }, i.onmousemove = function (e) {
+                if (e = e || window.event, !r.enterable) {
+                    var i = n.handler;
+                    s.normalizeEvent(t, e, !0), i.dispatch(Un, e)
+                }
+            }, i.onmouseleave = function () {
+                r.enterable && r._show && r.hideLater(r._hideDelay), r._inContent = !1
+            }
+        }
+
+        var a = t(Xr), o = t(Hr), s = t("zrender/core/event"), l = t(Ri), u = a.each, c = l.toCamelCase, h = t(Zr), d = ["", "-webkit-", "-moz-", "-o-"], f = "position:absolute;display:block;border-style:solid;white-space:nowrap;z-index:9999999;";
+        return r[Nr] = {
+            constructor: r, enterable: !0, update: function () {
+                var t = this._container, e = t.currentStyle || document.defaultView.getComputedStyle(t), i = t.style;
+                "absolute" !== i[dn] && "absolute" !== e[dn] && (i[dn] = "relative")
+            }, show: function (t) {
+                clearTimeout(this._hideTimeout);
+                var e = this.el;
+                e.style.cssText = f + n(t) + ";left:" + this._x + "px;top:" + this._y + "px;" + (t.get("extraCssText") || ""), e.style.display = e.innerHTML ? "block" : "none", this._show = !0
+            }, setContent: function (t) {
+                var e = this.el;
+                e.innerHTML = t, e.style.display = t ? "block" : "none"
+            }, moveTo: function (t, e) {
+                var i = this.el.style;
+                i.left = t + "px", i.top = e + "px", this._x = t, this._y = e
+            }, hide: function () {
+                this.el.style.display = "none", this._show = !1
+            }, hideLater: function (t) {
+                !this._show || this._inContent && this.enterable || (t ? (this._hideDelay = t, this._show = !1, this._hideTimeout = setTimeout(a.bind(this.hide, this), t)) : this.hide())
+            }, isShow: function () {
+                return this._show
+            }
+        }, r
+    }),e("echarts/component/marker/markerHelper", [Yr, Xr, Di], function (t) {
+        function e(t) {
+            return !(isNaN(parseFloat(t.x)) && isNaN(parseFloat(t.y)))
+        }
+
+        function i(t) {
+            return !isNaN(parseFloat(t.x)) && !isNaN(parseFloat(t.y))
+        }
+
+        function n(t, e, i) {
+            var n = -1;
+            do n = Math.max(o.getPrecision(t.get(e, i)), n), t = t.stackedOn; while (t);
+            return n
+        }
+
+        function r(t, e, i, r, a, o) {
+            var s = [], l = p(e, r, t), u = e.indexOfNearest(r, l, !0);
+            s[a] = e.get(i, u, !0), s[o] = e.get(r, u, !0);
+            var c = n(e, r, u);
+            return c >= 0 && (s[o] = +s[o][ne](c)), s
+        }
+
+        var a = t(Xr), o = t(Di), s = a[mr], l = a.curry, u = {
+            min: l(r, "min"),
+            max: l(r, "max"),
+            average: l(r, "average")
+        }, c = function (t, e) {
+            var n = t[qr](), r = t[gr];
+            if (e && !i(e) && !a[Rn](e.coord) && r) {
+                var o = r[ki], l = h(e, n, r, t);
+                if (e = a.clone(e), e.type && u[e.type] && l.baseAxis && l.valueAxis) {
+                    var c = s(o, l.baseAxis.dim), d = s(o, l.valueAxis.dim);
+                    e.coord = u[e.type](n, l.baseDataDim, l.valueDataDim, c, d), e.value = e.coord[d]
+                } else {
+                    for (var f = [null != e.xAxis ? e.xAxis : e.radiusAxis, null != e.yAxis ? e.yAxis : e.angleAxis], v = 0; 2 > v; v++)if (u[f[v]]) {
+                        var g = t[Ie](o[v])[0];
+                        f[v] = p(n, g, f[v])
+                    }
+                    e.coord = f
+                }
+            }
+            return e
+        }, h = function (t, e, i, n) {
+            var r = {};
+            return null != t.valueIndex || null != t.valueDim ? (r.valueDataDim = null != t.valueIndex ? e.getDimension(t.valueIndex) : t.valueDim, r.valueAxis = i[di](n.dataDimToCoordDim(r.valueDataDim)), r.baseAxis = i[vi](r.valueAxis), r.baseDataDim = n[Ie](r.baseAxis.dim)[0]) : (r.baseAxis = n[Si](), r.valueAxis = i[vi](r.baseAxis), r.baseDataDim = n[Ie](r.baseAxis.dim)[0], r.valueDataDim = n[Ie](r.valueAxis.dim)[0]), r
+        }, d = function (t, i) {
+            return t && t.containData && i.coord && !e(i) ? t.containData(i.coord) : !0
+        }, f = function (t, e, i, n) {
+            return 2 > n ? t.coord && t.coord[n] : t.value
+        }, p = function (t, e, i) {
+            if ("average" === i) {
+                var n = 0, r = 0;
+                return t.each(e, function (t) {
+                    isNaN(t) || (n += t, r++)
+                }, !0), n / r
+            }
+            return t[Xi](e, !0)["max" === i ? 1 : 0]
+        };
+        return {dataTransform: c, dataFilter: d, dimValueGetter: f, getAxisInfo: h, numCalculate: p}
+    }),e("echarts/component/marker/MarkerView", [Yr, Te], function (t) {
+        return t(Te)[Pn]({
+            type: "marker", init: function () {
+                this.markerGroupMap = {}
+            }, render: function (t, e, i) {
+                var n = this.markerGroupMap;
+                for (var r in n)n.hasOwnProperty(r) && (n[r].__keep = !1);
+                var a = this.type + "Model";
+                e[lr](function (t) {
+                    var n = t[a];
+                    n && this.renderSeries(t, n, e, i)
+                }, this);
+                for (var r in n)n.hasOwnProperty(r) && !n[r].__keep && this.group[nr](n[r].group)
+            }, renderSeries: function () {
+            }
+        })
+    }),e("echarts/component/timeline/TimelineModel", [Yr, v, se, Xr, mi], function (t) {
+        var e = t(v), i = t(se), n = t(Xr), r = t(mi), a = e[ir]({
+            type: "timeline",
+            layoutMode: "box",
+            defaultOption: {
+                zlevel: 0,
+                z: 4,
+                show: !0,
+                axisType: "time",
+                realtime: !0,
+                left: "20%",
+                top: null,
+                right: "20%",
+                bottom: 0,
+                width: null,
+                height: 40,
+                padding: 5,
+                controlPosition: "left",
+                autoPlay: !1,
+                rewind: !1,
+                loop: !0,
+                playInterval: 2e3,
+                currentIndex: 0,
+                itemStyle: {normal: {}, emphasis: {}},
+                label: {normal: {textStyle: {color: "#000"}}, emphasis: {}},
+                data: []
+            },
+            init: function (t, e, i) {
+                this._data, this._names, this[J](t, i), this._initData()
+            },
+            mergeOption: function () {
+                a[ln](this, sn, arguments), this._initData()
+            },
+            setCurrentIndex: function (t) {
+                null == t && (t = this[un].currentIndex);
+                var e = this._data.count();
+                this[un].loop ? t = (t % e + e) % e : (t >= e && (t = e - 1), 0 > t && (t = 0)), this[un].currentIndex = t
+            },
+            getCurrentIndex: function () {
+                return this[un].currentIndex
+            },
+            isIndexMax: function () {
+                return this.getCurrentIndex() >= this._data.count() - 1
+            },
+            setPlayState: function (t) {
+                this[un].autoPlay = !!t
+            },
+            getPlayState: function () {
+                return !!this[un].autoPlay
+            },
+            _initData: function () {
+                var t = this[un], e = t.data || [], a = t.axisType, o = this._names = [];
+                if (a === Mi) {
+                    var s = [];
+                    n.each(e, function (t, e) {
+                        var i, a = r.getDataItemValue(t);
+                        n[Ir](t) ? (i = n.clone(t), i.value = e) : i = e, s.push(i), n[Tn](a) || null != a && !isNaN(a) || (a = ""), o.push(a + "")
+                    }), e = s
+                }
+                var l = {category: "ordinal", time: "time"}[a] || kn, u = this._data = new i([{
+                    name: "value",
+                    type: l
+                }], this);
+                u[re](e, o)
+            },
+            getData: function () {
+                return this._data
+            },
+            getCategories: function () {
+                return this.get("axisType") === Mi ? this._names.slice() : void 0
+            }
+        });
+        return a
+    }),e("echarts/component/helper/sliderMove", [Yr], function () {
+        return function (t, e, i, n, r) {
+            function a(t, e, i) {
+                var n = e[yr] ? e.slice() : [e, e];
+                return e[0] > e[1] && n[ni](), 0 > t && n[0] + t < i[0] && (t = i[0] - n[0]), t > 0 && n[1] + t > i[1] && (t = i[1] - n[1]), t
+            }
+
+            return t ? ("rigid" === n ? (t = a(t, e, i), e[0] += t, e[1] += t) : (t = a(t, e[r], i), e[r] += t, "push" === n && e[0] > e[1] && (e[1 - r] = e[r])), e) : e
+        }
+    }),e("echarts/component/brush/selector", [Yr, "zrender/contain/polygon", X], function (t) {
+        function e(t) {
+            var e = ["x", "y"], n = ["width", Or];
+            return {
+                point: function (e, n, r) {
+                    var a = r.range, o = e[t];
+                    return i(o, a)
+                }, rect: function (r, a, o) {
+                    var s = o.range;
+                    return i(r[e[t]], s) || i(r[e[t]] + r[n[t]], s)
+                }
+            }
+        }
+
+        function i(t, e) {
+            return e[0] <= t && t <= e[1]
+        }
+
+        function n(t, e, i, n, a) {
+            for (var o = 0, s = a[a[yr] - 1]; o < a[yr]; o++) {
+                var l = a[o];
+                if (r(t, e, i, n, l[0], l[1], s[0], s[1]))return !0;
+                s = l
+            }
+        }
+
+        function r(t, e, i, n, r, s, l, u) {
+            var c = o(i - t, r - l, n - e, s - u);
+            if (a(c))return !1;
+            var h = o(r - t, r - l, s - e, s - u) / c;
+            if (0 > h || h > 1)return !1;
+            var d = o(i - t, r - t, n - e, s - e) / c;
+            return 0 > d || d > 1 ? !1 : !0
+        }
+
+        function a(t) {
+            return 1e-6 >= t && t >= -1e-6
+        }
+
+        function o(t, e, i, n) {
+            return t * n - e * i
+        }
+
+        var s = t("zrender/contain/polygon")[tn], l = t(X), u = {
+            lineX: e(0),
+            lineY: e(1),
+            rect: {
+                point: function (t, e, i) {
+                    return i.boundingRect[tn](t[0], t[1])
+                }, rect: function (t, e, i) {
+                    return i.boundingRect.intersect(t)
+                }
+            },
+            polygon: {
+                point: function (t, e, i) {
+                    return i.boundingRect[tn](t[0], t[1]) && s(i.range, t[0], t[1])
+                }, rect: function (t, e, i) {
+                    var r = i.range;
+                    if (r[yr] <= 1)return !1;
+                    var a = t.x, o = t.y, u = t.width, c = t[Or], h = r[0];
+                    return s(r, a, o) || s(r, a + u, o) || s(r, a, o + c) || s(r, a + u, o + c) || l[dr](t)[tn](h[0], h[1]) || n(a, o, a + u, o, r) || n(a, o, a, o + c, r) || n(a + u, o, a + u, o + c, r) || n(a, o + c, a + u, o + c, r) ? !0 : void 0
+                }
+            }
+        };
+        return u
+    }),e("echarts/visual/visualSolution", [Yr, Xr, "./VisualMapping"], function (t) {
+        function e(t) {
+            if (t)for (var e in t)if (t.hasOwnProperty(e))return !0
+        }
+
+        var i = t(Xr), n = t("./VisualMapping"), r = i.each, a = {
+            createVisualMappings: function (t, e, a) {
+                function o() {
+                    var t = function () {
+                    };
+                    t[Nr].__hidden = t[Nr];
+                    var e = new t;
+                    return e
+                }
+
+                var s = {};
+                return r(e, function (e) {
+                    var l = s[e] = o();
+                    r(t[e], function (t, r) {
+                        if (n.isValidType(r)) {
+                            var o = {type: r, visual: t};
+                            a && a(o, e), l[r] = new n(o), r === cn && (o = i.clone(o), o.type = "colorAlpha", l.__hidden.__alphaForOpacity = new n(o))
+                        }
+                    })
+                }), s
+            }, replaceVisualOption: function (t, n, r) {
+                var a;
+                i.each(r, function (t) {
+                    n.hasOwnProperty(t) && e(n[t]) && (a = !0)
+                }), a && i.each(r, function (r) {
+                    n.hasOwnProperty(r) && e(n[r]) ? t[r] = i.clone(n[r]) : delete t[r]
+                })
+            }, applyVisual: function (t, e, r, a, o, s) {
+                function l(t) {
+                    return r[fr](d, t)
+                }
+
+                function u(t, e) {
+                    r[wi](d, t, e)
+                }
+
+                function c(t, i) {
+                    d = null == s ? t : i;
+                    var n = r.getRawDataItem(d);
+                    if (!n || n.visualMap !== !1)for (var c = a.call(o, t), f = e[c], p = h[c], v = 0, g = p[yr]; g > v; v++) {
+                        var m = p[v];
+                        f[m] && f[m].applyVisual(t, l, u)
+                    }
+                }
+
+                var h = {};
+                i.each(t, function (t) {
+                    var i = n.prepareVisualTypes(e[t]);
+                    h[t] = i
+                });
+                var d;
+                null == s ? r.each(c, !0) : r.each([s], c, !0)
+            }
+        };
+        return a
+    }),e("echarts/component/helper/brushHelper", [Yr, Xr, ji], function (t) {
+        function e(t) {
+            return t[0] > t[1] && t[ni](), t
+        }
+
+        function i(t, e) {
+            for (var i = !0, n = 0; n < l[yr]; n++) {
+                var r = l[n] + "Index";
+                if (t[r] >= 0) {
+                    i = !1;
+                    for (var a = 0; a < e[yr]; a++)if (e[a][r] === t[r])return e[a]
+                }
+            }
+            return i
+        }
+
+        function n(t, i, n, a) {
+            var o = n.coordSys[di](t);
+            return e(r.map([0, 1], function (t) {
+                return i ? o[Ve](o.toLocalCoord(a[t])) : o[ai](o[ri](a[t]))
+            }))
+        }
+
+        var r = t(Xr), a = t(ji), o = r.each, s = {}, l = ["geo", "xAxis", "yAxis"], u = "--", c = [Ai, Oe];
+        s.parseOutputRanges = function (t, e, n, r) {
+            o(t, function (t, n) {
+                var a = t.panelId;
+                if (a) {
+                    a = a.split(u), t[a[0] + "Index"] = +a[1];
+                    var o = i(t, e);
+                    t.coordRange = h[t.brushType](1, o, t.range), r && (r[n] = o)
+                }
+            })
+        }, s.parseInputRanges = function (t) {
+            o(t.areas, function (e) {
+                var n = i(e, t.coordInfoList);
+                e.range = e.range || [], n && n !== !0 && (e.range = h[e.brushType](0, n, e.coordRange), e.panelId = n.panelId)
+            })
+        }, s.makePanelOpts = function (t) {
+            var e = [];
+            return o(t, function (t) {
+                var i, n = t.coordSys;
+                t.geoIndex >= 0 ? (i = n[yn]().clone(), i[U](a.getTransform(n))) : i = n.grid[Sn]().clone(), e.push({
+                    panelId: t.panelId,
+                    rect: i
+                })
+            }), e
+        }, s.makeCoordInfoList = function (t, e) {
+            var i = [];
+            return o(l, function (n) {
+                var a = t[n + "Index"];
+                null != a && "none" !== a && ("all" === a || r[Rn](a) || (a = [a]), e[wr]({mainType: n}, function (t, e) {
+                    if (!("all" !== a && r[mr](a, e) < 0)) {
+                        var o, s;
+                        "xAxis" === n || "yAxis" === n ? o = t.axis.grid : s = t[gr];
+                        for (var l, c = 0, h = i[yr]; h > c; c++) {
+                            var d = i[c];
+                            if ("yAxis" === n && !d.yAxis && d.xAxis) {
+                                var f = o.getCartesian(d.xAxisIndex, e);
+                                if (f) {
+                                    s = f, l = d;
+                                    break
+                                }
+                            }
+                        }
+                        !l && i.push(l = {}), l[n] = t, l[n + "Index"] = e, l.panelId = n + u + e, l.coordSys = s || o.getCartesian(l.xAxisIndex, l.yAxisIndex), l.coordSys ? i[n + "Has"] = !0 : i.pop()
+                    }
+                }))
+            }), i
+        }, s.controlSeries = function (t, e, n) {
+            var r = i(t, e.coordInfoList);
+            return r === !0 || r && r.coordSys === n[gr]
+        };
+        var h = {
+            lineX: r.curry(n, "x"), lineY: r.curry(n, "y"), rect: function (t, i, n) {
+                var r = i.coordSys, a = r[c[t]]([n[0][0], n[1][0]]), o = r[c[t]]([n[0][1], n[1][1]]);
+                return [e([a[0], o[0]]), e([a[1], o[1]])]
+            }, polygon: function (t, e, i) {
+                var n = e.coordSys;
+                return r.map(i, n[c[t]], n)
+            }
+        };
+        return s
+    }),e("echarts/chart/helper/WhiskerBoxDraw", [Yr, Xr, ji, "zrender/graphic/Path"], function (t) {
+        function e(t, e, i, n) {
+            o.Group.call(this), this.bodyIndex, this.whiskerIndex, this.styleUpdater = i, this._createContent(t, e, n), this[Ke](t, e, n), this._seriesModel
+        }
+
+        function i(t, e, i) {
+            return a.map(t, function (t) {
+                return t = t.slice(), t[e] = i.initBaseline, t
+            })
+        }
+
+        function n(t) {
+            var e = {};
+            return a.each(t, function (t, i) {
+                e["ends" + i] = t
+            }), e
+        }
+
+        function r(t) {
+            this.group = new o.Group, this.styleUpdater = t
+        }
+
+        var a = t(Xr), o = t(ji), s = t("zrender/graphic/Path"), l = s[ir]({
+            type: "whiskerInBox",
+            shape: {},
+            buildPath: function (t, e) {
+                for (var i in e)if (e.hasOwnProperty(i) && 0 === i[mr]("ends")) {
+                    var n = e[i];
+                    t[y](n[0][0], n[0][1]), t[m](n[1][0], n[1][1])
+                }
+            }
+        }), u = e[Nr];
+        u._createContent = function (t, e, r) {
+            var s = t[bi](e), u = s.chartLayout === Ci ? 1 : 0, c = 0;
+            this.add(new o[Ue]({
+                shape: {points: r ? i(s.bodyEnds, u, s) : s.bodyEnds},
+                style: {strokeNoScale: !0},
+                z2: 100
+            })), this.bodyIndex = c++;
+            var h = a.map(s.whiskerEnds, function (t) {
+                return r ? i(t, u, s) : t
+            });
+            this.add(new l({shape: n(h), style: {strokeNoScale: !0}, z2: 100})), this.whiskerIndex = c++
+        }, u[Ke] = function (t, e, i) {
+            var r = this._seriesModel = t[Ye], a = t[bi](e), s = o[i ? ci : Ze];
+            s(this[Fi](this.bodyIndex), {shape: {points: a.bodyEnds}}, r, e), s(this[Fi](this.whiskerIndex), {shape: n(a.whiskerEnds)}, r, e), this.styleUpdater.call(null, this, t, e)
+        }, a[Cn](e, o.Group);
+        var c = r[Nr];
+        return c[Ke] = function (t) {
+            var i = this.group, n = this._data, r = this.styleUpdater;
+            t.diff(n).add(function (n) {
+                if (t.hasValue(n)) {
+                    var a = new e(t, n, r, !0);
+                    t[ti](n, a), i.add(a)
+                }
+            })[hr](function (a, o) {
+                var s = n[Xe](o);
+                return t.hasValue(a) ? (s ? s[Ke](t, a) : s = new e(t, a, r), i.add(s), void t[ti](a, s)) : void i[nr](s)
+            })[nr](function (t) {
+                var e = n[Xe](t);
+                e && i[nr](e)
+            })[Se](), this._data = t
+        }, c[nr] = function () {
+            var t = this.group, e = this._data;
+            this._data = null, e && e[ei](function (e) {
+                e && t[nr](e)
+            })
+        }, r
+    }),e("echarts/visual/VisualMapping", [Yr, Xr, Hr, nn], function (t) {
+        function e(t) {
+            var e = t.pieceList;
+            t.hasSpecialVisual = !1, d.each(e, function (e, i) {
+                e.originIndex = i, null != e.visual && (t.hasSpecialVisual = !0)
+            })
+        }
+
+        function i(t) {
+            var e = t[S], i = t.visual, n = t.categoryMap = {};
+            if (v(e, function (t, e) {
+                    n[t] = e
+                }), !d[Rn](i)) {
+                var r = [];
+                d[Ir](i) ? v(i, function (t, e) {
+                    var i = n[e];
+                    r[null != i ? i : m] = t
+                }) : r[m] = i, i = t.visual = r
+            }
+            for (var a = e[yr] - 1; a >= 0; a--)null == i[a] && (delete n[e[a]], e.pop())
+        }
+
+        function n(t, e) {
+            var i = t.visual, n = [];
+            d[Ir](i) ? v(i, function (t) {
+                n.push(t)
+            }) : null != i && n.push(i);
+            var r = {color: 1, symbol: 1};
+            e || 1 !== n[yr] || r.hasOwnProperty(t.type) || (n[1] = n[0]), t.visual = n
+        }
+
+        function r(t) {
+            return {
+                applyVisual: function (e, i, n) {
+                    e = this.mapValueToVisual(e), n("color", t(i("color"), e))
+                }, _doMap: u([0, 1])
+            }
+        }
+
+        function a(t) {
+            var e = this[un].visual;
+            return e[Math.round(p(t, [0, 1], [0, e[yr] - 1], !0))] || {}
+        }
+
+        function o(t) {
+            return function (e, i, n) {
+                n(t, this.mapValueToVisual(e))
+            }
+        }
+
+        function s(t) {
+            var e = this[un].visual;
+            return e[this[un].loop && t !== m ? t % e[yr] : t]
+        }
+
+        function l() {
+            return this[un].visual[0]
+        }
+
+        function u(t) {
+            return {
+                linear: function (e) {
+                    return p(e, t, this[un].visual, !0)
+                }, category: s, piecewise: function (e, i) {
+                    var n = c.call(this, i);
+                    return null == n && (n = p(e, t, this[un].visual, !0)), n
+                }, fixed: l
+            }
+        }
+
+        function c(t) {
+            var e = this[un], i = e.pieceList;
+            if (e.hasSpecialVisual) {
+                var n = y.findPieceIndex(t, i), r = i[n];
+                if (r && r.visual)return r.visual[this.type]
+            }
+        }
+
+        function h(t, e, i) {
+            return t ? i >= e : i > e
+        }
+
+        var d = t(Xr), f = t(Hr), p = t(nn)[G], v = d.each, g = d[Ir], m = -1, y = function (t) {
+            var r = t.mappingMethod, a = t.type, o = this[un] = d.clone(t);
+            this.type = a, this.mappingMethod = r, this._normalizeData = _[r];
+            var s = x[a];
+            this.applyVisual = s.applyVisual, this.getColorMapper = s.getColorMapper, this._doMap = s._doMap[r], "piecewise" === r ? (n(o), e(o)) : r === Mi ? o[S] ? i(o) : n(o, !0) : (d[Pr](r !== I || o.dataExtent), n(o))
+        };
+        y[Nr] = {
+            constructor: y, mapValueToVisual: function (t) {
+                var e = this._normalizeData(t);
+                return this._doMap(e, t)
+            }, getNormalizer: function () {
+                return d.bind(this._normalizeData, this)
+            }
+        };
+        var x = y.visualHandlers = {
+            color: {
+                applyVisual: o("color"), getColorMapper: function () {
+                    var t = this[un], e = d.map(t.visual, f.parse);
+                    return d.bind(t.mappingMethod === Mi ? function (t, e) {
+                        return !e && (t = this._normalizeData(t)), s.call(this, t)
+                    } : function (t, i, n) {
+                        var r = !!n;
+                        return !i && (t = this._normalizeData(t)), n = f.fastMapToColor(t, e, n), r ? n : d.stringify(n, "rgba")
+                    }, this)
+                }, _doMap: {
+                    linear: function (t) {
+                        return f.mapToColor(t, this[un].visual)
+                    }, category: s, piecewise: function (t, e) {
+                        var i = c.call(this, e);
+                        return null == i && (i = f.mapToColor(t, this[un].visual)), i
+                    }, fixed: l
+                }
+            }, colorHue: r(function (t, e) {
+                return f.modifyHSL(t, e)
+            }), colorSaturation: r(function (t, e) {
+                return f.modifyHSL(t, null, e)
+            }), colorLightness: r(function (t, e) {
+                return f.modifyHSL(t, null, null, e)
+            }), colorAlpha: r(function (t, e) {
+                return f.modifyAlpha(t, e)
+            }), opacity: {applyVisual: o(cn), _doMap: u([0, 1])}, symbol: {
+                applyVisual: function (t, e, i) {
+                    var n = this.mapValueToVisual(t);
+                    if (d[Tn](n))i(He, n); else if (g(n))for (var r in n)n.hasOwnProperty(r) && i(r, n[r])
+                }, _doMap: {
+                    linear: a, category: s, piecewise: function (t, e) {
+                        var i = c.call(this, e);
+                        return null == i && (i = a.call(this, t)), i
+                    }, fixed: l
+                }
+            }, symbolSize: {applyVisual: o(Fe), _doMap: u([0, 1])}
+        }, _ = {
+            linear: function (t) {
+                return p(t, this[un].dataExtent, [0, 1], !0)
+            }, piecewise: function (t) {
+                var e = this[un].pieceList, i = y.findPieceIndex(t, e, !0);
+                return null != i ? p(i, [0, e[yr] - 1], [0, 1], !0) : void 0
+            }, category: function (t) {
+                var e = this[un][S] ? this[un].categoryMap[t] : t;
+                return null == e ? m : e
+            }, fixed: d.noop
+        };
+        return y.listVisualTypes = function () {
+            var t = [];
+            return d.each(x, function (e, i) {
+                t.push(i)
+            }), t
+        }, y.addVisualHandler = function (t, e) {
+            x[t] = e
+        }, y.isValidType = function (t) {
+            return x.hasOwnProperty(t)
+        }, y.eachVisual = function (t, e, i) {
+            d[Ir](t) ? d.each(t, e, i) : e.call(i, t)
+        }, y.mapVisual = function (t, e, i) {
+            var n, r = d[Rn](t) ? [] : d[Ir](t) ? {} : (n = !0, null);
+            return y.eachVisual(t, function (t, a) {
+                var o = e.call(i, t, a);
+                n ? r = o : r[a] = o
+            }), r
+        }, y.retrieveVisuals = function (t) {
+            var e, i = {};
+            return t && v(x, function (n, r) {
+                t.hasOwnProperty(r) && (i[r] = t[r], e = !0)
+            }), e ? i : null
+        }, y.prepareVisualTypes = function (t) {
+            if (g(t)) {
+                var e = [];
+                v(t, function (t, i) {
+                    e.push(i)
+                }), t = e
+            } else {
+                if (!d[Rn](t))return [];
+                t = t.slice()
+            }
+            return t.sort(function (t, e) {
+                return "color" === e && "color" !== t && 0 === t[mr]("color") ? 1 : -1
+            }), t
+        }, y.dependsOn = function (t, e) {
+            return "color" === e ? !(!t || 0 !== t[mr](e)) : t === e
+        }, y.findPieceIndex = function (t, e, i) {
+            function n(e, i) {
+                var n = Math.abs(e - t);
+                a > n && (a = n, r = i)
+            }
+
+            for (var r, a = 1 / 0, o = 0, s = e[yr]; s > o; o++) {
+                var l = e[o].value;
+                if (null != l) {
+                    if (l === t)return o;
+                    i && n(l, o)
+                }
+            }
+            for (var o = 0, s = e[yr]; s > o; o++) {
+                var u = e[o], c = u[B], d = u.close;
+                if (c) {
+                    if (c[0] === -1 / 0) {
+                        if (h(d[1], t, c[1]))return o
+                    } else if (1 / 0 === c[1]) {
+                        if (h(d[0], c[0], t))return o
+                    } else if (h(d[0], c[0], t) && h(d[1], t, c[1]))return o;
+                    i && n(c[0], o), i && n(c[1], o)
+                }
+            }
+            return i ? 1 / 0 === t ? e[yr] - 1 : t === -1 / 0 ? 0 : r : void 0
+        }, y
+    }),e("echarts/coord/radar/IndicatorAxis", [Yr, Xr, "../Axis"], function (t) {
+        function e(t, e, i) {
+            n.call(this, t, e, i), this.type = "value", this.angle = 0, this.name = "", this.model
+        }
+
+        var i = t(Xr), n = t("../Axis");
+        return i[Cn](e, n), e
+    }),e("echarts/component/helper/RoamController", [Yr, "zrender/mixin/Eventful", Xr, "zrender/core/event", "./interactionMutex"], function (t) {
+        function e(t) {
+            if (!t[Wn] || !t[Wn][C]) {
+                var e = t[M], i = t[b];
+                this.containsPoint && this.containsPoint(e, i) && (this._x = e, this._y = i, this._dragging = !0)
+            }
+        }
+
+        function i(t) {
+            if (this._dragging && (c.stop(t.event), "pinch" !== t.gestureEvent)) {
+                if (h.isTaken(this._zr, "globalPan"))return;
+                var e = t[M], i = t[b], n = this._x, r = this._y, a = e - n, o = i - r;
+                this._x = e, this._y = i;
+                var s = this[Wn];
+                if (s) {
+                    var l = s[dn];
+                    l[0] += a, l[1] += o, s.dirty()
+                }
+                c.stop(t.event), this[Jn]("pan", a, o, n, r, e, i)
+            }
+        }
+
+        function n() {
+            this._dragging = !1
+        }
+
+        function r(t) {
+            var e = t.wheelDelta > 0 ? 1.1 : 1 / 1.1;
+            o.call(this, t, e, t[M], t[b])
+        }
+
+        function a(t) {
+            if (!h.isTaken(this._zr, "globalPan")) {
+                var e = t.pinchScale > 1 ? 1.1 : 1 / 1.1;
+                o.call(this, t, e, t.pinchX, t.pinchY)
+            }
+        }
+
+        function o(t, e, i, n) {
+            if (this.containsPoint && this.containsPoint(i, n)) {
+                c.stop(t.event);
+                var r = this[Wn], a = this[A];
+                if (r) {
+                    var o = r[dn], s = r.scale, l = this.zoom = this.zoom || 1;
+                    if (l *= e, a) {
+                        var u = a.min || 0, h = a.max || 1 / 0;
+                        l = Math.max(Math.min(h, l), u)
+                    }
+                    var d = l / this.zoom;
+                    this.zoom = l, o[0] -= (i - o[0]) * (d - 1), o[1] -= (n - o[1]) * (d - 1), s[0] *= d, s[1] *= d, r.dirty()
+                }
+                this[Jn]("zoom", e, i, n)
+            }
+        }
+
+        function s(t, o) {
+            this[Wn] = o, this.containsPoint, this[A], this.zoom, this._zr = t;
+            var s = u.bind, c = s(e, this), h = s(i, this), d = s(n, this), f = s(r, this), p = s(a, this);
+            l.call(this), this.setContainsPoint = function (t) {
+                this.containsPoint = t
+            }, this.enable = function (e) {
+                this.disable(), null == e && (e = !0), (e === !0 || "move" === e || "pan" === e) && (t.on(qn, c), t.on(Un, h), t.on("mouseup", d)), (e === !0 || "scale" === e || "zoom" === e) && (t.on("mousewheel", f), t.on("pinch", p))
+            }, this.disable = function () {
+                t.off(qn, c), t.off(Un, h), t.off("mouseup", d), t.off("mousewheel", f), t.off("pinch", p)
+            }, this[$n] = this.disable, this.isDragging = function () {
+                return this._dragging
+            }, this.isPinching = function () {
+                return this._pinching
+            }
+        }
+
+        var l = t("zrender/mixin/Eventful"), u = t(Xr), c = t("zrender/core/event"), h = t("./interactionMutex");
+        return u.mixin(s, l), s
+    }),e("echarts/data/helper/linkList", [Yr, Xr], function (t) {
+        function e(t) {
+            var e = t.mainData, a = t.datas;
+            a || (a = {main: e}, t.datasAttr = {main: "data"}), t.datas = t.mainData = null, s(e, a, t), c(a, function (n) {
+                c(e.TRANSFERABLE_METHODS, function (e) {
+                    n.wrapMethod(e, u.curry(i, t))
+                })
+            }), e.wrapMethod("cloneShallow", u.curry(r, t)), c(e.CHANGABLE_METHODS, function (i) {
+                e.wrapMethod(i, u.curry(n, t))
+            }), u[Pr](a[e[Fn]] === e)
+        }
+
+        function i(t, e) {
+            if (o(this)) {
+                var i = u[ir]({}, this[h]);
+                i[this[Fn]] = e, s(e, i, t)
+            } else l(e, this[Fn], this[d], t);
+            return e
+        }
+
+        function n(t, e) {
+            return t.struct && t.struct[hr](this), e
+        }
+
+        function r(t, e) {
+            return c(e[h], function (i, n) {
+                i !== e && l(i.cloneShallow(), n, e, t)
+            }), e
+        }
+
+        function a(t) {
+            var e = this[d];
+            return null == t || null == e ? e : e[h][t]
+        }
+
+        function o(t) {
+            return t[d] === t
+        }
+
+        function s(t, e, i) {
+            t[h] = {}, c(e, function (e, n) {
+                l(e, n, t, i)
+            })
+        }
+
+        function l(t, e, i, n) {
+            i[h][e] = t, t[d] = i, t[Fn] = e, n.struct && (t[n.structAttr] = n.struct, n.struct[n.datasAttr[e]] = t), t.getLinkedData = a
+        }
+
+        var u = t(Xr), c = u.each, h = "\x00__link_datas", d = "\x00__link_mainData";
+        return e
+    }),e("echarts/coord/parallel/Parallel", [Yr, Ne, "../../coord/axisHelper", Xr, "./ParallelAxis", ji, Fr], function (t) {
+        function e(t, e, i) {
+            this._axesMap = {}, this._axesLayout = {}, this[ki] = t[ki], this._rect, this[kr] = t, this._init(t, e, i)
+        }
+
+        var i = t(Ne), n = t("../../coord/axisHelper"), r = t(Xr), a = t("./ParallelAxis"), o = t(ji), s = t(Fr), l = r.each, u = Math.PI;
+        return e[Nr] = {
+            type: "parallel", constructor: e, _init: function (t, e) {
+                var i = t[ki], r = t.parallelAxisIndex;
+                l(i, function (t, i) {
+                    var o = r[i], s = e[Y]("parallelAxis", o), l = this._axesMap[t] = new a(t, n[De](s), [0, 0], s.get("type"), o), u = l.type === Mi;
+                    l[gi] = u && s.get(Pe), l[si] = s.get(si), s.axis = l, l.model = s
+                }, this)
+            }, update: function (t) {
+                this._updateAxesFromSeries(this[kr], t)
+            }, _updateAxesFromSeries: function (t, e) {
+                e[lr](function (i) {
+                    if (t.contains(i, e)) {
+                        var r = i[qr]();
+                        l(this[ki], function (t) {
+                            var e = this._axesMap[t];
+                            e.scale[ke](r, t), n[Ee](e, e.model)
+                        }, this)
+                    }
+                }, this)
+            }, resize: function (t, e) {
+                this._rect = i[gn](t[mn](), {width: e[Cr](), height: e[Tr]()}), this._layoutAxes(t)
+            }, getRect: function () {
+                return this._rect
+            }, _layoutAxes: function (t) {
+                var e = this._rect, i = t.get(Li), n = this._axesMap, r = this[ki], a = [e.width, e[Or]], o = i === Ci ? 0 : 1, h = a[o], d = a[1 - o], f = [0, d];
+                l(n, function (t) {
+                    var e = t[si] ? 1 : 0;
+                    t[Yi](f[e], f[1 - e])
+                });
+                var p, v = t.get("axisExpandable"), g = t.get("axisExpandWidth"), m = t.get("axisExpandCenter"), y = t.get("axisExpandCount") || 0;
+                if (null != m) {
+                    var x = Math.max(0, Math.floor(m - (y - 1) / 2)), _ = x + y - 1;
+                    _ >= r[yr] && (_ = r[yr] - 1, x = Math.max(0, Math.floor(_ - y + 1))), p = [x, _]
+                }
+                var w = v && p && g ? function (t, e, i) {
+                    var n, r = p[1] - p[0], a = (e - g * r) / (i - 1 - r);
+                    return n = t < p[0] ? (t - 1) * a : t <= p[1] ? p[0] * a + (t - p[0]) * g : t === i - 1 ? e : p[0] * a + r * g + (t - p[1]) * a, {
+                        position: n,
+                        axisNameAvailableWidth: p[0] < t && t < p[1] ? g : a
+                    }
+                } : function (t, e, i) {
+                    var n = e / (i - 1);
+                    return {position: n * t, axisNameAvailableWidth: n}
+                };
+                l(r, function (t, n) {
+                    var a = w(n, h, r[yr]), o = {
+                        horizontal: {x: a[dn], y: d},
+                        vertical: {x: 0, y: a[dn]}
+                    }, l = {horizontal: u / 2, vertical: 0}, f = [o[i].x + e.x, o[i].y + e.y], v = l[i], g = s[dr]();
+                    s[c](g, g, v), s.translate(g, g, f), this._axesLayout[t] = {
+                        position: f,
+                        rotation: v,
+                        transform: g,
+                        axisNameAvailableWidth: a.axisNameAvailableWidth,
+                        tickDirection: 1,
+                        labelDirection: 1,
+                        axisExpandWindow: p
+                    }
+                }, this)
+            }, getAxis: function (t) {
+                return this._axesMap[t]
+            }, dataToPoint: function (t, e) {
+                return this.axisCoordToPoint(this._axesMap[e][ri](t), e)
+            }, eachActiveState: function (t, e, i) {
+                for (var n = this[ki], r = this._axesMap, a = this.hasAxisbrushed(), o = 0, s = t.count(); s > o; o++) {
+                    var l, u = t.getValues(n, o);
+                    if (a) {
+                        l = "active";
+                        for (var c = 0, h = n[yr]; h > c; c++) {
+                            var d = n[c], f = r[d].model.getActiveState(u[c], c);
+                            if ("inactive" === f) {
+                                l = "inactive";
+                                break
+                            }
+                        }
+                    } else l = qi;
+                    e.call(i, l, o)
+                }
+            }, hasAxisbrushed: function () {
+                for (var t = this[ki], e = this._axesMap, i = !1, n = 0, r = t[yr]; r > n; n++)e[t[n]].model.getActiveState() !== qi && (i = !0);
+                return i
+            }, axisCoordToPoint: function (t, e) {
+                var i = this._axesLayout[e];
+                return o[U]([t, 0], i[O])
+            }, getAxisLayout: function (t) {
+                return r.clone(this._axesLayout[t])
+            }, findClosestAxisDim: function (t) {
+                var e, i = 1 / 0;
+                return r.each(this._axesLayout, function (n, r) {
+                    var a = o[U](t, n[O], !0), s = this._axesMap[r][Qi]();
+                    if (!(a[0] < s[0] || a[0] > s[1])) {
+                        var l = Math.abs(a[1]);
+                        i > l && (i = l, e = r)
+                    }
+                }, this), e
+            }
+        }, e
+    }),e("echarts/data/Graph", [Yr, Xr], function (t) {
+        function e(t, e) {
+            this.id = null == t ? "" : t, this.inEdges = [], this.outEdges = [], this.edges = [], this.hostGraph, this[pr] = null == e ? -1 : e
+        }
+
+        function i(t, e, i) {
+            this.node1 = t, this.node2 = e, this[pr] = null == i ? -1 : i
+        }
+
+        var n = t(Xr), r = function (t) {
+            this._directed = t || !1, this.nodes = [], this.edges = [], this._nodesMap = {}, this._edgesMap = {}, this.data, this.edgeData
+        }, a = r[Nr];
+        a.type = "graph", a.isDirected = function () {
+            return this._directed
+        }, a.addNode = function (t, i) {
+            t = t || "" + i;
+            var n = this._nodesMap;
+            if (!n[t]) {
+                var r = new e(t, i);
+                return r.hostGraph = this, this.nodes.push(r), n[t] = r, r
+            }
+        }, a.getNodeByIndex = function (t) {
+            var e = this.data[ee](t);
+            return this.nodes[e]
+        }, a.getNodeById = function (t) {
+            return this._nodesMap[t]
+        }, a.addEdge = function (t, n, r) {
+            var a = this._nodesMap, o = this._edgesMap;
+            if (typeof t === kn && (t = this.nodes[t]), typeof n === kn && (n = this.nodes[n]), t instanceof e || (t = a[t]), n instanceof e || (n = a[n]), t && n) {
+                var s = t.id + "-" + n.id;
+                if (!o[s]) {
+                    var l = new i(t, n, r);
+                    return l.hostGraph = this, this._directed && (t.outEdges.push(l), n.inEdges.push(l)), t.edges.push(l), t !== n && n.edges.push(l), this.edges.push(l), o[s] = l, l
+                }
+            }
+        }, a.getEdgeByIndex = function (t) {
+            var e = this.edgeData[ee](t);
+            return this.edges[e]
+        }, a.getEdge = function (t, i) {
+            t instanceof e && (t = t.id), i instanceof e && (i = i.id);
+            var n = this._edgesMap;
+            return this._directed ? n[t + "-" + i] : n[t + "-" + i] || n[i + "-" + t]
+        }, a.eachNode = function (t, e) {
+            for (var i = this.nodes, n = i[yr], r = 0; n > r; r++)i[r][pr] >= 0 && t.call(e, i[r], r)
+        }, a.eachEdge = function (t, e) {
+            for (var i = this.edges, n = i[yr], r = 0; n > r; r++)i[r][pr] >= 0 && i[r].node1[pr] >= 0 && i[r].node2[pr] >= 0 && t.call(e, i[r], r)
+        }, a.breadthFirstTraverse = function (t, i, n, r) {
+            if (i instanceof e || (i = this._nodesMap[i]), i) {
+                for (var a = "out" === n ? "outEdges" : "in" === n ? "inEdges" : "edges", o = 0; o < this.nodes[yr]; o++)this.nodes[o].__visited = !1;
+                if (!t.call(r, i, null))for (var s = [i]; s[yr];)for (var l = s.shift(), u = l[a], o = 0; o < u[yr]; o++) {
+                    var c = u[o], h = c.node1 === l ? c.node2 : c.node1;
+                    if (!h.__visited) {
+                        if (t.call(h, h, l))return;
+                        s.push(h), h.__visited = !0
+                    }
+                }
+            }
+        }, a[hr] = function () {
+            for (var t = this.data, e = this.edgeData, i = this.nodes, n = this.edges, r = 0, a = i[yr]; a > r; r++)i[r][pr] = -1;
+            for (var r = 0, a = t.count(); a > r; r++)i[t[ee](r)][pr] = r;
+            e.filterSelf(function (t) {
+                var i = n[e[ee](t)];
+                return i.node1[pr] >= 0 && i.node2[pr] >= 0
+            });
+            for (var r = 0, a = n[yr]; a > r; r++)n[r][pr] = -1;
+            for (var r = 0, a = e.count(); a > r; r++)n[e[ee](r)][pr] = r
+        }, a.clone = function () {
+            for (var t = new r(this._directed), e = this.nodes, i = this.edges, n = 0; n < e[yr]; n++)t.addNode(e[n].id, e[n][pr]);
+            for (var n = 0; n < i[yr]; n++) {
+                var a = i[n];
+                t.addEdge(a.node1.id, a.node2.id, a[pr])
+            }
+            return t
+        }, e[Nr] = {
+            constructor: e, degree: function () {
+                return this.edges[yr]
+            }, inDegree: function () {
+                return this.inEdges[yr]
+            }, outDegree: function () {
+                return this.outEdges[yr]
+            }, getModel: function (t) {
+                if (!(this[pr] < 0)) {
+                    var e = this.hostGraph, i = e.data[Zi](this[pr]);
+                    return i[Lr](t)
+                }
+            }
+        }, i[Nr][Lr] = function (t) {
+            if (!(this[pr] < 0)) {
+                var e = this.hostGraph, i = e.edgeData[Zi](this[pr]);
+                return i[Lr](t)
+            }
+        };
+        var o = function (t, e) {
+            return {
+                getValue: function (i) {
+                    var n = this[t][e];
+                    return n.get(n.getDimension(i || "value"), this[pr])
+                }, setVisual: function (i, n) {
+                    this[pr] >= 0 && this[t][e][wi](this[pr], i, n)
+                }, getVisual: function (i, n) {
+                    return this[t][e][fr](this[pr], i, n)
+                }, setLayout: function (i, n) {
+                    this[pr] >= 0 && this[t][e][Ti](this[pr], i, n)
+                }, getLayout: function () {
+                    return this[t][e][bi](this[pr])
+                }, getGraphicEl: function () {
+                    return this[t][e][Xe](this[pr])
+                }, getRawIndex: function () {
+                    return this[t][e][ee](this[pr])
+                }
+            }
+        };
+        return n.mixin(e, o("hostGraph", "data")), n.mixin(i, o("hostGraph", "edgeData")), r.Node = e, r.Edge = i, r
+    }),e("echarts/component/dataZoom/history", [Yr, Xr], function (t) {
+        function e(t) {
+            var e = t[r];
+            return e || (e = t[r] = [{}]), e
+        }
+
+        var i = t(Xr), n = i.each, r = "\x00_ec_hist_store", a = {
+            push: function (t, i) {
+                var r = e(t);
+                n(i, function (e, i) {
+                    for (var n = r[yr] - 1; n >= 0; n--) {
+                        var a = r[n];
+                        if (a[i])break
+                    }
+                    if (0 > n) {
+                        var o = t[K]({mainType: "dataZoom", subType: "select", id: i})[0];
+                        if (o) {
+                            var s = o.getPercentRange();
+                            r[0][i] = {dataZoomId: i, start: s[0], end: s[1]}
+                        }
+                    }
+                }), r.push(i)
+            }, pop: function (t) {
+                var i = e(t), r = i[i[yr] - 1];
+                i[yr] > 1 && i.pop();
+                var a = {};
+                return n(r, function (t, e) {
+                    for (var n = i[yr] - 1; n >= 0; n--) {
+                        var t = i[n][e];
+                        if (t) {
+                            a[e] = t;
+                            break
+                        }
+                    }
+                }), a
+            }, clear: function (t) {
+                t[r] = null
+            }, count: function (t) {
+                return e(t)[yr]
+            }
+        };
+        return a
+    }),e("echarts/component/dataZoomSelect", [Yr, "./dataZoom/typeDefaulter", "./dataZoom/DataZoomModel", "./dataZoom/DataZoomView", "./dataZoom/SelectZoomModel", "./dataZoom/SelectZoomView", "./dataZoom/dataZoomProcessor", "./dataZoom/dataZoomAction"], function (t) {
+        t("./dataZoom/typeDefaulter"), t("./dataZoom/DataZoomModel"), t("./dataZoom/DataZoomView"), t("./dataZoom/SelectZoomModel"), t("./dataZoom/SelectZoomView"), t("./dataZoom/dataZoomProcessor"), t("./dataZoom/dataZoomAction")
+    }),e("echarts/component/axis/RadiusAxisView", [Yr, Xr, ji, "./AxisBuilder", Te], function (t) {
+        function e(t, e, i) {
+            return {
+                position: [t.cx, t.cy],
+                rotation: i / 180 * Math.PI,
+                labelDirection: -1,
+                tickDirection: -1,
+                nameDirection: 1,
+                labelRotation: e[Lr](x).get(c),
+                z2: 1
+            }
+        }
+
+        var i = t(Xr), n = t(ji), r = t("./AxisBuilder"), a = [w, x, _, "axisName"], o = ["splitLine", "splitArea"];
+        t(Te)[Pn]({
+            type: "radiusAxis", render: function (t, n) {
+                if (this.group[An](), t.get("show")) {
+                    var s = n[Y]("polar", t.get(D)), l = s[gr][ui](), u = t.axis, c = s[gr], h = u.getTicksCoords(), d = l[Qi]()[0], p = u[Qi](), v = e(c, t, d), g = new r(t, v);
+                    i.each(a, g.add, g), this.group.add(g.getGroup()), i.each(o, function (e) {
+                        t.get(e + ".show") && !u[f]() && this["_" + e](t, c, d, p, h)
+                    }, this)
+                }
+            }, _splitLine: function (t, e, r, a, o) {
+                var s = t[Lr]("splitLine"), l = s[Lr](he), u = l.get("color"), c = 0;
+                u = u instanceof Array ? u : [u];
+                for (var h = [], d = 0; d < o[yr]; d++) {
+                    var f = c++ % u[yr];
+                    h[f] = h[f] || [], h[f].push(new n[j]({shape: {cx: e.cx, cy: e.cy, r: o[d]}, silent: !0}))
+                }
+                for (var d = 0; d < h[yr]; d++)this.group.add(n.mergePath(h[d], {
+                    style: i[tr]({
+                        stroke: u[d % u[yr]],
+                        fill: null
+                    }, l[Je]()), silent: !0
+                }))
+            }, _splitArea: function (t, e, r, a, o) {
+                var s = t[Lr]("splitArea"), l = s[Lr]("areaStyle"), u = l.get("color"), c = 0;
+                u = u instanceof Array ? u : [u];
+                for (var h = [], d = o[0], f = 1; f < o[yr]; f++) {
+                    var p = c++ % u[yr];
+                    h[p] = h[p] || [], h[p].push(new n[li]({
+                        shape: {
+                            cx: e.cx,
+                            cy: e.cy,
+                            r0: d,
+                            r: o[f],
+                            startAngle: 0,
+                            endAngle: 2 * Math.PI
+                        }, silent: !0
+                    })), d = o[f]
+                }
+                for (var f = 0; f < h[yr]; f++)this.group.add(n.mergePath(h[f], {
+                    style: i[tr]({fill: u[f % u[yr]]}, l[$e]()),
+                    silent: !0
+                }))
+            }
+        })
+    }),e("echarts/component/timeline/TimelineView", [Yr, "../../view/Component"], function (t) {
+        var e = t("../../view/Component");
+        return e[ir]({type: "timeline"})
+    }),e("echarts/component/timeline/TimelineAxis", [Yr, Xr, "../../coord/Axis", "../../coord/axisHelper"], function (t) {
+        var e = t(Xr), i = t("../../coord/Axis"), n = t("../../coord/axisHelper"), r = function (t, e, n, r) {
+            i.call(this, t, e, n), this.type = r || "value", this._autoLabelInterval, this.model = null
+        };
+        return r[Nr] = {
+            constructor: r, getLabelInterval: function () {
+                var t = this.model, i = t[Lr](fe), r = i.get(B);
+                if (null != r && "auto" != r)return r;
+                var r = this._autoLabelInterval;
+                return r || (r = this._autoLabelInterval = n.getAxisLabelInterval(e.map(this.scale[Ji](), this[ri], this), n[Re](this, i.get(H)), i[Lr](bn)[_n](), t.get(d) === Ci)), r
+            }, isLabelIgnored: function (t) {
+                if (this.type === Mi) {
+                    var e = this.getLabelInterval();
+                    return typeof e === On && !e(t, this.scale[$i](t)) || t % (e + 1)
+                }
+            }
+        }, e[Cn](r, i), r
+    }),e("echarts/component/dataZoom/roams", [Yr, Xr, "../../component/helper/RoamController", "../../util/throttle"], function (t) {
+        function e(t) {
+            var e = t.getZr();
+            return e[d] || (e[d] = {})
+        }
+
+        function i(t, e, i) {
+            var n = new u(t.getZr());
+            return n.enable(), n.on("pan", h(r, i)), n.on("zoom", h(a, i)), n
+        }
+
+        function n(t) {
+            l.each(t, function (e, i) {
+                e.count || (e.controller[$n](), delete t[i])
+            })
+        }
+
+        function r(t, e, i, n, r, a, s) {
+            o(t, function (o) {
+                return o.panGetRange(t.controller, e, i, n, r, a, s)
+            })
+        }
+
+        function a(t, e, i, n) {
+            o(t, function (r) {
+                return r.zoomGetRange(t.controller, e, i, n)
+            })
+        }
+
+        function o(t, e) {
+            var i = [];
+            l.each(t.dataZoomInfos, function (t) {
+                var n = e(t);
+                n && i.push({dataZoomId: t.dataZoomId, start: n[0], end: n[1]})
+            }), t[er](i)
+        }
+
+        function s(t, e) {
+            t[er]({type: "dataZoom", batch: e})
+        }
+
+        var l = t(Xr), u = t("../../component/helper/RoamController"), c = t("../../util/throttle"), h = l.curry, d = "\x00_ec_dataZoom_roams", f = {
+            register: function (t, r) {
+                var a = e(t), o = r.dataZoomId, u = r.coordId;
+                l.each(a, function (t) {
+                    var e = t.dataZoomInfos;
+                    e[o] && l[mr](r.allCoordIds, u) < 0 && (delete e[o], t.count--)
+                }), n(a);
+                var h = a[u];
+                h || (h = a[u] = {
+                    coordId: u,
+                    dataZoomInfos: {},
+                    count: 0
+                }, h.controller = i(t, r, h), h[er] = l.curry(s, t)), h.controller.setContainsPoint(r.containsPoint), c.createOrUpdate(h, er, r.throttleRate, "fixRate"), !h.dataZoomInfos[o] && h.count++, h.dataZoomInfos[o] = r
+            }, unregister: function (t, i) {
+                var r = e(t);
+                l.each(r, function (t) {
+                    t.controller[$n]();
+                    var e = t.dataZoomInfos;
+                    e[i] && (delete e[i], t.count--)
+                }), n(r)
+            }, shouldRecordRange: function (t, e) {
+                if (t && t.type === F && t.batch)for (var i = 0, n = t.batch[yr]; n > i; i++)if (t.batch[i].dataZoomId === e)return !1;
+                return !0
+            }, generateCoordId: function (t) {
+                return t.type + "\x00_" + t.id
+            }
+        };
+        return f
+    }),e("echarts/chart/line/lineAnimationDiff", [Yr], function () {
+        function t(t) {
+            return t >= 0 ? 1 : -1
+        }
+
+        function e(e, i, n) {
+            for (var r, a = e[Si](), o = e[vi](a), s = a.onZero ? 0 : o.scale[Qi]()[0], l = o.dim, u = "x" === l || l === pi ? 1 : 0, c = i.stackedOn, h = i.get(l, n); c && t(c.get(l, n)) === t(h);) {
+                r = c;
+                break
+            }
+            var d = [];
+            return d[u] = i.get(a.dim, n), d[1 - u] = r ? r.get(l, n, !0) : s, e[Ai](d)
+        }
+
+        function i(t, e) {
+            var i = [];
+            return e.diff(t).add(function (t) {
+                i.push({cmd: "+", idx: t})
+            })[hr](function (t, e) {
+                i.push({cmd: "=", idx: e, idx1: t})
+            })[nr](function (t) {
+                i.push({cmd: "-", idx: t})
+            })[Se](), i
+        }
+
+        return function (t, n, r, a, o, s) {
+            for (var l = i(t, n), u = [], c = [], h = [], d = [], f = [], p = [], v = [], g = s[ki], m = 0; m < l[yr]; m++) {
+                var y = l[m], x = !0;
+                switch (y.cmd) {
+                    case"=":
+                        var _ = t[bi](y.idx), w = n[bi](y.idx1);
+                        (isNaN(_[0]) || isNaN(_[1])) && (_ = w.slice()), u.push(_), c.push(w), h.push(r[y.idx]), d.push(a[y.idx1]), v.push(n[ee](y.idx1));
+                        break;
+                    case"+":
+                        var b = y.idx;
+                        u.push(o[Ai]([n.get(g[0], b, !0), n.get(g[1], b, !0)])), c.push(n[bi](b).slice()), h.push(e(o, n, b)), d.push(a[b]), v.push(n[ee](b));
+                        break;
+                    case"-":
+                        var b = y.idx, M = t[ee](b);
+                        M !== b ? (u.push(t[bi](b)), c.push(s[Ai]([t.get(g[0], b, !0), t.get(g[1], b, !0)])), h.push(r[b]), d.push(e(s, t, b)), v.push(M)) : x = !1
+                }
+                x && (f.push(y), p.push(p[yr]))
+            }
+            p.sort(function (t, e) {
+                return v[t] - v[e]
+            });
+            for (var S = [], A = [], T = [], C = [], L = [], m = 0; m < p[yr]; m++) {
+                var b = p[m];
+                S[m] = u[b], A[m] = c[b], T[m] = h[b], C[m] = d[b], L[m] = f[b]
+            }
+            return {current: S, next: A, stackedOnCurrent: T, stackedOnNext: C, status: L}
+        }
+    }),e("echarts/component/helper/BrushController", [Yr, "zrender/mixin/Eventful", Xr, X, ji, "./interactionMutex", "../../data/DataDiffer"], function (t) {
+        function e(t) {
+            B.call(this), this._zr = t, this.group = new H.Group, this._brushType, this._brushOption, this._panels, this._track = [], this._dragging, this._covers = [], this._creatingCover, this._creatingPanel, this._enableGlobalPan, this._uid = "brushController_" + oe++, this._handlers = {}, j(se, function (t, e) {
+                this._handlers[e] = G.bind(t, this)
+            }, this)
+        }
+
+        function i(t, e) {
+            var i = t._zr;
+            t._enableGlobalPan || Z.take(i, ie, t._uid), j(t._handlers, function (t, e) {
+                i.on(e, t)
+            }), t._brushType = e.brushType, t._brushOption = G.merge(G.clone(ae), e, !0)
+        }
+
+        function n(t) {
+            var e = t._zr;
+            Z.release(e, ie, t._uid), j(t._handlers, function (t, i) {
+                e.off(i, t)
+            }), t._brushType = t._brushOption = null
+        }
+
+        function r(t, e) {
+            var i = le[e.brushType].createCover(t, e);
+            return s(i), i.__brushOption = e, t.group.add(i), i
+        }
+
+        function a(t, e) {
+            var i = u(e);
+            return i.endCreating && (i.endCreating(t, e), s(e)), e
+        }
+
+        function o(t, e) {
+            var i = e.__brushOption;
+            u(e).updateCoverShape(t, e, i.range, i)
+        }
+
+        function s(t) {
+            t[Gn](function (t) {
+                t.z = K, t.z2 = K
+            })
+        }
+
+        function l(t, e) {
+            u(e).updateCommon(t, e), o(t, e)
+        }
+
+        function u(t) {
+            return le[t.__brushOption.brushType]
+        }
+
+        function c(t, e, i) {
+            var n = t._panels;
+            if (!n)return !0;
+            var r;
+            return j(n, function (t) {
+                t[tn](e, i) && (r = t)
+            }), r
+        }
+
+        function h(t, e) {
+            var i = t._panels;
+            if (!i)return !0;
+            var n = e.__brushOption.panelId;
+            return null != n ? i[n] : !0
+        }
+
+        function d(t) {
+            var e = t._covers, i = e[yr];
+            return j(e, function (e) {
+                t.group[nr](e)
+            }, t), e[yr] = 0, !!i
+        }
+
+        function f(t, e) {
+            var i = Y(t._covers, function (t) {
+                var e = t.__brushOption, i = G.clone(e.range);
+                return {brushType: e.brushType, panelId: e.panelId, range: i}
+            });
+            t[Jn]("brush", i, {isEnd: !!e.isEnd, removeOnClick: !!e.removeOnClick})
+        }
+
+        function v(t) {
+            var e = t._track;
+            if (!e[yr])return !1;
+            var i = e[e[yr] - 1], n = e[0], r = i[0] - n[0], a = i[1] - n[1], o = Q(r * r + a * a, .5);
+            return o > te
+        }
+
+        function g(t) {
+            var e = t[yr] - 1;
+            return 0 > e && (e = 0), [t[0], t[e]]
+        }
+
+        function m(t, e, i, n) {
+            var r = new H.Group;
+            return r.add(new H.Rect({
+                name: "main",
+                style: w(i),
+                silent: !0,
+                draggable: !0,
+                cursor: "move",
+                drift: U(t, e, r, "nswe"),
+                ondragend: U(f, e, {isEnd: !0})
+            })), j(n, function (i) {
+                r.add(new H.Rect({
+                    name: i,
+                    style: {opacity: 0},
+                    draggable: !0,
+                    silent: !0,
+                    invisible: !0,
+                    drift: U(t, e, r, i),
+                    ondragend: U(f, e, {isEnd: !0})
+                }))
+            }), r
+        }
+
+        function y(t, e, i, n) {
+            var r = n.brushStyle[q] || 0, a = J(r, ee), o = i[0][0], s = i[1][0], l = o - r / 2, u = s - r / 2, c = i[0][1], h = i[1][1], d = c - a + r / 2, f = h - a + r / 2, p = c - o, v = h - s, g = p + r, m = v + r;
+            _(t, e, "main", o, s, p, v), n.transformable && (_(t, e, "w", l, u, a, m), _(t, e, "e", d, u, a, m), _(t, e, "n", l, u, g, a), _(t, e, "s", l, f, g, a), _(t, e, "nw", l, u, a, a), _(t, e, "ne", d, u, a, a), _(t, e, "sw", l, f, a, a), _(t, e, "se", d, f, a, a))
+        }
+
+        function x(t, e) {
+            var i = e.__brushOption, n = i.transformable, r = e[Fi](0);
+            r[Gi](w(i)), r.attr({
+                silent: !n,
+                cursor: n ? "move" : "default"
+            }), j(["w", "e", "n", "s", "se", "sw", "ne", "nw"], function (i) {
+                var r = e.childOfName(i), a = T(t, i);
+                r && r.attr({silent: !n, invisible: !n, cursor: n ? re[a] + "-resize" : null})
+            })
+        }
+
+        function _(t, e, i, n, r, a, o) {
+            var s = e.childOfName(i);
+            s && s[Qe](D(P(t, e, [[n, r], [n + a, r + o]])))
+        }
+
+        function w(t) {
+            return G[tr]({strokeNoScale: !0}, t.brushStyle)
+        }
+
+        function S(t, e, i, n) {
+            var r = [$(t, i), $(e, n)], a = [J(t, i), J(e, n)];
+            return [[r[0], a[0]], [r[1], a[1]]]
+        }
+
+        function A(t) {
+            return H.getTransform(t.group)
+        }
+
+        function T(t, e) {
+            if (e[yr] > 1) {
+                e = e.split("");
+                var i = [T(t, e[0]), T(t, e[1])];
+                return ("e" === i[0] || "w" === i[0]) && i[ni](), i.join("")
+            }
+            var n = {w: "left", e: "right", n: "top", s: "bottom"}, r = {
+                left: "w",
+                right: "e",
+                top: "n",
+                bottom: "s"
+            }, i = H.transformDirection(n[e], A(t));
+            return r[i]
+        }
+
+        function L(t, e, i, n, r, a, o) {
+            var s = n.__brushOption, u = t(s.range), c = I(i, a, o);
+            j(r.split(""), function (t) {
+                var e = ne[t];
+                u[e[0]][e[1]] += c[e[0]]
+            }), s.range = e(S(u[0][0], u[1][0], u[0][1], u[1][1])), l(i, n), f(i, {isEnd: !1})
+        }
+
+        function k(t, e, i, n) {
+            var r = e.__brushOption.range, a = I(t, i, n);
+            j(r, function (t) {
+                t[0] += a[0], t[1] += a[1]
+            }), l(t, e), f(t, {isEnd: !1})
+        }
+
+        function I(t, e, i) {
+            var n = t.group, r = n.transformCoordToLocal(e, i), a = n.transformCoordToLocal(0, 0);
+            return [r[0] - a[0], r[1] - a[1]]
+        }
+
+        function P(t, e, i) {
+            var n = h(t, e);
+            if (n === !0)return G.clone(i);
+            var r = n[yn]();
+            return G.map(i, function (t) {
+                var e = t[0];
+                e = J(e, r.x), e = $(e, r.x + r.width);
+                var i = t[1];
+                return i = J(i, r.y), i = $(i, r.y + r[Or]), [e, i]
+            })
+        }
+
+        function D(t) {
+            var e = $(t[0][0], t[1][0]), i = $(t[0][1], t[1][1]), n = J(t[0][0], t[1][0]), r = J(t[0][1], t[1][1]);
+            return {x: e, y: i, width: n - e, height: r - i}
+        }
+
+        function z(t, e) {
+            var i = e[M], n = e[b], r = t._zr;
+            if (t._brushType) {
+                for (var a, o = t._panels, s = t._covers, l = 0; l < s[yr]; l++)if (le[s[l].__brushOption.brushType][tn](s[l], i, n)) {
+                    a = !0;
+                    break
+                }
+                a || (o ? j(o, function (t) {
+                    t[tn](i, n) && r.setCursorStyle("crosshair")
+                }) : r.setCursorStyle("crosshair"))
+            }
+        }
+
+        function V(t) {
+            var e = t.event;
+            e.preventDefault && e.preventDefault()
+        }
+
+        function O(t, e, i) {
+            return t.childOfName("main")[tn](e, i)
+        }
+
+        function R(t, e, i) {
+            var n, s = e[M], l = e[b], u = t._creatingCover, h = t._creatingPanel, f = t._brushOption;
+            if (t._track.push(t.group.transformCoordToLocal(s, l)), v(t) || u) {
+                if (h && !u) {
+                    f.brushMode === p && d(t);
+                    var g = G.clone(f);
+                    g.panelId = h === !0 ? null : h.__brushPanelId, u = t._creatingCover = r(t, g), t._covers.push(u)
+                }
+                if (u) {
+                    var m = le[t._brushType], y = u.__brushOption;
+                    y.range = m.getCreatingRange(P(t, u, t._track)), i && (a(t, u), m.updateCommon(t, u)), o(t, u), n = {isEnd: i}
+                }
+            } else i && f.brushMode === p && f.removeOnClick && c(t, s, l) && d(t) && (n = {
+                isEnd: i,
+                removeOnClick: !0
+            });
+            return n
+        }
+
+        function E(t) {
+            if (this._dragging) {
+                V(t);
+                var e = R(this, t, !0);
+                this._dragging = !1, this._track = [], this._creatingCover = null, e && f(this, e)
+            }
+        }
+
+        function N(t) {
+            return {
+                createCover: function (e, i) {
+                    return m(U(L, function (e) {
+                        var i = [e, [0, 100]];
+                        return t && i[ni](), i
+                    }, function (e) {
+                        return e[t]
+                    }), e, i, [["w", "e"], ["n", "s"]][t])
+                }, getCreatingRange: function (e) {
+                    var i = g(e), n = $(i[0][t], i[1][t]), r = J(i[0][t], i[1][t]);
+                    return [n, r]
+                }, updateCoverShape: function (e, i, n, r) {
+                    var a, o = r.brushStyle.width;
+                    if (null == o) {
+                        var s = h(e, i), l = 0;
+                        if (s !== !0) {
+                            var u = s[yn]();
+                            o = t ? u.width : u[Or], l = t ? u.x : u.y
+                        }
+                        a = [l, l + (o || 0)]
+                    } else a = [-o / 2, o / 2];
+                    var c = [n, a];
+                    t && c[ni](), y(e, i, c, r)
+                }, updateCommon: x, contain: O
+            }
+        }
+
+        var B = t("zrender/mixin/Eventful"), G = t(Xr), F = t(X), H = t(ji), Z = t("./interactionMutex"), W = t("../../data/DataDiffer"), U = G.curry, j = G.each, Y = G.map, $ = Math.min, J = Math.max, Q = Math.pow, K = 1e4, te = 6, ee = 6, ie = "globalPan", ne = {
+            w: [0, 0],
+            e: [0, 1],
+            n: [1, 0],
+            s: [1, 1]
+        }, re = {
+            w: "ew",
+            e: "ew",
+            n: "ns",
+            s: "ns",
+            ne: "nesw",
+            sw: "nesw",
+            nw: "nwse",
+            se: "nwse"
+        }, ae = {
+            brushStyle: {lineWidth: 2, stroke: "rgba(0,0,0,0.3)", fill: "rgba(0,0,0,0.1)"},
+            transformable: !0,
+            brushMode: "single",
+            removeOnClick: !1
+        }, oe = 0;
+        e[Nr] = {
+            constructor: e, enableBrush: function (t) {
+                return this._brushType && n(this), t.brushType && i(this, t), this
+            }, setPanels: function (t) {
+                var e = this._panels || {}, i = this._panels = t && t[yr] && {}, n = this.group;
+                return i && j(t, function (t) {
+                    var r = t.panelId, a = e[r];
+                    a || (a = new H.Rect({silent: !0, invisible: !0}), n.add(a));
+                    var o = t.rect;
+                    o instanceof F || (o = F[dr](o)), a.attr("shape", o.plain()), a.__brushPanelId = r, i[r] = a, e[r] = null
+                }), j(e, function (t) {
+                    t && n[nr](t)
+                }), this
+            }, mount: function (t) {
+                t = t || {}, this._enableGlobalPan = t.enableGlobalPan;
+                var e = this.group;
+                return this._zr.add(e), e.attr({
+                    position: t[dn] || [0, 0],
+                    rotation: t[pe] || 0,
+                    scale: t.scale || [1, 1]
+                }), this
+            }, eachCover: function (t, e) {
+                j(this._covers, t, e)
+            }, updateCovers: function (t) {
+                function e(t, e) {
+                    return (null != t.id ? t.id : s + e) + "-" + t.brushType
+                }
+
+                function i(t, i) {
+                    return e(t.__brushOption, i)
+                }
+
+                function n(e, i) {
+                    var n = t[e];
+                    if (null != i && u[i] === d)c[e] = u[i]; else {
+                        var o = c[e] = null != i ? (u[i].__brushOption = n, u[i]) : a(h, r(h, n));
+                        l(h, o)
+                    }
+                }
+
+                function o(t) {
+                    u[t] !== d && h.group[nr](u[t])
+                }
+
+                t = G.map(t, function (t) {
+                    return G.merge(G.clone(ae), t, !0)
+                });
+                var s = "\x00-brush-index-", u = this._covers, c = this._covers = [], h = this, d = this._creatingCover;
+                return new W(u, t, i, e).add(n)[hr](n)[nr](o)[Se](), this
+            }, unmount: function () {
+                return this.enableBrush(!1), d(this), this._zr[nr](this.group), this
+            }, dispose: function () {
+                this.unmount(), this.off()
+            }
+        }, G.mixin(e, B);
+        var se = {
+            mousedown: function (t) {
+                if (this._dragging)E.call(this, t); else if (!t[Wn] || !t[Wn][C]) {
+                    V(t);
+                    var e = t[M], i = t[b];
+                    this._creatingCover = null;
+                    var n = this._creatingPanel = c(this, e, i);
+                    n && (this._dragging = !0, this._track = [this.group.transformCoordToLocal(e, i)])
+                }
+            }, mousemove: function (t) {
+                if (z(this, t), this._dragging) {
+                    V(t);
+                    var e = R(this, t, !1);
+                    e && f(this, e)
+                }
+            }, mouseup: E
+        }, le = {
+            lineX: N(0), lineY: N(1), rect: {
+                createCover: function (t, e) {
+                    return m(U(L, function (t) {
+                        return t
+                    }, function (t) {
+                        return t
+                    }), t, e, ["w", "e", "n", "s", "se", "sw", "ne", "nw"])
+                }, getCreatingRange: function (t) {
+                    var e = g(t);
+                    return S(e[1][0], e[1][1], e[0][0], e[0][1])
+                }, updateCoverShape: function (t, e, i, n) {
+                    y(t, e, i, n)
+                }, updateCommon: x, contain: O
+            }, polygon: {
+                createCover: function (t, e) {
+                    var i = new H.Group;
+                    return i.add(new H[je]({name: "main", style: w(e), silent: !0})), i
+                }, getCreatingRange: function (t) {
+                    return t
+                }, endCreating: function (t, e) {
+                    e[nr](e[Fi](0)), e.add(new H[Ue]({
+                        name: "main",
+                        draggable: !0,
+                        drift: U(k, t, e),
+                        ondragend: U(f, t, {isEnd: !0})
+                    }))
+                }, updateCoverShape: function (t, e, i) {
+                    e[Fi](0)[Qe]({points: P(t, e, i)})
+                }, updateCommon: x, contain: O
+            }
+        };
+        return e
+    }),e("echarts/component/visualMap/VisualMapModel", [Yr, Te, Xr, Zr, "../../visual/visualDefault", "../../visual/VisualMapping", "../../visual/visualSolution", mi, Di], function (t) {
+        var e = t(Te), i = t(Xr), n = t(Zr), r = t("../../visual/visualDefault"), a = t("../../visual/VisualMapping"), o = t("../../visual/visualSolution"), s = a.mapVisual, l = t(mi), c = a.eachVisual, h = t(Di), d = i[Rn], f = i.each, p = h.asc, v = h[G], g = i.noop, m = ["#f6efa6", "#d88273", "#bf444c"], y = e[Dn]({
+            type: "visualMap",
+            dependencies: [rr],
+            stateList: ["inRange", "outOfRange"],
+            replacableOptionKeys: ["inRange", "outOfRange", Wn, "controller", "color"],
+            dataBound: [-1 / 0, 1 / 0],
+            layoutMode: {type: "box", ignoreSize: !0},
+            defaultOption: {
+                show: !0,
+                zlevel: 0,
+                z: 4,
+                seriesIndex: null,
+                min: 0,
+                max: 200,
+                dimension: null,
+                inRange: null,
+                outOfRange: null,
+                left: 0,
+                right: null,
+                top: null,
+                bottom: 0,
+                itemWidth: null,
+                itemHeight: null,
+                inverse: !1,
+                orient: "vertical",
+                backgroundColor: "rgba(0,0,0,0)",
+                borderColor: "#ccc",
+                contentColor: "#5793f3",
+                inactiveColor: "#aaa",
+                borderWidth: 0,
+                padding: 5,
+                textGap: 10,
+                precision: 0,
+                color: null,
+                formatter: null,
+                text: null,
+                textStyle: {color: "#333"}
+            },
+            init: function (t, e, i) {
+                this._dataExtent, this.targetVisuals = {}, this.controllerVisuals = {}, this.textStyleModel, this.itemSize, this[J](t, i)
+            },
+            optionUpdated: function (t, e) {
+                var i = this[un];
+                n[Ar] || (i[u] = !1), !e && o.replaceVisualOption(i, t, this.replacableOptionKeys), this.textStyleModel = this[Lr](bn), this.resetItemSize(), this.completeVisualOption()
+            },
+            resetVisual: function (t) {
+                var e = this.stateList;
+                t = i.bind(t, this), this.controllerVisuals = o.createVisualMappings(this[un].controller, e, t), this.targetVisuals = o.createVisualMappings(this[un][Wn], e, t)
+            },
+            resetTargetSeries: function () {
+                var t = this[un], e = null == t[Zn];
+                t[Zn] = e ? [] : l.normalizeToArray(t[Zn]), e && this[$][lr](function (e, i) {
+                    t[Zn].push(i)
+                })
+            },
+            eachTargetSeries: function (t, e) {
+                i.each(this[un][Zn], function (i) {
+                    t.call(e, this[$].getSeriesByIndex(i))
+                }, this)
+            },
+            isTargetSeries: function (t) {
+                var e = !1;
+                return this.eachTargetSeries(function (i) {
+                    i === t && (e = !0)
+                }), e
+            },
+            formatValueText: function (t, e, n) {
+                function r(t) {
+                    return t === u[0] ? "min" : t === u[1] ? "max" : (+t)[ne](l)
+                }
+
+                var a, o, s = this[un], l = s.precision, u = this.dataBound, c = s[H];
+                return n = n || ["<", ">"], i[Rn](t) && (t = t.slice(), a = !0), o = e ? t : a ? [r(t[0]), r(t[1])] : r(t), i[Tn](c) ? c[En]("{value}", a ? o[0] : o)[En]("{value2}", a ? o[1] : o) : i.isFunction(c) ? a ? c(t[0], t[1]) : c(t) : a ? t[0] === u[0] ? n[0] + " " + o[1] : t[1] === u[1] ? n[1] + " " + o[0] : o[0] + " - " + o[1] : o
+            },
+            resetExtent: function () {
+                var t = this[un], e = p([t.min, t.max]);
+                this._dataExtent = e
+            },
+            getDataDimension: function (t) {
+                var e = this[un].dimension;
+                return null != e ? e : t[ki][yr] - 1
+            },
+            getExtent: function () {
+                return this._dataExtent.slice()
+            },
+            completeVisualOption: function () {
+                function t(t) {
+                    d(o.color) && !t.inRange && (t.inRange = {color: o.color.slice()[ni]()}), t.inRange = t.inRange || {color: m}, f(this.stateList, function (e) {
+                        var n = t[e];
+                        if (i[Tn](n)) {
+                            var a = r.get(n, "active", p);
+                            a ? (t[e] = {}, t[e][n] = a) : delete t[e]
+                        }
+                    }, this)
+                }
+
+                function e(t, e, i) {
+                    var n = t[e], o = t[i];
+                    n && !o && (o = t[i] = {}, f(n, function (t, e) {
+                        if (a.isValidType(e)) {
+                            var i = r.get(e, "inactive", p);
+                            null != i && (o[e] = i, "color" !== e || o.hasOwnProperty(cn) || o.hasOwnProperty("colorAlpha") || (o[cn] = [0, 0]))
+                        }
+                    }))
+                }
+
+                function n(t) {
+                    var e = (t.inRange || {})[He] || (t.outOfRange || {})[He], n = (t.inRange || {})[Fe] || (t.outOfRange || {})[Fe], r = this.get("inactiveColor");
+                    f(this.stateList, function (a) {
+                        var o = this.itemSize, l = t[a];
+                        l || (l = t[a] = {color: p ? r : [r]}), null == l[He] && (l[He] = e && i.clone(e) || (p ? "roundRect" : ["roundRect"])), null == l[Fe] && (l[Fe] = n && i.clone(n) || (p ? o[0] : [o[0], o[0]])), l[He] = s(l[He], function (t) {
+                            return "none" === t || "square" === t ? "roundRect" : t
+                        });
+                        var u = l[Fe];
+                        if (null != u) {
+                            var h = -1 / 0;
+                            c(u, function (t) {
+                                t > h && (h = t)
+                            }), l[Fe] = s(u, function (t) {
+                                return v(t, [0, h], [0, o[0]], !0)
+                            })
+                        }
+                    }, this)
+                }
+
+                var o = this[un], l = {
+                    inRange: o.inRange,
+                    outOfRange: o.outOfRange
+                }, u = o[Wn] || (o[Wn] = {}), h = o.controller || (o.controller = {});
+                i.merge(u, l), i.merge(h, l);
+                var p = this.isCategory();
+                t.call(this, u), t.call(this, h), e.call(this, u, "inRange", "outOfRange"), n.call(this, h)
+            },
+            resetItemSize: function () {
+                this.itemSize = [parseFloat(this.get("itemWidth")), parseFloat(this.get("itemHeight"))]
+            },
+            isCategory: function () {
+                return !!this[un][S]
+            },
+            setSelected: g,
+            getValueState: g,
+            getVisualMeta: g
+        });
+        return y
+    }),e("echarts/component/helper/interactionMutex", [Yr, Te], function (t) {
+        function e(t) {
+            return t[i] || (t[i] = {})
+        }
+
+        var i = "\x00_ec_interaction_mutex", n = {
+            take: function (t, i, n) {
+                var r = e(t);
+                r[i] = n
+            }, release: function (t, i, n) {
+                var r = e(t), a = r[i];
+                a === n && (r[i] = null)
+            }, isTaken: function (t, i) {
+                return !!e(t)[i]
+            }
+        };
+        return t(Te)[Vn]({type: "takeGlobalCursor", event: "globalCursorTaken", update: "update"}, function () {
+        }), n
+    }),e("echarts/chart/treemap/Breadcrumb", [Yr, ji, Ne, Xr, Le], function (t) {
+        function e(t) {
+            this.group = new r.Group, t.add(this.group)
+        }
+
+        function i(t, e, i, n, r, a) {
+            var o = [[r ? t : t - c, e], [t + i, e], [t + i, e + n], [r ? t : t - c, e + n]];
+            return !a && o[Yn](2, 0, [t + i + c, e + n / 2]), !r && o.push([t, e + n / 2]), o
+        }
+
+        function n(t, e, i) {
+            t.eventData = {
+                componentType: "series",
+                componentSubType: "treemap",
+                seriesIndex: e[ze],
+                seriesName: e.name,
+                seriesType: "treemap",
+                selfType: "breadcrumb",
+                nodeData: {dataIndex: i && i[pr], name: i && i.name},
+                treePathInfo: i && s.wrapTreePathInfo(i, e)
+            }
+        }
+
+        var r = t(ji), a = t(Ne), o = t(Xr), s = t(Le), l = 8, u = 8, c = 5;
+        return e[Nr] = {
+            constructor: e, render: function (t, e, i, n) {
+                var r = t[Lr]("breadcrumb"), o = this.group;
+                if (o[An](), r.get("show") && i) {
+                    var s = r[Lr](Me), l = s[Lr](bn), u = {
+                        pos: {
+                            left: r.get("left"),
+                            right: r.get("right"),
+                            top: r.get("top"),
+                            bottom: r.get(xr)
+                        },
+                        box: {width: e[Cr](), height: e[Tr]()},
+                        emptyItemWidth: r.get("emptyItemWidth"),
+                        totalWidth: 0,
+                        renderList: []
+                    };
+                    this._prepare(i, u, l), this._renderContent(t, u, s, l, n), a.positionElement(o, u.pos, u.box)
+                }
+            }, _prepare: function (t, e, i) {
+                for (var n = t; n; n = n[L]) {
+                    var r = n[Lr]().get("name"), a = i.getTextRect(r), o = Math.max(a.width + 2 * l, e.emptyItemWidth);
+                    e.totalWidth += o + u, e.renderList.push({node: n, text: r, width: o})
+                }
+            }, _renderContent: function (t, e, s, l, c) {
+                for (var h = 0, d = e.emptyItemWidth, f = t.get("breadcrumb.height"), p = a.getAvailableSize(e.pos, e.box), v = e.totalWidth, g = e.renderList, m = g[yr] - 1; m >= 0; m--) {
+                    var y = g[m], x = y.node, _ = y.width, w = y.text;
+                    v > p.width && (v -= _ - d, _ = d, w = "");
+                    var b = new r[Ue]({
+                        shape: {points: i(h, 0, _, f, m === g[yr] - 1, 0 === m)},
+                        style: o[tr](s[Mn](), {lineJoin: "bevel", text: w, textFill: l[xn](), textFont: l[_n]()}),
+                        z: 10,
+                        onclick: o.curry(c, x)
+                    });
+                    this.group.add(b), n(b, t, x), h += _ + u
+                }
+            }, remove: function () {
+                this.group[An]()
+            }
+        }, e
+    }),e("echarts/util/animation", [Yr, Xr], function (t) {
+        function e() {
+            var t, e = [], n = {};
+            return {
+                add: function (t, r, a, o, s) {
+                    return i[Tn](o) && (s = o, o = 0), n[t.id] ? !1 : (n[t.id] = 1, e.push({
+                        el: t,
+                        target: r,
+                        time: a,
+                        delay: o,
+                        easing: s
+                    }), !0)
+                }, done: function (e) {
+                    return t = e, this
+                }, start: function () {
+                    function i() {
+                        r--, r || (e[yr] = 0, n = {}, t && t())
+                    }
+
+                    for (var r = e[yr], a = 0, o = e[yr]; o > a; a++) {
+                        var s = e[a];
+                        s.el.animateTo(s[Wn], s.time, s.delay, s.easing, i)
+                    }
+                    return this
+                }
+            }
+        }
+
+        var i = t(Xr);
+        return {createWrap: e}
+    }),e("echarts/coord/parallel/ParallelAxis", [Yr, Xr, "../Axis"], function (t) {
+        var e = t(Xr), i = t("../Axis"), n = function (t, e, n, r, a) {
+            i.call(this, t, e, n), this.type = r || "value", this.axisIndex = a
+        };
+        return n[Nr] = {constructor: n, model: null}, e[Cn](n, i), n
+    }),e("echarts/chart/graph/adjustEdge", [Yr, "zrender/core/curve", Gr], function (t) {
+        function e(t, e, i) {
+            for (var n, c = t[0], h = t[1], d = t[2], f = 1 / 0, p = i * i, v = .1, g = .1; .9 >= g; g += .1) {
+                r[0] = s(c[0], h[0], d[0], g), r[1] = s(c[1], h[1], d[1], g);
+                var m = u(l(r, e) - p);
+                f > m && (f = m, n = g)
+            }
+            for (var y = 0; 32 > y; y++) {
+                var x = n + v;
+                a[0] = s(c[0], h[0], d[0], n), a[1] = s(c[1], h[1], d[1], n), o[0] = s(c[0], h[0], d[0], x), o[1] = s(c[1], h[1], d[1], x);
+                var m = l(a, e) - p;
+                if (u(m) < .01)break;
+                var _ = l(o, e) - p;
+                v /= 2, 0 > m ? _ >= 0 ? n += v : n -= v : _ >= 0 ? n -= v : n += v
+            }
+            return n
+        }
+
+        var i = t("zrender/core/curve"), n = t(Gr), r = [], a = [], o = [], s = i.quadraticAt, l = n.distSquare, u = Math.abs;
+        return function (t, r) {
+            function a(t) {
+                var e = t[vr](Fe);
+                return e instanceof Array && (e = (e[0] + e[1]) / 2), e
+            }
+
+            var o = [], s = i.quadraticSubdivide, l = [[], [], []], u = [[], []], c = [];
+            r /= 2, t.eachEdge(function (t) {
+                var i = t[R](), h = t[vr]("fromSymbol"), d = t[vr]("toSymbol");
+                i.__original || (i.__original = [n.clone(i[0]), n.clone(i[1])], i[2] && i.__original.push(n.clone(i[2])));
+                var f = i.__original;
+                if (null != i[2]) {
+                    if (n.copy(l[0], f[0]), n.copy(l[1], f[2]), n.copy(l[2], f[1]), h && "none" != h) {
+                        var p = a(t.node1), v = e(l, f[0], p * r);
+                        s(l[0][0], l[1][0], l[2][0], v, o), l[0][0] = o[3], l[1][0] = o[4], s(l[0][1], l[1][1], l[2][1], v, o), l[0][1] = o[3], l[1][1] = o[4]
+                    }
+                    if (d && "none" != d) {
+                        var p = a(t.node2), v = e(l, f[1], p * r);
+                        s(l[0][0], l[1][0], l[2][0], v, o), l[1][0] = o[1], l[2][0] = o[2], s(l[0][1], l[1][1], l[2][1], v, o), l[1][1] = o[1], l[2][1] = o[2]
+                    }
+                    n.copy(i[0], l[0]), n.copy(i[1], l[2]), n.copy(i[2], l[1])
+                } else {
+                    if (n.copy(u[0], f[0]), n.copy(u[1], f[1]), n.sub(c, u[1], u[0]), n[Ki](c, c), h && "none" != h) {
+                        var p = a(t.node1);
+                        n.scaleAndAdd(u[0], u[0], c, p * r)
+                    }
+                    if (d && "none" != d) {
+                        var p = a(t.node2);
+                        n.scaleAndAdd(u[1], u[1], c, -p * r)
+                    }
+                    n.copy(i[0], u[0]), n.copy(i[1], u[1])
+                }
+            })
+        }
+    }),e("echarts/util/array/nest", [Yr, Xr], function (t) {
+        function e() {
+            function t(e, r) {
+                if (r >= n[yr])return e;
+                for (var a = -1, o = e[yr], s = n[r++], l = {}, u = {}; ++a < o;) {
+                    var c = s(e[a]), h = u[c];
+                    h ? h.push(e[a]) : u[c] = [e[a]]
+                }
+                return i.each(u, function (e, i) {
+                    l[i] = t(e, r)
+                }), l
+            }
+
+            function e(t, a) {
+                if (a >= n[yr])return t;
+                var o = [], s = r[a++];
+                return i.each(t, function (t, i) {
+                    o.push({key: i, values: e(t, a)})
+                }), s ? o.sort(function (t, e) {
+                    return s(t.key, e.key)
+                }) : o
+            }
+
+            var n = [], r = [];
+            return {
+                key: function (t) {
+                    return n.push(t), this
+                }, sortKeys: function (t) {
+                    return r[n[yr] - 1] = t, this
+                }, entries: function (i) {
+                    return e(t(i, 0), 0)
+                }
+            }
+        }
+
+        var i = t(Xr);
+        return e
+    }),e("echarts/action/roamHelper", [Yr], function () {
+        var t = {};
+        return t.updateCenterAndZoom = function (t, e, i) {
+            var n = t.getZoom(), r = t.getCenter(), a = e.zoom, o = t[Ai](r);
+            if (null != e.dx && null != e.dy) {
+                o[0] -= e.dx, o[1] -= e.dy;
+                var r = t[Oe](o);
+                t.setCenter(r)
+            }
+            if (null != a) {
+                if (i) {
+                    var s = i.min || 0, u = i.max || 1 / 0;
+                    a = Math.max(Math.min(n * a, u), s) / n
+                }
+                t.scale[0] *= a, t.scale[1] *= a;
+                var c = t[dn], h = (e.originX - c[0]) * (a - 1), d = (e.originY - c[1]) * (a - 1);
+                c[0] -= h, c[1] -= d, t[l]();
+                var r = t[Oe](o);
+                t.setCenter(r), t.setZoom(a * n)
+            }
+            return {center: t.getCenter(), zoom: t.getZoom()}
+        }, t
+    }),e("echarts/component/dataZoom/SelectZoomView", [Yr, "./DataZoomView"], function (t) {
+        return t("./DataZoomView")[ir]({type: "dataZoom.select"})
+    }),e("echarts/component/dataZoom/SelectZoomModel", [Yr, "./DataZoomModel"], function (t) {
+        var e = t("./DataZoomModel");
+        return e[ir]({type: "dataZoom.select"})
+    }),e("echarts/coord/parallel/AxisModel", [Yr, v, Xr, "../../model/mixin/makeStyleMapper", "../axisModelCreator", Di, "../axisModelCommonMixin"], function (t) {
+        function e(t, e) {
+            return e.type || (e.data ? Mi : "value")
+        }
+
+        var i = t(v), n = t(Xr), r = t("../../model/mixin/makeStyleMapper"), a = t("../axisModelCreator"), o = t(Di), s = i[ir]({
+            type: "baseParallelAxis",
+            axis: null,
+            activeIntervals: [],
+            getAreaSelectStyle: function () {
+                return r([["fill", "color"], [q, k], [Bi, Hi], ["width", "width"], [cn, cn]]).call(this[Lr]("areaSelectStyle"))
+            },
+            setActiveIntervals: function (t) {
+                var e = this.activeIntervals = n.clone(t);
+                if (e)for (var i = e[yr] - 1; i >= 0; i--)o.asc(e[i])
+            },
+            getActiveState: function (t) {
+                var e = this.activeIntervals;
+                if (!e[yr])return qi;
+                if (null == t)return "inactive";
+                for (var i = 0, n = e[yr]; n > i; i++)if (e[i][0] <= t && t <= e[i][1])return "active";
+                return "inactive"
+            }
+        }), l = {
+            type: "value",
+            dim: null,
+            areaSelectStyle: {
+                width: 20,
+                borderWidth: 1,
+                borderColor: "rgba(160,197,232)",
+                color: "rgba(160,197,232)",
+                opacity: .3
+            },
+            realtime: !0,
+            z: 10
+        };
+        return n.merge(s[Nr], t("../axisModelCommonMixin")), a("parallel", s, e, l), s
+    }),e("echarts/chart/graph/simpleLayoutHelper", [Yr, "./simpleLayoutEdge"], function (t) {
+        var e = t("./simpleLayoutEdge");
+        return function (t) {
+            var i = t[gr];
+            if (!i || "view" === i.type) {
+                var n = t.getGraph();
+                n.eachNode(function (t) {
+                    var e = t[Lr]();
+                    t[le]([+e.get("x"), +e.get("y")])
+                }), e(n)
+            }
+        }
+    }),e("echarts/chart/graph/simpleLayoutEdge", [Yr, Gr], function (t) {
+        var e = t(Gr);
+        return function (t) {
+            t.eachEdge(function (t) {
+                var i = t[Lr]().get("lineStyle.normal.curveness") || 0, n = e.clone(t.node1[R]()), r = e.clone(t.node2[R]()), a = [n, r];
+                +i && a.push([(n[0] + r[0]) / 2 - (n[1] - r[1]) * i, (n[1] + r[1]) / 2 - (r[0] - n[0]) * i]), t[le](a)
+            })
+        }
+    }),e("echarts/component/axis/parallelAxisAction", [Yr, Te], function (t) {
+        var e = t(Te), i = {type: "axisAreaSelect", event: "axisAreaSelected", update: "updateVisual"};
+        e[Vn](i, function (t, e) {
+            e[wr]({mainType: "parallelAxis", query: t}, function (e) {
+                e.axis.model.setActiveIntervals(t.intervals)
+            })
+        }), e[Vn]("parallelAxisExpand", function (t, e) {
+            e[wr]({mainType: "parallel", query: t}, function (e) {
+                e.setAxisExpand(t)
+            })
+        })
+    }),e("echarts/component/axis/ParallelAxisView", [Yr, Xr, "./AxisBuilder", "../helper/BrushController", ji, Te], function (t) {
+        function e(t, e, i) {
+            return i && "axisAreaSelect" === i.type && e.findComponents({mainType: "parallelAxis", query: i})[0] === t
+        }
+
+        var i = t(Xr), n = t("./AxisBuilder"), r = t("../helper/BrushController"), a = t(ji), o = [w, x, _, "axisName"], s = t(Te)[Pn]({
+            type: "parallelAxis", init: function (t, e) {
+                s[ln](this, "init", arguments), (this._brushController = new r(e.getZr())).on("brush", i.bind(this._onBrush, this))
+            }, render: function (t, r, s, l) {
+                if (!e(t, r, l)) {
+                    this.axisModel = t, this.api = s, this.group[An]();
+                    var u = this._axisGroup;
+                    if (this._axisGroup = new a.Group, this.group.add(this._axisGroup), t.get("show")) {
+                        var c, h = r[Y]("parallel", t.get("parallelIndex"))[gr], d = t.getAreaSelectStyle(), f = d.width, p = t.axis.dim, v = h.getAxisLayout(p), g = i[mr](h[ki], p), m = v.axisExpandWindow;
+                        m && (g <= m[0] || g >= m[1]) && (c = !1);
+                        var y = i[ir]({axisLabelShow: c, strokeContainThreshold: f}, v), x = new n(t, y);
+                        i.each(o, x.add, x), this._axisGroup.add(x.getGroup()), this._refreshBrushController(y, d, t, f), a.groupTransition(u, this._axisGroup, t)
+                    }
+                }
+            }, _refreshBrushController: function (t, e, n, r) {
+                var o = n.axis, s = i.map(n.activeIntervals, function (t) {
+                    return {brushType: "lineX", panelId: "pl", range: [o[ri](t[0], !0), o[ri](t[1], !0)]}
+                }), l = o[Qi](), u = l[1] - l[0], c = Math.min(30, .1 * Math.abs(u)), h = a.BoundingRect[dr]({
+                    x: l[0],
+                    y: -r / 2,
+                    width: u,
+                    height: r
+                });
+                h.x -= c, h.width += 2 * c, this._brushController.mount({
+                    enableGlobalPan: !0,
+                    rotation: t[pe],
+                    position: t[dn]
+                }).setPanels([{panelId: "pl", rect: h}]).enableBrush({
+                    brushType: "lineX",
+                    brushStyle: e,
+                    removeOnClick: !0
+                }).updateCovers(s)
+            }, _onBrush: function (t, e) {
+                var n = this.axisModel, r = n.axis, a = i.map(t, function (t) {
+                    return [r[Ve](t.range[0], !0), r[Ve](t.range[1], !0)]
+                });
+                (!n[un][u] === e.isEnd || e.removeOnClick) && this.api[er]({
+                    type: "axisAreaSelect",
+                    parallelAxisId: n.id,
+                    intervals: a
+                })
+            }, dispose: function () {
+                this._brushController[$n]()
+            }
+        });
+        return s
+    }),e("echarts/visual/visualDefault", [Yr, Xr], function (t) {
+        var e = t(Xr), i = {
+            get: function (t, i, r) {
+                var a = e.clone((n[t] || {})[i]);
+                return r && e[Rn](a) ? a[a[yr] - 1] : a
+            }
+        }, n = {
+            color: {active: ["#006edd", "#e0ffff"], inactive: ["rgba(0,0,0,0)"]},
+            colorHue: {active: [0, 360], inactive: [0, 0]},
+            colorSaturation: {active: [.3, 1], inactive: [0, 0]},
+            colorLightness: {active: [.9, .5], inactive: [0, 0]},
+            colorAlpha: {active: [.3, 1], inactive: [0, 0]},
+            opacity: {active: [.3, 1], inactive: [0, 0]},
+            symbol: {active: [jr, "roundRect", "diamond"], inactive: ["none"]},
+            symbolSize: {active: [10, 50], inactive: [0, 0]}
+        };
+        return i
+    }),e("echarts/component/visualMap/VisualMapView", [Yr, Xr, ji, Ri, Ne, Te, "../../visual/VisualMapping"], function (t) {
+        var e = t(Xr), i = t(ji), n = t(Ri), r = t(Ne), a = t(Te), o = t("../../visual/VisualMapping");
+        return a[Pn]({
+            type: "visualMap",
+            autoPositionValues: {left: 1, right: 1, top: 1, bottom: 1},
+            init: function (t, e) {
+                this[$] = t, this.api = e, this.visualMapModel
+            },
+            render: function (t) {
+                return this.visualMapModel = t, t.get("show") === !1 ? void this.group[An]() : void this.doRender.apply(this, arguments)
+            },
+            renderBackground: function (t) {
+                var e = this.visualMapModel, r = n.normalizeCssArray(e.get(vn) || 0), a = t[yn]();
+                t.add(new i.Rect({
+                    z2: -1,
+                    silent: !0,
+                    shape: {x: a.x - r[3], y: a.y - r[0], width: a.width + r[3] + r[1], height: a[Or] + r[0] + r[2]},
+                    style: {fill: e.get(Sr), stroke: e.get(Hi), lineWidth: e.get(k)}
+                }))
+            },
+            getControllerVisual: function (t, i, n) {
+                function r(t) {
+                    return u[t]
+                }
+
+                function a(t, e) {
+                    u[t] = e
+                }
+
+                n = n || {};
+                var s = n.forceState, l = this.visualMapModel, u = {};
+                if (i === He && (u[He] = l.get("itemSymbol")), "color" === i) {
+                    var c = l.get("contentColor");
+                    u.color = c
+                }
+                var h = l.controllerVisuals[s || l.getValueState(t)], d = o.prepareVisualTypes(h);
+                return e.each(d, function (e) {
+                    var s = h[e];
+                    n.convertOpacityToAlpha && e === cn && (e = "colorAlpha", s = h.__alphaForOpacity), o.dependsOn(e, i) && s && s.applyVisual(t, r, a)
+                }), u[i]
+            },
+            positionGroup: function (t) {
+                var e = this.visualMapModel, i = this.api;
+                r.positionElement(t, e[mn](), {width: i[Cr](), height: i[Tr]()})
+            },
+            doRender: e.noop
+        })
+    }),e("echarts/chart/graph/circularLayoutHelper", [Yr, Gr], function (t) {
+        var e = t(Gr);
+        return function (t) {
+            var i = t[gr];
+            if (!i || "view" === i.type) {
+                var n = i[yn](), r = t[qr](), a = r.graph, o = 0, s = r.getSum("value"), l = 2 * Math.PI / (s || r.count()), u = n.width / 2 + n.x, c = n[Or] / 2 + n.y, h = Math.min(n.width, n[Or]) / 2;
+                a.eachNode(function (t) {
+                    var e = t.getValue("value");
+                    o += l * (s ? e : 1) / 2, t[le]([h * Math.cos(o) + u, h * Math.sin(o) + c]), o += l * (s ? e : 1) / 2
+                }), r[le]({cx: u, cy: c}), a.eachEdge(function (t) {
+                    var i, n = t[Lr]().get("lineStyle.normal.curveness") || 0, r = e.clone(t.node1[R]()), a = e.clone(t.node2[R]()), o = (r[0] + a[0]) / 2, s = (r[1] + a[1]) / 2;
+                    +n && (n *= 3, i = [u * n + o * (1 - n), c * n + s * (1 - n)]), t[le]([r, a, i])
+                })
+            }
+        }
+    }),e("echarts/chart/graph/forceHelper", [Yr, Gr], function (t) {
+        var e = t(Gr), i = e.scaleAndAdd;
+        return function (t, n, r) {
+            for (var a = r.rect, o = a.width, s = a[Or], l = [a.x + o / 2, a.y + s / 2], u = null == r.gravity ? .1 : r.gravity, c = 0; c < t[yr]; c++) {
+                var h = t[c];
+                h.p || (h.p = e[dr](o * (Math.random() - .5) + l[0], s * (Math.random() - .5) + l[1])), h.pp = e.clone(h.p), h.edges = null
+            }
+            var d = .6;
+            return {
+                warmUp: function () {
+                    d = .5
+                }, setFixed: function (e) {
+                    t[e].fixed = !0
+                }, setUnfixed: function (e) {
+                    t[e].fixed = !1
+                }, step: function (r) {
+                    for (var a = [], o = t[yr], s = 0; s < n[yr]; s++) {
+                        var c = n[s], h = c.n1, f = c.n2;
+                        e.sub(a, f.p, h.p);
+                        var p = e.len(a) - c.d, v = f.w / (h.w + f.w);
+                        e[Ki](a, a), !h.fixed && i(h.p, h.p, a, v * p * d), !f.fixed && i(f.p, f.p, a, -(1 - v) * p * d)
+                    }
+                    for (var s = 0; o > s; s++) {
+                        var g = t[s];
+                        g.fixed || (e.sub(a, l, g.p), e.scaleAndAdd(g.p, g.p, a, u * d))
+                    }
+                    for (var s = 0; o > s; s++)for (var h = t[s], m = s + 1; o > m; m++) {
+                        var f = t[m];
+                        e.sub(a, f.p, h.p);
+                        var p = e.len(a);
+                        0 === p && (e.set(a, Math.random() - .5, Math.random() - .5), p = 1);
+                        var y = (h.rep + f.rep) / p / p;
+                        !h.fixed && i(h.pp, h.pp, a, y), !f.fixed && i(f.pp, f.pp, a, -y)
+                    }
+                    for (var x = [], s = 0; o > s; s++) {
+                        var g = t[s];
+                        g.fixed || (e.sub(x, g.p, g.pp), e.scaleAndAdd(g.p, g.p, x, d), e.copy(g.pp, g.p))
+                    }
+                    d = .992 * d, r && r(t, n, .01 > d)
+                }
+            }
+        }
+    }),e("echarts/component/visualMap/helper", [Yr, Xr, Ne], function (t) {
+        var e = t(Xr), i = t(Ne), n = {
+            getItemAlign: function (t, e, n) {
+                var r = t[un], a = r.align;
+                if (null != a && "auto" !== a)return a;
+                for (var o = {
+                    width: e[Cr](),
+                    height: e[Tr]()
+                }, s = r[d] === Ci ? 1 : 0, l = [["left", "right", "width"], ["top", xr, Or]], u = l[s], c = [0, null, 10], h = {}, f = 0; 3 > f; f++)h[l[1 - s][f]] = c[f], h[u[f]] = 2 === f ? n[0] : r[u[f]];
+                var p = [["x", "width", 3], ["y", Or, 0]][s], v = i[gn](h, o, r[vn]);
+                return u[(v[hn][p[2]] || 0) + v[p[0]] + .5 * v[p[1]] < .5 * o[p[1]] ? 0 : 1]
+            }, convertDataIndex: function (t) {
+                return e.each(t || [], function () {
+                    null != t[pr] && (t.dataIndexInside = t[pr], t[pr] = null)
+                }), t
+            }
+        };
+        return n
+    }),e("echarts/component/visualMap/PiecewiseView", [Yr, "./VisualMapView", Xr, ji, V, Ne, Le], function (t) {
+        var e = t("./VisualMapView"), i = t(Xr), n = t(ji), r = t(V), a = t(Ne), o = t(Le), s = e[ir]({
+            type: "visualMap.piecewise",
+            doRender: function () {
+                function t(t) {
+                    var a = t.piece, s = new n.Group;
+                    s.onclick = i.bind(this._onItemClick, this, a), this._enableHoverLink(s, t.indexInModelPieceList);
+                    var d = r.getRepresentValue(a);
+                    if (this._createItemSymbol(s, d, [0, 0, h[0], h[1]]), v) {
+                        var f = this.visualMapModel.getValueState(d);
+                        s.add(new n.Text({
+                            style: {
+                                x: "right" === c ? -o : h[0] + o,
+                                y: h[1] / 2,
+                                text: a.text,
+                                textVerticalAlign: "middle",
+                                textAlign: c,
+                                textFont: l,
+                                fill: u,
+                                opacity: "outOfRange" === f ? .5 : 1
+                            }
+                        }))
+                    }
+                    e.add(s)
+                }
+
+                var e = this.group;
+                e[An]();
+                var r = this.visualMapModel, o = r.get("textGap"), s = r.textStyleModel, l = s[_n](), u = s[xn](), c = this._getItemAlign(), h = r.itemSize, f = this._getViewData(), p = f.endsText, v = i[Pi](r.get("showLabel", !0), !p);
+                p && this._renderEndsText(e, p[0], h, v, c), i.each(f.viewPieceList, t, this), p && this._renderEndsText(e, p[1], h, v, c), a.box(r.get(d), e, r.get("itemGap")), this.renderBackground(e), this.positionGroup(e)
+            },
+            _enableHoverLink: function (t, e) {
+                function n(t) {
+                    var i = this.visualMapModel;
+                    i[un].hoverLink && this.api[er]({type: t, batch: o.convertDataIndex(i.findTargetDataIndices(e))})
+                }
+
+                t.on(Xn, i.bind(n, this, Kn)).on(jn, i.bind(n, this, Qn))
+            },
+            _getItemAlign: function () {
+                var t = this.visualMapModel, e = t[un];
+                if (e[d] === h)return o.getItemAlign(t, this.api, t.itemSize);
+                var i = e.align;
+                return i && "auto" !== i || (i = "left"), i
+            },
+            _renderEndsText: function (t, e, i, r, a) {
+                if (e) {
+                    var o = new n.Group, s = this.visualMapModel.textStyleModel;
+                    o.add(new n.Text({
+                        style: {
+                            x: r ? "right" === a ? i[0] : 0 : i[0] / 2,
+                            y: i[1] / 2,
+                            textVerticalAlign: "middle",
+                            textAlign: r ? a : fn,
+                            text: e,
+                            textFont: s[_n](),
+                            fill: s[xn]()
+                        }
+                    })), t.add(o)
+                }
+            },
+            _getViewData: function () {
+                var t = this.visualMapModel, e = i.map(t.getPieceList(), function (t, e) {
+                    return {piece: t, indexInModelPieceList: e}
+                }), n = t.get("text"), r = t.get(d), a = t.get(si);
+                return (r === Ci ? a : !a) ? e[ni]() : n && (n = n.slice()[ni]()), {viewPieceList: e, endsText: n}
+            },
+            _createItemSymbol: function (t, e, i) {
+                t.add(r[z](this.getControllerVisual(e, He), i[0], i[1], i[2], i[3], this.getControllerVisual(e, "color")))
+            },
+            _onItemClick: function (t) {
+                var e = this.visualMapModel, n = e[un], r = i.clone(n[ve]), a = e.getSelectedMapKey(t);
+                n.selectedMode === p ? (r[a] = !0, i.each(r, function (t, e) {
+                    r[e] = e === a
+                })) : r[a] = !r[a], this.api[er]({
+                    type: "selectDataRange",
+                    from: this.uid,
+                    visualMapId: this.visualMapModel.id,
+                    selected: r
+                })
+            }
+        });
+        return s
+    }),e("echarts/component/visualMap/PiecewiseModel", [Yr, "./VisualMapModel", Xr, "../../visual/VisualMapping", "../../visual/visualDefault", Di], function (t) {
+        function e(t, e) {
+            var i = t[si];
+            (t[d] === h ? !i : i) && e[ni]()
+        }
+
+        var i = t("./VisualMapModel"), n = t(Xr), r = t("../../visual/VisualMapping"), a = t("../../visual/visualDefault"), o = t(Di).reformIntervals, s = i[ir]({
+            type: "visualMap.piecewise",
+            defaultOption: {
+                selected: null,
+                minOpen: !1,
+                maxOpen: !1,
+                align: "auto",
+                itemWidth: 20,
+                itemHeight: 14,
+                itemSymbol: "roundRect",
+                pieceList: null,
+                categories: null,
+                splitNumber: 5,
+                selectedMode: "multiple",
+                itemGap: 10,
+                hoverLink: !0,
+                showLabel: null
+            },
+            optionUpdated: function (t, e) {
+                s[ln](this, "optionUpdated", arguments), this._pieceList = [], this.resetTargetSeries(), this.resetExtent();
+                var i = this._mode = this._determineMode();
+                l[this._mode].call(this), this._resetSelected(t, e);
+                var r = this[un][S];
+                this.resetVisual(function (t, e) {
+                    i === S ? (t.mappingMethod = Mi, t[S] = n.clone(r)) : (t.dataExtent = this[Qi](), t.mappingMethod = "piecewise", t.pieceList = n.map(this._pieceList, function (t) {
+                        var t = n.clone(t);
+                        return "inRange" !== e && (t.visual = null), t
+                    }))
+                })
+            },
+            completeVisualOption: function () {
+                function t(t, e, i) {
+                    return t && t[e] && (n[Ir](t[e]) ? t[e].hasOwnProperty(i) : t[e] === i)
+                }
+
+                var e = this[un], o = {}, s = r.listVisualTypes(), l = this.isCategory();
+                n.each(e.pieces, function (t) {
+                    n.each(s, function (e) {
+                        t.hasOwnProperty(e) && (o[e] = 1)
+                    })
+                }), n.each(o, function (i, r) {
+                    var o = 0;
+                    n.each(this.stateList, function (i) {
+                        o |= t(e, i, r) || t(e[Wn], i, r)
+                    }, this), !o && n.each(this.stateList, function (t) {
+                        (e[t] || (e[t] = {}))[r] = a.get(r, "inRange" === t ? "active" : "inactive", l)
+                    })
+                }, this), i[Nr].completeVisualOption.apply(this, arguments)
+            },
+            _resetSelected: function (t, e) {
+                var i = this[un], r = this._pieceList, a = (e ? i : t)[ve] || {};
+                if (i[ve] = a, n.each(r, function (t) {
+                        var e = this.getSelectedMapKey(t);
+                        a.hasOwnProperty(e) || (a[e] = !0)
+                    }, this), i.selectedMode === p) {
+                    var o = !1;
+                    n.each(r, function (t) {
+                        var e = this.getSelectedMapKey(t);
+                        a[e] && (o ? a[e] = !1 : o = !0)
+                    }, this)
+                }
+            },
+            getSelectedMapKey: function (t) {
+                return this._mode === S ? t.value + "" : t.index + ""
+            },
+            getPieceList: function () {
+                return this._pieceList
+            },
+            _determineMode: function () {
+                var t = this[un];
+                return t.pieces && t.pieces[yr] > 0 ? "pieces" : this[un][S] ? S : "splitNumber"
+            },
+            setSelected: function (t) {
+                this[un][ve] = n.clone(t)
+            },
+            getValueState: function (t) {
+                var e = r.findPieceIndex(t, this._pieceList);
+                return null != e && this[un][ve][this.getSelectedMapKey(this._pieceList[e])] ? "inRange" : "outOfRange"
+            },
+            findTargetDataIndices: function (t) {
+                var e = [];
+                return this.eachTargetSeries(function (i) {
+                    var n = [], a = i[qr]();
+                    a.each(this.getDataDimension(a), function (e, i) {
+                        var a = r.findPieceIndex(e, this._pieceList);
+                        a === t && n.push(i)
+                    }, !0, this), e.push({seriesId: i.id, dataIndex: n})
+                }, this), e
+            },
+            getRepresentValue: function (t) {
+                var e;
+                if (this.isCategory())e = t.value; else if (null != t.value)e = t.value; else {
+                    var i = t[B] || [];
+                    e = i[0] === -1 / 0 && 1 / 0 === i[1] ? 0 : (i[0] + i[1]) / 2
+                }
+                return e
+            },
+            getVisualMeta: function (t) {
+                function e(e, n) {
+                    var o = a.getRepresentValue({interval: e});
+                    n || (n = a.getValueState(o));
+                    var s = t(o, n);
+                    e[0] === -1 / 0 ? r[0] = s : 1 / 0 === e[1] ? r[1] = s : i.push({
+                        value: e[0],
+                        color: s
+                    }, {value: e[1], color: s})
+                }
+
+                if (!this.isCategory()) {
+                    var i = [], r = [], a = this, o = this._pieceList.slice();
+                    if (o[yr]) {
+                        var s = o[0][B][0];
+                        s !== -1 / 0 && o.unshift({interval: [-1 / 0, s]}), s = o[o[yr] - 1][B][1], 1 / 0 !== s && o.push({interval: [s, 1 / 0]})
+                    } else o.push({interval: [-1 / 0, 1 / 0]});
+                    var l = -1 / 0;
+                    return n.each(o, function (t) {
+                        var i = t[B];
+                        i && (i[0] > l && e([l, i[0]], "outOfRange"), e(i.slice()), l = i[1])
+                    }, this), {stops: i, outerColors: r}
+                }
+            }
+        }), l = {
+            splitNumber: function () {
+                var t = this[un], e = this._pieceList, i = t.precision, r = this[Qi](), a = t.splitNumber;
+                a = Math.max(parseInt(a, 10), 1), t.splitNumber = a;
+                for (var s = (r[1] - r[0]) / a; +s[ne](i) !== s && 5 > i;)i++;
+                t.precision = i, s = +s[ne](i);
+                var l = 0;
+                t.minOpen && e.push({index: l++, interval: [-1 / 0, r[0]], close: [0, 0]});
+                for (var u = r[0], c = l + a; c > l; u += s) {
+                    var h = l === a - 1 ? r[1] : u + s;
+                    e.push({index: l++, interval: [u, h], close: [1, 1]})
+                }
+                t.maxOpen && e.push({
+                    index: l++,
+                    interval: [r[1], 1 / 0],
+                    close: [0, 0]
+                }), o(e), n.each(e, function (t) {
+                    t.text = this.formatValueText(t[B])
+                }, this)
+            }, categories: function () {
+                var t = this[un];
+                n.each(t[S], function (t) {
+                    this._pieceList.push({text: this.formatValueText(t, !0), value: t})
+                }, this), e(t, this._pieceList)
+            }, pieces: function () {
+                var t = this[un], i = this._pieceList;
+                n.each(t.pieces, function (t, e) {
+                    n[Ir](t) || (t = {value: t});
+                    var a = {text: "", index: e};
+                    if (null != t.label && (a.text = t.label), t.hasOwnProperty("value")) {
+                        var o = a.value = t.value;
+                        a[B] = [o, o], a.close = [1, 1]
+                    } else {
+                        for (var s = a[B] = [], l = a.close = [0, 0], u = [1, 0, 1], c = [-1 / 0, 1 / 0], h = [], d = 0; 2 > d; d++) {
+                            for (var f = [["gte", "gt", "min"], ["lte", "lt", "max"]][d], p = 0; 3 > p && null == s[d]; p++)s[d] = t[f[p]], l[d] = u[p], h[d] = 2 === p;
+                            null == s[d] && (s[d] = c[d])
+                        }
+                        h[0] && 1 / 0 === s[1] && (l[0] = 0), h[1] && s[0] === -1 / 0 && (l[1] = 0), s[0] === s[1] && l[0] && l[1] && (a.value = s[0])
+                    }
+                    a.visual = r.retrieveVisuals(t), i.push(a)
+                }, this), e(t, i), o(i), n.each(i, function (t) {
+                    var e = t.close, i = [["<", "≤"][e[1]], [">", "≥"][e[0]]];
+                    t.text = t.text || this.formatValueText(null != t.value ? t.value : t[B], !1, i)
+                }, this)
+            }
+        };
+        return s
+    }),e("zrender", ["zrender/zrender"], function (t) {
+        return t
+    }),e("echarts", ["echarts/echarts"], function (t) {
+        return t
+    });
+    var $r = t("echarts");
+    return $r.graphic = t("echarts/util/graphic"), $r.number = t("echarts/util/number"), $r.format = t("echarts/util/format"), t("echarts/chart/bar"), t("echarts/chart/line"), t("echarts/chart/pie"), t("echarts/chart/scatter"), t("echarts/chart/candlestick"), t("echarts/chart/radar"), t("echarts/chart/heatmap"), t("echarts/chart/treemap"), t("echarts/chart/map"), t("echarts/chart/lines"), t("echarts/chart/graph"), t("echarts/chart/boxplot"), t("echarts/chart/parallel"), t("echarts/chart/gauge"), t("echarts/chart/funnel"), t("echarts/chart/sankey"), t("echarts/chart/effectScatter"), t("echarts/component/grid"), t("echarts/component/polar"), t("echarts/component/geo"), t("echarts/component/singleAxis"), t("echarts/component/title"), t("echarts/component/legend"), t("echarts/component/tooltip"), t("echarts/component/markPoint"), t("echarts/component/markLine"), t("echarts/component/markArea"), t("echarts/component/timeline"), t("echarts/component/dataZoom"), t("echarts/component/brush"), t("echarts/component/visualMap"), t("echarts/component/toolbox"), t("echarts/component/graphic"), t("zrender/vml/vml"), $r
+});

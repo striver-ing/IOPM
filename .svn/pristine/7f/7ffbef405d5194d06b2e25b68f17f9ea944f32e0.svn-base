@@ -1,0 +1,29 @@
+div.content_wrap {width:400px;height:600px;/*text-align:center; */position: absolute;left: 50%; top: 50%; margin: -300px 0  0 -200px; z-index: 999; display: none; background: #fff; border-radius: 10px;}
+div.content_wrap div.right{width: 340px; margin: 30px 0 0 112px;}
+div.content_wrap div.right input{width: 80px; height: 30px; margin-right: 10px; border: none; background: #25629B; cursor: pointer; color: white; font-size: 18px; line-height: 30px;border-radius: 6px;}
+/*div.content_wrap div.right button:hover{color: orange; font-weight: bold; }*/
+div.zTreeBackground>span{
+	font-size: 24px; color: #000000; font-weight: bold;
+	width: 100%;height: 50px; line-height: 50px;
+	margin: 0 auto; display: block;
+	color: #FFFFFF; text-align: left; padding-left: 15px;
+	background: #2194F7;
+	border-radius: 10px 10px 0 0;
+	box-sizing: border-box;
+}
+div.zTreeBackground em{
+	display: block;
+	width: 50px; height: 50px;
+	line-height: 50px;
+	position: absolute;
+	right: 0px; top: 0px;
+	cursor: pointer;
+	vertical-align: middle;
+	text-align: center;
+	color: #FFFFFF;
+}
+ul.ztree {background: ghostwhite;width:350px;height:450px;overflow-y:scroll;overflow-x:auto; margin: 12px auto 0;}
+ul.log {border: 1px solid #617775;background: #f0f6e4;width:300px;height:170px;overflow: hidden;}
+ul.log.small {height:45px;}
+ul.log li {color: #666666;list-style: none;padding-left: 10px;}
+ul.log li.dark {background-color: #E3E3E3;}

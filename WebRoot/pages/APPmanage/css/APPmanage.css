@@ -1,0 +1,233 @@
+/*.form-control{
+	width: 15%;
+	display: inline-block;
+}*/
+/*任务操作页面*/
+.taskList tr td{
+	vertical-align: middle !important;
+}
+.fanyboxtable td{
+	width: 12.5%;
+}
+dl.srhManage{
+	text-align: center;
+	color: #000;
+}
+.srhManage dt,.srhManage dd{
+	float: left;
+	height: 34px;
+	line-height: 34px;
+}
+.srhManage dt{
+	width: 100px;
+	text-align: right;
+}
+.srhManage dd{
+	margin-right: 10px;
+	margin-bottom: 10px;
+	width: 17%;
+}
+.srhManage select{
+	width: 100%;
+}
+@media only screen and (max-width: 1691px) {
+	.srhManage dd{
+		width: 15%;
+	}
+}
+
+@media only screen and (min-width: 1667px) and (max-width: 1691px) {
+	.srhManage dd{
+		width: 16%;
+	}
+}
+
+.box{
+	width: 100%;
+	height: auto;
+	overflow: hidden;	
+}
+.box ul{
+	display: inline-block;
+}
+.box li{
+	display: inline-block;
+	width: 466px;
+	height: 200px;
+	margin: 10px;
+	border: #fff solid 1px;
+	transition: all .5s;
+}
+.box li:hover{
+	border: #ccc solid 1px;
+	-webkit-box-shadow: 0px 0px 4px #757575; 
+	-moz-box-shadow: 0px 0px 4px #757575;
+	box-shadow: 0px 0px 4px #757575;
+}
+.box .appDetail>div{
+	display: inline-block;
+}
+.box .appDetail .left{
+	position: relative;
+	width: 212px;
+	height: 200px;
+	border: #C3C3C3 solid 1px;
+	border-radius: 3px;
+	padding: 5px;
+}
+.box .appDetail .left a{
+	display: inline-block;
+	overflow: hidden;
+	width: 200px; 
+	height: 190px;
+}
+.box .appDetail .left img{
+	width: 100%;height: 100%;
+	transition: all .5s;
+}
+.box .appDetail .left img:hover{
+	transform: scale(1.3);
+}
+.box .appDetail .left .see{
+	display: inline-block;
+	position: absolute;
+	right: 10px;
+	top: -2px;
+	background: url(../images/see.png) no-repeat;
+	width: 32px; height: 24px;
+}
+.box .appDetail .right{
+	float: right;
+	width: 245px;
+	height: 200px;
+	overflow: hidden;
+}
+.box .appDetail .right td{
+	text-align: left;
+	font-size: 14px;
+	line-height: 30px;
+}
+.box .appDetail .right td.break{
+	display: inline-block;
+	overflow: hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	width: 120px;
+}
+.box .appDetail .right tr td:first-child{
+	width: 80px;
+	vertical-align: top;
+}
+
+/*星星评分*/
+.chakan,.zengjia{
+	display: none;
+}
+.atar_Show{
+	background: url(../images/stark2.png); 
+	width:160px; 
+	height:21px;  
+	margin-left: -5px;
+    margin-top: -2px;
+}
+.atar_Show p{ 
+	background:url(../images/stars2.png);
+	left:0; 
+	height:21px; 
+	width:134px;
+}
+.star_score { background:url(../images/stark2.png); width:160px; height:21px;  position:relative; }
+.star_score a{ height:21px; display:block; text-indent:-999em; position:absolute;left:0;}
+.star_score a:hover{ background:url(../images/stars2.png);left:0;}
+.star_score a.clibg{ background:url(../images/stars2.png);left:0;}
+
+/*软件详细信息弹出层*/
+.checkMask.softDetail form{
+	width: 650px;
+	height: 430px;
+}
+.checkMask.softDetail .msgs table tr{
+	margin: 5px 0;
+}
+.checkMask.softDetail .msgs table td{
+	padding: 5px 0;
+}
+.checkMask.softDetail .msgs table td select{
+	display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    color: #555;
+    background-color: #fff;
+    border-radius: 3px;
+}
+.checkMask form p{
+	padding: 0;
+}
+/*#see{
+	text-align: left !important;
+}*/
+
+.btnMask .btn-success{
+	background: #00acac;
+    border-color: #00acac;
+    padding: 5px 20px;
+    font-size: 16px;
+    color: white;
+}
+.btnMask .btn-success:hover{
+	background: #008a8a;
+    border-color: #008a8a;
+}
+div.dataTables_paginate{
+	float: right !important; 
+}
+.tdImg{
+	margin: 2px;
+    border: #ccc solid 1px;
+    height: 186px;
+}
+.tdFile{
+    position: relative;
+    padding: 2px;
+}
+.tdFile input[type="file"]{
+	position: absolute;
+    z-index: 1;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+.srhList{
+	width: 168px;
+    height: 130px;
+    position: absolute;
+    left: 394px;
+    top: 260px;
+    z-index: 99;
+    background: rgb(255, 255, 255);
+    padding: 5px;
+    border: 1px solid rgb(201, 197, 198);
+    border-radius: 3px;
+    display: none;
+    overflow: hidden;
+}
+.srhList li{
+	white-space: normal;
+    overflow: hidden;
+	margin-bottom: 2px;
+	display: inline-block;
+	text-decoration: none;
+	text-align: center;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	color: #2D353C;
+	font-size: 16px;
+	cursor: pointer;
+}
+.srhList li:hover{
+	color: #fff;
+	background:#2194F7;
+}

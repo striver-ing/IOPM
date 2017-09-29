@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybaits-3-mapper.dtd">
+
+<mapper namespace="Users">
+
+   
+   <resultMap id="user" type="cn.com.pattek.user.entity.Users">
+    
+    <id property="userId" column="USER_ID"/>
+    <result property="userName" column="USER_NAME" />
+    <result property="password" column="PASS_WORD" />
+    <result property="fullName" column="FULL_NAME"/>
+    <result property="gender" column="GENDER"/>
+    <result property="email" column="EMAIL"/>
+    <result property="qq" column="QQ"/>
+    <result property="telephone" column="TELE_PHONE"/>
+    <result property="mobilephone" column="MOBILE_PHONE"/>
+    <result property="department" column="DEPARTMENT"/>
+    <result property="description" column="DESCRIPTION"/>
+    <result property="enable" column="ENABLE"/>
+    <result property="roleId" column="ROLE_ID" />
+    <result property="roleName" column="ROLE_NAME"/>
+    <result property="description" column="ROLE_DESC"/>
+
+  </resultMap>
+  
+   <resultMap id="userbyname" type="cn.com.pattek.user.entity.Users">
+    <id property="userId" column="USER_ID"/>
+    <result property="fullName" column="FULL_NAME"/>
+  </resultMap>
+
+  
+  <!-- 用于登录操作 -->
+  <select id="getUserLogin" resultMap="user">
+  		select *
+  	    from TAB_MANAGE_APP_USERS u left join TAB_MANAGE_ROLES r on u.role_id=r.role_id
+  		where u.user_name=#{userName} and u.pass_word=#{password} and u.enable=1
+  </select>
+  
+   <!-- 得到一个用户 -->
+  <select id="getUserById"  resultMap="user">
+		select *
+  	    from TAB_MANAGE_APP_USERS u left join TAB_MANAGE_ROLES r on u.role_id=r.role_id 
+		where u.USER_ID=#{userId}
+  </select>
+  
+  <!-- 得到所有用户 -->
+ 
+  
+  <select id="getAllUsers" resultMap="user">
+  		select * from(select a.*,rownum rn from(
+  		select u.user_id,u.user_name,u.pass_word,u.full_name,u.gender,u.email,u.qq,u.tele_phone,u.mobile_phone,u.department,u.enable,u.description,u.role_id,r.role_name,r.role_desc
+  		from TAB_MANAGE_APP_USERS u left join TAB_MANAGE_ROLES r on u.role_id=r.role_id
+  		where 1=1
+		 	<if test="userName!=null" >
+  			and	u.user_name like concat(concat('%',#{userName}),'%')
+	  		</if>
+		 	<if test="fullName!=null" >
+  			 and	u.full_name like concat(concat('%',#{fullName}),'%')
+	  		</if>
+		 	<if test="email!=null" >
+  			 and	u.email like concat(concat('%',#{email}),'%')
+	  		</if>
+		 	<if test="mobilephone!=null" >
+  			 and	u.mobile_phone like concat(concat('%',#{mobilephone!=null}),'%')
+	  		</if>
+	  		<if test="roleId!=ull" >
+  			 and	 u.role_id=#{roleId}
+	  		</if>
+	  		<if test="enable!=null" >
+  			 and u.enable=#{enable}
+	  		</if>
+	  		<if test="sex!=null" >
+  			 and	 u.gender=#{gender}
+	  		</if>
+	  	order by u.user_id desc 
+  		) a where 1=1
+
+		<if  test="start!=-1" >
+		 and  <![CDATA[
+		      ROWNUM <=(#{start} * #{limit})
+		   ]]>
+		   
+		</if>
+  	
+	) temp 
+	where 1=1
+		<if test="limit!=-1" >
+			and	<![CDATA[
+					RN >= (#{start} - 1)* #{limit} +1
+				]]>
+		</if>
+	
+  </select>
+  
+   <select id="getUserCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+  	select count(*) from TAB_MANAGE_APP_USERS u left join TAB_MANAGE_ROLES r on u.role_id=r.role_id
+  		where u.role_id=r.role_id
+		 	<if test="userName!=null" >
+  			 and	u.user_name like concat(concat('%',#{userName}),'%')
+	  		</if>
+		 	<if test="fullName!=null" >
+  			 and	u.full_name like concat(concat('%',#{fullName}),'%')
+	  		</if>
+		 	<if test="email!=null" >
+  				 and u.email like concat(concat('%',#{email}),'%')
+	  		</if>
+		 	<if test="mobilephone!=null" >
+  				 and u.mobile_phone like concat(concat('%',#{mobilephone}),'%')
+	  		</if>
+	  		<if test="roleId!=null" >
+  				 and u.role_id=#{roleId}
+	  		</if>
+	  		<if test="enable!=null" >
+  				 and u.enable=#{enable}
+	  		</if>
+	  		<if test="gender!=null" >
+  				 and u.gender=#{gender}
+	  		</if>
+  </select>
+  
+  <!-- 获取用户名称 -->
+  <select id="getAllUserName" parameterType="java.util.Map" resultMap="userbyname">
+		select u.user_id,u.full_name from TAB_MANAGE_APP_USERS u 
+  </select>
+   <insert id="addUser"  parameterType="cn.com.pattek.user.entity.Users">
+	  <selectKey resultType="java.lang.Long" keyProperty="userId" order ="BEFORE">  
+	        select SEQ_APP_USERS.nextval from dual 
+	  </selectKey>   
+	  insert into TAB_MANAGE_APP_USERS 
+	  <trim prefix="(" suffix=")" suffixOverrides=",">
+	  <if test="userId!=null">
+	  	USER_ID,
+	  </if>
+	    <if test="userName!=null">
+	  	USER_NAME,
+	  </if>
+	    <if test="password!=null">
+	  	PASS_WORD,
+	  </if>
+	    <if test="fullName!=null">
+	  	full_Name,
+	  </if>
+	    <if test="gender!=null">
+	  	gender,
+	  </if>
+	    <if test="email!=null">
+	  	email,
+	  </if>
+	     <if test="qq!=null">
+	  	QQ,
+	  </if>
+	     <if test="telephone!=null">
+	  	TELE_PHONE,
+	  </if>
+	     <if test="mobilephone!=null">
+	  	MOBILE_PHONE,
+	  </if>
+	     <if test="department!=null">
+	  	department,
+	  </if>
+	    <if test="roleId!=null">
+	  	ROLE_ID,
+	  </if>
+	    <if test="enable!=null">
+	  	ENABLE,
+	  </if>
+	   </trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	    <if test="userId!=null">
+	  	#{userId},
+	  </if>
+	    <if test="userName!=null">
+	  	#{userName},
+	  </if>
+	    <if test="password!=null">
+	  	#{password},
+	  </if>
+	    <if test="fullName!=null">
+	  #{fullName},
+	  </if>
+	    <if test="gender!=null">
+	  	 #{gender},
+	  </if>
+	    <if test="email!=null">
+	  	 #{email},
+	  </if>
+	     <if test="qq!=null">
+	   #{qq},
+	  </if>
+	     <if test="telephone!=null">
+	  	#{telephone},
+	  </if>
+	     <if test="mobilephone!=null">
+	   #{mobilephone},
+	  </if>
+	     <if test="department!=null">
+	  #{department},
+	  </if>
+	    <if test="roleId!=null">
+	  	#{roleId},
+	  </if>
+	    <if test="enable!=null">
+	  	 #{enable}	
+	  </if>
+	    </trim> 
+  </insert>
+  <update id="updateUser" parameterType="cn.com.pattek.user.entity.Users">
+  	update TAB_MANAGE_APP_USERS set USER_NAME=#{userName},PASS_WORD=#{password},FULL_NAME=#{fullName},GENDER=#{gender},
+  		EMAIL=#{email},QQ=#{qq},TELE_PHONE=#{telephone},MOBILE_PHONE=#{mobilephone},DEPARTMENT=#{department},ROLE_ID=#{roleId},ENABLE=#{enable} where USER_ID=#{userId}
+  </update>
+  <delete id="deleteUser" parameterType="java.lang.Long">
+		delete from TAB_MANAGE_APP_USERS where user_id = #{userId}
+  </delete>
+  <update id="startUser" parameterType="java.lang.Long">
+		update TAB_MANAGE_APP_USERS set enable=1 where user_id = #{userId}
+  </update>
+  <update id="stopUser" parameterType="java.lang.Long">
+		update TAB_MANAGE_APP_USERS set enable=0 where user_id = #{userId}
+  </update>
+  <!-- 判断该登录名是否存在 -->
+  <select id="getUserExist" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select count(*) from TAB_MANAGE_APP_USERS p where 1=1
+		
+		 	<if test="userName!=null" >
+  			and	p.user_name=#{userName}
+	  		</if>
+	  		<if test="userId!=null" >
+  			and	 p.user_id!=#{userId}
+	  		</if>
+		
+  </select> 
+  
+</mapper>

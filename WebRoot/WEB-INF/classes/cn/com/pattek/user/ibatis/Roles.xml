@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybaits-3-mapper.dtd">
+<mapper namespace="Roles">
+
+   
+   <resultMap id="role" type="cn.com.pattek.user.entity.Roles">
+    <id property="roleId" column="ROLE_ID"/>
+    <result property="roleName" column="ROLE_NAME" />
+    <result property="description" column="ROLE_DESC"/>
+  </resultMap>
+  
+  <resultMap id="rolePermission" type="cn.com.pattek.user.entity.RolePermissions">
+    <id property="roleId" column="ROLE_ID"/>
+    <result property="permissionId" column="MODULE_ID" />
+  </resultMap>
+  
+	<resultMap id="getPerimissionMap" type="java.util.HashMap">  
+        <id property="manuId" column="MANU_ID"/>  
+   </resultMap>  
+  
+  <!-- 所有角色名称 -->
+   <select id="getRoleName" resultMap="role">
+  	select r.role_id,r.role_name,r.role_desc from TAB_MANAGE_ROLES r
+  </select>
+  <!-- 所有角色 -->
+  <select id="getRole" resultMap="role">
+  	select * from(select a.*,rownum rn from(select r.role_id,r.role_name,r.role_desc from TAB_MANAGE_ROLES r
+  	
+  	
+  	where 1=1 
+  	
+  
+		 	<if test="roleName!=null">
+  				and r.role_name like concat(concat('%',#{roleName}),'%')
+  				</if>
+	  		
+	  	
+	  	order by r.role_id desc
+	  	) a where 1=1
+	 
+		<if test="start!=-1">
+		and
+		   <![CDATA[
+		        ROWNUM <=(#{start} * #{limit})
+		   ]]>
+		</if>   
+		
+
+	) temp
+	 where 1=1
+		<if test="limit!=-1">
+			and	<![CDATA[
+					RN >= (#{start} - 1)* #{limit} +1 
+				]]>
+	</if>
+	
+  </select>
+ <!-- 角色总数 -->
+  <select id="getRoleCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+  	select count(*) from TAB_MANAGE_ROLES r 
+  		where 1=1
+  		
+		 	<if test="roleName!=null" >
+  				 and r.role_name like concat(concat('%',#{roleName}),'%')
+  				</if>
+	  		
+	  	
+  </select>
+  <!-- 添加角色 -->
+  <insert id="addRole"  parameterType="cn.com.pattek.user.entity.Roles">
+	  <selectKey resultType="java.lang.Long" keyProperty="roleId" order ="BEFORE">  
+	        select SEQ_APP_ROLES.nextval from dual 
+	  </selectKey>   
+	  insert into TAB_MANAGE_ROLES 
+	  	<trim prefix="(" suffix=")" suffixOverrides=",">
+	  	<if test="roleId!=null">
+				ROLE_ID,
+			</if>
+			<if test="roleName!=null">
+				ROLE_NAME,
+			</if>
+			<if test="description!=null">
+				ROLE_DESC,
+			</if>
+	      	</trim>
+	 <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="roleId!=null">
+				#{roleId},
+			</if>
+	  		<if test="roleName!=null">
+				#{roleName},
+			</if>
+			<if test="description!=null">
+				#{description},
+			</if>
+	 </trim>
+  </insert>
+  <!-- 修改角色信息 -->
+  <update id="updateRole" parameterType="cn.com.pattek.user.entity.Roles">
+  	update TAB_MANAGE_ROLES
+  	<set>
+  		<if test="roleName!=null">
+				ROLE_NAME=#{roleName},
+			</if>
+			<if test="description!=null">
+				ROLE_DESC=#{description},
+			</if>
+  	
+  	</set>
+  	where ROLE_ID=#{roleId}
+  </update>
+  <!-- 判断是否有重复角色 -->
+   <select id="getRoleExist" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select count(*) from TAB_MANAGE_ROLES p where 1=1
+		
+		 	<if test="roleName!=null">
+  			and	p.role_name=#{roleName}   
+	  		</if>
+	  		<if test="roleId!=null">
+  			and	 p.role_id!=#{roleId}
+	  		</if>
+	  	
+		 
+  </select>
+  <!-- 判断该角色是否被用户使用 -->
+   <select id="getRoleUser" parameterType="java.lang.Long" resultType="java.lang.Integer">
+		select count(*) from TAB_MANAGE_APP_USERS p where p.role_id=#{roleId}  
+  </select>
+  <!-- 根据角色获取菜单权限 -->
+   <select id="getRolePermissions" parameterType="java.lang.Long" resultMap="rolePermission">
+		select p.* from TAB_MANAGE_ROLE_PERMISSIONS p 
+		left join TAB_MANAGE_SYSTEMS s on p.module_id=s.module_id
+		left join TAB_MANAGE_PERMISSIONS mp on mp.module_id=s.module_id
+		where s.module_url is not null and role_id=#{roleId}  
+  </select>
+  <!-- 获取菜单ID -->
+   <select id="getPermissionIds" resultMap="getPerimissionMap" parameterType="java.util.Map">  
+		select distinct manu_id from TAB_MANAGE_PERMISSIONS where module_id in(select distinct manu_id from TAB_MANAGE_PERMISSIONS 
+							where
+							<if test="permissionIds!=null">
+							(<foreach collection="permissionIds" item="msId" separator="OR">
+								module_id=#{msId}
+							</foreach>)  and
+							</if>
+							
+							 system_id=6)
+		union
+		select distinct manu_id from TAB_MANAGE_PERMISSIONS where 
+						<if test="permissionIds!=null">
+							(<foreach collection="permissionIds" item="msId" separator="OR">
+								module_id=#{msId}
+							</foreach>) and 
+							</if>
+		 system_id=6
+	<!--  	union
+		select distinct module_id manu_id from TAB_MANAGE_PERMISSIONS where module_id in(
+			<iterate  conjunction=",">#[]#</iterate>
+		)-->
+  </select>
+  <!-- 删除角色 -->
+  <delete id="deleteRole" parameterType="java.lang.Long">
+		delete from TAB_MANAGE_ROLES where role_id = #{roleId}
+  </delete>
+  <!-- 删除角色与权限的关系 -->
+  <delete id="deleteRolePermissions" parameterType="java.lang.Long">
+		delete from TAB_MANAGE_ROLE_PERMISSIONS where role_id = #{roleId}  and module_id in
+		(select p.module_id from TAB_MANAGE_ROLE_PERMISSIONS rp,TAB_MANAGE_PERMISSIONS p where p.module_id=rp.module_id and p.system_id=6 )
+  </delete>
+  <!-- 授权 -->
+  <insert id="addRolePerms"  parameterType="cn.com.pattek.user.entity.RolePermissions">
+	  insert into TAB_MANAGE_ROLE_PERMISSIONS (
+	      ROLE_ID,MODULE_ID
+	   ) values
+	  (
+	      #{roleId},#{permissionId}
+	  )	
+  </insert>
+</mapper>

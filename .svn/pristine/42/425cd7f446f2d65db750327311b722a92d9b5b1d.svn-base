@@ -1,0 +1,2 @@
+es.hosts=192.168.60.40:9300
+clusterName=elasticsearch

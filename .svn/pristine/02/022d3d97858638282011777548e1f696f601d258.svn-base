@@ -1,0 +1,13 @@
+package cn.com.pattek.Subject.dao.impl;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.stereotype.Repository;
+
+import cn.com.pattek.Subject.dao.SubjectDao;
+import cn.com.pattek.core.dao.BaseDaoImpl;
+
+@Repository
+public class SubjectDaoImpl extends BaseDaoImpl implements SubjectDao {
+
+	
+}

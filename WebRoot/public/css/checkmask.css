@@ -1,0 +1,190 @@
+
+.checkMask{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 1500;
+	background-color: rgba(0,0,0,.6);
+	overflow: hidden;
+	display: none;
+	left: 0;top: 0;
+}
+.checkMask>div{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+.checkMask form{
+	position: relative;
+	width: 40%;
+	height: 370px;
+	display: block;
+	top: 50%;
+	margin: 150px auto 0;
+	background: #fff;
+}
+.checkMask form .MaskTop{
+	position: relative;
+	top: 0; left: 0; right: 0;
+	height: 50px;
+	line-height: 50px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #fff;
+	text-indent: 1em;
+	text-align: left;
+	background: #0199E8;
+	margin-bottom: 20px;
+}
+.checkMask form em{
+	position: absolute;
+	right: 0; top: 0;
+	display: block;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	color: #FFF;
+	font-size: 30px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.checkMask form p{
+	display: block;
+	padding: 0 60px;
+}
+.checkMask .btnMask{
+	position: absolute;
+	width: 100%;
+	height: 80px;
+	text-align: center;
+	bottom: 5%;
+}
+.checkMask .btnMask button{
+	padding: 5px 20px;
+	font-size: 18px;
+}
+.checkMask .btnMask span{
+	display: inline-block;
+	margin: 0 10px;
+}
+.checkMask.deleteMany form{
+	width: 20%;
+	height: 250px;
+	position: relative;
+}
+.checkMask.delete form{
+	width: 20%;
+	height: 250px;
+	position: relative;
+}
+.checkMask.submit form{
+	width: 20%;
+	height: 250px;
+	position: relative;
+}
+.checkMask.submitChoose form{
+	width: 20%;
+	height: 250px;
+	position: relative;
+}
+.checkMask.checkSubmitChoose form{
+	width: 20%;
+	height: 250px;
+	position: relative;
+}
+
+.checkMask.delete .deleText{
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 50px;
+}
+.checkMask.deleteMany .deleText{
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 50px;
+}
+.checkMask.delete .btnMask{
+	margin-top: 50px;
+}
+.checkMask.submit .SubmitText{
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 50px;
+}
+.checkMask.submitChoose .SubmitTextChoose{
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 50px;
+}
+.checkMask.checkSubmitChoose .checkSubmitTextChoose{
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 50px;
+}
+.checkMask.Submit .btnMask{
+	margin-top: 50px;
+}
+.checkMask.checkSubmitChoose .btnMask{
+	margin-top: 50px;
+}
+.checkMask.SubmitChoose .btnMask{
+	margin-top: 50px;
+}
+.checkMask.review{
+	width: 40%;
+}
+.checkMask.review .proimg{
+	padding: 0 30px;
+	margin-bottom: 20px;
+	position: relative;
+}
+.checkMask.review .proimg .img img{
+	width: 200px;height: 200px;
+}
+.checkMask.review p{
+	display: inline-block;
+	width: 49%;
+	padding: 0 30px;
+	margin: 0 0 30px;
+}
+.checkMask.review .msgs{
+	margin-bottom: 30px;
+}
+
+.checkMask.review #bigImg{
+	width:200px;height:200px;
+	overflow:hidden;
+	display: inline-block;
+	position: absolute;
+	left: 300px; top: 0;
+	margin-left: 20px;
+}
+.checkMask.review #bigImg img{
+	width:400px;height:400px;position:absolute;left:0;top:0;
+}
+.checkMask.review .proimg .img{
+	position: relative;
+	display: inline-block;
+}
+.checkMask.review .proimg .img span{
+	width:100px;height:100px;position:absolute;left:0;top:0;opacity:0.5;filter:alpha(opacity=50);background:#999;cursor:move;display: none;
+}
+.checkMask.ckimg .ckdiv{
+	position: absolute;
+	width: 500px;
+	height: 500px;
+	top:50%;
+	left:50%;
+	margin: -250px 0 0 -250px;
+}
+.checkMask.ckimg .ckdiv img{
+	width:100%;
+	height:100%;
+}

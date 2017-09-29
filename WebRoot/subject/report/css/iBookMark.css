@@ -1,0 +1,233 @@
+/* 顶层容器 */
+#sideToolbar {
+position:fixed;
+/*
+top: 400px;
+left:990px;
+
+bottom: 40px;*/
+top:80px;
+right:20px;
+}
+
+/*bm显示控制*/
+#sideCatalogBtn {
+width: 45px;
+height: 46px;
+display: block;
+background: transparent url(../imgs/iBookMark_bg.png) 0 0 no-repeat;
+cursor: pointer;
+margin-bottom: 2px;
+position: relative;
+/*margin-left: 200px;*/
+float: right;
+clear: both;
+display: block;
+}
+.sideCatalogBtnDisable {
+background: transparent url(../imgs/iBookMark_bg.png) -104px 0 no-repeat!important;
+}
+.sideCatalogBtnDisable:hover {
+background: transparent url(../imgs/iBookMark_bg.png) -154px 0 no-repeat!important;
+}
+
+/*回到顶部*/
+#sideToolbar-up {
+display: block;
+width: 45px;
+height: 40px;
+/*margin-left: 200px;*/
+float: right;
+clear: both;
+border-radius: 2px;
+-moz-border-radius: 2px;
+-webkit-border-radius: 2px;
+background: transparent url(../imgs/iBookMark_bg.png) -1px -62px no-repeat;
+}
+#sideToolbar-up:hover {
+background: transparent url(../imgs/iBookMark_bg.png) -74px -62px no-repeat;
+}
+
+/*bm页*/
+#sideCatalog {
+	width: 300px;
+	/*height: 486px;*/
+	overflow: hidden;
+	margin-bottom: 3px;
+	font-size: 14px;
+	font-family: 微软雅黑;
+	line-height: 19px;
+	position: relative;
+	zoom: 1;
+	left: 10px;
+	
+	padding: 10px;
+	border: 1px #ddd solid;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	 
+	box-shadow: 2px 2px 10px #909090;
+	/*margin-left:30px;*/
+	background-color:#b4edff;
+	border-radius: 14px 14px 14px 14px;
+}
+/* side bar */
+#sideCatalog #sideCatalog-sidebar {
+top: 10px;
+width: 0px;
+height: 90%;
+background-color: #eaeaea;
+border: 1px solid #eaeaea;
+border-top: 0;
+border-bottom: 0;
+position: absolute;
+left: 15px;
+}
+#sideCatalog #sideCatalog-sidebar .sideCatalog-sidebar-top, #sideCatalog #sideCatalog-sidebar .sideCatalog-sidebar-bottom {
+position: absolute;
+left: -5px;
+width: 10px;
+height: 10px;
+background: transparent url(../imgs/iBookMark_bg.png) 0 -185px no-repeat;
+zoom: 1;
+overflow: hidden;
+}
+#sideCatalog #sideCatalog-sidebar .sideCatalog-sidebar-top {
+top: 0;
+cursor: pointer;
+}
+#sideCatalog #sideCatalog-sidebar .sideCatalog-sidebar-bottom {
+bottom: -12px;
+}
+/* up down */
+#sideCatalog-updown {
+position: absolute;
+width: 22px;
+height: 50px;
+right: 25px;
+bottom: 160px;
+z-index: 100;
+}
+#sideCatalog-up {
+width: 25px;
+height: 25px;
+cursor: pointer;
+}
+
+#sideCatalog-down {
+width: 25px;
+height: 25px;
+cursor: pointer;
+}
+.sideCatalog-up-disable {
+background: transparent url(../imgs/iBookMark_bg.png) -272px -83px no-repeat;
+}
+.sideCatalog-up-enable {
+background: transparent url(../imgs/iBookMark_bg.png) -245px -83px no-repeat;
+}
+.sideCatalog-down-disable {
+background: transparent url(../imgs/iBookMark_bg.png) -272px -108px no-repeat;
+}
+.sideCatalog-down-enable {
+background: transparent url(../imgs/iBookMark_bg.png) -245px -108px no-repeat;
+}
+/* catalog */
+#sideCatalog-catalog {
+
+padding-left: 23px;
+margin-bottom: 10px;
+margin-top: 7px;
+position: relative;
+}
+#sideCatalog-catalog dl {
+position: relative;
+}
+
+/* 对齐 */
+.sideCatalog-item1, .sideCatalog-item2 {
+position: relative;
+padding: 0 7px;
+zoom: 1;
+line-height: 25px;
+margin: 0 0 5px 0;
+/*background:url(./images/daohang_big.jpg);*/
+border-radius:9px 9px 9px 9px;
+/*width:183px;*/
+}
+.sideCatalog-item2 {
+/*padding-left: 14px;*/
+/*background:url(./images/button_blue_m.png);*/
+padding-left: 23px;
+border-radius:9px 9px 9px 9px;
+/*width:167px;*/
+/*margin-left:9px;*/
+}
+
+/* 编号 */
+#sideCatalog span.sideCatalog-index1 {
+color: #000;
+font-weight: bold;
+font-family: Arial;
+font-size: 14px;
+padding-right: 5px;
+}
+#sideCatalog span.sideCatalog-index2 {
+color: #000;
+font-family: Arail;
+font-size: 14px;
+padding-right: 5px;
+}
+
+/* 标题 */
+#sideCatalog .sideCatalog-item1 a, #sideCatalog .sideCatalog-item2 a {
+text-decoration: none;
+}
+#sideCatalog .sideCatalog-item1 a {
+color: #000;
+font-weight: bold;
+font-size:13px;
+}
+#sideCatalog .sideCatalog-item1 a:hover{color: #0199E8;}
+#sideCatalog .sideCatalog-item2 a {
+color: #000;
+}
+#sideCatalog .sideCatalog-item1-highlight a{
+     fill:steelblue;
+     stroke:lightsteelblue;
+     stroke-width:.5px;
+     color: #0199E8;
+}
+#sideCatalog .sideCatalog-item1-highlight .sideCatalog-index1{
+	color: #0199E8;
+}
+/* 定位点 */
+.sideCatalog-dot {
+position: absolute;
+height: 10px;
+width: 6px;
+font-size: 12px;
+line-height: 12px;
+background: transparent url(../imgs/iBookMark_bg.png) 0 -222px;
+left: -20px;
+top: 8px;
+cursor: pointer;
+overflow: hidden;
+}
+.sideCatalog-item2 .sideCatalog-dot {
+background: 0;
+}
+#sideCatalog .sideCatalog-item1-highlight span.sideCatalog-dot {
+height: 13px;
+width: 18px;
+background: transparent url(../imgs/iBookMark_bg.png) -271px -38px no-repeat;
+left: -23px;
+top: 7px;
+}
+/*on/off样式------------------------begin*/
+.on_off_head { position: absolute;top: 3px;right: 7px;}
+.on_off {border-radius:20px; width:50px; height:20px;position: relative; overflow:hidden;float:right;    display: inline-block;margin-top: 3px;}
+.on_off .on_click { float:left; width:100%; background:#25b3fd; font-size:12px; font-family:Arial; line-height:20px; text-align:left; padding-left:4px; color:#FFF; display:block;cursor: pointer; }
+.on_off .off_click {float:right; width:100%; background:#d3d3d3; font-size:12px; font-family:Arial;line-height:20px; text-align:right;padding-right:4px;  color:#666; display:block; cursor: pointer;}
+.on_off p { background:#fff; width:19px; border-radius:50%; display:block; height:19px; position:absolute;right:0; top:0px; z-index:888; cursor: pointer;}
+.on_off p.when_off { left:0;}
+/*on/off样式------------------------end*/

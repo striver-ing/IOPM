@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"//TSS//WebRoot//doc//struts-2.0.dtd">
+<struts>
+	<!--用户管理-->
+	<package name="app" namespace="/app" extends="struts-default">
+		<!--用户信息管理-->
+		<action name="appUsers_*" method="{1}"  class="cn.com.pattek.user.action.AppUsersAct">  
+			<result name="input">/pages/zjbm/sysmgr/usermgr/main.ftl</result>
+			<result name="getUsers" type="freemarker">/pages/1-userInfoManage/userInfoManage.ftl</result>
+		</action>
+		
+		<!--角色信息管理-->
+		<action name="appRoles_*" method="{1}"  class="cn.com.pattek.user.action.AppRolesAct">
+			<result name="input">/pages/zjbm/sysmgr/rolemgr/main.ftl</result>
+		<result name="getRoles" type="freemarker">/pages/1-Rolemanage/Rolemanage.ftl</result>
+		
+		</action>
+		
+		<!--权限信息管理-->
+		<action name="appSystems_*" method="{1}"  class="cn.com.pattek.user.action.PermissionsAct">
+			<result name="input">/pages/zjbm/sysmgr/rolemgr/main.ftl</result>
+			<result name="getAllSystems" type="freemarker">/pages/sysmgr/pages/grantInfo.ftl</result>
+			<result name="getAllSystemsLevel1" type="freemarker">/pages/sysmgr/rolemgr.ftl</result>
+			<result name="getAllSystemsLevel2" type="freemarker">/pages/sysmgr/rolemgr.ftl</result>
+		</action>
+		
+		
+	</package>
+
+	
+</struts>

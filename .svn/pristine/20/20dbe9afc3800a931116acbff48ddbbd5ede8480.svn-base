@@ -1,0 +1,124 @@
+﻿package cn.com.pattek.Subject.dao;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import cn.com.pattek.Subject.entity.TabIopmSubject;
+
+public interface SubjectDao {
+
+	   //根据类别查询
+	  public List<TabIopmSubject> selectInfroUserByTypeAndMinData() throws Exception;
+	  
+	  /**
+	   * 测试能否全部查出,并且分组 
+	   * @param keyWord1
+	   * @return
+	   * @throws Exception
+	   */
+	  public List<Map<String, Object>> testTC(String keyWord1) throws Exception;
+	  
+	  
+	/**
+	 * 在subject表中查询startTime(专题开始时间)
+	 * @param id
+	 * @return
+	 * @throws Exception 
+	 */
+	public String subjectStart(Long id) throws Exception;
+	
+	/**
+	 * 通过id查询出subject表中的关键字
+	 * select s.keyword1 from tab_iopm_subject s where id=1
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public String subjectKeyWord1(Long id) throws Exception;
+	
+	/**
+	 * 通过keyword1在专题在数据库article_info中最后一次出现的时间
+	 * @return
+	 * @throws Exception 
+	 */
+	public String subjectEnd(String keyword1) throws Exception;
+	
+	/**
+	 * 通过keyword1在专题在数据库article_info中第一次出现的时间
+	 * @return
+	 * @throws Exception 
+	 */
+	public String subjectFirst(String keyword1) throws Exception;
+	
+	
+	public Integer news(String keyWord1) throws Exception;
+	public Integer weibo(String keyWord1) throws Exception;
+	public Integer luntan(String keyWord1) throws Exception;
+	public Integer video(String keyWord1) throws Exception;
+	public Integer weixin(String keyWord1) throws Exception;
+	
+	/**
+	 * 根据时间查询出站点名称
+	 * @param subjectFirst
+	 * @return
+	 * @throws Exception
+	 */
+	public String webName(String subjectFirst) throws Exception;
+	
+	/**
+	 * 根据时间查出标题名
+	 * @param subjectFirst
+	 * @return
+	 * @throws Exception
+	 */
+	public String titleName(String subjectFirst) throws Exception;
+	
+	/**
+	 * 高峰时间
+	 * @param keyWord1
+	 * @return
+	 * @throws Exception
+	 */
+	public String peakTime(String keyWord1) throws Exception;
+	
+	/**
+	 * 查询出各个信息,发布时间(YYYY-MM-dd),以及数量
+	 * @param keyWord1
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Map<String, Object>> getTimeAndCount(String keyWord1) throws Exception;
+	
+	/**
+	 * 查询出每日主流媒体(IS_VIP)数量
+	 * @return
+	 */
+	public List<Map<String, Object>> getTimeAndVipCount(String keyWord1) throws Exception;
+	
+	/**
+	 * 查询出每日主流媒体中负面情感的数量
+	 * @param keyWord1
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Map<String, Object>> getTimeAndEmotionCount(String keyWord1) throws Exception;
+	
+	/**
+	 * 获取微信的时间和数量
+	 * @param KeyWord1
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Map<String, Object>> getWeiXin(String KeyWord1) throws Exception;
+	
+	/**
+	 * 微博时间和数量对应
+	 * @param KeyWord1
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Map<String, Object>> getWeiBo(String KeyWord1) throws Exception;
+	
+	
+}

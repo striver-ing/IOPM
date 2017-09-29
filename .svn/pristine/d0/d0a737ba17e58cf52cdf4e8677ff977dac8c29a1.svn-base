@@ -1,0 +1,286 @@
+/*类别*/
+.category {
+    width: 100%;
+    /*height: 375px;*/
+    margin: 10px 0;
+}
+/*一级标题*/
+.menu {
+    float: left;
+    width: 200px;
+    height: 200px;
+    margin: 0 23px 10px 23px;
+}
+
+.menu-theme {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius:10px;
+    box-shadow: 3px 5px 10px #888888;
+}
+
+.menu-theme .photo {
+    width: 140px;
+    height: 140px;
+    margin: 8px 28px;
+    /*border-radius: 50%;*/
+}
+
+.menu-theme .nore {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.menu-theme .close {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.menu-theme span {
+    display: block;
+    margin-top:10px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.menu-theme i {
+    font-size:20px;
+}
+/*二级类别*/
+.submenu {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 210px;
+    background-color: #fff;
+    margin-bottom:10px;
+    display: none;
+    box-shadow: 3px 5px 10px #888888;
+}
+
+.submenu::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+.submenu::-webkit-scrollbar:hover {
+    width: 8px;
+    height: 8px;
+}
+
+/* Track */
+.submenu::-webkit-scrollbar-track {
+    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+/* Handle */
+.submenu::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.8);
+    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.5);*/
+}
+.submenu::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(0,0,0,.4);
+}
+
+.submenu-z {
+    margin-top:23px;
+    height: 165px;
+}
+
+.submenu-z li {
+    float: left;
+    width: 165px;
+    height: 165px;
+    border:1px solid #ccc;
+}
+
+.mask {
+    position: relative;
+    width: 100%;
+    height: 100px;
+}
+
+.mask img {
+    width: 100%;
+    height: 100px;
+}
+
+.mask div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100px;
+    background: rgba(0, 0, 0, .5);
+    cursor: pointer;
+}
+
+.mask span {
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    margin-top:40px;
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
+    color:#fff;
+}
+
+.text {
+    width: 100%;
+    height: 16px;
+    line-height: 16px;
+    margin: 7px 22px;
+    display: inline-block;
+    font-size:14px;
+    color:#000;
+}
+.text span{
+    display: inline-block;
+    float: left;
+}
+
+.icon {
+    position: relative;
+    width: 100%;
+}
+
+.icon img {
+    float: left;
+    width: 14px;
+    height: 14px;
+    margin: 7px 13px;
+    cursor: pointer;
+}
+
+.sidebar-R {
+    position: absolute;
+    top: 44%;
+    right: -56%;
+    width: 120px;
+    z-index: 1;
+}
+.sidebar-R div {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    margin-bottom:1px;
+    line-height: 20px;
+    background:rgba(0,0,0,.7);
+}
+
+.sidebar-R a {
+    display: block;
+    width: 80px;
+    height: 20px;
+    color:#fff;
+    
+}
+
+.sidebar-R span {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+}
+
+.sidebar-R a:hover {
+    color:#337ab7;
+}
+
+.sidebar-R div img {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.sidebar-R .img1 {
+    top: -3px;
+    right: 17px;
+}
+
+.sidebar-R .img2 {
+    top: -3px;
+    right: 2px;
+}
+
+.sidebar-R .img3 {
+    top: -3px;
+    right: -12px;
+}
+
+.clear:after {
+    content:'';
+    height: 0;
+    line-height: 0;
+    display: block;
+    clear:both;
+    visibility: hidden;
+}
+
+/*上传图片*/
+.kuang {
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ccc;
+    margin: 2% 31% 2% 33%;
+}
+
+.kuang img {
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin:25px;
+}
+
+input[type=file] {
+    display: inline-block;
+    margin: 20px 10px;
+    width: 200px;
+    border: none;
+}
+
+/*合并*/
+.col {
+    width: 80%;
+    height: 20px;
+    margin-left: 20px;
+    text-align: left;
+}
+
+.select {
+    width: 80%;
+    height: 20px;
+    margin: 15px 0 20px 10%;
+}
+
+.select select {
+    width: 100%;
+    height: 100%;
+}
+
+.textt {
+    color: red;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 40px;
+}
+
+.ming {
+    width: 56px;
+    height: 16px;
+    line-height: 16px;
+    overflow: hidden;
+    text-align:right;
+}

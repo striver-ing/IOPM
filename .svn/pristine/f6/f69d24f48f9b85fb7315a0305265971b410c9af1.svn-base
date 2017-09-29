@@ -1,0 +1,292 @@
+package cn.com.pattek.Subject.action;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import net.sf.json.JSONObject;
+
+import org.apache.commons.collections.map.HashedMap;
+import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.opensymphony.xwork2.ActionContext;
+
+import cn.com.pattek.Subject.dao.SubjectDao;
+import cn.com.pattek.Subject.entity.TabIopmSubject;
+import cn.com.pattek.Subject.entity.TablopmSubjectAnalysis;
+
+import cn.com.pattek.core.struts2.BaseAction;
+
+
+public class SubjectAction extends BaseAction{
+
+
+	
+	/*	*//** 类别**//*
+	private long Type;
+	*//** 站点 **//*
+	private String Site;
+	*//** 标题**//*
+	private String Title;
+	*//** 发布时间 **//*
+	private Date release_time;
+	*//** 路径 **//*
+	private String url;*/
+	
+	@Autowired
+	private SubjectDao subjectDao;
+	
+/*	private Long id;
+	private String keyWord1;*/
+
+
+		/*@Autowired
+	private TabIopmSubject tabIopmSubject;
+	@Autowired
+	private TablopmSubjectAnalysis tablopmSubjectAnalysis;
+	
+		*//**
+		 * 根据 类别 最早时间 查询，各类别最早时间的信息
+		 * @throws Exception
+		 *//*
+		public void getSelectType()throws Exception{
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("application/json;charset=UTF-8");//中文格式
+			Map<String,Object> map = new HashMap<String,Object>();
+			List<TabIopmSubject> list = new ArrayList<TabIopmSubject>();
+			list=subjectDao.selectInfroUserByTypeAndMinData();
+			Map<String,Object> map1 = new HashMap<String,Object>();
+			map1.put("Type", list);
+			map1.put("Site", list.size());
+			map1.put("Title", "查询成功");
+			map1.put("Releasetime", list);
+			map1.put("Url", 1);
+			this.objectToJson(map1);
+			
+			System.out.println(map1);
+		}
+
+		
+		public SubjectDao getSubjectDao() {
+			return subjectDao;
+		}
+		public void setSubjectDao(SubjectDao subjectDao) {
+			this.subjectDao = subjectDao;
+		}
+		public TabIopmSubject getTabIopmSubject() {
+			return tabIopmSubject;
+		}
+		public void setTabIopmSubject(TabIopmSubject tabIopmSubject) {
+			this.tabIopmSubject = tabIopmSubject;
+		}
+		public TablopmSubjectAnalysis getTablopmSubjectAnalysis() {
+			return tablopmSubjectAnalysis;
+		}
+		public void setTablopmSubjectAnalysis(TablopmSubjectAnalysis tablopmSubjectAnalysis) {
+			this.tablopmSubjectAnalysis = tablopmSubjectAnalysis;
+		}
+			*/
+	
+	public String Test111() throws Exception{
+//		HttpSession session2 = ServletActionContext.getRequest().getSession();
+		
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		Object Id = session.get("SubjectId");
+		Long subjectId = Long.valueOf(Id.toString());
+		String keyWord1 = subjectDao.subjectKeyWord1(subjectId);
+		
+		
+		List<Map<String,Object>> testTC = subjectDao.testTC(keyWord1);
+		this.arrayToJson(testTC);
+		return null;
+	}
+	
+	public String Test222() throws Exception{
+		List<Map<String,Object>> tc = subjectDao.testTC("焦点访谈");
+		this.arrayToJson(tc);
+		return null;
+	}
+
+
+	public String startAndEndSbujectById() throws Exception {
+		/*HttpServletRequest request = ServletActionContext.getRequest();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("application/json;charset=UTF-8");*/
+		/*//获取前台传入的id
+		String id = request.getParameter("aaa");
+		//将获取到的id转换成Long类型
+		Long value = Long.valueOf(id);*/
+		
+		String keyWord1 = subjectDao.subjectKeyWord1(1L);
+		System.out.println("关键字为"+keyWord1);
+		Map<String, String> map = new HashedMap();
+		String subjectStart = subjectDao.subjectStart(1L);
+		System.out.println("开始检测时间为"+subjectStart);
+		
+		//通过id查出关键字
+		
+		
+		
+		/*map.put("keyWord", subjectKeyWord1);*/
+		//情感
+		List<Map<String, Object>> emotionCount = subjectDao.getTimeAndEmotionCount(keyWord1);
+		//查询出日期,和主流媒体数量
+		List<Map<String, Object>> vipCount = subjectDao.getTimeAndVipCount(keyWord1);
+		//查询出降序日期,以及类型,和数量
+		List<Map<String,Object>> timeAndCount = subjectDao.getTimeAndCount(keyWord1);
+		//通过关键字查询最后时间
+		String subjectEnd = subjectDao.subjectEnd(keyWord1);
+		System.out.println("专题最后一次出现的时间为"+subjectEnd);
+		
+		String subjectFirst = subjectDao.subjectFirst(keyWord1);
+		System.out.println("专题第一次出现的时间为"+subjectFirst);
+
+		Integer news = subjectDao.news(keyWord1);
+		System.out.println("新闻数量为"+news);
+		
+		Integer weibo = subjectDao.weibo(keyWord1);
+		System.out.println("微博数量为"+weibo);
+		
+		Integer luntan = subjectDao.luntan(keyWord1);
+		System.out.println("论坛数量为"+luntan);
+		
+		Integer video = subjectDao.video(keyWord1);
+		System.out.println("视频数量为"+video);
+		
+		String webName = subjectDao.webName(subjectFirst);
+		System.out.println("站点名称为"+webName);
+		
+		String titleName = subjectDao.titleName(subjectFirst);
+		System.out.println("第一次出现标题为"+titleName);
+		
+		String peakTime = subjectDao.peakTime(keyWord1);
+		System.out.println("高峰时间"+peakTime);
+		
+		System.out.println("该分析报告的监测时间为"+subjectStart+"至"+subjectEnd+"，监测关键词主要包含“"+keyWord1+"”，监测数据全面覆盖了境内外互联网新闻、博客、论坛、微博和视频等多类型站点。");
+		System.out.println("在上述监测时间范围内，网上共计发布相关新闻"+news+"篇、微博"+weibo+"篇、论坛主题帖"+luntan+"篇、视频"+video+"个。首条信息于"+subjectFirst+"发布在"+webName+"站点，标题为《"+titleName+"》。舆论最高峰出现在"+peakTime+"。总体而言，新闻媒体以及微博等社交媒体关于“成品油走私”事件的信息量极小，舆论关注度较低，传播影响力较小。");
+		//将map转换为json数据
+		JSONObject jsonObject = JSONObject.fromObject(map);
+		String result = jsonObject.toString();     
+		return null;
+	}
+	
+	//事件阶段演化分析
+	public String consensusByKeyWord() throws Exception{
+		
+		Map<String, Object> consensusMap = new HashedMap();
+		//通过id查出关键字
+		String keyWord1 = subjectDao.subjectKeyWord1(1L);//id
+		if(keyWord1==null){
+			System.out.println("为空");
+		}
+		
+		System.out.println("关键字为"+keyWord1);
+		consensusMap.put("keyWord",keyWord1);//关键字
+		
+		String subjectStart = subjectDao.subjectStart(1L);//id
+		System.out.println("开始检测时间为"+subjectStart);
+		consensusMap.put("startExamine", subjectStart);
+		
+		String subjectFirst = subjectDao.subjectFirst(keyWord1);
+		System.out.println("专题第一次出现的时间为"+subjectFirst);
+		consensusMap.put("firstSubject", subjectFirst);
+		
+		//通过关键字查询最后时间
+		String subjectEnd = subjectDao.subjectEnd(keyWord1);
+		System.out.println("专题最后一次出现的时间为"+subjectEnd);
+		consensusMap.put("lastSubject", subjectEnd);
+		
+		Integer news = subjectDao.news(keyWord1);
+		System.out.println("新闻数量为"+news);
+		consensusMap.put("newsCount", news);
+		
+		Integer weibo = subjectDao.weibo(keyWord1);
+		System.out.println("微博数量为"+weibo);
+		consensusMap.put("weiboCount", weibo);
+		
+		Integer weixin = subjectDao.weixin(keyWord1);
+		System.out.println("微信数量为"+weibo);
+		consensusMap.put("weixinCount", weixin);
+		
+		Integer luntan = subjectDao.luntan(keyWord1);
+		System.out.println("论坛数量为"+luntan);
+		consensusMap.put("luntanCount", luntan);
+		
+		Integer video = subjectDao.video(keyWord1);
+		System.out.println("视频数量为"+video);
+		consensusMap.put("videoCount", video);
+		
+		String webName = subjectDao.webName(subjectFirst);
+		System.out.println("站点名称为"+webName);
+		consensusMap.put("webName", webName);
+		
+		String titleName = subjectDao.titleName(subjectFirst);
+		System.out.println("第一次出现标题为"+titleName);
+		consensusMap.put("titleName", titleName);
+		
+		String peakTime = subjectDao.peakTime(keyWord1);
+		System.out.println("高峰时间"+peakTime);
+		consensusMap.put("peakTime", peakTime);
+		
+		this.objectToJson(consensusMap);
+/*		System.out.println("该分析报告的监测时间为"+subjectStart+"至"+subjectEnd+"，监测关键词主要包含“"+keyWord1+"”，监测数据全面覆盖了境内外互联网新闻、博客、论坛、微博和视频等多类型站点。");
+		System.out.println("在上述监测时间范围内，网上共计发布相关新闻"+news+"篇、微博"+weibo+"篇、论坛主题帖"+luntan+"篇、视频"+video+"个。首条信息于"+subjectFirst+"发布在"+webName+"站点，标题为《"+titleName+"》。舆论最高峰出现在2016年06月01日11时00分。总体而言，新闻媒体以及微博等社交媒体关于“成品油走私”事件的信息量极小，舆论关注度较低，传播影响力较小。");*/
+		
+		return null;
+	}
+	
+	//网上传播情况分析
+	public String evenStage() throws Exception{
+		String keyWord1 = subjectDao.subjectKeyWord1(1L);
+		
+		//查询出日期,和主流媒体数量
+		List<Map<String, Object>> vipCount = subjectDao.getTimeAndVipCount(keyWord1);
+		this.arrayToJson(vipCount);
+		//查询出降序日期,以及类型,和数量
+		List<Map<String,Object>> timeAndCount = subjectDao.getTimeAndCount(keyWord1);
+		this.arrayToJson(timeAndCount);
+		return null;
+	}
+	//微博平台传播趋势
+	public String weiboCount() throws Exception{
+		Map<String, Object> weiboMap = new HashedMap();
+		String keyWord1 = subjectDao.subjectKeyWord1(1L);
+		List<Map<String, Object>> weiBo = subjectDao.getWeiBo(keyWord1);
+		this.arrayToJson(weiBo);
+		return null;
+	}
+	//微信平台传播趋势
+	public String weixinCount() throws Exception{
+		Map<String, Object> weiboMap = new HashedMap();
+		String keyWord1 = subjectDao.subjectKeyWord1(1L);
+		List<Map<String, Object>> weiXin = subjectDao.getWeiXin(keyWord1);
+		this.arrayToJson(weiXin);
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+}

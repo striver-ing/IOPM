@@ -1,0 +1,64 @@
+package cn.com.pattek.Subject.action;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONObject;
+
+import org.apache.commons.collections.map.HashedMap;
+import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import cn.com.pattek.Subject.dao.SubjectDao;
+import cn.com.pattek.Subject.entity.ArticleLF;
+import cn.com.pattek.core.struts2.BaseAction;
+
+
+public class SubjectAction extends BaseAction{
+
+	@Autowired
+	private SubjectDao subjectDao;
+	
+
+
+
+	public String startAndEndSbujectById() throws Exception {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("application/json;charset=UTF-8");
+		/*//获取前台传入的id
+		String id = request.getParameter("aaa");
+		//将获取到的id转换成Long类型
+		Long value = Long.valueOf(id);*/
+		
+		Map<String, String> map = new HashedMap();
+		String subjectStart = subjectDao.subjectStart(1L);
+		System.out.println("开始检测时间为"+subjectStart);
+		
+		//通过id查出关键字
+		
+		String keyWord1 = subjectDao.subjectKeyWord1(1L);
+		
+		System.out.println("关键字为"+keyWord1);
+		
+		/*map.put("keyWord", subjectKeyWord1);*/
+		
+		//通过关键字查询最后时间
+	String subjectEnd = subjectDao.subjectEnd(keyWord1);
+		System.out.println("专题最后一次出现的时间为"+subjectEnd);
+		
+		String subjectFirst = subjectDao.subjectFirst(keyWord1);
+		System.out.println("专题第一次出现的时间为"+subjectFirst);
+
+		
+		
+		//将map转换为json数据
+		JSONObject jsonObject = JSONObject.fromObject(map);
+		String result = jsonObject.toString();     
+		return null;
+	}
+
+}

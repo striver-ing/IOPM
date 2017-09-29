@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "//PCS//WebRoot//doc//struts-2.0.dtd">
+<struts>
+
+
+        <include file="cn/com/pattek/Keyword/struts-KeyClues.xml"/>
+        <include file="cn/com/pattek/user/struts-app.xml"/>
+        <include file="cn/com/pattek/user/struts-login.xml"/>
+        <include file="cn/com/pattek/user/struts-logout.xml"/>
+	  <include file="cn/com/pattek/NetHotSpot/struts-NetHotSpot.xml"/>
+	  <include file="cn/com/pattek/RelatedNews/struts-RelatedNews.xml"/>
+</struts>

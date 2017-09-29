@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"//TRS//WebRoot//doc//struts-2.0.dtd">
+<struts>
+	<package name="Subject" namespace="/Subject" extends="struts-default">
+		<action name="SubjectAction_*" method="{1}"  class="cn.com.pattek.Subject.action.SubjectAction">  
+			<result name="success" type="freemarker">/netHotSpotFound/relatedNews/relatedNews.ftl</result>	
+			<result name="error" type="freemarker">/netHotSpotFound/theme/theme.ftl</result>			
+			
+		</action> 
+	</package>
+</struts>

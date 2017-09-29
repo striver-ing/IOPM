@@ -1,0 +1,176 @@
+package cn.com.pattek.utils;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
+import org.apache.commons.lang.exception.ExceptionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * properties 文件操作 filePath:config/config.properties
+ *
+ * @author jf.rong
+ */
+public class PropertiesFactory {
+	private Logger log = LoggerFactory.getLogger(PropertiesFactory.class);
+
+	public String configPath = "/WEB-INF/classes/conf/conf.properties";
+	public Map<String, String> values = new HashMap<String, String>();
+
+	public PropertiesFactory() {
+		readProperties();
+	}
+
+	/**
+	 * 获取值
+	 *
+	 * @param key
+	 * @return
+	 */
+	public synchronized String getValue(String key) {
+		return values.get(key);
+	}
+
+	/**
+	 * 获得Integer类别的值
+	 * <p>
+	 * 如果没有查询到数据，默认返回0
+	 * </p>
+	 *
+	 * @param key
+	 * @return 若字符解析错误，则返回Null
+	 */
+	public Integer getIntValue(String key) {
+		Integer rv = 0;
+		try {
+			String val = getValue(key);
+			if (val != null && !val.isEmpty()) {
+				rv = Integer.valueOf(val);
+			}
+		} catch (Exception e) {
+			log.error(ExceptionUtils.getStackTrace(e));
+			rv = null;
+		}
+
+		return rv;
+	}
+
+	/**
+	 * 获得Long类别的值
+	 * <p>
+	 * 如果没有查询到数据，默认返回0
+	 * </p>
+	 *
+	 * @param key
+	 * @return 若字符解析错误，则返回Null
+	 */
+	public Long getLongValue(String key) {
+		Long rv = 0L;
+		try {
+			String val = getValue(key);
+			if (val != null && !val.isEmpty()) {
+				rv = Long.valueOf(val);
+			}
+		} catch (Exception e) {
+			log.error(ExceptionUtils.getStackTrace(e));
+			rv = null;
+		}
+
+		return rv;
+	}
+
+	/**
+	 * 获取以key开关的多值
+	 *
+	 * @param key
+	 * @return
+	 */
+	public synchronized List<String> getValues(String key) {
+		List<String> rv = new ArrayList<String>();
+		Iterator<String> it = values.keySet().iterator();
+		while (it.hasNext()) {
+			String _key = it.next();
+			if (_key.startsWith(key)) {
+				rv.add(values.get(_key));
+			}
+		}
+		return rv;
+	}
+
+	/**
+	 * 从文件中读取值
+	 */
+	private synchronized void readProperties() {
+		try {
+
+			log.info(new File(configPath).getAbsolutePath());
+			InputStream in = new BufferedInputStream(new FileInputStream(configPath));
+			Properties props = new Properties();
+			props.load(in);
+			@SuppressWarnings("unchecked")
+			Enumeration<String> en = (Enumeration<String>) props.propertyNames();
+			while (en.hasMoreElements()) {
+				String key = (String) en.nextElement();
+				String Property = props.getProperty(key);
+				values.put(key, Property);
+			}
+			in.close();
+		} catch (Exception e) {
+			log.error(ExceptionUtils.getStackTrace(e));
+		}
+	}
+
+	public synchronized void saveProperties() {
+		try {
+			Iterator<String> it = values.keySet().iterator();
+			Properties prop = new Properties();
+			while (it.hasNext()) {
+				String key = it.next();
+				String value = values.get(key);
+				prop.setProperty(key, value);
+			}
+			OutputStream fos = new FileOutputStream(configPath);
+			prop.store(fos, "Update:" + getTimeStr());
+			fos.close();
+		} catch (Exception e) {
+			log.error(ExceptionUtils.getStackTrace(e));
+		}
+
+	}
+
+	/**
+	 * 当前时间
+	 *
+	 * @return
+	 */
+	private String getTimeStr() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return sdf.format(new Date());
+	}
+
+	/**
+	 * 添加或修改值对
+	 *
+	 * @param key
+	 * @param value
+	 */
+	public synchronized void setValue(String key, String value) {
+		values.put(key, value);
+		saveProperties();
+	}
+
+}

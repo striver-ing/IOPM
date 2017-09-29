@@ -1,0 +1,174 @@
+.tab-content,.panel-body {
+	padding: 0 0;
+}
+.box-body {
+	padding:20px 15px 0 15px;
+}
+#nav-pills-tab-8 .panel-body {
+	padding:20px 15px 0 15px;
+}
+.analyDiv{
+	height: auto;
+	overflow: hidden;
+	margin-top:15px;
+}
+.analyDiv .srhText{
+	width: 60%;
+}
+.analyDiv .events{
+	width: 100%;
+	height: 50px;
+	border-radius: 5px;
+	background: #E8EDF3;
+	margin: 15px 0;
+}
+.analyDiv .events dl{
+	line-height: 50px;
+}
+.analyDiv .events dt{
+	display: inline-block;
+}
+.analyDiv .events dd{
+	display: inline-block;
+}
+.analyDiv .events dd a{
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	padding: 3px 5px;
+	margin: 0 5px;
+	color: #000;
+	border-radius: 2px;
+}
+.analyDiv .events dd a:hover{
+	color: #fff;
+	background: #0089D0;
+}
+.analyDiv .events dd.select a{
+	color: #fff;
+	background: #0089D0;
+}
+.analyBottom{
+	/*margin-top: 10px;*/
+}
+.tab-pane.fade table td{
+	vertical-align: middle;
+	padding: 2px 5px;
+}
+.tab-pane.fade table td .radLab{
+	width: 100%;
+}
+.tab-pane.fade table td .radLab input{
+	width: 20px;
+	display: inline-block;
+	margin-top: 0;
+}
+.tab-pane.fade table td .radLab input[type="radio"]{
+	margin-left: 12px;
+}
+.tab-pane.fade table td .radLab input[name="repeat"]:first-child{
+	margin-left: 0;
+}
+
+#nav-pills-tab-8 .tableList td i{
+	display: inline-block;
+	width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: all .3s;
+}
+#nav-pills-tab-8 .tableList td i:hover{
+	transform: scale(1.3);
+	-webkit-transform: scale(1.3);
+	-ms-transform: scale(1.3);
+	-o-transform: scale(1.3);
+}
+
+/*弹出层*/
+.checkMask form p>input,.checkMask form p>select {
+	width: 70%;
+	display: inline-block !important;
+}
+.checkMask form p{
+	margin: 5px 0;
+}
+.checkMask form p i{
+	color: red;
+}
+.checkMask form{
+	height: 600px;
+}
+.checkMask form p .checkDiv>div{
+	width: 80px;
+	height: 30px;
+	display: inline-block;
+}
+.checkMask form p div.checkDiv input{
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+}
+.checkMask form p i.fa-plus{
+	margin-left: 10px;
+	color: #2093F6;
+	font-size: 16px;
+	line-height: 25px;
+	cursor: pointer;
+	transition: all .3s;
+}
+.checkMask form p i.fa-plus:hover{
+	transform: scale(1.4);
+	-webkit-transform: scale(1.4);
+	-ms-transform: scale(1.4);
+	-o-transform: scale(1.4);
+}
+.checkMask form .addClassic{
+	margin-left: 30px;
+	width: 80%;
+	margin: 10px 0;
+	display: none;
+}
+.checkMask form .addClassic input:first-child{
+	display: inline-block;
+	width: 150px;
+	margin-left: 85px;
+}
+.checkMask .btnMask{
+	bottom: 0px;
+}
+.checkMask form .checkDiv label{
+	margin: 5px 0;
+}
+
+.fanyboxtable{
+	border-bottom: #000 solid 2px;
+	margin-bottom: 10px;
+}
+
+.nav-tabs>li>a{
+	margin-left: 5px;
+	margin-right: 0;
+}
+.checkMask table td.tip{
+	font-size: 14px;
+	line-height: 24px;
+	padding: 5px;
+	border: #ccc solid 1px;
+	background: #FCF6F5;
+	text-align: left;
+	margin-top: 5px;
+	margin-left: 166px;
+	width: 400px;
+}
+.checkMask .msgs.msgNo,.checkMask .msgs.msgRem{
+	text-align: center;
+	font-size: 28px;
+	font-weight: bold;
+	height: 100px;
+	line-height: 100px;
+	color: #000000;
+	font-family: 幼圆;
+}

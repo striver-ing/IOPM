@@ -1,0 +1,458 @@
+$(function(){
+    //一级展开
+    $('.menu-theme').each(function(index){
+        $('.nore').hide();
+        $('.close').hide();
+        //鼠标移入
+        $('.menu-theme').mouseover(function(){
+            $(this).children('.nore').show();
+            $(this).css('transform','scale(1.1)');
+            $(this).css('transition','transform 0.2s linear');
+        })
+        //鼠标移出
+        $('.menu-theme').mouseout(function(){
+            $(this).children('.nore').hide();
+            $(this).css('transform','scale(1)');
+            $(this).css('transition','transform 0.2s linear');
+        })
+
+        
+
+        $('.close').eq(index).click(function(){
+        	$('#zero_id1').val("");
+            $('.submenu').eq(index).hide();
+            $(this).hide();
+            $(this).prev().attr('src','/IOPM/netHotSpotFound/theme/imgs/nore.png');
+        })
+    })
+    //分类跳转1
+    $('.menu a').each(function(index){
+    	$('.menu a').eq(index).click(function(){    		
+    		document.getElementById("zero_id1").value=$(this).parent().children('input').val();
+    		document.getElementById("classifyform").action="/IOPM/KeyClues/KeyCluesAction_selectClassify.action";
+    	    document.getElementById("classifyform").submit();
+    	    
+    	})
+    		
+    });
+
+    $('.details .d').each(function (index) {
+        $('.details .d').eq(index).click(function () {
+            $('.col').html('<span>' + '将' + $(this).parent().children('span').children('a').html() + '移动至：' + '</span>');
+            //清空
+            $('.checkMask .bounceIn input').val('');
+            //显示关闭
+            $('.checkMask .bounceIn').css({'width': '40%'});
+            $('.checkMask').hide();
+            $('.checkMask.sum').show();
+            resetMask(100);
+        })
+    });
+
+    
+})
+      //显示二级菜单
+      $('.menu-theme').each(function(index){
+    	  
+    	  var nearSubMenu = [];
+    	  
+        $('.nore').eq(index).click(function(){
+        	//赋值
+        	var zero = $(this).parent().children('input').val();
+        	
+        	$('#zero_id1').val(zero);
+        	var that = this;
+        	//获取在同一行的menu
+        	var $selMenu = $(this).closest('.menu');
+        	
+        	$('.category .menu').each(function(){
+        		if($(this).offset().top == $selMenu.offset().top){
+        			nearSubMenu.push($(this).index());
+        		}
+        	});
+        	
+            $('.submenu').hide();
+            $('.nore').attr('src','/IOPM/netHotSpotFound/theme/imgs/nore.png')
+            $('.close').hide();
+            jQuery.ajax({
+        		url:'/IOPM/KeyClues/KeyCluesAction_getAllFirst.action',
+        		type:'post',
+        		dataType:'json',
+        		data:{'zero_id':$(this).parent().children("input").val()},
+                success:function(data){
+                	var html2="";
+                	var url="";
+                	
+                	$.each(data,function(i,p){
+                		if(p.image_url!=null&&p.image_url!=''){
+                			url=p.image_url;
+                		}else{
+                			url='/IOPM/netHotSpotFound/theme/imgs/user-13.gif';
+                		}
+                		html2=html2+'<li><div class="mask"><img src="'+url+'" alt=""/><div><span>上传图片</span></div></div>'+                                
+    '<a class="text"><span class="ming">'+p.first_classify+'</span><span>：</span><span>'+p.count+'</span></a><div class="icon clear"><img src="/IOPM/netHotSpotFound/theme/imgs/b.png" alt="" class="b"/>'+'<input type="hidden" name="classify_id" value="'+p.first_classify_id+'"/>'+                                                           
+    '<img src="/IOPM/netHotSpotFound/theme/imgs/a.png" alt="" class="a"/><img src="/IOPM/netHotSpotFound/theme/imgs/d.png" alt="" class="d"/><img src="/IOPM/netHotSpotFound/theme/imgs/c.png" alt=""   class="c"/>'+
+    '<div class="sidebar-R"></div></div></li>';
+                		
+                	});	                	
+                	$(".submenu-z").html(html2);
+                	//后加的1
+                	$(".ming").each(function () {  
+                	    $(this).attr("title", $(this).text());  
+                	    $(this).css("cursor", 'pointer');  
+                	}); 
+                	//获取li的个数并设置ul长度
+                	var length = $('.nore').eq(index).parent().next().find('li').length;
+                    $('.submenu-z').css('width',(length*167));
+                    //上传图片模态框
+                    $('.submenu-z li').each(function(index){
+                        $('.mask div').hide();
+                        //进入显示
+                        $('.mask').eq(index).mouseover(function(){
+                            $(this).children('div').show();
+                            
+                        })
+                        $('.mask span').eq(index).click(function () {
+                                //清空
+                                $('.checkMask .bounceInRight input').val('');
+                                //显示关闭
+                                var id=$(this).parent().parent().parent().children(".icon").children("input").val();
+                                //alert(id);
+                                $('#imgId').val(id);
+                                $('.checkMask .bounceInRight').css({'width': '40%'});
+                                $('.checkMask').hide();
+                                $('.checkMask.append').show();
+                                resetMask(100);
+                            })
+                        //移出隐藏
+                        $('.mask').eq(index).mouseout(function(){
+                            $(this).children('div').hide();
+                        })
+                    })
+                        //修改分类
+                        $('.content .b').each(function (index) {
+                        $('.content .b').eq(index).click(function () {
+                            //清空
+                            $('.checkMask .bounceInUp input').val('');
+                            //显示模态框
+                            $("#useriss").val($(this).parent().children("input").val());
+                            $('#userC').val($(this).parent().parent().children("a").children(".ming").text());                    
+                            $('.checkMask .bounceInUP').css({'width': '40%'});
+                            $('.checkMask').hide();
+                            $('.checkMask.increase').show();
+                            resetMask(100);
+                         })
+                        });
+                    //删除分类
+                    $('.content .a').each(function (index) {
+                        $('.content .a').eq(index).click(function () {
+                            $('.checkMask .bounceInLeft').css({'width': '20%', 'height': '260px'});
+                            $("#classifyID2").val($(this).parent().children("input").val());
+                            $('.checkMask').hide();
+                            $('.checkMask.delete').show();
+                            resetMask(100);
+                        })
+                    });
+                    //合并分类
+                    $('.icon .d').each(function (index) {
+                        $('.icon .d').eq(index).click(function () {
+                            //if($(this).parent().parent().index() == index){
+                            $('.col').html('<span>' + '将' + $(this).parent().prev().find('span').html() + '移动至：' + '</span>');
+                            //}
+                            //清空
+                            $('.checkMask .bounceInDown input').val('');
+                            $.ajax({
+                        		url:'/IOPM/KeyClues/KeyCluesAction_getAllClassifyTo.action',
+                        		type:'post',
+                        		dataType:'json',
+                        		data:{'classify_id':$(this).parent().children("input").val()},
+                                success:function(data){
+                                	var html2="";
+                                	$.each(data,function(i,p){
+                                		
+                                		html2=html2+'<option value='+p.first_classify_id+'>'+p.first_classify+'</option> ';
+                                	});
+                                	$(".sel").html(html2);
+                                	
+                                	
+                                }		
+                        	})
+                            $("#userJB").val($(this).parent().children("input").val());
+                            //显示关闭
+                            $('.checkMask .bounceInDown').css({'width': '40%'});
+                            $('.checkMask').hide();
+                            $('.checkMask.sum').show();
+                            resetMask(100);
+                        })
+                    });
+                    //分类跳转2
+                    $('.submenu-z .text').each(function (index) {
+                    $('.submenu-z .text').eq(index).click(function () {
+                    	document.getElementById("classifyname1").value=$(this).children('.ming').text();
+                		document.getElementById("classifyform").action="/IOPM/KeyClues/KeyCluesAction_selectClassify.action";
+                	    document.getElementById("classifyform").submit();
+                     })
+                    });
+                    //移入显示 移出隐藏 三级菜单
+                    $('.sidebar-R').hide();
+                    $('.c').each(function (index) {
+                        $('.c').eq(index).mouseover(function () {
+                        	//赋值二级
+                        	var second = $(this).parent().prev().children(".ming").text();
+                        	$('#classifyname1').val(second);
+                        	jQuery.ajax({
+                    	       	url: '/IOPM/KeyClues/KeyCluesAction_getSecondKey.action',
+                    	       	type: 'post',
+                    	       	dataType:'json',
+                    	       	data : {classify_id:$(this).parent().children("input").val()},
+                    	       	success: function(obj){
+                    	       		
+                    	       	
+                    	       		var htmlStr="";
+                    	       		$.each(obj, function(i, p) {  
+                    	       			
+                    	       			htmlStr=htmlStr+'<div class="details"><a class="text1"><span>'+p.second_classify+
+                    	       			'</span></a><img src="/IOPM/netHotSpotFound/theme/imgs/bx.png" alt="" class="img1 bx"/><input type="hidden" value="'+p.second_classify_id+'"/><img src="/IOPM/netHotSpotFound/theme/imgs/ax.png" alt="" class="img2 ax"/>'+
+                    	       			'<img src="/IOPM/netHotSpotFound/theme/imgs/dx.png" alt="" class="img3 dx"/></div>';
+                    	       		});
+                    	       		$('.sidebar-R').html(htmlStr);
+                    	       		$('.details span').each(function(){
+                    	       	        $(this).attr("title", $(this).text());  
+                    	       	        $(this).css("cursor", 'pointer');
+                    	       	    })
+                    	       	    //修改分类3
+                                    $('.submenu-z .bx').each(function (index) {
+                                    $('.submenu-z .bx').eq(index).click(function () {
+                                    	$("#userFE").val($(this).parent().children("input").val());
+                                    	$("#userFR").val($(this).parent().children("a").children().text());
+                                    	$('.checkMask.increase2').show();
+                                        resetMask(100);
+                                     })
+                                    });
+                                    //删除分类3
+                                    $('.submenu-z .ax').each(function (index) {
+                                    $('.submenu-z .ax').eq(index).click(function () {
+                                    	$('.checkMask .bounceInLeft').css({'width': '20%', 'height': '260px'});
+                                    	$("#classifyID4").val($(this).parent().children("input").val());       	
+                                    	$('.checkMask.delete2').show();
+                                        resetMask(100);
+                                     })
+                                    });
+                                    //合并分类3
+                                    $('.submenu-z .dx').each(function (index) {
+                                    $('.submenu-z .dx').eq(index).click(function () {
+                                    	$('.col').html('<span>' + '将' + $(this).parent().children("a").children().text() + '移动至：' + '</span>');
+                                        //}
+                                        //清空
+                                        $('.checkMask .bounceInDown input').val('');
+                                        $.ajax({
+                                    		url:'/IOPM/KeyClues/KeyCluesAction_getAllClassifyNum.action',
+                                    		type:'post',
+                                    		dataType:'json',
+                                    		data:{'classifyTwo_id':$(this).parent().children("input").val()},
+                                            success:function(data){
+                                            	var html2="";
+                                            	$.each(data,function(i,p){
+                                            		
+                                            		html2=html2+'<option value='+p.second_classify_id+'>'+p.second_classify+'</option> ';
+                                            	});
+                                            	$(".sel2").html(html2);
+                                            	
+                                            	
+                                            }		
+                                    	})
+                                    	$("#userHB").val($(this).parent().children("input").val());
+                                        //$("#userJB").val($(this).parent().children("input").val()); 
+                                        //显示关闭
+                                        $('.checkMask .bounceIn').css({'width':'40%'});
+                                        $('.checkMask').hide();
+                                        $('.checkMask.sum2').show();
+                                        resetMask(100);
+                                     })
+                                    });
+                                  //分类跳转3
+                                    $('.submenu-z .text1').each(function (index) {
+                                    $('.submenu-z .text1').eq(index).click(function () {
+                                    	document.getElementById("classifyname2").value=$(this).children('span').text();
+                                		document.getElementById("classifyform").action="/IOPM/KeyClues/KeyCluesAction_selectClassify.action";
+                                	    document.getElementById("classifyform").submit();
+                                     })
+                                    });
+                    	       	}
+                        	})
+                            $('.sidebar-R').hide();
+                            $('.sidebar-R').eq(index).show();
+                            $('.sidebar-R').eq(index).mousemove(function () {
+                                $('.sidebar-R').eq(index).show();
+                            })
+                            $('.sidebar-R').eq(index).mouseout(function () {
+                                $('.sidebar-R').eq(index).hide();
+                            })
+                        })
+                    });
+                       $('.c').each(function (index) {
+                         $('.c').eq(index).mouseout(function () {
+                             $('.sidebar-R').eq(index).hide();
+                         })
+                       });
+                    
+                }		
+        	})
+            //设置当前选中的menu的margin-bottom给二级菜单腾位置
+            $('.category .menu').stop().animate({'margin-bottom':10},300);
+            for (let i=0;i<nearSubMenu.length;i++) {
+            	$('.category .menu').eq(nearSubMenu[i]).stop().animate({'margin-bottom':230},300,function(){
+            		//获取距离屏幕顶端的距离
+		            var menuH = $(that).parent().parent().offset().top;
+		            menuH = menuH+210;
+		            //设置位置
+		            $('.nore').eq(index).parent().next().css('top',menuH);
+		            $(that).parent().next().show();
+            	});               }
+ 
+            $(this).attr('src','/IOPM/netHotSpotFound/theme/imgs/close.png')
+            $(this).next().show();
+        })
+        $('.close').eq(index).click(function(){
+            $('.submenu').eq(index).hide();
+            for (let i=0;i<nearSubMenu.length;i++) {
+            	$('.category .menu').stop().animate({'margin-bottom':10},300);
+            }
+            $(this).hide();
+            $(this).prev().attr('src','/IOPM/netHotSpotFound/theme/imgs/nore.png');
+        })
+      })
+//上传图片
+function updateImg(){
+
+	document.getElementById("imgForm").action="/IOPM/KeyClues/KeyCluesAction_alterImage1.action";
+	//document.getElementById("imgForm").submit();
+	location.reload();
+}
+//确认修改二级类别
+function updateSubmit(){
+	var url="/IOPM/KeyClues/KeyCluesAction_updateClassify.action";
+	$.ajax({
+		type:"post",
+	    url:url,
+	    data:{'classify_id':$("#useriss").val(),
+	          'classify_name':$("#userC").val(),
+
+	         },
+	    success:function(msg){
+	    	var obj=eval("("+msg+")");
+	    	alert(obj.info);
+	    	window.location.reload();
+	    },
+	    error:function(msg){
+	    	alert(msg);
+	    },	         	
+	})		
+}
+//修改类别3
+function updateSubmit2(){
+	var url="/IOPM/KeyClues/KeyCluesAction_updateClassifyTwo.action";
+	$.ajax({
+		type:"post",
+	    url:url,
+	    data:{
+	          'classifyTwo_id':$("#userFE").val(),
+	          'classifyTwo_name':$("#userFR").val(),
+	         },
+	    success:function(msg){
+	    	var obj=eval("("+msg+")");
+	    	alert(obj.info);
+	    	window.location.reload();
+	    },
+	    error:function(msg){
+	    	alert(msg);
+	    },	         	
+	})		
+}
+
+//删除二级类别
+function deleteClassify(){
+	var url="/IOPM/KeyClues/KeyCluesAction_deleteClassify.action";
+	$.ajax({
+		type:"post",
+		url:url,
+		data:{
+			'classify_id':$("#classifyID2").val(),
+		},
+        dateType:"text",
+        success:function(msg){
+			
+	    	window.location.reload();
+	    },
+	    error:function(msg){
+	    	alert("删除成功");
+	    },
+   });
+	
+	
+}
+//删除类别3
+function deleteSubmit4(){
+	var url="/IOPM/KeyClues/KeyCluesAction_deleteSecondClassify.action";
+	$.ajax({
+		type:"post",
+	    url:url,
+	    data:{
+	          'classifyTwo_id':$("#classifyID4").val(),
+	         },
+	    success:function(msg){
+	    	var obj=eval("("+msg+")");
+	    	alert(obj.info);
+	    	window.location.reload();
+	    },
+	    error:function(msg){
+	    	alert("删除成功");
+	    },	         	
+	})		
+}
+//合并类别1
+function mergeClassify(){
+
+	var url="/IOPM/KeyClues/KeyCluesAction_mergeClassify.action";
+	$.ajax({
+		type:"post",
+		url:url,
+		data:{
+			classify_id:$(".sel").val(),
+			classifyTwo_id:$("#userJB").val(),
+		},
+		success:function(msg){			
+			var obj=eval("("+msg+")");
+				alert(obj.info);
+				window.location.reload();
+		
+		},
+		error:function(msg){
+		alert("操作成功");
+		}
+	})
+	
+}
+//合并类别2
+function mergeClassify2(){
+
+	var url="/IOPM/KeyClues/KeyCluesAction_mergeSecondClassify.action";
+	$.ajax({
+		type:"post",
+		url:url,
+		data:{
+			'classify_id':$(".sel2").val(),
+			'classifyTwo_id':$("#userHB").val(),
+		},
+		success:function(msg){			
+			var obj=eval("("+msg+")");
+				alert(obj.info);
+				window.location.reload();
+		
+		},
+		error:function(msg){
+		alert("合并成功");
+		}
+	})
+	
+}

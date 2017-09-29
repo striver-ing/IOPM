@@ -1,0 +1,1023 @@
+package cn.com.pattek.RelatedNews.action;
+
+import java.io.BufferedReader;
+import cn.com.pattek.RelatedNews.entity.IopmKeyInfoEntity;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import cn.com.pattek.RelatedNews.dao.RelatedNewsDao;
+import cn.com.pattek.RelatedNews.entity.Article;
+import cn.com.pattek.RelatedNews.entity.ArticleInfo;
+import cn.com.pattek.RelatedNews.entity.AtCount;
+import cn.com.pattek.RelatedNews.entity.AtData;
+import cn.com.pattek.RelatedNews.entity.AtTotal;
+import cn.com.pattek.RelatedNews.entity.Blog;
+import cn.com.pattek.RelatedNews.entity.BlogCount;
+import cn.com.pattek.RelatedNews.entity.IopmClassify;
+import cn.com.pattek.RelatedNews.entity.IopmClassifyTwo;
+import cn.com.pattek.RelatedNews.entity.IopmFirst;
+import cn.com.pattek.RelatedNews.entity.UserAct;
+import cn.com.pattek.core.struts2.BaseAction;
+import cn.com.pattek.utils.ESSearchUtils;
+
+public class RelatedNewsAction extends BaseAction {
+	private String infoType;  //信息来源 
+	private String emotion;  //情感倾向：1、正面 2、负面 3、中立 4、未知
+	private String spread;	//传播途径: 1、主流媒体
+	private String keywords;   //关键词
+	private String startTime;  //起始时间
+	private String endTime;   //结束时间
+	private String data_ids;   
+	private Long zero_id;   //一级分类ID
+	private Long first_classify_id;   //二级分类ID
+	private Long second_classify_id;  //三级分类ID
+	private Long clus_ids;    //线索ID
+	private Long hot_id;     //热点ID
+	private Integer sort;   //排序规则
+	private Long pageNo;   //页码
+	private int pageSize;  //每页信息量
+	private Integer whichChart;   //具体的饼图：1、信息来源  2、情感  3、一级分类  4、二级分类  5、三级分类
+	
+	private Long user_id;
+	private Long msg_id;
+	private Long action_type;
+	
+	public Long getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(Long userId) {
+		user_id = userId;
+	}
+
+	public Long getMsg_id() {
+		return msg_id;
+	}
+
+	public void setMsg_id(Long msgId) {
+		msg_id = msgId;
+	}
+
+	public Long getAction_type() {
+		return action_type;
+	}
+
+	public void setAction_type(Long actionType) {
+		action_type = actionType;
+	}
+
+	@Autowired
+	private RelatedNewsDao relatedNewsDao;
+    
+	public Long getHot_id() {
+		return hot_id;
+	}
+
+	public void setHot_id(Long hotId) {
+		hot_id = hotId;
+	}
+
+	public Integer getWhichChart() {
+		return whichChart;
+	}
+
+	public void setWhichChart(Integer whichChart) {
+		this.whichChart = whichChart;
+	}
+
+	public Long getClus_ids() {
+		return clus_ids;
+	}
+
+	public void setClus_ids(Long clusIds) {
+		clus_ids = clusIds;
+	}
+
+	public Long getZero_id() {
+		return zero_id;
+	}
+
+	public void setZero_id(Long zeroId) {
+		zero_id = zeroId;
+	}
+
+	public Long getFirst_classify_id() {
+		return first_classify_id;
+	}
+
+	public void setFirst_classify_id(Long firstClassifyId) {
+		first_classify_id = firstClassifyId;
+	}
+
+	public Long getSecond_classify_id() {
+		return second_classify_id;
+	}
+
+	public void setSecond_classify_id(Long secondClassifyId) {
+		second_classify_id = secondClassifyId;
+	}
+
+	public RelatedNewsDao getRelatedNewsDao() {
+		return relatedNewsDao;
+	}
+
+	public void setRelatedNewsDao(RelatedNewsDao relatedNewsDao) {
+		this.relatedNewsDao = relatedNewsDao;
+	}
+
+	public String getInfoType() {
+		return infoType;
+	}
+
+	public void setInfoType(String infoType) {
+		this.infoType = infoType;
+	}
+
+	public String getEmotion() {
+		return emotion;
+	}
+
+	public void setEmotion(String emotion) {
+		this.emotion = emotion;
+	}
+
+	public String getSpread() {
+		return spread;
+	}
+
+	public void setSpread(String spread) {
+		this.spread = spread;
+	}
+
+	public String getKeywords() {
+		return keywords;
+	}
+
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
+
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+
+	public String getData_ids() {
+		return data_ids;
+	}
+
+	public void setData_ids(String data_ids) {
+		this.data_ids = data_ids;
+	}
+
+	public Long getclus_ids() {
+		return clus_ids;
+	}
+
+	public void setclus_ids(Long clus_ids) {
+		this.clus_ids = clus_ids;
+	}
+
+	public Integer getSort() {
+		return sort;
+	}
+
+	public void setSort(Integer sort) {
+		this.sort = sort;
+	}
+
+	public Long getPageNo() {
+		return pageNo;
+	}
+
+	public void setPageNo(Long pageNo) {
+		this.pageNo = pageNo;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	/* 返回ftl */
+	public String getRelatedFtl() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		endTime = format.format(date);
+		startTime = format.format(new Date(date.getTime() - 24 * 3600000 * 3));
+		System.out.println("clus_ids=" + clus_ids);
+		System.out.println("id" + id + " ;  keywords: " + keywords);
+		System.out.println("haha");
+		return SUCCESS;
+	}
+
+	/**
+	 * @param url
+	 *            请求接口的地址
+	 * @return 返回请求的数据
+	 */
+	@SuppressWarnings("static-access")
+	public static String getHttpClientInfo(String url) {
+		String ret = "";
+		HttpClient httpClient = null;
+		PostMethod method = null;
+		try {
+			httpClient = new HttpClient();
+			method = new PostMethod(url);
+			method.setDoAuthentication(true);
+			method.setRequestHeader("Content-Type", "text/html;charset=UTF-8");
+			httpClient.executeMethod(method);
+			if (method.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				ret = new String(method.getResponseBodyAsString());
+			}
+			method.releaseConnection();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return ret;
+	}
+
+	/**
+	 * 获取舆情信息
+	 * 
+	 * @throws Exception
+	 */
+	@SuppressWarnings("static-access")
+	public void getRelatedNewsList() throws Exception {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("application/json;charset=UTF-8");
+		System.out.println("clus_ids=" + clus_ids + "zero_id=" + zero_id
+				+ "first_classify_id=" + first_classify_id
+				+ "second_classify_id=" + second_classify_id + "startTime="
+				+ startTime + "endTime=" + endTime + "keywords=" + keywords
+				+ "pageNo=" + pageNo + "pageSize=" + pageSize + "infoType="+infoType);
+		Date date = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		List<ArticleInfo> data = new ArrayList<ArticleInfo>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (startTime != null && !"".equals(startTime)) {
+			startTime += " 00:00:00";
+		} else {
+			startTime = format.format(new Date(
+					date.getTime() - 24 * 3600000 * 3));
+		}
+		if (endTime != null && !"".equals(endTime)) {
+			endTime += " 23:59:59";
+		} else {
+			endTime = format.format(date);
+		}
+		map.put("hot_id", hot_id);
+		map.put("zero_id", zero_id);
+		map.put("first_classify_id", first_classify_id);
+		map.put("second_classify_id", second_classify_id);
+		map.put("release_time", startTime);
+		map.put("record_time", endTime);
+		map.put("sort", sort);
+		int[] a1 = null;
+		
+		if (infoType != null && !"".equals(infoType)) {
+			String[] str = infoType.replaceAll(",", " ").trim().split(" ");
+			a1 = new int[str.length];
+			for (int i = 0; i < str.length; i++) {
+				a1[i] = Integer.parseInt(str[i]);
+			}
+		}
+		map.put("type", a1);
+		int[] a2 = null;
+		if (emotion != null && !"".equals(emotion)) {
+			if (emotion.contains("10,")) {
+				emotion = emotion.replace("10,", "");
+				map.put("emotions", "10");
+			}
+			String[] str1 = emotion.replaceAll(",", " ").trim().split(" ");
+			a2 = new int[str1.length];
+			for (int i = 0; i < str1.length; i++) {
+				a2[i] = Integer.parseInt(str1[i]);
+			}
+		}
+		System.out.println("emotion="+emotion);
+		map.put("clus_ids", clus_ids);
+		map.put("emotion", a2);
+		
+		if (spread != null && !"".equals(spread)) {
+			map.put("spread", spread);
+		}
+		
+		String[] str3 = null;
+		System.out.println("keywords="+keywords);
+		if (keywords != null && !"".equals(keywords)) {
+			str3 = keywords.trim().split(" ");
+		}
+		System.out.println("str3="+str3);
+		map.put("keywords", str3);
+		int total = relatedNewsDao.getRelatedCount(map);
+		map.put("pageNo", pageNo);
+		map.put("pageSize", pageSize);
+		data = relatedNewsDao.getRelatedInterface(map);
+		AtData ad = new AtData();
+		ad.setTotal(total);
+		ad.setData(data);
+		AtTotal at = new AtTotal();
+		at.setData(ad);
+		at.setMessage("查询成功");
+		at.setStatus(1);
+		System.out.println("data=" + data.size());
+		System.out.println("listStr :" + data);
+		this.objectToJson(at);
+		
+//		HttpServletResponse response = ServletActionContext.getResponse();
+//		response.setContentType("application/json;charset=UTF-8");
+//		System.out.println("clus_ids=" + clus_ids + "zero_id=" + zero_id
+//				+ "first_classify_id=" + first_classify_id
+//				+ "second_classify_id=" + second_classify_id + "startTime="
+//				+ startTime + "endTime=" + endTime + "keywords=" + keywords
+//				+ "pageNo=" + pageNo + "pageSize=" + pageSize);
+//		Date date = new Date();
+//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		String url = "http://192.168.60.38:8001/hotspot_al/interface/getCluesDataSearchInfo";
+//		List<IopmKeyInfoEntity> list = new ArrayList<IopmKeyInfoEntity>();
+//		if (zero_id != null) {
+//			if (clus_ids == null || "".equals(clus_ids)) {
+//				clus_ids = "0";
+//				Map<String, Object> map = new HashMap<String, Object>();
+//				map.put("zero_id", zero_id);
+//				map.put("first_classify_id", first_classify_id);
+//				map.put("second_classify_id", second_classify_id);
+//				list = relatedNewsDao.getAllCluesByMap(map);
+//				for (IopmKeyInfoEntity en : list) {
+//					if (en.getId() != null)
+//						if ("0".equals(clus_ids))
+//							clus_ids = "";
+//					clus_ids += en.getId() + ",";
+//				}
+//			}
+//		}
+//		url += "?pageNo=" + pageNo + "&pageSize=" + pageSize;
+//		if (sort != null && !"".equals(sort))
+//			url += "&sort=" + sort;
+//		if (infoType != null)
+//			url += "&infoType=" + infoType;
+//		if ("1,2,3,".equals(emotion))
+//			emotion = "";
+//		if (emotion != null)
+//			url += "&emotion=" + emotion;
+//		if (keywords != null && !"".equals(keywords)) {
+//			keywords = keywords.replace(" ", "_*blank*_");
+//			keywords = java.net.URLEncoder.encode(keywords, "utf-8"); // url转码
+//			url += "&keywords=" + keywords.replace("_*blank*_", "%20");
+//		}
+//		if (startTime != null && !"".equals(startTime)) {
+//			startTime += " 00:00:00";
+//			startTime = startTime.replace(" ", "_*blank*_");
+//			startTime = java.net.URLEncoder.encode(startTime, "utf-8"); // url转码
+//			url += "&sTime=" + startTime.replace("_*blank*_", "%20");
+//		} else {
+//			startTime = format.format(new Date(
+//					date.getTime() - 24 * 3600000 * 3));
+//			startTime = startTime.replace(" ", "_*blank*_");
+//			startTime = java.net.URLEncoder.encode(startTime, "utf-8"); // url转码
+//			url += "&sTime=" + startTime.replace("_*blank*_", "%20");
+//		}
+//		if (endTime != null && !"".equals(endTime)) {
+//			endTime += " 23:59:59";
+//			endTime = endTime.replace(" ", "_*blank*_");
+//			endTime = java.net.URLEncoder.encode(endTime, "utf-8"); // url转码
+//			url += "&eTime=" + endTime.replace("_*blank*_", "%20"); // 转成长文本再赚回来
+//		} else {
+//			endTime = format.format(date);
+//			endTime = endTime.replace(" ", "_*blank*_");
+//			endTime = java.net.URLEncoder.encode(endTime, "utf-8"); // url转码
+//			url += "&eTime=" + endTime.replace("_*blank*_", "%20"); // 转成长文本再赚回来
+//		}
+//		if (data_ids != null && !"".equals(data_ids))
+//			url += "&data_ids=" + data_ids;
+//		if (clus_ids != null && !"".equals(clus_ids))
+//			url += "&clus_ids=" + clus_ids;
+//		String listStr = "";
+//		listStr = getHttpClientInfo(url);
+//		System.out.println("url=" + url);
+//		response.getWriter().write(listStr);
+//		// return listStr;
+//		System.out.println("listStr=" + listStr);
+		
+	}
+
+	/**
+	 * 获取舆情信息2 (es)
+	 * 
+	 * @throws Exception
+	 */
+	public String getRelatedNewsList2() throws Exception {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("application/json;charset=UTF-8");
+		Date date = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		List<ArticleInfo> data = new ArrayList<ArticleInfo>();
+		Map<String, String> map = new HashMap<String, String>();
+		
+		if (hot_id != null) {
+			map.put("HOT_ID", hot_id.toString());
+		}
+		if (zero_id != null) {
+			map.put("ZERO_ID", zero_id.toString());
+		}
+		if (first_classify_id != null) {
+			map.put("FIRST_CLASSIFY_ID", first_classify_id.toString());
+		}
+		if (second_classify_id != null) {
+			map.put("SECOND_CLASSIFY_ID", second_classify_id.toString());
+		}
+		if (sort != null) {
+			map.put("SORT", sort.toString());
+		} else {
+			map.put("SORT", "0");
+		}
+		if (infoType != null && !"".equals(infoType)) {
+			map.put("INFO_TYPE", infoType);
+		}
+		if (clus_ids != null) {
+			map.put("CLUS_IDS", clus_ids.toString());
+		}
+		if (emotion != null && !"".equals(emotion)) {
+			map.put("EMOTION", emotion);
+		}
+		if (spread != null && !"".equals(spread)) {
+			map.put("SPREAD", spread);
+		}
+		if (keywords != null && !"".equals(keywords)) {
+			map.put("KEYWORDS", keywords);
+		}
+		if (startTime != null && !"".equals(startTime)) {
+			startTime += "";
+		} else {
+			startTime = format.format(new Date(
+					date.getTime() - 24 * 3600000 * 3));
+		}
+		if (endTime != null && !"".equals(endTime)) {
+			endTime += "";
+		} else {
+			endTime = format.format(date);
+		}
+		map.put("RELEASE_TIME", startTime);
+		map.put("RECORD_TIME", endTime);
+		String ip = "192.168.60.40";
+//		ip = "127.0.0.1";
+		int port = 9300;
+		String indexName = "tab_iopm_article_info";
+		ESSearchUtils searchUtil = new ESSearchUtils(ip, port);
+		
+		/**1.通过es查询到相关数据*/
+//		List<Object> list = searchUtil.search(indexName, map, pageNo.intValue(), pageSize);
+		List<Object> list = searchUtil.searchBySql(map,pageNo.intValue(), pageSize);
+		int total = Integer.parseInt(list.get(0).toString());
+		data = (List<ArticleInfo>) list.get(1);
+		
+		AtData ad = new AtData();
+		ad.setTotal(total);
+		ad.setData(data);
+		AtTotal at = new AtTotal();
+		at.setData(ad);
+		at.setMessage("查询成功");
+		at.setStatus(1);
+		this.objectToJson(at);
+		return NONE;
+	}
+	
+	
+	/**
+	 * 輿情信息接口
+	 * 
+	 * @throw Exception
+	 */
+	public void getRelatedInterface() throws Exception {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("application/json;charset=UTF-8");
+		System.out.println("clus_ids=" + clus_ids + "zero_id=" + zero_id
+				+ "first_classify_id=" + first_classify_id
+				+ "second_classify_id=" + second_classify_id + "startTime="
+				+ startTime + "endTime=" + endTime + "keywords=" + keywords
+				+ "pageNo=" + pageNo + "pageSize=" + pageSize);
+		Date date = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		List<ArticleInfo> data = new ArrayList<ArticleInfo>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (startTime != null && !"".equals(startTime)) {
+			startTime += " 00:00:00";
+		} else {
+			startTime = format.format(new Date(
+					date.getTime() - 24 * 3600000 * 3));
+		}
+		if (endTime != null && !"".equals(endTime)) {
+			endTime += " 23:59:59";
+		} else {
+			endTime = format.format(date);
+		}
+		map.put("clus_ids", clus_ids);
+		map.put("zero_id", zero_id);
+		map.put("first_classify_id", first_classify_id);
+		map.put("second_classify_id", second_classify_id);
+		map.put("release_time", startTime);
+		map.put("record_time", endTime);
+		Long[] a1 = null;
+		if (infoType != null) {
+			String[] str = infoType.replaceAll(",", " ").trim().split(" ");
+			a1 = new Long[str.length];
+			for (int i = 0; i < str.length; i++) {
+				a1[i] = Long.parseLong(str[i]);
+			}
+		}
+		System.out.println(a1);
+		map.put("type", a1);
+		int[] a2 = null;
+		if (emotion != null && !"".equals(emotion)) {
+			String[] str1 = emotion.replaceAll(",", " ").trim().split(" ");
+			a2 = new int[str1.length];
+			for (int i = 0; i < str1.length; i++) {
+				a2[i] = Integer.parseInt(str1[i]);
+			}
+		}
+		map.put("emotion", a2);
+		String[] str3 = null;
+		if (keywords != null) {
+			str3 = keywords.trim().split(" ");
+		}
+		map.put("keywords", str3);
+		map.put("pageNo", pageNo);
+		map.put("pageSize", pageSize);
+		data = relatedNewsDao.getRelatedInterface(map);
+		AtData ad = new AtData();
+		ad.setTotal(data.size());
+		ad.setData(data);
+		AtTotal at = new AtTotal();
+		at.setData(ad);
+		at.setMessage("查询成功");
+		at.setStatus(1);
+		System.out.println("data=" + data.size());
+		this.objectToJson(at);
+
+		// List<ArticleInfo> data = new ArrayList<ArticleInfo>();
+		// Map<String, Object> map = new HashMap<String, Object>();
+		// SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		// if(startTime!=null && !"".equals(startTime)){
+		// startTime = java.net.URLDecoder.decode(startTime, "utf-8"); // url转码
+		// }
+		// map.put("release_time", startTime);
+		// if(endTime!=null && !"".equals(endTime)){
+		// endTime = java.net.URLDecoder.decode(endTime, "utf-8"); // url转码
+		// }
+		// System.out.println("startTime=" + startTime + "endTime" + endTime);
+		// map.put("record_time", endTime);
+		// int[] a1 = null;
+		// if(infoType != null){
+		// String[] str = infoType.replaceAll(","," ").trim().split(" ");
+		// a1 = new int[str.length];
+		// for(int i = 0; i < str.length; i++){
+		// a1[i] = Integer.parseInt(str[i]);
+		// }
+		// }
+		// map.put("type", a1);
+		// int[] a3 = null;
+		// if(clus_ids != null){
+		// String[] str2 = clus_ids.replaceAll(","," ").trim().split(" ");
+		// a3 = new int[str2.length];
+		// for(int i = 0; i < str2.length; i++){
+		// a3[i] = Integer.parseInt(str2[i]);
+		// }
+		// }
+		// map.put("clus_ids", a3);
+		// int[] a2 = null;
+		// if(emotion != null && !"".equals(emotion)){
+		// String[] str1 = emotion.replaceAll(","," ").trim().split(" ");
+		// a2 = new int[str1.length];
+		// for(int i = 0; i < str1.length; i++){
+		// a2[i] = Integer.parseInt(str1[i]);
+		// }
+		// }
+		// map.put("emotion", a2);
+		// String[] str3 = null;
+		// if(keywords != null){
+		// str3 = keywords.trim().split(" ");
+		// }
+		// map.put("keywords", str3);
+		// map.put("pageNo", pageNo);
+		// map.put("pageSize", pageSize);
+		// data = relatedNewsDao.getRelatedInterface(map);
+		// AtData ad = new AtData();
+		// ad.setTotal(data.size());
+		// ad.setData(data);
+		// AtTotal at = new AtTotal();
+		// at.setData(ad);
+		// at.setMessage("查询成功");
+		// at.setStatus("1");
+		// System.out.println("data=" + data.size());
+		// this.objectToJson(at);
+	}
+
+	/**
+	 * 饼图数量渲染
+	 * 
+	 * @throw Exception
+	 */
+	public void getEmotionCount() throws Exception {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("application/json;charset=UTF-8");
+		System.out.println("clus_ids=" + clus_ids + "zero_id=" + zero_id
+				+ "first_classify_id=" + first_classify_id
+				+ "second_classify_id=" + second_classify_id + "startTime="
+				+ startTime + "endTime=" + endTime + "keywords=" + keywords
+				+ "pageNo=" + pageNo + "pageSize=" + pageSize);
+		Date date = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		List<AtCount> data = new ArrayList<AtCount>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (startTime != null && !"".equals(startTime)) {
+			startTime += " 00:00:00";
+		} else {
+			startTime = format.format(new Date(
+					date.getTime() - 24 * 3600000 * 3));
+		}
+		if (endTime != null && !"".equals(endTime)) {
+			endTime += " 23:59:59";
+		} else {
+			endTime = format.format(date);
+		}
+		map.put("hot_id", hot_id);
+		map.put("clus_ids", clus_ids);
+		map.put("zero_id", zero_id);
+		map.put("first_classify_id", first_classify_id);
+		map.put("second_classify_id", second_classify_id);
+		map.put("release_time", startTime);
+		map.put("record_time", endTime);
+		map.put("whichChart", whichChart);
+		Long[] a1 = null;
+		if (infoType != null) {
+			String[] str = infoType.replaceAll(",", " ").trim().split(" ");
+			a1 = new Long[str.length];
+			for (int i = 0; i < str.length; i++) {
+				a1[i] = Long.parseLong(str[i]);
+			}
+		}
+		System.out.println(a1);
+		map.put("type", a1);
+		int[] a2 = null;
+		if (emotion != null && !"".equals(emotion)) {
+			if (emotion.contains("10,")) {
+				emotion = emotion.replace("10,", "");
+				map.put("emotions", "10");
+			}
+			String[] str1 = emotion.replaceAll(",", " ").trim().split(" ");
+			a2 = new int[str1.length];
+			for (int i = 0; i < str1.length; i++) {
+				a2[i] = Integer.parseInt(str1[i]);
+			}
+		}
+		map.put("emotion", a2);
+		
+		if (spread != null && !"".equals(spread)) {
+			map.put("spread", spread);
+		}
+		
+		String[] str3 = null;
+		if (keywords != null) {
+			str3 = keywords.trim().split(" ");
+		}
+		map.put("keywords", str3);
+		map.put("pageNo", pageNo);
+		map.put("pageSize", pageSize);
+		data = relatedNewsDao.getEmotionCount(map);
+		
+		System.out.println("data=" + data.size());
+		this.arrayToJson(data);
+	}
+	
+	/**
+	 * 饼图数量渲染 (es)
+	 * 
+	 * @throw Exception
+	 */
+	public String getEmotionCount2() throws Exception {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("application/json;charset=UTF-8");
+		Date date = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		List<AtCount> data = new ArrayList<AtCount>();
+		Map<String, String> map = new HashMap<String, String>();
+		
+		if (hot_id != null) {
+			map.put("HOT_ID", hot_id.toString());
+		}
+		if (zero_id != null) {
+			map.put("ZERO_ID", zero_id.toString());
+		}
+		if (first_classify_id != null) {
+			map.put("FIRST_CLASSIFY_ID", first_classify_id.toString());
+		}
+		if (second_classify_id != null) {
+			map.put("SECOND_CLASSIFY_ID", second_classify_id.toString());
+		}
+		if (infoType != null && !"".equals(infoType)) {
+			map.put("INFO_TYPE", infoType);
+		}
+		if (clus_ids != null) {
+			map.put("CLUS_IDS", clus_ids.toString());
+		}
+		if (emotion != null && !"".equals(emotion)) {
+			map.put("EMOTION", emotion);
+		}
+		if (spread != null && !"".equals(spread)) {
+			map.put("SPREAD", spread);
+		}
+		if (keywords != null && !"".equals(keywords)) {
+			map.put("KEYWORDS", keywords);
+		}
+		if (startTime != null && !"".equals(startTime)) {
+			startTime += "";
+		} else {
+			startTime = format.format(new Date(
+					date.getTime() - 24 * 3600000 * 3));
+		}
+		if (endTime != null && !"".equals(endTime)) {
+			endTime += "";
+		} else {
+			endTime = format.format(date);
+		}
+		map.put("RELEASE_TIME", startTime);
+		map.put("RECORD_TIME", endTime);
+		
+//		map.put("zero_id", zero_id);
+//		map.put("first_classify_id", first_classify_id);
+//		map.put("second_classify_id", second_classify_id);
+		map.put("whichChart", whichChart.toString());
+		
+		String ip = "192.168.60.40";
+		int port = 9300;
+//		String indexName = "tab_iopm_article_info";
+		ESSearchUtils searchUtil = new ESSearchUtils(ip, port);
+		
+		/**1.通过es查询到相关数据*/
+//		List<Object> list = searchUtil.search(indexName, map, pageNo.intValue(), pageSize);
+		data = searchUtil.searchEmotionCount(map);
+		
+		System.out.println("data=" + data.size());
+		this.arrayToJson(data);
+		return NONE;
+	}
+	
+	/**
+	 * 通过关键字获取舆情信息
+	 * 
+	 * @throws Exception
+	 */
+	@SuppressWarnings("static-access")
+	public void getRelatedNewsArray() throws Exception {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("application/json;charset=UTF-8");
+		String url = "http://192.168.60.38:8001/hotspot_al/interface/getCluesDataSearchInfo";
+		String listStr = "";
+		if (infoType != null && !"".equals(infoType)) {
+			url += "?infoType=" + infoType;
+		}
+		if (emotion != null && !"".equals(emotion)) {
+			url += "?emotion=" + emotion;
+		}
+		listStr = getHttpClientInfo(url);
+		response.getWriter().write(listStr);
+		System.out.println("listStr=" + listStr + "infoType=" + infoType);
+	}
+
+	/**
+	 * 获得全部一级分类
+	 * 
+	 * @return null
+	 */
+	public String getAllFirst() throws Exception {
+		
+		List<IopmFirst> list = relatedNewsDao.getAllFirstCla();
+		this.arrayToJson(list);
+		return null;
+	}
+	
+	/**
+	 * 添加用户行为
+	 * @throws Exception
+	 */
+	public String addUserAct() throws Exception {
+		UserAct userAct = new UserAct();
+		userAct.setAction_type(action_type);
+		userAct.setUser_id(user_id);
+		userAct.setMsg_id(msg_id);
+		
+		relatedNewsDao.addUserAct(userAct);
+		return null;
+		
+	}
+	
+	/**
+	 * 获取采纳情况
+	 * @return
+	 * @throws Exception
+	 */
+	public String getAdoptCount() throws Exception {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("application/json;charset=UTF-8");
+		Map map = new HashMap();
+		map.put("user_id", user_id);
+		map.put("msg_id", msg_id);
+		map.put("action_type",301);
+		int adopt = relatedNewsDao.getAdoptCount(map);
+		map.put("action_type",302);
+		int notAdopt = relatedNewsDao.getAdoptCount(map);
+		String listStr = "";
+		listStr = String.valueOf(adopt)+";"+String.valueOf(notAdopt);
+		listStr = "{adopt:" + adopt + ",notAdopt:" + notAdopt + "}";
+		this.objectToJson(listStr);
+		return null;
+	}
+	
+	/**根据一级分类id获得二级分类集合
+	 * 
+	 * @return null
+	 */
+	public String getAllSecond() throws Exception {
+		List<IopmClassify> list = relatedNewsDao.getAllSecondCla(zero_id);
+		this.arrayToJson(list);
+		return null;
+	}
+
+	/**
+	 *根据二级分类id获得三级分类集合
+	 * 
+	 * @return null
+	 */
+	public String getAllThird() throws Exception {
+		System.out.println(first_classify_id);
+		List<IopmClassifyTwo> list = relatedNewsDao
+				.getAllThirdCla(first_classify_id);
+		this.arrayToJson(list);
+		return null;
+	}
+
+	/**
+	 *获取微信接口信息
+	 * 
+	 * @throws Exception
+	 */
+	public void getLetterNews() throws Exception {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("application/json;charset=UTF-8");
+		System.out.println(startTime + "  " + endTime);
+		String url = "http://localhost:8080/IOPM/RelatedNews/RelatedNewsAction_getLetterInterface.action";
+		if (startTime == null)
+			startTime = "";
+		if (endTime == null)
+			endTime = "";
+		System.out.println("到了++++++" + startTime + endTime);
+		url += "?sTime=" + startTime + "&eTime=" + endTime + "&pageNo="
+				+ pageNo + "&pageSize=" + pageSize;
+		String letterList = "";
+		System.out.println(url);
+		letterList = getHttpClientInfo(url);
+		response.getWriter().write(letterList);
+		System.out.println("letterList=" + letterList);
+	}
+
+	/**
+	 * 微信信息接口
+	 * 
+	 * @throw Exception
+	 */
+	public void getLetterInterface() throws Exception {
+		List<Blog> list = new ArrayList<Blog>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (startTime != null && !"".equals(startTime))
+			startTime = java.net.URLDecoder.decode(startTime, "utf-8"); // url转码
+		if (endTime != null && !"".equals(endTime))
+			endTime = java.net.URLDecoder.decode(endTime, "utf-8"); // url转码
+		System.out.println("pageNo=" + pageNo + "pageSize=" + pageSize);
+		map.put("release_time", startTime);
+		map.put("record_time", endTime);
+		map.put("pageNo", pageNo);
+		map.put("pageSize", pageSize);
+		map.put("info_type", 2);
+		list = relatedNewsDao.getBlogInterface(map);
+		int count = relatedNewsDao.getBlogCount(map);
+		BlogCount bc = new BlogCount();
+		bc.setCount(count);
+		bc.setData(list);
+		this.objectToJson(bc);
+	}
+
+	/**
+	 * 获取微博接口信息
+	 * 
+	 * @throws Exception
+	 */
+	public void getBlogrNews() throws Exception {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("application/json;charset=UTF-8");
+		String url = "http://localhost:8080/IOPM/RelatedNews/RelatedNewsAction_getBlogInterface.action";
+		if (startTime == null)
+			startTime = "";
+		if (endTime == null)
+			endTime = "";
+		System.out.println("到了++++++" + startTime + endTime);
+		url += "?sTime=" + startTime + "&eTime=" + endTime + "&pageNo="
+				+ pageNo + "&pageSize=" + pageSize;
+		String blogList = "";
+		blogList = getHttpClientInfo(url);
+		response.getWriter().write(blogList);
+		System.out.println("blogList=" + blogList);
+	}
+
+	/**
+	 * 微博信息接口
+	 * 
+	 * @throw Exception
+	 */
+	public void getBlogInterface() throws Exception {
+		List<Blog> list = new ArrayList<Blog>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (startTime != null && !"".equals(startTime))
+			startTime = java.net.URLDecoder.decode(startTime, "utf-8"); // url转码
+		if (endTime != null && !"".equals(endTime))
+			endTime = java.net.URLDecoder.decode(endTime, "utf-8"); // url转码
+		System.out.println("pageNo=" + pageNo + "pageSize=" + pageSize);
+		map.put("release_time", startTime);
+		map.put("record_time", endTime);
+		map.put("pageNo", pageNo);
+		map.put("pageSize", pageSize);
+		map.put("info_type", 3);
+		list = relatedNewsDao.getBlogInterface(map);
+		int count = relatedNewsDao.getBlogCount(map);
+		BlogCount bc = new BlogCount();
+		bc.setCount(count);
+		bc.setData(list);
+		this.objectToJson(bc);
+	}
+
+	/**
+	 *信息总量排名
+	 * 
+	 * @throws Exception
+	 */
+	public void getTotal() throws Exception {
+		System.out.println("进来了");
+		List<Article> list = new ArrayList<Article>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", pageNo);
+		map.put("zero_id", zero_id);
+		map.put("first_classify_id", first_classify_id);
+		map.put("second_classify_id", second_classify_id);
+		list = relatedNewsDao.getTotalArticle(map);
+		this.arrayToJson(list);
+	}
+
+	/**
+	 *负面信息总量排名
+	 * 
+	 * @throws Exception
+	 */
+	public void getNegativeTotal() throws Exception {
+		List<Article> list = new ArrayList<Article>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", pageNo);
+		map.put("zero_id", zero_id);
+		map.put("first_classify_id", first_classify_id);
+		map.put("second_classify_id", second_classify_id);
+		list = relatedNewsDao.getNegativeArticle(map);
+		this.arrayToJson(list);
+	}
+
+}

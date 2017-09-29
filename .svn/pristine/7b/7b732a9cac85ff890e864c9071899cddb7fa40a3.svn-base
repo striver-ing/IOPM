@@ -1,0 +1,12 @@
+package cn.com.pattek.Subject.action;
+
+import org.springframework.stereotype.Controller;
+
+import cn.com.pattek.core.struts2.BaseAction;
+
+@Controller("SubjectAction")
+public class SubjectAction extends BaseAction{
+
+
+
+}

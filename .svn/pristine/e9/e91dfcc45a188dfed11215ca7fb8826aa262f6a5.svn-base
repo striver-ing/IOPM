@@ -1,0 +1,40 @@
+package cn.com.pattek.NetHotSpot.entity;
+
+public class Hot {
+	private Long id;
+    private String kw; //标题
+    private String kg; //关键字
+    private Long hot; //热度
+    private Long weight;  //相关度
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Long getWeight() {
+		return weight;
+	}
+	public void setWeight(Long weight) {
+		this.weight = weight;
+	}
+	public String getKw() {
+		return kw;
+	}
+	public void setKw(String kw) {
+		this.kw = kw;
+	}
+	public String getKg() {
+		return kg;
+	}
+	public void setKg(String kg) {
+		this.kg = kg;
+	}
+	public Long getHot() {
+		return hot;
+	}
+	public void setHot(Long hot) {
+		this.hot = hot;
+	}
+    
+}
