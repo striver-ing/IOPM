@@ -210,6 +210,20 @@ body {
 	border-radius: 5px;
 	background-color: #369CDA;
 }
+
+.header #addSpec {
+	position: absolute;
+    bottom: 1px;
+    left: 50%;
+    border: none;
+    height: 30px;
+    width: 100px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #369CDA;
+}
 .header #key {
 	width: 150px;
 	border:1px solid #ccc;
@@ -673,12 +687,12 @@ body {
 	width: 30%;
 }
 .review.checkMask form{
-	width: 75%;
-	height: 735px;
+	width: 40%;
+	height: auto;
 }
-.checkMask .maskBox{
+/* .checkMask .maskBox{
 	height: 540px;
-}
+} */
 .checkMask form p>input,.checkMask form p>select {
 	width: 70%;
 	display: inline-block !important;
@@ -1217,4 +1231,163 @@ body {
 }
 #marquee-b span {
 	margin-left:10px;
+}
+
+.Times li {
+	width: 100%;
+	margin: 10px 20px;
+}
+
+.Times li input {
+	padding: 2px 5px;
+	line-height: 20px;
+	border: 1px solid #ccc;
+	font-size: 12px;
+	border-radius: 5px;
+	width:70%;
+}
+.hida span {
+	float: left;
+	margin-left:20px;
+}
+.hidc {
+	width: 70.4%;
+	margin: 10px 0;
+	margin-left:82px;
+	border: 1px solid #ccc;
+}
+.hidc li {
+	text-align: left;
+	position: relative;
+	padding-left: 46px;
+	min-height: 30px;
+}
+.hidc li b{
+	position: absolute;
+	left: 0; top: 5px;
+}
+
+.hidc li span {
+	display: inline-block;
+	background-color: #029ae9;
+	color: #fff;
+	position: relative;
+	margin: 5px;
+	padding: 0 8px;
+	border-radius: 2px;
+}
+.hidc li span i {
+	position: absolute;
+	top: -5px;
+	right: -5px;
+	width: 10px;
+	height: 10px;
+	background: url(../imgs/close.png) no-repeat;
+	background-size: cover;
+	cursor: pointer;
+	transition: all .5s;
+	display: none;
+}
+.hidc li span i:hover{
+	transform: scale(1.6);
+}
+.hidc li div span:hover i{
+	display: block;
+}
+
+.bounceInUp .span {
+	margin-left: 8%;
+	float: left;
+}
+.cruxUp {
+	margin-left:20px;
+}
+.checkMask .crux {
+	width: 74%;
+	height: 120px;
+	margin: -20px 0 0 62px;
+}
+.crux li {
+	width: 48px;
+	float: left;
+	height: 20px;
+	border:1px solid #ccc;
+	border-bottom:none;
+	border-radius: 5px 5px 0 0;
+	padding: 0 5px;
+	cursor: pointer;
+}
+.bg {
+	background-color: #029ae9;
+	color:#fff;
+}
+.crux textarea {
+	float: left;
+	width: 100%;
+	height: 100px;
+	margin: 0;
+	margin-bottom: 5px;
+	border: 1px solid #ccc;
+}
+
+.textB {
+	display:none;
+}
+/*锟睫革拷*/
+.hidd {
+	width: 72.5%;
+	height: 100px;
+	margin-left: 27.5%;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.hidd li {
+	float: left;
+	height: 20px;
+	line-height: 20px;
+	background-color: lawngreen;
+	margin: 2px;
+}
+
+.hidd span {
+	float: left;
+}
+
+.hidcc {
+	width: 70%;
+	margin: 10px 0;
+	margin-left:26.5%;
+	border: 1px solid #ccc;
+}
+
+.hidcc span {
+	display: inline-block;
+	background-color: lawngreen;
+	position: relative;
+	margin: 5px;
+	padding: 0 8px;
+}
+.hidcc i {
+	position: absolute;
+	top: -6px;
+	right: 4px;
+	cursor:pointer;
+	width: 5px;
+	height: 5px;
+}
+.hidcc li {
+	text-align: left;
+}
+
+.hiddd {
+	width: 70%;
+	margin: 10px 0;
+	margin-left:26.5%;
+	border: 1px solid #ccc;
+}
+
+.zbh,.bbh{
+	padding: 4px;
+	overflow: hidden;
 }

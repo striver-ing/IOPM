@@ -163,7 +163,7 @@ public class BaseAction implements Action, java.io.Serializable, Validateable,
 	protected void objectToJson(Object pag) throws IOException {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=UTF-8");// 解决中文乱码
-		response.getWriter().write(JsonUtils.fromObject(pag));
+		response.getWriter().write(JsonUtils.fromObject(pag).replace("null", "\"\""));
 		// log.info(JsonUtils.fromObject(pag));
 	}
 

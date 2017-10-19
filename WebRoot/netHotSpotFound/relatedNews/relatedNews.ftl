@@ -159,7 +159,8 @@
 										<li><input type="checkbox" class="box" value="3" checked="checked">中立</li>
 										<li><input type="checkbox" class="box" value="3" checked="checked">未知</li>
 									</ul>
-									<input type="button" id="sub" onClick="javascript:getRelated(1);" value="提  交"/>
+									<input type="button" id="sub" onClick="javascript:getRelated(1);" value="查  询"/>
+									<input type="button" id="addSpec" value="设为专题"/>
 								</fieldset>
 							</form>
 						</div>
@@ -191,9 +192,9 @@
 							</ul>
 						</div>
 						<div class="con">
-							<div class="img-a">
+							<!--<div class="img-a">
 								<img src="/IOPM/netHotSpotFound/relatedNews/images/loding.png"/>
-							</div>
+							</div>-->
 						</div>
 			    	</div>
 					<!-- 侧边栏 -->
@@ -416,163 +417,55 @@
 	<div class="checkMask review">
 		<div>
 			<form action="" method="post" class=" animated bounceInDown">
-				<div class="MaskTop">添加专题</div>
-				<em class="fa fa-times"></em>
-				<div class="maskBox">
-					<div class="top">
-						<div class="maskHeader">
-							<h4>基本信息</h4>
-						</div>
-						<p><label for="siteName">专题名称:</label>  <input class="form-control" type="text" name="siteName" id="siteName" placeholder="请输入站点名称" value=""/>
-							<i class="fa fa-star"></i></p>
-						<p><label for="inOut">专题分类:</label>
-							<select class="form-control" name="inOut" id="inOut">
-								<option value="">境内</option>
-								<option value="">境外</option>
-							</select>
-							<i class="fa fa-star"></i>
-						</p>
-						<p><label for="doMain">开始时间:</label>  <input class="form-control" type="text" name="startTime" id="startTime" placeholder="请输入开始"/>
-							<i class="fa fa-star"></i></p>
-						<p><label for="doMain">结束时间:</label>  <input class="form-control" type="text" name="endTime" id="endTime" placeholder="请输入结束时间"/>
-							<i class="fa fa-star"></i></p>
-						<p><label for="inOut" >查看权限:</label>
-							<select class="form-control" name="inOut" id="inOut"  >
-								<option value="">境内</option>
-								<option value="">境外</option>
-							</select>
-							<i class="fa fa-star"></i>
-						</p>
-						<p><label for="inOut">专题状态:</label>
-							<input type="radio" name="spec" value="已发生" />已发生
-							<span class="marSpan"></span>
-							<input type="radio" name="spec" value="预埋" />预埋
-						</p>
-						<p><label for="kw" style="text-indent: 1em;">关键词:</label>
-						<div class="kw">
-							<div class="kwTop">
-								<div class="btns">
-									<span class="model advs select">高级模式</span>
-									<span class="model coms">普通模式</span>
-								</div>
-								<div class="operat pull-right" style="margin-top: -3px;">
-									<input type="button" value="历史" id="history" />
-									<input type="button" value="导出" id="export" />
-									<i class="fa fa-question"></i>
-								</div>
-							</div>
-							<div class="kwBody">
-								<!--高级模式-->
-								<div class="advsMode">
-									<textarea class="advText" name="" id=""></textarea>
-								</div>
-								<!--普通模式-->
-								<div class="comsMode">
-									<div class="comsText keyword">
-										<div class="col-sm-12 text">
-											<div class="">
-												<p><input class="form-control" type="text" name="taskAnd" id="taskAnd" placeholder="请输入必须包含关键词"/></p>
-												<!--<p><input class="form-control" type="text" name="taskOr" id="taskOr" placeholder="请输入包含一个关键词"/></p>-->
-												<p><input class="form-control" type="text" name="taskNot" id="taskNot" placeholder="请输入不能包含关键词"/></p>
-												<i class="fa fa-plus"></i>
-											</div>
-										</div>
-
-									</div>
-								</div>
-								<!--历史记录-->
-								<div class="history">
-									<div class="textHead">历史关键词:</div>
-									<div class="text">
-										<div class="txtDiv">
-											还没有配置关键词
-										</div>
-										<div class="txtDiv">
-											<div class="pull-left">
-												<span>(1)</span>
-												关键词：
-												<span>(谁最想扳倒中国)</span>
-											</div>
-											<div class="pull-right">
-												配置时间：<span>2016-12-30 11:16:42</span>
-											</div>
-										</div>
-										<div class="txtDiv">
-											<div class="pull-left">
-												<span>(1)</span>
-												关键词：
-												<span>(谁最想扳倒中国)</span>
-											</div>
-											<div class="pull-right">
-												配置时间：<span>2016-12-30 11:16:42</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!--帮助-->
-								<div class="help">
-									<div class="textHead">关键词配置帮助：</div>
-									<div class="text">
-										高级模式支持关键词以表达式形式配置，表达式由空格、逗号、减号、乘号和分号构成。 空格“ ”表示“与”，逗号“,”表示“或”，减号“-”表示“非”，乘号“*”表示“积”。每组关键词只能包含一个“*”和“-”。多组关键词用分号“;”分隔。符号不区分全角半角。 例(山西,太原)*(反腐,贪污 腐败)-(楼盘);（系统性塌方式腐败）为两组关键词，表示包含关键词（山西 反腐）或（山西贪污 腐败）或（太原反腐）或（太原贪污 腐败）或（系统性塌方式腐败），同时排除关键词（楼盘）。
-									</div>
-								</div>
-							</div>
-						</div>
-						</p>
-					</div>
-					<div class="bottom">
-						<div class="maskHeader">
-							<h4>扩展信息</h4>
-							<div class="right pull-right">
-								<span>展开 </span>
-								<i class="fa fa-arrow-down"></i>
-							</div>
-						</div>
-						<div class="maskBody">
-							<div style="height: auto; overflow: hidden;">
-								<label style="margin-top: 0; float: left;">专题描述:</label>
-								<textarea class="form-control inlblock"></textarea>
-							</div>
-							<div class="files">
-								<label>相关图片:</label>
-								<img src="" alt="" />
-									<span class="btn btn-primary fileinput">
-	                                    <span>选择文件</span>
-	                                    <input type="file" name="" multiple="">
-                                	</span>
-								<button type="button" class="btn btn-primary" id="clearImg">清空</button>
-							</div>
-							<div>
-								<label style="text-indent: 3em;">人:</label>
-								<input class="form-control" type="text" placeholder="人物关键词，可配置多组。组内关键词用'空格'分隔，表示与的关系；组与组之间用'分号(;)'分隔，表示或的关系。"/>
-							</div>
-							<div>
-								<label style="text-indent: 3em;">地:</label>
-								<input class="form-control" type="text" placeholder="人物关键词，可配置多组。组内关键词用'空格'分隔，表示与的关系；组与组之间用'分号(;)'分隔，表示或的关系。"/>
-							</div>
-							<div>
-								<label style="text-indent: 3em;">事:</label>
-								<input class="form-control" type="text" placeholder="人物关键词，可配置多组。组内关键词用'空格'分隔，表示与的关系；组与组之间用'分号(;)'分隔，表示或的关系。"/>
-							</div>
-							<div>
-								<label style="text-indent: 3em;">物:</label>
-								<input class="form-control" type="text" placeholder="人物关键词，可配置多组。组内关键词用'空格'分隔，表示与的关系；组与组之间用'分号(;)'分隔，表示或的关系。"/>
-							</div>
-							<div>
-								<label style="text-indent: 2em;">组织:</label>
-								<input class="form-control" type="text" placeholder="人物关键词，可配置多组。组内关键词用'空格'分隔，表示与的关系；组与组之间用'分号(;)'分隔，表示或的关系。"/>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="btnMask taskBtn">
-					<button class="btn btn-primary" type="submit" value="确定">确定</button>
-					<span></span>
-					<button class="btn btn-danger" value="取消">取消</button>
-				</div>
+				 <div class="MaskTop">添加专题</div>
+                <em class="fa fa-times"></em>
+                <div class="maskBox">
+                    <ul class="Times clearfix">
+                        <li>名称：<input type="text" style="margin-left:26px;" id="userC" placeholder="请输入名称"/></li>
+                        <li class="lefttd">起始时间：
+                            <input type="text" id="startTime" class="input sel_event_stime hasDatepicker" placeholder="请输入开始时间"></li>
+                        <li class="lefttd">结束时间：
+                            <input type="text" id="endTime" class="input sel_event_etime hasDatepicker" placeholder="请输入结束时间"></li>
+                    </ul>
+                    <div class="cruxUp">
+                        <span class="span">关键词：</span>
+                        <div class="crux">
+                            <ul>
+                                <li class="bg">包含</li>
+                                <!--<li>至少包含一个</li>-->
+                                <li>不包含</li>
+                            </ul>
+                            <textarea class="textA" placeholder="关键词之间空格分割表示与， 回车、逗号分割表示或。"></textarea>
+                            <textarea class="textB" placeholder="关键词之间空格分割表示与， 回车、逗号分割表示或。"></textarea>
+                        </div>
+                    </div>
+                    <div class="hida">
+                        <span class="span">预览：</span>
+                        <div class="hidc">
+                            <ul>
+                                <!--<li class="qbh">全包含：</li>-->
+                                <li class="zbh">
+                                    <b>　包含：</b>
+                                    <div class="zbhBox"></div>
+                                </li>
+                                <li class="bbh">
+                                    <b>不包含：</b>
+                                    <div class="bbhBox"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="btnMask taskBtn">
+                    <a href="../../IOPM/subject/report/report.ftl"><button class="btn btn-primary" type="button" value="确定" id="saa">确定</button></a>
+                    <span></span>
+                    <button class="btn btn-danger" value="取消">取消</button>
+                </div>
 			</form>
 		</div>
 	</div>
+	
+	
 	<!--删除弹出层-->
 	<div class="checkMask delete">
 		<div>

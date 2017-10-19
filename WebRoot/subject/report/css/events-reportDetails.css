@@ -1,6 +1,28 @@
+
 .analyDiv{
 	height: auto;
 	overflow: hidden;
+	position:relative
+}
+
+#lenovo {
+	width: 58%;
+    height: 70px;
+    overflow: hidden;
+    position: absolute;
+    left: 97px;
+    top: 33px;
+    display: none;
+    border: 1px solid #ccc;
+    border-radius:5px;
+    z-index:100;
+    background:#fff;
+}
+#lenovo li{
+	width:100%;
+	height:30px;
+	line-height:30px;
+	cursor: pointer;
 }
 .analyDiv .srhText{
 	width: 60%;
@@ -11,9 +33,11 @@
 	border-radius: 5px;
 	background: #E8EDF3;
 	margin: 10px 0;
+	position: relative;
 }
 .analyDiv .events dl{
 	line-height: 50px;
+	padding-right:20px;
 }
 .analyDiv .events dt{
 	display: inline-block;
@@ -38,7 +62,13 @@
 	color: #fff;
 	background: #0089D0;
 }
-
+#jt {
+    position: absolute;
+    top:10px;
+    right:5px;
+    width:32px;
+    height:32px;
+}
 
 .ibox{ zoom:1;}
 .ibox:after {visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0}
@@ -54,10 +84,10 @@
 .table .th .span .up,.table .th .span .down{ width:9px; height:5px; display:block;position:absolute; }
 .table .span1{ width:39%;}
 .table .span2{ width:22%;}
-.table .td,.table td{ zoom:1; padding:5px 0; height:20px; line-height:20px; color:#666;}
+.table .td,.table td{ zoom:1; padding:5px 0; height:30px; line-height:30px; color:#666;}
 .table .td:after {visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0}
 .table .td2,.table .tr td{ background:#f7f7f7;}
-.table .td span{ display:block; float:left; height:20px; overflow:hidden; text-align:center; /* width: 24%; */}
+.table .td span{ display:block; float:left; height:30px; overflow:hidden; text-align:center; /* width: 24%; */}
 .table .td span em{ margin-left:15%;}
 
 /*case css*/
@@ -877,11 +907,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 	line-height:30px;
 }
 #sidebar-W ul li:nth-child(1){
-	width: 10%;
+	width: 8%;
 }
 #sidebar-W ul li:nth-child(2){
-	/*text-align: left;*/
-	width: 40%;
+	text-align: left;
+	width: 22%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
@@ -889,11 +919,29 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 	width: 18%;
 }
 #sidebar-W ul li:nth-child(4){
-	width: 32%;
+	width: 22%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align:left;
+}
+#sidebar-W ul li:nth-child(5){
+	text-align: left;
+	width: 10%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-
+#sidebar-W ul li:nth-child(6){
+	text-align: left;
+	width: 10%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#sidebar-W ul li:nth-child(7){
+	text-align: left;
+	width: 10%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 
 #sidebar-C ul {
 	width: 100%;
@@ -924,20 +972,34 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 	line-height:30px;
 }
 #sidebar-C ul li:nth-child(1){
-	width: 10%;
+	width: 8%;
 }
 #sidebar-C ul li:nth-child(2){
-	width: 40%;
+	width: 26%;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	text-align:left;
 }
 #sidebar-C ul li:nth-child(3){
-	width: 18%;
+	width: 20%;
 }
 #sidebar-C ul li:nth-child(4){
-	width: 32%;
+	width: 26%;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	text-align:left;
+}
+#sidebar-C ul li:nth-child(5){
+	width: 10%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align:left;
+}
+#sidebar-C ul li:nth-child(6){
+	width: 10%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align:left;
 }
 
 .jb_con04 {  width:100%; margin:0px auto; border:none; box-sizing:border-box;}
@@ -1115,4 +1177,43 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 .zbh,.bbh{
 	padding: 4px;
 	overflow: hidden;
+}
+
+.loading {
+	display:none;
+	background:#fff;
+	position: absolute;
+	top:0;
+	left:0;
+}
+.loadingtext {
+	width:100px;
+	height:32px;
+	margin-left:48%;
+	margin-top:7%;
+}
+.loadingtext img {
+	width:32px;
+	height:32px;
+	
+}
+.loadingtext span {
+	height:32px;
+	color:#000;
+}
+.clearfix {
+	content:'';
+	height:0;
+	line-height:0;
+	overflow:hidden;
+	clear: both;     
+    visibility: hidden;
+}
+@keyframes zhuan {
+    0%{
+        transform:rotate(0deg);
+    }
+    100%{
+        transform:rotate(360deg);
+    }
 }

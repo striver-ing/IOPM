@@ -19,8 +19,8 @@
     <link rel="stylesheet" href="/IOPM/css/select2.css"/>
     <link rel="stylesheet" href="/IOPM/css/checkmask.css"/>
     <!--时间-->
+    <link rel="stylesheet" href="/IOPM/css/bootstrap-datepicker/css/datepicker.css"/>
 
-	<link rel="stylesheet" href="/IOPM/css/bootstrap-datepicker/css/datepicker.css/>
     <link rel="stylesheet" href="/IOPM/css/scrollbar/jquery.mCustomScrollbar.min.css"/>
     <!-- ================== END BASE CSS STYLE ================== -->
     <link rel="stylesheet" href="/IOPM/netHotSpotFound/theme/css/theme.css"/>
@@ -62,7 +62,7 @@
                             <!--二级分类-->
                         </div>
                         <div class="submenu">  
-                         	<div class="scrollBox">
+                            <div class="scrollBox">
                                 <div class="bar"></div>
                             </div>                        
                             <ul class="submenu-z">
@@ -280,12 +280,10 @@
 <!-- ================== BEGIN private JS ================== -->
 
 
-<!-- <script>
-    $(document).ready(function () {
+ <script>    $(document).ready(function () {
         App.init();
     });
-</script> -->
-<script>
+</script> ><script>
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
         i[r] = i[r] || function () {

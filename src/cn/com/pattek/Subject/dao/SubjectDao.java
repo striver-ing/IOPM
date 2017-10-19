@@ -1,15 +1,65 @@
 ﻿package cn.com.pattek.Subject.dao;
 
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.com.pattek.KeyWords.entity.IopmKeyEntity;
+import cn.com.pattek.KeyWords.entity.IopmKeyInfoEntity;
 import cn.com.pattek.Subject.entity.TabIopmSubject;
 
 public interface SubjectDao {
 
-
-
+	/**
+	 * 通过id查询主题名称
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public String selectTitle(Long id) throws Exception;
+	
+	/**
+	 * 根据id删除专题
+	 * @param <K>
+	 * 
+	 * @param 
+	 * @return
+	 * @throws Exception 
+	 */
+	public boolean delectSubject(Long id) throws Exception;
+	
+	/**
+	 * 修改专题
+	 * @param <K>
+	 * 
+	 * @param 
+	 * @return
+	 * @throws Exception 
+	 */
+	public boolean updateSubjectOne(Map map) throws Exception;
+	/**
+	 * 查询专题所有信息
+	 * @param <K>
+	 * @param 
+	 * @return
+	 * @throws Exception 
+	 */
+   public List<TabIopmSubject> selectSubjectAll(Map map) throws Exception;
+   //查询专题总数
+  public Integer selectTotalCount() throws Exception;
+	/**
+	 * 查出类别ID和类别名称
+	 * @param <K>
+	 * 
+	 * @param 
+	 * @return
+	 * @throws Exception 
+	 */
+	public List<Map<String ,Object>> selectClue() throws Exception;
+	
+	
+	public  List<Map<String ,Object>> selectZeroIdAndName() throws Exception;
 	/**
 	 * 新闻、微信、微博类别的首发信息
 	 * SelectFristTime、SelectSecondTime、SelectThirdTime
@@ -42,15 +92,23 @@ public interface SubjectDao {
 	   * 情感波动概述-总数
 	   */
 	  public Integer SelectNum(String keyWord1) throws Exception;
-		
-		
-	/**
-	 * 分割keyword1
-	 * @return
-	 * @throws Exception
-	 */
-	public StringBuffer splitKeyWord1(String keyWord1) throws Exception;
 	
+	  /**
+	   * 输入SQL语句拼接成在URL地址搜索的语句,返回json的字符串
+	   * @param httpValue
+	   * @param head
+	   * @param keyWord
+	   * @param end
+	   * @return
+	   * @throws Exception
+	   */
+	  public String URLSql(String httpValue,String head,String keyWord,String end) throws Exception;
+	/**
+	 * 简单拼接
+	 * @param keyWord1
+	 * @return
+	 */
+	  public String splitKeyWord1(String keyWord1);
 	/**
 	 * 分割keyword1,并且拼接
 	 * @param head
@@ -60,8 +118,22 @@ public interface SubjectDao {
 	 * @throws Exception
 	 */
 	public String splitKeyWord1(String head,String keyWord1,String end) throws Exception;
-	
-	
+	public String splitKeyWord1(String head,String keyWord1,String end,boolean isNeedContent) throws Exception;
+	/**
+	 * 查询出高峰,然后返回一个字符串
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public String peak(Map map) throws Exception;
+	/**
+	 * 查询出对应sql语句的时间,然后根据wantGet来得出结果集,返回一个有序的LinkedHashMap,其中数据以(2017-09-30=3)格式保存
+	 * @param sql(es搜索使用的语句)
+	 * @param wantGet(想要获得数据的列)
+	 * @return
+	 * @throws Exception
+	 */
+	public LinkedHashMap<String, Integer> dateAndCount(String sql,String wantGet) throws Exception;
 
 	
 	  
@@ -243,4 +315,27 @@ public interface SubjectDao {
 	 * @throws Exception
 	 */
 	public List<Map<String, Object>> getMainstreamMediaAndEmotionBad(String keyWord1) throws Exception;
+
+
+	//影响力趋势使用的
+	/**
+	 * 日期转换为时间
+	 * @param date
+	 * @return
+	 * @throws Exception
+	 */
+	public String date2String(Date date)throws Exception;
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

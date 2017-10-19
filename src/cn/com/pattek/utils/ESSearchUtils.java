@@ -541,13 +541,14 @@ public class ESSearchUtils {
 					String []cluesIds = value.split(",");
 					for (int i = 0; i < cluesIds.length; i++) {
 						if (i == 0){
-							cluesCondition += " and CLUES_IDS like '%" + cluesIds[i] + "%'";
+							cluesCondition += " and (CLUES_IDS like '%" + cluesIds[i] + "%'";
 						}else{
 							cluesCondition += " or CLUES_IDS like '%" + cluesIds[i] + "%'";
 						}
 					}
-					
-					sql += cluesCondition;
+					if (!cluesCondition.equals("")){
+						sql += cluesCondition + ")";
+					}
 				} 	
 			}
 		}
@@ -651,13 +652,15 @@ public class ESSearchUtils {
 					String []cluesIds = value.split(",");
 					for (int i = 0; i < cluesIds.length; i++) {
 						if (i == 0){
-							cluesCondition += " and CLUES_IDS like '%" + cluesIds[i] + "%'";
+							cluesCondition += " and (CLUES_IDS like '%" + cluesIds[i] + "%'";
 						}else{
 							cluesCondition += " or CLUES_IDS like '%" + cluesIds[i] + "%'";
 						}
 					}
 					
-					sql += cluesCondition;
+					if (!cluesCondition.equals("")){
+						sql += cluesCondition + ")";
+					}
 					
 				}
 			} 
@@ -943,18 +946,11 @@ public class ESSearchUtils {
 
 	public static void main(String[] args) throws Exception {
 		ESSearchUtils es = ESSearchUtils.getInstance();
-//		List<String> list = es.getTime("2017-08-01", "2017-08-01");
-//		for (String string : list) {
-//			System.out.println(string);
-//		}
-		String sql = "select min(RELEASE_TIME)  from tab_iopm_article_info limit 1";
-//		String sql = "SELECT COUNT(*) FROM tab_iopm_article_info WHERE TITLE LIKE '%焦点访谈%' GROUP BY INFO_TYPE";
-		//SELECT RELEASE_TIME TIME,TITLE,WEBSITE_NAME FROM tab_iopm_article_info where TITLE like '%焦点访谈%' and INFO_TYPE=3 ORDER BY RELEASE_TIME ASC LIMIT 10 
-//		String s = "2017-07-23 02:42:54";
-//		String sql = "select RELEASE_TIME from tab_iopm_article_info a where TITLE LIKE '焦点访谈' order by RELEASE_TIME LIMIT 1";
-		//SELECT RELEASE_TIME TIME,TITLE,WEBSITE_NAME FROM tab_iopm_article_info where TITLE like '%焦点访谈%' and INFO_TYPE=3 ORDER BY RELEASE_TIME ASC LIMIT 10
-		
-		List<Object> results = es.searchBySql(sql);
-		System.out.println(results);
+
+		String sql = "SELECT WEBSITE_NAME FROM tab_iopm_article_info group by WEBSITE_NAME";
+		String s = "2017-07-23";
+		//select RELEASE_TIME from tab_iopm_article_info where  (RELEASE_TIME >= '2017-10-01 00:00:00' and RELEASE_TIME <= '2017-10-01 23:59:59')and (TITLE like '%焦点访谈%' OR CONTENT LIKE'%焦点访谈%') and IS_VIP=1
+		List<Object> result = es.searchBySql(sql);
+		System.out.println(result);
 	}
 }

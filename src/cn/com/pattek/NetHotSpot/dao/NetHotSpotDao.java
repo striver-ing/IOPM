@@ -25,4 +25,6 @@ public interface NetHotSpotDao {
 	public void addUserAct(UserAct userAct) throws Exception;
 	//记录 采纳  不采纳 观看
 	public boolean updateIsaccept(Map map) throws Exception;
+	
+	public List<Map<Integer, String>> selectZero() throws Exception;
 }

@@ -55,11 +55,12 @@
 	padding: 0 60px;
 }
 .checkMask .btnMask{
-	position: absolute;
+	/*position: absolute;*/
 	width: 100%;
-	height: 80px;
+	/*height: 80px;*/
 	text-align: center;
-	bottom: 5%;
+	/*bottom: 5%;*/
+	padding-bottom: 10px;
 }
 .checkMask .btnMask button{
 	padding: 5px 20px;

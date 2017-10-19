@@ -1,4 +1,5 @@
 *.class
+.svn/
 *.prefs
 *.project
 *.classpath

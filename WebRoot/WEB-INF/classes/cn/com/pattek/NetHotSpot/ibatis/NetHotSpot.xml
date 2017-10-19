@@ -176,4 +176,9 @@
 		</set>
 		 where id = #{hotId}
 	</update>
+	
+	<select id="selectZero" resultType="java.util.Map">
+		select zero_id, zero_name from tab_iopm_zero_clues_classify where zero_id!=7 order by ZERO_ID
+	</select>
+	
 </mapper>

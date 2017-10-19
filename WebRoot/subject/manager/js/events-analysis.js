@@ -1,13 +1,66 @@
 $(function(){
 	//表格操作
-		//查看详情按钮
-	$('#nav-pills-tab-8 i.fa-eye').click(function(){
-		
-	});
 	 	//删除按钮
-	$('#nav-pills-tab-8 i.fa-archive').click(function(){
-		alert('确定删除么？')
-	});
+	$('.a').each(function(){
+		$(this).click(function(){
+			alert('确定删除么？')
+		});
+	})
+	$('.b').each(function(){
+		$(this).click(function(){
+			
+		})
+	})
+	
+	$('.c').each(function(){
+		$(this).click(function(){
+			
+		})
+	})
+	//联想搜索
+	$('.srhText').keyup(function(){
+		if($(this).val() != ''){
+			var text = $(this).val()
+			$.ajax({
+				url:'/IOPM/Subject/SubjectAction_searchSubjectLikeByName.action',
+				type:'post',
+				data:{"subjectName":text},
+				dataType:'json',
+				success:function(data){
+					if(data != ''){
+						var html = '';
+						for(var i=0;i<data.length;i++){
+							html+='<li id='+data[i].ID+'>'+data[i].NAME+'</li>'
+						}
+						$('#lenovo').html(html)
+						if($('#lenovo').children().length == 0){
+							$('#lenovo').hide()
+						}else{
+							$('#lenovo').show()
+							$('#lenovo li').each(function(){
+								$(this).mouseover(function(){
+									$(this).css('background','#ccc')
+									$(this).click(function(){
+										$('.srhText').val($(this).html())
+										$('#lenovo').hide()
+									})
+								})
+							})
+						}
+					}else{
+						$('#lenovo').hide()
+					}
+				},
+				erorr:function(){
+					alert(1)
+				}
+			})
+		}
+		
+	})
+$('#lenovo').mCustomScrollbar({
+	theme:"inset-dark"
+});
 
 });
 

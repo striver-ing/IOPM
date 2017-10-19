@@ -101,4 +101,12 @@ public class NetHotSpotDaoImpl extends BaseDaoImpl implements NetHotSpotDao{
 		return true;
 	}
 	
+	
+
+	public List<Map<Integer, String>> selectZero() throws Exception {
+		List<Map<Integer, String>>  list = sqlSessionTemplate.selectList("selectZero");
+		return list;
+	}
+
+	
 }

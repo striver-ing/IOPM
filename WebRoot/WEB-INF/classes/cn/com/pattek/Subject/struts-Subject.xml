@@ -5,7 +5,7 @@
 <struts>
 	<package name="Subject" namespace="/Subject" extends="struts-default">
 		<action name="SubjectAction_*" method="{1}"  class="cn.com.pattek.Subject.action.SubjectAction">  
-			<result name="success" type="freemarker">/netHotSpotFound/relatedNews/relatedNews.ftl</result>	
+			<result name="success" type="freemarker">/subject/manager/manager.ftl</result>	
 			<result name="error" type="freemarker">/netHotSpotFound/theme/theme.ftl</result>			
 		</action> 
 	</package>

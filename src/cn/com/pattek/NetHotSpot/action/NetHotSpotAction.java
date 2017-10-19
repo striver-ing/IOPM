@@ -32,11 +32,14 @@ import cn.com.pattek.NetHotSpot.entity.HotEntity;
 import cn.com.pattek.NetHotSpot.entity.HotList;
 import cn.com.pattek.NetHotSpot.entity.NetHotSpot;
 import cn.com.pattek.RelatedNews.entity.UserAct;
+import cn.com.pattek.Subject.dao.SubjectDao;
 import cn.com.pattek.core.struts2.BaseAction;
 import cn.com.pattek.user.entity.Notice;
 
 @Controller("NetHotSpotAction")
 public class NetHotSpotAction extends BaseAction{
+
+
 
 	/**
 	 * 
@@ -401,6 +404,13 @@ public class NetHotSpotAction extends BaseAction{
 		netHotSpotDao.updateIsaccept(dataMap);
 		
 		return NONE;
+	}
+	
+	//动态获取
+	public String selectZero() throws Exception{
+		List<Map<Integer, String>> selectZero = netHotSpotDao.selectZero();
+		this.arrayToJson(selectZero);
+		return null;
 	}
 	
 }

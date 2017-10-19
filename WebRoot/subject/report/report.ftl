@@ -231,13 +231,16 @@
                 <div class="analyDiv">
                     <div class="col-sm-10">
                         <form action="">
-                            <span class="font16px">搜索在控专题：</span>
+                            <span class="font16px">搜索专题：</span>
                             <input class="form-control srhText inlblock" type="text" placeholder="例如“习近平”"/>
-                            <input type="submit" class="btn btn-primary inlblock" value="检索"/>
+                            <input type="button" id="inlblock" class="btn btn-primary inlblock" value="检索"/>
                             <input type="button" class="btn btn-primary add" value="添加专题"/>
+                            <ul id="lenovo">
+                            </ul>
                         </form>
                     </div>
                     <div class="col-sm-12 font16px events">
+                    	<img src="/IOPM/subject/report/imgs/jt.png" id="jt">
                         <dl>
                             
                             
@@ -274,50 +277,62 @@
                         <div id="jb_content_all_div_id">
                             <link href="css/iBookMark.css" rel="stylesheet" type="text/css">
                             <!---------------南海仲裁案”事件境内外网情综述部------------->
-                            <div class="main-bgao">
+                            <div class="main-bgao" style="position:relative;">
+                            	<div class="loading">
+									<div class="loadingtext">
+										<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+										<span>loading</span>
+									</div>
+								</div>
                                 <h3>
-                                    <span id="event_report_title" title="ddd">ddd</span>
+                                    <span id="event_report_title" title="ddd"></span>
                                 </h3>
 
                                 <p>
-    	<span>
-			<b>关注时间：</b>
-				<em id="report_start_time">2016-06-01 00:00:00</em>
-                <i>至</i>
-                <em id="report_end_time">2017-01-17 16:43:29</em>
-		</span>
-                                </p>
+							    	<span>
+										<b>关注时间：</b>
+											<em id="report_start_time"></em>
+							                <i>至</i>
+							                <em id="report_end_time"></em>
+									</span>
+			                    </p>
                             </div>
                             <!--------------------舆情概述部分----------------------->
-                            <div class="main-nesw sideToolbar-title" data-title="舆情概述" name="1" id="1">
+                            <div class="main-nesw sideToolbar-title" data-title="舆情概述" name="1" id="1" auth_for_show_hide="0">
                                 <h2>
                                     <span>舆情概述</span>
                                 </h2>
 
-                                <div class="main-nesw-bd" id="report_summay">
+                                <div class="main-nesw-bd" id="report_summay" style="position:relative;">
+                                <div class="loading">
+									<div class="loadingtext">
+										<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+										<span>loading</span>
+									</div>
+								</div>
                                     <dl>
                                         <dt><i></i></dt>
-                                        <dd name="summary" class="summary1">
+                                        <dd name="summary" class="summary1" contenteditable="">
                                           
                                         </dd>
                                     </dl>
                                     <dl>
                                         <dt><i></i></dt>
-                                        <dd name="summary" class="summary2">
+                                        <dd name="summary" class="summary2" contenteditable="">
                                         </dd>
                                     </dl>
                                 </div>
                             </div>
                             <!--------------------舆情统计部分----------------------->
-                            <div class="main-nesw sideToolbar-title" data-title="舆情统计" name="2" id="2">
+                            <div class="main-nesw sideToolbar-title" data-title="舆情统计" name="2" id="2" auth_for_show_hide="1">
                                 <h2>
                                     <span>舆情统计</span>
                                 </h2>
 
-                                <div class="main-nesw clearfix" id="pie">
+                                <div class="main-nesw" id="pie">
                                     <div class="one-world" style="width: 55%;float:left;margin-right:2%;">
                                         <div class="title1">
-                                            <p>线索信息量</p>
+                                            <p>线索库类别信息量</p>
 
                                             <div style="float: right;margin-top: 4px;margin-right: 4px;">
                                                 <select style="border:1px solid #CECECE ;border-radius:4px; background:none;width:80px;height:23px; font-size:12px;">
@@ -333,248 +348,48 @@
                                     </div>
                                     <div class="two-world" style="width: 43%;float:left;">
                                         <div class="title1">
-                                            <p>线索信息量</p>
+                                            <p>线索库类别信息量</p>
                                             <div style="float: right;margin-top: 4px;margin-right: 4px;">
-                                                <select style="border:1px solid #CECECE ;border-radius:4px; background:none;width:90px;height:23px; font-size:12px;">
+                                                <select id="e" style="border:1px solid #CECECE ;border-radius:4px; background:none;width:90px;height:23px; font-size:12px;">
                                                     <option value="1" selected="">信息总量</option>
                                                     <option value="24">负面信息量</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div style="height:280px;border:1px solid #ccc;" id="sidebar-i">
+                                        <div style="height:280px;border:1px solid #ccc;" id="sidebar-i" style="position:relative;">
+                                       			 <div class="loading">
+													<div class="loadingtext">
+														<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+														<span>loading</span>
+													</div>
+												</div>
                                             <div id="sidebar-T">
-                                                <ul>
-                                                    <li>排名</li>
-                                                    <li>线索</li>
-                                                    <li>信息总量</li>
-                                                    <li>负面信息量</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>1</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>2</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>3</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>3</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>3</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>4</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>5</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>6</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>7</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>8</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>9</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>10</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000</li>
-                                                </ul>
+                                                
+                                               
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
 
-                                <div class="main-nesw-bd">
+                                <div class="main-nesw-bd" id="yuqi" style="position:relative;">
+                                <div class="loading">
+									<div class="loadingtext">
+										<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+										<span>loading</span>
+									</div>
+								</div>
                                     <dl>
                                         <dt><i></i></dt>
-                                        <dd name="summary" contenteditable="">
-                                            截止<span>2017年01月17日16时</span>，<span>xxx</span>事件涉及到的人物<span>xxx</span>篇，机构<span>xxx</span>篇, 政策<span>xxx</span>篇。总体来说，该事件的发生与广电政策密切相关
+                                        <dd name="summary" id="yuqing" contenteditable="">
                                         </dd>
                                     </dl>
 
                                 </div>
 
-                            </div>                            <!--------------------舆情统计部分----------------------->
-                            <div class="main-nesw sideToolbar-title" data-title="广电线索分布" name="3" id="3">
-                                <h2>
-                                    <span>广电线索分布</span>
-                                </h2>
-
-                                <div class="main-nesw clearfix" id="distribute" style="padding:0 0;">
-                                    <div class="one-world" style="width: 55%;float:left;margin-right:2%;">
-                                        <div class="title1">
-                                            <p>广电线索云图</p>
-
-                                            <div style="float: right;margin-top: 4px;margin-right: 4px;">
-                                                <!--<select style="border:1px solid #CECECE ;border-radius:4px; background:none;width:80px;height:23px; font-size:12px;">-->
-                                                    <!--<option value="1">1小时</option>-->
-                                                    <!--<option value="2">2小时</option>-->
-                                                    <!--<option value="6">6小时</option>-->
-                                                    <!--<option value="12">12小时</option>-->
-                                                    <!--<option value="24" selected="">24小时</option>-->
-                                                <!--</select>-->
-                                            </div>
-                                        </div>
-                                        <div style="height:280px;border:1px solid #ccc;" id="worldcloud">
-                                        </div>
-                                    </div>
-                                    <div class="two-world" style="width: 43%;float:left;">
-                                        <div class="title1">
-                                            <p>广电线索排名</p>
-
-                                            <div style="float: right;margin-top: 4px;margin-right: 4px;">
-                                                <select style="border:1px solid #CECECE ;border-radius:4px; background:none;width:90px;height:23px; font-size:12px;">
-                                                    <option value="1" selected="">信息总量</option>
-                                                    <option value="24">负面信息量</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div style="height:280px;border:1px solid #ccc;" id="sidebar">
-                                            <div id="sidebar-L">
-                                                <ul>
-                                                    <li>排名</li>
-                                                    <li>线索</li>
-                                                    <li>信息总量</li>
-                                                    <li>情感倾向(正/负/中)</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>1</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li><span class="green">1000</span> / <span class="red">222</span> /
-                                                        <span class="blue">8999</span></li>
-                                                </ul>
-                                                <ul>
-                                                    <li>2</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000/222/222</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>3</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000/222/222</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>3</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000/222/222</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>3</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000/222/222</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>4</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000/222/222</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>5</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000/222/222</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>6</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000/222/222</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>7</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000/222/222</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>8</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000/222/222</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>9</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000/222/222</li>
-                                                </ul>
-                                                <ul>
-                                                    <li>10</li>
-                                                    <li><a href="">线索</a></li>
-                                                    <li>20000</li>
-                                                    <li>10000/222/222</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="main-nesw-bd">
-                                    <dl>
-                                        <dt><i></i></dt>
-                                        <dd name="summary" contenteditable="">
-                                            该分析报告的监测时间为2016年06月01日00时00分至2017年01月17日16时43分，监测关键词主要包含“海关 走私
-                                            成品油”，监测数据全面覆盖了境内外互联网新闻、博客、论坛、微博和视频等多类型站点。
-                                        </dd>
-                                    </dl>
-                                    <dl>
-                                        <dt><i></i></dt>
-                                        <dd name="summary" contenteditable="">
-                                            在上述监测时间范围内，网上共计发布相关新闻1906篇、博客800篇、论坛主题帖960篇、微博1237篇、视频335个。首条信息于2016年06月01日00时07分发布在daganyu.net站点，标题为《连云港边防查获价值千万巴西牛肉走私案》。舆论最高峰出现在2016年06月01日11时00分。总体而言，新闻媒体以及微博等社交媒体关于“成品油走私”事件的信息量极小，舆论关注度较低，传播影响力较小。
-                                        </dd>
-                                    </dl>
-                                </div>
-                            </div>
+                            </div>                           
                             <!-----------------------事件综合影响力分析部分------------>
-                            <div class="main-nesw sideToolbar-title" data-title="事件综合影响力分析" name="4" id="4"
+                            <div class="main-nesw sideToolbar-title" data-title="事件综合影响力分析" name="3" id="3"
                                  auth_for_show_hide="2">
                                 <h2>
                                     <span>事件综合影响力分析</span>
@@ -615,10 +430,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="main-nesw-bd" id="effect_summay">
+                                <div class="main-nesw-bd" id="effect_summay" style="position:relative;">
+                                	 <div class="loading">
+													<div class="loadingtext">
+														<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+														<span>loading</span>
+													</div>
+												</div>
                                     <dl>
                                         <dt><i></i></dt>
-                                        <dd name="effect_summary" contenteditable="">“成品油走私”事件综合影响力评分为10.56①。影响较小。</dd>
+                                        <dd name="effect_summary" contenteditable=""></dd>
                                     </dl>
                                 </div>
                                 <div class="main-nesw-tis">
@@ -627,7 +448,7 @@
                                 </div>
                             </div>
                             <!--------------------事件阶段演化分析部分----------------------->
-                            <div class="main-nesw sideToolbar-title" data-title="事件阶段演化分析" name="5" id="5"
+                            <div class="main-nesw sideToolbar-title" data-title="事件阶段演化分析" name="4" id="4"
                                  auth_for_show_hide="3">
                                 <h2>
                                     <span>事件阶段演化分析</span>
@@ -648,11 +469,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="main-nesw-bd" id="stage_summary">
+                                <div class="main-nesw-bd" id="stage_summary" style="position:relative;">
+                                <div class="loading">
+									<div class="loadingtext">
+										<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+										<span>loading</span>
+									</div>
+								</div>
                                     <dl>
                                         <dt><i></i></dt>
                                         <dd name="stage_summary" contenteditable="">
-                                            如图所示，“成品油走私”事件的发展经历了4次高峰。舆情的爆发点首次出现在2016年06月01日00时。最大峰值出现在2016年06月01日11时。至2016年06月06日00时，由“”再次引起媒体和网民的热议，再次形成舆论关注高峰。
                                         </dd>
                                     </dl>
                                 </div>
@@ -692,239 +518,41 @@
                                         <h1>
                                             <p>主流媒体排名</p>
                                             <div style="float: right;margin-top: -8px;margin-right: 4px;">
-                                                <select style="border:1px solid #CECECE ;border-radius:4px; background:none;width:90px;height:23px; font-size:12px;">
+                                                <select id="s" style="border:1px solid #CECECE ;border-radius:4px; background:none;width:90px;height:23px; font-size:12px;">
                                                     <option value="1" selected="">信息总量</option>
                                                     <option value="24">负面信息量</option>
                                                 </select>
                                             </div>
                                         </h1>
                                         <div style="overflow: hidden; width:100%; height:320px; border:1px solid #ccc; box-sizing:border-box;"
-                                             id="table1">
+                                             id="table1" style="position:relative;">
+                                             <div class="loading">
+												<div class="loadingtext">
+													<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+													<span>loading</span>
+												</div>
+											</div>
                                             <div class="table">
-                                                <div class="th" id="spread_table_first_line_news">
-                                                    <div class="span span1" style="width:15%;">排名</div>
-                                                    <div class="span span2" style="width:40%;">网站</div>
-                                                    <div class="span" style="width:22%;">总信息量</div>
-                                                    <div class="span" style="width:22%;">负面信息量</div>
-                                                </div>
-                                                <div class="td"><span class="span1" style="width:15%;">1</span><span
-                                                        class="span2" style="width:40%;">新浪</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">77</span></div>
-                                                <div class="td td2"><span class="span1" style="width:15%;">2</span><span
-                                                        class="span2" style="width:40%;">中国网</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">72</span></div>
-                                                <div class="td"><span class="span1" style="width:15%;">3</span><span
-                                                        class="span2" style="width:40%;">中国江苏网</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">65</span></div>
-                                                <div class="td td2"><span class="span1" style="width:15%;">4</span><span
-                                                        class="span2" style="width:40%;">网易</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">57</span></div>
-                                                <div class="td"><span class="span1" style="width:15%;">5</span><span
-                                                        class="span2" style="width:40%;">人民网</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">47</span></div>
-                                                <div class="td td2"><span class="span1" style="width:15%;">6</span><span
-                                                        class="span2" style="width:40%;">中国新闻网</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">46</span></div>
-                                                <div class="td"><span class="span1" style="width:15%;">7</span><span
-                                                        class="span2" style="width:40%;">腾讯</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">43</span></div>
-                                                <div class="td td2"><span class="span1" style="width:15%;">8</span><span
-                                                        class="span2" style="width:40%;">新华网</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">40</span></div>
-                                                <div class="td"><span class="span1" style="width:15%;">9</span><span
-                                                        class="span2" style="width:40%;">中工网</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">35</span></div>
-                                                <div class="td td2"><span class="span1"
-                                                                          style="width:15%;">10</span><span
-                                                        class="span2" style="width:40%;">21CN</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">34</span></div>
+                                                
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="main-nesw-bd" id="spread_news_summary">
+                                <div class="main-nesw-bd" id="spread_news_summary" style="position:relative;">
+                                <div class="loading clearfix">
+									<div class="loadingtext">
+										<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+										<span>loading</span>
+									</div>
+								</div>
                                     <dl>
                                         <dt><i></i></dt>
                                         <dd name="spread_news_summary" contenteditable="">
-                                            截至2017年01月17日16时，境内新浪、中国网、中国江苏网等主流新闻媒体和门户网站约10家站点共发布相关新闻信息1817篇，境外中评网、文汇报等媒体网站也均发布了相关报道。
                                         </dd>
                                     </dl>
                                 </div>
-                                <h5>
-                                    <span></span>网络论坛传播趋势
-                                </h5>
-
-                                <div class="jb_con">
-                                    <div class=" col-md-8">
-                                        <h1>
-                                            <p>境内论坛传播趋势</p>
-
-                                            <div style="float: right;margin-top: -10px;margin-right: 4px;">
-                                                <select id="forum_statistics_time_select"
-                                                        style="border:1px solid #CECECE ;border-radius:4px; background:none;width:80px;height:24px; font-size:12px;margin-top:1px;">
-                                                    <option value="1">1小时</option>
-                                                    <option value="2">2小时</option>
-                                                    <option value="6">6小时</option>
-                                                    <option value="12">12小时</option>
-                                                    <option value="24" selected="">24小时</option>
-                                                </select>
-                                            </div>
-                                        </h1>
-                                        <div class="jb_text">
-                                            <div id="spread_forum_img"
-                                                 style="width: 100%; height: 300px; cursor: pointer;">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class=" col-md-4">
-                                        <h1>
-                                            <p>论坛传播排名</p>
-                                        </h1>
-                                        <div style="overflow: hidden;height:320px; border:1px solid #ccc; border-top:none;"
-                                             id="forum_site_rank_list">
-
-                                            <div class="table">
-                                                <div class="th" id="spread_table_first_line_forum">
-                                                    <div class="span span1" style="width:15%;">排名</div>
-                                                    <div class="span span2" style="width:40%;">网站</div>
-                                                    <div class="span" style="width:22%;">属地</div>
-                                                    <div class="span" style="width:22%;">信息量</div>
-                                                </div>
-                                                <div class="td"><span class="span1" style="width:15%;">1</span><span
-                                                        class="span2" style="width:40%;">建湖论坛</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">240</span></div>
-                                                <div class="td td2"><span class="span1" style="width:15%;">2</span><span
-                                                        class="span2" style="width:40%;">www.wanhoocar.com</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">56</span></div>
-                                                <div class="td"><span class="span1" style="width:15%;">3</span><span
-                                                        class="span2" style="width:40%;">百度贴吧</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">35</span></div>
-                                                <div class="td td2"><span class="span1" style="width:15%;">4</span><span
-                                                        class="span2" style="width:40%;">天涯社区</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">33</span></div>
-                                                <div class="td"><span class="span1" style="width:15%;">5</span><span
-                                                        class="span2" style="width:40%;">凯迪社区</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">30</span></div>
-                                                <div class="td td2"><span class="span1" style="width:15%;">6</span><span
-                                                        class="span2" style="width:40%;">新浪</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">19</span></div>
-                                                <div class="td"><span class="span1" style="width:15%;">7</span><span
-                                                        class="span2" style="width:40%;">网易</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">16</span></div>
-                                                <div class="td td2"><span class="span1" style="width:15%;">8</span><span
-                                                        class="span2" style="width:40%;">和平论坛</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">15</span></div>
-                                                <div class="td"><span class="span1" style="width:15%;">9</span><span
-                                                        class="span2" style="width:40%;">搜狐</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">14</span></div>
-                                                <div class="td td2"><span class="span1"
-                                                                          style="width:15%;">10</span><span
-                                                        class="span2" style="width:40%;">天涯</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">13</span></div>
-                                                <div class="td"><span class="span1" style="width:15%;">9</span><span
-                                                        class="span2" style="width:40%;">搜狐</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">14</span></div>
-                                                <div class="td td2"><span class="span1"
-                                                                          style="width:15%;">10</span><span
-                                                        class="span2" style="width:40%;">天涯</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">13</span></div>
-                                                <div class="td"><span class="span1" style="width:15%;">9</span><span
-                                                        class="span2" style="width:40%;">搜狐</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">14</span></div>
-                                                <div class="td td2"><span class="span1"
-                                                                          style="width:15%;">10</span><span
-                                                        class="span2" style="width:40%;">天涯</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">13</span></div>
-                                                <div class="td"><span class="span1" style="width:15%;">9</span><span
-                                                        class="span2" style="width:40%;">搜狐</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">14</span></div>
-                                                <div class="td td2"><span class="span1"
-                                                                          style="width:15%;">10</span><span
-                                                        class="span2" style="width:40%;">天涯</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">13</span></div>
-                                                <div class="td"><span class="span1" style="width:15%;">9</span><span
-                                                        class="span2" style="width:40%;">搜狐</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">14</span></div>
-                                                <div class="td td2"><span class="span1"
-                                                                          style="width:15%;">10</span><span
-                                                        class="span2" style="width:40%;">天涯</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">13</span></div>
-                                                <div class="td"><span class="span1" style="width:15%;">9</span><span
-                                                        class="span2" style="width:40%;">搜狐</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">14</span></div>
-                                                <div class="td td2"><span class="span1"
-                                                                          style="width:15%;">10</span><span
-                                                        class="span2" style="width:40%;">天涯</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">13</span></div>
-                                                <div class="td"><span class="span1" style="width:15%;">9</span><span
-                                                        class="span2" style="width:40%;">搜狐</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">14</span></div>
-                                                <div class="td td2"><span class="span1"
-                                                                          style="width:15%;">10</span><span
-                                                        class="span2" style="width:40%;">天涯</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">13</span></div>
-                                                <div class="td"><span class="span1" style="width:15%;">9</span><span
-                                                        class="span2" style="width:40%;">搜狐</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">14</span></div>
-                                                <div class="td td2"><span class="span1"
-                                                                          style="width:15%;">10</span><span
-                                                        class="span2" style="width:40%;">天涯</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">13</span></div>
-                                                <div class="td"><span class="span1" style="width:15%;">9</span><span
-                                                        class="span2" style="width:40%;">搜狐</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">14</span></div>
-                                                <div class="td td2"><span class="span1"
-                                                                          style="width:15%;">10</span><span
-                                                        class="span2" style="width:40%;">天涯</span><span
-                                                        class="region_td" style="width:22%;">境内</span><span
-                                                        class="region_td" style="width:22%;">13</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="main-nesw-bd" id="spread_forum_summary">
-                                    <dl>
-                                        <dt><i></i></dt>
-                                        <dd name="spread_forum_summary" contenteditable="">
-                                            截至2017年01月17日16时，网民在境内建湖论坛，www.wanhoocar.com，百度贴吧，天涯社区，凯迪社区等论坛发布相关帖文960篇，跟帖回复4084条，网民参与度【较高/较低】
-                                        </dd>
-                                    </dl>
-                                </div>
+                                
+                               
                                 <h5>
                                     <span></span>微博平台传播趋势
                                 </h5>
@@ -958,13 +586,24 @@
                                         <p>评论最多的微博</p>
                                     </h1>
                                     <div class="jb_text">
-                                        <div id="sidebar-W" style="width: 100%; height: auto;background-color: rgba(0, 0, 0, 0);">
-                                            
+                                        <div id="sidebar-W" style="width: 100%; height: auto;background-color: rgba(0, 0, 0, 0);position:relative;">
+                                             <div class="loading clearfix">
+												<div class="loadingtext">
+													<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+													<span>loading</span>
+												</div>
+											</div>
                                            
                                         </div>
                                     </div>
                                 </div>
-                                <div class="main-nesw-bd" id="spread_mblog_summary">
+                                <div class="main-nesw-bd" id="spread_mblog_summary" style="position:relative;">
+                                			<div class="loading clearfix">
+												<div class="loadingtext">
+													<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+													<span>loading</span>
+												</div>
+											</div>
                                     <dl>
                                         <dt><i></i></dt>
                                         <dd name="spread_mblog_summary" contenteditable="">
@@ -999,15 +638,26 @@
                                     <h1>
                                         <p class="p">发现最早的微信</p>
                                         <p>点赞最多的微信</p>
-                                        <p>评论最多的微信</p>
+                                        <p>阅读最多的微信</p>
                                     </h1>
                                     <div class="jb_text">
-                                        <div id="sidebar-C" style="width: 100%; height: auto;background-color: rgba(0, 0, 0, 0);">
-                                            
+                                        <div id="sidebar-C" style="width: 100%; height: auto;background-color: rgba(0, 0, 0, 0); position:relative;">
+                                            <div class="loading">
+												<div class="loadingtext">
+													<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+													<span>loading</span>
+												</div>
+											</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="main-nesw-bd" id="spread_wechat_summary">
+                                <div class="main-nesw-bd" id="spread_wechat_summary" style="position:relative;">
+                                	<div class="loading">
+										<div class="loadingtext">
+											<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+											<span>loading</span>
+										</div>
+									</div>
                                     <dl>
                                         <dt><i></i></dt>
                                         <dd name="spread_mblog_summary" contenteditable="">
@@ -1016,283 +666,54 @@
                                 </div>
                             </div>
                             <!-----------事件溯源分析部份--------------------------->
-                            <div class="main-nesw sideToolbar-title" data-title="事件溯源分析" name="7" id="7"
+                            <div class="main-nesw sideToolbar-title" data-title="事件溯源分析" name="6" id="6"
                                  auth_for_show_hide="5">
                                 <h2>
                                     <span>事件溯源分析</span>
                                 </h2>
 
                                 <div class="main-nesw-tab">
-                                    <table width="100%" id="trace_table">
+                                    <table width="100%" id="trace_table" style="position:relative;">
+                                    <div class="loading">
+											<div class="loadingtext">
+												<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+												<span>loading</span>
+											</div>
+										</div>
                                         <thead>
                                         <tr>
                                             <th style="width:8%;">类型</th>
-                                            <th style="width:8%;">站点</th>
+                                            <th style="width:20%;">站点</th>
                                             <th style="width:35%;">标题</th>
                                             <th style="width:20%;">发布时间</th>
-                                            <th style="width:16%;">URL</th>
+                                            <th style="width:17%;">URL</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td title="新闻">新闻</td>
-                                            <td title="lc123.net">lc123.net</td>
-                                            <td title="[山西]山西省关于印发山西省贯彻实施质量发展纲要2016年行动计划的通知"
-                                                style="text-align: left; padding-left: 2%;"><p>
-                                                [山西]山西省关于印发山西省贯彻实施质量发展纲要2016年行动计划的通知</p></td>
-                                            <td title="2016-07-05 12:26:15">2016-07-05 12:26:15</td>
-                                            <td title="http://www.lc123.net/laws/2016-07-05/289485.html"
-                                                style="text-align: left;padding-left: 2%;"><a target="_blank"
-                                                                                              href="http://www.lc123.net/laws/2016-07-05/289485.html">http://www.lc123.net/laws/2016-07-05/289485.html</a>
-                                            </td>
-                                        </tr>
-                                        <tr style="background:#f4f9fc;">
-                                            <td title="论坛">论坛</td>
-                                            <td title="daganyu.net">daganyu.net</td>
-                                            <td title="连云港边防查获价值千万巴西牛肉走私案" style="text-align: left; padding-left: 2%;">
-                                                <p>连云港边防查获价值千万巴西牛肉走私案</p></td>
-                                            <td title="2016-06-01 00:07:05">2016-06-01 00:07:05</td>
-                                            <td title="http://www.daganyu.net/forum.php?extra=page%3D1%26filter%3Dauthor%26orderby%3Ddateline&amp;mod=viewthread&amp;tid=19901"
-                                                style="text-align: left;padding-left: 2%;"><a target="_blank"
-                                                                                              href="http://www.daganyu.net/forum.php?extra=page%3D1%26filter%3Dauthor%26orderby%3Ddateline&amp;mod=viewthread&amp;tid=19901">http://www.daganyu.net/forum.php?extra=page%3D1%26filter%3Dauthor%26orderby%3Ddateline&amp;mod=viewthread&amp;tid=19901</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td title="博客">博客</td>
-                                            <td title="新浪">新浪</td>
-                                            <td title="中国石油之都" style="text-align: left; padding-left: 2%;"><p>中国石油之都</p>
-                                            </td>
-                                            <td title="2016-06-01 00:13:09">2016-06-01 00:13:09</td>
-                                            <td title="http://blog.sina.com.cn/s/blog_15e55273d0102xmm7.html"
-                                                style="text-align: left;padding-left: 2%;"><a target="_blank"
-                                                                                              href="http://blog.sina.com.cn/s/blog_15e55273d0102xmm7.html">http://blog.sina.com.cn/s/blog_15e55273d0102xmm7.html</a>
-                                            </td>
-                                        </tr>
-                                        <tr style="background:#f4f9fc;">
-                                            <td title="视频">视频</td>
-                                            <td title="电影网">电影网</td>
-                                            <td title="韩国演员宋仲基因拍摄《太阳的后裔》走红。近日，他频频穿梭韩国、大陆，在进入禁区接受通关检查时，被粉丝疯狂拍照，就连他的护照细节也被传至网上。虽然已经遮住重要资料，但还是暴露了部分隐私。"
-                                                style="text-align: left; padding-left: 2%;"><p>
-                                                韩国演员宋仲基因拍摄《太阳的后裔》走红。近日，他频频穿梭韩国、大陆，在进入禁区接受通关检查时，被粉丝疯狂拍照，就连他的护照细节也被传至网上。虽然已经遮住重要资料，但还是暴露了部分隐私。</p>
-                                            </td>
-                                            <td title="2016-06-01 01:22:49">2016-06-01 01:22:49</td>
-                                            <td title="http://www.1905.com/video/play/1026440.shtml"
-                                                style="text-align: left;padding-left: 2%;"><a target="_blank"
-                                                                                              href="http://www.1905.com/video/play/1026440.shtml">http://www.1905.com/video/play/1026440.shtml</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td title="微博">微博</td>
-                                            <td title="新浪微博">新浪微博</td>
-                                            <td title="
-		漫威最新合集打包带走私信我[doge][doge]死侍、美国队长、绿巨人、灵魂战车、钢铁侠、x战警、蜘蛛侠、银河护卫队、夜魔侠、复仇者联盟、神奇四侠、蝙蝠侠、惩罚者、幻影杀手、雷神。
-		" style="text-align: left; padding-left: 2%;"><p>
-                                                漫威最新合集打包带走私信我[doge][doge]死侍、美国队长、绿巨人、灵魂战车、钢铁侠、x战警、蜘蛛侠、银河护卫队、夜魔侠、复仇者联盟、神奇四侠、蝙蝠侠、惩罚者、幻影杀手、雷神。
-                                            </p></td>
-                                            <td title="2016-06-01 00:19:00">2016-06-01 00:19:00</td>
-                                            <td title="http://weibo.com/3288944267/Dy8jNk99h?refer_flag=1001030103_"
-                                                style="text-align: left;padding-left: 2%;"><a target="_blank"
-                                                                                              href="http://weibo.com/3288944267/Dy8jNk99h?refer_flag=1001030103_">http://weibo.com/3288944267/Dy8jNk99h?refer_flag=1001030103_</a>
-                                            </td>
-                                        </tr>
-                                        <tr style="background:#f4f9fc;">
-                                            <td title="微博">微博</td>
-                                            <td title="腾讯微博">腾讯微博</td>
-                                            <td title="【深圳月底63个公交站要改名！快来看看有你家门口的不？】西湖宾馆公交站台拟更名为红岭小学、岗厦西公交站台拟更名为海关综合大楼、航母世界总站拟更名为东和路南……近日，市交委公布了2016年度第一批公交停靠站更名方案，63个公交站台计划更改名字，预计本月底实施更名工程。http://url.cn/2AsU0x6"
-                                                style="text-align: left; padding-left: 2%;"><p>
-                                                【深圳月底63个公交站要改名！快来看看有你家门口的不？】西湖宾馆公交站台拟更名为红岭小学、岗厦西公交站台拟更名为海关综合大楼、航母世界总站拟更名为东和路南……近日，市交委公布了2016年度第一批公交停靠站更名方案，63个公交站台计划更改名字，预计本月底实施更名工程。http://url.cn/2AsU0x6</p>
-                                            </td>
-                                            <td title="2016-06-01 11:23:11">2016-06-01 11:23:11</td>
-                                            <td title="http://t.qq.com/p/t/486974056412332"
-                                                style="text-align: left;padding-left: 2%;"><a target="_blank"
-                                                                                              href="http://t.qq.com/p/t/486974056412332">http://t.qq.com/p/t/486974056412332</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td title="微博">微博</td>
-                                            <td title="Twitter">Twitter</td>
-                                            <td title="听说香港人为了防止大陆人去香港抢奶粉，考虑在奶粉罐子上写上“民主”，“自由”，“宪政”等字样。这样，这奶粉就过不了海关。微评：这招狠啊，某组织最怕的就是这几个汉字把群众煽动了，却不怕毒奶粉把群众给坑了。"
-                                                style="text-align: left; padding-left: 2%;"><p>
-                                                听说香港人为了防止大陆人去香港抢奶粉，考虑在奶粉罐子上写上“民主”，“自由”，“宪政”等字样。这样，这奶粉就过不了海关。微评：这招狠啊，某组织最怕的就是这几个汉字把群众煽动了，却不怕毒奶粉把群众给坑了。</p>
-                                            </td>
-                                            <td title="2016-06-01 17:44:45">2016-06-01 17:44:45</td>
-                                            <td title="http://twitter.com/prettywendi/status/737942955072311296"
-                                                style="text-align: left;padding-left: 2%;"><a target="_blank"
-                                                                                              href="http://twitter.com/prettywendi/status/737942955072311296">http://twitter.com/prettywendi/status/737942955072311296</a>
-                                            </td>
-                                        </tr>
-                                        <tr style="background:#f4f9fc;">
-                                            <td title="微博">微博</td>
-                                            <td title="人民微博">人民微博</td>
-                                            <td title="杭州海关破成品油走私大案 涉案价值高达1.6亿元 综合新闻 - 社会新闻 - 如皋新闻网 - 如皋商务信息网http://peopleurl.cn/15dkDy"
-                                                style="text-align: left; padding-left: 2%;"><p>杭州海关破成品油走私大案 涉案价值高达1.6亿元
-                                                综合新闻 - 社会新闻 - 如皋新闻网 - 如皋商务信息网http://peopleurl.cn/15dkDy</p></td>
-                                            <td title="2016-07-12 15:05:00">2016-07-12 15:05:00</td>
-                                            <td title="http://t.people.com.cn/42362511/152385775"
-                                                style="text-align: left;padding-left: 2%;"><a target="_blank"
-                                                                                              href="http://t.people.com.cn/42362511/152385775">http://t.people.com.cn/42362511/152385775</a>
-                                            </td>
-                                        </tr>
+                                        <tbody >
+                                        
+                                       
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="main-nesw-bd" id="trace_summary">
+                                <div class="main-nesw-bd" id="trace_summary" style="position:relative;">
+                                		<div class="loading">
+											<div class="loadingtext">
+												<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+												<span>loading</span>
+											</div>
+										</div>
                                     <dl>
                                         <dt><i></i></dt>
-                                        <dd name="trace_summary" contenteditable="">
-                                            经传播溯源分析发现，2016年06月01日00时，赣榆新闻在daganyu.net站点发布标题为《连云港边防查获价值千万巴西牛肉走私案》的论坛信息，是该事件传播的源头信息。其后新浪、新浪微博等站点相继发布相关信息，事件传播影响力渐次扩大。
+                                        <dd name="trace_summary" id="t" contenteditable="">
+                                        
                                         </dd>
                                     </dl>
                                 </div>
                             </div>
-                            <!--------------------事件话题演化分析部分----------------------->
-                            <div class="main-nesw sideToolbar-title" data-title="事件话题演化分析" name="8" id="8"
-                                 auth_for_show_hide="6">
-                                <h2>
-                                    <span>事件话题演化分析</span>
-                                </h2>
-
-                                <div class="main-nesw-tab">
-                                    <table width="100%" id="topic_table">
-                                        <thead>
-                                        <tr>
-                                            <th style="width:6%;">序号</th>
-                                            <th style="width:25%;">热点</th>
-                                            <th style="width:10%;">热度</th>
-                                            <th style="width:50%;">相关信息</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td title="1">1</td>
-                                            <td title="杭州海关破获1.6亿元成品油走私案" style="text-align: left; padding-left: 2%;"><p
-                                                    style="width:297px;">杭州海关破获1.6亿元成品油走私案</p></td>
-                                            <td title="100.00%">100.00%</td>
-                                            <td title="
-		#7.11一7.17一周新鲜事#【2016年上半年我国外贸进出口情况】http://t.cn/R5FZOSv【离境退税试点一周年 上海关区退税额超千万】http://t.cn/Rtvaedr【杭州海关破获1.6亿元成品油走私案】http://t.cn/Rt7JeB1
-		" style="text-align: left;padding-left: 2%;"><a target="_blank" style="width:500px;"
-                                                        href="http://weibo.com/2270466922/DFo3g7Ol2?refer_flag=1001030103_">
-                                                #7.11一7.17一周新鲜事#【2016年上半年我国外贸进出口情况】http://t.cn/R5FZOSv【离境退税试点一周年
-                                                上海关区退税额超千万】http://t.cn/Rtvaedr【杭州海关破获1.6亿元成品油走私案】http://t.cn/Rt7JeB1
-                                            </a></td>
-                                        </tr>
-                                        <tr style="background:#f4f9fc;">
-                                            <td title="2">2</td>
-                                            <td title="油品走私黑金链曝光一船可赚40万" style="text-align: left; padding-left: 2%;"><p
-                                                    style="width:297px;">油品走私黑金链曝光一船可赚40万</p></td>
-                                            <td title="66.67%">66.67%</td>
-                                            <td title="" style="text-align: left;padding-left: 2%;"><a target="_blank"
-                                                                                                       style="width:500px;"
-                                                                                                       href=""></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td title="3">3</td>
-                                            <td title="2016年海关查证粮食走私量创历史新高" style="text-align: left; padding-left: 2%;">
-                                                <p style="width:297px;">2016年海关查证粮食走私量创历史新高</p></td>
-                                            <td title="66.67%">66.67%</td>
-                                            <td title="2016年海关查证粮食走私量创历史新高" style="text-align: left;padding-left: 2%;">
-                                                <a target="_blank" style="width:500px;"
-                                                   href="http://www.dzwww.com/xinwen/guoneixinwen/201701/t20170116_15438286.htm">2016年海关查证粮食走私量创历史新高</a>
-                                            </td>
-                                        </tr>
-                                        <tr style="background:#f4f9fc;">
-                                            <td title="4">4</td>
-                                            <td title="国内汽柴油价格不调整" style="text-align: left; padding-left: 2%;"><p
-                                                    style="width:297px;">国内汽柴油价格不调整</p></td>
-                                            <td title="66.67%">66.67%</td>
-                                            <td title="
-		【国内汽柴油价格不调整】发展改革委称，自６月８日国内成品油价格调整以来，国际市场油价小幅波动，按现行国内成品油价格机制测算，６月２３日的前１０个工作日平均价格与６月８日调价前１０个工作日平均价格相比，调价金额每吨不足５０元。http://t.cn/R5WCHue
-		" style="text-align: left;padding-left: 2%;"><a target="_blank" style="width:500px;"
-                                                        href="http://weibo.com/1767954360/DBIW1wNXn?refer_flag=1001030103_">
-                                                【国内汽柴油价格不调整】发展改革委称，自６月８日国内成品油价格调整以来，国际市场油价小幅波动，按现行国内成品油价格机制测算，６月２３日的前１０个工作日平均价格与６月８日调价前１０个工作日平均价格相比，调价金额每吨不足５０元。http://t.cn/R5WCHue
-                                            </a></td>
-                                        </tr>
-                                        <tr>
-                                            <td title="5">5</td>
-                                            <td title="山东破获成品油走私进境案案值达2亿元" style="text-align: left; padding-left: 2%;">
-                                                <p style="width:297px;">山东破获成品油走私进境案案值达2亿元</p></td>
-                                            <td title="50.00%">50.00%</td>
-                                            <td title="
-		#缉私快讯#【青岛海关联合山东海警破获2亿元成品油走私案】青岛海关11月4日发布消息，&nbsp;8月26日，青岛海关缉私局与山东省海警总队抓住犯罪嫌疑人在海上过驳走私成品油的准确时机，一举抓获犯罪嫌疑人27名，现场查扣走私油船4艘、走私成品油700余吨，其团伙涉案成品油合计约4万吨，案值2亿元。
-		" style="text-align: left;padding-left: 2%;"><a target="_blank" style="width:500px;"
-                                                        href="http://weibo.com/3185467631/EgC2Kld8I?refer_flag=1001030103_">
-                                                #缉私快讯#【青岛海关联合山东海警破获2亿元成品油走私案】青岛海关11月4日发布消息，&nbsp;8月26日，青岛海关缉私局与山东省海警总队抓住犯罪嫌疑人在海上过驳走私成品油的准确时机，一举抓获犯罪嫌疑人27名，现场查扣走私油船4艘、走私成品油700余吨，其团伙涉案成品油合计约4万吨，案值2亿元。
-                                            </a></td>
-                                        </tr>
-                                        <tr style="background:#f4f9fc;">
-                                            <td title="6">6</td>
-                                            <td title="南宁海关破获一起海上成品油走私案" style="text-align: left; padding-left: 2%;"><p
-                                                    style="width:297px;">南宁海关破获一起海上成品油走私案</p></td>
-                                            <td title="50.00%">50.00%</td>
-                                            <td title="特大海上成品油走私案在南宁落网&nbsp;涉案金额3000万元"
-                                                style="text-align: left;padding-left: 2%;"><a target="_blank"
-                                                                                              style="width:500px;"
-                                                                                              href="http://news.huishoushang.com/77784.html">特大海上成品油走私案在南宁落网&nbsp;涉案金额3000万元</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td title="7">7</td>
-                                            <td title="广州开展“国门利剑2016”打私行动，查获涉嫌走私冻品3万多吨"
-                                                style="text-align: left; padding-left: 2%;"><p style="width:297px;">
-                                                广州开展“国门利剑2016”打私行动，查获涉嫌走私冻品3万多吨</p></td>
-                                            <td title="50.00%">50.00%</td>
-                                            <td title="" style="text-align: left;padding-left: 2%;"><a target="_blank"
-                                                                                                       style="width:500px;"
-                                                                                                       href=""></a></td>
-                                        </tr>
-                                        <tr style="background:#f4f9fc;">
-                                            <td title="8">8</td>
-                                            <td title="揭秘东南沿海成品油走私“春雷”出击破获成品油走私大案"
-                                                style="text-align: left; padding-left: 2%;"><p style="width:297px;">
-                                                揭秘东南沿海成品油走私“春雷”出击破获成品油走私大案</p></td>
-                                            <td title="34.00%">34.00%</td>
-                                            <td title="
-		我在网易视频观看了《揭秘东南沿海成品油走私“春雷”出击 破获成品油走私大案》，|揭秘东南沿...，很不错，分享给大家。
-		" style="text-align: left;padding-left: 2%;"><a target="_blank" style="width:500px;"
-                                                        href="http://weibo.com/5901303066/DzASnaOHm?refer_flag=1001030103_">
-                                                我在网易视频观看了《揭秘东南沿海成品油走私“春雷”出击 破获成品油走私大案》，|揭秘东南沿...，很不错，分享给大家。
-                                            </a></td>
-                                        </tr>
-                                        <tr>
-                                            <td title="9">9</td>
-                                            <td title="广州、拱北海关联合破获2万吨走私红油大案"
-                                                style="text-align: left; padding-left: 2%;"><p style="width:297px;">
-                                                广州、拱北海关联合破获2万吨走私红油大案</p></td>
-                                            <td title="33.33%">33.33%</td>
-                                            <td title="广州、拱北海关联合破获2万吨走私红油大案" style="text-align: left;padding-left: 2%;">
-                                                <a target="_blank" style="width:500px;"
-                                                   href="http://society.workercn.cn/10/201701/09/170109135652408.shtml">广州、拱北海关联合破获2万吨走私红油大案</a>
-                                            </td>
-                                        </tr>
-                                        <tr style="background:#f4f9fc;">
-                                            <td title="10">10</td>
-                                            <td title="�可点金国际油价将上涨60美元中国油价受害甚大"
-                                                style="text-align: left; padding-left: 2%;"><p style="width:297px;">
-                                                �可点金国际油价将上涨60美元中国油价受害甚大</p></td>
-                                            <td title="33.33%">33.33%</td>
-                                            <td title="【国际油价陷入盘整 端午节前国内油价四连涨概率大】国际油价高位盘整之下，国内油价&quot;四连涨&quot;来袭。这轮计价周期内国际油价再创年内新高，目前对应成品油调价幅度处于50元/吨红线上方，6月8日新一轮成品油调价时间窗口将开启，预计上涨概率较大，部分省份油价将回&quot;6元时代&quot;。http://url.cn/28rZmVx"
-                                                style="text-align: left;padding-left: 2%;"><a target="_blank"
-                                                                                              style="width:500px;"
-                                                                                              href="http://t.qq.com/p/t/510366053021942">【国际油价陷入盘整
-                                                端午节前国内油价四连涨概率大】国际油价高位盘整之下，国内油价"四连涨"来袭。这轮计价周期内国际油价再创年内新高，目前对应成品油调价幅度处于50元/吨红线上方，6月8日新一轮成品油调价时间窗口将开启，预计上涨概率较大，部分省份油价将回"6元时代"。http://url.cn/28rZmVx</a>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="main-nesw-bd" id="topic_summary">
-                                    <dl>
-                                        <dt><i></i></dt>
-                                        <dd name="topic_summary" contenteditable="">
-                                            如上所示，围绕本事件，网络关注话题焦点从“杭州海关破获1.6亿元成品油走私案”，到“油品走私黑金链曝光一船可赚40万”，再到“2016年海关查证粮食走私量创历史新高”，并兼有“国内汽柴油价格不调整”等话题的讨论。
-                                        </dd>
-                                    </dl>
-                                </div>
-
-                            </div>
+                           
                             <!--------------------网民意见分析部分----------------------->
-                            <div class="main-nesw sideToolbar-title" data-title="网民意见分析" name="9" id="9"
-                                 auth_for_show_hide="7">
+                            <div class="main-nesw sideToolbar-title" data-title="网民意见分析" name="7" id="7"
+                                 auth_for_show_hide="6">
                                 <h2>
                                     <span>网民意见分析</span>
                                 </h2>
@@ -1328,11 +749,16 @@
                                              style="height: 300px; overflow: hidden; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-style: none solid solid; border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); box-sizing: border-box; cursor: default;"></div>
                                     </div>
                                 </div>
-                                <div class="main-nesw-bd" id="opinion_emotion_summary">
+                                <div class="main-nesw-bd" id="opinion_emotion_summary" style="position:relative;">
+                                	<div class="loading">
+											<div class="loadingtext">
+												<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+												<span>loading</span>
+											</div>
+										</div>
                                     <dl>
                                         <dt><i></i></dt>
-                                        <dd name="opinion_emotion_summary" contenteditable="">
-                                            截至2017年01月17日16时，网民共发布评论1736条，中立评论占主流。其中25.86%的网民持正面观点，34.85%的网民持负面观点，39.29%的网民持中立观点。
+                                        <dd name="opinion_emotion_summary" id="yijian" contenteditable="">
                                         </dd>
                                     </dl>
                                 </div>
@@ -1343,48 +769,50 @@
                                 <div id="opinion_summary">
                                     <div class="miaosu" name="opinion_summary"><h3 name="n">正面观点网民意见描述</h3>
 
-                                        <div class="main-nesw-bd">
+                                        <div class="main-nesw-bd" id="pos" style="position:relative;">
+                                        	<div class="loading">
+												<div class="loadingtext">
+													<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+													<span>loading</span>
+												</div>
+											</div>
                                             <dl>
                                                 <dt><i></i></dt>
-                                                <dd contenteditable="" name="v">
-                                                    正面观点包含“南宁海关组织开展缉私专项行动(42.86%)”、“在地方公安机关的支持配合下(42.86%)”、“成功打掉一个大规模走私成品油犯罪团伙(7.14%)”等代表性观点，其中代表性微博/网帖主要有“
-                                                    #北海身边事#【南宁海关在北海展开抓捕行动，一家族式走私成品油团伙涉案3000万】南宁海关集中组织开展“GN1620”缉私专项行动，在地方公安机关及海关执勤武警部队的支持配合下，出动警力100余名，在广西北海等地同步展开抓捕行动，现场抓获包括主犯郑某谋在内的犯罪嫌疑人15名，现场查扣成品油近130吨
-                                                    ...展开全文c
-                                                    ”、“
-                                                    #北海身边事#【南宁海关在北海展开抓捕行动，一家族式走私成品油团伙涉案3000万】南宁海关集中组织开展“GN1620”缉私专项行动，在地方公安机关及海关执勤武警部队的支持配合下，出动警力100余名，在广西北海等地同步展开抓捕行动，现场抓获包括主犯郑某谋在内的犯罪嫌疑人15名，现场查扣成品油近130吨
-                                                    ...展开全文c
-                                                    ”、“
-                                                    【高清:6舰出海啥阵仗?打掉27人走私团伙案值2亿[给力]】今天，青岛新闻网从青岛海关获悉，今年8月26日青岛海关与山东海警联合开展“青岛利剑1606”专项行动，成功打掉一个大规模走私成品油犯罪团伙。8月26日，青岛海关缉私局出动70余名警力，山东省海警总队出动6艘舰艇、200余官兵，抓住犯罪嫌疑人在海
-                                                    ...展开全文c
-                                                    ”。
+                                                <dd name="v" id="positive" contenteditable="">
+                                                	
                                                 </dd>
                                             </dl>
                                         </div>
                                     </div>
                                     <div class="miaosu" name="opinion_summary"><h3 name="n">负面观点网民意见描述</h3>
 
-                                        <div class="main-nesw-bd">
+                                        <div class="main-nesw-bd" id="neu" style="position:relative;">
+                                        	<div class="loading">
+												<div class="loadingtext">
+													<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+													<span>loading</span>
+												</div>
+											</div>
                                             <dl>
                                                 <dt><i></i></dt>
-                                                <dd contenteditable="" name="v">
-                                                    负面观点包含“不乏因暴利诱惑铤而走险者(84.38%)”、“实际暗渡成仓(14.06%)”、“伺机走私进境并到珠三角地区偷卸倒卖(1.56%)”等代表性观点，其中代表性微博/网帖主要有“油品走私黑金链曝光&nbsp;一船可赚40万_岁岁枯荣_新浪博客”、“
-                                                    #杭州身边事#【油轮"暗渡陈仓"
-                                                    杭州海关破1.6亿元成品油走私大案】名义上在各港口装载成品油运往山东，实际暗渡陈仓，将油品从公海过驳偷运进境。昨天，杭州海关通报，成功捣毁1个海上成品油走私团伙，抓获犯罪嫌疑人20人，全案涉及走私进境的成品油2.48万吨、案值1.6亿元
-                                                    |油轮"...
-                                                    ”、“
-                                                    发表了博文《广州海关查获走私成品油800多吨》12月初，大铲海关缉私分局接到线索，当晚将有一艘千吨级的油轮从公海接油，伺机走私进境并到珠三角地区偷卸倒卖。但线索中只有涉嫌走私船舶的名字、大概航行时间段|广州海关查...
-                                                    ”。
+                                                <dd name="v" id="negative" contenteditable="">
+                                                	
                                                 </dd>
                                             </dl>
                                         </div>
                                     </div>
                                     <div class="miaosu" name="opinion_summary"><h3 name="n">中立观点网民意见描述</h3>
-
-                                        <div class="main-nesw-bd">
+                                        <div class="main-nesw-bd" id="neg" style="position:relative;">
+                                        	<div class="loading">
+												<div class="loadingtext">
+													<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+													<span>loading</span>
+												</div>
+											</div>
                                             <dl>
                                                 <dt><i></i></dt>
-                                                <dd contenteditable="" name="v">
-                                                    中立观点包含“及前述要求(10.0%)”、“为进一步落实(10.0%)”、“要加强信息共享(10.0%)”等代表性观点，其中代表性微博/网帖主要有“城市加油站不得销售普通柴油：国家11部委局发文”、“城市加油站不得销售普通柴油：国家11部委局发文”、“城市加油站不得销售普通柴油：国家11部委局发文”。
+                                                <dd name="v" id="neutral" contenteditable="">
+                                                	
                                                 </dd>
                                             </dl>
                                         </div>
@@ -1535,9 +963,9 @@
                             <!--</div>-->
                             <!--<div class="main-nesw-bd" id="interact_summary"><dl><dt><i></i></dt><dd name="interact_summary" contenteditable="">经分析研判，油财经U    、深圳微博发布厅、中国经济周刊等账户在本事件的传播中扮演了网络推手的角色,发布了大量事件相关信息,有刻意推动事件发展嫌疑，可作为重点监控对象。其中油财经U    发布相关微博12条，深圳微博发布厅发布相关微博12条，中国经济周刊发布相关微博12条。</dd></dl><dl><dt><i></i></dt><dd name="interact_summary" contenteditable="">意见领袖/认证博主[XX]在事件的二次传播中发挥了重要作用，可作为引导网络舆论的关键点。</dd></dl><dl><dt><i></i></dt><dd name="interact_summary" contenteditable="">其他群体主要参与了此事件传播并具有较大影响力。</dd></dl></div>-->
                             <!--</div>-->
-                            //<!--------------------综合研判部分----------------------->
-                            <div class="main-nesw sideToolbar-title" data-title="综合研判" name="10" id="10"
-                                 auth_for_show_hide="9">
+                            <!--------------------综合研判部分----------------------->
+                            <div class="main-nesw sideToolbar-title" data-title="综合研判" name="8" id="8"
+                                 auth_for_show_hide="7">
                                 <h2>
                                     <span>综合研判</span>
                                 </h2>
@@ -1545,8 +973,13 @@
                                 <div class="main-nesw-bd" id="comprehensive_summary">
                                     <dl>
                                         <dt><i></i></dt>
-                                        <dd name="comprehensive_summary" contenteditable="">
-                                            null较低，事件影响较小，正面及中立意见占据主流，负面意见也占有一定比例，舆论反响极小。
+                                        <dd name="comprehensive_summary" id="zonghe"  contenteditable="" style="position:relative;">
+                                        	<div class="loading">
+														<div class="loadingtext">
+															<img src="/IOPM/subject/report/imgs/ad.png" alt="">
+															<span>loading</span>
+														</div>
+													</div>
                                         </dd>
                                     </dl>
                                     <dl>
@@ -1608,10 +1041,12 @@
                                                 </div>
                                             </div>
                                         </dd>
+                                       
                                         <dd class="sideCatalog-item1" id="sideToolbar-item-0-3"><span
                                                 class="sideCatalog-index1">3</span>
-                                            <a href="#3" class="nslog nslog:1026" title="广电线索分布"
-                                               onclick="return false;">广电线索分布</a><span class="sideCatalog-dot"></span>
+                                            <a href="#4" class="nslog nslog:1026" title="事件综合影响力分析"
+                                               onclick="return false;">事件综合影响力分析</a><span
+                                                    class="sideCatalog-dot"></span>
 
                                             <div class="on_off_head">
                                                 <div class="on_off"><span name="on_off_span" class="on_click"
@@ -1623,9 +1058,8 @@
                                         </dd>
                                         <dd class="sideCatalog-item1" id="sideToolbar-item-0-4"><span
                                                 class="sideCatalog-index1">4</span>
-                                            <a href="#4" class="nslog nslog:1026" title="事件综合影响力分析"
-                                               onclick="return false;">事件综合影响力分析</a><span
-                                                    class="sideCatalog-dot"></span>
+                                            <a href="#5" class="nslog nslog:1026" title="事件阶段演化分析"
+                                               onclick="return false;">事件阶段演化分析</a><span class="sideCatalog-dot"></span>
 
                                             <div class="on_off_head">
                                                 <div class="on_off"><span name="on_off_span" class="on_click"
@@ -1637,8 +1071,8 @@
                                         </dd>
                                         <dd class="sideCatalog-item1" id="sideToolbar-item-0-5"><span
                                                 class="sideCatalog-index1">5</span>
-                                            <a href="#5" class="nslog nslog:1026" title="事件阶段演化分析"
-                                               onclick="return false;">事件阶段演化分析</a><span class="sideCatalog-dot"></span>
+                                            <a href="#6" class="nslog nslog:1026" title="网上传播情况分析"
+                                               onclick="return false;">网上传播情况分析</a><span class="sideCatalog-dot"></span>
 
                                             <div class="on_off_head">
                                                 <div class="on_off"><span name="on_off_span" class="on_click"
@@ -1650,8 +1084,8 @@
                                         </dd>
                                         <dd class="sideCatalog-item1" id="sideToolbar-item-0-6"><span
                                                 class="sideCatalog-index1">6</span>
-                                            <a href="#6" class="nslog nslog:1026" title="网上传播情况分析"
-                                               onclick="return false;">网上传播情况分析</a><span class="sideCatalog-dot"></span>
+                                            <a href="#7" class="nslog nslog:1026" title="事件溯源分析"
+                                               onclick="return false;">事件溯源分析</a><span class="sideCatalog-dot"></span>
 
                                             <div class="on_off_head">
                                                 <div class="on_off"><span name="on_off_span" class="on_click"
@@ -1661,37 +1095,12 @@
                                                 </div>
                                             </div>
                                         </dd>
-                                        <dd class="sideCatalog-item1" id="sideToolbar-item-0-7"><span
-                                                class="sideCatalog-index1">7</span>
-                                            <a href="#7" class="nslog nslog:1026" title="事件溯源分析"
-                                               onclick="return false;">事件溯源分析</a><span class="sideCatalog-dot"></span>
-
-                                            <div class="on_off_head">
-                                                <div class="on_off"><span name="on_off_span" class="on_click"
-                                                                          auth_code="6">ON</span>
-
-                                                    <p></p>
-                                                </div>
-                                            </div>
-                                        </dd>
-                                        <dd class="sideCatalog-item1" id="sideToolbar-item-0-8"><span
-                                                class="sideCatalog-index1">8</span>
-                                            <a href="#8" class="nslog nslog:1026" title="事件话题演化分析"
-                                               onclick="return false;">事件话题演化分析</a><span class="sideCatalog-dot"></span>
-
-                                            <div class="on_off_head">
-                                                <div class="on_off"><span name="on_off_span" class="on_click"
-                                                                          auth_code="7">ON</span>
-
-                                                    <p></p>
-                                                </div>
-                                            </div>
-                                        </dd>
-                                        <dd class="sideCatalog-item1" id="sideToolbar-item-0-9"><span class="sideCatalog-index1">9</span>
+                                        
+                                        <dd class="sideCatalog-item1" id="sideToolbar-item-0-7"><span class="sideCatalog-index1">7</span>
                                             <a href="#9" class="nslog nslog:1026" title="网民意见分析" onclick="return false;">网民意见分析</a><span class="sideCatalog-dot"></span>
 
                                             <div class="on_off_head">
-                                                <div class="on_off"><span name="on_off_span" class="on_click" auth_code="8">ON</span>
+                                                <div class="on_off"><span name="on_off_span" class="on_click" auth_code="6">ON</span>
 
                                                     <p></p>
                                                 </div>
@@ -1705,10 +1114,10 @@
                                         <!--</div>-->
                                         <!--</div>-->
                                         <!--</dd>-->
-                                        <dd class="sideCatalog-item1" id="sideToolbar-item-0-10"><span class="sideCatalog-index1">10</span>
+                                        <dd class="sideCatalog-item1" id="sideToolbar-item-0-8"><span class="sideCatalog-index1">8</span>
                                             <a href="#10" class="nslog nslog:1026" title="综合研判" onclick="return false;">综合研判</a><span class="sideCatalog-dot"></span>
                                             <div class="on_off_head">
-                                                <div class="on_off"><span name="on_off_span" class="on_click" auth_code="9">ON</span>
+                                                <div class="on_off"><span name="on_off_span" class="on_click" auth_code="7">ON</span>
                                                     <p></p>
                                                 </div>
                                             </div>
@@ -1822,7 +1231,7 @@
                 <div class="MaskTop">添加专题</div>
                 <em class="fa fa-times"></em>
                 <div class="maskBox">
-                    <ul class="Time clearfix">
+                    <ul class="Time">
                         <li>名称：<input type="text" style="margin-left:26px;" id="userC" placeholder="请输入名称"/></li>
                         <li class="lefttd">起始时间：
                             <input type="text" id="lookStartTime" class="input sel_event_stime hasDatepicker" placeholder="请输入开始时间"></li>
@@ -1867,6 +1276,7 @@
         </div>
     </div>
 
+	
 
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="../public/plugins/jquery/jquery-1.9.1.min.js"></script>

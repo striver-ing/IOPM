@@ -336,10 +336,10 @@
 	resultType="cn.com.pattek.RelatedNews.entity.AtCount">
 	    select 
 	    <if test="whichChart==2"> count(t.id) count,emotion</if>
-	    <if test="whichChart==1"> count(info_type) count,info_type</if>
-	    <if test="whichChart==3"> count(zero_id) count,zero_id</if>
-	    <if test="whichChart==4"> count(first_id) count,first_id</if>
-	    <if test="whichChart==5"> count(second_id) count,second_id</if>
+	    <if test="whichChart==1"> count(t.info_type) count,t.info_type</if>
+	    <if test="whichChart==3"> count(c.zero_id) count,c.zero_id</if>
+	    <if test="whichChart==4"> count(c.first_id) count,c.first_id</if>
+	    <if test="whichChart==5"> count(c.second_id) count,c.second_id</if>
 		from 
 		<if test="clus_ids!=null or zero_id!=null or whichChart==3">TAB_IOPM_CLUES c,TAB_IOPM_ARTICLE_INFO t,TAB_IOPM_ARTICLE_CLUES_SRC s</if>
 		<if test="clus_ids==null and zero_id==null and whichChart!=3">TAB_IOPM_ARTICLE_INFO t</if>
@@ -351,7 +351,7 @@
 			</if>
 			<if test='record_time!=null and record_time!=""'>
 				and <![CDATA[
-					t.record_time <= to_date(#{record_time},'yyyy-mm-dd hh24:mi:ss') 
+					t.release_time <= to_date(#{record_time},'yyyy-mm-dd hh24:mi:ss') 
 				]]>
 			</if>
 			<if test="type!=null">
@@ -416,6 +416,8 @@
 		<if test="whichChart==4">group by first_id</if>
 		<if test="whichChart==5">group by second_id</if>
 	</select>
+	
+	
 	<!-- 微博接口 -->
 	<select id="getBlogInterface" parameterType="java.util.Map"
 		resultMap="getBlog">

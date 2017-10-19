@@ -115,7 +115,7 @@ $(function(){
                     var scrollBox = $('.scrollBox').eq(index);
                     var bar = scrollBox.children('.bar');
                     
-                    if($content > 1022){
+                    if($content > 1069){
                     	// 小bar的宽度
                         var bili = $scrollBox/(length*167);
                         var barWidth = bili*$scrollBox;

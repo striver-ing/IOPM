@@ -1,4 +1,4 @@
-/* 顶层容器 */
+/* 椤跺眰瀹瑰櫒 */
 #sideToolbar {
 position:fixed;
 /*
@@ -6,11 +6,11 @@ top: 400px;
 left:990px;
 
 bottom: 40px;*/
-top:80px;
+top:42px;
 right:20px;
 }
 
-/*bm显示控制*/
+/*bm鏄剧ず鎺у埗*/
 #sideCatalogBtn {
 width: 45px;
 height: 46px;
@@ -31,7 +31,7 @@ background: transparent url(../imgs/iBookMark_bg.png) -104px 0 no-repeat!importa
 background: transparent url(../imgs/iBookMark_bg.png) -154px 0 no-repeat!important;
 }
 
-/*回到顶部*/
+/*鍥炲埌椤堕儴*/
 #sideToolbar-up {
 display: block;
 width: 45px;
@@ -48,14 +48,14 @@ background: transparent url(../imgs/iBookMark_bg.png) -1px -62px no-repeat;
 background: transparent url(../imgs/iBookMark_bg.png) -74px -62px no-repeat;
 }
 
-/*bm页*/
+/*bm椤�/
 #sideCatalog {
 	width: 300px;
 	/*height: 486px;*/
 	overflow: hidden;
 	margin-bottom: 3px;
 	font-size: 14px;
-	font-family: 微软雅黑;
+	font-family: 寰蒋闆呴粦;
 	line-height: 19px;
 	position: relative;
 	zoom: 1;
@@ -143,7 +143,7 @@ position: relative;
 position: relative;
 }
 
-/* 对齐 */
+/* 瀵归綈 */
 .sideCatalog-item1, .sideCatalog-item2 {
 position: relative;
 padding: 0 7px;
@@ -163,7 +163,7 @@ border-radius:9px 9px 9px 9px;
 /*margin-left:9px;*/
 }
 
-/* 编号 */
+/* 缂栧彿 */
 #sideCatalog span.sideCatalog-index1 {
 color: #000;
 font-weight: bold;
@@ -178,7 +178,7 @@ font-size: 14px;
 padding-right: 5px;
 }
 
-/* 标题 */
+/* 鏍囬 */
 #sideCatalog .sideCatalog-item1 a, #sideCatalog .sideCatalog-item2 a {
 text-decoration: none;
 }
@@ -200,7 +200,7 @@ color: #000;
 #sideCatalog .sideCatalog-item1-highlight .sideCatalog-index1{
 	color: #0199E8;
 }
-/* 定位点 */
+/* 瀹氫綅鐐�*/
 .sideCatalog-dot {
 position: absolute;
 height: 10px;
@@ -223,11 +223,11 @@ background: transparent url(../imgs/iBookMark_bg.png) -271px -38px no-repeat;
 left: -23px;
 top: 7px;
 }
-/*on/off样式------------------------begin*/
+/*on/off鏍峰紡------------------------begin*/
 .on_off_head { position: absolute;top: 3px;right: 7px;}
 .on_off {border-radius:20px; width:50px; height:20px;position: relative; overflow:hidden;float:right;    display: inline-block;margin-top: 3px;}
 .on_off .on_click { float:left; width:100%; background:#25b3fd; font-size:12px; font-family:Arial; line-height:20px; text-align:left; padding-left:4px; color:#FFF; display:block;cursor: pointer; }
 .on_off .off_click {float:right; width:100%; background:#d3d3d3; font-size:12px; font-family:Arial;line-height:20px; text-align:right;padding-right:4px;  color:#666; display:block; cursor: pointer;}
 .on_off p { background:#fff; width:19px; border-radius:50%; display:block; height:19px; position:absolute;right:0; top:0px; z-index:888; cursor: pointer;}
 .on_off p.when_off { left:0;}
-/*on/off样式------------------------end*/
+/*on/off鏍峰紡------------------------end*/

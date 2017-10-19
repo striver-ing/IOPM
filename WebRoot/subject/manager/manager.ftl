@@ -53,7 +53,7 @@
 
 		<!-- begin #page-container -->
 		<div id="page-container" class="fade page-header-fixed page-sidebar-fixed">
-			<!-- begin #content -->
+		<!-- begin #content -->
 			<div id="content" class="content" style="margin:0;padding:0;">
 
 				<div class="panel panel-inverse">
@@ -62,132 +62,83 @@
 						<div class="analyDiv">
 							<div class="col-sm-8">
 								<form action="">
-									<span class="font16px">搜索在控专题：</span>
+									<span class="font16px">搜索专题：</span>
 									<input class="form-control srhText inlblock" type="text" placeholder="例如“习近平”" />
 									<input type="submit" class="btn btn-primary inlblock" value="检索" />
+									 <ul id="lenovo">
+                           			 </ul>
 								</form>
 							</div>
-							<div class="col-sm-12 font16px events">
-								<dl>
-									<dt>在控专题:</dt>
-									<dd class="select">
-										<a href="">成品油走私</a>
-									</dd>
-									<dd>
-										<a href="">东莞工厂倒闭(新)</a>
-									</dd>
-									<dd>
-										<a href="">东莞工厂倒闭</a>
-									</dd>
-									<dd>
-										<a href="">速腾</a>
-									</dd>
-									<dd>
-										<a href="">罗一笑去世</a>
-									</dd>
-									<dd>
-										<a href="">辽宁舰赴南海</a>
-									</dd>
-									<dd>
-										<a href="">2016海交会</a>
-									</dd>
-									<dd>
-										<a href="">中日</a>
-									</dd>
-								</dl>
-							</div>
+							
 						</div>
 						<div class="analyBottom">
-                        <div class="tab-content">
-                            <div class="tab-pane fade active in" id="nav-pills-tab-8">
-                                <div class="row">
-                                    <div class="tableList">
-                                        <table class="table">
-                                            <thead>
-                                            <tr>
-                                                <th>序号</th>
-                                                <th>报告名称</th>
-                                                <th>类别</th>
-                                                <th>起止时间</th>
-                                                <th>状态</th>
-                                                <th>操作</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>川普当选对经济影响</td>
-                                                <td>特朗普当选对经济的影响</td>
-                                                <td>2016-11-01 00:00:00 至 2016-11-09 15:43:18</td>
-                                                <td>完成</td>
-                                                <td>
-                                                    <a class="inlblock" href="../2-events-reportDetails/events-reportDetails.html"><i class="fa fa-eye"></i></a>
-                                                    <i class="fa fa-archive"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>川普当选对经济影响</td>
-                                                <td>特朗普当选对经济的影响</td>
-                                                <td>2016-11-01 00:00:00 至 2016-11-09 15:43:18</td>
-                                                <td>完成</td>
-                                                <td>
-                                                    <a class="inlblock" href="../2-events-reportDetails/events-reportDetails.html"><i class="fa fa-eye"></i></a>
-                                                    <i class="fa fa-archive"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>川普当选对经济影响</td>
-                                                <td>特朗普当选对经济的影响</td>
-                                                <td>2016-11-01 00:00:00 至 2016-11-09 15:43:18</td>
-                                                <td>完成</td>
-                                                <td>
-                                                    <a class="inlblock" href="../2-events-reportDetails/events-reportDetails.html"><i class="fa fa-eye"></i></a>
-                                                    <i class="fa fa-archive"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>川普当选对经济影响</td>
-                                                <td>特朗普当选对经济的影响</td>
-                                                <td>2016-11-01 00:00:00 至 2016-11-09 15:43:18</td>
-                                                <td>完成</td>
-                                                <td>
-                                                    <a class="inlblock" href="../2-events-reportDetails/events-reportDetails.html"><i class="fa fa-eye"></i></a>
-                                                    <i class="fa fa-archive"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>川普当选对经济影响</td>
-                                                <td>特朗普当选对经济的影响</td>
-                                                <td>2016-11-01 00:00:00 至 2016-11-09 15:43:18</td>
-                                                <td>完成</td>
-                                                <td>
-                                                    <a class="inlblock" href="../2-events-reportDetails/events-reportDetails.html"><i class="fa fa-eye"></i></a>
-                                                    <i class="fa fa-archive"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>川普当选对经济影响</td>
-                                                <td>特朗普当选对经济的影响</td>
-                                                <td>2016-11-01 00:00:00 至 2016-11-09 15:43:18</td>
-                                                <td>完成</td>
-                                                <td>
-                                                    <a class="inlblock" href="../2-events-reportDetails/events-reportDetails.html"><i class="fa fa-eye"></i></a>
-                                                    <i class="fa fa-archive"></i>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+							
+                       <table id="data-table">
+                        <thead>
+                        <tr>                            
+                            <th>序号</th>                       
+                            <th>报告名称</th>
+                            <th>起止时间</th>
+                            <th>是否推送</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+	                        <tr>
+	                        	<td style="width:10%">1</td>                       
+	                            <td style="width:25%">报告名称</td>
+	                            <td style="width:25%">起止时间</td>
+	                            <td style="width:20%">是否推送</td>
+	                            <td style="width:20%">
+	                            	<img src="/IOPM/subject/manager/imgs/b.png" class="b">
+	                            	<img src="/IOPM/subject/manager/imgs/a.png" class="a">
+	                            	<img src="/IOPM/subject/manager/imgs/c.png" class="c">
+	                            </td> 
+	                        </tr>
+                      		         
+                        </tbody>
+                    </table>                
+                        <div class="paging">
+                        	<div class="fontcol">
+		                        <span>每页展示</span>
+		                        <select class="inlblock">
+		                            <option value="5">5</option>
+		                            <option value="10">10</option>
+		                            <option value="15">15</option>
+		                            <option value="20">20</option>
+		                        </select>
+		                        <span>条</span>
+		                        <span>共<span class="tiao">111</span>条</span>
+		                    </div>
+							<div id="datatable">
+								<ul class="pagination">
+									<li class="paginate_button previous disabled" id="datatable_previous">
+										<a href="#" aria-controls="datatable" data-dt-idx="0" tabindex="0">上一页</a>
+									</li>
+									<li class="paginate_button active">
+										<a href="#" aria-controls="datatable" data-dt-idx="1" tabindex="0">1</a>
+									</li>
+									<li class="paginate_button ">
+										<a href="#" aria-controls="datatable" data-dt-idx="2" tabindex="0">2</a>
+									</li>
+									<li class="paginate_button ">
+										<a href="#" aria-controls="datatable" data-dt-idx="3" tabindex="0">3</a>
+									</li>
+									<li class="paginate_button next" id="datatable_next">
+										<a href="#" aria-controls="datatable" data-dt-idx="7" tabindex="0">下一页</a>
+									</li>
+								</ul>
+							</div>
+							<div class="goPage">
+								<ul>
+									<li>跳转到第</li>
+									<li><input type="text" class="goNum" /></li>
+									<li>页</li>
+									<li><button type="button" class="btn btn-primary" >GO</button></li>
+								</ul>
+				    		</div>
+						</div>
+                    		</div>
 						</div>
 
 					</div>

@@ -796,7 +796,7 @@ public class RelatedNewsAction extends BaseAction {
 		/**1.通过es查询到相关数据*/
 //		List<Object> list = searchUtil.search(indexName, map, pageNo.intValue(), pageSize);
 		data = searchUtil.searchEmotionCount(map);
-		searchUtil.closeClient();
+//		searchUtil.closeClient();
 		System.out.println("data=" + data.size());
 		this.arrayToJson(data);
 	}

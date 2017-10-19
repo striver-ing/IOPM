@@ -1,4 +1,7 @@
 $(function(){
+	var kwSetA = new Set(),
+		kwSetB = new Set();
+	
 	var sTime = "";
 	var eTime = "";
 	var infoType = "";
@@ -244,9 +247,9 @@ $(function(){
 		},500);
 	});
 
-	$('.checkMask .maskBox').mCustomScrollbar({
-		theme:"inset-dark"
-	});
+//	$('.checkMask .maskBox').mCustomScrollbar({
+//		theme:"inset-dark"
+//	});
 	// 时间按钮
 	$('#startTime').datepicker({
 		todayHighlight: true,
@@ -275,6 +278,566 @@ $(function(){
 		botOff = !botOff;
 	});
 
+	$('#saa').click(function(){
+		 if ($('.review #userC').val() == '' || $('.review #startTime').val() == '' || $('#endTime').val()==null || $('.textA').val()=='') {
+	        	alert('请填写完整');
+	            return false;
+	        } else {
+	        	$.ajax({
+	        		url:'/IOPM/Subject/SubjectAction_addSubject.action',
+	        		type:'post',
+	        		data:{
+	        			"name":$('#userC').val(),
+	        			"startTime":$('#startTime').val(),
+	        			"endTime":$('#endTime').val(),
+	        			"keyword1":$('.textA').val(),
+	        			"keyword2":$('.textB').val()
+	        		},
+	        		dataType:'json',
+	        		success:function(){
+	        			alert('成功')
+	        		},
+	        		erorr:function(){
+	        			alert('失败')
+	        		}
+	        		
+	        	})
+	        	$('.review').hide();
+	        	 return true;
+	        }
+//		 $(this).attr('src','../../subject/report/report.ftl')
+	     })
+	
+	 // 当点击li变色，清空文本域中的内容，并把li中的内容和文本域中的内容放到预览
+    $('.crux li').each(function (index) {
+        $('.crux li').eq(index).click(function () {
+            $(this).addClass('bg').siblings(".crux li").removeClass('bg');
+            if ($(this).index() == 0) {
+                $('.textA').show();
+                $('.textB').hide();
+            } else {
+                $('.textB').show();
+                $('.textA').hide();
+            }
+        })
+    })
+   
+	
+    // 当文本框失去光标
+    $('.textA').blur(function(){ 
+    	$('.hida').show();
+		var txt = $(this).val();
+		
+		// 客户误操作输入中文逗号也按英文逗号处理 按逗号分隔数组
+		var arrStr;
+        var textStr='';
+        if (txt.indexOf('，') > 0) {
+            arrStr = txt.replace(/，/g, ',').split(',');
+        } else {
+            arrStr = txt.replace(/\n/g, ',').split(',')
+        }
+
+		// var arrStr = txt.replace(/，/g,',').split(',');
+		
+        arrStr.forEach((x) => {
+			if(x.trim() != ''){
+				var trim = x.trim()
+				if(trim.indexOf('（') != -1 ||trim.indexOf('(') != -1){
+					trim = trim.replace(/）/g, ')')
+					trim = trim.replace(/（/g, '(')
+					textStr+=trim+','
+					 if(trim.indexOf('|') == -1){
+						 var a;
+						 var c = [];
+						 for(var i=0;i<trim.length;i++){
+						 	if(trim[i]==')'){
+						 		c.push(trim.substring(a,i).replace(/\(/g,""));
+						 		a=i+1
+						 	}	
+						 }
+						 var stra;
+						 if(c.length>1){
+						 	var d = c[0];
+						 	c = c.splice(1);
+						 	for(var i=0;i<c.length;i++){
+						 		var e = c[i];
+						 		var h=[];
+						 		h.push(d[0]+'&'+e[0])
+						 		d = h;
+						 	}
+						 	stra = d;
+						}else{
+							stra = c[0];
+						}
+							stra.forEach((y) => {
+								 kwSetA.add(y);
+					 	})
+					 }else{
+						 var a;
+						 var c = [];
+						 for(var i=0;i<trim.length;i++){
+						 	if(trim[i]==')'){
+						 		c.push(trim.substring(a,i).replace(/\(/g,""));
+						 		a=i+1
+						 	}	
+						 }
+						 
+						var stra;
+						 if(c.length>1){
+						 	var d = c[0].split('|');
+						 	c = c.splice(1);
+						 	for(var i=0;i<c.length;i++){
+						 		var e = c[i].split('|');
+						 		var h=[];
+						 		for(var k=0;k<d.length;k++){
+						 			for(var j=0;j<e.length;j++){
+						 			h.push(d[k]+'&'+e[j])
+						 			}
+						 		}
+						 		d = h;
+						 		
+						 	}
+						 	stra = d;
+						 }else{
+						 	stra = c[0].split('|');
+						 }
+						 stra.forEach((y) => {
+							 kwSetA.add(y);
+						 })
+					 }
+				}else{
+					textStr+=trim+','
+					kwSetA.add(trim);
+				}
+			}
+		});	
+		
+		let str     = '',
+
+	    lastKey = '';
+	for(var val of kwSetA){
+		console.log(isRepeat(val,$('#myUpdateId').val()));
+		if(isRepeat(val,$('#myUpdateId').val()) == true){
+			str     += `<span style="background:red">${val}(已存在)<i></i></span>`;
+		}else{
+			str     += `<span>${val}<i></i></span>`;
+		}
+//		textStr += `${val},`;
+		lastKey = val;
+	}
+	
+	$('.checkMask .zbh').show().find('.zbhBox').html(str);
+	$(this).val(textStr);
+	console.log($('#myUpdateId').val());
+	console.log(lastKey);
+		
+    });
+    $('.textB').blur(function(){
+    	$('.hida').show();
+		var txt = $(this).val();
+		// 客户误操作输入中文逗号也按英文逗号处理 按逗号分隔数组
+		var arrStr;
+        var textStr='';
+        if (txt.indexOf('，') > 0) {
+            arrStr = txt.replace(/，/g, ',').split(',');
+        } else {
+            arrStr = txt.replace(/\n/g, ',').split(',')
+        }
+
+		// var arrStr = txt.replace(/，/g,',').split(',');
+        arrStr.forEach((x) => {
+			if(x.trim() != ''){
+				var trim = x.trim()
+				if(trim.indexOf('（') != -1 ||trim.indexOf('(') != -1){
+					trim = trim.replace(/）/g, ')')
+					trim = trim.replace(/（/g, '(')
+					textStr+=trim+','
+					 if(trim.indexOf('|') == -1){
+						 var a;
+						 var c = [];
+						 for(var i=0;i<trim.length;i++){
+						 	if(trim[i]==')'){
+						 		c.push(trim.substring(a,i).replace(/\(/g,""));
+						 		a=i+1
+						 	}	
+						 }
+						 var stra;
+						 if(c.length>1){
+						 	var d = c[0];
+						 	c = c.splice(1);
+						 	for(var i=0;i<c.length;i++){
+						 		var e = c[i];
+						 		var h=[];
+						 		h.push(d[0]+'&'+e[0])
+						 		d = h;
+						 	}
+						 	stra = d;
+						}else{
+							stra = c[0];
+						}
+							stra.forEach((y) => {
+								 kwSetB.add(y);
+					 	})
+					 }else{
+						 var a;
+						 var c = [];
+						 for(var i=0;i<trim.length;i++){
+						 	if(trim[i]==')'){
+						 		c.push(trim.substring(a,i).replace(/\(/g,""));
+						 		a=i+1
+						 	}	
+						 }
+						 
+						var stra;
+						 if(c.length>1){
+						 	var d = c[0].split('|');
+						 	c = c.splice(1);
+						 	for(var i=0;i<c.length;i++){
+						 		var e = c[i].split('|');
+						 		var h=[];
+						 		for(var k=0;k<d.length;k++){
+						 			for(var j=0;j<e.length;j++){
+						 			h.push(d[k]+'&'+e[j])
+						 			}
+						 		}
+						 		d = h;
+						 		
+						 	}
+						 	stra = d;
+						 }else{
+						 	stra = c[0].split('|');
+						 }
+						 stra.forEach((y) => {
+							 kwSetB.add(y);
+						 })
+					 }
+				}else{
+					textStr+=trim+','
+					kwSetB.add(trim);
+				}
+			}
+		});	
+    	let str     = '';
+//			textStr = '';
+
+		for(var val of kwSetB){
+			str     += `<span>${val}<i></i></span>`;
+//			textStr += `${val},`;
+		}
+		$('.checkMask .bbh').show().find('.bbhBox').html(str);
+
+		$(this).val(textStr);
+		console.log(kwSetB)
+    });
+    $('.textA').keyup(function (ev) {
+        kwSetA = new Set();
+        var keycode = ev.which;
+        if(keycode == 188 || keycode == 13 || keycode == 229 && $(this).val() != ''){// 键入enter
+																						// 同时判断值是否为空
+            // console.log('dohao');
+			$('.hida').show();
+			var txt = $(this).val();
+			// 客户误操作输入中文逗号也按英文逗号处理 按逗号分隔数组
+			var arrStr;
+	        var textStr='';
+	        if (txt.indexOf('，') > 0) {
+	            arrStr = txt.replace(/，/g, ',').split(',');
+	        } else {
+	            arrStr = txt.replace(/\n/g, ',').split(',')
+	        }
+
+			// var arrStr = txt.replace(/，/g,',').split(',');
+	        arrStr.forEach((x) => {
+				if(x.trim() != ''){
+					var trim = x.trim()
+					if(trim.indexOf('（') != -1 ||trim.indexOf('(') != -1){
+						trim = trim.replace(/）/g, ')')
+						trim = trim.replace(/（/g, '(')
+						textStr+=trim+','
+						 if(trim.indexOf('|') == -1){
+							 var a;
+							 var c = [];
+							 for(var i=0;i<trim.length;i++){
+							 	if(trim[i]==')'){
+							 		c.push(trim.substring(a,i).replace(/\(/g,""));
+							 		a=i+1
+							 	}	
+							 }
+							 var stra;
+							 if(c.length>1){
+							 	var d = c[0];
+							 	c = c.splice(1);
+							 	for(var i=0;i<c.length;i++){
+							 		var e = c[i];
+							 		var h=[];
+							 		h.push(d[0]+'&'+e[0])
+							 		d = h;
+							 	}
+							 	stra = d;
+							}else{
+								stra = c[0];
+							}
+								stra.forEach((y) => {
+									 kwSetA.add(y);
+						 	})
+						 }else{
+							 var a;
+							 var c = [];
+							 for(var i=0;i<trim.length;i++){
+							 	if(trim[i]==')'){
+							 		c.push(trim.substring(a,i).replace(/\(/g,""));
+							 		a=i+1
+							 	}	
+							 }
+							 
+							var stra;
+							 if(c.length>1){
+							 	var d = c[0].split('|');
+							 	c = c.splice(1);
+							 	for(var i=0;i<c.length;i++){
+							 		var e = c[i].split('|');
+							 		var h=[];
+							 		for(var k=0;k<d.length;k++){
+							 			for(var j=0;j<e.length;j++){
+							 			h.push(d[k]+'&'+e[j])
+							 			}
+							 		}
+							 		d = h;
+							 		
+							 	}
+							 	stra = d;
+							 }else{
+							 	stra = c[0].split('|');
+							 }
+							 stra.forEach((y) => {
+								 kwSetA.add(y);
+							 })
+						 }
+					}else{
+						textStr+=trim+','
+						kwSetA.add(trim);
+					}
+				}
+			});	
+			
+			let str     = '',
+//			textStr = '',
+		    lastKey = '';
+		for(var val of kwSetA){
+			console.log(isRepeat(val,$('#myUpdateId').val()));
+			if(isRepeat(val,$('#myUpdateId').val()) == true){
+				str     += `<span style="background:red">${val}(已存在)<i></i></span>`;
+			}else{
+				str     += `<span>${val}<i></i></span>`;
+			}
+//			textStr += `${val},`;
+			lastKey = val;
+		}
+		
+		$('.checkMask .zbh').show().find('.zbhBox').html(str);
+		$(this).val(textStr);
+		console.log($('#myUpdateId').val());
+		console.log(lastKey);
+			
+		}
+        
+        // 文本域变色
+        if ($('.hidc .zbh span').length > 0 || $('.hidc .bbh span').length > 0) {
+            $('.textA').css('border-color', '#ccc');
+            $('.textA').attr('placeholder','关键词之间空格分割表示与， 逗号分割表示或。');
+            if ($('.hidc .bbh span').length <= 0) {
+                $('.hida').show();
+                $('.bbh').hide();
+            }else{
+                $('.bbh').show();
+            }
+        } else {
+            $('.hida').hide();
+            $('.bbh').hide();
+            $('.textA').attr('placeholder','输入不能为空');
+            $('.textA').css('border-color', 'red');
+        }
+         console.log(kwSetA)
+    });
+
+    // 文本域变色
+    $('.textA').blur(function(){
+        if($('.textA').val()!= '') {
+            $('.textA').css('border-color', '#ccc');
+            $('.textA').attr('placeholder','关键词之间空格分割表示与， 逗号分割表示或。');
+        } else {
+            $('.hida').hide();
+            $('.textA').attr('placeholder','输入不能为空');
+            $('.textA').css('border-color', 'red');
+        }
+    })
+
+    // 删除包含
+    $('.hidc li.zbh .zbhBox').on('click','i',function () {
+	    $(this).closest('span').remove();
+	    kwSetA.delete($(this).closest('span').text());
+	    let str = '';
+	    for(var val of kwSetA){
+			str += `${val},`;
+		}
+		$('.textA').val(str);
+		return false;
+	});
+	
+	// 给右侧搜索框赋值
+	$('.hidc li div').on('click','span',function(){
+		$('.rightBox').show().find('#kwSrch').val($(this).text().trim()).focus();
+	});
+	
+	
+	// 不包含
+    $('.textB').keyup(function (ev) {
+        kwSetB = new Set();
+        var keycode = ev.which;
+		if(keycode == 188 || keycode == 13 || keycode == 229 && $(this).val() != ''){// 键入enter
+																						// 同时判断值是否为空
+// console.log('dohao');
+			$('.hida').show();
+			var txt = $(this).val();
+			// 客户误操作输入中文逗号也按英文逗号处理 按逗号分隔数组
+			var arrStr;
+	        var textStr='';
+	        if (txt.indexOf('，') > 0) {
+	            arrStr = txt.replace(/，/g, ',').split(',');
+	        } else {
+	            arrStr = txt.replace(/\n/g, ',').split(',')
+	        }
+
+			// var arrStr = txt.replace(/，/g,',').split(',');
+	        arrStr.forEach((x) => {
+				if(x.trim() != ''){
+					var trim = x.trim()
+					if(trim.indexOf('（') != -1 ||trim.indexOf('(') != -1){
+						trim = trim.replace(/）/g, ')')
+						trim = trim.replace(/（/g, '(')
+						textStr+=trim+','
+						 if(trim.indexOf('|') == -1){
+							 var a;
+							 var c = [];
+							 for(var i=0;i<trim.length;i++){
+							 	if(trim[i]==')'){
+							 		c.push(trim.substring(a,i).replace(/\(/g,""));
+							 		a=i+1
+							 	}	
+							 }
+							 var stra;
+							 if(c.length>1){
+							 	var d = c[0];
+							 	c = c.splice(1);
+							 	for(var i=0;i<c.length;i++){
+							 		var e = c[i];
+							 		var h=[];
+							 		h.push(d[0]+'&'+e[0])
+							 		d = h;
+							 	}
+							 	stra = d;
+							}else{
+								stra = c[0];
+							}
+								stra.forEach((y) => {
+									 kwSetB.add(y);
+						 	})
+						 }else{
+							 var a;
+							 var c = [];
+							 for(var i=0;i<trim.length;i++){
+							 	if(trim[i]==')'){
+							 		c.push(trim.substring(a,i).replace(/\(/g,""));
+							 		a=i+1
+							 	}	
+							 }
+							 
+							var stra;
+							 if(c.length>1){
+							 	var d = c[0].split('|');
+							 	c = c.splice(1);
+							 	for(var i=0;i<c.length;i++){
+							 		var e = c[i].split('|');
+							 		var h=[];
+							 		for(var k=0;k<d.length;k++){
+							 			for(var j=0;j<e.length;j++){
+							 			h.push(d[k]+'&'+e[j])
+							 			}
+							 		}
+							 		d = h;
+							 		
+							 	}
+							 	stra = d;
+							 }else{
+							 	stra = c[0].split('|');
+							 }
+							 stra.forEach((y) => {
+								 kwSetB.add(y);
+							 })
+						 }
+					}else{
+						textStr+=trim+','
+						kwSetB.add(trim);
+					}
+				}
+			});	
+				let str     = '';
+//					textStr = '';
+
+				for(var val of kwSetB){
+					str     += `<span>${val}<i></i></span>`;
+//					textStr += `${val},`;
+				}
+				$('.checkMask .bbh').show().find('.bbhBox').html(str);
+
+				$(this).val(textStr);
+		}
+
+        // 文本域变色
+        if ($('.hidc .bbh span').length > 0 || $('.hidc .zbh span').length > 0){
+            $('.hida').show();
+            $('.textB').css('border-color', '#ccc');
+            $('.textB').attr('placeholder','关键词之间空格分割表示与， 逗号分割表示或。');
+            if ($('.hidc .zbh span').length <= 0) {
+                $('.hida').show();
+                $('.zbh').hide();
+            }else{
+                $('.zbh').show();
+            }
+        } else {
+            $('.hida').hide();
+            $('.bbh').hide();
+            $('.textB').attr('placeholder','输入不能为空');
+            $('.textB').css('border-color', 'red');
+        }
+	
+         console.log(kwSetB)
+    });
+
+    // 文本域变色
+        $('.textB').blur(function(){
+            if($('.textB').val()!= '') {
+                $('.textB').css('border-color', '#ccc');
+                $('.textB').attr('placeholder','关键词之间空格分割表示与， 逗号分割表示或。');
+            } else {
+                $('.bbh').hide();
+                $('.textB').attr('placeholder','输入不能为空');
+                $('.textB').css('border-color', 'red');
+            }
+        })
+
+    // 删除不包含
+	$('.hidc li.bbh .bbhBox').on('click','i',function () {
+	    $(this).closest('span').remove();
+	    kwSetB.delete($(this).closest('span').text().trim());
+	    let str = '';
+	    for(var val of kwSetB){
+	    	
+			str += `${val},`;
+		}
+		$('.textB').val(str);
+		return false;
+	})
 
 	// 信息类型
 	var W = document.getElementById("message-W");
@@ -691,6 +1254,16 @@ function getRelated(index,keywords,hot_id,sort){
                 	 String.prototype.replaceAll = function(s1,s2){ 
               			return this.replace(new RegExp(s1,"gm"),s2); 
               			}
+                	 
+                	// 搜索关键词标黄
+               	  if(keywords != null && keywords != "" && keywords != undefined){
+	               	  var key=keywords.split(" ");
+	               	  for(var j=0;j<key.length;j++){
+	               	       relNews[i].content=relNews[i].content.replaceAll(key[j],"<font style = 'background:yellow'>"+key[j]+"</font>");
+	               	       relNews[i].title=relNews[i].title.replaceAll(key[j],"<font style = 'background:yellow'>"+key[j]+"</font>");
+	               	  }
+               	  }
+               	  
                 	 // 关键词标红
                 	 relNews[i].keywords=relNews[i].keywords.replaceAll(" ",",").trim();
 //                	 relNews[i].content = relNews[i].content.replace(/(\r\n)|(\n)/g,'</p><p>');
@@ -702,16 +1275,7 @@ function getRelated(index,keywords,hot_id,sort){
                 		   relNews[i].title=relNews[i].title.replaceAll(keyArray[j],"<font color='red' >"+keyArray[j]+"</font>");
                 	   }
 //                	   console.log(relNews[i].content);
-                	  
-                		
-                	 // 搜索关键词标红
-                	  if(keywords != null && keywords != "" && keywords != undefined){
-                	  var key=keywords.split(" ");
-                	   for(var j=0;j<key.length;j++){
-                	       relNews[i].content=relNews[i].content.replaceAll(key[j],"<font style = 'background:yellow'>"+key[j]+"</font>");
-                	       relNews[i].title=relNews[i].title.replaceAll(key[j],"<font style = 'background:yellow'>"+key[j]+"</font>");
-                	      }
-                	  }
+            
                 	html+=`
                 	 <div class="xinw">
 						<h4><font color='red' >[${relNews[i].type}]</font> ${relNews[i].title}</h4>
@@ -993,10 +1557,38 @@ function getRelated(index,keywords,hot_id,sort){
 				    	if(text!=null&&text!=""&&text!=undefined)getRelated(text,keywords,hot_id,sort);
 				    });
 				    // 添加专题按钮
-					$('.addSpec').each(function(){
-						$(this).click(function(){
+					$('#addSpec').click(function(){
 							$('.checkMask.review').show();
 							$('.checkMask.delete').hide();
+							var timer = setInterval(function(){
+								//监测hidc里ul的高度
+								var ZB = $('.hidc .zbh span').length > 0 ? parseInt($('.hidc .zbh').css('height')):0;
+								var BB = $('.hidc .bbh span').length > 0 ? parseInt($('.hidc .bbh').css('height')):0;
+								if(ZB+BB > 205){
+									$('.hidc ul').css('height',205);
+									$('.hidc ul').css('overflow','auto');
+								}
+								if(ZB+BB < 205) {
+									$('.hidc ul').css('height',ZB+BB);
+								}
+							},100)
+							$('.checkMask .bounceInDown').css({'width': '40%'});
+							$('#saa input').val('');
+							$('#saa textarea').val('');
+							$('.checkMask #userC').val($('#key').val().replace(/\s+/g,''))
+							$('.checkMask #startTime').val($('#lookStartTime').val())
+							$('.checkMask #endTime').val($('#lookEndTime').val())
+							$('.checkMask .bounceInUp input').css('border-color', '#ccc');
+							$('.checkMask .bounceInDown textarea').css('border-color', '#ccc');
+							$('.checkMask .textA').val($('#key').val());
+							$('.checkMask .hidc ul li span').remove();
+							kwSetA = new Set();
+							kwSetB = new Set();
+							$('.checkMask .hida').hide();
+							$('.checkMask .hidb').hide();
+							$('.checkMask .zbh').hide();
+							$('.checkMask .bbh').hide();
+							$('.checkMask.main.increase').show();
 							resetMask(0);
 							resetMaskVal();
 							//添加用户行为
@@ -1005,7 +1597,55 @@ function getRelated(index,keywords,hot_id,sort){
 							userAct($(this).parent().parent().parent().find("#msgId").val(),305);
 							
 							//
-						});
+						
+					});
+					
+					 // 添加专题按钮
+					var TITLE;
+					$('.addSpec').each(function(){
+						
+						$(this).click(function(){
+							$(this).addClass('green')
+							$('.checkMask.review').show();
+							$('.checkMask.delete').hide();
+							var timer = setInterval(function(){
+								//监测hidc里ul的高度
+								var ZB = $('.hidc .zbh span').length > 0 ? parseInt($('.hidc .zbh').css('height')):0;
+								var BB = $('.hidc .bbh span').length > 0 ? parseInt($('.hidc .bbh').css('height')):0;
+								if(ZB+BB > 205){
+									$('.hidc ul').css('height',205);
+									$('.hidc ul').css('overflow','auto');
+								}
+								if(ZB+BB < 205) {
+									$('.hidc ul').css('height',ZB+BB);
+								}
+							},100)
+							TITLE=$(this).parent().parent().parent().children('h4').html()
+							TITLE = TITLE.replace(/<.*?>/g, '')
+//							$('.checkMask .bounceInDown').css({'width': '40%'});
+							$('#special input').val('');
+							$('#special textarea').val('');
+							$('.checkMask #userC').val(TITLE)
+							$('.checkMask #startTime').val($('#lookStartTime').val())
+							$('.checkMask #endTime').val($('#lookEndTime').val())
+							$('.checkMask .bounceInUp input').css('border-color', '#ccc');
+							$('.checkMask .bounceInDown textarea').css('border-color', '#ccc');
+							$('.checkMask .textA').val($('#key').val());
+							$('.checkMask .hidc ul li span').remove();
+							kwSetA = new Set();
+							kwSetB = new Set();
+							$('.checkMask .hida').hide();
+							$('.checkMask .hidb').hide();
+							$('.checkMask .zbh').hide();
+							$('.checkMask .bbh').hide();
+							$('.checkMask.main.increase').show();
+							resetMask(0);
+							resetMaskVal();
+							//添加用户
+							userAct($(this).parent().parent().parent().find("#msgId").val(),305);
+							
+						})	
+						
 					});
 					
 					// chakan yuanwangye
@@ -1096,6 +1736,8 @@ function getRelated(index,keywords,hot_id,sort){
 		      }  
 	})
 }
+
+
 
 // 微信弹出信息
 function getLetter(index){
@@ -1781,6 +2423,30 @@ function getChart(infoType,emotion,spread,keywords,startTime,endTime,pageSize,pa
 	  
 	}
 }
+
+//判断是否重复
+function isRepeat(keyword,id){
+	var isTrue = false;
+	$.ajax({
+		type:"post",
+		url:"/IOPM/KeyClues/KeyCluesAction_isRepeat.action",
+		data:{'keyword2':keyword,
+		      'id':id},
+		async:false,
+		success:function(msg){
+			var obj = eval("("+msg+")");
+			if(obj.info == 1){
+				console.log("您刚填写的关键词 "+keyword+" 已存在");
+				isTrue = true;
+			}
+		},
+		error:function(msg){
+			alert("error");
+		}
+	});
+	return isTrue;
+}
+
 
 
 	
