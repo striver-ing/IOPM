@@ -9,12 +9,31 @@ import cn.com.pattek.KeyWords.entity.IopmClues;
 import cn.com.pattek.KeyWords.entity.IopmFirst;
 import cn.com.pattek.KeyWords.entity.IopmKeyEntity;
 import cn.com.pattek.KeyWords.entity.IopmKeyInfoEntity;
+import cn.com.pattek.KeyWords.entity.IopmKeyWords;
 import cn.com.pattek.KeyWords.entity.IopmRelatedFactor;
 import cn.com.pattek.KeyWords.entity.IopmSortHistory;
 import cn.com.pattek.NetHotSpot.entity.Hot;
 import cn.com.pattek.RelatedNews.entity.Article;
 
 public interface KeyCluesDao {
+	
+	//集合加到数据库
+	public boolean addList(String string) throws Exception;
+	//导出Excel
+	public List<IopmKeyWords> exportExcel() throws Exception;
+	//查询Tag
+	public String selectTag() throws Exception;
+	//查询舆情总数为0的个数
+	public Integer selectCountMsgNull() throws Exception;
+	//查询舆情总数不为 0 的个数
+	public Integer selectCountMsg() throws Exception;
+	
+	
+	
+	
+	
+	
+	
 	//增加关键词
    public boolean addKeyword(IopmKeyInfoEntity key) throws Exception;
     //根据类别名称获得类别

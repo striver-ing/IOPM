@@ -133,6 +133,19 @@
 						<a href="javascript:;">
 							<b class="caret pull-right"></b>
 							<i class="fa fa-book"></i>
+							<span>系统监控</span>
+						</a>
+						<ul class="sub-menu">
+							<li data-link="../专题事件系统/2-events-config/events-config.html"><a href="javascript:;"><span>专题配置</span></a></li>
+							<li data-link="../专题事件系统/2-events-analysis/events-analysis.html"><a href="javascript:;"><span>专题分析</span></a></li>
+							<li data-link="../专题事件系统/2-events-rank/events-rank.html"><a href="javascript:;"><span>专题排名</span></a></li>
+							<li data-link="../专题事件系统/2-events-knowledge/events-knowledge.html"><a href="javascript:;"><span>专题知识库</span></a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<b class="caret pull-right"></b>
+							<i class="fa fa-book"></i>
 							<span>系统管理</span>
 						</a>
 						<ul class="sub-menu">

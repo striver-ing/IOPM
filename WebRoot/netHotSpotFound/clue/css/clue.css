@@ -110,6 +110,10 @@
 .top .btns .del{
     background: #F75252;
 }
+.top .btns .dao{
+    background: gray;
+    width:100px;
+}
 .top .btns .change{
     background: #EDD211;
 }

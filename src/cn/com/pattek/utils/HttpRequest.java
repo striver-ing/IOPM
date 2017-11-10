@@ -102,8 +102,8 @@ public class HttpRequest {
     }
     
     public static void main(String[] args) {
-		String url = "http://192.168.60.31:9200/_sql?sql=select%20*%20FROM%20tab_iopm_article_info";
+		String url = "http://192.168.60.40:9200/_sql?sql=SELECT%20WEBSITE_NAME,count(WEBSITE_NAME)%20FROM%20tab_iopm_article_info%20WHERE%20(RELEASE_TIME%3E=%272017-10-16%2000:00:00%27%20and%20RELEASE_TIME%3C=%272017-10-19%2015:47:03%27)%20and%20((TITLE%20=%20%27%E5%8E%A6%E9%97%A8%E5%8D%AB%E8%A7%86%20%27%20AND%20TITLE%20=%20%27%E5%8D%81%E4%B9%9D%E5%A4%A7%27)%20OR%20(CONTENT%20=%20%27%E5%8E%A6%E9%97%A8%E5%8D%AB%E8%A7%86%20%27%20AND%20CONTENT%20=%20%27%E5%8D%81%E4%B9%9D%E5%A4%A7%27))%20and%20IS_VIP=1%20group%20by%20WEBSITE_NAME%20limit%2010";
 		JSONObject result = httpGet(url);
-		System.out.println(result);
+		System.out.println(result.toString());
 	}
 }

@@ -59,14 +59,16 @@
 				<div class="panel panel-inverse">
 					<div class="panel-body box-body">
 						<!--任务选项按钮-->
-						<div class="analyDiv">
+						<div class="analyDiv clearfix">
 							<div class="col-sm-8">
 								<form action="">
 									<span class="font16px">搜索专题：</span>
-									<input class="form-control srhText inlblock" type="text" placeholder="例如“习近平”" />
-									<input type="submit" class="btn btn-primary inlblock" value="检索" />
+									<input class="form-control srhText inlblock" type="text" placeholder="请输入专题" />
+									<input type="button" id="inlblock" class="btn btn-primary inlblock" value="检索" />
+									<div id="len">
 									 <ul id="lenovo">
                            			 </ul>
+                           			 </div>
 								</form>
 							</div>
 							
@@ -84,59 +86,24 @@
                         </tr>
                         </thead>
                         <tbody>
-	                        <tr>
-	                        	<td style="width:10%">1</td>                       
-	                            <td style="width:25%">报告名称</td>
-	                            <td style="width:25%">起止时间</td>
-	                            <td style="width:20%">是否推送</td>
-	                            <td style="width:20%">
-	                            	<img src="/IOPM/subject/manager/imgs/b.png" class="b">
-	                            	<img src="/IOPM/subject/manager/imgs/a.png" class="a">
-	                            	<img src="/IOPM/subject/manager/imgs/c.png" class="c">
-	                            </td> 
-	                        </tr>
+	                        
                       		         
                         </tbody>
-                    </table>                
+                    </table>
+                    <div class="fontcol">
+                    	<span>每页展示</span>
+				         <select class="inlblock">'+
+				             <option value="5" selected = "selected">5</option>
+				             <option value="10">10</option>
+				             <option value="15">15</option>
+				             <option value="20">20</option>
+				         </select>
+				         <span>条</span>
+				         <span>共<span class="tiao"></span></span>
+                    </div>                
                         <div class="paging">
-                        	<div class="fontcol">
-		                        <span>每页展示</span>
-		                        <select class="inlblock">
-		                            <option value="5">5</option>
-		                            <option value="10">10</option>
-		                            <option value="15">15</option>
-		                            <option value="20">20</option>
-		                        </select>
-		                        <span>条</span>
-		                        <span>共<span class="tiao">111</span>条</span>
-		                    </div>
-							<div id="datatable">
-								<ul class="pagination">
-									<li class="paginate_button previous disabled" id="datatable_previous">
-										<a href="#" aria-controls="datatable" data-dt-idx="0" tabindex="0">上一页</a>
-									</li>
-									<li class="paginate_button active">
-										<a href="#" aria-controls="datatable" data-dt-idx="1" tabindex="0">1</a>
-									</li>
-									<li class="paginate_button ">
-										<a href="#" aria-controls="datatable" data-dt-idx="2" tabindex="0">2</a>
-									</li>
-									<li class="paginate_button ">
-										<a href="#" aria-controls="datatable" data-dt-idx="3" tabindex="0">3</a>
-									</li>
-									<li class="paginate_button next" id="datatable_next">
-										<a href="#" aria-controls="datatable" data-dt-idx="7" tabindex="0">下一页</a>
-									</li>
-								</ul>
-							</div>
-							<div class="goPage">
-								<ul>
-									<li>跳转到第</li>
-									<li><input type="text" class="goNum" /></li>
-									<li>页</li>
-									<li><button type="button" class="btn btn-primary" >GO</button></li>
-								</ul>
-				    		</div>
+                        	
+							
 						</div>
                     		</div>
 						</div>
@@ -226,6 +193,58 @@
 					</form>
 				</div>
 			</div>
+			
+			   <!--添加专题弹出层-->
+    <div class="checkMask main increase">
+        <div>
+            <form action="" method="post" class=" animated bounceInDown" id="special">
+                <div class="MaskTop">添加专题</div>
+                <em class="fa fa-times"></em>
+                <div class="maskBox">
+                    <ul class="Time">
+                        <li>名称：<input type="text" style="margin-left:26px;" id="userC" placeholder="请输入名称"/></li>
+                        <li class="lefttd">起始时间：
+                            <input type="text" id="lookStartTime" class="input sel_event_stime hasDatepicker" placeholder="请输入开始时间"></li>
+                        <li class="lefttd">结束时间：
+                            <input type="text" id="lookEndTime" class="input sel_event_etime hasDatepicker" placeholder="请输入结束时间"></li>
+                    </ul>
+                    <div class="cruxUp">
+                        <span class="span">关键词：</span>
+                        <div class="crux">
+                            <ul>
+                                <li class="bg">包含</li>
+                                <!--<li>至少包含一个</li>-->
+                                <li>不包含</li>
+                            </ul>
+                            <textarea class="textA" placeholder="关键词之间空格分割表示与， 回车、逗号分割表示或。"></textarea>
+                            <textarea class="textB" placeholder="关键词之间空格分割表示与， 回车、逗号分割表示或。"></textarea>
+                        </div>
+                    </div>
+                    <div class="hida">
+                        <span class="span">预览：</span>
+                        <div class="hidc">
+                            <ul>
+                                <!--<li class="qbh">全包含：</li>-->
+                                <li class="zbh">
+                                    <b>　包含：</b>
+                                    <div class="zbhBox"></div>
+                                </li>
+                                <li class="bbh">
+                                    <b>不包含：</b>
+                                    <div class="bbhBox"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="btnMask taskBtn">
+                    <button class="btn btn-primary" type="button" value="确定">确定</button>
+                    <span></span>
+                    <button class="btn btn-danger" value="取消">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
 			<!--删除弹出层-->
 			<div class="checkMask delete">
 				<div>
@@ -236,7 +255,7 @@
 							您确定删除此任务吗？
 						</div>
 						<div class="btnMask">
-							<button class="btn btn-primary" type="submit" value="确定">确定</button>
+							<button class="btn btn-primary" type="button" value="确定">确定</button>
 							<span></span>
 							<button class="btn btn-danger" value="取消">取消</button>
 						</div>

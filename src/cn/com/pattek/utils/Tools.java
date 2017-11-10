@@ -1,6 +1,10 @@
 package cn.com.pattek.utils;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
@@ -43,4 +47,47 @@ public class Tools {
         }  
         return json.toString();  
     }  
+	/**
+     * @Method: cpSrcFileToDestFile 
+     * @Description:拷贝文件
+     * @param srcFileName 源文件
+     * @param destFileName 目标文件
+     * void
+     */
+    public static boolean cpSrcFileToDestFile(final String srcFileName, final String destFileName){
+    	File path = new File(destFileName);
+		if (!path.getParentFile().exists()) {
+			path.getParentFile().mkdirs();
+		}
+		
+    	File file = new File(srcFileName);
+   
+    	try {
+			FileInputStream is = new FileInputStream(file);
+			System.out.println(is.read());
+			FileOutputStream os = new FileOutputStream(destFileName, true);
+			
+			byte[] buffer = new byte[1024];
+			int byteCount ;
+			int bytesWritten = 0;
+			while((byteCount  = is.read(buffer)) != -1){
+				os.write(buffer, 0, byteCount );
+			}
+			
+			os.flush();
+			os.close();
+			is.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	return true;
+    }
+    public static void main(String[] args) {
+    	Tools.cpSrcFileToDestFile("D:\\报告.docx", "\\\\192.168.60.31\\IOPM_TEMP_FILE\\报告.docx");
+	}
 }

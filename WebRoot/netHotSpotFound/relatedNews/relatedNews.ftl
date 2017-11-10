@@ -155,7 +155,7 @@
 										<li>情感倾向：</li>
 										<li><input type="checkbox" id="whole" value="0" checked="checked">全部</li>
 										<li><input type="checkbox" class="box" value="1" checked="checked">正面</li>
-										<li><input type="checkbox" class="box" value="2" checked="checked">反面</li>
+										<li><input type="checkbox" class="box" value="2" checked="checked">负面</li>
 										<li><input type="checkbox" class="box" value="3" checked="checked">中立</li>
 										<li><input type="checkbox" class="box" value="3" checked="checked">未知</li>
 									</ul>
@@ -195,6 +195,9 @@
 							<!--<div class="img-a">
 								<img src="/IOPM/netHotSpotFound/relatedNews/images/loding.png"/>
 							</div>-->
+						</div>
+						<div class="export">
+							
 						</div>
 			    	</div>
 					<!-- 侧边栏 -->
@@ -401,6 +404,7 @@
 							</ul>
 						</div>
 					</div>
+					
 					<!--右侧分页-->
 					<div class="firstRow">
 					</div>
@@ -457,7 +461,7 @@
                     </div>
                 </div>
                 <div class="btnMask taskBtn">
-                    <a href="../../IOPM/subject/report/report.ftl"><button class="btn btn-primary" type="button" value="确定" id="saa">确定</button></a>
+                    <a href="../../IOPM/subject/report/report.ftl"><button class="btn btn-primary" type="button" value="确定" id="saa" style="margin-left:21px;">确定</button></a>
                     <span></span>
                     <button class="btn btn-danger" value="取消">取消</button>
                 </div>
@@ -505,11 +509,11 @@
 						</div>
 					</div>
 					<div class="svg">
-						<div class="svg-img" onclick="userAct2(0)">
+						<div class="svg-img" name="301">
 							<input type="hidden" id="msgId2" />
 							<img src="/IOPM/netHotSpotFound/relatedNews/images/svg1.png" alt="采纳"/><span style="color:green;">采纳</span>&nbsp<i id="adopt" style="color:green;">1</i>
 						</div>
-						<div class="svg-img" onclick="userAct2(1)">
+						<div class="svg-img" name="302">
 							<img src="/IOPM/netHotSpotFound/relatedNews/images/svg2.png" alt="不采纳"/><span style="color:red;">不采纳</span>&nbsp<i id="notAdopt" style="color:red;">1</i>
 						</div>
 					</div>

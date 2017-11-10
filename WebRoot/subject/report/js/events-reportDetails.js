@@ -13,10 +13,10 @@ $(function(){
 			$(this).find('span').addClass('off_click').removeClass('on_click').text('OFF').siblings('p').toggleClass('when_off');
 			//auth_code   auth_for_show_hide
 			//显示对应部分的内容
-			$('[auth_for_show_hide="'+(1+parseInt($(this).find('span').attr('auth_code')))+'"]').hide();
+			$('[auth_for_show_hide="'+(parseInt($(this).find('span').attr('auth_code')))+'"]').hide();
 		}else{
 			$(this).find('span').addClass('on_click').removeClass('off_click').text('ON').siblings('p').toggleClass('when_off');
-			$('[auth_for_show_hide="'+(1+parseInt($(this).find('span').attr('auth_code')))+'"]').show();
+			$('[auth_for_show_hide="'+(parseInt($(this).find('span').attr('auth_code')))+'"]').show();
 		}
 	});
 	//回到顶部位置设置
@@ -57,8 +57,7 @@ $(function(){
 	});
 	
 	//联想搜索
-	
-		$('.srhText').keyup(function(){
+		$('.srhText').keyup(function(ev){
 			if($(this).val() != ''){
 				var text = $(this).val()
 				$.ajax({
@@ -74,25 +73,26 @@ $(function(){
 							}
 							$('#lenovo').html(html)
 							if($('#lenovo').children().length == 0){
-								$('#lenovo').hide()
+								$('#len').hide()
 							}else{
-								$('#lenovo').show()
+								$('#len').show()
 								$('#lenovo li').each(function(){
 									$(this).mouseover(function(){
 										$(this).css('background','#ccc')
 										$(this).click(function(){
 											$('.srhText').val($(this).html())
 											$('.srhText').attr('name',$(this).attr('id'))
-											$('#lenovo').hide()
+											$('#len').hide()
 										})
 									})
 									$(this).mouseout(function(){
 										$(this).css('background','#fff')
 									})
 								})
+								
 							}
 						}else{
-							$('#lenovo').hide()
+							$('#len').hide()
 						}
 					},
 					erorr:function(){
@@ -100,31 +100,69 @@ $(function(){
 					}
 				})
 			}else{
-				$('#lenovo').hide()
+				$('#len').hide()
 			}
 			
 		})
-	$('#lenovo').mCustomScrollbar({
+		
+		
+		$('body').click(function(){
+			$('#len').hide()
+		})
+		
+	$('#len').mCustomScrollbar({
 		theme:"inset-dark"
 	});
 		$('#inlblock').click(function(){
-			var id = $('.srhText').attr('name');
-			var val = $('.srhText')
-			var html = '<dt>专题:</dt><dd id='+id+'><a href="#">'+val+'</a></dd>'
-			chuan(id)
-			$('.analyDiv .events dl').html(html)
-			$('.analyDiv .events dd').addClass('select')
-			$('.srhText').keyup(function(){
-				if($(this).val() == ''){
-					//渲染专题
-					Rendering()
+			$.ajax({
+				url:'/IOPM/Subject/SubjectAction_searchSubject.action',
+				type:'post',
+				data:{"name":$('.srhText').val()},
+				dataType:'json',
+				success:function(data){
+					if(data == ''){
+						alert('专题不存在')
+					}else{
+						var html = '<dt>专题:</dt><dd id='+data[0].ID+'><a href="#">'+data[0].NAME+'</a></dd>'
+						chuan(data[0].ID)
+						$('.analyDiv .events dl').html(html)
+						$('.analyDiv .events dd').addClass('select')
+						$('.srhText').keyup(function(){
+							if($(this).val() == ''){
+								//渲染专题
+								Rendering()
+							}
+						})
+					}
 				}
-			})	
+			})
+			
 		})
-	
-
 	//渲染专题
-	Rendering()
+	if(window.location.href.indexOf('?')+1  == 0){
+		Rendering()
+	}else{
+		var url = window.location.href.slice(window.location.href.indexOf('?')+1).split('&')
+		var vars = [];
+		var hash = [];
+		for(var i=0;i<url.length;i++){
+			hash = url[i].split('=');
+			vars.push(hash[1])
+		}
+		var html = '<dt>专题:</dt><dd id='+vars[1]+'><a href="#">'+decodeURI(decodeURI(vars[0]))+'</a></dd>'
+		chuan(vars[1])
+		$('.analyDiv .events dl').html(html)
+		$('.analyDiv .events dd').addClass('select')
+		$('.srhText').val(decodeURI(decodeURI(vars[0])))
+		$('.srhText').keyup(function(){
+			if($('.srhText').val() == ''){
+				//渲染专题
+				Rendering()
+			}
+		})
+		
+	}
+	
 	
 	//点击添加专题
 	$('.add').click(function(){
@@ -158,9 +196,10 @@ $(function(){
 		resetMask(0);
 //		resetMaskVal();
 	})
+	
 	//点击确定
 	$('#special .btn-primary').click(function(){
-		 if ($('.increase #userC').val() == '' || $('.increase #lookStartTime').val() == '' || $('#lookEndTime').val()==null || $('.textA').val()=='') {
+		 if ($('.increase #userC').val() == '' || $('.increase #lookStartTime').val() == '' || $('#lookEndTime').val()== '' || $('.textA').val()=='') {
 	        	alert('请填写完整');
 	            return false;
 	        } else {
@@ -196,7 +235,24 @@ $(function(){
 			$(this).css('border-color', 'red');
 			$(this).attr('placeholder', '输入不能为空')
 		} else {
-			$(this).css('border-color', '#ccc');
+			$.ajax({
+				url:'/IOPM/Subject/SubjectAction_searchSubject.action',
+				type:'post',
+				data:{"name":$('#userC').val()},
+				dataType:'json',
+				success:function(data){
+					if(data == ''){
+						$('#userC').css('border-color','#ccc')
+						$('#special .btn-primary').css('background','#348fe2')
+						$('#special .btn-primary').removeAttr('disabled')
+					}else{
+						$('#userC').css('border-color','red')
+						$('#special .btn-primary').css('background','#ccc')
+						$('#special .btn-primary').attr('disabled','disabled')
+						alert('该专题已存在')
+					}
+				}
+			})
 		}
 	})
 	//开始时间按钮
@@ -321,24 +377,14 @@ $(function(){
 			}
 		});	
 		
-		let str     = '',
+		let str     = '';
 
-	    lastKey = '';
-	for(var val of kwSetA){
-		console.log(isRepeat(val,$('#myUpdateId').val()));
-		if(isRepeat(val,$('#myUpdateId').val()) == true){
-			str     += `<span style="background:red">${val}(已存在)<i></i></span>`;
-		}else{
-			str     += `<span>${val}<i></i></span>`;
+		for(var val of kwSetA){
+			str += `<span>${val}<i></i></span>`;
 		}
-//		textStr += `${val},`;
-		lastKey = val;
-	}
 	
-	$('.checkMask .zbh').show().find('.zbhBox').html(str);
-	$(this).val(textStr);
-	console.log($('#myUpdateId').val());
-	console.log(lastKey);
+		$('.checkMask .zbh').show().find('.zbhBox').html(str);
+		$(this).val(textStr);
 		
     });
     $('.textB').blur(function(){
@@ -529,24 +575,14 @@ $(function(){
 				}
 			});	
 			
-			let str     = '',
-//			textStr = '',
-		    lastKey = '';
+			let str     = '';
 		for(var val of kwSetA){
-			console.log(isRepeat(val,$('#myUpdateId').val()));
-			if(isRepeat(val,$('#myUpdateId').val()) == true){
-				str     += `<span style="background:red">${val}(已存在)<i></i></span>`;
-			}else{
-				str     += `<span>${val}<i></i></span>`;
-			}
+			str     += `<span>${val}<i></i></span>`;
 //			textStr += `${val},`;
-			lastKey = val;
 		}
 		
 		$('.checkMask .zbh').show().find('.zbhBox').html(str);
 		$(this).val(textStr);
-		console.log($('#myUpdateId').val());
-		console.log(lastKey);
 			
 		}
         
@@ -748,11 +784,6 @@ $(function(){
 		return false;
 	})
 	
-	if($('.analyDiv .events dl').height()> 50){
-		$('#jt').show()
-	}else{
-		$('#jt').hide()
-	}
 	
 	var jt = 0;
 	$('#jt').click(function(){
@@ -1005,6 +1036,11 @@ function Rendering(){
 				html+= '<dd id='+data[i].ID+'><a href="#">'+data[i].NAME+'</a></dd>'
 			}
 			$('.analyDiv .events dl').html(html)
+			if($('.analyDiv .events dl').height()> 50){
+				$('#jt').show()
+			}else{
+				$('#jt').hide()
+			}
 			$('.analyDiv .events dl dd').eq(0).addClass('select')
 			var id = $('.analyDiv dd').eq(0).attr('id')
 			chuan(id)
@@ -1214,6 +1250,8 @@ function content(id){
 			$('#yuqi').find('.loading').hide()
 			myChart.hideLoading();
 		}
+		
+		
 	})
 	
 	
@@ -1283,7 +1321,7 @@ function content(id){
 	})
 
 
-	//第三个  影响力趋势
+	//第三个  影响力趋势 
 	var n;
 	$('#influence_trend_line').css('width',$(window).width()*0.62);
 	var influence_trend_line = echarts.init(document.getElementById('influence_trend_line'));
@@ -1311,11 +1349,9 @@ function content(id){
 			option = {
 				tooltip : {
 					trigger: 'axis',
-					axisPointer: {
-						type: 'cross',
-						crossStyle: {
-							color: '#999'
-						}
+					axisPointer:{
+						type : 'shadow'
+						
 					}
 				},
 				toolbox: {
@@ -1338,6 +1374,7 @@ function content(id){
 					{
 						type: 'category',
 						bordercolor:'blue',
+//						boundaryGap: false,
 						data:time
 					}
 				],
@@ -1452,7 +1489,7 @@ function content(id){
 			                fontSize: 16,
 			                color: 'black'
 			            },
-			            offsetCenter: [0, '58%'],
+			            offsetCenter: ['50%', '10%'],
 			            formatter: '{value}'
 			        },
 			        min: 0,
@@ -1481,8 +1518,15 @@ function content(id){
 			influence_trend_line.hideLoading();
 		}
 	})
-			
-	
+	function convertCanvasToImage(canvas) {
+		var image = new Image();
+		console.log(canvas.toDataURL())
+		image.src = canvas.toDataURL("image/png");
+		return image;
+	}
+//			console.log($('#influence_trend_line').find('canvas')[0].toDataURL)
+//	convertCanvasToImage($('#influence_trend_line').find('canvas'))
+	  
 
 	//第五个图表  事件阶段演化
 	
@@ -1536,6 +1580,7 @@ function content(id){
 						align:'left'
 						},
 				},
+	            color: ["#ffab1b", "#ff0000", "#d21de6", "#21de21", "#07e0ca", "#0000ff", "#ce0ace", "#158cf9", "#e037f7", "#c57d00", "#39a3ff"],
 				legend: {
 					data:['总信息量','主流媒体信息量','微博','微信','新闻','app','视频']
 				},
@@ -1669,6 +1714,7 @@ function content(id){
 						align:'left'
 						},
 				},
+				color:['yellow','red'],
 				legend: {
 					data:['总信息量','负面信息量']
 				},
@@ -1902,7 +1948,7 @@ function content(id){
 	    })
 	    
 	    
-	    //微博列表
+	    //微博列表 title-content
 	    $.ajax({
 	    	url:'/IOPM/Subject/SubjectAction_weiboTrendRank.action',
 	    	type:'post',
@@ -2160,8 +2206,13 @@ function content(id){
 	    			infotype = '微博'
 	    		}
 	    		$('#trace_table tbody').html(html);
-	    		html1='经传播溯源分析发现,'+gaiShu.releaseTime +','+gaiShu.author+''+gaiShu.websiteName+'站点发布标题为《'+gaiShu.title+'》的'+infotype+'信息，是该事件传播的源头信息。其后'+gaiShu.firstWebsiteName+'、'+gaiShu.secondWebsiteName+'等站点相继发布相关信息，事件传播影响力渐次扩大.'
-	    		$('#t').html(html1)
+	    		console.log(gaiShu.websiteName)
+	    		if(gaiShu.websiteName==' '|| gaiShu.author==' '){
+	    			$('#t').html("")
+	    		}else{
+	    			html1='经传播溯源分析发现,'+gaiShu.releaseTime +','+gaiShu.author+''+gaiShu.websiteName+'站点发布标题为《'+gaiShu.title+'》的'+infotype+'信息，是该事件传播的源头信息。其后'+gaiShu.firstWebsiteName+'、'+gaiShu.secondWebsiteName+'等站点相继发布相关信息，事件传播影响力渐次扩大.'
+	    			$('#t').html(html1)
+	    		}
 	    		$('#trace_table .loading').hide()
 	    		$('#trace_summary .loading').hide()
 	    		$('#trace_summary').css('height','auto')
@@ -2202,53 +2253,27 @@ function content(id){
 			var c2 = emtion(time,C2)
 			var c3 = emtion(time,C3)
 			
-			
-			
-			
-			/*for(var i=0;i<data.length;i++){
-				var b = true;
-				for(var j=0;j<time.length;j++){
-					if(time[j] == data[i].TIME){
-						b = false;
-					}
-				}
-				if(b == true){
-					time.push(data[i].TIME)
-				}
-				
-				if(data[i].EMOTION == 1){
-					C1.push(data[i])
-				}else if(data[i].EMOTION == 2){
-					C2.push(data[i])
-				}else if(data[i].EMOTION == 3){
-					C3.push(data[i])
-				}
-			}
-			
-			var c1 = emtion(time,C1)
-			var c2 = emtion(time,C2)
-			var c3 = emtion(time,C3)*/
 	
 			option = {
 				tooltip : {
 					trigger: 'axis',
-					axisPointer: {
-						type: 'cross',
-						crossStyle: {
-							color: '#999'
-						}
+					axisPointer:{
+						type : 'shadow'
+						
 					},
 					textStyle:{
 						align:'left'
 						},
 				},
+				color:[ '#3ae41c','red','yellow'],
 				toolbox: {
 					show : true,
 					feature: {
-						dataView: {show: true, readOnly: false},
+						mark : {show: true},
+						dataView : {show: true, readOnly: false},
 						magicType: {show: true, type: ['line', 'bar']},
-						restore: {show: true},
-						saveAsImage: {show: true}
+						restore : {show: true},
+						saveAsImage : {show: true}
 					}
 				},
 				calculable : true,
@@ -2355,11 +2380,11 @@ function content(id){
 		success:function(data){
 			var html=''
 			data = data.emotionTimeAndcount
-			var a = parseInt(data.fu)
-			var b = parseInt(data.zheng)
+			var a = parseInt(data.zheng)
+			var b = parseInt(data.fu)
 			var c = parseInt(data.zhong)
 			var zong = a+b+c
-			html+='截至2017年01月17日16时，网民共发布评论'+zong+'条，中立评论占主流。其中'+(a/zong*100).toFixed(2)+'%的网民持正面观点，'+(b/zong*100).toFixed(2)+'%的网民持负面观点，'+(c/zong*100).toFixed(2)+'%的网民持中立观点。'
+			html+='截至2017年01月17日16时，共发布文章'+zong+'条。其中'+(a/zong*100).toFixed(2)+'%的网民持正面观点，'+(b/zong*100).toFixed(2)+'%的网民持负面观点，'+(c/zong*100).toFixed(2)+'%的网民持中立观点。'
 		
 			option = {
 				title : {
@@ -2473,7 +2498,222 @@ function content(id){
 			$('#zonghe .loading').hide()
 		}
 	})
-}
+	
+	//生成word
+	$('.weixin #word').click(function(){
+		$.ajax({
+			url:'/IOPM/Subject/SubjectAction_saveData.action',
+			type:'post',
+			data:{
+				"type":1,
+				"picture":JSON.stringify({
+					"one":$('#kind-statistics').children().children()[0].toDataURL(),
+					"two":$('#influence_trend_line').children().children()[0].toDataURL(),
+					"three":$('#influence_evaluate_watch').children().children()[0].toDataURL(),
+					"four":$('#report').children().children()[0].toDataURL(),
+					"five":$('#spread_news_img').children().children()[0].toDataURL(),
+					"six":$('#spread_mblog_img').children().children()[0].toDataURL(),
+					"seven":$('#spread_wechat_img').children().children()[0].toDataURL(),
+					"eight":$('#opinion_emotion_img_trend_line').children().children()[0].toDataURL(),
+					"nine":$('#opinion_emotion_img_distribute').children().children()[0].toDataURL()
+				}),
+				"text":JSON.stringify({
+					"summary1":$('.summary1').html(),
+					"summary2":$('.summary2').html(),
+					"yuqing":$('#yuqing').html(),
+					"effect":$('#effect_summay dd').html(),
+					"stage":$('#stage_summary dd').html(),
+					"spread_news":$('#spread_news_summary dd').html(),
+					"spread_mblog":$('#spread_mblog_summary dd').html(),
+					"spread_wechat":$('#spread_wechat_summary dd').html(),
+					"trace":$('#trace_summary dd').html(),
+					"yijian":$('#yijian').html(),
+					"positive":$('#positive').html(),
+					"negative":$('#negative').html(),
+					"neutral":$('#neutral').html(),
+					"zonghe":$('#zonghe').html()
+				})
+			},
+			success:function(data){
+					location.href=data
+			}
+				
+		})
+	})
+	
+	//推送至微信
+	$('.weixin #weix').click(function(){
+		$('#marquee-a').html('')
+		$('#marquee-b').html('')
+		$.ajax({
+			url:"http://192.168.60.30:8080/wechat/get_user_list",
+			type:"post",
+		    dataType: "jsonp",
+		    jsonp:'callback',  
+		    jsonpCallback:"successCallback",  
+		    success:function(json){
+		    	json = json.userlist
+		    	var html = '<dt>全部</dt>'
+		    		for(var i=0;i<json.length;i++){
+		    			html+='<dd><img src="/IOPM/subject/report/imgs/addS.png" alt="" /><span id='+json[i].userid+'>'+json[i].name+'</span><b></b></dd>'
+		    		}
+			    	$('#marquee-a').html(html);
+			    
+			    	$('#marquee-a dt').click(function(ev){
+	             		$('#marquee-a dd').each(function(){
+	             			$(this).children('b').show();
+	             			$(this).children('img').attr('src','/IOPM/subject/report/imgs/pushS.png');
+	             			$('#marquee-b').append($(this))
+	             		})
+	             		$('#marquee-b dd b').each(function(){
+	             			$(this).click(function(){
+	             				$(this).parent().children('img').attr('src','/IOPM/subject/report/imgs/images/addS.png')
+	             				$(this).hide();
+	             				$('#marquee-a').append($(this).parent())
+	             				return false;
+	             			})
+	             		})
+	             		$('#marquee-b dd').each(function(){
+	             			$(this).mouseover(function(){
+	             				$(this).children('b').css('transform', 'scale(2)'); 
+	             				$(this).children('b').css('transition','all 0.8s')
+	             			}) 
+	             		})
+	             	
+	             		$('#marquee-b dd ').each(function(){
+	             			$(this).mouseout(function(){
+	             				$(this).children('b').css('transform', 'scale(1)'); 
+	             				$(this).children('b').css('transition','all 0.8s')
+	             			})
+	             		})
+	             		
+	             	ev.stopPropagation();
+	             	})
+	             	
+	             	$('#marquee-a dd').each(function(){
+	             		$(this).click(function(){
+	             			$(this).children('b').show();
+	             			$(this).children('img').attr('src','/IOPM/netHotSpotFound/relatedNews/images/pushS.png');
+	             			$('#marquee-b').append($(this))
+	             			
+	             			$('#marquee-b dd b').each(function(){
+	             				$(this).click(function(){
+	             					$(this).hide();
+   	 	             				$(this).parent().children('img').attr('src','/IOPM/netHotSpotFound/relatedNews/images/addS.png')
+   	 	             				$('#marquee-a').append($(this).parent())         	 	             		
+   	 	             				return false;
+	             				})
+	             			})
+	             			$('#marquee-b dd').each(function(){
+	             				$(this).mouseover(function(){
+	             					$(this).children('b').css('transform', 'scale(2)'); 
+	             					$(this).children('b').css('transition','all 0.8s')
+	             				}) 
+	             			})
+	             	
+   	 	             		$('#marquee-b dd ').each(function(){
+   	 	             			$(this).mouseout(function(){
+   	 	             				$(this).children('b').css('transform', 'scale(1)'); 
+   	 	             				$(this).children('b').css('transition','all 0.8s')
+   	 	             			})
+   	 	             		})
+   	 	             		
+	             		})
+	             	})	
+		    	}
+		})
+		$('.checkMask.append').show();
+		$('.checkMask.delete').hide();
+		resetMask(0);	
+	})
+	
+	$('.append .btn-primary').click(function(){
+         	$('.checkMask.append').hide();
+       		var userid=[];
+       		$('#marquee-b dd').each(function(){
+       			userid.push($(this).children('span').attr('id'));
+       		})
+       		if(userid.length > 1){
+       			userid = userid.join("|")
+       		}else{
+       			userid = userid[0]
+       		}
+       		
+		$.ajax({
+			url:'/IOPM/Subject/SubjectAction_saveData.action',
+			type:'post',
+			data:{
+				"type":2,
+				"picture":JSON.stringify({
+					"one":$('#kind-statistics').children().children()[0].toDataURL(),
+					"two":$('#influence_trend_line').children().children()[0].toDataURL(),
+					"three":$('#influence_evaluate_watch').children().children()[0].toDataURL(),
+					"four":$('#report').children().children()[0].toDataURL(),
+					"five":$('#spread_news_img').children().children()[0].toDataURL(),
+					"six":$('#spread_mblog_img').children().children()[0].toDataURL(),
+					"seven":$('#spread_wechat_img').children().children()[0].toDataURL(),
+					"eight":$('#opinion_emotion_img_trend_line').children().children()[0].toDataURL(),
+					"nine":$('#opinion_emotion_img_distribute').children().children()[0].toDataURL()
+				}),
+				"text":JSON.stringify({
+					"summary1":$('.summary1').html(),
+					"summary2":$('.summary2').html(),
+					"yuqing":$('#yuqing').html(),
+					"effect":$('#effect_summay dd').html(),
+					"stage":$('#stage_summary dd').html(),
+					"spread_news":$('#spread_news_summary dd').html(),
+					"spread_mblog":$('#spread_mblog_summary dd').html(),
+					"spread_wechat":$('#spread_wechat_summary dd').html(),
+					"trace":$('#trace_summary dd').html(),
+					"yijian":$('#yijian').html(),
+					"positive":$('#positive').html(),
+					"negative":$('#negative').html(),
+					"neutral":$('#neutral').html(),
+					"zonghe":$('#zonghe').html()
+				})
+			},
+			success:function(data){
+				$.ajax({
+					url:data,
+					type:'post',
+					data:{"type":2},
+					dataType:'json',
+					success:function(data){
+						console.log(data)
+						if(data.status == 0){
+							alert('页面正在加载中...\n请稍后重试')
+						}else if(data.status == 1){
+							$.ajax({
+				       			url:'http://192.168.60.30:8080/wechat/send_file',
+				       			type:'post',
+				       			data:{ 'file_path':data.url,
+				       			    	'users':userid
+				       			     },
+				       			dataType:'jsonp',
+				       			jsonp:'callback',  
+				   			    jsonpCallback:"successCallback", 
+				       			success:function(json){
+				       				if(json.errcode == 0){
+				       					alert("发送成功")
+				       				}else{
+				       					alert("发送失败\n" + json.errmsg)
+				       				}
+				       				
+				       			},
+				       			erorr:function(json){
+				       				alert('发送失败');
+				       			}
+				       		})
+						}
+						
+					}
+				})
+				
+			}
+				
+		})
+	})
+}	
 		
 		
 	function w(s){
@@ -2482,15 +2722,11 @@ function content(id){
 			var height = $(s).height()
 			$(s).find('.loading').css('width',width)
 			$(s).find('.loading').css('height',height)
-//			$(s).find('.loadingtext').css('left',width/2-50)
-//			$(s).find('.loadingtext').css('top',height/2-24)
 			$(s).find('.loading img').css('animation','zhuan 2s infinite linear');
 		}else{
 			$(s).css('height',150)
 			$(s).find('.loading').css('width',976)
 			$(s).find('.loading').css('height',150)
-//			$(s).find('.loadingtext').css('left',width/2-50)
-//			$(s).find('.loadingtext').css('top',150/2-24)
 			$(s).find('.loading img').css('animation','zhuan 2s infinite linear');
 		}
 		$(s).find('.loading').show()
@@ -2514,6 +2750,6 @@ function content(id){
 		}
 		return c
 	}
-	
+
 	
 		

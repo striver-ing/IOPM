@@ -5,12 +5,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import cn.com.pattek.KeyWords.entity.IopmKeyEntity;
-import cn.com.pattek.KeyWords.entity.IopmKeyInfoEntity;
 import cn.com.pattek.Subject.entity.TabIopmSubject;
 
 public interface SubjectDao {
-
+	
+	
+	
 	/**
 	 * 通过id查询主题名称
 	 * @param id
@@ -46,8 +46,15 @@ public interface SubjectDao {
 	 * @throws Exception 
 	 */
    public List<TabIopmSubject> selectSubjectAll(Map map) throws Exception;
-   //查询专题总数
-  public Integer selectTotalCount() throws Exception;
+	/**
+	 * 查询专题总数
+	 * @param <K>
+	 * 
+	 * @param 
+	 * @return
+	 * @throws Exception 
+	 */
+   public Integer selectTotalCount() throws Exception;
 	/**
 	 * 查出类别ID和类别名称
 	 * @param <K>
@@ -60,24 +67,7 @@ public interface SubjectDao {
 	
 	
 	public  List<Map<String ,Object>> selectZeroIdAndName() throws Exception;
-	/**
-	 * 新闻、微信、微博类别的首发信息
-	 * SelectFristTime、SelectSecondTime、SelectThirdTime
-	 * @param 
-	 * @return
-	 * @throws Exception 
-	 */
-	public Date SelectFristTime(String keyWord1) throws Exception;
-	public Date SelectSecondTime(String keyWord1) throws Exception;
-	public Date SelectThirdTime(String keyWord1) throws Exception;
-	/**
-	 * 事件溯源分析概述
-	 * S
-	 * @param 
-	 * @return
-	 * @throws Exception 
-	 */
-	public List<Map<String, Object>> SelectFrist(String keyWord1) throws Exception;
+
 	  /**
 	   * 情感波动
 	   */
@@ -103,7 +93,16 @@ public interface SubjectDao {
 	   * @throws Exception
 	   */
 	  public String URLSql(String httpValue,String head,String keyWord,String end) throws Exception;
-	/**
+	
+	  /**
+	   * 调用python服务,对keyword进行重新编码
+	   * @param keyword1
+	   * @return
+	   * @throws Exception
+	   */
+	  public String serviceFromPython(String keyword1) throws Exception;
+	  
+	  /**
 	 * 简单拼接
 	 * @param keyWord1
 	 * @return
@@ -118,7 +117,8 @@ public interface SubjectDao {
 	 * @throws Exception
 	 */
 	public String splitKeyWord1(String head,String keyWord1,String end) throws Exception;
-	public String splitKeyWord1(String head,String keyWord1,String end,boolean isNeedContent) throws Exception;
+	
+	public String splitKeyWord1AndNoContent(String head,String keyword1,String end) throws Exception;
 	/**
 	 * 查询出高峰,然后返回一个字符串
 	 * @param map
@@ -326,9 +326,15 @@ public interface SubjectDao {
 	 */
 	public String date2String(Date date)throws Exception;
 
-
-
-
+	/**
+	 * 更新是否推送
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean updateIsSend(Long id)throws Exception;
+	
+	
 
 
 

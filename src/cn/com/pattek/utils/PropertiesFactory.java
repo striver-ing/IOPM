@@ -34,7 +34,7 @@ public class PropertiesFactory {
 	private static InputStream inputFile;
 
 	/**
-	 * 初始化Configuration类
+	 * 初始化Configuration类 
 	 */
 	static {
 		propertie = new Properties();

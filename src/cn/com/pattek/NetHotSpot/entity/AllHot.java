@@ -4,6 +4,14 @@ public class AllHot {
 	private String kw;
 	private Integer hot;
 	private Long infoIds;
+	private Long watchCount;
+	public Long getWatchCount() {
+		return watchCount;
+	}
+
+	public void setWatchCount(Long watchCount) {
+		this.watchCount = watchCount;
+	}
 
 	public String getKw() {
 		return kw;

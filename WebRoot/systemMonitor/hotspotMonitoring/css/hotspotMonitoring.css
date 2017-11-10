@@ -1,0 +1,142 @@
+.vessel {
+	width:100%;
+	height:auto;
+	margin-bottom:20px;
+}
+.vessel h4 {
+	width: 100%;
+	height:44px;
+	line-height: 44px;
+	padding-left:4%;
+	margin-bottom: 5px;
+	font-weight: 700;
+	background:url(../../public/img/monitor.png) no-repeat left center;
+	background-size:30px 30px;
+}
+.vessel .lei {
+	width:100%;
+	height:30px;
+	line-height:30px;
+	background:#EDEBEC;
+	border-bottom:2px solid #029AE8;
+}
+.vessel .lei span {
+	float:left;
+	width:auto;
+	height:30px;
+	background:#029AE8;
+	color:#fff;
+	font-size:14px;
+	text-align:center;
+	border-radius:5px 5px 0 0;
+	margin-left:20px;
+	padding:0 10px;
+}
+.vessel .lei select {
+	float:right;
+	margin: 3px 20px 0 0;
+}
+.summary {
+	width: 100%;
+	background:#f9f9f9;
+	border:1px solid #ccc;
+	position: relative;
+	margin-bottom:10px;
+}
+.summary i {
+	width: 3px;
+	height:3px;
+	background:#51ef34;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+.summary div {
+	width:98.5%;
+	line-height: 24px;
+	margin:0 20px;
+}
+
+
+.clearfix {
+	margin-bottom:15px;
+}
+/*第一图*/
+#synchronous {
+	width: 100%;
+	height:320px;
+	margin-bottom:15px;
+	box-shadow: 0px 1px 10px #888888;
+}
+/*第一表*/
+#adopt {
+	width:49%;
+	height:360px;
+	border:1px solid #ccc;
+	float:left;
+	box-shadow: 0px 1px 10px #888888;
+}
+/*第二表*/
+#notAdopt {
+	width:49%;
+	height:360px;
+	border:1px solid #ccc;
+	float:left;
+	margin-left:2%;
+	box-shadow: 0px 1px 10px #888888;
+}
+.tr{
+	width:100%;
+	height:30px;
+	line-height: 30px;
+	border-bottom:2px solid #029ae8;
+}
+.tr span {
+	width:80px;
+	height:30px;
+	line-height: 30px;
+	text-align: center;
+	color:#fff;
+	background: #029ae8;
+	border-radius:5px;
+	font-size:16px;
+	float: left;
+	margin-left:20px;
+}
+.tr select {
+	float: right;
+	margin:5px 20px 5px 0;
+	height:20px;
+	border-radius:5px;
+}
+.td {
+	width:100%;
+	height:330px;
+	font-size:14px;
+	overflow:hidden;
+}
+.td ul{
+	height:30px;
+	line-height: 30px;
+	padding-left:4%;
+}
+.td ul:nth-child(odd){
+	background:#ddd;
+}
+.td ul li {
+	float: left;
+}
+.td ul li:nth-child(1) {
+	width:80%;
+}
+.td ul li:nth-child(2) {
+	width:20%;
+}
+.clearfix:after{
+	content:"";
+	height:0;
+	line-height:0;
+	display:block;
+	visibility:hidden;
+	clear:both;
+}

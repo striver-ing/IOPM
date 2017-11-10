@@ -155,7 +155,7 @@ function initPage(type){
 
     $('.tagLocal-list').mCustomScrollbar();
     
-    //点击列表热点
+    //点击列表热点F
     $('.tagBall.tagLocal ul').each(function(){
         $(this).children('li').eq(1).click(function(){
         	if(type == 1){
@@ -163,13 +163,13 @@ function initPage(type){
         		var id = $(this).parent().attr('id');
         		$.ajax({
         			type:'post',
-        			url:'http://localhost:8081/IOPM/NetHotSpot/NetHotSpotAction_addUserAct.action',
+        			url:'/IOPM/NetHotSpot/NetHotSpotAction_addUserAct.action',
 					data:{action_type : 304,msg_id : id,watch : 'watch'},
         			dataType:'json',
         			success:function(){
         				alert('成功')
         			}
-        		})
+        		});
 //        		alert("keywords: " + keywords);
         		window.location.href = "/IOPM/RelatedNews/RelatedNewsAction_getRelatedFtl.action?hot_id="+id+"&keywords="+keywords;
         	}else if(type == 0){
@@ -184,6 +184,12 @@ function initPage(type){
         })
     })
     function tanChu(top,idList){
+    	$.ajax({
+			type:'post',
+			url:'/IOPM/NetHotSpot/NetHotSpotAction_addUserAct.action',
+			data:{'action_type' : 304,'msg_id' : idList},
+			dataType:'json'
+		});
     	$.ajax({
 			url: "/IOPM/NetHotSpot/NetHotSpotAction_getNetHotSpotDetailList.action",
 			type: "post",
@@ -250,8 +256,21 @@ function initPage(type){
 		var top = $(this).html();
 		var idList = $(this).prev().val();
 		tanChu(top,idList);
+		}else{
+			var id= $(this).parent().attr('id');
+			//aaaaaaaaaaaaa
+			$.ajax({
+				type:'post',
+				url:'/IOPM/NetHotSpot/NetHotSpotAction_addUserAct.action',
+				data:{action_type : 304,msg_id : id},
+				dataType:'json',
+				success:function(){
+					alert('成功')
+				}
+			})
 		}
 	})
+	
     
 	//加号
 	$('.news img').mouseover(function(){
@@ -1056,19 +1075,13 @@ function renderPageData(type,period,sort,classifyVar,spreadMedia){
 				for(var i = 0; i < length; i++){
 //					console.log(objArray[i].clues_ids);
 //					if(objArray[i].name == objArray[i].kw || objArray[i].name == ""){
-					if(true){
-						html1 += `
-						<a class="tag" href="/IOPM/RelatedNews/RelatedNewsAction_getRelatedFtl.action?hot_id=${objArray[i].id}&keywords=${objArray[i].kg}" data-hot="${objArray[i].hot}" >
-				            <span class="tit">${objArray[i].kw}</span>
-						</a>
-						`;
-					}else{
-						html1 += `
-						<a class="tag" href="/IOPM/RelatedNews/RelatedNewsAction_getRelatedFtl.action?hot_id=${objArray[i].id}&keywords=${objArray[i].kg}" data-hot="${objArray[i].hot}" >
-				            <span class="tit">${objArray[i].name.substring(0,10)}:${objArray[i].kw.substring(0,15)}</span>
-						</a>
-					   `;
-					}
+						
+					//TODO chudan 绑定点击事件 参数为hot_id, url
+					html1 += `
+					<a class="tag" href="/IOPM/RelatedNews/RelatedNewsAction_getRelatedFtl.action?hot_id=${objArray[i].id}&keywords=${objArray[i].kg}" data-hot="${objArray[i].hot}" id="${objArray[i].id}">
+			            <span class="tit" onclick = "readReleatedNews()">${objArray[i].kw}</span>
+					</a>
+					`;
 					
 				}
 				//涉广电热点列表显示
@@ -1196,6 +1209,8 @@ function showHotDetailDialog(title,pubtime,site,url,keywords,picture,content,emo
 	$(".newsContent img").attr("src",picture);//图片
 	$(".newsContent img").hide();
 	$(".newsContent p").html(content);//主要内容
+
+	
 }
 function showAllHot(a,html2){
 	var html=a.innerHTML;

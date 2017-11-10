@@ -1,7 +1,7 @@
 $(function(){
 	var kwSetA = new Set(),
 		kwSetB = new Set();
-	
+
 	var sTime = "";
 	var eTime = "";
 	var infoType = "";
@@ -278,35 +278,7 @@ $(function(){
 		botOff = !botOff;
 	});
 
-	$('#saa').click(function(){
-		 if ($('.review #userC').val() == '' || $('.review #startTime').val() == '' || $('#endTime').val()==null || $('.textA').val()=='') {
-	        	alert('请填写完整');
-	            return false;
-	        } else {
-	        	$.ajax({
-	        		url:'/IOPM/Subject/SubjectAction_addSubject.action',
-	        		type:'post',
-	        		data:{
-	        			"name":$('#userC').val(),
-	        			"startTime":$('#startTime').val(),
-	        			"endTime":$('#endTime').val(),
-	        			"keyword1":$('.textA').val(),
-	        			"keyword2":$('.textB').val()
-	        		},
-	        		dataType:'json',
-	        		success:function(){
-	        			alert('成功')
-	        		},
-	        		erorr:function(){
-	        			alert('失败')
-	        		}
-	        		
-	        	})
-	        	$('.review').hide();
-	        	 return true;
-	        }
-//		 $(this).attr('src','../../subject/report/report.ftl')
-	     })
+
 	
 	 // 当点击li变色，清空文本域中的内容，并把li中的内容和文本域中的内容放到预览
     $('.crux li').each(function (index) {
@@ -412,24 +384,14 @@ $(function(){
 			}
 		});	
 		
-		let str     = '',
+		let str     = '';
 
-	    lastKey = '';
-	for(var val of kwSetA){
-		console.log(isRepeat(val,$('#myUpdateId').val()));
-		if(isRepeat(val,$('#myUpdateId').val()) == true){
-			str     += `<span style="background:red">${val}(已存在)<i></i></span>`;
-		}else{
-			str     += `<span>${val}<i></i></span>`;
+		for(var val of kwSetA){
+			str += `<span>${val}<i></i></span>`;
 		}
-//		textStr += `${val},`;
-		lastKey = val;
-	}
 	
-	$('.checkMask .zbh').show().find('.zbhBox').html(str);
-	$(this).val(textStr);
-	console.log($('#myUpdateId').val());
-	console.log(lastKey);
+		$('.checkMask .zbh').show().find('.zbhBox').html(str);
+		$(this).val(textStr);
 		
     });
     $('.textB').blur(function(){
@@ -620,24 +582,14 @@ $(function(){
 				}
 			});	
 			
-			let str     = '',
-//			textStr = '',
-		    lastKey = '';
+			let str     = '';
 		for(var val of kwSetA){
-			console.log(isRepeat(val,$('#myUpdateId').val()));
-			if(isRepeat(val,$('#myUpdateId').val()) == true){
-				str     += `<span style="background:red">${val}(已存在)<i></i></span>`;
-			}else{
-				str     += `<span>${val}<i></i></span>`;
-			}
+			str     += `<span>${val}<i></i></span>`;
 //			textStr += `${val},`;
-			lastKey = val;
 		}
 		
 		$('.checkMask .zbh').show().find('.zbhBox').html(str);
 		$(this).val(textStr);
-		console.log($('#myUpdateId').val());
-		console.log(lastKey);
 			
 		}
         
@@ -838,7 +790,7 @@ $(function(){
 		$('.textB').val(str);
 		return false;
 	})
-
+	
 	// 信息类型
 	var W = document.getElementById("message-W");
 	var messArr = $('.mess');
@@ -1092,14 +1044,7 @@ $(function(){
 			}
 		})
 	})
-	$('.svg .svg-img').each(function(){
-		$(this).click(function(){
-			var i = parseInt($(this).children('i').html());
-			$(this).children('i').html(i+1);
-			$(this).off("click");
-			$(this).siblings().off("click");
-		})
-	})
+	
 
 });
 
@@ -1107,12 +1052,12 @@ $(function(){
 //	alert();
 //}
 
-//采纳事件
+/*//采纳事件
 function userAct2(type){
+//	$(".svg-img").removeAttr("onclick");
 	if (type == 0) {
-//		alert('采纳： '+ $("#adopt").html());
+		//alert('采纳： '+ $("#adopt").html());
 //		alert($("#msgId2").val());
-		
 		userAct($("#msgId2").val(),301);
 	} else {
 //		alert('不采纳： '+ $("#notAdopt").html());
@@ -1122,19 +1067,24 @@ function userAct2(type){
 //添加用户行为
 function userAct(msg_id,action_type){
 	$.ajax({
-		url:"/IOPM/RelatedNews/RelatedNewsAction_addUserAct.action",
+		url:"/IOPM/RelatedNews/RelatedNewsAction_getAdoptCount.action",
 	    type:"post",
 	    dataType:"json",
 	    data:{
-		      'action_type':action_type,
-		      'user_id': 1,
+		      'user_id': user_id,
 		      'msg_id':msg_id
 		      },
 	    success:function(msg){
-		    	 
-		}
+		    	  var data = eval(msg);
+//		    	  alert(data.adopt);
+//		    	  alert(data.notAdopt);
+		    	  $("#adopt").html(data.adopt);
+    			  $("#notAdopt").html(data.notAdopt);
+		},
+		error:function(msg){
+		 }
 	})
-}
+}*/
 
 //查询采纳情况
 function selectAdoptMsg(msg_id,user_id){
@@ -1278,7 +1228,7 @@ function getRelated(index,keywords,hot_id,sort){
             
                 	html+=`
                 	 <div class="xinw">
-						<h4><font color='red' >[${relNews[i].type}]</font> ${relNews[i].title}</h4>
+						<input type="checkbox" class="checkbox"><h4><font color='red' >[${relNews[i].type}]</font> ${relNews[i].title}</h4>
 						
 						<div style = "margin-left:20px;margin-bottom:5px"><b>关键词：</b>${relNews[i].keywords}</div>
 						<div style = "margin-left:20px;margin-bottom:5px;" id="cont" ><b>内容：</b>${relNews[i].content}</div>
@@ -1306,20 +1256,24 @@ function getRelated(index,keywords,hot_id,sort){
 					</div>
 					`;
                  }
-                
+		    	 var ex = '<input type="checkbox"><span>全部</span><button class="selected">导出已选</button>'
                  $(".con").html(html);
-                 
-
-
+                 $('.export').html(ex)
+                 //导出
+                 	var check = []
+                $('.checkbox').each(function(){
+                	$(this).click(function(){
+                		check.push($(this).parent().find('#msgId').val())
+                	})
+                })
+                $('.export input').click(function(){
+                	$('.xinw .checkbox').each(function(){
+                		$(this).attr('checked','checked')
+                		check.push($(this).find('#msgId').val())
+                	})
+                })
+                               
                //推送至微信
-              	$('.pushSpec').each(function(){
-               		$(this).click(function(){
-               			$('.checkMask.append').show();
-               			$('.checkMask.delete').hide();
-               			resetMask(0);
-               			resetMaskVal();
-               		})
-               	});
                  var title;
                  var content;
                  var time;
@@ -1414,49 +1368,73 @@ function getRelated(index,keywords,hot_id,sort){
                		             	})	
                			    	}
                			})
+               			$('.checkMask.append').show();
+               			$('.checkMask.delete').hide();
+               			resetMask(0);
+               			resetMaskVal();
+               			var msg_id = $(this).parent().parent().parent().find("#msgId").val()
+          
+               			$('.append .btn-primary').click(function(){
+    	             		
+        	             	$('.checkMask.append').hide();
+                       		var userid=[];
+                       		$('#marquee-b dd').each(function(){
+                       			userid.push($(this).children('span').attr('id'));
+                       		})
+                       		if(userid.length > 1){
+                       			userid = userid.join("|")
+                       		}else{
+                       			userid = userid[0]
+                       		}
+                       		$.ajax({
+                       			url:'http://192.168.60.30:8080/wechat/send_msg',
+                       			type:'post',
+                       			data:{'users':userid,
+                       				'title':title,
+                       				'content':content,
+                       				'time':time,
+                       				'url':url},
+                       			dataType:'jsonp',
+                       			jsonp:'callback',  
+                   			    jsonpCallback:"successCallback", 
+                       			success:function(json){
+                       				if(json.errcode == 0){
+                       					$('.pushSpec.green').css('background','#09bb07')
+        	                       		$('.pushSpec.green').val('已发送')
+        	                       		$('.pushSpec.green').attr('disabled','disabled')
+        	                       		$('.pushSpec.green').removeClass('green')
+
+        	                       		
+                       				}else{
+                       					alert("发送失败\n" + json.errmsg)
+                       					$('.pushSpec.green').removeClass('green')
+                       				}
+                       				
+                       			},
+                       			erorr:function(json){
+                       				alert('发送失败');
+                       			}
+                       		})
+                       		
+                       		
+        						$.ajax({
+                     				url:"/IOPM/RelatedNews/RelatedNewsAction_addUserAct.action",
+                     			    type:"post",
+                     			    dataType:"json",
+                     			    data:{
+                     				      'action_type':306,
+                     				      'user_id': 1,
+                     				      'msg_id':msg_id
+                     				      },
+                     			    success:function(msg){
+                     				    	 
+                     				}
+                     			})
+                       	})
                		})	
                	});
                	
-               	$('.append .btn-primary').click(function(){
-	             		
-	             	$('.checkMask.append').hide();
-               		var userid=[];
-               		$('#marquee-b dd').each(function(){
-               			userid.push($(this).children('span').attr('id'));
-               		})
-               		if(userid.length > 1){
-               			userid = userid.join("|")
-               		}else{
-               			userid = userid[0]
-               		}
-               		$.ajax({
-               			url:'http://192.168.60.30:8080/wechat/send_msg',
-               			type:'post',
-               			data:{'users':userid,
-               				'title':title,
-               				'content':content,
-               				'time':time,
-               				'url':url},
-               			dataType:'jsonp',
-               			jsonp:'callback',  
-           			    jsonpCallback:"successCallback", 
-               			success:function(json){
-               				if(json.errcode == 0){
-               					$('.pushSpec.green').css('background','#09bb07')
-	                       		$('.pushSpec.green').val('已发送')
-	                       		$('.pushSpec.green').attr('disabled','disabled')
-	                       		$('.pushSpec.green').removeClass('green')
-               				}else{
-               					alert("发送失败\n" + json.errmsg)
-               					$('.pushSpec.green').removeClass('green')
-               				}
-               				
-               			},
-               			erorr:function(json){
-               				alert('发送失败');
-               			}
-               		})
-               	})
+               
                	
                		$('.append .btn-danger').click(function(){
                			$('.pushSpec.green').removeClass('green')
@@ -1556,6 +1534,11 @@ function getRelated(index,keywords,hot_id,sort){
 				    	if(text>totalPage)text=totalPage;
 				    	if(text!=null&&text!=""&&text!=undefined)getRelated(text,keywords,hot_id,sort);
 				    });
+				    
+				    
+				    
+				    
+				    
 				    // 添加专题按钮
 					$('#addSpec').click(function(){
 							$('.checkMask.review').show();
@@ -1585,19 +1568,78 @@ function getRelated(index,keywords,hot_id,sort){
 							kwSetA = new Set();
 							kwSetB = new Set();
 							$('.checkMask .hida').hide();
-							$('.checkMask .hidb').hide();
+//							$('.checkMask .hidc').hide();
 							$('.checkMask .zbh').hide();
 							$('.checkMask .bbh').hide();
-							$('.checkMask.main.increase').show();
 							resetMask(0);
 							resetMaskVal();
-							//添加用户行为
-//							alert(1);
-//							alert($(this).parent().parent().parent().find("#msgId").val());
-							userAct($(this).parent().parent().parent().find("#msgId").val(),305);
 							
-							//
+							$.ajax({
+								url:'/IOPM/Subject/SubjectAction_searchSubject.action',
+								type:'post',
+								data:{"name":$('#userC').val()},
+								dataType:'json',
+								success:function(data){
+									if(data == ''){
+										$('#userC').css('border-color','#ccc')
+										$('#special .btn-primary').css('background','#348fe2')
+										$('#special .btn-primary').removeAttr('disabled')
+//							        	$('.review').hide();
+									}else{
+										$('#userC').css('border-color','red')
+										$('#special .btn-primary').css('background','#ccc')
+										$('#special .btn-primary').attr('disabled','disabled')
+										alert('该专题已存在')
+									}
+								}
+							})
 						
+								$('#saa').click(function(){
+		 if ($('.review #userC').val() == '' || $('.review #startTime').val() == '' || $('.review #endTime').val()== '' || $('.review .textA').val()=='') {
+	        	alert('请填写完整');
+	            return false;
+	        } else {
+	        	//添加用户行为
+	        	if(hot_id != null){
+	        		$.ajax({
+	     				url:"/IOPM/NetHotSpot/NetHotSpotAction_addUserAct.action",
+	     			    type:"post",
+	     			    dataType:"json",
+	     			    data:{
+	     				      'action_type':305,
+	     				      'msg_id':hot_id
+	     				      },
+	     			    success:function(msg){
+	     				    	 
+	     				}
+	     			})
+	        	}
+	        	
+     			
+	        	$.ajax({
+	        		url:'/IOPM/Subject/SubjectAction_addSubject.action',
+	        		type:'post',
+	        		data:{
+	        			"name":$('#userC').val(),
+	        			"startTime":$('#startTime').val(),
+	        			"endTime":$('#endTime').val(),
+	        			"keyword1":$('.textA').val(),
+	        			"keyword2":$('.textB').val()
+	        		},
+	        		dataType:'json',
+	        		success:function(){
+	        			alert('成功')
+	        		},
+	        		erorr:function(){
+	        			alert('失败')
+	        		}
+	        		
+	        	})
+	        	
+	        	
+	        	
+	        }
+	     })
 					});
 					
 					 // 添加专题按钮
@@ -1635,14 +1677,82 @@ function getRelated(index,keywords,hot_id,sort){
 							kwSetA = new Set();
 							kwSetB = new Set();
 							$('.checkMask .hida').hide();
-							$('.checkMask .hidb').hide();
+//							$('.checkMask .hidc').hide();
 							$('.checkMask .zbh').hide();
 							$('.checkMask .bbh').hide();
-							$('.checkMask.main.increase').show();
 							resetMask(0);
 							resetMaskVal();
+							
+							$.ajax({
+								url:'/IOPM/Subject/SubjectAction_searchSubject.action',
+								type:'post',
+								data:{"name":$('#userC').val()},
+								dataType:'json',
+								success:function(data){
+									if(data == ''){
+										$('#userC').css('border-color','#ccc')
+										$('#special .btn-primary').css('background','#348fe2')
+										$('#special .btn-primary').removeAttr('disabled')
+									}else{
+										$('#userC').css('border-color','red')
+										$('#special .btn-primary').css('background','#ccc')
+										$('#special .btn-primary').attr('disabled','disabled')
+										alert('该专题已存在')
+									}
+								}
+							})
+							
 							//添加用户
-							userAct($(this).parent().parent().parent().find("#msgId").val(),305);
+							var msg_id = $(this).parent().parent().parent().find("#msgId").val();
+						
+							$('#saa').click(function(){
+								 if ($('.review #userC').val() == '' || $('.review #startTime').val() == '' || $('.review #endTime').val()== '' || $('.review .textA').val()=='') {
+							        	alert('请填写完整');
+							            return false;
+							        } else {
+							        	//添加用户行为
+							        	
+							        		$.ajax({
+							     				url:"/IOPM/NetHotSpot/NetHotSpotAction_addUserAct.action",
+							     			    type:"post",
+							     			    dataType:"json",
+							     			    data:{
+							     				      'action_type':305,
+							     				      'msg_id':msg_id
+							     				      },
+							     			    success:function(msg){
+							     				    	 
+							     				}
+							     			})
+							        
+							        	
+						     			
+							        	$.ajax({
+							        		url:'/IOPM/Subject/SubjectAction_addSubject.action',
+							        		type:'post',
+							        		data:{
+							        			"name":$('#userC').val(),
+							        			"startTime":$('#startTime').val(),
+							        			"endTime":$('#endTime').val(),
+							        			"keyword1":$('.textA').val(),
+							        			"keyword2":$('.textB').val()
+							        		},
+							        		dataType:'json',
+							        		success:function(){
+							        			alert('成功')
+							        		},
+							        		erorr:function(){
+							        			alert('失败')
+							        		}
+							        		
+							        	})
+							        	
+							        	
+							        	
+							        }
+							     })
+							
+							
 							
 						})	
 						
@@ -1652,11 +1762,25 @@ function getRelated(index,keywords,hot_id,sort){
 					$('.openUrl').each(function(){
 						$(this).click(function(){
 							//添加用户行为
+							
+							var msg_id = $(this).parent().parent().parent().parent().find("#msgId").val();
+							$.ajax({
+	             				url:"/IOPM/RelatedNews/RelatedNewsAction_addUserAct.action",
+	             			    type:"post",
+	             			    dataType:"json",
+	             			    data:{
+	             				      'action_type':303,
+	             				      'msg_id':msg_id
+	             				      },
+	             			    success:function(msg){
+	             				    	 
+	             				}
+	             			})
 //							alert($(this).parent().html());
 //							alert($(this).parent().parent().parent().html());
 //							alert($(this).parent().parent().parent().find("#cont").val());
 //							alert($(this).parent().parent().parent().find("#msgId").val());
-							userAct($(this).parent().parent().parent().find("#msgId").val(),303);
+							//userAct($(this).parent().parent().parent().find("#msgId").val(),303);
 							//
 						});
 					});
@@ -1727,8 +1851,47 @@ function getRelated(index,keywords,hot_id,sort){
 							
 							//添加用户行为
 //							alert($("#msgId2").val());
-							userAct($(this).parent().find("#msgId").val(),304);
+//							userAct($(this).parent().find("#msgId").val(),304);
 							selectAdoptMsg($(this).parent().find("#msgId").val(),1);
+							var msg_id = $(this).parent().find("#msgId").val()
+							$.ajax({
+	             				url:"/IOPM/RelatedNews/RelatedNewsAction_addUserAct.action",
+	             			    type:"post",
+	             			    dataType:"json",
+	             			    data:{
+	             				      'action_type':304,
+	             				      'user_id': 1,
+	             				      'msg_id':msg_id
+	             				      },
+	             			    success:function(msg){
+	             				    	 
+	             				}
+	             			})
+							
+							$('.svg .svg-img').each(function(){
+			             		$(this).on("click",function(){
+			             			var msg_id = $('#msgId2').val()
+			             			var action_type = $(this).attr('name')
+			             			//alert(msg_id);
+			             			$.ajax({
+			             				url:"/IOPM/RelatedNews/RelatedNewsAction_addUserAct.action",
+			             			    type:"post",
+			             			    dataType:"json",
+			             			    data:{
+			             				      'action_type':action_type,
+			             				      'user_id': 1,
+			             				      'msg_id':msg_id
+			             				      },
+			             			    success:function(msg){
+			             				    	 
+			             				}
+			             			})
+			             			var i = parseInt($(this).children('i').html());
+			             			$(this).children('i').html(i+1);
+			             			$(this).off("click");
+			             			$(this).siblings().off("click");
+			             		})
+			             	})
 							//
 						})
 					});
@@ -1872,6 +2035,7 @@ var endTime=$('#checkEndTime').val();
 	    	html="";
 	    	var letter=msg.data;
 	    	var total=msg.count;
+	    	console.log(total)
 	    	for(var i = 0;i < letter.length;i ++){
 	    	   html += `
 			    <tr class="odd">

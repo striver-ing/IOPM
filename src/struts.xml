@@ -10,6 +10,10 @@
         <include file="cn/com/pattek/user/struts-login.xml"/>
         <include file="cn/com/pattek/user/struts-logout.xml"/>
 	  <include file="cn/com/pattek/NetHotSpot/struts-NetHotSpot.xml"/>
-	  <include file="cn/com/pattek/RelatedNews/struts-RelatedNews.xml"/>
-	  <include file="cn/com/pattek/Subject/struts-Subject.xml"/>
+	 	 <include file="cn/com/pattek/RelatedNews/struts-RelatedNews.xml"/>
+	  	<include file="cn/com/pattek/Subject/struts-Subject.xml"/>
+		<!-- <include file="/cn/com/pattek/Keyword/struts-ExportClues.xml"/> -->
+	  <include file="cn/com/pattek/SystemMoniter/struts-SystemMoniter.xml"/>
+	  <include file="cn/com/pattek/SpiderRange/struts-SpiderRange.xml"/>
+	  
 </struts>

@@ -115,6 +115,7 @@
                             <input type="button" class="btn btn-primary add" value="增加"/>
                             <input type="button" class="btn btn-success change" value="修改"/>
                             <input type="button"  class="btn btn-danger del" value="删除"/>
+                            <input type="button"  class="btn btn-dao dao" value="导出报表"/>
                         </div>
                     </div>
                 </div>
@@ -148,7 +149,7 @@
                             <th>包含关键词</th>
                             <th>不包含关键词</th>
                             <th>一级分类</th>
-                            <th>r二级分类</th>
+                            <th>二级分类</th>
                             <th>三级分类</th>
                             <th>信息总量</th>
                             <th>今日信息量</th>
@@ -593,6 +594,7 @@
     $(document).ready(function() {
         App.init();
     });
+    
 </script>
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

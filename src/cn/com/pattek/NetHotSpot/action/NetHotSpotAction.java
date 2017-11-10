@@ -12,6 +12,7 @@ import cn.com.pattek.user.entity.Users;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;
@@ -34,7 +35,9 @@ import cn.com.pattek.NetHotSpot.entity.NetHotSpot;
 import cn.com.pattek.RelatedNews.entity.UserAct;
 import cn.com.pattek.Subject.dao.SubjectDao;
 import cn.com.pattek.core.struts2.BaseAction;
+import cn.com.pattek.core.struts2.JsonUtils;
 import cn.com.pattek.user.entity.Notice;
+import cn.com.pattek.utils.ESSearchUtils;
 
 @Controller("NetHotSpotAction")
 public class NetHotSpotAction extends BaseAction{
@@ -255,6 +258,27 @@ public class NetHotSpotAction extends BaseAction{
 	}
 	
 	/**
+	 * 全国接口测试
+	 * @return null 
+	 */
+	public void getAllInterfaceTest()throws Exception{
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("application/json;charset=UTF-8");
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("type", type);
+		map.put("period", period);
+		System.out.println(type==0);
+		List<AllHot> list = new ArrayList<AllHot>();
+		list = netHotSpotDao.getAllHotList(map);
+		Map<String,Object> map1 = new HashMap<String,Object>();
+		map1.put("data", list);
+		map1.put("total", list.size());
+		map1.put("message", "查询成功");
+		map1.put("status", 1);
+		this.objectToJson(map1);
+	}
+	
+	/**
 	 * 涉广电接口
 	 * @return null 
 	 */
@@ -346,12 +370,46 @@ public class NetHotSpotAction extends BaseAction{
 	 * @return null
 	 */
 	public String getCluesById()throws Exception{
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute(clues_id.toString())!=null){
+			Object value = session.getAttribute(clues_id.toString());
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=UTF-8");// 解决中文乱码
+			response.getWriter().write(JsonUtils.fromObject(value).replace("null", "\"\""));
+		}else{
+			IopmKeyInfoEntity key = new IopmKeyInfoEntity();
+			key=keyCluesDao.selectById(clues_id);
+			System.out.println("clues_id="+clues_id);
+			String jsonKey = JsonUtils.fromObject(key);
+			session.setAttribute(clues_id.toString(), jsonKey);
+			
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=UTF-8");// 解决中文乱码
+			response.getWriter().write(JsonUtils.fromObject(jsonKey).replace("null", "\"\""));
+		}
+		
+		
+		
+		
+		
+		//this.objectToJson(key);
+		return null;
+	}
+	
+	/*public String getCluesByIdTest()throws Exception{
+		ESSearchUtils es = new ESSearchUtils();
+		String sql ="select * from tab_iopm_clues where ID="+clues_id;
+		List<Object> searchBySql = es.searchBySql(sql);
+		Object object = searchBySql.get(1);
+		
 		IopmKeyInfoEntity key = new IopmKeyInfoEntity();
 		key=keyCluesDao.selectById(clues_id);
 		System.out.println("clues_id="+clues_id);
 		this.objectToJson(key);
 		return null;
-	}
+	}*/
 	
 	public void RefreshNotice()throws Exception{
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -400,8 +458,17 @@ public class NetHotSpotAction extends BaseAction{
 		dataMap.put("hotId", msg_id);
 		dataMap.put("accept",accept );
 		dataMap.put("unaccept",unaccept );
-		dataMap.put("watch", watch);
-		netHotSpotDao.updateIsaccept(dataMap);
+		dataMap.put("watch_count", watch);
+		//记录观看数
+		//Map<String,Object> dataMap = new HashMap<String, Object>();
+		if(action_type==304){
+			dataMap.put("hotId", msg_id);
+			dataMap.put("watch", 1);
+		} 
+		if(accept!=null|unaccept!=null){
+			
+			netHotSpotDao.updateIsaccept(dataMap);
+		}
 		
 		return NONE;
 	}

@@ -306,12 +306,29 @@ $(function(){
 		$("#searchRole").submit();
 	}
 
-	
+//	$.ajax({
+//		url:'http://localhost:8080/IOPM/KeyClues/KeyCluesAction_exportExcels.action',
+//		type:'post',
+//		data:{},
+//		dataType:'json',
+//		success:function(data){
+//			console.log(data.file_path)
+//			$('#a').attr('href',data.file_path)
+//		}
+//	})
 
     //增删改查
     var $add = $('.btns input.add');
     var $change = $('.btns input.change');
     var $del = $('.btns input.del');
+    var $dao = $('.btns input.dao');
+    //导出
+    $dao.click(function(){
+    	location.href='/IOPM/KeyClues/KeyCluesAction_exportExcels.action'
+    })
+    
+    
+     
     // 增加
     $add.click(function () {
         clearInterval(timer);

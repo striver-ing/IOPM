@@ -68,7 +68,7 @@
      <!-- 全国热点 -->
      
      <select id="getAllHotList" parameterType="java.util.Map" resultMap="getAll">
-        select id,title,hot from TAB_IOPM_HOT_INFO t
+        select id,title,watch_count,hot from TAB_IOPM_HOT_INFO t
         <where>
              <if test="type!=null">and hot_type=0</if>
              <if test='period!=null and period!=""'>
@@ -83,6 +83,7 @@
          <result property="kw" column="title"/>
          <result property="hot" column="hot"/>
          <result property="infoIds" column="id"/>
+         <result property="watchCount" column="watch_Count"/>
      </resultMap>
      
      <!-- 根据ID查热点 -->

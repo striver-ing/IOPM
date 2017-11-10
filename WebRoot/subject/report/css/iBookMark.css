@@ -1,13 +1,8 @@
 /* 椤跺眰瀹瑰櫒 */
 #sideToolbar {
-position:fixed;
-/*
-top: 400px;
-left:990px;
-
-bottom: 40px;*/
-top:42px;
-right:20px;
+    position: fixed;
+    top: 42px;
+    right: 20px;
 }
 
 /*bm鏄剧ず鎺у埗*/
@@ -48,7 +43,7 @@ background: transparent url(../imgs/iBookMark_bg.png) -1px -62px no-repeat;
 background: transparent url(../imgs/iBookMark_bg.png) -74px -62px no-repeat;
 }
 
-/*bm椤�/
+/*bm椤*/
 #sideCatalog {
 	width: 300px;
 	/*height: 486px;*/
@@ -136,7 +131,7 @@ background: transparent url(../imgs/iBookMark_bg.png) -245px -108px no-repeat;
 
 padding-left: 23px;
 margin-bottom: 10px;
-margin-top: 7px;
+margin-top: 10px;
 position: relative;
 }
 #sideCatalog-catalog dl {
@@ -152,7 +147,7 @@ line-height: 25px;
 margin: 0 0 5px 0;
 /*background:url(./images/daohang_big.jpg);*/
 border-radius:9px 9px 9px 9px;
-/*width:183px;*/
+/* width:200px; */
 }
 .sideCatalog-item2 {
 /*padding-left: 14px;*/

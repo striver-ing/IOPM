@@ -11,5 +11,8 @@
 	    <mapper resource="cn/com/pattek/RelatedNews/ibatis/RelatedNews.xml" />
 	    <mapper resource="cn/com/pattek/NetHotSpot/ibatis/NetHotSpot.xml" />
 	    <mapper resource="cn/com/pattek/Subject/ibatis/Subject.xml" />
+	    <mapper resource="cn/com/pattek/SystemMoniter/ibatis/SystemMoniter.xml" />
+	    <mapper resource="cn/com/pattek/SpiderRange/ibatis/SpiderRange.xml" />
+
 	</mappers>
 </configuration>

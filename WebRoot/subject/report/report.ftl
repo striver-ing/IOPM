@@ -232,11 +232,13 @@
                     <div class="col-sm-10">
                         <form action="">
                             <span class="font16px">搜索专题：</span>
-                            <input class="form-control srhText inlblock" type="text" placeholder="例如“习近平”"/>
+                            <input class="form-control srhText inlblock" type="text" placeholder="请输入专题"/>
                             <input type="button" id="inlblock" class="btn btn-primary inlblock" value="检索"/>
                             <input type="button" class="btn btn-primary add" value="添加专题"/>
+                            <div id="len">
                             <ul id="lenovo">
                             </ul>
+                            </div>
                         </form>
                     </div>
                     <div class="col-sm-12 font16px events">
@@ -386,11 +388,13 @@
                                     </dl>
 
                                 </div>
+                                 <div class="main-nesw-tis">
+                                    <p>注：不包含其他分类</p>
+                                </div>
 
                             </div>                           
                             <!-----------------------事件综合影响力分析部分------------>
-                            <div class="main-nesw sideToolbar-title" data-title="事件综合影响力分析" name="3" id="3"
-                                 auth_for_show_hide="2">
+                            <div class="main-nesw sideToolbar-title" data-title="事件综合影响力分析" name="3" id="3" auth_for_show_hide="2">
                                 <h2>
                                     <span>事件综合影响力分析</span>
                                 </h2>
@@ -448,8 +452,7 @@
                                 </div>
                             </div>
                             <!--------------------事件阶段演化分析部分----------------------->
-                            <div class="main-nesw sideToolbar-title" data-title="事件阶段演化分析" name="4" id="4"
-                                 auth_for_show_hide="3">
+                            <div class="main-nesw sideToolbar-title" data-title="事件阶段演化分析" name="4" id="4" auth_for_show_hide="3">
                                 <h2>
                                     <span>事件阶段演化分析</span>
                                 </h2>
@@ -484,7 +487,7 @@
                                 </div>
                             </div>
                             <!-----------网上传播情况分析部--------------------------->
-                            <div class="main-nesw sideToolbar-title" data-title="网上传播情况分析" name="6" id="6"
+                            <div class="main-nesw sideToolbar-title" data-title="网上传播情况分析" name="5" id="5"
                                  auth_for_show_hide="4">
                                 <h2>
                                     <span>网上传播情况分析</span>
@@ -819,150 +822,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--------------------网民互动及传播关键点分析部分----------------------->
-                            <!--<div class="main-nesw sideToolbar-title" data-title="网民互动及传播关键点分析" name="8" id="8" auth_for_show_hide="8">-->
-                            <!--<h2>-->
-                            <!--<span>网民互动及传播关键点分析</span>-->
-                            <!--<span style="float:right;">-->
-                            <!--<input type="button" value="上传截图" class="jb_btn" style="margin-top:8px;" onclick="$('#netizen_interact_charts_upload').click();">-->
-                            <!--<input type="file" style="visibility: hidden;" id="netizen_interact_charts_upload" name="pic_upload" target_container_id="net_map">-->
-                            <!--</span>-->
-                            <!--</h2>-->
-                            <!--<div>-->
-                            <!--<div style="color: red;text-align: center;">此图不支持自动截图，请手动截图后进行上传。</div>-->
-
-
-                            <!--<script type="text/javascript" src="js/ichart.1.2.min.js"></script>-->
-                            <!--<script type="text/javascript" src="js/iBookMark.js"></script>-->
-                            <!--<script type="text/javascript" src="js/icheck.min.js"></script>-->
-                            <!--<script type="text/javascript" src="js/sigroup.iDetail.plugin.v2.min.js"></script>-->
-                            <!--&lt;!&ndash; 	<h1><p>首页 > 专题分析与研判 > 网民互动分析</p></h1> &ndash;&gt;-->
-                            <!--<div class="interaction border1">-->
-                            <!--<div class="title1" style="display: none;">-->
-                            <!--<a name="netizen_network_tab" onclick="activeGraph(this)" class="hover" lang="1" style="cursor: pointer;">博主互动网络</a>-->
-                            <!--<a name="netizen_area_tab" onclick="areaDis(this)" style=" cursor: pointer;" lang="2">博主地域分布</a>-->
-                            <!--</div>-->
-                            <!--<div class="content" style="padding:5px;">-->
-                            <!--<div class="select2" style="/*position: fixed;z-index: 301;*/">-->
-                            <!--<div style="width:100%;margin:0px auto;overflow:hidden;display: none;">-->
-                            <!--<span style="width:70px;text-align:right;display:block;float:left;font-weight:bold;">用户群体：</span>-->
-                            <!--<input name="groupCheckbox" type="checkbox" value="0" id="group_check_all" checked="" style="float:left;margin:8px 4px 0 0;"><label style="float:left;">全部</label>-->
-                            <!--<input name="groupCheckbox" type="checkbox" value="1" checked="" style="float:left;margin:8px 4px 0 0;"><label style="float:left;">第一落点</label>-->
-                            <!--<input name="groupCheckbox" type="checkbox" value="2" checked="" style="float:left;margin:8px 4px 0 0;"><label style="float:left;">核心博主</label>-->
-                            <!--<input name="groupCheckbox" type="checkbox" value="3" checked="" style="float:left;margin:8px 4px 0 0;"><label style="float:left;">网络推手</label>-->
-                            <!--<input name="groupCheckbox" type="checkbox" value="4" checked="" style="float:left;margin:8px 4px 0 0;"><label style="float:left;">其他</label>-->
-                            <!--<span style="margin-left:145px;"><b>关键词：</b></span><input id="keyword" name="" type="text" class="input2" style="width: 90px;border-radius: 4px;height: 22px;">-->
-                            <!--<span><b>时间：</b></span>-->
-                            <!--<input type="text" class="input st hasDatepicker" style="-webkit-border-radius: 5px;width: 80px;margin: 0;border-radius: 4px;height: 22px;" id="dp1486374599337">-->
-                            <!--<span>&nbsp;&nbsp;&#45;&#45;&nbsp;&nbsp;</span>-->
-                            <!--<input type="text" class="input et hasDatepicker" style="-webkit-border-radius: 5px;width: 80px;margin: 0;border-radius: 4px;height: 22px;" id="dp1486374599338">-->
-                            <!--</div>-->
-                            <!--<div style="width:100%;margin:0px auto;overflow:hidden;display: none;">-->
-                            <!--<span style="width:70px;text-align:right;display:block;float:left;font-weight:bold;">用户身份：</span>-->
-                            <!--<input name="groupCheckbox_2" type="checkbox" value="0" id="group_check_all_2" checked="" style="float:left;margin:8px 4px 0 0;"><label style="float:left;">全部</label>-->
-                            <!--<input name="groupCheckbox_2" type="checkbox" value="1" checked="" style="float:left;margin:8px 4px 0 0;"><label style="float:left;">律师</label>-->
-                            <!--<input name="groupCheckbox_2" type="checkbox" value="2" checked="" style="float:left;margin:8px 4px 0 0;"><label style="float:left;">警察</label>-->
-                            <!--<input name="groupCheckbox_2" type="checkbox" value="4" checked="" style="float:left;margin:8px 4px 0 0;"><label style="float:left;">政府官员</label>-->
-                            <!--<input name="groupCheckbox_2" type="checkbox" value="6" checked="" style="float:left;margin:8px 4px 0 0;"><label style="float:left;">媒体机构</label>-->
-                            <!--<input name="groupCheckbox_2" type="checkbox" value="3" checked="" style="float:left;margin:8px 4px 0 0;"><label style="float:left;">媒体从业者</label>-->
-                            <!--<input name="groupCheckbox_2" type="checkbox" value="5" checked="" style="float:left;margin:8px 4px 0 0;"><label style="float:left;">其他</label>-->
-                            <!--<span style="text-align:right;display:block;float:left;font-weight:bold; width:70px;">博主昵称：</span><input id="userName" type="text" class="input2" style="width:90px;border-radius: 4px;height: 22px;margin:0 10px 0 0">-->
-                            <!--<span><b>发文量： </b></span><input id="cnt" type="text" class="input2" style="width: 80px;border-radius: 4px;height: 22px;margin:0 10px 0 0">-->
-                            <!--<span><b>粉丝量：</b></span>-->
-                            <!--<span>-->
-                            <!--<select name="fansCount" id="fansCount" style="width:80px;height: 22px;cursor: pointer;border:1px solid #ccc;border-radius: 4px;">-->
-                            <!--<option value="0"> 全部 </option>-->
-                            <!--<option value="100"> &gt;100 </option>-->
-                            <!--<option value="1000"> &gt;1000 </option>-->
-                            <!--<option value="10000"> &gt;10000 </option>-->
-                            <!--<option value="100000"> &gt;100000 </option>-->
-                            <!--</select>-->
-                            <!--</span>-->
-                            <!--</div>-->
-                            <!--<div style="width:100%;margin:0px auto;display: none;">-->
-                            <!--<span style="width:70px;text-align:right;display:block;float:left;font-weight:bold;"><b>认证类型：</b></span>-->
-                            <!--<input name="typeCheckbox" type="checkbox" value="0" id="type_check_all" checked="" style="float:left;margin:8px 4px 0 0;"><label style="float:left;">全部</label>-->
-                            <!--<input name="typeCheckbox" type="checkbox" value="4" checked="" style="float:left;margin:8px 4px 0 0;"><label style="float:left;">非认证</label>-->
-                            <!--<input name="typeCheckbox" type="checkbox" value="2" checked="" style="float:left;margin:8px 4px 0 0;"><label style="float:left;">个人认证</label>-->
-                            <!--<input name="typeCheckbox" type="checkbox" value="1" checked="" style="float:left;margin:8px 4px 0 0;"><label style="float:left;">达人</label>-->
-                            <!--<input name="typeCheckbox" type="checkbox" value="3" checked="" style="float:left;margin:8px 4px 0 0;"><label style="float:left;">机构认证</label>-->
-                            <!--<input name="typeCheckbox" type="checkbox" value="5" checked="" style="float:left;margin:8px 4px 0 0;"><label style="float:left;">未知</label>-->
-
-                            <!--<span style="float: right;">-->
-                            <!--<input type="button" name="submit_netizen_search" onclick="submitSearch(this)" value="确定" class="button" style="height:26px;padding:0px 20px;line-height:26px;">-->
-                            <!--<input type="button" name="netizen_reset" value="重置" onclick="javascript:netizen_reset();" class="button" style="height:26px;padding:0px 20px;line-height:26px;">-->
-                            <!--</span>-->
-                            <!--</div>-->
-
-                            <!--<p>-->
-                            <!--</p><div class="wlya" id="wlya" style="height: 600px;">-->
-
-                            <!--</div>-->
-                            <!--<div class="map_contain" style="display:none ;float:left;"><div id="mapContainer" style="height: 658px;width:560px;"></div></div>-->
-                            <!--<p></p>-->
-                            <!--<div id="netizen_network" class="sjwl_left ipage gjc_text" style="width:100%">-->
-                            <!--<div class="sjwl_right related_div" style="display:none;">&lt;!&ndash; 网络   关联博主、交互博文 &ndash;&gt;-->
-                            <!--<h4>-->
-                            <!--<p class="on"> <a name="related_people_tab" style="cursor: pointer;">关联博主</a> </p>-->
-                            <!--<p style="display: none;"><a name="related_infomation_tab" style="cursor: pointer;">交互博文</a></p>-->
-                            <!--&lt;!&ndash;<p style="border:0;float:right;display:block;background:none;width:30px;">	<img src="imgs/refresh.png" style="cursor:pointer" title="关闭窗口" value="全部" onclick="closeTableDiv()" class="hideDiv" height="22" width="22"></p>&ndash;&gt;-->
-                            <!--</h4>-->
-                            <!--<div class="text04_list02" id="inter_people_list">&lt;!&ndash; 关联博主列表 &ndash;&gt;-->
-                            <!--<table class="table item list_title" style="color:#fff;width: 100%;font-size: 12px;float:left;">-->
-                            <!--<tbody><tr class="text02_title">-->
-                            <!--<td align="center" width="10%"><b>序号</b></td>-->
-                            <!--<td align="center" width="20%"><b>昵称</b></td>-->
-                            <!--<td align="center" width="17%"><b style="float:left;margin-left:14px;">粉丝数</b><i style="display:none" class="down_icon" onclick="orderTable(this)" lang="1"></i></td>-->
-                            <!--<td align="center" width="17%"><b>用户类型</b></td>-->
-                            <!--<td align="center" width="17%" style="display:none">站点</td>-->
-                            <!--<td align="center" width="17%"><b style="float:left;margin-left:14px;">发文量</b><i style="display:none" class="up_icon" onclick="orderTable(this)" lang="3"></i></td>-->
-                            <!--<td align="center" width="15%"><b style="float:left;margin-left:10px;">操作</b></td>-->
-                            <!--</tr>-->
-                            <!--</tbody></table>-->
-                            <!--<div id="related_people_list" class="ipage" style="max-height:598px;overflow-y:scroll;width:100%; float:left;background: #fff;"></div>-->
-                            <!--</div>-->
-                            <!--<div id="inter_blogger_list" style="display:none;background: #fff;float:left; width:100%;">	&lt;!&ndash; 交互博文列表 &ndash;&gt;-->
-                            <!--<span style="font-size:14px;background:#E5EAF2; width:100%; display:block; color:#555; height:30px;line-height:30px;font-weight:bold;text-align:left;"><b id="first_infomation" style="margin:0px 8px;"></b></span>-->
-                            <!--<div id="related_infomation_list" class="ipage" style="width:100%;max-height:600px;overflow-y:scroll;float:left;"></div>-->
-                            <!--</div>-->
-                            <!--</div>-->
-                            <!--</div>-->
-
-                            <!--<div id="related_map_div" class="sjwl_left ipage gjc_text" style="width: 100%; display: none;">-->
-                            <!--<div class="sjwl_right related_map" style="display:none">&lt;!&ndash; 地图    关联博主、交互博文 &ndash;&gt;-->
-                            <!--<h4>-->
-                            <!--<p class="on"> <a name="related_map_tab" style="cursor: pointer;">相关博主</a> </p>-->
-                            <!--<p style="display:block"><a name="related_map_infomation_tab" style="cursor: pointer;">相关博文</a></p>-->
-                            <!--<p style="display:block ;color:black;float: right;" class="areaDescription"></p>-->
-                            <!--</h4>-->
-                            <!--<div class="text04_list02" style="margin-top:10px;" id="inter_map_list">&lt;!&ndash; 关联博主列表 &ndash;&gt;-->
-                            <!--<table class="table item list_title" style="color:#fff;width: 100%;font-size: 12px;float:left;">-->
-                            <!--<tbody><tr class="text02_title">-->
-                            <!--<td align="center" width="10%"><b>序号</b></td>-->
-                            <!--<td align="center" width="23%"><b>昵称</b></td>-->
-                            <!--<td align="center" width="17%"><b style="float:left;margin-left:14px;">粉丝数</b><i style="display:none" class="down_icon" onclick="orderTable(this)" lang="1"></i></td>-->
-                            <!--<td align="center" width="17%"><b style="margin-left:10px;">用户类型</b></td>-->
-                            <!--<td align="center" width="17%"><b style="float:left;margin-left:10px;">发文量 </b><i style="display:none" class="up_icon" onclick="orderTable(this)" lang="3"></i></td>-->
-                            <!--<td align="left" width="15%"><b style="float:left;margin-left:12px;">操作</b></td>-->
-                            <!--</tr>-->
-                            <!--</tbody></table>-->
-                            <!--<div id="related_map_list" class="ipage" style="max-height:560px;overflow-y:scroll;width:100%; float:left;background: #fff;padding:0;margin:0;"></div>-->
-                            <!--</div>-->
-                            <!--<div id="inter_map_blogger_list" style="display:none;border: 1px solid #;background: #fff;float:left; width:100%;">	&lt;!&ndash; 交互博文列表 &ndash;&gt;-->
-                            <!--<span style="font-size:14px;background:#E5EAF2; width:100%; display:block; color:#555; height:30px;line-height:30px;font-weight:bold;text-align:left;"><b id="first_map_infomation" style="margin:0px 8px;"></b></span>-->
-                            <!--<div id="related_map_infomation_list" class="ipage" style="width:100%;max-height:587px;overflow-y:scroll;float:left;"></div>-->
-                            <!--</div>-->
-                            <!--</div>-->
-                            <!--</div>-->
-
-                            <!--</div>-->
-                            <!--</div>-->
-
-
-                            <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="main-nesw-bd" id="interact_summary"><dl><dt><i></i></dt><dd name="interact_summary" contenteditable="">经分析研判，油财经U    、深圳微博发布厅、中国经济周刊等账户在本事件的传播中扮演了网络推手的角色,发布了大量事件相关信息,有刻意推动事件发展嫌疑，可作为重点监控对象。其中油财经U    发布相关微博12条，深圳微博发布厅发布相关微博12条，中国经济周刊发布相关微博12条。</dd></dl><dl><dt><i></i></dt><dd name="interact_summary" contenteditable="">意见领袖/认证博主[XX]在事件的二次传播中发挥了重要作用，可作为引导网络舆论的关键点。</dd></dl><dl><dt><i></i></dt><dd name="interact_summary" contenteditable="">其他群体主要参与了此事件传播并具有较大影响力。</dd></dl></div>-->
-                            <!--</div>-->
+                            
                             <!--------------------综合研判部分----------------------->
                             <div class="main-nesw sideToolbar-title" data-title="综合研判" name="8" id="8"
                                  auth_for_show_hide="7">
@@ -996,8 +856,8 @@
                             <!--<a href="javascript:;"><img src="imgs/pdf_icon.png" name="report_export_btn" export_type="2"></a>-->
                             <!--</div>-->
                             <div class="weixin" style="width:100%;padding:20px 0;text-align: center;">
-                                <img src="imgs/weixin.png" alt=""/>
-                                <a href="javascript;;" style="display:block;">推送至微信</a>
+                                <img src="imgs/word_icon.png" alt="" id="word"/>
+                                <img src="imgs/wechat2_icon.png" alt="" id="weix"/>
                             </div>
                             <script type="text/javascript" src="js/iBookMark.js"></script>
 
@@ -1006,7 +866,8 @@
                             <div id="sideCatalog" class="sideCatalogBg animated" style="display: none;">
                                 <div id="sideCatalog-sidebar">
                                     <div class="sideCatalog-sidebar-top"></div>
-                                    <div class="sideCatalog-sidebar-bottom"></div>
+                                    <div class="sideCatalog-sidebar-bottom"></div> 
+                                    
                                 </div>
                                 <div id="sideCatalog-updown" style="display:none;">
                                     <div id="sideCatalog-up" class="sideCatalog-up-disable" title="向上翻页"></div>
@@ -1020,76 +881,64 @@
                                                     class="sideCatalog-dot"></span>
 
                                             <div class="on_off_head">
-                                                <div class="on_off" style="visibility:hidden;"><span name="on_off_span"
-                                                                                                     class="on_click"
-                                                                                                     auth_code="0">ON</span>
+                                                <div class="on_off"><span name="on_off_span" class="on_click" auth_code="0">ON</span>
 
                                                     <p></p>
                                                 </div>
                                             </div>
                                         </dd>
-                                        <dd class="sideCatalog-item1" id="sideToolbar-item-0-2"><span
-                                                class="sideCatalog-index1">2</span>
+                                        <dd class="sideCatalog-item1" id="sideToolbar-item-0-2"><span class="sideCatalog-index1">2</span>
                                             <a href="#2" class="nslog nslog:1026" title="舆情统计" onclick="return false;">舆情统计</a><span
                                                     class="sideCatalog-dot"></span>
 
                                             <div class="on_off_head">
-                                                <div class="on_off"><span name="on_off_span" class="on_click"
-                                                                          auth_code="1">ON</span>
+                                                <div class="on_off"><span name="on_off_span" class="on_click" auth_code="1">ON</span>
 
                                                     <p></p>
                                                 </div>
                                             </div>
                                         </dd>
                                        
-                                        <dd class="sideCatalog-item1" id="sideToolbar-item-0-3"><span
-                                                class="sideCatalog-index1">3</span>
-                                            <a href="#4" class="nslog nslog:1026" title="事件综合影响力分析"
+                                        <dd class="sideCatalog-item1" id="sideToolbar-item-0-3"><span class="sideCatalog-index1">3</span>
+                                            <a href="#3" class="nslog nslog:1026" title="事件综合影响力分析"
                                                onclick="return false;">事件综合影响力分析</a><span
                                                     class="sideCatalog-dot"></span>
 
                                             <div class="on_off_head">
-                                                <div class="on_off"><span name="on_off_span" class="on_click"
-                                                                          auth_code="2">ON</span>
+                                                <div class="on_off"><span name="on_off_span" class="on_click" auth_code="2">ON</span>
 
                                                     <p></p>
                                                 </div>
                                             </div>
                                         </dd>
-                                        <dd class="sideCatalog-item1" id="sideToolbar-item-0-4"><span
-                                                class="sideCatalog-index1">4</span>
-                                            <a href="#5" class="nslog nslog:1026" title="事件阶段演化分析"
+                                        <dd class="sideCatalog-item1" id="sideToolbar-item-0-4"><span class="sideCatalog-index1">4</span>
+                                            <a href="#4" class="nslog nslog:1026" title="事件阶段演化分析"
                                                onclick="return false;">事件阶段演化分析</a><span class="sideCatalog-dot"></span>
 
                                             <div class="on_off_head">
-                                                <div class="on_off"><span name="on_off_span" class="on_click"
-                                                                          auth_code="3">ON</span>
+                                                <div class="on_off"><span name="on_off_span" class="on_click" auth_code="3">ON</span>
 
                                                     <p></p>
                                                 </div>
                                             </div>
                                         </dd>
-                                        <dd class="sideCatalog-item1" id="sideToolbar-item-0-5"><span
-                                                class="sideCatalog-index1">5</span>
-                                            <a href="#6" class="nslog nslog:1026" title="网上传播情况分析"
+                                        <dd class="sideCatalog-item1" id="sideToolbar-item-0-5"><span class="sideCatalog-index1">5</span>
+                                            <a href="#5" class="nslog nslog:1026" title="网上传播情况分析"
                                                onclick="return false;">网上传播情况分析</a><span class="sideCatalog-dot"></span>
 
                                             <div class="on_off_head">
-                                                <div class="on_off"><span name="on_off_span" class="on_click"
-                                                                          auth_code="4">ON</span>
+                                                <div class="on_off"><span name="on_off_span" class="on_click" auth_code="4">ON</span>
 
                                                     <p></p>
                                                 </div>
                                             </div>
                                         </dd>
-                                        <dd class="sideCatalog-item1" id="sideToolbar-item-0-6"><span
-                                                class="sideCatalog-index1">6</span>
-                                            <a href="#7" class="nslog nslog:1026" title="事件溯源分析"
+                                        <dd class="sideCatalog-item1" id="sideToolbar-item-0-6"><span class="sideCatalog-index1">6</span>
+                                            <a href="#6" class="nslog nslog:1026" title="事件溯源分析"
                                                onclick="return false;">事件溯源分析</a><span class="sideCatalog-dot"></span>
 
                                             <div class="on_off_head">
-                                                <div class="on_off"><span name="on_off_span" class="on_click"
-                                                                          auth_code="5">ON</span>
+                                                <div class="on_off"><span name="on_off_span" class="on_click" auth_code="5">ON</span>
 
                                                     <p></p>
                                                 </div>
@@ -1097,7 +946,7 @@
                                         </dd>
                                         
                                         <dd class="sideCatalog-item1" id="sideToolbar-item-0-7"><span class="sideCatalog-index1">7</span>
-                                            <a href="#9" class="nslog nslog:1026" title="网民意见分析" onclick="return false;">网民意见分析</a><span class="sideCatalog-dot"></span>
+                                            <a href="#7" class="nslog nslog:1026" title="网民意见分析" onclick="return false;">网民意见分析</a><span class="sideCatalog-dot"></span>
 
                                             <div class="on_off_head">
                                                 <div class="on_off"><span name="on_off_span" class="on_click" auth_code="6">ON</span>
@@ -1106,16 +955,8 @@
                                                 </div>
                                             </div>
                                         </dd>
-                                        <!--<dd class="sideCatalog-item1" id="sideToolbar-item-0-8"><span class="sideCatalog-index1">8</span>-->
-                                        <!--<a href="#8" class="nslog nslog:1026" title="网民互动及传播关键点分析" onclick="return false;">网民互动及传播关键点分析</a><span class="sideCatalog-dot"></span>-->
-                                        <!--<div class="on_off_head">-->
-                                        <!--<div class="on_off"><span name="on_off_span" class="on_click" auth_code="7">ON</span>-->
-                                        <!--<p></p>-->
-                                        <!--</div>-->
-                                        <!--</div>-->
-                                        <!--</dd>-->
                                         <dd class="sideCatalog-item1" id="sideToolbar-item-0-8"><span class="sideCatalog-index1">8</span>
-                                            <a href="#10" class="nslog nslog:1026" title="综合研判" onclick="return false;">综合研判</a><span class="sideCatalog-dot"></span>
+                                            <a href="#8" class="nslog nslog:1026" title="综合研判" onclick="return false;">综合研判</a><span class="sideCatalog-dot"></span>
                                             <div class="on_off_head">
                                                 <div class="on_off"><span name="on_off_span" class="on_click" auth_code="7">ON</span>
                                                     <p></p>
@@ -1276,6 +1117,31 @@
         </div>
     </div>
 
+<!--推送至微信-->
+	<div class="checkMask append">
+    <form action="" method="post" class=" animated bounceInRight">
+        <div class="MaskTop">选择发送范围</div>
+        <em class="fa fa-times"></em>
+
+        <div class="msgs">
+        	<dl id="marquee-a">
+        		<!--<dt>全部</dt>
+        		<dd><img src="images/addS.png" alt="" /><span>姓名</span></dd>
+        		<dd><img src="images/addS.png" alt="" /><span>姓名1</span></dd>
+        		<dd><img src="images/addS.png" alt="" /><span>姓名2</span></dd>
+        		<dd><img src="images/addS.png" alt="" /><span>姓名3</span></dd>-->
+        	</dl>
+        	<dl id="marquee-b">
+        		
+        	</dl>
+        </div>
+        <div class="btnMask">
+            <button class="btn btn-primary" type="button" value="确定">确定</button>
+            <span></span>
+            <button class="btn btn-danger" value="取消">取消</button>
+        </div>
+    </form>
+</div>
 	
 
 	<!-- ================== BEGIN BASE JS ================== -->

@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.Writer;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -165,6 +166,7 @@ public class BaseAction implements Action, java.io.Serializable, Validateable,
 		response.setContentType("text/html;charset=UTF-8");// 解决中文乱码
 		response.getWriter().write(JsonUtils.fromObject(pag).replace("null", "\"\""));
 		// log.info(JsonUtils.fromObject(pag));
+		
 	}
 
 	/**

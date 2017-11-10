@@ -1,7 +1,11 @@
 package cn.com.pattek.KeyWords.action;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -13,8 +17,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,12 +27,28 @@ import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
 import net.sf.json.util.CycleDetectionStrategy;
 
-import org.apache.commons.io.FileUtils;
+import org.apache.commons.collections.map.HashedMap;
+import org.apache.commons.lang.time.DateFormatUtils;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFClientAnchor;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFPatriarch;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.struts2.ServletActionContext;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.general.PieDataset;
+import org.jfree.util.Rotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
-import sun.org.mozilla.javascript.internal.ObjToIntMap;
 
 import cn.com.pattek.KeyWords.dao.KeyCluesDao;
 import cn.com.pattek.KeyWords.entity.IopmClassify;
@@ -35,15 +56,16 @@ import cn.com.pattek.KeyWords.entity.IopmClassifyTwo;
 import cn.com.pattek.KeyWords.entity.IopmFirst;
 import cn.com.pattek.KeyWords.entity.IopmKeyEntity;
 import cn.com.pattek.KeyWords.entity.IopmKeyInfoEntity;
+import cn.com.pattek.KeyWords.entity.IopmKeyWords;
 import cn.com.pattek.KeyWords.entity.IopmRelatedFactor;
 import cn.com.pattek.KeyWords.entity.IopmSortHistory;
 import cn.com.pattek.KeyWords.entity.UpdateClues;
-import cn.com.pattek.NetHotSpot.entity.Hot;
-import cn.com.pattek.RelatedNews.entity.Article;
 import cn.com.pattek.core.page.Pagination;
 import cn.com.pattek.core.struts2.BaseAction;
 import cn.com.pattek.core.struts2.JsonUtils;
-import cn.com.pattek.core.tools.MapUtil;
+import cn.com.pattek.utils.FileUtils;
+
+
 
 @Controller("KeyCluesAction")
 public class KeyCluesAction extends BaseAction {
@@ -86,6 +108,265 @@ public class KeyCluesAction extends BaseAction {
 	private KeyCluesDao keyCluesDao;
 
 	private IopmKeyInfoEntity key;
+	
+
+	
+	//查询的集合存到数据库字段中
+	public String deposit() throws Exception{
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=UTF-8");// 解决中文乱码
+		try
+		{
+			List<IopmKeyWords> list=keyCluesDao.exportExcel();
+			String string = JsonUtils.fromArray(list);
+			keyCluesDao.addList(string);
+			
+			System.out.println("string -+-+-+-+" + string );
+			return null;
+		} catch (Exception e)
+		{
+			response.getWriter().print("{success:false,info:'存储失败!'}");
+			//e.printStackTrace();
+		}
+		return null;
+	}
+
+	//根据查询数据，形成饼状图
+	private JFreeChart createChart(String title, PieDataset piedataset)
+	{
+		JFreeChart jfreechart = ChartFactory.createPieChart3D(title,
+				piedataset, true, true, false);
+		jfreechart.getTitle().setFont(new Font("宋体", Font.BOLD, 24));
+		// 处理子标题乱码
+		jfreechart.getLegend().setItemFont(new Font("宋体", Font.BOLD, 22));
+		// // 设置外层图片 无边框 无背景色 背景图片透明
+		// jfreechart.setBorderVisible(false);
+		// jfreechart.setBackgroundPaint(null);
+		// jfreechart.setBackgroundImageAlpha(0.0f);
+
+		PiePlot3D pieplot3d = (PiePlot3D) jfreechart.getPlot();
+		// 设置旋转角度
+		pieplot3d.setStartAngle(360.0);
+		// 设置旋转方向，Rotation.CLOCKWISE)为顺时针。
+		pieplot3d.setDirection(Rotation.CLOCKWISE);
+		// 设置图表透明图0.0~1.0范围。0.0为完全透明，1.0为完全不透明。
+		pieplot3d.setForegroundAlpha(0.6F);
+		// 饼图的背景全透明
+		// pieplot3d.setBackgroundAlpha(0.0f);
+		// 去除背景边框线
+		// pieplot3d.setOutlinePaint(null);
+		// 处理图像上的乱码
+		pieplot3d.setNoDataMessage("无数据");
+		pieplot3d.setLabelFont(new Font("宋体", Font.BOLD, 22));
+
+		// 设置图形的生成格式为（上海 2 （10%））
+		String format = "{0} {1} ({2})";
+		pieplot3d.setLabelGenerator(new StandardPieSectionLabelGenerator(format));
+
+		return jfreechart;
+	}
+	
+	//生成的表格中，带有图
+	public String exportExcels() throws Exception {
+		
+	  try { 
+		// 第一步，创建一个webbook，对应一个Excel文件  
+        HSSFWorkbook wb = new HSSFWorkbook();  
+        // 第二步，在webbook中添加一个sheet,对应Excel文件中的sheet  
+        HSSFSheet sheet = wb.createSheet("线索信息");  
+        //字体颜色、加粗、字号
+        HSSFFont font = wb.createFont();
+        font.setFontName("黑体");
+        font.setFontHeightInPoints((short) 12);//设置字体大小
+        HSSFFont font2 = wb.createFont();
+        font2.setFontName("仿宋_GB2312");
+        font2.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);//粗体显示
+        font2.setFontHeightInPoints((short) 12);
+        HSSFFont font3 = wb.createFont();
+        font3.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);//粗体显示
+        
+        // 第三步，在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short  
+        //创建第一行
+        HSSFRow row1 = sheet.createRow((int) 0);
+        HSSFCell cell=row1.createCell(0);
+        //设置单元格内容
+        cell.setCellValue("线索信息统计");
+        HSSFCellStyle style = wb.createCellStyle();  //style表头用
+        style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式  
+        style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//上下居中    
+        style.setFont(font2);//选择需要用到的字体格式
+        cell.setCellStyle(style); 
+        sheet.addMergedRegion(new CellRangeAddress(0,1,0,7));//合并单元格
+        
+        //创建第二行 -前段
+        HSSFRow row2 = sheet.createRow((int) 2);
+        HSSFCell cell2=row2.createCell(0);
+        sheet.addMergedRegion(new CellRangeAddress(2,2,0,6));
+        HSSFCellStyle style1 = wb.createCellStyle();  //查询到的数据的格式
+        style1.setAlignment(HSSFCellStyle.ALIGN_LEFT); // 创建居左
+        String tag= keyCluesDao.selectTag();//查询出版本号
+        cell2.setCellValue("线索库版本V" + tag + ".0");  //设置单元格内容
+        
+        //创建第二行 -后段
+        HSSFCell cell3=row2.createCell(7);//必须在合并的外面，要>6
+
+        HSSFCellStyle style3 = wb.createCellStyle();  //第二行半部分
+        style3.setAlignment(HSSFCellStyle.ALIGN_RIGHT); // 创建居右
+        style3.setFont(font3);
+        cell3.setCellStyle(style3);
+        
+        Date now = new Date();//获取现在时间
+        cell3.setCellValue("导出时间 ： " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(now)); //设置单元格内容
+        style1.setFont(font3);
+        cell3.setCellStyle(style1); 
+        //-------------------------------------------------------------------------------------------
+        //根据得到数据做成饼状图
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        int msgNull= keyCluesDao.selectCountMsgNull();
+        int msg= keyCluesDao.selectCountMsg();
+        //添加数据
+        dataset.setValue("僵尸关键词(舆情量=0)",msgNull);
+        dataset.setValue("活跃关键词(舆情量>0)",msg);
+        
+        JFreeChart chart = createChart("关键词统计(" + DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss") +")", dataset);
+        PiePlot3D categoryPlot = (PiePlot3D)chart.getPlot();
+        //处理图像上的乱码
+        categoryPlot.setSectionPaint("僵尸关键词(舆情量=0)", Color.RED);
+        categoryPlot.setSectionPaint("活跃关键词(舆情量>0)", Color.ORANGE);
+        
+        String filenames = DateFormatUtils.format(new Date(), "yyyy-MM-dd HH-mm-ss")+".png";  
+        //在D盘目录下生成图片
+        File file = new File(filenames);
+        ChartUtilities.saveChartAsJPEG(file, chart, 1320, 990);
+        //--------------------------------------------------------------------------------------------------------
+        //将图表插入Excel
+        BufferedImage bufferImg;
+        ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();     
+        bufferImg = ImageIO.read(file);     
+        ImageIO.write(bufferImg, "png", byteArrayOut);  
+              
+        //画图的顶级管理器，一个sheet只能获取一个（一定要注意这点）  
+        HSSFSheet sheet1 = wb.createSheet("关键词统计");  
+        HSSFPatriarch patriarch = sheet1.createDrawingPatriarch();     
+        //anchor主要用于设置图片的属性  
+        HSSFClientAnchor anchor = new HSSFClientAnchor(0,0 , 120, 120,(short) 0, 0, (short) 16, 40);     
+        anchor.setAnchorType(3);   
+        sheet1.addMergedRegion(new CellRangeAddress(0,40,0,15));
+        //插入图片    
+        FileOutputStream fileOut = null;  
+        patriarch.createPicture(anchor, wb.addPicture(byteArrayOut.toByteArray(), HSSFWorkbook.PICTURE_TYPE_JPEG));   
+            //-------------------------------------------------------------
+        //创建第四行
+        HSSFRow row3=sheet.createRow((int) 3); 
+        HSSFCellStyle style2 = wb.createCellStyle();  //第三行的格式
+        style2.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式  
+        //设置单元格内容
+        HSSFCell cell1 = row3.createCell((short) 0);  
+        cell1.setCellValue("一级分类");  
+        cell1.setCellStyle(style2);  
+        cell1 = row3.createCell((short) 1);  
+        cell1.setCellValue("二级分类");  
+        cell1.setCellStyle(style2); 
+        cell1 = row3.createCell((short) 2);  
+        cell1.setCellValue("三级分类");  
+        cell1.setCellStyle(style2); 
+        cell1 = row3.createCell((short) 3);  
+        cell1.setCellValue("名称");  
+        cell1.setCellStyle(style2); 
+        cell1 = row3.createCell((short) 4);  
+        cell1.setCellValue("包含关键词");  
+        cell1.setCellStyle(style2); 
+        cell1 = row3.createCell((short) 5);  
+        cell1.setCellValue("不包含关键词");  
+        cell1.setCellStyle(style2); 
+        cell1 = row3.createCell((short) 6);  
+        cell1.setCellValue("舆情数");  
+        cell1.setCellStyle(style2); 
+        cell1 = row3.createCell((short) 7);  
+        cell1.setCellValue("备注");  
+        cell1.setCellStyle(style2); 
+
+        // 第五步，写入实体数据 实际应用中这些数据从数据库得到，  
+        List<IopmKeyWords> list=keyCluesDao.exportExcel();
+        HSSFRow row=sheet.createRow((int) 4); //第五行
+        //设置行宽，列宽
+        row.setHeight((short) 300);
+        sheet.setColumnWidth((short) 0, (short) 5000);
+        sheet.setColumnWidth((short) 1, (short) 5000);
+        sheet.setColumnWidth((short) 2, (short) 4000);
+        sheet.setColumnWidth((short) 3, (short) 12000);
+        sheet.setColumnWidth((short) 4, (short) 15000);
+        sheet.setColumnWidth((short) 5, (short) 6000);
+        sheet.setColumnWidth((short) 6, (short) 4000);
+        sheet.setColumnWidth((short) 7, (short) 9000);
+        
+        //第四行及下面的内容
+        HSSFCellStyle style4 = wb.createCellStyle();  //查询到的数据的格式
+        style4.setAlignment(HSSFCellStyle.ALIGN_LEFT); // 创建居左
+        for (int i = 3; i < list.size()+3; i++)  
+        {  
+            row = sheet.createRow((int) i +1);  
+            IopmKeyWords is=list.get(i-3);
+            // 第四步，创建单元格，并设置值  
+            HSSFCell cellex = row.createCell((short) 0); 
+            cellex.setCellValue(is.getZero_name());  
+            cellex.setCellStyle(style4); 
+            cellex = row.createCell((short) 1); 
+            cellex.setCellValue(is.getFirst_classify());  
+            cellex.setCellStyle(style4); 
+            cellex = row.createCell((short) 2); 
+            cellex.setCellValue(is.getSecond_classify());  
+            cellex.setCellStyle(style4); 
+            cellex = row.createCell((short) 3); 
+            cellex.setCellValue(is.getClues_name());  
+            cellex.setCellStyle(style4); 
+            cellex = row.createCell((short) 4); 
+            cellex.setCellValue(is.getKeyword2());  
+            cellex.setCellStyle(style4); 
+            cellex = row.createCell((short) 5); 
+            cellex.setCellValue(is.getKeyword3());  
+            cellex.setCellStyle(style4); 
+            cellex = row.createCell((short) 6); 
+            cellex.setCellValue(is.getMsg_count());  
+            cellex.setCellStyle(style4); 
+
+         } 
+        	// 第六步，将文件存到指定位置  
+        	String filename = "线索信息统计V" +tag +".0.xls";
+        	//获取浏览器类型
+            String agent = ServletActionContext.getRequest().getHeader("User-Agent");
+            String mimeType = ServletActionContext.getServletContext().getMimeType(filename);
+            //根据浏览器类型对文件名编码
+            filename = FileUtils.encodeDownloadFilename(filename, agent);
+            fileOut = new FileOutputStream(filename); 
+            // 4.1一个流：response的输出流
+            ServletOutputStream os = ServletActionContext.getResponse().getOutputStream();
+            // 4.2两个头之一：content-type，告诉前台浏览器返回数据的格式：xml,css,html,json,xls等等
+            ServletActionContext.getResponse().setContentType(mimeType);
+            // 4.3两个头之二：content-disposition，告诉前台浏览器数据的打开方式，附件方式打开值如下：attachment;filename=文件名
+            ServletActionContext.getResponse().setHeader("content-disposition", "attachment;filename="+filename);
+            // 5.将excel通过response返回到前台
+            wb.write(os);
+        	
+        }  
+     	catch (Exception e){  
+ 	        Map result = new HashedMap();
+            result.put("status", 0);
+            result.put("message", "导出失败");
+            result.put("file_path", "");
+            this.objectToJson(result);
+        } 
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	/**
 	 *获取所有类别 返回json类型

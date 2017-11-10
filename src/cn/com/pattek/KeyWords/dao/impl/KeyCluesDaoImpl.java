@@ -12,6 +12,7 @@ import cn.com.pattek.KeyWords.entity.IopmClues;
 import cn.com.pattek.KeyWords.entity.IopmFirst;
 import cn.com.pattek.KeyWords.entity.IopmKeyEntity;
 import cn.com.pattek.KeyWords.entity.IopmKeyInfoEntity;
+import cn.com.pattek.KeyWords.entity.IopmKeyWords;
 import cn.com.pattek.KeyWords.entity.IopmRelatedFactor;
 import cn.com.pattek.KeyWords.entity.IopmSortHistory;
 import cn.com.pattek.NetHotSpot.entity.Hot;
@@ -20,6 +21,53 @@ import cn.com.pattek.core.dao.BaseDaoImpl;
 
 @Repository
 public class KeyCluesDaoImpl extends BaseDaoImpl implements KeyCluesDao {
+	
+	
+	//集合存到数据库字段中
+	public boolean addList(String string) throws Exception
+	{
+		sqlSessionTemplate.insert("addList", string);
+		return true;
+	}
+
+	//导出Excel
+	public List<IopmKeyWords> exportExcel() throws Exception
+	{
+		List<IopmKeyWords> List = sqlSessionTemplate.selectList("exportExcel" );
+		return List;
+	}
+    //查出Tag
+	public String selectTag() throws Exception
+	{
+		String string=sqlSessionTemplate.selectOne("selectTag" );
+		return string;
+	}
+	//舆情总数为 0 的数量
+	public Integer selectCountMsgNull() throws Exception
+	{
+		Integer integer=sqlSessionTemplate.selectOne("selectCountMsgNull");
+		return integer;
+	}
+
+	public Integer selectCountMsg() throws Exception
+	{
+		Integer integer=sqlSessionTemplate.selectOne("selectCountMsg");
+		return integer;
+	}
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//增加关键词
 	public boolean addKeyword(IopmKeyInfoEntity key) throws Exception {
 		// TODO Auto-generated method stub
@@ -581,5 +629,29 @@ public class KeyCluesDaoImpl extends BaseDaoImpl implements KeyCluesDao {
 			
 			return tag;
 	   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	   
 }

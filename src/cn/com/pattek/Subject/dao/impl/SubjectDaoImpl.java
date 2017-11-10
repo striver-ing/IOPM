@@ -1,6 +1,7 @@
 ﻿package cn.com.pattek.Subject.dao.impl;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,6 +14,9 @@ import java.util.Map;
 
 import net.sf.json.JSONObject;
 
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.methods.GetMethod;
 import org.springframework.stereotype.Repository;
 
 import cn.com.pattek.KeyWords.entity.IopmKeyEntity;
@@ -20,6 +24,8 @@ import cn.com.pattek.Subject.dao.SubjectDao;
 import cn.com.pattek.Subject.entity.TabIopmSubject;
 import cn.com.pattek.core.dao.BaseDaoImpl;
 import cn.com.pattek.utils.ESSearchUtils;
+import cn.com.pattek.utils.HttpRequest;
+import cn.com.pattek.utils.PropertiesFactory;
 import cn.com.pattek.utils.Tools;
 
 @Repository
@@ -38,11 +44,12 @@ public class SubjectDaoImpl extends BaseDaoImpl implements SubjectDao {
 		String url ="http://"+httpValue+"/_sql?sql="+a;//拼接上http://+地址
 		System.out.println(url);//输出url
  
-        String json = Tools.loadJson(url); //获得页面的数据
+        JSONObject httpGet = HttpRequest.httpGet(url); //获得页面的数据
+        String json = httpGet.toString();
         System.out.println(json); //打印数据
 		return json;
 	}
-	
+	//求出峰值
 	public String peak(Map map) throws Exception{
 		List count = new ArrayList<Integer>(3);//每三天数量
 		List day = new ArrayList<String>(3);//每三天日期
@@ -116,7 +123,11 @@ public class SubjectDaoImpl extends BaseDaoImpl implements SubjectDao {
 		  System.out.println("------------");
 		  System.out.println(peakDay.toString());
 		  System.out.println(maxK.toString());
-		  String str = "经历了"+peakDay.size()+"次高峰。舆情的爆发点首次出现在"+peakDay.get(0).toString()+"。最大峰值出现在"+maxK+"。";
+		  String string="";
+		  if(peakDay.size()>0){
+			string = peakDay.get(0).toString();
+		  }
+		  String str = "经历了"+peakDay.size()+"次高峰。舆情的爆发点首次出现在"+string+"。最大峰值出现在"+maxK+"。";
 		  return str;
 	}
 
@@ -139,40 +150,231 @@ public class SubjectDaoImpl extends BaseDaoImpl implements SubjectDao {
 	   String sql = keyWord1Sql.toString();
 		return sql;
    }
-
-	public String splitKeyWord1(String head, String keyword1, String end) throws Exception{
-		return splitKeyWord1(head, keyword1, end, true);
+	
+	/**
+	 * 调用python服务,对keyword进行重新编码
+	 */
+	public String serviceFromPython(String keyword1) throws Exception{
+		keyword1 = URLEncoder.encode(keyword1,"UTF-8");
+		  String ret = "";  
+		  String pythonUrl = PropertiesFactory.getValue("pythonService");
+		  String url = pythonUrl+"/format_keywords?keywords="+keyword1;
+	        try {  
+	            HttpClient httpclient = new HttpClient();  
+	            //httpclient.setConnectionTimeout(10000);  
+	            GetMethod method = new GetMethod(url);  
+	            method.setDoAuthentication(true);     
+	            method.setRequestHeader("Content-Type", "text/html;charset=UTF-8");    
+	            httpclient.executeMethod(method);  
+	              
+	            if (method.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {  
+	                ret = new String(method.getResponseBodyAsString());
+	            }  
+	            method.releaseConnection();  
+	        } catch (Exception e) {  
+	            e.printStackTrace();  
+	        }  
+	        System.out.println(ret);
+	        keyword1=ret;
+		return keyword1;
+		
 	}
 	
-	//分割keyWord1,并且拼接
-	public String splitKeyWord1(String head, String keyword1, String end, boolean isNeedContent)
-			throws Exception {
+	/**
+	 * 分割keyWord1,并且拼接,但是没有content
+	 * @param head
+	 * @param keyword1
+	 * @param end
+	 * @return
+	 * @throws Exception
+	 */
+	public String splitKeyWord1AndNoContent(String head,String keyword1,String end) throws Exception{
+StringBuffer finalSql = new StringBuffer();
+		
+		//keyword1="十九 代表 分组讨论 习近平 同志 报告";
+	    keyword1 = URLEncoder.encode(keyword1,"UTF-8");
+		  String ret = "";  
+		  String pythonUrl = PropertiesFactory.getValue("pythonService");
+		  String url = pythonUrl+"/format_keywords?keywords="+keyword1;
+	        try {  
+	            HttpClient httpclient = new HttpClient();  
+	            //httpclient.setConnectionTimeout(10000);  
+	            GetMethod method = new GetMethod(url);  
+	            method.setDoAuthentication(true);     
+	            method.setRequestHeader("Content-Type", "text/html;charset=UTF-8");    
+	            httpclient.executeMethod(method);  
+	              
+	            if (method.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {  
+	                ret = new String(method.getResponseBodyAsString());
+	            }  
+	            method.releaseConnection();  
+	        } catch (Exception e) {  
+	            e.printStackTrace();  
+	        }  
+	        System.out.println(ret);
+	        keyword1=ret;
+		
+		String sql="";
+	    String and =" AND "; 
+	    String or =" OR ";
 		StringBuffer keyWord1Sql = new StringBuffer();
 		keyWord1Sql.append(head+" ");
-		//-------------------------------------------------------------
-					//String keyWord1 ="网络 直播,成为,价值 出口";	
-		String title ="((TITLE = '";
-		String content ="(CONTENT = '";
-		String k ="')";
-					
-					String replace1 = keyword1.replace(" ", " ' AND TITLE = '");//网络AND TITLE = '直播,成为,价值'AND TITLE = 出口
-					String replace2 = replace1.replace(","," ' OR TITLE = '");//网络AND直播OR成为OR价值AND出口
-					keyWord1Sql.append(title);
-					keyWord1Sql.append(replace2);
-					keyWord1Sql.append(k);
-					
-				if(isNeedContent){
-					keyWord1Sql.append(" OR ");
-					String replace3 = keyword1.replace(" ", " ' AND CONTENT = '");
-					String replace4 = replace3.replace(",", " ' OR CONTENT = '");
-					keyWord1Sql.append(content);
-					keyWord1Sql.append(replace4);
-					keyWord1Sql.append(k);
-					keyWord1Sql.append(") ");}
-					
-	   keyWord1Sql.append(end);
-	   String sql = keyWord1Sql.toString();
-		return sql;
+		String[] keyword1SplitForOr = keyword1.split(",");
+		for (int i = 0; i < keyword1SplitForOr.length; i++) {//将","拆分之后拼接上OR
+			sql =sql;
+			String keyword1SplitForOrOne = keyword1SplitForOr[i];
+			if(i==0&&!(keyword1SplitForOrOne.contains("&"))){
+				sql=sql+"(TITLE="+"'"+keyword1SplitForOrOne+"')";
+			}
+			if(i!=0&&!(keyword1SplitForOrOne.contains("&"))){
+				sql=sql+"(TITLE="+"'"+keyword1SplitForOrOne+"')";
+			}
+			
+			if(i==0&&keyword1SplitForOrOne.contains("&")){
+				String[] keyword1SplitForAnd = keyword1SplitForOrOne.split("&");
+				for (int j = 0; j < keyword1SplitForAnd.length; j++) {
+					String keyword1SplitForAndOne = keyword1SplitForAnd[j];
+						
+					if(j==0){
+						sql=sql+"(TITLE="+"'"+keyword1SplitForAndOne+"')"+and;						
+					}else if(j==(keyword1SplitForAnd.length)-1){
+						sql=sql+"(TITLE="+"'"+keyword1SplitForAndOne+"')";											
+					}else{
+						sql=sql+"(TITLE="+"'"+keyword1SplitForAndOne+"')"+and;
+					}
+
+			 }
+				}
+			if((i!=0&&keyword1SplitForOrOne.contains("&"))&&i!=(keyword1SplitForOr.length)-1){
+				String[] keyword1SplitForAnd = keyword1SplitForOrOne.split("&");
+				for (int j = 0; j < keyword1SplitForAnd.length; j++) {
+					String keyword1SplitForAndOne = keyword1SplitForAnd[j];		
+					if(j==0){
+						sql=sql+"(TITLE="+"'"+keyword1SplitForAndOne+"')"+and;						
+					}else if(j==(keyword1SplitForAnd.length)-1){
+						sql=sql+"(TITLE="+"'"+keyword1SplitForAndOne+"')";											
+					}else{
+						sql=sql+"(TITLE="+"'"+keyword1SplitForAndOne+"')"+and;
+					}											
+			 }
+			}
+			if((i!=0&&keyword1SplitForOrOne.contains("&"))&&i==(keyword1SplitForOr.length)-1){
+				String[] keyword1SplitForAnd = keyword1SplitForOrOne.split("&");
+				for (int j = 0; j < keyword1SplitForAnd.length; j++) {
+					String keyword1SplitForAndOne = keyword1SplitForAnd[j];	
+					if(j!=0){						
+						sql=sql+and;
+					}
+					 sql=sql+"(TITLE="+"'"+keyword1SplitForAndOne+"')";
+			}
+				}
+			sql=sql;
+			if(i!=(keyword1SplitForOr.length)-1){
+			sql=sql+or;
+				}
+		}
+		finalSql.append(head+" ( ");
+		finalSql.append(sql);
+		finalSql.append(" ) "+end);
+	   String finalSQL = finalSql.toString();
+		return finalSQL;
+
+	}
+
+	
+	//分割keyWord1,并且拼接
+	@SuppressWarnings({ "deprecation", "static-access" })
+	public String splitKeyWord1(String head, String keyword1, String end)
+			throws Exception {
+		StringBuffer finalSql = new StringBuffer();
+		
+		//keyword1="十九 代表 分组讨论 习近平 同志 报告";
+	    keyword1 = URLEncoder.encode(keyword1,"UTF-8");
+		  String ret = "";  
+		  String pythonUrl = PropertiesFactory.getValue("pythonService");
+		  String url = pythonUrl+"/format_keywords?keywords="+keyword1;
+	        try {  
+	            HttpClient httpclient = new HttpClient();  
+	            //httpclient.setConnectionTimeout(10000);  
+	            GetMethod method = new GetMethod(url);  
+	            method.setDoAuthentication(true);     
+	            method.setRequestHeader("Content-Type", "text/html;charset=UTF-8");    
+	            httpclient.executeMethod(method);  
+	              
+	            if (method.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {  
+	                ret = new String(method.getResponseBodyAsString());
+	            }  
+	            method.releaseConnection();  
+	        } catch (Exception e) {  
+	            e.printStackTrace();  
+	        }  
+	        System.out.println(ret);
+	        keyword1=ret;
+		
+		String sql="";
+	    String and =" AND "; 
+	    String or =" OR ";
+		StringBuffer keyWord1Sql = new StringBuffer();
+		keyWord1Sql.append(head+" ");
+		String[] keyword1SplitForOr = keyword1.split(",");
+		for (int i = 0; i < keyword1SplitForOr.length; i++) {//将","拆分之后拼接上OR
+			sql =sql+"(";
+			String keyword1SplitForOrOne = keyword1SplitForOr[i];
+			if(i==0&&!(keyword1SplitForOrOne.contains("&"))){
+				sql=sql+"(TITLE="+"'"+keyword1SplitForOrOne+"'"+" OR "+"CONTENT="+"'"+keyword1SplitForOrOne+"')";
+			}
+			if(i!=0&&!(keyword1SplitForOrOne.contains("&"))){
+				sql=sql+"(TITLE="+"'"+keyword1SplitForOrOne+"'"+" OR "+"CONTENT="+"'"+keyword1SplitForOrOne+"')";
+			}
+			
+			if(i==0&&keyword1SplitForOrOne.contains("&")){
+				String[] keyword1SplitForAnd = keyword1SplitForOrOne.split("&");
+				for (int j = 0; j < keyword1SplitForAnd.length; j++) {
+					String keyword1SplitForAndOne = keyword1SplitForAnd[j];
+						
+					if(j==0){
+						sql=sql+"(TITLE="+"'"+keyword1SplitForAndOne+"'"+" OR "+"CONTENT="+"'"+keyword1SplitForAndOne+"')"+and;						
+					}else if(j==(keyword1SplitForAnd.length)-1){
+						sql=sql+"(TITLE="+"'"+keyword1SplitForAndOne+"'"+" OR "+"CONTENT="+"'"+keyword1SplitForAndOne+"')";											
+					}else{
+						sql=sql+"(TITLE="+"'"+keyword1SplitForAndOne+"'"+" OR "+"CONTENT="+"'"+keyword1SplitForAndOne+"')"+and;
+					}
+
+			 }
+				}
+			if((i!=0&&keyword1SplitForOrOne.contains("&"))&&i!=(keyword1SplitForOr.length)-1){
+				String[] keyword1SplitForAnd = keyword1SplitForOrOne.split("&");
+				for (int j = 0; j < keyword1SplitForAnd.length; j++) {
+					String keyword1SplitForAndOne = keyword1SplitForAnd[j];		
+					if(j==0){
+						sql=sql+"(TITLE="+"'"+keyword1SplitForAndOne+"'"+" OR "+"CONTENT="+"'"+keyword1SplitForAndOne+"')"+and;						
+					}else if(j==(keyword1SplitForAnd.length)-1){
+						sql=sql+"(TITLE="+"'"+keyword1SplitForAndOne+"'"+" OR "+"CONTENT="+"'"+keyword1SplitForAndOne+"')";											
+					}else{
+						sql=sql+"(TITLE="+"'"+keyword1SplitForAndOne+"'"+" OR "+"CONTENT="+"'"+keyword1SplitForAndOne+"')"+and;
+					}											
+			 }
+			}
+			if((i!=0&&keyword1SplitForOrOne.contains("&"))&&i==(keyword1SplitForOr.length)-1){
+				String[] keyword1SplitForAnd = keyword1SplitForOrOne.split("&");
+				for (int j = 0; j < keyword1SplitForAnd.length; j++) {
+					String keyword1SplitForAndOne = keyword1SplitForAnd[j];	
+					if(j!=0){						
+						sql=sql+and;
+					}
+					 sql=sql+"(TITLE="+"'"+keyword1SplitForAndOne+"'"+" OR "+"CONTENT="+"'"+keyword1SplitForAndOne+"')";
+			}
+				}
+			sql=sql+")";
+			if(i!=(keyword1SplitForOr.length)-1){
+			sql=sql+or;
+				}
+		}
+		finalSql.append(head+" ( ");
+		finalSql.append(sql);
+		finalSql.append(" ) "+end);
+	   String finalSQL = finalSql.toString();
+		return finalSQL;
 	}
 	
 
@@ -192,6 +394,7 @@ public class SubjectDaoImpl extends BaseDaoImpl implements SubjectDao {
 		// TODO Auto-generated method stub
 		return list;
 	}
+
 	//查询专题总数量
 	public Integer selectTotalCount() throws Exception
 	{
@@ -479,14 +682,13 @@ public class SubjectDaoImpl extends BaseDaoImpl implements SubjectDao {
 		String selectOne = sqlSessionTemplate.selectOne("selectTitle", id);
 		return selectOne;
 	}
-
-
-
-	public List<Map<String, Object>> SelectFrist(String keyWord1)
-			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean updateIsSend(Long id) throws Exception {
+		sqlSessionTemplate.update("updateIsSend", id);
+		return true;
 	}
+
+
+
 
 
 

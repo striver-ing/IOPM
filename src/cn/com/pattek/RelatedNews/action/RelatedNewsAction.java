@@ -1,6 +1,8 @@
 package cn.com.pattek.RelatedNews.action;
 
 import java.io.BufferedReader;
+
+import cn.com.pattek.NetHotSpot.dao.NetHotSpotDao;
 import cn.com.pattek.RelatedNews.entity.IopmKeyInfoEntity;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -89,6 +91,9 @@ public class RelatedNewsAction extends BaseAction {
 
 	@Autowired
 	private RelatedNewsDao relatedNewsDao;
+	@Autowired
+	private NetHotSpotDao netHotSpotDao;
+
     
 	public Long getHot_id() {
 		return hot_id;
@@ -235,7 +240,7 @@ public class RelatedNewsAction extends BaseAction {
 	}
 
 	/* 返回ftl */
-	public String getRelatedFtl() {
+	public String getRelatedFtl() throws Exception {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		endTime = format.format(date);
@@ -243,6 +248,8 @@ public class RelatedNewsAction extends BaseAction {
 		System.out.println("clus_ids=" + clus_ids);
 		System.out.println("id" + id + " ;  keywords: " + keywords);
 		System.out.println("haha");
+
+		
 		return SUCCESS;
 	}
 
@@ -846,10 +853,13 @@ public class RelatedNewsAction extends BaseAction {
 		UserAct userAct = new UserAct();
 		userAct.setAction_type(action_type);
 		userAct.setMsg_id(msg_id);
+		userAct.setMsg_type((long) 502);
 		if(user != null){
 			userAct.setUser_id(user.getUserId());
 		}
 		relatedNewsDao.addUserAct(userAct);
+		
+		
 		return null;
 		
 	}
@@ -863,7 +873,10 @@ public class RelatedNewsAction extends BaseAction {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("application/json;charset=UTF-8");
 		Map map = new HashMap();
-		map.put("user_id", user_id);
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		Users user = (Users) session.get("login");
+
+		
 		map.put("msg_id", msg_id);
 		map.put("action_type",301);
 		int adopt = relatedNewsDao.getAdoptCount(map);

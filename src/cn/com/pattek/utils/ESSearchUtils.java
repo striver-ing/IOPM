@@ -947,7 +947,7 @@ public class ESSearchUtils {
 	public static void main(String[] args) throws Exception {
 		ESSearchUtils es = ESSearchUtils.getInstance();
 
-		String sql = "SELECT WEBSITE_NAME FROM tab_iopm_article_info group by WEBSITE_NAME";
+		String sql = "SELECT * FROM tab_iopm_article_info where (TITLE = '梁宏达' or CONTENT = '梁宏达') and (TITLE = '雷锋' or CONTENT = '雷锋')";
 		String s = "2017-07-23";
 		//select RELEASE_TIME from tab_iopm_article_info where  (RELEASE_TIME >= '2017-10-01 00:00:00' and RELEASE_TIME <= '2017-10-01 23:59:59')and (TITLE like '%焦点访谈%' OR CONTENT LIKE'%焦点访谈%') and IS_VIP=1
 		List<Object> result = es.searchBySql(sql);

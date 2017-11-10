@@ -2,6 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybaits-3-mapper.dtd">
 <mapper namespace="cn.com.pattek.AppManager.dao.AppManagerDao">
 
+
+	<!-- 导出Excel表格 -->
+	<select id="exportExcel"  resultType="cn.com.pattek.KeyWords.entity.IopmKeyWords">
+    select zero_id, zero_name, first_classify_id, first_classify, second_classify_id, 
+    second_classify, clues_id, clues_name, keywords_id, 
+    keyword2, keyword3, msg_count from VIEW_TAB_IOPM_KEYWORDS order by second_classify_id
+	</select>
+	
+
+	<!-- 集合加到数据库 -->
+	<insert id="addList" parameterType="java.lang.String" >
+	 insert into TAB_IOPM_CLUES_HISTORY(clues_json) values (#{string})
+	</insert>
+
+    <!-- 查出Tag -->
+	<select id="selectTag"  resultType="java.lang.String">
+	select seq_clues_tag.nextval  from dual
+	</select>
+    <!-- 查出总数为  0 的个数 -->
+	<select id="selectCountMsgNull"  resultType="java.lang.Integer">
+	select count(*) count from VIEW_TAB_IOPM_KEYWORDS where msg_count =0
+	</select>
+    <!-- 查出总数不为  0 的个数 -->
+	<select id="selectCountMsg"  resultType="java.lang.Integer">
+	select count(*) count from VIEW_TAB_IOPM_KEYWORDS where msg_count !=0
+	</select>
+
+
+
+
 	<!-- 添加关键词 -->
 	<insert id="addKeyword" parameterType="cn.com.pattek.KeyWords.entity.IopmKeyInfoEntity">
 		<selectKey resultType="java.lang.Long" keyProperty="id"
